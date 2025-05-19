@@ -14,7 +14,7 @@
 - [x] Ensure lesson page is discoverable from the landing page
 
 ## General
-- [ ] Add navigation structure for future lessons/pages
+- [x] Add navigation structure for future lessons/pages
 - [x] Validate site builds and displays correctly on GitHub Pages (latest build status: built)
 - [x] Document contribution/expansion process in `README.md`
 - [x] Site is configured to build from root (not /docs) per GitHub Pages settings 
