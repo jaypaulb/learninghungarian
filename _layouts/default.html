@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+  <style>
+    body { font-family: 'Inter', sans-serif; margin: 0; background: #f8fafc; color: #1e293b; }
+    nav.navbar { background:#f0f4f8; border-bottom:1px solid #e2e8f0; padding:12px 0; margin-bottom:24px; text-align:center; font-weight:600; }
+    nav.navbar a { margin:0 18px; color:#0f766e; text-decoration:none; }
+    nav.navbar a:hover { text-decoration:underline; }
+    main { max-width: 900px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); padding: 32px 24px; }
+    @media (max-width: 600px) { main { padding: 16px 4px; } }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="https://jaypaulb.github.io/learninghungarian/">Home</a>
+    <a href="https://jaypaulb.github.io/learninghungarian/lessons/vowelsounds.html">Lesson 1: Vowel Sounds</a>
+    <!-- Add more lessons here as you expand -->
+  </nav>
+  <main>
+    {{ content }}
+  </main>
+</body>
+</html> 

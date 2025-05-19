@@ -1,585 +1,407 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hungarian Vowel & Word Grid</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f4f8;
-            color: #1e293b;
-        }
-        .introduction {
-            width: 90%;
-            max-width: 900px; 
-            background-color: #ffffff;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-            text-align: left;
-        }
-        .introduction h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #0f766e;
-            margin-bottom: 16px;
-        }
-        .introduction h2 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #0f766e;
-            margin-top: 16px;
-            margin-bottom: 8px;
-        }
-        .introduction p {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 12px;
-        }
-        .introduction strong {
-            font-weight: 600;
-            color: #1e293b;
-        }
-        .introduction ul {
-            list-style-type: disc;
-            margin-left: 20px;
-            margin-bottom: 12px;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(7, minmax(90px, 1fr)); 
-            gap: 12px; 
-            width: 95%;
-            max-width: 1200px;
-            margin-bottom: 20px;
-        }
-        .grid-card {
-            background-color: #ffffff;
-            border-radius: 12px;
-            padding: 10px; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            aspect-ratio: 1 / 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            overflow: hidden;
-        }
-        .grid-card:hover {
-            transform: translateY(-3px); 
-            box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.1), 0 3px 5px -2px rgba(0, 0, 0, 0.05);
-        }
-        .card-content {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .card-state {
-            font-size: 0.9rem; 
-            color: #334155;
-            width: 100%;
-        }
-        .card-state .main-display { 
-            font-size: 1.3rem; 
-            font-weight: 700;
-            color: #0f766e; 
-            margin-bottom: 5px;
-        }
-         .card-state .vowel-example-word {
-            font-size: 0.8rem;
-            color: #475569;
-            margin-bottom: 5px;
-        }
-        .card-state .translation {
-            font-size: 0.8rem; 
-            color: #475569;
-        }
-        .card-state .prompt-text {
-            font-size: 0.95rem; 
-            font-weight: 600;
-            color: #0891b2; 
-            padding: 8px;
-        }
-        .card-state .detail-label { 
-            font-weight: 600;
-            color: #1e293b;
-            display: block;
-            margin-bottom: 3px;
-            font-size: 0.85rem;
-        }
-         .card-state .detail-value {
-            font-size: 0.85rem; 
-        }
-        .card-state .answer-hu {
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-        .card-state .answer-en {
-            font-size: 0.75rem;
-            color: #4b5563;
-        }
-        .card-state .sentence {
-            font-size: 0.75rem; 
-            line-height: 1.2;
-        }
-        .card-state .sentence-hu {
-            font-style: italic;
-        }
-        .card-state .sentence-en {
-            color: #4b5563; 
-        }
-        .randomize-button {
-            background-color: #2563eb; 
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-top: 20px;
-        }
-        .randomize-button:hover {
-            background-color: #1d4ed8; 
-        }
+---
+layout: default
+title: Hungarian Vowel Sounds
+---
 
-        @media (max-width: 768px) { 
-            .grid-container {
-                grid-template-columns: repeat(4, 1fr); 
-                gap: 10px;
-            }
-            .card-state .main-display { font-size: 1.2rem; }
-            .card-state .prompt-text { font-size: 0.9rem; }
-        }
-        @media (max-width: 480px) {
-            .introduction h1 { font-size: 1.5rem; }
-            .introduction h2 { font-size: 1.1rem; }
-            .introduction p { font-size: 0.9rem; }
-            .grid-container {
-                grid-template-columns: repeat(3, 1fr); 
-                gap: 8px;
-            }
-            .grid-card { padding: 8px;}
-            .card-state .main-display { font-size: 1.1rem; }
-            .card-state .prompt-text { font-size: 0.8rem; }
-            .card-state .detail-value, .card-state .answer-hu { font-size: 0.75rem; }
-            .card-state .answer-en, .card-state .sentence { font-size: 0.7rem; }
-             .card-state .vowel-example-word, .card-state .translation { font-size: 0.7rem;}
-        }
-    </style>
-</head>
-<body>
+<!-- Only the content inside <body> should remain, starting from the introduction div -->
+<div class="introduction">
+    <h1>Learning Hungarian Vowels & Vowel Harmony</h1>
+    <p>Hungarian pronunciation and grammar are heavily influenced by a concept called <strong>vowel harmony</strong>. Most Hungarian words contain either all <strong>back vowels</strong> or all <strong>front vowels</strong>. This determines which suffix form is used with a word.</p>
+    <h2>Back Vowels (Mély hangrendűek)</h2>
+    <p>These are generally pronounced further back in the mouth. Words made of back vowels take back-vowel suffixes. Examples: <strong>a</strong> (<em>alma</em> - apple), <strong>á</strong> (<em>táska</em> - bag), <strong>o</strong> (<em>doboz</em> - box), <strong>ó</strong> (<em>ló</em> - horse), <strong>u</strong> (<em>falu</em> - village), <strong>ú</strong> (<em>út</em> - road).</p>
+    <p>Example: <em>ház</em> (house) + <em>-ban</em> (in) = <em>ház<strong>ban</strong></em> (in the house).</p>
+    <h2>Front Vowels (Magas hangrendűek)</h2>
+    <p>These are generally pronounced further front in the mouth. Words made of front vowels take front-vowel suffixes.</p>
+    <p><strong>Unrounded:</strong> <strong>e</strong> (short, like 'e' in "egg", e.g., <em>ecet</em> - vinegar), <strong>é</strong> (long, somewhat like 'a' in "mate" but more closed, e.g., <em>kép</em> - picture), <strong>i</strong> (short, like 'i' in "bit", e.g., <em>kis</em> - small), <strong>í</strong> (long, like 'ee' in "see", e.g., <em>ír</em> - writes).</p>
+    <p><strong>Rounded:</strong> (Require specific lip rounding) <strong>ö</strong> (short, like German 'ö' in "können", e.g., <em>öt</em> - five), <strong>ő</strong> (long version of 'ö', e.g., <em>nő</em> - woman), <strong>ü</strong> (short, like German 'ü' in "Müller", e.g., <em>üt</em> - hits), <strong>ű</strong> (long version of 'ü', e.g., <em>fű</em> - grass).</p>
+    <p>Example: <em>kert</em> (garden) + <em>-ben</em> (in) = <em>kert<strong>ben</strong></em> (in the garden).</p>
+    <h2>Mixed Vowel Words</h2>
+    <p>Some words contain both front and back vowels (e.g., <em>sofőr</em>, <em>kávé</em>). Suffix choice can be complex. The cards below will show examples.</p>
+    <p>Click on the cards in the grid below. Each click will first pose a question, then reveal the answer or next piece of information!</p>
+</div>
 
-    <div class="introduction">
-        <h1>Learning Hungarian Vowels & Vowel Harmony</h1>
-        <p>Hungarian pronunciation and grammar are heavily influenced by a concept called <strong>vowel harmony</strong>. Most Hungarian words contain either all <strong>back vowels</strong> or all <strong>front vowels</strong>. This determines which suffix form is used with a word.</p>
-        <h2>Back Vowels (Mély hangrendűek)</h2>
-        <p>These are generally pronounced further back in the mouth. Words made of back vowels take back-vowel suffixes. Examples: <strong>a</strong> (<em>alma</em> - apple), <strong>á</strong> (<em>ház</em> - house), <strong>o</strong> (<em>doboz</em> - box), <strong>ó</strong> (<em>ló</em> - horse), <strong>u</strong> (<em>kutya</em> - dog), <strong>ú</strong> (<em>út</em> - road).</p>
-        <p>Example: <em>ház</em> (house) + <em>-ban</em> (in) = <em>ház<strong>ban</strong></em> (in the house).</p>
-        <h2>Front Vowels (Magas hangrendűek)</h2>
-        <p>These are generally pronounced further front in the mouth. Words made of front vowels take front-vowel suffixes.</p>
-        <p><strong>Unrounded:</strong> <strong>e</strong> (short, like 'e' in "egg", e.g., <em>eper</em> - strawberry), <strong>é</strong> (long, somewhat like 'a' in "mate" but more closed, e.g., <em>ég</em> - sky), <strong>i</strong> (short, like 'i' in "bit", e.g., <em>ing</em> - shirt), <strong>í</strong> (long, like 'ee' in "see", e.g., <em>ív</em> - arc).</p>
-        <p><strong>Rounded:</strong> (Require specific lip rounding) <strong>ö</strong> (short, like German 'ö' in "können", e.g., <em>örv</em> - collar), <strong>ő</strong> (long version of 'ö', e.g., <em>ősz</em> - autumn), <strong>ü</strong> (short, like German 'ü' in "Müller", e.g., <em>üst</em> - cauldron), <strong>ű</strong> (long version of 'ü', e.g., <em>űr</em> - space).</p>
-        <p>Example: <em>kert</em> (garden) + <em>-ben</em> (in) = <em>kert<strong>ben</strong></em> (in the garden).</p>
-        <h2>Mixed Vowel Words</h2>
-        <p>Some words contain both front and back vowels (e.g., <em>sofőr</em>, <em>kávé</em>). Suffix choice can be complex. The cards below will show examples.</p>
-        <p>Click on the cards in the grid below. Each click will first pose a question, then reveal the answer or next piece of information!</p>
+<div id="grid-container" class="grid-container">
     </div>
+<button id="randomize-button" class="randomize-button">Randomize Grid (Practice Level 2)</button>
 
-    <div id="grid-container" class="grid-container">
-        </div>
-    <button id="randomize-button" class="randomize-button">Randomize Grid (Practice Level 2)</button>
+<script>
+    // --- Base Data for Cards ---
+    // Vowels: 8 Front, 6 Back = 14 total
+    const baseVowelData = [
+        // Front Unrounded
+        { type: 'vowel', exampleWord: 'ecet', exampleTrans: 'vinegar', states: [ // Changed from eper to ecet
+            { displayType: 'main', mainDisplay: 'e', exampleWord: 'ecet', exampleTrans: 'vinegar' },
+            { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
+            { displayType: 'answer', textHu: 'Magas hangrendű (ajakréses)', textEn: '(Front Vowel - unrounded)' }
+        ]},
+        { type: 'vowel', exampleWord: 'kép', exampleTrans: 'picture', states: [ // Reverted from ég
+            { displayType: 'main', mainDisplay: 'é', exampleWord: 'kép', exampleTrans: 'picture' },
+            { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
+            { displayType: 'answer', textHu: 'Magas hangrendű (ajakréses)', textEn: '(Front Vowel - unrounded)' }
+        ]},
+        { type: 'vowel', exampleWord: 'kis', exampleTrans: 'small', states: [ // Reverted from ing
+            { displayType: 'main', mainDisplay: 'i', exampleWord: 'kis', exampleTrans: 'small' },
+            { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
+            { displayType: 'answer', textHu: 'Magas hangrendű (ajakréses)', textEn: '(Front Vowel - unrounded)' }
+        ]},
+        { type: 'vowel', exampleWord: 'ír', exampleTrans: 'writes', states: [ // Reverted from ív
+            { displayType: 'main', mainDisplay: 'í', exampleWord: 'ír', exampleTrans: 'writes' },
+            { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
+            { displayType: 'answer', textHu: 'Magas hangrendű (ajakréses)', textEn: '(Front Vowel - unrounded)' }
+        ]},
+        // Front Rounded
+        { type: 'vowel', exampleWord: 'öt', exampleTrans: 'five', states: [ // Reverted from örv
+            { displayType: 'main', mainDisplay: 'ö', exampleWord: 'öt', exampleTrans: 'five' },
+            { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
+            { displayType: 'answer', textHu: 'Magas hangrendű (ajakkerekítéses)', textEn: '(Front Vowel - rounded)' }
+        ]},
+        { type: 'vowel', exampleWord: 'nő', exampleTrans: 'woman', states: [ // Reverted from ősz
+            { displayType: 'main', mainDisplay: 'ő', exampleWord: 'nő', exampleTrans: 'woman' },
+            { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
+            { displayType: 'answer', textHu: 'Magas hangrendű (ajakkerekítéses)', textEn: '(Front Vowel - rounded)' }
+        ]},
+        { type: 'vowel', exampleWord: 'üt', exampleTrans: 'hit', states: [ // Reverted from üst
+            { displayType: 'main', mainDisplay: 'ü', exampleWord: 'üt', exampleTrans: 'hit' },
+            { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
+            { displayType: 'answer', textHu: 'Magas hangrendű (ajakkerekítéses)', textEn: '(Front Vowel - rounded)' }
+        ]},
+        { type: 'vowel', exampleWord: 'fű', exampleTrans: 'grass', states: [ // Reverted from űr
+            { displayType: 'main', mainDisplay: 'ű', exampleWord: 'fű', exampleTrans: 'grass' },
+            { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
+            { displayType: 'answer', textHu: 'Magas hangrendű (ajakkerekítéses)', textEn: '(Front Vowel - rounded)' }
+        ]},
+        // Back Unrounded
+        { type: 'vowel', exampleWord: 'fal', exampleTrans: 'wall', states: [ // Reverted from ajtó
+            { displayType: 'main', mainDisplay: 'a', exampleWord: 'fal', exampleTrans: 'wall' },
+            { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
+            { displayType: 'answer', textHu: 'Mély hangrendű (ajakréses)', textEn: '(Back Vowel - unrounded)' }
+        ]},
+        { type: 'vowel', exampleWord: 'tál', exampleTrans: 'bowl', states: [ // Changed from ág to tál (ház clashes)
+            { displayType: 'main', mainDisplay: 'á', exampleWord: 'tál', exampleTrans: 'bowl' },
+            { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
+            { displayType: 'answer', textHu: 'Mély hangrendű (ajakréses)', textEn: '(Back Vowel - unrounded)' }
+        ]},
+        // Back Rounded
+        { type: 'vowel', exampleWord: 'sor', exampleTrans: 'row', states: [ // Reverted from orr
+            { displayType: 'main', mainDisplay: 'o', exampleWord: 'sor', exampleTrans: 'row' },
+            { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
+            { displayType: 'answer', textHu: 'Mély hangrendű (ajakkerekítéses)', textEn: '(Back Vowel - rounded)' }
+        ]},
+        { type: 'vowel', exampleWord: 'ló', exampleTrans: 'horse', states: [ // Reverted from óra
+            { displayType: 'main', mainDisplay: 'ó', exampleWord: 'ló', exampleTrans: 'horse' },
+            { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
+            { displayType: 'answer', textHu: 'Mély hangrendű (ajakkerekítéses)', textEn: '(Back Vowel - rounded)' }
+        ]},
+        { type: 'vowel', exampleWord: 'kapu', exampleTrans: 'gate', states: [ // Changed from ujj to kapu (kutya clashes)
+            { displayType: 'main', mainDisplay: 'u', exampleWord: 'kapu', exampleTrans: 'gate' },
+            { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
+            { displayType: 'answer', textHu: 'Mély hangrendű (ajakkerekítéses)', textEn: '(Back Vowel - rounded)' }
+        ]},
+        { type: 'vowel', exampleWord: 'út', exampleTrans: 'road', states: [ // Reverted from új
+            { displayType: 'main', mainDisplay: 'ú', exampleWord: 'út', exampleTrans: 'road' },
+            { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
+            { displayType: 'answer', textHu: 'Mély hangrendű (ajakkerekítéses)', textEn: '(Back Vowel - rounded)' }
+        ]},
+    ];
 
-    <script>
-        // --- Base Data for Cards ---
-        // Vowels: 8 Front, 6 Back = 14 total
-        const baseVowelData = [
-            // Front Unrounded
-            { type: 'vowel', exampleWord: 'eper', exampleTrans: 'strawberry', states: [
-                { displayType: 'main', mainDisplay: 'e', exampleWord: 'eper', exampleTrans: 'strawberry' },
-                { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
-                { displayType: 'answer', textHu: 'Magas hangrendű (ajakréses)', textEn: '(Front Vowel - unrounded)' }
-            ]},
-            { type: 'vowel', exampleWord: 'ég', exampleTrans: 'sky', states: [
-                { displayType: 'main', mainDisplay: 'é', exampleWord: 'ég', exampleTrans: 'sky' },
-                { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
-                { displayType: 'answer', textHu: 'Magas hangrendű (ajakréses)', textEn: '(Front Vowel - unrounded)' }
-            ]},
-            { type: 'vowel', exampleWord: 'ing', exampleTrans: 'shirt', states: [
-                { displayType: 'main', mainDisplay: 'i', exampleWord: 'ing', exampleTrans: 'shirt' },
-                { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
-                { displayType: 'answer', textHu: 'Magas hangrendű (ajakréses)', textEn: '(Front Vowel - unrounded)' }
-            ]},
-            { type: 'vowel', exampleWord: 'ív', exampleTrans: 'arc', states: [
-                { displayType: 'main', mainDisplay: 'í', exampleWord: 'ív', exampleTrans: 'arc' },
-                { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
-                { displayType: 'answer', textHu: 'Magas hangrendű (ajakréses)', textEn: '(Front Vowel - unrounded)' }
-            ]},
-            // Front Rounded
-            { type: 'vowel', exampleWord: 'örv', exampleTrans: 'collar', states: [
-                { displayType: 'main', mainDisplay: 'ö', exampleWord: 'örv', exampleTrans: 'collar' },
-                { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
-                { displayType: 'answer', textHu: 'Magas hangrendű (ajakkerekítéses)', textEn: '(Front Vowel - rounded)' }
-            ]},
-            { type: 'vowel', exampleWord: 'ősz', exampleTrans: 'autumn', states: [
-                { displayType: 'main', mainDisplay: 'ő', exampleWord: 'ősz', exampleTrans: 'autumn' },
-                { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
-                { displayType: 'answer', textHu: 'Magas hangrendű (ajakkerekítéses)', textEn: '(Front Vowel - rounded)' }
-            ]},
-            { type: 'vowel', exampleWord: 'üst', exampleTrans: 'cauldron', states: [
-                { displayType: 'main', mainDisplay: 'ü', exampleWord: 'üst', exampleTrans: 'cauldron' },
-                { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
-                { displayType: 'answer', textHu: 'Magas hangrendű (ajakkerekítéses)', textEn: '(Front Vowel - rounded)' }
-            ]},
-            { type: 'vowel', exampleWord: 'űr', exampleTrans: 'space', states: [
-                { displayType: 'main', mainDisplay: 'ű', exampleWord: 'űr', exampleTrans: 'space' },
-                { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
-                { displayType: 'answer', textHu: 'Magas hangrendű (ajakkerekítéses)', textEn: '(Front Vowel - rounded)' }
-            ]},
-            // Back Unrounded
-            { type: 'vowel', exampleWord: 'ajtó', exampleTrans: 'door', states: [
-                { displayType: 'main', mainDisplay: 'a', exampleWord: 'ajtó', exampleTrans: 'door' },
-                { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
-                { displayType: 'answer', textHu: 'Mély hangrendű (ajakréses)', textEn: '(Back Vowel - unrounded)' }
-            ]},
-            { type: 'vowel', exampleWord: 'ág', exampleTrans: 'branch', states: [
-                { displayType: 'main', mainDisplay: 'á', exampleWord: 'ág', exampleTrans: 'branch' },
-                { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
-                { displayType: 'answer', textHu: 'Mély hangrendű (ajakréses)', textEn: '(Back Vowel - unrounded)' }
-            ]},
-            // Back Rounded
-            { type: 'vowel', exampleWord: 'orr', exampleTrans: 'nose', states: [
-                { displayType: 'main', mainDisplay: 'o', exampleWord: 'orr', exampleTrans: 'nose' },
-                { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
-                { displayType: 'answer', textHu: 'Mély hangrendű (ajakkerekítéses)', textEn: '(Back Vowel - rounded)' }
-            ]},
-            { type: 'vowel', exampleWord: 'óra', exampleTrans: 'clock/hour', states: [
-                { displayType: 'main', mainDisplay: 'ó', exampleWord: 'óra', exampleTrans: 'clock/hour' },
-                { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
-                { displayType: 'answer', textHu: 'Mély hangrendű (ajakkerekítéses)', textEn: '(Back Vowel - rounded)' }
-            ]},
-            { type: 'vowel', exampleWord: 'ujj', exampleTrans: 'finger', states: [
-                { displayType: 'main', mainDisplay: 'u', exampleWord: 'ujj', exampleTrans: 'finger' },
-                { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
-                { displayType: 'answer', textHu: 'Mély hangrendű (ajakkerekítéses)', textEn: '(Back Vowel - rounded)' }
-            ]},
-            { type: 'vowel', exampleWord: 'új', exampleTrans: 'new', states: [
-                { displayType: 'main', mainDisplay: 'ú', exampleWord: 'új', exampleTrans: 'new' },
-                { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
-                { displayType: 'answer', textHu: 'Mély hangrendű (ajakkerekítéses)', textEn: '(Back Vowel - rounded)' }
-            ]},
-        ];
+    // Words: 7 Front, 7 Back, 7 Mixed = 21 total (These remain the same as your last version)
+    const baseWordData = [
+        // Front Vowel Words (7)
+        { type: 'word', states: [
+            { displayType: 'main', mainDisplay: 'kert', translation: 'garden' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Front Vowel Word (e)' },
+            { displayType: 'prompt', text: "How to say 'in the garden'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'kertben (in the garden)'},
+            { displayType: 'prompt', text: "Use 'kertben' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'A gyerekek a kertben játszanak.', en: 'The children are playing in the garden.' }
+        ]},
+        { type: 'word', states: [
+            { displayType: 'main', mainDisplay: 'ember', translation: 'person' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Front Vowel Word (e, e)' },
+            { displayType: 'prompt', text: "How to say 'with the person'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'emberrel (with the person)'},
+            { displayType: 'prompt', text: "Use 'emberrel' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Beszélgettem azzal az emberrel.', en: 'I talked with that person.' }
+        ]},
+        { type: 'word', states: [
+            { displayType: 'main', mainDisplay: 'füzet', translation: 'notebook' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Front Vowel Word (ü, e)' },
+            { displayType: 'prompt', text: "How to say 'in the notebook'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'füzetben (in the notebook)'},
+            { displayType: 'prompt', text: "Use 'füzetben' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'A jegyzetek a füzetben vannak.', en: 'The notes are in the notebook.' }
+        ]},
+        { type: 'word', states: [
+            { displayType: 'main', mainDisplay: 'öröm', translation: 'joy' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Front Vowel Word (ö, ö)' },
+            { displayType: 'prompt', text: "How to say 'with joy'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'örömmel (with joy)'},
+            { displayType: 'prompt', text: "Use 'örömmel' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Örömmel fogadta az ajándékot.', en: 'He/She accepted the gift with joy.' }
+        ]},
+        { type: 'word', states: [
+            { displayType: 'main', mainDisplay: 'tükör', translation: 'mirror' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Front Vowel Word (ü, ö)' },
+            { displayType: 'prompt', text: "How to say 'in the mirror'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'tükörben (in the mirror)'},
+            { displayType: 'prompt', text: "Use 'tükörben' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Megnézte magát a tükörben.', en: 'He/She looked at himself/herself in the mirror.' }
+        ]},
+        { type: 'word', states: [ 
+            { displayType: 'main', mainDisplay: 'kéz', translation: 'hand' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Front Vowel Word (é)' },
+            { displayType: 'prompt', text: "How to say 'in the hand'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'kézben (in the hand)'},
+            { displayType: 'prompt', text: "Use 'kézben' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'A toll a kézben van.', en: 'The pen is in the hand.' }
+        ]},
+        { type: 'word', states: [ 
+            { displayType: 'main', mainDisplay: 'szem', translation: 'eye' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Front Vowel Word (e)' },
+            { displayType: 'prompt', text: "How to say 'with the eye'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'szemmel (with the eye)'},
+            { displayType: 'prompt', text: "Use 'szemmel' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Jól lát a szemmel.', en: 'He/She sees well with the eye.' }
+        ]},
+        // Back Vowel Words (7)
+        { type: 'word', states: [
+            { displayType: 'main', mainDisplay: 'ház', translation: 'house' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Back Vowel Word (á)' },
+            { displayType: 'prompt', text: "How to say 'in the house'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'házban (in the house)'},
+            { displayType: 'prompt', text: "Use 'házban' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'A család a házban lakik.', en: 'The family lives in the house.' }
+        ]},
+        { type: 'word', states: [
+            { displayType: 'main', mainDisplay: 'asztal', translation: 'table' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Back Vowel Word (a, a)' },
+            { displayType: 'prompt', text: "How to say 'on the table'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'asztalon (on the table)'},
+            { displayType: 'prompt', text: "Use 'asztalon' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'A váza az asztalon áll.', en: 'The vase is on the table.' }
+        ]},
+        { type: 'word', states: [
+            { displayType: 'main', mainDisplay: 'kutya', translation: 'dog' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Back Vowel Word (u, a)' },
+            { displayType: 'prompt', text: "How to say 'with the dog'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'kutyával (with the dog)'},
+            { displayType: 'prompt', text: "Use 'kutyával' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Sétálni mentem a kutyával.', en: 'I went for a walk with the dog.' }
+        ]},
+        { type: 'word', states: [
+            { displayType: 'main', mainDisplay: 'autó', translation: 'car' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Back Vowel Word (a, u, ó)' },
+            { displayType: 'prompt', text: "How to say 'in the car'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'autóban (in the car)'},
+            { displayType: 'prompt', text: "Use 'autóban' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Az egész család az autóban ült.', en: 'The whole family was sitting in the car.' }
+        ]},
+        { type: 'word', states: [
+            { displayType: 'main', mainDisplay: 'város', translation: 'city' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Back Vowel Word (á, o)' },
+            { displayType: 'prompt', text: "How to say 'in the city'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'városban (in the city)'},
+            { displayType: 'prompt', text: "Use 'városban' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Sok turista van a városban.', en: 'There are many tourists in the city.' }
+        ]},
+        { type: 'word', states: [ 
+            { displayType: 'main', mainDisplay: 'láb', translation: 'foot/leg' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Back Vowel Word (á)' },
+            { displayType: 'prompt', text: "How to say 'on foot/leg'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'lábon (on foot/leg)'},
+            { displayType: 'prompt', text: "Use 'lábon' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Egy lábon áll.', en: 'He/She stands on one foot.' }
+        ]},
+        { type: 'word', states: [ 
+            { displayType: 'main', mainDisplay: 'bor', translation: 'wine' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Back Vowel Word (o)' },
+            { displayType: 'prompt', text: "How to say 'with wine'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'borral (with wine)'},
+            { displayType: 'prompt', text: "Use 'borral' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Halat eszik borral.', en: 'He/She eats fish with wine.' }
+        ]},
+        // Mixed Vowel Words (7)
+        { type: 'word', states: [
+            { displayType: 'main', mainDisplay: 'csokoládé', translation: 'chocolate' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Mixed (o,o,á(B),é(F)) - Back Harmony' },
+            { displayType: 'prompt', text: "How to say 'with chocolate'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'csokoládéval (with chocolate)'},
+            { displayType: 'prompt', text: "Use 'csokoládéval' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Szereti a tejet csokoládéval inni.', en: 'He/She likes to drink milk with chocolate.' }
+        ]},
+        { type: 'word', states: [
+            { displayType: 'main', mainDisplay: 'kávé', translation: 'coffee' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Mixed (á(B),é(F)) - Front Harmony (strong é)' },
+            { displayType: 'prompt', text: "How to say 'with coffee'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'kávéval (with coffee)'},
+            { displayType: 'prompt', text: "Use 'kávéval' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Kérsz egy kis tejet a kávéval?', en: 'Would you like a little milk with the coffee?' }
+        ]},
+        { type: 'word', states: [
+            { displayType: 'main', mainDisplay: 'sofőr', translation: 'driver' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Mixed (o(B),ő(F)) - Front Harmony (loanword)' },
+            { displayType: 'prompt', text: "How to say 'with the driver'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'sofőrrel (with the driver)'},
+            { displayType: 'prompt', text: "Use 'sofőrrel' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Beszéltem a sofőrrel az útvonalról.', en: 'I spoke with the driver about the route.' }
+        ]},
+        { type: 'word', states: [
+            { displayType: 'main', mainDisplay: 'hotel', translation: 'hotel' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Mixed (o(B),e(F)) - Front Harmony (loanword)' },
+            { displayType: 'prompt', text: "How to say 'in the hotel'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'hotelben (in the hotel)'},
+            { displayType: 'prompt', text: "Use 'hotelben' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Egy hétig maradtunk a hotelben.', en: 'We stayed in the hotel for a week.' }
+        ]},
+        { type: 'word', states: [
+            { displayType: 'main', mainDisplay: 'múzeum', translation: 'museum' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Mixed (ú(B),e(F),u(B)) - Back Harmony' },
+            { displayType: 'prompt', text: "How to say 'in the museum'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'múzeumban (in the museum)'},
+            { displayType: 'prompt', text: "Use 'múzeumban' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Sok érdekes festmény van a múzeumban.', en: 'There are many interesting paintings in the museum.' }
+        ]},
+        { type: 'word', states: [ 
+            { displayType: 'main', mainDisplay: 'gitár', translation: 'guitar' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Mixed (i(F),á(B)) - Back Harmony' }, 
+            { displayType: 'prompt', text: "How to say 'with a guitar'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'gitárral (with a guitar)'},
+            { displayType: 'prompt', text: "Use 'gitárral' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Zenét játszik a gitárral.', en: 'He/She plays music with the guitar.' }
+        ]},
+        { type: 'word', states: [ 
+            { displayType: 'main', mainDisplay: 'pilóta', translation: 'pilot' },
+            { displayType: 'prompt', text: 'What is its vowel type?' },
+            { displayType: 'answer', label: 'Type', value: 'Mixed (i(F),ó(B),a(B)) - Back Harmony' },
+            { displayType: 'prompt', text: "How to say 'with the pilot'?" },
+            { displayType: 'answer', label: 'Suffix Eg.', value: 'pilótával (with the pilot)'},
+            { displayType: 'prompt', text: "Use 'pilótával' in a sentence:" },
+            { displayType: 'answer', label: 'Usage', hu: 'Utaztam a pilótával.', en: 'I traveled with the pilot.' }
+        ]}
+    ];
 
-        // Words: 7 Front, 7 Back, 7 Mixed = 21 total
-        const baseWordData = [
-            // Front Vowel Words (7)
-            { type: 'word', states: [
-                { displayType: 'main', mainDisplay: 'kert', translation: 'garden' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Front Vowel Word (e)' },
-                { displayType: 'prompt', text: "How to say 'in the garden'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'kertben (in the garden)'},
-                { displayType: 'prompt', text: "Use 'kertben' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'A gyerekek a kertben játszanak.', en: 'The children are playing in the garden.' }
-            ]},
-            { type: 'word', states: [
-                { displayType: 'main', mainDisplay: 'ember', translation: 'person' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Front Vowel Word (e, e)' },
-                { displayType: 'prompt', text: "How to say 'with the person'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'emberrel (with the person)'},
-                { displayType: 'prompt', text: "Use 'emberrel' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Beszélgettem azzal az emberrel.', en: 'I talked with that person.' }
-            ]},
-            { type: 'word', states: [
-                { displayType: 'main', mainDisplay: 'füzet', translation: 'notebook' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Front Vowel Word (ü, e)' },
-                { displayType: 'prompt', text: "How to say 'in the notebook'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'füzetben (in the notebook)'},
-                { displayType: 'prompt', text: "Use 'füzetben' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'A jegyzetek a füzetben vannak.', en: 'The notes are in the notebook.' }
-            ]},
-            { type: 'word', states: [
-                { displayType: 'main', mainDisplay: 'öröm', translation: 'joy' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Front Vowel Word (ö, ö)' },
-                { displayType: 'prompt', text: "How to say 'with joy'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'örömmel (with joy)'},
-                { displayType: 'prompt', text: "Use 'örömmel' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Örömmel fogadta az ajándékot.', en: 'He/She accepted the gift with joy.' }
-            ]},
-            { type: 'word', states: [
-                { displayType: 'main', mainDisplay: 'tükör', translation: 'mirror' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Front Vowel Word (ü, ö)' },
-                { displayType: 'prompt', text: "How to say 'in the mirror'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'tükörben (in the mirror)'},
-                { displayType: 'prompt', text: "Use 'tükörben' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Megnézte magát a tükörben.', en: 'He/She looked at himself/herself in the mirror.' }
-            ]},
-            { type: 'word', states: [ // New Front 1
-                { displayType: 'main', mainDisplay: 'kéz', translation: 'hand' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Front Vowel Word (é)' },
-                { displayType: 'prompt', text: "How to say 'in the hand'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'kézben (in the hand)'},
-                { displayType: 'prompt', text: "Use 'kézben' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'A toll a kézben van.', en: 'The pen is in the hand.' }
-            ]},
-            { type: 'word', states: [ // New Front 2
-                { displayType: 'main', mainDisplay: 'szem', translation: 'eye' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Front Vowel Word (e)' },
-                { displayType: 'prompt', text: "How to say 'with the eye'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'szemmel (with the eye)'},
-                { displayType: 'prompt', text: "Use 'szemmel' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Jól lát a szemmel.', en: 'He/She sees well with the eye.' }
-            ]},
-            // Back Vowel Words (7)
-            { type: 'word', states: [
-                { displayType: 'main', mainDisplay: 'ház', translation: 'house' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Back Vowel Word (á)' },
-                { displayType: 'prompt', text: "How to say 'in the house'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'házban (in the house)'},
-                { displayType: 'prompt', text: "Use 'házban' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'A család a házban lakik.', en: 'The family lives in the house.' }
-            ]},
-            { type: 'word', states: [
-                { displayType: 'main', mainDisplay: 'asztal', translation: 'table' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Back Vowel Word (a, a)' },
-                { displayType: 'prompt', text: "How to say 'on the table'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'asztalon (on the table)'},
-                { displayType: 'prompt', text: "Use 'asztalon' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'A váza az asztalon áll.', en: 'The vase is on the table.' }
-            ]},
-            { type: 'word', states: [
-                { displayType: 'main', mainDisplay: 'kutya', translation: 'dog' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Back Vowel Word (u, a)' },
-                { displayType: 'prompt', text: "How to say 'with the dog'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'kutyával (with the dog)'},
-                { displayType: 'prompt', text: "Use 'kutyával' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Sétálni mentem a kutyával.', en: 'I went for a walk with the dog.' }
-            ]},
-            { type: 'word', states: [
-                { displayType: 'main', mainDisplay: 'autó', translation: 'car' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Back Vowel Word (a, u, ó)' },
-                { displayType: 'prompt', text: "How to say 'in the car'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'autóban (in the car)'},
-                { displayType: 'prompt', text: "Use 'autóban' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Az egész család az autóban ült.', en: 'The whole family was sitting in the car.' }
-            ]},
-            { type: 'word', states: [
-                { displayType: 'main', mainDisplay: 'város', translation: 'city' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Back Vowel Word (á, o)' },
-                { displayType: 'prompt', text: "How to say 'in the city'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'városban (in the city)'},
-                { displayType: 'prompt', text: "Use 'városban' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Sok turista van a városban.', en: 'There are many tourists in the city.' }
-            ]},
-            { type: 'word', states: [ // New Back 1
-                { displayType: 'main', mainDisplay: 'láb', translation: 'foot/leg' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Back Vowel Word (á)' },
-                { displayType: 'prompt', text: "How to say 'on foot/leg'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'lábon (on foot/leg)'},
-                { displayType: 'prompt', text: "Use 'lábon' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Egy lábon áll.', en: 'He/She stands on one foot.' }
-            ]},
-            { type: 'word', states: [ // New Back 2
-                { displayType: 'main', mainDisplay: 'bor', translation: 'wine' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Back Vowel Word (o)' },
-                { displayType: 'prompt', text: "How to say 'with wine'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'borral (with wine)'},
-                { displayType: 'prompt', text: "Use 'borral' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Halat eszik borral.', en: 'He/She eats fish with wine.' }
-            ]},
-            // Mixed Vowel Words (7)
-            { type: 'word', states: [
-                { displayType: 'main', mainDisplay: 'csokoládé', translation: 'chocolate' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Mixed (o,o,á(B),é(F)) - Back Harmony' },
-                { displayType: 'prompt', text: "How to say 'with chocolate'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'csokoládéval (with chocolate)'},
-                { displayType: 'prompt', text: "Use 'csokoládéval' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Szereti a tejet csokoládéval inni.', en: 'He/She likes to drink milk with chocolate.' }
-            ]},
-            { type: 'word', states: [
-                { displayType: 'main', mainDisplay: 'kávé', translation: 'coffee' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Mixed (á(B),é(F)) - Front Harmony (strong é)' },
-                { displayType: 'prompt', text: "How to say 'with coffee'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'kávéval (with coffee)'},
-                { displayType: 'prompt', text: "Use 'kávéval' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Kérsz egy kis tejet a kávéval?', en: 'Would you like a little milk with the coffee?' }
-            ]},
-            { type: 'word', states: [
-                { displayType: 'main', mainDisplay: 'sofőr', translation: 'driver' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Mixed (o(B),ő(F)) - Front Harmony (loanword)' },
-                { displayType: 'prompt', text: "How to say 'with the driver'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'sofőrrel (with the driver)'},
-                { displayType: 'prompt', text: "Use 'sofőrrel' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Beszéltem a sofőrrel az útvonalról.', en: 'I spoke with the driver about the route.' }
-            ]},
-            { type: 'word', states: [
-                { displayType: 'main', mainDisplay: 'hotel', translation: 'hotel' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Mixed (o(B),e(F)) - Front Harmony (loanword)' },
-                { displayType: 'prompt', text: "How to say 'in the hotel'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'hotelben (in the hotel)'},
-                { displayType: 'prompt', text: "Use 'hotelben' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Egy hétig maradtunk a hotelben.', en: 'We stayed in the hotel for a week.' }
-            ]},
-            { type: 'word', states: [
-                { displayType: 'main', mainDisplay: 'múzeum', translation: 'museum' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Mixed (ú(B),e(F),u(B)) - Back Harmony' },
-                { displayType: 'prompt', text: "How to say 'in the museum'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'múzeumban (in the museum)'},
-                { displayType: 'prompt', text: "Use 'múzeumban' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Sok érdekes festmény van a múzeumban.', en: 'There are many interesting paintings in the museum.' }
-            ]},
-            { type: 'word', states: [ // New Mixed 1
-                { displayType: 'main', mainDisplay: 'gitár', translation: 'guitar' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Mixed (i(F),á(B)) - Back Harmony' }, // Corrected vowel listing
-                { displayType: 'prompt', text: "How to say 'with a guitar'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'gitárral (with a guitar)'},
-                { displayType: 'prompt', text: "Use 'gitárral' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Zenét játszik a gitárral.', en: 'He/She plays music with the guitar.' }
-            ]},
-            { type: 'word', states: [ // New Mixed 2
-                { displayType: 'main', mainDisplay: 'pilóta', translation: 'pilot' },
-                { displayType: 'prompt', text: 'What is its vowel type?' },
-                { displayType: 'answer', label: 'Type', value: 'Mixed (i(F),ó(B),a(B)) - Back Harmony' },
-                { displayType: 'prompt', text: "How to say 'with the pilot'?" },
-                { displayType: 'answer', label: 'Suffix Eg.', value: 'pilótával (with the pilot)'},
-                { displayType: 'prompt', text: "Use 'pilótával' in a sentence:" },
-                { displayType: 'answer', label: 'Usage', hu: 'Utaztam a pilótával.', en: 'I traveled with the pilot.' }
-            ]}
-        ];
+    let currentGridData = []; 
 
-        let currentGridData = []; 
+    const gridContainer = document.getElementById('grid-container');
+    const randomizeButton = document.getElementById('randomize-button');
 
-        const gridContainer = document.getElementById('grid-container');
-        const randomizeButton = document.getElementById('randomize-button');
-
-        function initializeGridData() {
-            // Combine vowels and words directly as 14 + 21 = 35
-            currentGridData = [...baseVowelData, ...baseWordData];
+    // --- Function to prepare the 35 cards for the grid ---
+    function initializeGridData() {
+        // Combine vowels and words directly as 14 + 21 = 35
+        currentGridData = [...baseVowelData, ...baseWordData];
+    }
+    
+    // --- Function to shuffle an array (Fisher-Yates shuffle) ---
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]]; // Swap elements
         }
+    }
+
+    // --- Function to create and display a card's content for a given state ---
+    function displayCardState(cardElement, cardData, stateIndex) {
+        const contentDiv = cardElement.querySelector('.card-content');
+        if (!contentDiv) return; // Should not happen if HTML structure is correct
         
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]]; 
-            }
-        }
+        contentDiv.innerHTML = ''; // Clear previous content
+        const stateData = cardData.states[stateIndex];
+        let htmlContent = '<div class="card-state">';
 
-        function displayCardState(cardElement, cardData, stateIndex) {
-            const contentDiv = cardElement.querySelector('.card-content');
-            if (!contentDiv) return; 
+        switch (stateData.displayType) {
+            case 'main':
+                if (cardData.type === 'vowel') {
+                    // Format: "e, mint az eper (e, as in strawberry)"
+                    htmlContent += `<div class="main-display">${stateData.mainDisplay}, mint az ${stateData.exampleWord}</div>`;
+                    htmlContent += `<div class="vowel-example-word">(${stateData.mainDisplay}, as in ${stateData.exampleTrans})</div>`;
+                } else { // Word card
+                    htmlContent += `<div class="main-display">${stateData.mainDisplay}</div>`;
+                    if (stateData.translation) {
+                        htmlContent += `<div class="translation">(${stateData.translation})</div>`;
+                    }
+                }
+                break;
+            case 'prompt':
+                if (cardData.type === 'vowel') {
+                    htmlContent += `<p class="prompt-text">${stateData.textHu}<br><span class="answer-en">${stateData.textEn}</span></p>`;
+                } else { // Word card
+                     htmlContent += `<p class="prompt-text">${stateData.text}</p>`;
+                }
+                break;
+            case 'answer':
+                if (cardData.type === 'vowel') {
+                    htmlContent += `<div class="answer-hu">${stateData.textHu}</div>`;
+                    htmlContent += `<div class="answer-en">${stateData.textEn}</div>`;
+                } else { // Word card
+                    if (stateData.label === 'Usage') {
+                        htmlContent += `<span class="detail-label">${stateData.label}:</span>`;
+                        htmlContent += `<div class="sentence"><span class="sentence-hu">${stateData.hu}</span><br><span class="sentence-en">${stateData.en}</span></div>`;
+                    } else {
+                        htmlContent += `<span class="detail-label">${stateData.label}:</span>`;
+                        htmlContent += `<span class="detail-value">${stateData.value}</span>`;
+                    }
+                }
+                break;
+        }
+        htmlContent += '</div>';
+        contentDiv.innerHTML = htmlContent;
+        cardElement.dataset.currentState = stateIndex;
+    }
+
+    // --- Function to render the entire grid ---
+    function renderGrid() {
+        gridContainer.innerHTML = ''; // Clear existing grid
+        currentGridData.forEach(cardData => {
+            const cardElement = document.createElement('div');
+            cardElement.className = 'grid-card';
             
-            contentDiv.innerHTML = ''; 
-            const stateData = cardData.states[stateIndex];
-            let htmlContent = '<div class="card-state">';
+            const contentWrapper = document.createElement('div');
+            contentWrapper.className = 'card-content';
+            cardElement.appendChild(contentWrapper);
 
-            switch (stateData.displayType) {
-                case 'main':
-                    if (cardData.type === 'vowel') {
-                        htmlContent += `<div class="main-display">${stateData.mainDisplay}, mint az ${stateData.exampleWord}</div>`;
-                        htmlContent += `<div class="vowel-example-word">(${stateData.mainDisplay}, as in ${stateData.exampleTrans})</div>`;
-                    } else { 
-                        htmlContent += `<div class="main-display">${stateData.mainDisplay}</div>`;
-                        if (stateData.translation) {
-                            htmlContent += `<div class="translation">(${stateData.translation})</div>`;
-                        }
-                    }
-                    break;
-                case 'prompt':
-                    if (cardData.type === 'vowel') {
-                        htmlContent += `<p class="prompt-text">${stateData.textHu}<br><span class="answer-en">${stateData.textEn}</span></p>`;
-                    } else { 
-                         htmlContent += `<p class="prompt-text">${stateData.text}</p>`;
-                    }
-                    break;
-                case 'answer':
-                    if (cardData.type === 'vowel') {
-                        htmlContent += `<div class="answer-hu">${stateData.textHu}</div>`;
-                        htmlContent += `<div class="answer-en">${stateData.textEn}</div>`;
-                    } else { 
-                        if (stateData.label === 'Usage') {
-                            htmlContent += `<span class="detail-label">${stateData.label}:</span>`;
-                            htmlContent += `<div class="sentence"><span class="sentence-hu">${stateData.hu}</span><br><span class="sentence-en">${stateData.en}</span></div>`;
-                        } else {
-                            htmlContent += `<span class="detail-label">${stateData.label}:</span>`;
-                            htmlContent += `<span class="detail-value">${stateData.value}</span>`;
-                        }
-                    }
-                    break;
-            }
-            htmlContent += '</div>';
-            contentDiv.innerHTML = htmlContent;
-            cardElement.dataset.currentState = stateIndex;
-        }
+            // Store card data directly on the element for the click listener to access
+            cardElement.cardData = cardData; 
+            displayCardState(cardElement, cardData, 0); // Display initial state
 
-        function renderGrid() {
-            gridContainer.innerHTML = ''; 
-            currentGridData.forEach(cardData => {
-                const cardElement = document.createElement('div');
-                cardElement.className = 'grid-card';
-                
-                const contentWrapper = document.createElement('div');
-                contentWrapper.className = 'card-content';
-                cardElement.appendChild(contentWrapper);
-
-                cardElement.cardData = cardData; 
-                displayCardState(cardElement, cardData, 0); 
-
-                cardElement.addEventListener('click', () => {
-                    const dataForThisCard = cardElement.cardData; 
-                    let currentState = parseInt(cardElement.dataset.currentState || 0);
-                    currentState = (currentState + 1) % dataForThisCard.states.length; 
-                    displayCardState(cardElement, dataForThisCard, currentState);
-                });
-                gridContainer.appendChild(cardElement);
+            cardElement.addEventListener('click', () => {
+                // Retrieve cardData from the element itself
+                const dataForThisCard = cardElement.cardData; 
+                let currentState = parseInt(cardElement.dataset.currentState || 0);
+                currentState = (currentState + 1) % dataForThisCard.states.length; // Loop through states
+                displayCardState(cardElement, dataForThisCard, currentState);
             });
-        }
-        
-        randomizeButton.addEventListener('click', () => {
-            shuffleArray(currentGridData);
-            renderGrid();
+            gridContainer.appendChild(cardElement);
         });
-
-        initializeGridData();
+    }
+    
+    // --- Event Listener for Randomize Button ---
+    randomizeButton.addEventListener('click', () => {
+        shuffleArray(currentGridData);
         renderGrid();
+    });
 
-    </script>
+    // --- Initial Load ---
+    initializeGridData();
+    renderGrid();
 
-</body>
-</html>
+</script>
