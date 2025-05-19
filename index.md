@@ -12,7 +12,7 @@ This site documents and supports my journey to learn the Hungarian language. Her
 
 ## Start Learning
 
-👉 [Begin with Lesson 1: Hungarian Vowel Sounds](lessons/vowelsounds.html)
+👉 [Begin with Lesson 1: Hungarian Vowel Sounds](_lessons/vowelsounds.html)
 
 ---
 

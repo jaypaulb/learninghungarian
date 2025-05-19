@@ -17,8 +17,10 @@
 <body>
   <nav class="navbar">
     <a href="https://jaypaulb.github.io/learninghungarian/">Home</a>
-    <a href="https://jaypaulb.github.io/learninghungarian/lessons/vowelsounds.html">Lesson 1: Vowel Sounds</a>
-    <!-- Add more lessons here as you expand -->
+    {% assign lesson_files = site.static_files | where_exp: "file", "file.path contains '/_lessons/' and file.extname == '.html'" %}
+    {% for lesson in lesson_files %}
+      <a href="{{ lesson.path }}">{{ lesson.name | replace: '.html', '' | replace: '-', ' ' | capitalize }}</a>
+    {% endfor %}
   </nav>
   <main>
     {{ content }}
