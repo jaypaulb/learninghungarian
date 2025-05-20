@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magyar Ábécé Gyakorló</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .svg-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; 
+            text-align: center;
+            color: #334155; /* slate-700 */
+            padding-top: 0.5rem; 
+        }
+        .svg-image { /* Class for the actual SVG element */
+            width: 80%; /* Control SVG size within its container */
+            max-width: 100px; /* Max size for SVG */
+            height: auto;
+            margin-top: 0.25rem; /* Space between letter and SVG */
+        }
+        .letter-display {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #475569; /* slate-600 */
+        }
+        .word-input {
+            letter-spacing: 0.1em;
+        }
+        /* Define tile background color classes for feedback */
+        .tile-correct { background-color: #dcfce7 !important; border-color: #22c55e !important; }
+        .tile-close { background-color: #ffedd5 !important; border-color: #f97316 !important; }
+        .tile-incorrect { background-color: #fee2e2 !important; border-color: #ef4444 !important; }
+        .tile-default { background-color: #ffffff !important; }
+
+        .english-translation-display {
+            font-size: 0.9em;
+            color: #166534; /* A darker green for the English text */
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+
+    <header class="text-center mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Magyar Ábécé Gyakorló <span class="block text-xl text-slate-500 font-normal">{Hungarian Alphabet Practice}</span></h1>
+        <p class="text-slate-600 mt-1">Kattints a képekre a szavak felfedezéséhez, vagy írd be a szót és nyomj Entert!</p>
+    </header>
+
+    <main id="alphabet-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+        </main>
+
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Alphabet Exercise</p>
+    </footer>
+
+    <script>
+        // Data for the Hungarian alphabet exercise with updated words and SVGs
+        const alphabetData = [
+            { letter: "A", word: "Alma", english: "Apple", image: "apple.svg" },
+            { letter: "Á", word: "Ásó", english: "Spade", image: "spade.svg" },
+            { letter: "B", word: "Béka", english: "Frog", image: "frog.svg" },
+            { letter: "C", word: "Cica", english: "Kitten", image: "kitten.svg" },
+            { letter: "CS", word: "Csiga", english: "Snail", image: "snail.svg" },
+            { letter: "D", word: "Dinnye", english: "Melon", image: "melon.svg" },
+            { letter: "DZ", word: "Dzsem", english: "Jam", image: "jam.svg" },
+            { letter: "DZS", word: "Dzsudó", english: "Judo", image: "judo.svg" },
+            { letter: "E", word: "Eper", english: "Strawberry", image: "strawberry.svg" },
+            { letter: "É", word: "Egér", english: "Mouse", image: "mouse.svg" },
+            { letter: "F", word: "Fagyi", english: "Ice cream", image: "icecream.svg" },
+            { letter: "G", word: "Gomba", english: "Mushroom", image: "mushroom.svg" },
+            { letter: "GY", word: "Gyertya", english: "Candle", image: "candle.svg" },
+            { letter: "H", word: "Ház", english: "House", image: "house.svg" },
+            { letter: "I", word: "Ing", english: "Shirt", image: "shirt.svg" },
+            { letter: "Í", word: "Írószer", english: "Pen", image: "pen.svg" },
+            { letter: "J", word: "Játék", english: "Toy", image: "toy.svg" },
+            { letter: "K", word: "Kutya", english: "Dog", image: "dog.svg" },
+            { letter: "L", word: "Ló", english: "Horse", image: "horse.svg" },
+            { letter: "LY", word: "Lyuk", english: "Hole", image: "hole.svg" },
+            { letter: "M", word: "Mackó", english: "Teddy bear", image: "teddybear.svg" },
+            { letter: "N", word: "Nap", english: "Sun", image: "sun.svg" },
+            { letter: "NY", word: "Nyúl", english: "Rabbit", image: "rabbit.svg" },
+            { letter: "O", word: "Olló", english: "Scissors", image: "scissors.svg" },
+            { letter: "Ó", word: "Óra", english: "Clock", image: "clock.svg" },
+            { letter: "Ö", word: "Őz", english: "Roe deer", image: "belt.svg" },
+            { letter: "Ő", word: "Őszibarack", english: "Peach", image: "peach.svg" },
+            { letter: "P", word: "Pillangó", english: "Butterfly", image: "butterfly.svg" },
+            { letter: "Q", word: "Quiche", english: "Quiche", image: "quiche.jpg" },
+            { letter: "R", word: "Róka", english: "Fox", image: "fox.svg" },
+            { letter: "S", word: "Sapka", english: "Cap", image: "cap.svg" },
+            { letter: "SZ", word: "Szőlő", english: "Grapes", image: "grapes.svg" },
+            { letter: "T", word: "Torta", english: "Cake", image: "cake.svg" },
+            { letter: "TY", word: "Tyúk", english: "Hen", image: "hen.svg" },
+            { letter: "U", word: "Uborka", english: "Cucumber", image: "cucumber.svg" },
+            { letter: "Ú", word: "Újság", english: "Newspaper", image: "newspaper.svg" },
+            { letter: "Ü", word: "Üveg", english: "Bottle", image: "bottle.svg" },
+            { letter: "Ű", word: "Űrhajó", english: "Spaceship", image: "spaceship.svg" },
+            { letter: "V", word: "Vonat", english: "Train", image: "train.svg" },
+            { letter: "W", word: "Whisky", english: "Whiskey", image: "whisky.svg" },
+            { letter: "X", word: "Xilofon", english: "Xylophone", image: "xylophone.svg" },
+            { letter: "Y", word: "Yacht", english: "Yacht", image: "yacht.svg" },
+            { letter: "Z", word: "Zebra", english: "Zebra", image: "zebra.svg" },
+            { letter: "ZS", word: "Zsiráf", english: "Giraffe", image: "giraffe.svg" }
+        ];
+
+        const alphabetGrid = document.getElementById('alphabet-grid');
+        const baseTileClasses = 'letter-tile p-3 sm:p-4 rounded-xl shadow-lg transition-all hover:shadow-xl transform hover:-translate-y-1 border-2 border-transparent';
+
+        // Initialize tiles
+        alphabetData.forEach(item => {
+            const tile = document.createElement('div');
+            tile.className = `${baseTileClasses} tile-default`;
+            tile.dataset.word = item.word.toUpperCase();
+            tile.dataset.letter = item.letter;
+            tile.dataset.stage = '0';
+            tile.dataset.revealedIndices = JSON.stringify([]);
+
+            const imageContainer = document.createElement('div');
+            imageContainer.className = 'svg-container w-full h-36 md:h-40 rounded-lg mb-2 cursor-pointer';
+            
+            const letterDisplay = document.createElement('span');
+            letterDisplay.className = 'letter-display';
+            letterDisplay.textContent = item.letter;
+            imageContainer.appendChild(letterDisplay);
+
+            const img = document.createElement('img');
+            img.src = `/_images/alphabet/${item.image}`;
+            img.alt = `${item.word} (${item.english})`;
+            img.className = 'svg-image';
+            imageContainer.appendChild(img);
+            
+            imageContainer.addEventListener('click', () => handleTileClick(tile, item.word.toUpperCase()));
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'word-input w-full p-2 border border-slate-300 rounded-md text-center text-lg font-medium tracking-wider focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+            input.setAttribute('aria-label', `Word for ${item.letter}`);
+            
+            const translationDiv = document.createElement('div');
+            translationDiv.className = 'english-translation-display hidden'; 
+            
+            input.addEventListener('focus', () => {
+                input.value = ''; 
+                setTileColor(tile, 'default'); 
+                resetEnglishTranslation(tile); 
+            });
+
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    checkWord(input, item.word.toUpperCase(), tile, item.english); 
+                }
+            });
+            
+            tile.appendChild(imageContainer);
+            tile.appendChild(input);
+            tile.appendChild(translationDiv); 
+            alphabetGrid.appendChild(tile);
+
+            updateInputDisplay(input, item.word.toUpperCase(), [], 0);
+        });
+        
+        function resetEnglishTranslation(tile) {
+            const translationDisplay = tile.querySelector('.english-translation-display');
+            if (translationDisplay) {
+                translationDisplay.textContent = '';
+                translationDisplay.classList.add('hidden');
+            }
+        }
+
+        function handleTileClick(tile, word) {
+            setTileColor(tile, 'default'); 
+            resetEnglishTranslation(tile); 
+            let stage = parseInt(tile.dataset.stage);
+            let revealedIndices = JSON.parse(tile.dataset.revealedIndices);
+            const inputField = tile.querySelector('.word-input');
+
+            stage = (stage + 1) % 4; 
+
+            switch (stage) {
+                case 0: revealedIndices = []; break;
+                case 1: 
+                    revealedIndices = []; 
+                    revealedIndices = revealRandomLetters(word, revealedIndices, 1);
+                    break;
+                case 2: 
+                    if (revealedIndices.length < 1 && word.length > 0) {
+                         revealedIndices = revealRandomLetters(word, [], 1);
+                    }
+                    revealedIndices = revealRandomLetters(word, revealedIndices, 2);
+                    break;
+                case 3: 
+                    revealedIndices = Array.from(Array(word.length).keys());
+                    break;
+            }
+            
+            tile.dataset.stage = stage.toString();
+            tile.dataset.revealedIndices = JSON.stringify(revealedIndices);
+            updateInputDisplay(inputField, word, revealedIndices, stage);
+        }
+        
+        function updateInputDisplay(inputField, word, revealedIndices, stage) {
+            let displayText;
+            if (stage === 3) {
+                displayText = word;
+            } else {
+                let displayChars = [];
+                for (let i = 0; i < word.length; i++) {
+                    displayChars.push(revealedIndices.includes(i) ? word[i] : '_');
+                }
+                displayText = displayChars.join(' ');
+            }
+            inputField.value = displayText;
+            inputField.placeholder = displayText; 
+        }
+        
+        function revealRandomLetters(word, currentRevealedIndices, countToReveal) {
+            const newRevealedIndices = new Set(currentRevealedIndices);
+            const unrevealedIndices = [];
+            for (let i = 0; i < word.length; i++) {
+                if (!newRevealedIndices.has(i)) unrevealedIndices.push(i);
+            }
+            for (let i = unrevealedIndices.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [unrevealedIndices[i], unrevealedIndices[j]] = [unrevealedIndices[j], unrevealedIndices[i]];
+            }
+            for (let i = 0; i < countToReveal && i < unrevealedIndices.length; i++) {
+                newRevealedIndices.add(unrevealedIndices[i]);
+            }
+            return Array.from(newRevealedIndices);
+        }
+
+        function normalizeWord(word) {
+            let normalized = word.toUpperCase();
+            const accentMap = {
+                'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ö': 'O', 'Ő': 'O', 'Ú': 'U', 'Ü': 'U', 'Ű': 'U'
+            };
+            for (const [accented, base] of Object.entries(accentMap)) {
+                normalized = normalized.replace(new RegExp(accented, 'g'), base);
+            }
+            return normalized;
+        }
+
+        function checkWord(inputField, correctWord, tile, englishWord) {
+            const typedWord = inputField.value.toUpperCase().replace(/\s/g, '');
+            const translationDisplay = tile.querySelector('.english-translation-display');
+
+            if (typedWord === correctWord) {
+                setTileColor(tile, 'correct');
+                if (translationDisplay) {
+                    translationDisplay.textContent = `English: ${englishWord}`;
+                    translationDisplay.classList.remove('hidden');
+                }
+            } else if (normalizeWord(typedWord) === normalizeWord(correctWord)) {
+                setTileColor(tile, 'close');
+                resetEnglishTranslation(tile); 
+            } else {
+                setTileColor(tile, 'incorrect');
+                resetEnglishTranslation(tile); 
+            }
+        }
+
+        function setTileColor(tile, colorType) {
+            tile.classList.remove('tile-correct', 'tile-close', 'tile-incorrect', 'tile-default');
+            switch (colorType) {
+                case 'correct': tile.classList.add('tile-correct'); break;
+                case 'close': tile.classList.add('tile-close'); break;
+                case 'incorrect': tile.classList.add('tile-incorrect'); break;
+                default: tile.classList.add('tile-default'); break;
+            }
+        }
+    </script>
+
+</body>
+</html>
