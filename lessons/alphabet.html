@@ -21,6 +21,7 @@
             max-width: 120px;
             min-height: 100px;
             position: relative;
+            margin: 0 auto;
         }
         .svg-image {
             max-width: 100px;
@@ -49,7 +50,11 @@
         .letter-display {
             font-size: 1.5em;
             font-weight: bold;
-            color: #475569; /* slate-600 */
+            color: #475569;
+            text-align: center;
+            width: 100%;
+            display: block;
+            margin: 0 auto;
         }
         .word-input {
             letter-spacing: 0.1em;
@@ -148,7 +153,7 @@
             tile.dataset.revealedIndices = JSON.stringify([]);
 
             const imageContainer = document.createElement('div');
-            imageContainer.className = 'svg-container w-full h-36 md:h-40 rounded-lg mb-2 cursor-pointer';
+            imageContainer.className = 'svg-container w-full h-36 md:h-40 rounded-lg mb-2';
             
             const letterDisplay = document.createElement('span');
             letterDisplay.className = 'letter-display';
@@ -175,7 +180,7 @@
             };
             imageContainer.appendChild(img);
             
-            imageContainer.addEventListener('click', () => handleTileClick(tile, item.word.toUpperCase()));
+            tile.addEventListener('click', () => handleTileClick(tile, item.word.toUpperCase()));
 
             const input = document.createElement('input');
             input.type = 'text';
