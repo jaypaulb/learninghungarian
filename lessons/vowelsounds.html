@@ -277,8 +277,8 @@
                 { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
                 { displayType: 'answer', textHu: 'Mély hangrendű (ajakkerekítéses)', textEn: '(Back Vowel - rounded)' }
             ]},
-            { type: 'vowel', exampleWord: 'kapu', exampleTrans: 'gate', states: [ // Changed from ujj to kapu (kutya clashes)
-                { displayType: 'main', mainDisplay: 'u', exampleWord: 'kapu', exampleTrans: 'gate' },
+            { type: 'vowel', exampleWord: 'ubórko', exampleTrans: 'cucumber', states: [ // Changed from ujj to kapu (kutya clashes)
+                { displayType: 'main', mainDisplay: 'u', exampleWord: 'ubórka', exampleTrans: 'gate' },
                 { displayType: 'prompt', textHu: 'Mély vagy magas hangrendű?', textEn: '(Front or Back Vowel?)' },
                 { displayType: 'answer', textHu: 'Mély hangrendű (ajakkerekítéses)', textEn: '(Back Vowel - rounded)' }
             ]},
@@ -516,8 +516,11 @@
             switch (stateData.displayType) {
                 case 'main':
                     if (cardData.type === 'vowel') {
-                        // Format: "e, mint az eper (e, as in strawberry)"
-                        htmlContent += `<div class="main-display">${stateData.mainDisplay}, mint az ${stateData.exampleWord}</div>`;
+                        // Determine correct article: 'az' before vowel, 'a' before consonant
+                        const vowels = ['a', 'á', 'e', 'é', 'i', 'í', 'o', 'ó', 'ö', 'ő', 'u', 'ú', 'ü', 'ű'];
+                        const firstLetter = stateData.exampleWord.charAt(0).toLowerCase();
+                        const article = vowels.includes(firstLetter) ? 'az' : 'a';
+                        htmlContent += `<div class="main-display">${stateData.mainDisplay}, mint ${article} ${stateData.exampleWord}</div>`;
                         htmlContent += `<div class="vowel-example-word">(${stateData.mainDisplay}, as in ${stateData.exampleTrans})</div>`;
                     } else { // Word card
                         htmlContent += `<div class="main-display">${stateData.mainDisplay}</div>`;
