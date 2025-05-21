@@ -19,10 +19,13 @@
             padding-top: 0.5rem; 
         }
         .svg-image { /* Class for the actual SVG element */
-            width: 80%; /* Control SVG size within its container */
-            max-width: 100px; /* Max size for SVG */
-            height: auto;
-            margin-top: 0.25rem; /* Space between letter and SVG */
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            margin-top: 0.25rem;
         }
         .letter-display {
             font-size: 1.5em;
@@ -137,6 +140,20 @@
             img.src = `../images/alphabet/${item.image}`;
             img.alt = `${item.word} (${item.english})`;
             img.className = 'svg-image';
+            img.onerror = function() {
+                this.style.background = '#e2e8f0';
+                this.style.objectFit = 'contain';
+                this.src = '';
+                this.alt = 'Image not found';
+                this.style.display = 'flex';
+                this.style.alignItems = 'center';
+                this.style.justifyContent = 'center';
+                this.style.fontSize = '2em';
+                this.style.color = '#64748b';
+                this.style.width = '80px';
+                this.style.height = '80px';
+                this.parentNode.innerHTML += '<div style="position:absolute;left:0;top:0;width:80px;height:80px;display:flex;align-items:center;justify-content:center;font-size:2em;color:#64748b;">?</div>';
+            };
             imageContainer.appendChild(img);
             
             imageContainer.addEventListener('click', () => handleTileClick(tile, item.word.toUpperCase()));
