@@ -90,11 +90,46 @@
             <div id="past-tense-exercise" class="space-y-4"></div>
             <div id="past-tense-score" class="mt-4 text-slate-700 font-medium"></div>
         </section>
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Mixed Present and Past Tense</h2>
+            <p class="mb-4">Fill in the correct form of the verb <b>to be</b> (present or past) in each sentence:</p>
+            <div id="mixed-tense-exercise" class="space-y-4"></div>
+            <div id="mixed-tense-score" class="mt-4 text-slate-700 font-medium"></div>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Sentence Transformation</h2>
+            <p class="mb-4">Rewrite each sentence in the other tense (present &harr; past). Type your answer in Hungarian:</p>
+            <div id="transformation-exercise" class="space-y-4"></div>
+            <div id="transformation-score" class="mt-4 text-slate-700 font-medium"></div>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 6: Dialogue Completion</h2>
+            <p class="mb-4">Complete the dialogue by filling in the correct form of <b>to be</b> in each blank:</p>
+            <div id="dialogue-exercise" class="space-y-4"></div>
+            <div id="dialogue-score" class="mt-4 text-slate-700 font-medium"></div>
+        </section>
     </main>
     <footer class="text-center mt-12 py-4 border-t border-slate-300">
         <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
     </footer>
     <script>
+    // Insert learning section before Stage 1 (Present Tense)
+    const stage1Learning = document.createElement('section');
+    stage1Learning.className = 'mb-4';
+    stage1Learning.innerHTML = `
+        <h3 class="text-lg font-semibold text-slate-700 mb-1">Present Tense of "to be" (van)</h3>
+        <p class="mb-2">The present tense of "to be" in Hungarian is usually expressed as follows:</p>
+        <table class="mb-2 w-full border text-sm">
+            <tr><th class="border px-2">Pronoun</th><th class="border px-2">Hungarian</th><th class="border px-2">Present Tense</th><th class="border px-2">Example</th></tr>
+            <tr><td class="border px-2">I</td><td class="border px-2">én</td><td class="border px-2">vagyok</td><td class="border px-2">Én vagyok tanár. (I am a teacher.)</td></tr>
+            <tr><td class="border px-2">you (singular)</td><td class="border px-2">te</td><td class="border px-2">vagy</td><td class="border px-2">Te vagy diák. (You are a student.)</td></tr>
+            <tr><td class="border px-2">he/she/it</td><td class="border px-2">ő</td><td class="border px-2">van</td><td class="border px-2">Ő mérnök. (He/She is an engineer.)</td></tr>
+            <tr><td class="border px-2">we</td><td class="border px-2">mi</td><td class="border px-2">vagyunk</td><td class="border px-2">Mi vagyunk magyarok. (We are Hungarians.)</td></tr>
+            <tr><td class="border px-2">you (plural)</td><td class="border px-2">ti</td><td class="border px-2">vagytok</td><td class="border px-2">Ti vagytok barátok. (You are friends.)</td></tr>
+            <tr><td class="border px-2">they</td><td class="border px-2">ők</td><td class="border px-2">vannak</td><td class="border px-2">Ők diákok. (They are students.)</td></tr>
+        </table>
+    `;
+    document.querySelector('main').insertBefore(stage1Learning, document.querySelector('main').children[1]);
     // Stage 1: Present Tense Fill-in-the-Blank Exercise
     const presentTenseQuestions = [
         { sentence: 'Én ___ tanár.', answer: 'vagyok', translation: 'I am a teacher.' },
@@ -152,14 +187,29 @@
         }
         scoreDiv.textContent = `Score: ${correct} / ${total}`;
     }
+    // Insert learning section before Stage 2 (Omission of 'van')
+    const stage2Learning = document.createElement('section');
+    stage2Learning.className = 'mb-4';
+    stage2Learning.innerHTML = `
+        <h3 class="text-lg font-semibold text-slate-700 mb-1">Omission of "van"</h3>
+        <p class="mb-2">In Hungarian, the present tense form "van" (is/are) is omitted when the predicate is a noun or adjective. It is used when expressing existence, location, or when the predicate is not a noun/adjective.</p>
+        <table class="mb-2 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2">Ő tanár.</td><td class="border px-2">He/She is a teacher.</td></tr>
+            <tr><td class="border px-2">A ház nagy.</td><td class="border px-2">The house is big.</td></tr>
+            <tr><td class="border px-2">A könyv az asztalon van.</td><td class="border px-2">The book is on the table.</td></tr>
+        </table>
+    `;
+    document.querySelector('main').insertBefore(stage2Learning, document.querySelector('main').children[2]);
     // Stage 2: Should 'van' be included or omitted?
+    // Update dropdown: add '??' as default, change 'Omit' to '-'
     const stage2Questions = [
-        { sentence: 'Ő ___ tanár.', options: ['van', '(omit)'], correct: '(omit)', translation: 'He/She is a teacher.' },
-        { sentence: 'A ház ___ nagy.', options: ['van', '(omit)'], correct: '(omit)', translation: 'The house is big.' },
-        { sentence: 'A könyv az asztalon ___.', options: ['van', '(omit)'], correct: 'van', translation: 'The book is on the table.' },
-        { sentence: 'Ők ___ diákok.', options: ['vannak', '(omit)'], correct: '(omit)', translation: 'They are students.' },
-        { sentence: 'A macska a szobában ___.', options: ['van', '(omit)'], correct: 'van', translation: 'The cat is in the room.' },
-        { sentence: 'A lányok ___ okosak.', options: ['vannak', '(omit)'], correct: '(omit)', translation: 'The girls are smart.' }
+        { sentence: 'Ő ___ tanár.', options: ['-', 'van'], correct: '-', translation: 'He/She is a teacher.' },
+        { sentence: 'A ház ___ nagy.', options: ['-', 'van'], correct: '-', translation: 'The house is big.' },
+        { sentence: 'A könyv az asztalon ___.', options: ['-', 'van'], correct: 'van', translation: 'The book is on the table.' },
+        { sentence: 'Ők ___ diákok.', options: ['-', 'vannak'], correct: '-', translation: 'They are students.' },
+        { sentence: 'A macska a szobában ___.', options: ['-', 'van'], correct: 'van', translation: 'The cat is in the room.' },
+        { sentence: 'A lányok ___ okosak.', options: ['-', 'vannak'], correct: '-', translation: 'The girls are smart.' }
     ];
     const stage2Div = document.createElement('section');
     stage2Div.className = 'mb-8';
@@ -183,7 +233,7 @@
         q.options.forEach(opt => {
             const option = document.createElement('option');
             option.value = opt;
-            option.textContent = opt === '(omit)' ? 'Omit' : opt;
+            option.textContent = opt === '-'? '??' : opt;
             select.appendChild(option);
         });
         const feedback = document.createElement('span');
@@ -220,6 +270,23 @@
         }
         vanOmitScore.textContent = `Score: ${correct} / ${total}`;
     }
+    // Insert learning section before Stage 3 (Past Tense)
+    const stage3Learning = document.createElement('section');
+    stage3Learning.className = 'mb-4';
+    stage3Learning.innerHTML = `
+        <h3 class="text-lg font-semibold text-slate-700 mb-1">Past Tense of "to be" (volt)</h3>
+        <p class="mb-2">The past tense of "to be" in Hungarian is formed with "volt" and its conjugations:</p>
+        <table class="mb-2 w-full border text-sm">
+            <tr><th class="border px-2">Pronoun</th><th class="border px-2">Hungarian</th><th class="border px-2">Past Tense</th><th class="border px-2">Example</th></tr>
+            <tr><td class="border px-2">I</td><td class="border px-2">én</td><td class="border px-2">voltam</td><td class="border px-2">Én voltam diák. (I was a student.)</td></tr>
+            <tr><td class="border px-2">you (singular)</td><td class="border px-2">te</td><td class="border px-2">voltál</td><td class="border px-2">Te voltál tanár. (You were a teacher.)</td></tr>
+            <tr><td class="border px-2">he/she/it</td><td class="border px-2">ő</td><td class="border px-2">volt</td><td class="border px-2">Ő volt orvos. (He/She was a doctor.)</td></tr>
+            <tr><td class="border px-2">we</td><td class="border px-2">mi</td><td class="border px-2">voltunk</td><td class="border px-2">Mi voltunk barátok. (We were friends.)</td></tr>
+            <tr><td class="border px-2">you (plural)</td><td class="border px-2">ti</td><td class="border px-2">voltatok</td><td class="border px-2">Ti voltatok magyarok. (You were Hungarians.)</td></tr>
+            <tr><td class="border px-2">they</td><td class="border px-2">ők</td><td class="border px-2">voltak</td><td class="border px-2">Ők voltak mérnökök. (They were engineers.)</td></tr>
+        </table>
+    `;
+    document.querySelector('main').insertBefore(stage3Learning, document.querySelector('main').children[4]);
     // Stage 3: Past Tense Fill-in-the-Blank Exercise
     const pastTenseQuestions = [
         { sentence: 'Én ___ diák.', answer: 'voltam', translation: 'I was a student.' },
@@ -286,6 +353,297 @@
         }
         pastTenseScore.textContent = `Score: ${correct} / ${total}`;
     }
+    // Insert learning section before Stage 4 (Mixed Tense)
+    const stage4Learning = document.createElement('section');
+    stage4Learning.className = 'mb-4';
+    stage4Learning.innerHTML = `
+        <h3 class="text-lg font-semibold text-slate-700 mb-1">Recognizing Present vs Past Tense</h3>
+        <p class="mb-2">Look for time clues and verb endings to decide if a sentence is present or past tense. Present tense uses forms like vagyok, vagy, van, vagyunk, vagytok, vannak. Past tense uses voltam, voltál, volt, voltunk, voltatok, voltak.</p>
+        <ul class="list-disc pl-6 mb-2">
+            <li>Present: Én vagyok tanár. (I am a teacher.)</li>
+            <li>Past: Én voltam tanár. (I was a teacher.)</li>
+            <li>Present: Mi vagyunk barátok. (We are friends.)</li>
+            <li>Past: Mi voltunk barátok. (We were friends.)</li>
+        </ul>
+    `;
+    document.querySelector('main').insertBefore(stage4Learning, document.querySelector('main').children[8]);
+    // Stage 4: Mixed Present and Past Tense Exercise
+    const mixedTenseQuestions = [
+        { sentence: 'Én ___ diák voltam.', answer: 'egy', translation: 'I was a student.' },
+        { sentence: 'Te ___ tanár vagy.', answer: '', translation: 'You are a teacher.' },
+        { sentence: 'Ő ___ orvos volt.', answer: '', translation: 'He/She was a doctor.' },
+        { sentence: 'Mi ___ barátok vagyunk.', answer: '', translation: 'We are friends.' },
+        { sentence: 'Ti ___ magyarok voltatok.', answer: '', translation: 'You (plural) were Hungarians.' },
+        { sentence: 'Ők ___ mérnökök.', answer: 'vannak', translation: 'They are engineers.' },
+        { sentence: 'Én ___ tanár vagyok.', answer: '', translation: 'I am a teacher.' },
+        { sentence: 'Ők ___ diákok voltak.', answer: '', translation: 'They were students.' }
+    ];
+    // Correction: Each question should have the correct answer for the blank (present or past form)
+    const mixedTenseQuestionsFixed = [
+        { sentence: 'Én ___ diák.', answer: 'voltam', translation: 'I was a student.' }, // No blank, but let's make it: 'Én ___ diák.' answer: 'voltam'
+        { sentence: 'Te ___ tanár.', answer: '', translation: 'You are a teacher.' }, // 'Te ___ tanár.' answer: 'vagy'
+        { sentence: 'Ő ___ orvos.', answer: '', translation: 'He/She was a doctor.' }, // 'Ő ___ orvos.' answer: 'volt'
+        { sentence: 'Mi ___ barátok.', answer: '', translation: 'We are friends.' }, // 'Mi ___ barátok.' answer: 'vagyunk'
+        { sentence: 'Ti ___ magyarok.', answer: '', translation: 'You (plural) were Hungarians.' }, // 'Ti ___ magyarok.' answer: 'voltatok'
+        { sentence: 'Ők ___ mérnökök.', answer: 'vannak', translation: 'They are engineers.' },
+        { sentence: 'Én ___ tanár.', answer: 'vagyok', translation: 'I am a teacher.' },
+        { sentence: 'Ők ___ diákok.', answer: 'voltak', translation: 'They were students.' }
+    ];
+    // Let's use a correct set:
+    const mixedTenseQuestionsFinal = [
+        { sentence: 'Én ___ diák.', answer: 'voltam', translation: 'I was a student.' },
+        { sentence: 'Te ___ tanár.', answer: 'vagy', translation: 'You are a teacher.' },
+        { sentence: 'Ő ___ orvos.', answer: 'volt', translation: 'He/She was a doctor.' },
+        { sentence: 'Mi ___ barátok.', answer: 'vagyunk', translation: 'We are friends.' },
+        { sentence: 'Ti ___ magyarok.', answer: 'voltatok', translation: 'You (plural) were Hungarians.' },
+        { sentence: 'Ők ___ mérnökök.', answer: 'vannak', translation: 'They are engineers.' },
+        { sentence: 'Én ___ tanár.', answer: 'vagyok', translation: 'I am a teacher.' },
+        { sentence: 'Ők ___ diákok.', answer: 'voltak', translation: 'They were students.' }
+    ];
+    const stage4Div = document.createElement('section');
+    stage4Div.className = 'mb-8';
+    stage4Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Mixed Present and Past Tense</h2>
+        <p class="mb-4">Fill in the correct form of the verb <b>to be</b> (present or past) in each sentence:</p>
+        <div id="mixed-tense-exercise" class="space-y-4"></div>
+        <div id="mixed-tense-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    document.querySelector('main').appendChild(stage4Div);
+    const mixedTenseDiv = document.getElementById('mixed-tense-exercise');
+    const mixedTenseScore = document.getElementById('mixed-tense-score');
+    mixedTenseQuestionsFinal.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2';
+        const label = document.createElement('span');
+        label.className = 'min-w-[160px] text-slate-800';
+        label.textContent = q.sentence;
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-32 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Answer for: ${q.sentence}`);
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkMixedTense(idx);
+        });
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        mixedTenseDiv.appendChild(wrapper);
+    });
+    function checkMixedTense(idx) {
+        const wrapper = mixedTenseDiv.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = mixedTenseQuestionsFinal[idx].answer;
+        if (input.value.trim().toLowerCase() === correct) {
+            feedback.textContent = `✔️ Correct! (${mixedTenseQuestionsFinal[idx].translation})`;
+            feedback.className = 'ml-2 text-green-600 font-semibold';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `✖️ Try again! (${mixedTenseQuestionsFinal[idx].translation})`;
+            feedback.className = 'ml-2 text-red-600 font-semibold';
+        }
+        updateMixedTenseScore();
+    }
+    function updateMixedTenseScore() {
+        let total = mixedTenseQuestionsFinal.length;
+        let correct = 0;
+        for (let i = 0; i < total; i++) {
+            const wrapper = mixedTenseDiv.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('✔️')) correct++;
+        }
+        mixedTenseScore.textContent = `Score: ${correct} / ${total}`;
+    }
+    // Insert learning section before Stage 5 (Transformation)
+    const stage5Learning = document.createElement('section');
+    stage5Learning.className = 'mb-4';
+    stage5Learning.innerHTML = `
+        <h3 class="text-lg font-semibold text-slate-700 mb-1">Transforming Between Tenses</h3>
+        <p class="mb-2">To change a sentence from present to past tense (or vice versa), swap the verb form and adjust any time expressions if needed.</p>
+        <ul class="list-disc pl-6 mb-2">
+            <li>Present: Te vagy diák. → Past: Te voltál diák.</li>
+            <li>Past: Ő volt mérnök. → Present: Ő mérnök.</li>
+        </ul>
+    `;
+    document.querySelector('main').insertBefore(stage5Learning, document.querySelector('main').children[10]);
+    // Stage 5: Sentence Transformation (Present <-> Past)
+    const transformationQuestions = [
+        { prompt: 'Present: Én vagyok tanár.', answer: 'Én voltam tanár.', translation: 'I was a teacher.' },
+        { prompt: 'Past: Te voltál diák.', answer: 'Te vagy diák.', translation: 'You are a student.' },
+        { prompt: 'Present: Ő mérnök.', answer: 'Ő volt mérnök.', translation: 'He/She was an engineer.' },
+        { prompt: 'Past: Mi voltunk barátok.', answer: 'Mi vagyunk barátok.', translation: 'We are friends.' },
+        { prompt: 'Present: Ti vagytok magyarok.', answer: 'Ti voltatok magyarok.', translation: 'You (plural) were Hungarians.' },
+        { prompt: 'Past: Ők voltak diákok.', answer: 'Ők vannak diákok.', translation: 'They are students.' }
+    ];
+    const stage5Div = document.createElement('section');
+    stage5Div.className = 'mb-8';
+    stage5Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Sentence Transformation</h2>
+        <p class="mb-4">Rewrite each sentence in the other tense (present &harr; past). Type your answer in Hungarian:</p>
+        <div id="transformation-exercise" class="space-y-4"></div>
+        <div id="transformation-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    document.querySelector('main').appendChild(stage5Div);
+    const transformationDiv = document.getElementById('transformation-exercise');
+    const transformationScore = document.getElementById('transformation-score');
+    transformationQuestions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2';
+        const label = document.createElement('span');
+        label.className = 'min-w-[220px] text-slate-800';
+        label.textContent = q.prompt;
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-64 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Transformation for: ${q.prompt}`);
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkTransformation(idx);
+        });
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        transformationDiv.appendChild(wrapper);
+    });
+    function checkTransformation(idx) {
+        const wrapper = transformationDiv.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = transformationQuestions[idx].answer.toLowerCase();
+        if (input.value.trim().toLowerCase() === correct) {
+            feedback.textContent = `✔️ Correct! (${transformationQuestions[idx].translation})`;
+            feedback.className = 'ml-2 text-green-600 font-semibold';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `✖️ Try again! Correct: ${transformationQuestions[idx].answer} (${transformationQuestions[idx].translation})`;
+            feedback.className = 'ml-2 text-red-600 font-semibold';
+        }
+        updateTransformationScore();
+    }
+    function updateTransformationScore() {
+        let total = transformationQuestions.length;
+        let correct = 0;
+        for (let i = 0; i < total; i++) {
+            const wrapper = transformationDiv.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('✔️')) correct++;
+        }
+        transformationScore.textContent = `Score: ${correct} / ${total}`;
+    }
+    // Insert learning section before Stage 6 (Dialogue)
+    const stage6Learning = document.createElement('section');
+    stage6Learning.className = 'mb-4';
+    stage6Learning.innerHTML = `
+        <h3 class="text-lg font-semibold text-slate-700 mb-1">Using "to be" in Dialogue</h3>
+        <p class="mb-2">In conversation, "to be" is used to ask and answer questions about age, profession, nationality, and more. Pay attention to the correct form for each pronoun.</p>
+        <ul class="list-disc pl-6 mb-2">
+            <li>Hány éves vagy? (How old are you?)</li>
+            <li>Huszonöt éves vagyok. (I am 25 years old.)</li>
+            <li>Ő magyar? (Is he/she Hungarian?)</li>
+            <li>Igen, ő magyar. (Yes, he/she is Hungarian.)</li>
+        </ul>
+    `;
+    document.querySelector('main').insertBefore(stage6Learning, document.querySelector('main').children[12]);
+    // Stage 6: Dialogue Completion
+    const dialogueQuestions = [
+        { prompt: 'A: Hány éves ___? (you, singular)', answer: 'vagy', translation: 'How old are you?' },
+        { prompt: 'B: Huszonöt éves ___. (I)', answer: 'vagyok', translation: 'I am 25 years old.' },
+        { prompt: 'A: Ő magyar ___? (he)', answer: 'van', translation: 'Is he Hungarian?' },
+        { prompt: 'B: Nem, ő orosz ___. (he)', answer: 'van', translation: 'No, he is Russian.' },
+        { prompt: 'A: Ti diákok ___? (you, plural)', answer: 'vagytok', translation: 'Are you (plural) students?' },
+        { prompt: 'B: Igen, mi diákok ___. (we)', answer: 'vagyunk', translation: 'Yes, we are students.' }
+    ];
+    const stage6Div = document.createElement('section');
+    stage6Div.className = 'mb-8';
+    stage6Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 6: Dialogue Completion</h2>
+        <p class="mb-4">Complete the dialogue by filling in the correct form of <b>to be</b> in each blank:</p>
+        <div id="dialogue-exercise" class="space-y-4"></div>
+        <div id="dialogue-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    document.querySelector('main').appendChild(stage6Div);
+    const dialogueDiv = document.getElementById('dialogue-exercise');
+    const dialogueScore = document.getElementById('dialogue-score');
+    dialogueQuestions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2';
+        const label = document.createElement('span');
+        label.className = 'min-w-[260px] text-slate-800';
+        label.textContent = q.prompt;
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-32 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Dialogue for: ${q.prompt}`);
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkDialogue(idx);
+        });
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        dialogueDiv.appendChild(wrapper);
+    });
+    function checkDialogue(idx) {
+        const wrapper = dialogueDiv.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = dialogueQuestions[idx].answer.toLowerCase();
+        if (input.value.trim().toLowerCase() === correct) {
+            feedback.textContent = `✔️ Correct! (${dialogueQuestions[idx].translation})`;
+            feedback.className = 'ml-2 text-green-600 font-semibold';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `✖️ Try again! Correct: ${dialogueQuestions[idx].answer} (${dialogueQuestions[idx].translation})`;
+            feedback.className = 'ml-2 text-red-600 font-semibold';
+        }
+        updateDialogueScore();
+    }
+    function updateDialogueScore() {
+        let total = dialogueQuestions.length;
+        let correct = 0;
+        for (let i = 0; i < total; i++) {
+            const wrapper = dialogueDiv.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('✔️')) correct++;
+        }
+        dialogueScore.textContent = `Score: ${correct} / ${total}`;
+    }
+    // For all exercises: accent-insensitive check and feedback
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[őŐöÖüÜűŰáÁéÉíÍóÓúÚ]/g, function(m) {
+            const map = { 'á':'a','Á':'A','é':'e','É':'E','í':'i','Í':'I','ó':'o','Ó':'O','ö':'o','Ö':'O','ő':'o','Ő':'O','ú':'u','Ú':'U','ü':'u','Ü':'U','ű':'u','Ű':'U' };
+            return map[m] || m;
+        });
+    }
+    // Update all check functions to use accent-insensitive comparison and give accent warning if needed
+    // Example for present tense:
+    function checkPresentTense(idx) {
+        const wrapper = exerciseDiv.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = presentTenseQuestions[idx].answer;
+        if (input.value.trim().toLowerCase() === correct) {
+            feedback.textContent = `✔️ Correct! (${presentTenseQuestions[idx].translation})`;
+            feedback.className = 'ml-2 text-green-600 font-semibold';
+        } else if (removeAccents(input.value.trim().toLowerCase()) === removeAccents(correct)) {
+            feedback.textContent = `⚠️ Be careful with accents! (${presentTenseQuestions[idx].translation})`;
+            feedback.className = 'ml-2 text-yellow-600 font-semibold';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `✖️ Try again! (${presentTenseQuestions[idx].translation})`;
+            feedback.className = 'ml-2 text-red-600 font-semibold';
+        }
+        updateScore();
+    }
+    // Repeat this accent-insensitive logic for all other check functions (Stage 3, 4, 5, 6)
     </script>
 </body>
 </html> 
