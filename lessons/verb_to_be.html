@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Verb "to be" in Hungarian (A létige: van)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">The Verb "to be" in Hungarian <span class="block text-xl text-slate-500 font-normal">(A létige: van)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">This lesson covers the Hungarian verb "to be" (lenni), its present tense forms, and how it is used in everyday Hungarian. Understanding this verb is essential for talking about identity, professions, nationality, age, and more.</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6">
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-slate-700 mb-2">Present Tense Forms</h2>
+            <p class="mb-4">The verb "to be" in Hungarian is <b>lenni</b> (infinitive). In the present tense, it is usually expressed as follows:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pronoun (English)</th>
+                        <th>Pronoun (Hungarian)</th>
+                        <th>Form</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>I am</td><td>én</td><td>vagyok</td><td>Én vagyok tanár. (I am a teacher.)</td></tr>
+                    <tr><td>you are (singular)</td><td>te</td><td>vagy</td><td>Te vagy diák. (You are a student.)</td></tr>
+                    <tr><td>he/she/it is</td><td>ő</td><td>van</td><td>Ő mérnök. (He/She is an engineer.)</td></tr>
+                    <tr><td>we are</td><td>mi</td><td>vagyunk</td><td>Mi vagyunk magyarok. (We are Hungarians.)</td></tr>
+                    <tr><td>you are (plural)</td><td>ti</td><td>vagytok</td><td>Ti vagytok barátok. (You are friends.)</td></tr>
+                    <tr><td>they are</td><td>ők</td><td>vannak</td><td>Ők diákok. (They are students.)</td></tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold text-slate-700 mb-2">Usage Notes: When is "van" omitted?</h2>
+            <ul class="list-disc pl-6 mb-4">
+                <li>In the present tense, <b>van</b> and <b>vannak</b> are <b>omitted</b> when the predicate is a noun or an adjective.<br>
+                    <i>Example: "Ő tanár." (He/She is a teacher.) <br> "A ház nagy." (The house is big.)</i>
+                </li>
+                <li>"Van" is <b>used</b> when expressing existence, location, or when the predicate is not a noun/adjective.<br>
+                    <i>Example: "A könyv az asztalon van." (The book is on the table.)</i>
+                </li>
+            </ul>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold text-slate-700 mb-2">More Examples</h2>
+            <ul class="list-disc pl-6">
+                <li>Én vagyok Dániel. (I am Dániel.)</li>
+                <li>Te vagy tanár? (Are you a teacher?)</li>
+                <li>Ő magyar. (He/She is Hungarian.)</li>
+                <li>Mi diákok vagyunk. (We are students.)</li>
+                <li>Ti budapestiek vagytok. (You are from Budapest.)</li>
+                <li>Ők huszonévesek. (They are in their twenties.)</li>
+            </ul>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Present Tense Fill-in-the-Blank</h2>
+            <p class="mb-4">Fill in the correct form of the verb <b>to be</b> (vagyok, vagy, van, vagyunk, vagytok, vannak) in each sentence:</p>
+            <div id="present-tense-exercise" class="space-y-4"></div>
+            <div id="present-tense-score" class="mt-4 text-slate-700 font-medium"></div>
+        </section>
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    // Stage 1: Present Tense Fill-in-the-Blank Exercise
+    const presentTenseQuestions = [
+        { sentence: 'Én ___ tanár.', answer: 'vagyok', translation: 'I am a teacher.' },
+        { sentence: 'Te ___ diák.', answer: 'vagy', translation: 'You are a student.' },
+        { sentence: 'Ő ___ orvos.', answer: 'van', translation: 'He/She is a doctor.' },
+        { sentence: 'Mi ___ barátok.', answer: 'vagyunk', translation: 'We are friends.' },
+        { sentence: 'Ti ___ magyarok.', answer: 'vagytok', translation: 'You (plural) are Hungarians.' },
+        { sentence: 'Ők ___ mérnökök.', answer: 'vannak', translation: 'They are engineers.' }
+    ];
+    const exerciseDiv = document.getElementById('present-tense-exercise');
+    const scoreDiv = document.getElementById('present-tense-score');
+    let correctCount = 0;
+    presentTenseQuestions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2';
+        const label = document.createElement('span');
+        label.className = 'min-w-[160px] text-slate-800';
+        label.textContent = q.sentence;
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-32 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Answer for: ${q.sentence}`);
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkPresentTense(idx);
+        });
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        exerciseDiv.appendChild(wrapper);
+    });
+    function checkPresentTense(idx) {
+        const wrapper = exerciseDiv.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = presentTenseQuestions[idx].answer;
+        if (input.value.trim().toLowerCase() === correct) {
+            feedback.textContent = '✔️ Correct!';
+            feedback.className = 'ml-2 text-green-600 font-semibold';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `✖️ Try again! (${presentTenseQuestions[idx].translation})`;
+            feedback.className = 'ml-2 text-red-600 font-semibold';
+        }
+        updateScore();
+    }
+    function updateScore() {
+        let total = presentTenseQuestions.length;
+        let correct = 0;
+        for (let i = 0; i < total; i++) {
+            const wrapper = exerciseDiv.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('✔️')) correct++;
+        }
+        scoreDiv.textContent = `Score: ${correct} / ${total}`;
+    }
+    </script>
+</body>
+</html> 
