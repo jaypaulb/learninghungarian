@@ -78,6 +78,18 @@
             <div id="present-tense-exercise" class="space-y-4"></div>
             <div id="present-tense-score" class="mt-4 text-slate-700 font-medium"></div>
         </section>
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Should "van" be included or omitted?</h2>
+            <p class="mb-4">For each sentence, choose whether to include the verb ("van"/"vannak") or omit it. Reinforcement: the English translation is shown after your answer.</p>
+            <div id="van-omit-exercise" class="space-y-4"></div>
+            <div id="van-omit-score" class="mt-4 text-slate-700 font-medium"></div>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Past Tense Fill-in-the-Blank</h2>
+            <p class="mb-4">Fill in the correct past tense form of the verb <b>to be</b> (voltam, voltál, volt, voltunk, voltatok, voltak) in each sentence:</p>
+            <div id="past-tense-exercise" class="space-y-4"></div>
+            <div id="past-tense-score" class="mt-4 text-slate-700 font-medium"></div>
+        </section>
     </main>
     <footer class="text-center mt-12 py-4 border-t border-slate-300">
         <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
@@ -94,7 +106,6 @@
     ];
     const exerciseDiv = document.getElementById('present-tense-exercise');
     const scoreDiv = document.getElementById('present-tense-score');
-    let correctCount = 0;
     presentTenseQuestions.forEach((q, idx) => {
         const wrapper = document.createElement('div');
         wrapper.className = 'flex flex-col md:flex-row items-center gap-2';
@@ -121,7 +132,7 @@
         const feedback = wrapper.querySelector('span:last-child');
         const correct = presentTenseQuestions[idx].answer;
         if (input.value.trim().toLowerCase() === correct) {
-            feedback.textContent = '✔️ Correct!';
+            feedback.textContent = `✔️ Correct! (${presentTenseQuestions[idx].translation})`;
             feedback.className = 'ml-2 text-green-600 font-semibold';
         } else if (input.value.trim() === '') {
             feedback.textContent = '';
@@ -140,6 +151,140 @@
             if (feedback.textContent.startsWith('✔️')) correct++;
         }
         scoreDiv.textContent = `Score: ${correct} / ${total}`;
+    }
+    // Stage 2: Should 'van' be included or omitted?
+    const stage2Questions = [
+        { sentence: 'Ő ___ tanár.', options: ['van', '(omit)'], correct: '(omit)', translation: 'He/She is a teacher.' },
+        { sentence: 'A ház ___ nagy.', options: ['van', '(omit)'], correct: '(omit)', translation: 'The house is big.' },
+        { sentence: 'A könyv az asztalon ___.', options: ['van', '(omit)'], correct: 'van', translation: 'The book is on the table.' },
+        { sentence: 'Ők ___ diákok.', options: ['vannak', '(omit)'], correct: '(omit)', translation: 'They are students.' },
+        { sentence: 'A macska a szobában ___.', options: ['van', '(omit)'], correct: 'van', translation: 'The cat is in the room.' },
+        { sentence: 'A lányok ___ okosak.', options: ['vannak', '(omit)'], correct: '(omit)', translation: 'The girls are smart.' }
+    ];
+    const stage2Div = document.createElement('section');
+    stage2Div.className = 'mb-8';
+    stage2Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Should "van" be included or omitted?</h2>
+        <p class="mb-4">For each sentence, choose whether to include the verb ("van"/"vannak") or omit it. Reinforcement: the English translation is shown after your answer.</p>
+        <div id="van-omit-exercise" class="space-y-4"></div>
+        <div id="van-omit-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    document.querySelector('main').appendChild(stage2Div);
+    const vanOmitDiv = document.getElementById('van-omit-exercise');
+    const vanOmitScore = document.getElementById('van-omit-score');
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2';
+        const label = document.createElement('span');
+        label.className = 'min-w-[180px] text-slate-800';
+        label.textContent = q.sentence;
+        const select = document.createElement('select');
+        select.className = 'border border-slate-300 rounded-md px-3 py-1 w-32 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        q.options.forEach(opt => {
+            const option = document.createElement('option');
+            option.value = opt;
+            option.textContent = opt === '(omit)' ? 'Omit' : opt;
+            select.appendChild(option);
+        });
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+        select.addEventListener('change', function() {
+            checkVanOmit(idx);
+        });
+        wrapper.appendChild(label);
+        wrapper.appendChild(select);
+        wrapper.appendChild(feedback);
+        vanOmitDiv.appendChild(wrapper);
+    });
+    function checkVanOmit(idx) {
+        const wrapper = vanOmitDiv.children[idx];
+        const select = wrapper.querySelector('select');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage2Questions[idx].correct;
+        if (select.value === correct) {
+            feedback.textContent = `✔️ Correct! (${stage2Questions[idx].translation})`;
+            feedback.className = 'ml-2 text-green-600 font-semibold';
+        } else {
+            feedback.textContent = `✖️ Try again! (${stage2Questions[idx].translation})`;
+            feedback.className = 'ml-2 text-red-600 font-semibold';
+        }
+        updateVanOmitScore();
+    }
+    function updateVanOmitScore() {
+        let total = stage2Questions.length;
+        let correct = 0;
+        for (let i = 0; i < total; i++) {
+            const wrapper = vanOmitDiv.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('✔️')) correct++;
+        }
+        vanOmitScore.textContent = `Score: ${correct} / ${total}`;
+    }
+    // Stage 3: Past Tense Fill-in-the-Blank Exercise
+    const pastTenseQuestions = [
+        { sentence: 'Én ___ diák.', answer: 'voltam', translation: 'I was a student.' },
+        { sentence: 'Te ___ tanár.', answer: 'voltál', translation: 'You were a teacher.' },
+        { sentence: 'Ő ___ orvos.', answer: 'volt', translation: 'He/She was a doctor.' },
+        { sentence: 'Mi ___ barátok.', answer: 'voltunk', translation: 'We were friends.' },
+        { sentence: 'Ti ___ magyarok.', answer: 'voltatok', translation: 'You (plural) were Hungarians.' },
+        { sentence: 'Ők ___ mérnökök.', answer: 'voltak', translation: 'They were engineers.' }
+    ];
+    const stage3Div = document.createElement('section');
+    stage3Div.className = 'mb-8';
+    stage3Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Past Tense Fill-in-the-Blank</h2>
+        <p class="mb-4">Fill in the correct past tense form of the verb <b>to be</b> (voltam, voltál, volt, voltunk, voltatok, voltak) in each sentence:</p>
+        <div id="past-tense-exercise" class="space-y-4"></div>
+        <div id="past-tense-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    document.querySelector('main').appendChild(stage3Div);
+    const pastTenseDiv = document.getElementById('past-tense-exercise');
+    const pastTenseScore = document.getElementById('past-tense-score');
+    pastTenseQuestions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2';
+        const label = document.createElement('span');
+        label.className = 'min-w-[160px] text-slate-800';
+        label.textContent = q.sentence;
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-32 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Answer for: ${q.sentence}`);
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkPastTense(idx);
+        });
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        pastTenseDiv.appendChild(wrapper);
+    });
+    function checkPastTense(idx) {
+        const wrapper = pastTenseDiv.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = pastTenseQuestions[idx].answer;
+        if (input.value.trim().toLowerCase() === correct) {
+            feedback.textContent = `✔️ Correct! (${pastTenseQuestions[idx].translation})`;
+            feedback.className = 'ml-2 text-green-600 font-semibold';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `✖️ Try again! (${pastTenseQuestions[idx].translation})`;
+            feedback.className = 'ml-2 text-red-600 font-semibold';
+        }
+        updatePastTenseScore();
+    }
+    function updatePastTenseScore() {
+        let total = pastTenseQuestions.length;
+        let correct = 0;
+        for (let i = 0; i < total; i++) {
+            const wrapper = pastTenseDiv.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('✔️')) correct++;
+        }
+        pastTenseScore.textContent = `Score: ${correct} / ${total}`;
     }
     </script>
 </body>
