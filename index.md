@@ -16,6 +16,8 @@ This site documents and supports my journey to learn the Hungarian language. Her
 
 [Lesson 2: Hungarian Vowel Sounds](lessons/vowelsounds.html)
 
+[Lesson 3: Verb - to be](lessons/verb_to_be.html)
+
 ---
 
 More lessons and features coming soon! Stay tuned.
