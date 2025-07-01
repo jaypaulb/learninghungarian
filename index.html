@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning Hungarian</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -60,120 +59,58 @@
     </footer>
 
     <script>
-        // Function to automatically load lessons from the lessons folder
-        async function loadLessons() {
-            try {
-                // Try to fetch the lessons directory listing
-                const response = await fetch('lessons/');
-                const html = await response.text();
-                
-                // Parse the HTML to find .html files
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const links = doc.querySelectorAll('a[href$=".html"]');
-                
-                const container = document.getElementById('lessons-container');
-                const lessonFiles = [];
-                
-                // Extract lesson files and their titles
-                links.forEach((link, index) => {
-                    const filename = link.getAttribute('href');
-                    if (filename && filename.endsWith('.html')) {
-                        lessonFiles.push({
-                            filename: filename,
-                            lessonNumber: index + 1
-                        });
-                    }
-                });
-                
-                // Sort alphabetically for consistent ordering
-                lessonFiles.sort((a, b) => a.filename.localeCompare(b.filename));
-                
-                // Create lesson cards
-                lessonFiles.forEach((lesson, index) => {
-                    const lessonNumber = index + 1;
-                    const title = getLessonTitle(lesson.filename);
-                    const icon = getLessonIcon(lesson.filename);
-                    
-                    const lessonCard = document.createElement('div');
-                    lessonCard.className = 'lesson-card bg-white rounded-xl shadow-md p-6 border border-slate-200';
-                    
-                    lessonCard.innerHTML = `
-                        <div class="flex items-start justify-between mb-4">
-                            <div class="text-3xl">${icon}</div>
-                            <span class="text-xs font-medium px-2 py-1 bg-slate-100 text-slate-600 rounded-full">Beginner</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Lesson ${lessonNumber}: ${title}</h3>
-                        <p class="text-slate-600 text-sm mb-4">Click to start learning ${title.toLowerCase()}.</p>
-                        <a href="lessons/${lesson.filename}" class="inline-flex items-center px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg hover:bg-sky-700 transition-colors">
-                            Start Lesson
-                            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
-                    `;
-                    
-                    container.appendChild(lessonCard);
-                });
-                
-                if (lessonFiles.length === 0) {
-                    container.innerHTML = '<p class="text-slate-600">No lessons found. Add HTML files to the lessons folder.</p>';
-                }
-                
-            } catch (error) {
-                console.error('Error loading lessons:', error);
-                // Fallback: manually list known lessons
-                const container = document.getElementById('lessons-container');
-                const fallbackLessons = [
-                    { filename: 'alphabet.html', title: 'Hungarian Alphabet', icon: '🔤' },
-                    { filename: 'vowelsounds.html', title: 'Hungarian Vowel Sounds', icon: '🎵' },
-                    { filename: 'verb_to_be.html', title: 'The Verb "to be"', icon: '📝' }
-                ];
-                
-                fallbackLessons.forEach((lesson, index) => {
-                    const lessonCard = document.createElement('div');
-                    lessonCard.className = 'lesson-card bg-white rounded-xl shadow-md p-6 border border-slate-200';
-                    
-                    lessonCard.innerHTML = `
-                        <div class="flex items-start justify-between mb-4">
-                            <div class="text-3xl">${lesson.icon}</div>
-                            <span class="text-xs font-medium px-2 py-1 bg-slate-100 text-slate-600 rounded-full">Beginner</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Lesson ${index + 1}: ${lesson.title}</h3>
-                        <p class="text-slate-600 text-sm mb-4">Click to start learning ${lesson.title.toLowerCase()}.</p>
-                        <a href="lessons/${lesson.filename}" class="inline-flex items-center px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg hover:bg-sky-700 transition-colors">
-                            Start Lesson
-                            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
-                    `;
-                    
-                    container.appendChild(lessonCard);
-                });
+        // Simple lesson registry - just add new lessons here
+        const lessons = [
+            {
+                filename: 'alphabet.html',
+                title: 'Hungarian Alphabet',
+                description: 'Learn the Hungarian alphabet with interactive exercises and pronunciation guides.',
+                icon: '🔤',
+                difficulty: 'Beginner'
+            },
+            {
+                filename: 'vowelsounds.html',
+                title: 'Hungarian Vowel Sounds',
+                description: 'Master Hungarian vowel harmony and pronunciation patterns.',
+                icon: '🎵',
+                difficulty: 'Beginner'
+            },
+            {
+                filename: 'verb_to_be.html',
+                title: 'The Verb "to be"',
+                description: 'Learn the Hungarian verb "to be" (lenni) and its present tense forms.',
+                icon: '📝',
+                difficulty: 'Beginner'
             }
-        }
-        
-        // Helper function to get lesson title from filename
-        function getLessonTitle(filename) {
-            const titleMap = {
-                'alphabet.html': 'Hungarian Alphabet',
-                'vowelsounds.html': 'Hungarian Vowel Sounds',
-                'verb_to_be.html': 'The Verb "to be"'
-            };
+        ];
+
+        // Function to load lessons
+        function loadLessons() {
+            const container = document.getElementById('lessons-container');
             
-            return titleMap[filename] || filename.replace('.html', '').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-        }
-        
-        // Helper function to get lesson icon from filename
-        function getLessonIcon(filename) {
-            const iconMap = {
-                'alphabet.html': '🔤',
-                'vowelsounds.html': '🎵',
-                'verb_to_be.html': '📝'
-            };
-            
-            return iconMap[filename] || '📚';
+            lessons.forEach((lesson, index) => {
+                const lessonNumber = index + 1;
+                
+                const lessonCard = document.createElement('div');
+                lessonCard.className = 'lesson-card bg-white rounded-xl shadow-md p-6 border border-slate-200';
+                
+                lessonCard.innerHTML = `
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="text-3xl">${lesson.icon}</div>
+                        <span class="text-xs font-medium px-2 py-1 bg-slate-100 text-slate-600 rounded-full">${lesson.difficulty}</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">Lesson ${lessonNumber}: ${lesson.title}</h3>
+                    <p class="text-slate-600 text-sm mb-4">${lesson.description}</p>
+                    <a href="lessons/${lesson.filename}" class="inline-flex items-center px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg hover:bg-sky-700 transition-colors">
+                        Start Lesson
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                `;
+                
+                container.appendChild(lessonCard);
+            });
         }
 
         // Load lessons when page loads
