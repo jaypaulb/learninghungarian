@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 14: Negation (nem, nincs, sincs) - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .neg-highlight { color: #dc2626; font-weight: 600; }
+        .pos-highlight { color: #059669; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 14: Negation <span class="block text-xl text-slate-500 font-normal">(nem, nincs, sincs)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn to form negative sentences in Hungarian using nem, nincs/nincsenek, and sincs/sincsenek.</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content"></main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    function normalizeHungarian(str) { return str.trim().toLowerCase(); }
+    function removeAccents(str) { return str.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+
+    const mainContent = document.getElementById('main-content');
+
+    // SECTION 1: Basic Negation
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Basic Negation with "nem"</h2>
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
+            <p class="text-slate-700"><strong class="neg-highlight">Nem</strong> is the most common way to negate in Hungarian. Place it <strong>before</strong> the word being negated.</p>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead><tr><th>Positive</th><th>Negative</th><th>English</th></tr></thead>
+                <tbody>
+                    <tr><td class="pos-highlight">Tanar vagyok.</td><td><span class="neg-highlight">Nem</span> vagyok tanar.</td><td>I am not a teacher.</td></tr>
+                    <tr><td class="pos-highlight">Latom a hazat.</td><td><span class="neg-highlight">Nem</span> latom a hazat.</td><td>I don't see the house.</td></tr>
+                    <tr><td class="pos-highlight">O beszel angolul.</td><td>O <span class="neg-highlight">nem</span> beszel angolul.</td><td>He/She doesn't speak English.</td></tr>
+                    <tr><td class="pos-highlight">Ez jo.</td><td>Ez <span class="neg-highlight">nem</span> jo.</td><td>This is not good.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // SECTION 2: Nincs/Nincsenek
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Nincs/Nincsenek (There is not / Don't have)</h2>
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mb-4">
+            <p class="text-slate-700"><strong>Important:</strong> You cannot say "nem van"! Use <strong class="neg-highlight">nincs</strong> (singular) or <strong class="neg-highlight">nincsenek</strong> (plural).</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-green-800 mb-2">Positive (van/vannak)</h3>
+                <ul class="text-sm space-y-1">
+                    <li><span class="pos-highlight">Van</span> penzem. (I have money.)</li>
+                    <li><span class="pos-highlight">Vannak</span> gyerekei. (He has children.)</li>
+                </ul>
+            </div>
+            <div class="bg-red-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-red-800 mb-2">Negative (nincs/nincsenek)</h3>
+                <ul class="text-sm space-y-1">
+                    <li><span class="neg-highlight">Nincs</span> penzem. (I don't have money.)</li>
+                    <li><span class="neg-highlight">Nincsenek</span> gyerekei. (He has no children.)</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // SECTION 3: Sincs/Sincsenek
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Sincs/Sincsenek (Neither / Not...either)</h2>
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+            <p class="text-slate-700"><strong class="neg-highlight">Sincs</strong> = "also is not" / "neither"</p>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead><tr><th>Context</th><th>Response</th><th>English</th></tr></thead>
+                <tbody>
+                    <tr><td>A: Nincs penzem.</td><td>B: Nekem <span class="neg-highlight">sincs</span>.</td><td>Neither do I.</td></tr>
+                    <tr><td>A: Peter nincs itt.</td><td>B: Mari <span class="neg-highlight">sincs</span> itt.</td><td>Mari isn't here either.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bg-orange-50 border-l-4 border-orange-500 p-4 mt-4">
+            <p class="text-sm"><strong>With other verbs:</strong> Use <strong>sem</strong>: O <span class="neg-highlight">sem</span> latja. (He doesn't see it either.)</p>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // SECTION 4: Negative Question Words
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Negative Question Words (Double Negatives)</h2>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead><tr><th>Negative</th><th>Meaning</th><th>Example</th></tr></thead>
+                <tbody>
+                    <tr><td class="neg-highlight">senki</td><td>nobody</td><td>Senki <span class="neg-highlight">nem</span> jott. (Nobody came.)</td></tr>
+                    <tr><td class="neg-highlight">semmi</td><td>nothing</td><td>Semmi <span class="neg-highlight">nem</span> tortent. (Nothing happened.)</td></tr>
+                    <tr><td class="neg-highlight">sehol</td><td>nowhere</td><td>Sehol <span class="neg-highlight">nem</span> talalom. (I can't find it anywhere.)</td></tr>
+                    <tr><td class="neg-highlight">soha</td><td>never</td><td>Soha <span class="neg-highlight">nem</span> voltam ott. (I've never been there.)</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 mt-4">
+            <p class="text-sm"><strong>Important:</strong> Hungarian requires double negatives! "Senki jott" is incorrect.</p>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // STAGE 1: Nem Placement
+    const stage1Questions = [
+        { positive: 'Tanar vagyok.', negative: 'Nem vagyok tanar.', translation: 'I am not a teacher.' },
+        { positive: 'Latom a filmet.', negative: 'Nem latom a filmet.', translation: 'I don\'t see the movie.' },
+        { positive: 'O beszel magyarul.', negative: 'O nem beszel magyarul.', translation: 'He doesn\'t speak Hungarian.' },
+        { positive: 'Ez jo.', negative: 'Ez nem jo.', translation: 'This is not good.' },
+        { positive: 'Tudom a valaszt.', negative: 'Nem tudom a valaszt.', translation: 'I don\'t know the answer.' },
+        { positive: 'Ma dolgozom.', negative: 'Ma nem dolgozom.', translation: 'I\'m not working today.' },
+        { positive: 'Szeretek olvasni.', negative: 'Nem szeretek olvasni.', translation: 'I don\'t like to read.' },
+        { positive: 'O a baratom.', negative: 'O nem a baratom.', translation: 'He is not my friend.' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = '<h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 1: Adding "nem"</h2><p class="mb-4 text-slate-600">Transform positive sentences to negative.</p><div id="stage1-exercises" class="space-y-4"></div><div id="stage1-score" class="mt-4 text-slate-700 font-medium"></div>';
+    mainContent.appendChild(stage1Section);
+
+    const stage1Container = document.getElementById('stage1-exercises');
+    stage1Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-slate-50 rounded-lg';
+        wrapper.innerHTML = '<p class="font-semibold text-green-700 mb-2">Positive: "' + q.positive + '"</p><p class="text-sm text-slate-500 mb-2 italic">' + q.translation + '</p><div class="flex flex-col md:flex-row items-start md:items-center gap-2"><span class="font-semibold text-red-700">Negative:</span><input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-red-500" placeholder="Type negative..."><span class="text-sm font-semibold"></span></div>';
+        wrapper.querySelector('input').addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage1(idx); });
+        stage1Container.appendChild(wrapper);
+    });
+
+    function checkStage1(idx) {
+        const wrapper = stage1Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage1Questions[idx].negative;
+        const user = normalizeHungarian(input.value);
+        if (user === normalizeHungarian(correct)) { feedback.textContent = 'Correct!'; feedback.className = 'text-sm text-green-600 font-semibold'; }
+        else if (user === '') { feedback.textContent = ''; }
+        else { feedback.textContent = 'Answer: ' + correct; feedback.className = 'text-sm text-red-600 font-semibold'; }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let correct = 0;
+        for (let i = 0; i < stage1Questions.length; i++) {
+            if (normalizeHungarian(stage1Container.children[i].querySelector('input').value) === normalizeHungarian(stage1Questions[i].negative)) correct++;
+        }
+        document.getElementById('stage1-score').textContent = 'Score: ' + correct + ' / ' + stage1Questions.length;
+    }
+
+    // STAGE 2: Nincs Practice
+    const stage2Questions = [
+        { sentence: 'Van penzem.', answer: 'Nincs penzem.', translation: 'I don\'t have money.' },
+        { sentence: 'Van ideje.', answer: 'Nincs ideje.', translation: 'He has no time.' },
+        { sentence: 'Vannak problemak.', answer: 'Nincsenek problemak.', translation: 'There are no problems.' },
+        { sentence: 'Van kulcsom.', answer: 'Nincs kulcsom.', translation: 'I don\'t have a key.' },
+        { sentence: 'Vannak vendegek.', answer: 'Nincsenek vendegek.', translation: 'There are no guests.' },
+        { sentence: 'Van konyvem.', answer: 'Nincs konyvem.', translation: 'I don\'t have a book.' },
+        { sentence: 'Vannak gyerekei.', answer: 'Nincsenek gyerekei.', translation: 'He has no children.' },
+        { sentence: 'Van itt bolt?', answer: 'Nincs itt bolt.', translation: 'There\'s no shop here.' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = '<h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 2: Van to Nincs</h2><p class="mb-4 text-slate-600">Transform using nincs/nincsenek.</p><div id="stage2-exercises" class="space-y-4"></div><div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>';
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-purple-50 rounded-lg';
+        wrapper.innerHTML = '<p class="font-semibold text-purple-700 mb-2">' + q.sentence + '</p><p class="text-sm text-slate-500 mb-2 italic">' + q.translation + '</p><div class="flex flex-col md:flex-row items-start md:items-center gap-2"><input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-purple-500" placeholder="Type with nincs..."><span class="text-sm font-semibold"></span></div>';
+        wrapper.querySelector('input').addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage2(idx); });
+        stage2Container.appendChild(wrapper);
+    });
+
+    function checkStage2(idx) {
+        const input = stage2Container.children[idx].querySelector('input');
+        const feedback = stage2Container.children[idx].querySelector('span');
+        const correct = stage2Questions[idx].answer;
+        const user = normalizeHungarian(input.value);
+        if (user === normalizeHungarian(correct)) { feedback.textContent = 'Correct!'; feedback.className = 'text-sm text-green-600 font-semibold'; }
+        else if (user === '') { feedback.textContent = ''; }
+        else { feedback.textContent = 'Answer: ' + correct; feedback.className = 'text-sm text-red-600 font-semibold'; }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        for (let i = 0; i < stage2Questions.length; i++) {
+            if (normalizeHungarian(stage2Container.children[i].querySelector('input').value) === normalizeHungarian(stage2Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage2-score').textContent = 'Score: ' + correct + ' / ' + stage2Questions.length;
+    }
+
+    // STAGE 3: Sincs Practice
+    const stage3Questions = [
+        { context: 'A: Nincs penzem.', response: 'Nekem sincs.', english: 'Neither do I.' },
+        { context: 'A: Peter nincs itt.', response: 'Mari sincs itt.', english: 'Mari isn\'t here either.' },
+        { context: 'A: Nincsenek almak.', response: 'Kortek sincsenek.', english: 'No pears either.' },
+        { context: 'A: Nincs ideje.', response: 'Nekem sincs idom.', english: 'I don\'t have time either.' },
+        { context: 'A: Nincs autom.', response: 'Nekem sincs.', english: 'Neither do I.' },
+        { context: 'A: Nincsenek barataim.', response: 'Nekem sincsenek.', english: 'Neither do I.' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = '<h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 3: Sincs Practice</h2><p class="mb-4 text-slate-600">Respond using sincs/sincsenek.</p><div id="stage3-exercises" class="space-y-4"></div><div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>';
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-blue-50 rounded-lg';
+        wrapper.innerHTML = '<p class="font-semibold text-blue-700 mb-2">' + q.context + '</p><p class="text-sm text-slate-500 mb-2 italic">Say: "' + q.english + '"</p><div class="flex flex-col md:flex-row items-start md:items-center gap-2"><span class="font-semibold">B:</span><input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-blue-500" placeholder="Type with sincs..."><span class="text-sm font-semibold"></span></div>';
+        wrapper.querySelector('input').addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage3(idx); });
+        stage3Container.appendChild(wrapper);
+    });
+
+    function checkStage3(idx) {
+        const input = stage3Container.children[idx].querySelector('input');
+        const feedback = stage3Container.children[idx].querySelector('span:last-child');
+        const correct = stage3Questions[idx].response;
+        const user = normalizeHungarian(input.value);
+        if (user === normalizeHungarian(correct)) { feedback.textContent = 'Correct!'; feedback.className = 'text-sm text-green-600 font-semibold'; }
+        else if (user === '') { feedback.textContent = ''; }
+        else { feedback.textContent = 'Answer: ' + correct; feedback.className = 'text-sm text-red-600 font-semibold'; }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let correct = 0;
+        for (let i = 0; i < stage3Questions.length; i++) {
+            if (normalizeHungarian(stage3Container.children[i].querySelector('input').value) === normalizeHungarian(stage3Questions[i].response)) correct++;
+        }
+        document.getElementById('stage3-score').textContent = 'Score: ' + correct + ' / ' + stage3Questions.length;
+    }
+
+    // STAGE 4: Double Negatives
+    const stage4Questions = [
+        { english: 'Nobody came.', answer: 'Senki nem jott.', hint: 'senki + nem + jott' },
+        { english: 'Nothing happened.', answer: 'Semmi nem tortent.', hint: 'semmi + nem + tortent' },
+        { english: 'I can\'t find it anywhere.', answer: 'Sehol nem talalom.', hint: 'sehol + nem' },
+        { english: 'I\'ve never been there.', answer: 'Soha nem voltam ott.', hint: 'soha + nem' },
+        { english: 'Nobody knows.', answer: 'Senki nem tudja.', hint: 'senki + nem + tudja' },
+        { english: 'Nothing is good.', answer: 'Semmi nem jo.', hint: 'semmi + nem + jo' },
+        { english: 'He\'s nowhere.', answer: 'Sehol nincs.', hint: 'sehol + nincs' },
+        { english: 'I never drink coffee.', answer: 'Soha nem iszom kavet.', hint: 'soha + nem' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = '<h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 4: Double Negatives</h2><p class="mb-4 text-slate-600">Translate using negative words. Remember: double negatives required!</p><div id="stage4-exercises" class="space-y-4"></div><div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>';
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-orange-50 rounded-lg';
+        wrapper.innerHTML = '<p class="font-semibold text-slate-800 mb-1">' + q.english + '</p><p class="text-xs text-slate-500 mb-2 italic">Hint: ' + q.hint + '</p><div class="flex flex-col md:flex-row items-start md:items-center gap-2"><input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-orange-500" placeholder="Type translation..."><span class="text-sm font-semibold"></span></div>';
+        wrapper.querySelector('input').addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage4(idx); });
+        stage4Container.appendChild(wrapper);
+    });
+
+    function checkStage4(idx) {
+        const input = stage4Container.children[idx].querySelector('input');
+        const feedback = stage4Container.children[idx].querySelector('span');
+        const correct = stage4Questions[idx].answer;
+        const user = normalizeHungarian(input.value);
+        if (user === normalizeHungarian(correct)) { feedback.textContent = 'Correct!'; feedback.className = 'text-sm text-green-600 font-semibold'; }
+        else if (user === '') { feedback.textContent = ''; }
+        else { feedback.textContent = 'Answer: ' + correct; feedback.className = 'text-sm text-red-600 font-semibold'; }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        for (let i = 0; i < stage4Questions.length; i++) {
+            if (normalizeHungarian(stage4Container.children[i].querySelector('input').value) === normalizeHungarian(stage4Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage4-score').textContent = 'Score: ' + correct + ' / ' + stage4Questions.length;
+    }
+
+    // SUMMARY
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 p-6 bg-gradient-to-r from-red-50 to-purple-50 rounded-lg border border-red-200';
+    summarySection.innerHTML = '<h2 class="text-2xl font-bold text-slate-700 mb-4">Summary: Hungarian Negation</h2><div class="grid md:grid-cols-2 gap-4"><div><h3 class="font-semibold text-red-800 mb-2">Key Points:</h3><ul class="list-disc pl-6 space-y-1 text-sm text-slate-700"><li><strong>Nem</strong> = basic negation (before verb)</li><li><strong>Nincs/Nincsenek</strong> = there is not / don\'t have</li><li><strong>Sincs/Sincsenek</strong> = not...either / neither</li><li>Double negatives required (senki nem...)</li><li>Never say "nem van" - use "nincs"!</li></ul></div><div><h3 class="font-semibold text-red-800 mb-2">Negative Words:</h3><table class="text-sm w-full"><tr><td class="font-semibold">senki</td><td>nobody</td></tr><tr><td class="font-semibold">semmi</td><td>nothing</td></tr><tr><td class="font-semibold">sehol</td><td>nowhere</td></tr><tr><td class="font-semibold">soha</td><td>never</td></tr></table></div></div><p class="mt-4 text-sm text-slate-600">Continue to Lesson 15 for location and direction cases!</p>';
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>
