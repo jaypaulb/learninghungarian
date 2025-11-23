@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 23: Transportation & Travel - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .match-card {
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .match-card:hover {
+            transform: scale(1.02);
+        }
+        .match-card.selected {
+            border-color: #0f766e;
+            background-color: #f0fdfa;
+            box-shadow: 0 0 0 2px #0f766e;
+        }
+        .match-card.correct {
+            border-color: #16a34a;
+            background-color: #dcfce7;
+        }
+        .match-card.incorrect {
+            border-color: #dc2626;
+            background-color: #fef2f2;
+        }
+        .cultural-note {
+            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+            border-left: 4px solid #0f766e;
+        }
+        .schedule-table {
+            font-size: 0.875rem;
+        }
+        .schedule-table th {
+            background: #0f766e;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 23: Transportation & Travel <span class="block text-xl text-slate-500 font-normal">(Kozlekedes es utazas)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Learn essential Hungarian vocabulary for transportation, buying tickets, reading schedules, and asking for directions - especially useful for navigating Budapest!</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    const mainContent = document.getElementById('main-content');
+
+    // Accent handling utilities
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiI]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    function checkWithAccentWarning(input, correct) {
+        const inputVal = normalizeHungarian(input);
+        const correctVal = normalizeHungarian(correct);
+        if (inputVal === correctVal) {
+            return 'correct';
+        } else if (removeAccents(inputVal) === removeAccents(correctVal)) {
+            return 'accent-warning';
+        }
+        return 'incorrect';
+    }
+
+    // ==================== SECTION 1: TRANSPORTATION MODES ====================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Transportation Modes</h2>
+        <p class="mb-4 text-slate-600">Hungary has an excellent public transportation system, especially in Budapest. Learn the vocabulary for different modes of transport.</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th><th class="border px-2">Notes</th></tr>
+            <tr><td class="border px-2 font-medium">busz</td><td class="border px-2">bus</td><td class="border px-2">Common in cities and between towns</td></tr>
+            <tr><td class="border px-2 font-medium">villamos</td><td class="border px-2">tram</td><td class="border px-2">Budapest has extensive tram lines</td></tr>
+            <tr><td class="border px-2 font-medium">metro</td><td class="border px-2">metro/subway</td><td class="border px-2">4 lines in Budapest (M1-M4)</td></tr>
+            <tr><td class="border px-2 font-medium">vonat</td><td class="border px-2">train</td><td class="border px-2">MAV operates national railways</td></tr>
+            <tr><td class="border px-2 font-medium">auto</td><td class="border px-2">car</td><td class="border px-2">Personal vehicle</td></tr>
+            <tr><td class="border px-2 font-medium">repulo(gep)</td><td class="border px-2">airplane</td><td class="border px-2">Budapest Airport (BUD)</td></tr>
+            <tr><td class="border px-2 font-medium">bicikli</td><td class="border px-2">bicycle</td><td class="border px-2">MOL Bubi bike sharing in Budapest</td></tr>
+            <tr><td class="border px-2 font-medium">taxi</td><td class="border px-2">taxi</td><td class="border px-2">Use official taxis only</td></tr>
+            <tr><td class="border px-2 font-medium">hajo</td><td class="border px-2">boat/ferry</td><td class="border px-2">Danube river transport</td></tr>
+            <tr><td class="border px-2 font-medium">trolibusz</td><td class="border px-2">trolleybus</td><td class="border px-2">Electric bus with overhead wires</td></tr>
+            <tr><td class="border px-2 font-medium">HEV</td><td class="border px-2">suburban railway</td><td class="border px-2">Connects Budapest to suburbs</td></tr>
+            <tr><td class="border px-2 font-medium">siklo</td><td class="border px-2">funicular</td><td class="border px-2">Buda Castle funicular</td></tr>
+        </table>
+        <div class="cultural-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">Cultural Note: Budapest Public Transport</h4>
+            <p class="text-slate-700 text-sm">Budapest has one of the oldest metro systems in the world - the M1 (Millennium) line opened in 1896! The BKK (Budapesti Kozlekedesi Kozpont) manages all public transport. You can buy single tickets, day passes, or weekly passes. Don't forget to validate your ticket!</p>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // ==================== SECTION 2: TICKET & STATION VOCABULARY ====================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Ticket & Station Vocabulary</h2>
+        <p class="mb-4 text-slate-600">Essential words for buying tickets and navigating stations.</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2 font-medium">jegy</td><td class="border px-2">ticket</td></tr>
+            <tr><td class="border px-2 font-medium">berlet</td><td class="border px-2">pass (monthly/weekly)</td></tr>
+            <tr><td class="border px-2 font-medium">menetjegy</td><td class="border px-2">transit ticket</td></tr>
+            <tr><td class="border px-2 font-medium">oda-vissza jegy</td><td class="border px-2">round-trip ticket</td></tr>
+            <tr><td class="border px-2 font-medium">egy utas jegy</td><td class="border px-2">single ticket</td></tr>
+            <tr><td class="border px-2 font-medium">allomas</td><td class="border px-2">station</td></tr>
+            <tr><td class="border px-2 font-medium">megallo</td><td class="border px-2">stop</td></tr>
+            <tr><td class="border px-2 font-medium">peron</td><td class="border px-2">platform</td></tr>
+            <tr><td class="border px-2 font-medium">vagany</td><td class="border px-2">track</td></tr>
+            <tr><td class="border px-2 font-medium">jegypenztár</td><td class="border px-2">ticket office</td></tr>
+            <tr><td class="border px-2 font-medium">jegyautomata</td><td class="border px-2">ticket machine</td></tr>
+            <tr><td class="border px-2 font-medium">menetrend</td><td class="border px-2">schedule/timetable</td></tr>
+        </table>
+    `;
+    mainContent.appendChild(section2);
+
+    // ==================== SECTION 3: USEFUL TRAVEL PHRASES ====================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Useful Travel Phrases</h2>
+        <p class="mb-4 text-slate-600">Common phrases for traveling and asking for help.</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2 font-medium">Hol van a megallo?</td><td class="border px-2">Where is the stop?</td></tr>
+            <tr><td class="border px-2 font-medium">Mikor indul a vonat?</td><td class="border px-2">When does the train leave?</td></tr>
+            <tr><td class="border px-2 font-medium">Mikor erkezik?</td><td class="border px-2">When does it arrive?</td></tr>
+            <tr><td class="border px-2 font-medium">Szeretnek egy jegyet.</td><td class="border px-2">I would like a ticket.</td></tr>
+            <tr><td class="border px-2 font-medium">Mennyibe kerul?</td><td class="border px-2">How much does it cost?</td></tr>
+            <tr><td class="border px-2 font-medium">Melyik vaganyrol indul?</td><td class="border px-2">Which platform does it leave from?</td></tr>
+            <tr><td class="border px-2 font-medium">At kell szallnom?</td><td class="border px-2">Do I need to transfer?</td></tr>
+            <tr><td class="border px-2 font-medium">Ez a vonat megy ...ba/-be?</td><td class="border px-2">Does this train go to...?</td></tr>
+            <tr><td class="border px-2 font-medium">Hol kell leszallnom?</td><td class="border px-2">Where do I need to get off?</td></tr>
+            <tr><td class="border px-2 font-medium">A kovetkezo megallo...</td><td class="border px-2">The next stop is...</td></tr>
+        </table>
+        <div class="cultural-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">Cultural Note: Major Budapest Stations</h4>
+            <p class="text-slate-700 text-sm"><strong>Keleti palyaudvar</strong> (Eastern Station) - International trains to Vienna, Prague. <strong>Nyugati palyaudvar</strong> (Western Station) - Trains to northern Hungary. <strong>Deli palyaudvar</strong> (Southern Station) - Lake Balaton trains. <strong>Nepliget</strong> - Main bus station for intercity buses.</p>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // ==================== SECTION 4: DIRECTIONS ====================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Directions</h2>
+        <p class="mb-4 text-slate-600">Learn to ask for and understand directions in Hungarian.</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2 font-medium">egyenesen</td><td class="border px-2">straight ahead</td></tr>
+            <tr><td class="border px-2 font-medium">balra</td><td class="border px-2">to the left</td></tr>
+            <tr><td class="border px-2 font-medium">jobbra</td><td class="border px-2">to the right</td></tr>
+            <tr><td class="border px-2 font-medium">elore</td><td class="border px-2">forward</td></tr>
+            <tr><td class="border px-2 font-medium">hatra</td><td class="border px-2">backward</td></tr>
+            <tr><td class="border px-2 font-medium">kozel</td><td class="border px-2">near/close</td></tr>
+            <tr><td class="border px-2 font-medium">messze</td><td class="border px-2">far</td></tr>
+            <tr><td class="border px-2 font-medium">a sarkon</td><td class="border px-2">at the corner</td></tr>
+            <tr><td class="border px-2 font-medium">szemben</td><td class="border px-2">across/opposite</td></tr>
+            <tr><td class="border px-2 font-medium">mellett</td><td class="border px-2">next to</td></tr>
+        </table>
+    `;
+    mainContent.appendChild(section4);
+
+    // ==================== STAGE 1: TRANSPORTATION VOCABULARY MATCHING (12 items) ====================
+    const stage1Data = [
+        { hungarian: 'busz', english: 'bus' },
+        { hungarian: 'villamos', english: 'tram' },
+        { hungarian: 'metro', english: 'metro/subway' },
+        { hungarian: 'vonat', english: 'train' },
+        { hungarian: 'auto', english: 'car' },
+        { hungarian: 'repulo', english: 'airplane' },
+        { hungarian: 'bicikli', english: 'bicycle' },
+        { hungarian: 'taxi', english: 'taxi' },
+        { hungarian: 'hajo', english: 'boat/ferry' },
+        { hungarian: 'trolibusz', english: 'trolleybus' },
+        { hungarian: 'HEV', english: 'suburban railway' },
+        { hungarian: 'siklo', english: 'funicular' }
+    ];
+
+    let stage1Selected = null;
+    let stage1Matches = new Set();
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Transportation Vocabulary (12 items)</h2>
+        <p class="mb-4 text-slate-600">Match the Hungarian transportation words with their English translations.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="stage1-exercise">
+            <div id="stage1-hungarian" class="space-y-2"></div>
+            <div id="stage1-english" class="space-y-2"></div>
+        </div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage1Data.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Hungarian = document.getElementById('stage1-hungarian');
+    const stage1English = document.getElementById('stage1-english');
+    const stage1Score = document.getElementById('stage1-score');
+
+    const shuffledEnglish1 = [...stage1Data].sort(() => Math.random() - 0.5);
+
+    stage1Data.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.hungarian;
+        card.dataset.index = idx;
+        card.dataset.type = 'hungarian';
+        card.addEventListener('click', () => handleStage1Click(card, 'hungarian', idx));
+        stage1Hungarian.appendChild(card);
+    });
+
+    shuffledEnglish1.forEach((item) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.english;
+        card.dataset.originalIndex = stage1Data.findIndex(d => d.english === item.english);
+        card.dataset.type = 'english';
+        card.addEventListener('click', () => handleStage1Click(card, 'english', parseInt(card.dataset.originalIndex)));
+        stage1English.appendChild(card);
+    });
+
+    function handleStage1Click(card, type, index) {
+        if (card.classList.contains('correct')) return;
+
+        if (stage1Selected === null) {
+            stage1Selected = { card, type, index };
+            card.classList.add('selected');
+        } else if (stage1Selected.type === type) {
+            stage1Selected.card.classList.remove('selected');
+            stage1Selected = { card, type, index };
+            card.classList.add('selected');
+        } else {
+            if (stage1Selected.index === index) {
+                stage1Selected.card.classList.remove('selected');
+                stage1Selected.card.classList.add('correct');
+                card.classList.add('correct');
+                stage1Matches.add(index);
+                updateStage1Score();
+            } else {
+                stage1Selected.card.classList.add('incorrect');
+                card.classList.add('incorrect');
+                setTimeout(() => {
+                    stage1Selected.card.classList.remove('selected', 'incorrect');
+                    card.classList.remove('incorrect');
+                    stage1Selected = null;
+                }, 800);
+                return;
+            }
+            stage1Selected = null;
+        }
+    }
+
+    function updateStage1Score() {
+        stage1Score.textContent = `Score: ${stage1Matches.size} / ${stage1Data.length}`;
+    }
+
+    // ==================== STAGE 2: TICKET DIALOGUE FILL-IN (10 items) ====================
+    const stage2Data = [
+        { prompt: 'I would like a ticket.', answer: 'Szeretnek egy jegyet', hint: 'Szeretnek...' },
+        { prompt: 'How much does it cost?', answer: 'Mennyibe kerul', hint: 'Mennyibe...' },
+        { prompt: 'One ticket to Budapest, please.', answer: 'Egy jegyet Budapestre kerek', hint: 'Egy jegyet...' },
+        { prompt: 'Round-trip ticket', answer: 'Oda-vissza jegy', hint: 'Oda-vissza...' },
+        { prompt: 'Single ticket', answer: 'Egy utas jegy', hint: 'Egy utas...' },
+        { prompt: 'Where is the ticket office?', answer: 'Hol van a jegypenztar', hint: 'Hol van...' },
+        { prompt: 'Is there a student discount?', answer: 'Van diakkedvezmeny', hint: 'Van diak...' },
+        { prompt: 'I need a weekly pass.', answer: 'Heti berletre van szuksegem', hint: 'Heti berlet...' },
+        { prompt: 'Can I pay by card?', answer: 'Fizethetek kartyaval', hint: 'Fizethetek...' },
+        { prompt: 'Where can I validate my ticket?', answer: 'Hol tudom a jegyemet ervenysiteni', hint: 'Hol tudom...' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Ticket Dialogue (10 items)</h2>
+        <p class="mb-4 text-slate-600">Translate these ticket-purchasing phrases into Hungarian. Press Enter to check your answer.</p>
+        <div id="stage2-exercise" class="space-y-4"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage2Data.length}</div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Exercise = document.getElementById('stage2-exercise');
+    const stage2Score = document.getElementById('stage2-score');
+    let stage2Results = new Array(stage2Data.length).fill(null);
+
+    stage2Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. ${item.prompt}</p>
+            <p class="text-sm text-slate-500">Hint: ${item.hint}</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                       placeholder="Type your answer..." aria-label="Answer for: ${item.prompt}">
+                <span class="text-sm font-semibold stage2-feedback"></span>
+            </div>
+        `;
+        stage2Exercise.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage2(idx, input, wrapper);
+        });
+    });
+
+    function checkStage2(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage2-feedback');
+        const item = stage2Data[idx];
+        const userAnswer = normalizeHungarian(input.value).replace(/[!.,?]/g, '');
+        const correctAnswer = normalizeHungarian(item.answer).replace(/[!.,?]/g, '');
+
+        if (userAnswer === correctAnswer || userAnswer.includes(correctAnswer) || correctAnswer.includes(userAnswer)) {
+            feedback.textContent = `Correct! "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage2-feedback';
+            stage2Results[idx] = true;
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Almost! Watch the accents: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage2-feedback';
+            stage2Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage2Results[idx] = null;
+        } else {
+            feedback.textContent = `Try again. Expected: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage2-feedback';
+            stage2Results[idx] = false;
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        const correct = stage2Results.filter(r => r === true).length;
+        stage2Score.textContent = `Score: ${correct} / ${stage2Data.length}`;
+    }
+
+    // ==================== STAGE 3: SCHEDULE READING Q&A (10 items) ====================
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Schedule Reading (10 items)</h2>
+        <p class="mb-4 text-slate-600">Study the train schedule below, then answer the questions.</p>
+        <div class="overflow-x-auto mb-6">
+            <table class="schedule-table w-full border text-sm">
+                <tr>
+                    <th class="border px-3 py-2">Vonat (Train)</th>
+                    <th class="border px-3 py-2">Honnan (From)</th>
+                    <th class="border px-3 py-2">Hova (To)</th>
+                    <th class="border px-3 py-2">Indulas (Departure)</th>
+                    <th class="border px-3 py-2">Erkezes (Arrival)</th>
+                    <th class="border px-3 py-2">Vagany (Platform)</th>
+                </tr>
+                <tr><td class="border px-3 py-2">IC 501</td><td class="border px-3 py-2">Budapest Keleti</td><td class="border px-3 py-2">Debrecen</td><td class="border px-3 py-2">08:15</td><td class="border px-3 py-2">10:45</td><td class="border px-3 py-2">3</td></tr>
+                <tr><td class="border px-3 py-2">IC 502</td><td class="border px-3 py-2">Budapest Keleti</td><td class="border px-3 py-2">Szeged</td><td class="border px-3 py-2">09:30</td><td class="border px-3 py-2">12:00</td><td class="border px-3 py-2">5</td></tr>
+                <tr><td class="border px-3 py-2">EC 174</td><td class="border px-3 py-2">Budapest Keleti</td><td class="border px-3 py-2">Becs (Vienna)</td><td class="border px-3 py-2">10:00</td><td class="border px-3 py-2">12:40</td><td class="border px-3 py-2">9</td></tr>
+                <tr><td class="border px-3 py-2">R 2341</td><td class="border px-3 py-2">Budapest Deli</td><td class="border px-3 py-2">Balaton</td><td class="border px-3 py-2">07:45</td><td class="border px-3 py-2">09:30</td><td class="border px-3 py-2">2</td></tr>
+                <tr><td class="border px-3 py-2">IC 503</td><td class="border px-3 py-2">Budapest Nyugati</td><td class="border px-3 py-2">Eger</td><td class="border px-3 py-2">11:20</td><td class="border px-3 py-2">13:15</td><td class="border px-3 py-2">7</td></tr>
+            </table>
+        </div>
+        <div id="stage3-exercise" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / 10</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Questions = [
+        { question: 'Mikor indul a vonat Debrecenbe? (When does the train to Debrecen leave?)', answer: '08:15', options: ['07:45', '08:15', '09:30', '10:00'] },
+        { question: 'Melyik vagonrol indul a becsi vonat? (Which platform does the Vienna train leave from?)', answer: '9', options: ['3', '5', '7', '9'] },
+        { question: 'Mikor erkezik a vonat Szegedre? (When does the train arrive in Szeged?)', answer: '12:00', options: ['10:45', '12:00', '12:40', '13:15'] },
+        { question: 'Melyik allomasrol indul a vonat Balatonra? (Which station does the Balaton train leave from?)', answer: 'Budapest Deli', options: ['Budapest Keleti', 'Budapest Deli', 'Budapest Nyugati', 'Debrecen'] },
+        { question: 'Mennyi ido a Szeged-Budapest ut? (How long is the Szeged-Budapest journey?)', answer: '2 ora 30 perc', options: ['2 ora', '2 ora 30 perc', '2 ora 40 perc', '3 ora'] },
+        { question: 'Melyik vonat a legkorabbi? (Which train is the earliest?)', answer: 'R 2341', options: ['IC 501', 'IC 502', 'EC 174', 'R 2341'] },
+        { question: 'Hova megy az IC 503? (Where does IC 503 go?)', answer: 'Eger', options: ['Debrecen', 'Szeged', 'Becs', 'Eger'] },
+        { question: 'Melyik vonat megy Becsbe? (Which train goes to Vienna?)', answer: 'EC 174', options: ['IC 501', 'IC 502', 'EC 174', 'R 2341'] },
+        { question: 'Hanyas vaganyrol indul a debreceni vonat? (What platform does the Debrecen train leave from?)', answer: '3', options: ['2', '3', '5', '7'] },
+        { question: 'Melyik vonat indul a Nyugati palyaudvarrol? (Which train leaves from Nyugati station?)', answer: 'IC 503', options: ['IC 501', 'IC 502', 'EC 174', 'IC 503'] }
+    ];
+
+    const stage3Exercise = document.getElementById('stage3-exercise');
+    const stage3Score = document.getElementById('stage3-score');
+    let stage3Correct = 0;
+
+    stage3Questions.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700 mb-3">${idx + 1}. ${item.question}</p>
+            <div class="flex flex-wrap gap-2" id="stage3-options-${idx}">
+                ${item.options.map(opt => `
+                    <button class="px-4 py-2 border-2 border-slate-300 rounded-lg bg-white hover:bg-slate-50 transition-colors stage3-btn" data-answer="${opt}">
+                        ${opt}
+                    </button>
+                `).join('')}
+            </div>
+            <p class="mt-2 text-sm font-semibold stage3-feedback"></p>
+        `;
+        stage3Exercise.appendChild(wrapper);
+
+        const buttons = wrapper.querySelectorAll('.stage3-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => checkStage3(idx, btn, wrapper, buttons));
+        });
+    });
+
+    function checkStage3(idx, btn, wrapper, buttons) {
+        const feedback = wrapper.querySelector('.stage3-feedback');
+        const correct = stage3Questions[idx].answer;
+        const wasCorrect = Array.from(buttons).some(b => b.classList.contains('bg-green-100'));
+
+        buttons.forEach(b => {
+            b.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+        });
+
+        if (btn.dataset.answer === correct) {
+            btn.classList.add('bg-green-100', 'border-green-500');
+            feedback.textContent = 'Correct! Helyes!';
+            feedback.className = 'mt-2 text-sm font-semibold text-green-600 stage3-feedback';
+            if (!wasCorrect) stage3Correct++;
+        } else {
+            btn.classList.add('bg-red-100', 'border-red-500');
+            feedback.textContent = `Not quite. The correct answer is: ${correct}`;
+            feedback.className = 'mt-2 text-sm font-semibold text-red-600 stage3-feedback';
+            if (wasCorrect) stage3Correct--;
+        }
+        stage3Score.textContent = `Score: ${stage3Correct} / ${stage3Questions.length}`;
+    }
+
+    // ==================== STAGE 4: DIRECTION PHRASES (10 items) ====================
+    const stage4Data = [
+        { hungarian: 'egyenesen', english: 'straight ahead' },
+        { hungarian: 'balra', english: 'to the left' },
+        { hungarian: 'jobbra', english: 'to the right' },
+        { hungarian: 'kozel', english: 'near/close' },
+        { hungarian: 'messze', english: 'far' },
+        { hungarian: 'a sarkon', english: 'at the corner' },
+        { hungarian: 'szemben', english: 'across/opposite' },
+        { hungarian: 'mellett', english: 'next to' },
+        { hungarian: 'elore', english: 'forward' },
+        { hungarian: 'hatra', english: 'backward' }
+    ];
+
+    let stage4Selected = null;
+    let stage4Matches = new Set();
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Direction Phrases (10 items)</h2>
+        <p class="mb-4 text-slate-600">Match the Hungarian direction words with their English meanings.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="stage4-exercise">
+            <div id="stage4-hungarian" class="space-y-2"></div>
+            <div id="stage4-english" class="space-y-2"></div>
+        </div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage4Data.length}</div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Hungarian = document.getElementById('stage4-hungarian');
+    const stage4English = document.getElementById('stage4-english');
+    const stage4Score = document.getElementById('stage4-score');
+
+    const shuffledEnglish4 = [...stage4Data].sort(() => Math.random() - 0.5);
+
+    stage4Data.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.hungarian;
+        card.dataset.index = idx;
+        card.dataset.type = 'hungarian';
+        card.addEventListener('click', () => handleStage4Click(card, 'hungarian', idx));
+        stage4Hungarian.appendChild(card);
+    });
+
+    shuffledEnglish4.forEach((item) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.english;
+        card.dataset.originalIndex = stage4Data.findIndex(d => d.english === item.english);
+        card.dataset.type = 'english';
+        card.addEventListener('click', () => handleStage4Click(card, 'english', parseInt(card.dataset.originalIndex)));
+        stage4English.appendChild(card);
+    });
+
+    function handleStage4Click(card, type, index) {
+        if (card.classList.contains('correct')) return;
+
+        if (stage4Selected === null) {
+            stage4Selected = { card, type, index };
+            card.classList.add('selected');
+        } else if (stage4Selected.type === type) {
+            stage4Selected.card.classList.remove('selected');
+            stage4Selected = { card, type, index };
+            card.classList.add('selected');
+        } else {
+            if (stage4Selected.index === index) {
+                stage4Selected.card.classList.remove('selected');
+                stage4Selected.card.classList.add('correct');
+                card.classList.add('correct');
+                stage4Matches.add(index);
+                updateStage4Score();
+            } else {
+                stage4Selected.card.classList.add('incorrect');
+                card.classList.add('incorrect');
+                setTimeout(() => {
+                    stage4Selected.card.classList.remove('selected', 'incorrect');
+                    card.classList.remove('incorrect');
+                    stage4Selected = null;
+                }, 800);
+                return;
+            }
+            stage4Selected = null;
+        }
+    }
+
+    function updateStage4Score() {
+        stage4Score.textContent = `Score: ${stage4Matches.size} / ${stage4Data.length}`;
+    }
+
+    // ==================== STAGE 5: TRAVEL SCENARIO ROLE-PLAY (8 items) ====================
+    const stage5Data = [
+        {
+            title: 'At the Ticket Office',
+            scenario: 'You need to buy a train ticket to Debrecen.',
+            lines: [
+                { speaker: 'You', text: 'Jo napot kivanok! _____ egy jegyet Debrecenbe.', blanks: ['Szeretnek'], type: 'fill' },
+                { speaker: 'Clerk', text: 'Oda-vissza vagy csak oda?', type: 'given', translation: 'Round-trip or one-way?' },
+                { speaker: 'You', text: '_____-vissza, kerem.', blanks: ['Oda'], type: 'fill' },
+                { speaker: 'Clerk', text: '5000 forint lesz.', type: 'given', translation: 'That will be 5000 forints.' },
+                { speaker: 'You', text: '_____ kerul? Fizethetek kartyaval?', blanks: ['Mennyibe'], type: 'fill' }
+            ]
+        },
+        {
+            title: 'Asking for Directions',
+            scenario: 'You are looking for the metro station.',
+            lines: [
+                { speaker: 'You', text: 'Elnezest, _____ van a metro allomas?', blanks: ['hol'], type: 'fill' },
+                { speaker: 'Local', text: 'Menjen egyenesen, aztan forduljon balra.', type: 'given', translation: 'Go straight, then turn left.' },
+                { speaker: 'You', text: '_____ van innen?', blanks: ['Messze'], type: 'fill' },
+                { speaker: 'Local', text: 'Nem, csak ot perc gyalog.', type: 'given', translation: 'No, only 5 minutes on foot.' },
+                { speaker: 'You', text: '_____ szepen!', blanks: ['Koszonom'], type: 'fill' }
+            ]
+        }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Travel Scenario Role-Play (8 items)</h2>
+        <p class="mb-4 text-slate-600">Complete the dialogues by filling in the missing words. Press Enter after each input to check.</p>
+        <div id="stage5-exercise" class="space-y-6"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium">Score: 0 / 0</div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Exercise = document.getElementById('stage5-exercise');
+    const stage5Score = document.getElementById('stage5-score');
+    let stage5Total = 0;
+    let stage5Results = [];
+
+    stage5Data.forEach((dialogue) => {
+        const dialogueDiv = document.createElement('div');
+        dialogueDiv.className = 'bg-slate-50 p-4 rounded-lg';
+        dialogueDiv.innerHTML = `
+            <h3 class="font-semibold text-slate-700 mb-2">${dialogue.title}</h3>
+            <p class="text-sm text-slate-500 mb-3 italic">${dialogue.scenario}</p>
+        `;
+
+        dialogue.lines.forEach((line) => {
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'mb-2 flex flex-wrap items-center gap-1';
+
+            const speakerSpan = document.createElement('span');
+            speakerSpan.className = 'font-medium text-teal-700 min-w-[60px]';
+            speakerSpan.textContent = `${line.speaker}:`;
+            lineDiv.appendChild(speakerSpan);
+
+            if (line.type === 'given') {
+                const textSpan = document.createElement('span');
+                textSpan.className = 'text-slate-700';
+                textSpan.innerHTML = `${line.text} <span class="text-slate-500 text-sm">(${line.translation})</span>`;
+                lineDiv.appendChild(textSpan);
+            } else {
+                const parts = line.text.split('_____');
+                parts.forEach((part, pIdx) => {
+                    if (part) {
+                        const partSpan = document.createElement('span');
+                        partSpan.className = 'text-slate-700';
+                        partSpan.textContent = part;
+                        lineDiv.appendChild(partSpan);
+                    }
+                    if (pIdx < line.blanks.length) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.className = 'border border-slate-300 rounded px-2 py-1 w-28 text-center focus:ring-2 focus:ring-teal-500 focus:border-teal-500 mx-1';
+                        input.dataset.answer = line.blanks[pIdx];
+                        input.dataset.resultIndex = stage5Total;
+                        stage5Results.push(null);
+                        stage5Total++;
+
+                        input.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter') checkStage5Input(input);
+                        });
+
+                        lineDiv.appendChild(input);
+                    }
+                });
+            }
+
+            dialogueDiv.appendChild(lineDiv);
+        });
+
+        stage5Exercise.appendChild(dialogueDiv);
+    });
+
+    stage5Score.textContent = `Score: 0 / ${stage5Total}`;
+
+    function checkStage5Input(input) {
+        const correct = input.dataset.answer.toLowerCase();
+        const userAnswer = input.value.trim().toLowerCase();
+        const resultIdx = parseInt(input.dataset.resultIndex);
+
+        if (userAnswer === correct) {
+            input.classList.remove('border-red-500', 'border-yellow-500');
+            input.classList.add('border-green-500', 'bg-green-50');
+            stage5Results[resultIdx] = true;
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            input.classList.remove('border-red-500', 'border-green-500');
+            input.classList.add('border-yellow-500', 'bg-yellow-50');
+            stage5Results[resultIdx] = 'partial';
+        } else if (userAnswer === '') {
+            input.classList.remove('border-green-500', 'border-red-500', 'border-yellow-500', 'bg-green-50', 'bg-red-50', 'bg-yellow-50');
+            stage5Results[resultIdx] = null;
+        } else {
+            input.classList.remove('border-green-500', 'border-yellow-500');
+            input.classList.add('border-red-500', 'bg-red-50');
+            stage5Results[resultIdx] = false;
+        }
+        updateStage5Score();
+    }
+
+    function updateStage5Score() {
+        const correct = stage5Results.filter(r => r === true).length;
+        stage5Score.textContent = `Score: ${correct} / ${stage5Total}`;
+    }
+
+    // ==================== FINAL SUMMARY ====================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 mt-12 bg-gradient-to-r from-teal-50 to-slate-50 p-6 rounded-xl';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Lesson Summary</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Key Transportation Words</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li><strong>busz, villamos, metro</strong> - bus, tram, metro</li>
+                    <li><strong>vonat, repulo, hajo</strong> - train, plane, boat</li>
+                    <li><strong>jegy, berlet, allomas</strong> - ticket, pass, station</li>
+                    <li><strong>menetrend, megallo</strong> - schedule, stop</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Essential Phrases</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li><strong>Szeretnek egy jegyet</strong> - I would like a ticket</li>
+                    <li><strong>Mennyibe kerul?</strong> - How much does it cost?</li>
+                    <li><strong>Hol van a megallo?</strong> - Where is the stop?</li>
+                    <li><strong>Mikor indul/erkezik?</strong> - When does it leave/arrive?</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-4 bg-white rounded-lg">
+            <h3 class="font-semibold text-teal-700 mb-2">Budapest Travel Tips</h3>
+            <ul class="text-slate-700 space-y-1 text-sm">
+                <li>Buy a BKK pass for unlimited travel on all public transport</li>
+                <li>The M1 metro line is a UNESCO World Heritage site - the second oldest in the world!</li>
+                <li>Always validate your ticket - inspectors frequently check</li>
+                <li>Tram 2 offers beautiful views along the Danube</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>
