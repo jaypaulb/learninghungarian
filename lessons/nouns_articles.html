@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7: Nouns & Articles (a/az) - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .drag-item { cursor: grab; transition: all 0.2s; }
+        .drag-item:active { cursor: grabbing; }
+        .drop-zone { min-height: 60px; transition: all 0.2s; }
+        .drop-zone.drag-over { background-color: #e0f2fe; border-color: #0ea5e9; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 7: Nouns & Articles <span class="block text-xl text-slate-500 font-normal">(Fonevek es nevelok: a/az)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Learn about Hungarian nouns, the definite articles "a" and "az", and discover that Hungarian has NO indefinite article! This lesson also connects to vowel harmony for noun suffixes.</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    const mainContent = document.getElementById('main-content');
+
+    // Helper function for accent-insensitive comparison
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiI]/gi, function(m) {
+            const map = {
+                'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U',
+                'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U'
+            };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        const map = {
+            'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U',
+            'a':'a','e':'e','i':'i','o':'o','u':'u','o':'o','o':'o','u':'u','u':'u'
+        };
+        return str.toLowerCase().split('').map(c => map[c] || c).join('');
+    }
+
+    // Common nouns vocabulary (30+ nouns)
+    const nounVocabulary = {
+        family: [
+            { hu: 'anya', en: 'mother' },
+            { hu: 'apa', en: 'father' },
+            { hu: 'gyerek', en: 'child' },
+            { hu: 'csalad', en: 'family' },
+            { hu: 'lany', en: 'girl/daughter' },
+            { hu: 'fiu', en: 'boy/son' },
+            { hu: 'ferj', en: 'husband' },
+            { hu: 'feleseg', en: 'wife' }
+        ],
+        objects: [
+            { hu: 'konyv', en: 'book' },
+            { hu: 'asztal', en: 'table' },
+            { hu: 'szek', en: 'chair' },
+            { hu: 'ablak', en: 'window' },
+            { hu: 'ajto', en: 'door' },
+            { hu: 'telefon', en: 'phone' },
+            { hu: 'szamitogep', en: 'computer' },
+            { hu: 'toll', en: 'pen' }
+        ],
+        places: [
+            { hu: 'haz', en: 'house' },
+            { hu: 'iskola', en: 'school' },
+            { hu: 'bolt', en: 'shop/store' },
+            { hu: 'etterem', en: 'restaurant' },
+            { hu: 'korhaz', en: 'hospital' },
+            { hu: 'bank', en: 'bank' },
+            { hu: 'mozi', en: 'cinema' },
+            { hu: 'park', en: 'park' }
+        ],
+        nature: [
+            { hu: 'fa', en: 'tree' },
+            { hu: 'virag', en: 'flower' },
+            { hu: 'nap', en: 'sun/day' },
+            { hu: 'hold', en: 'moon' },
+            { hu: 'viz', en: 'water' },
+            { hu: 'fold', en: 'earth/land' },
+            { hu: 'eg', en: 'sky' },
+            { hu: 'ho', en: 'snow' }
+        ]
+    };
+
+    // ========== SECTION 1: THE DEFINITE ARTICLE ==========
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: The Definite Article (a/az)</h2>
+        <div class="bg-teal-50 border-l-4 border-teal-500 p-4 mb-4">
+            <p class="font-semibold text-teal-800">Key Rule: Hungarian definite articles depend on the first letter of the following word!</p>
+        </div>
+        <table class="mb-4">
+            <tr>
+                <th class="border px-4 py-2">Article</th>
+                <th class="border px-4 py-2">Usage</th>
+                <th class="border px-4 py-2">Example</th>
+                <th class="border px-4 py-2">Translation</th>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2 font-bold text-teal-700">a</td>
+                <td class="border px-4 py-2">Before consonants</td>
+                <td class="border px-4 py-2">a haz</td>
+                <td class="border px-4 py-2">the house</td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2 font-bold text-teal-700">az</td>
+                <td class="border px-4 py-2">Before vowels</td>
+                <td class="border px-4 py-2">az alma</td>
+                <td class="border px-4 py-2">the apple</td>
+            </tr>
+        </table>
+        <div class="bg-amber-50 border-l-4 border-amber-500 p-4 mb-4">
+            <p class="font-bold text-amber-800 text-lg">Important: Hungarian has NO indefinite article!</p>
+            <ul class="mt-2 space-y-1 text-amber-900">
+                <li><b>"Tanar vagyok"</b> = I am <b>a</b> teacher (the "a/an" is implied)</li>
+                <li><b>"A tanar"</b> = <b>the</b> teacher (specific person)</li>
+            </ul>
+        </div>
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Hungarian Vowels (for article selection)</h3>
+        <p class="mb-2">The vowels that require "az" are: <b>a, e, i, o, o, u, u, o, u</b></p>
+        <p class="text-slate-600 mb-4">All other letters are consonants and use "a".</p>
+    `;
+    mainContent.appendChild(section1);
+
+    // ========== STAGE 1: Article Selection (10 items) ==========
+    const stage1Questions = [
+        { noun: 'haz', article: 'a', translation: 'the house' },
+        { noun: 'alma', article: 'az', translation: 'the apple' },
+        { noun: 'iskola', article: 'az', translation: 'the school' },
+        { noun: 'konyv', article: 'a', translation: 'the book' },
+        { noun: 'ablak', article: 'az', translation: 'the window' },
+        { noun: 'etterem', article: 'az', translation: 'the restaurant' },
+        { noun: 'szek', article: 'a', translation: 'the chair' },
+        { noun: 'orvos', article: 'az', translation: 'the doctor' },
+        { noun: 'asztal', article: 'az', translation: 'the table' },
+        { noun: 'telefon', article: 'a', translation: 'the phone' }
+    ];
+
+    const stage1Div = document.createElement('section');
+    stage1Div.className = 'mb-8';
+    stage1Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Article Selection</h2>
+        <p class="mb-4">Select the correct definite article (a/az) for each noun. Select "-" if no article is needed:</p>
+        <div id="stage1-exercise" class="space-y-4"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage1Div);
+
+    const stage1Exercise = document.getElementById('stage1-exercise');
+    const stage1Score = document.getElementById('stage1-score');
+
+    stage1Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2';
+
+        const select = document.createElement('select');
+        select.className = 'border border-slate-300 rounded-md px-3 py-1 w-24 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        select.innerHTML = `
+            <option value="">??</option>
+            <option value="a">a</option>
+            <option value="az">az</option>
+            <option value="-">-</option>
+        `;
+
+        const nounSpan = document.createElement('span');
+        nounSpan.className = 'text-slate-800 font-medium';
+        nounSpan.textContent = q.noun;
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        select.addEventListener('change', () => checkStage1(idx));
+
+        wrapper.appendChild(select);
+        wrapper.appendChild(nounSpan);
+        wrapper.appendChild(feedback);
+        stage1Exercise.appendChild(wrapper);
+    });
+
+    function checkStage1(idx) {
+        const wrapper = stage1Exercise.children[idx];
+        const select = wrapper.querySelector('select');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage1Questions[idx].article;
+
+        if (select.value === correct) {
+            feedback.textContent = `Correct! (${stage1Questions[idx].translation})`;
+            feedback.className = 'ml-2 text-green-600 font-semibold';
+        } else if (select.value === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! (${stage1Questions[idx].translation})`;
+            feedback.className = 'ml-2 text-red-600 font-semibold';
+        }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let total = stage1Questions.length;
+        let correct = 0;
+        for (let i = 0; i < total; i++) {
+            const wrapper = stage1Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct')) correct++;
+        }
+        stage1Score.textContent = `Score: ${correct} / ${total}`;
+    }
+
+    // ========== SECTION 2: WHEN TO USE ARTICLES ==========
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: When to Use Articles</h2>
+        <div class="bg-slate-50 p-4 rounded-lg mb-4">
+            <h3 class="text-lg font-semibold text-slate-700 mb-2">Use "a/az" (definite article) for:</h3>
+            <ul class="list-disc pl-6 space-y-1 text-slate-700">
+                <li>Specific, known items: <b>A konyv az asztalon van.</b> (The book is on the table.)</li>
+                <li>Previously mentioned items: <b>Van egy macska. A macska fekete.</b> (There is a cat. The cat is black.)</li>
+                <li>Unique items: <b>A nap sut.</b> (The sun is shining.)</li>
+            </ul>
+        </div>
+        <div class="bg-slate-50 p-4 rounded-lg mb-4">
+            <h3 class="text-lg font-semibold text-slate-700 mb-2">Omit article (no article) for:</h3>
+            <ul class="list-disc pl-6 space-y-1 text-slate-700">
+                <li>Professions: <b>O tanar.</b> (She is a teacher.)</li>
+                <li>Nationalities: <b>O magyar.</b> (He is Hungarian.)</li>
+                <li>General statements: <b>Szeretem a kavet.</b> (I like coffee - in general.)</li>
+            </ul>
+        </div>
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+            <h3 class="text-lg font-semibold text-blue-800 mb-2">Key Contrast:</h3>
+            <table class="w-full">
+                <tr>
+                    <td class="p-2"><b>O tanar.</b></td>
+                    <td class="p-2">She is <b>a</b> teacher. (profession, no article)</td>
+                </tr>
+                <tr>
+                    <td class="p-2"><b>O a tanar.</b></td>
+                    <td class="p-2">She is <b>the</b> teacher. (specific person)</td>
+                </tr>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // ========== STAGE 2: Vowel Harmony Classification (10 items) ==========
+    const stage2Nouns = [
+        { noun: 'haz', category: 'back', meaning: 'house' },
+        { noun: 'ablak', category: 'back', meaning: 'window' },
+        { noun: 'asztal', category: 'back', meaning: 'table' },
+        { noun: 'szoba', category: 'back', meaning: 'room' },
+        { noun: 'ajto', category: 'back', meaning: 'door' },
+        { noun: 'szek', category: 'front', meaning: 'chair' },
+        { noun: 'kert', category: 'front', meaning: 'garden' },
+        { noun: 'gyerek', category: 'front', meaning: 'child' },
+        { noun: 'ember', category: 'front', meaning: 'person/human' },
+        { noun: 'level', category: 'front', meaning: 'letter/leaf' }
+    ];
+
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Noun Categories (Vowel Harmony)</h2>
+        <p class="mb-4 text-slate-600">Hungarian nouns are classified by their vowels. This determines which suffix endings they take. (Connects to <a href="vowelsounds.html" class="text-teal-600 underline">Lesson 2: Vowel Sounds</a>)</p>
+        <table class="mb-4">
+            <tr>
+                <th class="border px-4 py-2">Category</th>
+                <th class="border px-4 py-2">Vowels</th>
+                <th class="border px-4 py-2">Examples</th>
+                <th class="border px-4 py-2">Suffix Example</th>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2 font-semibold text-orange-700">Back vowel</td>
+                <td class="border px-4 py-2">a, o, u</td>
+                <td class="border px-4 py-2">haz, ablak, asztal</td>
+                <td class="border px-4 py-2">-ban, -nak, -tol</td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2 font-semibold text-purple-700">Front vowel</td>
+                <td class="border px-4 py-2">e, i, o, u</td>
+                <td class="border px-4 py-2">szek, kert, gyerek</td>
+                <td class="border px-4 py-2">-ben, -nek, -tol</td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2 font-semibold text-indigo-700">Front rounded</td>
+                <td class="border px-4 py-2">o, u</td>
+                <td class="border px-4 py-2">tukor, gyumolcs</td>
+                <td class="border px-4 py-2">-ben, -nek (same as front)</td>
+            </tr>
+        </table>
+        <div class="bg-teal-50 border-l-4 border-teal-500 p-4 mb-4">
+            <p class="text-teal-800"><b>Why it matters:</b> When you add suffixes to nouns (like "in the house" vs "in the garden"), you must match the suffix vowel to the noun's vowel category!</p>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    const stage2Div = document.createElement('section');
+    stage2Div.className = 'mb-8';
+    stage2Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Vowel Harmony Classification</h2>
+        <p class="mb-4">Classify each noun as "Back vowel" or "Front vowel" based on its dominant vowels:</p>
+        <div id="stage2-exercise" class="space-y-4"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage2Div);
+
+    const stage2Exercise = document.getElementById('stage2-exercise');
+    const stage2Score = document.getElementById('stage2-score');
+
+    stage2Nouns.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2';
+
+        const nounSpan = document.createElement('span');
+        nounSpan.className = 'min-w-[120px] text-slate-800 font-medium';
+        nounSpan.textContent = `${q.noun} (${q.meaning})`;
+
+        const select = document.createElement('select');
+        select.className = 'border border-slate-300 rounded-md px-3 py-1 w-36 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        select.innerHTML = `
+            <option value="">??</option>
+            <option value="back">Back vowel</option>
+            <option value="front">Front vowel</option>
+        `;
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        select.addEventListener('change', () => checkStage2(idx));
+
+        wrapper.appendChild(nounSpan);
+        wrapper.appendChild(select);
+        wrapper.appendChild(feedback);
+        stage2Exercise.appendChild(wrapper);
+    });
+
+    function checkStage2(idx) {
+        const wrapper = stage2Exercise.children[idx];
+        const select = wrapper.querySelector('select');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage2Nouns[idx].category;
+
+        if (select.value === correct) {
+            const suffix = correct === 'back' ? '-ban' : '-ben';
+            feedback.textContent = `Correct! Takes suffix: ${suffix}`;
+            feedback.className = 'ml-2 text-green-600 font-semibold';
+        } else if (select.value === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again!`;
+            feedback.className = 'ml-2 text-red-600 font-semibold';
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let total = stage2Nouns.length;
+        let correct = 0;
+        for (let i = 0; i < total; i++) {
+            const wrapper = stage2Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct')) correct++;
+        }
+        stage2Score.textContent = `Score: ${correct} / ${total}`;
+    }
+
+    // ========== STAGE 3: Definite vs Indefinite Context (8 items) ==========
+    const stage3Questions = [
+        {
+            hungarian: 'O tanar.',
+            english: 'She is a teacher.',
+            explanation: 'No article = profession/occupation',
+            hasArticle: false
+        },
+        {
+            hungarian: 'O a tanar.',
+            english: 'She is the teacher.',
+            explanation: 'Article "a" = specific person',
+            hasArticle: true
+        },
+        {
+            hungarian: 'Ez konyv.',
+            english: 'This is a book.',
+            explanation: 'No article = general/indefinite',
+            hasArticle: false
+        },
+        {
+            hungarian: 'Ez a konyv.',
+            english: 'This is the book.',
+            explanation: 'Article "a" = specific book',
+            hasArticle: true
+        },
+        {
+            hungarian: 'O magyar.',
+            english: 'He is Hungarian.',
+            explanation: 'No article = nationality',
+            hasArticle: false
+        },
+        {
+            hungarian: 'O a magyar.',
+            english: 'He is the Hungarian (person).',
+            explanation: 'Article "a" = specific Hungarian person',
+            hasArticle: true
+        },
+        {
+            hungarian: 'Van egy haz.',
+            english: 'There is a house.',
+            explanation: '"egy" can show indefiniteness (optional)',
+            hasArticle: false
+        },
+        {
+            hungarian: 'A haz nagy.',
+            english: 'The house is big.',
+            explanation: 'Article "a" = specific house',
+            hasArticle: true
+        }
+    ];
+
+    const stage3Div = document.createElement('section');
+    stage3Div.className = 'mb-8';
+    stage3Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Definite vs Indefinite Understanding</h2>
+        <p class="mb-4">Study each pair of sentences. Select whether the Hungarian sentence uses a definite article:</p>
+        <div id="stage3-exercise" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage3Div);
+
+    const stage3Exercise = document.getElementById('stage3-exercise');
+    const stage3Score = document.getElementById('stage3-score');
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-3 rounded-lg';
+
+        const sentence = document.createElement('div');
+        sentence.className = 'mb-2';
+        sentence.innerHTML = `
+            <span class="font-semibold text-slate-800">${q.hungarian}</span>
+            <span class="text-slate-500 ml-2">(${q.english})</span>
+        `;
+
+        const controls = document.createElement('div');
+        controls.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const select = document.createElement('select');
+        select.className = 'border border-slate-300 rounded-md px-3 py-1 w-48 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        select.innerHTML = `
+            <option value="">??</option>
+            <option value="true">Has definite article</option>
+            <option value="false">No definite article</option>
+        `;
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        select.addEventListener('change', () => checkStage3(idx));
+
+        controls.appendChild(select);
+        controls.appendChild(feedback);
+        wrapper.appendChild(sentence);
+        wrapper.appendChild(controls);
+        stage3Exercise.appendChild(wrapper);
+    });
+
+    function checkStage3(idx) {
+        const wrapper = stage3Exercise.children[idx];
+        const select = wrapper.querySelector('select');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage3Questions[idx].hasArticle.toString();
+
+        if (select.value === correct) {
+            feedback.textContent = `Correct! ${stage3Questions[idx].explanation}`;
+            feedback.className = 'ml-2 text-green-600 font-semibold';
+        } else if (select.value === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! ${stage3Questions[idx].explanation}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold';
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let total = stage3Questions.length;
+        let correct = 0;
+        for (let i = 0; i < total; i++) {
+            const wrapper = stage3Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct')) correct++;
+        }
+        stage3Score.textContent = `Score: ${correct} / ${total}`;
+    }
+
+    // ========== SECTION 4: COMMON NOUNS ==========
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Common Nouns</h2>
+        <p class="mb-4 text-slate-600">Build your vocabulary with these common Hungarian nouns organized by category:</p>
+
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div class="bg-rose-50 p-4 rounded-lg">
+                <h3 class="font-bold text-rose-800 mb-2">Family (Csalad)</h3>
+                <ul class="space-y-1 text-slate-700">
+                    <li><b>anya</b> - mother</li>
+                    <li><b>apa</b> - father</li>
+                    <li><b>gyerek</b> - child</li>
+                    <li><b>csalad</b> - family</li>
+                    <li><b>lany</b> - girl/daughter</li>
+                    <li><b>fiu</b> - boy/son</li>
+                    <li><b>ferj</b> - husband</li>
+                    <li><b>feleseg</b> - wife</li>
+                </ul>
+            </div>
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="font-bold text-blue-800 mb-2">Objects (Targyak)</h3>
+                <ul class="space-y-1 text-slate-700">
+                    <li><b>konyv</b> - book</li>
+                    <li><b>asztal</b> - table</li>
+                    <li><b>szek</b> - chair</li>
+                    <li><b>ablak</b> - window</li>
+                    <li><b>ajto</b> - door</li>
+                    <li><b>telefon</b> - phone</li>
+                    <li><b>szamitogep</b> - computer</li>
+                    <li><b>toll</b> - pen</li>
+                </ul>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h3 class="font-bold text-green-800 mb-2">Places (Helyek)</h3>
+                <ul class="space-y-1 text-slate-700">
+                    <li><b>haz</b> - house</li>
+                    <li><b>iskola</b> - school</li>
+                    <li><b>bolt</b> - shop/store</li>
+                    <li><b>etterem</b> - restaurant</li>
+                    <li><b>korhaz</b> - hospital</li>
+                    <li><b>bank</b> - bank</li>
+                    <li><b>mozi</b> - cinema</li>
+                    <li><b>park</b> - park</li>
+                </ul>
+            </div>
+            <div class="bg-amber-50 p-4 rounded-lg">
+                <h3 class="font-bold text-amber-800 mb-2">Nature (Termeszet)</h3>
+                <ul class="space-y-1 text-slate-700">
+                    <li><b>fa</b> - tree</li>
+                    <li><b>virag</b> - flower</li>
+                    <li><b>nap</b> - sun/day</li>
+                    <li><b>hold</b> - moon</li>
+                    <li><b>viz</b> - water</li>
+                    <li><b>fold</b> - earth/land</li>
+                    <li><b>eg</b> - sky</li>
+                    <li><b>ho</b> - snow</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // ========== STAGE 4: Noun Phrase Building (6 items) ==========
+    const stage4Questions = [
+        { prompt: 'Ez ___ konyv.', answer: 'a', translation: 'This is the book.', hint: 'definite article before consonant' },
+        { prompt: 'Ez ___ alma.', answer: 'az', translation: 'This is the apple.', hint: 'definite article before vowel' },
+        { prompt: 'Az ___ haz.', answer: 'a', translation: 'That is the house.', hint: 'definite article before consonant' },
+        { prompt: 'Ez ___ iskola.', answer: 'az', translation: 'This is the school.', hint: 'definite article before vowel' },
+        { prompt: 'Ez ___ etterem.', answer: 'az', translation: 'This is the restaurant.', hint: 'definite article before vowel' },
+        { prompt: 'Az ___ szek.', answer: 'a', translation: 'That is the chair.', hint: 'definite article before consonant' }
+    ];
+
+    const stage4Div = document.createElement('section');
+    stage4Div.className = 'mb-8';
+    stage4Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Noun Phrase Building</h2>
+        <p class="mb-4">Complete each phrase with the correct article (a/az):</p>
+        <div id="stage4-exercise" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage4Div);
+
+    const stage4Exercise = document.getElementById('stage4-exercise');
+    const stage4Score = document.getElementById('stage4-score');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[160px] text-slate-800';
+        label.textContent = q.prompt;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-24 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Answer for: ${q.prompt}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(idx);
+        });
+        input.addEventListener('blur', () => checkStage4(idx));
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage4Exercise.appendChild(wrapper);
+    });
+
+    function checkStage4(idx) {
+        const wrapper = stage4Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage4Questions[idx].answer;
+        const value = input.value.trim().toLowerCase();
+
+        if (value === correct) {
+            feedback.textContent = `Correct! (${stage4Questions[idx].translation})`;
+            feedback.className = 'ml-2 text-green-600 font-semibold';
+        } else if (value === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Hint: ${stage4Questions[idx].hint}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold';
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let total = stage4Questions.length;
+        let correct = 0;
+        for (let i = 0; i < total; i++) {
+            const wrapper = stage4Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct')) correct++;
+        }
+        stage4Score.textContent = `Score: ${correct} / ${total}`;
+    }
+
+    // ========== STAGE 5: Translation Practice (8 items) ==========
+    const stage5Questions = [
+        { english: 'the house', answer: 'a haz', acceptAlt: ['a haz'] },
+        { english: 'the apple', answer: 'az alma', acceptAlt: ['az alma'] },
+        { english: 'the book', answer: 'a konyv', acceptAlt: ['a konyv', 'a koenyv'] },
+        { english: 'the school', answer: 'az iskola', acceptAlt: ['az iskola'] },
+        { english: 'the mother', answer: 'az anya', acceptAlt: ['az anya'] },
+        { english: 'the child', answer: 'a gyerek', acceptAlt: ['a gyerek'] },
+        { english: 'the restaurant', answer: 'az etterem', acceptAlt: ['az etterem'] },
+        { english: 'the tree', answer: 'a fa', acceptAlt: ['a fa'] }
+    ];
+
+    const stage5Div = document.createElement('section');
+    stage5Div.className = 'mb-8';
+    stage5Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Translation Practice</h2>
+        <p class="mb-4">Translate each English phrase to Hungarian with the correct article:</p>
+        <div id="stage5-exercise" class="space-y-4"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage5Div);
+
+    const stage5Exercise = document.getElementById('stage5-exercise');
+    const stage5Score = document.getElementById('stage5-score');
+
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[140px] text-slate-800 font-medium';
+        label.textContent = q.english;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-40 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Translate: ${q.english}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage5(idx);
+        });
+        input.addEventListener('blur', () => checkStage5(idx));
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage5Exercise.appendChild(wrapper);
+    });
+
+    function checkStage5(idx) {
+        const wrapper = stage5Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage5Questions[idx].answer.toLowerCase();
+        const alternatives = stage5Questions[idx].acceptAlt.map(a => a.toLowerCase());
+        const value = input.value.trim().toLowerCase();
+
+        // Normalize for accent-insensitive comparison
+        const normalizedValue = removeAccents(value);
+        const normalizedCorrect = removeAccents(correct);
+        const normalizedAlts = alternatives.map(a => removeAccents(a));
+
+        if (value === correct || alternatives.includes(value)) {
+            feedback.textContent = `Correct!`;
+            feedback.className = 'ml-2 text-green-600 font-semibold';
+        } else if (normalizedValue === normalizedCorrect || normalizedAlts.includes(normalizedValue)) {
+            feedback.textContent = `Almost! Watch your accents. Answer: ${stage5Questions[idx].answer}`;
+            feedback.className = 'ml-2 text-yellow-600 font-semibold';
+        } else if (value === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Answer: ${stage5Questions[idx].answer}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold';
+        }
+        updateStage5Score();
+    }
+
+    function updateStage5Score() {
+        let total = stage5Questions.length;
+        let correct = 0;
+        for (let i = 0; i < total; i++) {
+            const wrapper = stage5Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct') || feedback.textContent.startsWith('Almost')) correct++;
+        }
+        stage5Score.textContent = `Score: ${correct} / ${total}`;
+    }
+
+    // ========== TOTAL SCORE SUMMARY ==========
+    const summaryDiv = document.createElement('section');
+    summaryDiv.className = 'mt-8 p-4 bg-teal-50 rounded-lg border border-teal-200';
+    summaryDiv.innerHTML = `
+        <h2 class="text-xl font-bold text-teal-800 mb-2">Lesson Summary</h2>
+        <div class="space-y-2 text-teal-700">
+            <p><b>Key Points:</b></p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><b>a</b> = "the" before consonants (a haz, a konyv)</li>
+                <li><b>az</b> = "the" before vowels (az alma, az iskola)</li>
+                <li>Hungarian has <b>NO indefinite article</b> - "a/an" is implied</li>
+                <li>Professions and nationalities don't use articles</li>
+                <li>Vowel harmony determines noun suffix forms</li>
+            </ul>
+        </div>
+        <div id="total-score" class="mt-4 text-lg font-bold text-teal-800"></div>
+        <button id="calculate-total" class="mt-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors">Calculate Total Score</button>
+    `;
+    mainContent.appendChild(summaryDiv);
+
+    document.getElementById('calculate-total').addEventListener('click', () => {
+        let totalCorrect = 0;
+        let totalQuestions = 0;
+
+        // Stage 1
+        for (let i = 0; i < stage1Questions.length; i++) {
+            const wrapper = stage1Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct')) totalCorrect++;
+            totalQuestions++;
+        }
+
+        // Stage 2
+        for (let i = 0; i < stage2Nouns.length; i++) {
+            const wrapper = stage2Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct')) totalCorrect++;
+            totalQuestions++;
+        }
+
+        // Stage 3
+        for (let i = 0; i < stage3Questions.length; i++) {
+            const wrapper = stage3Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct')) totalCorrect++;
+            totalQuestions++;
+        }
+
+        // Stage 4
+        for (let i = 0; i < stage4Questions.length; i++) {
+            const wrapper = stage4Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct')) totalCorrect++;
+            totalQuestions++;
+        }
+
+        // Stage 5
+        for (let i = 0; i < stage5Questions.length; i++) {
+            const wrapper = stage5Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct') || feedback.textContent.startsWith('Almost')) totalCorrect++;
+            totalQuestions++;
+        }
+
+        const percentage = Math.round((totalCorrect / totalQuestions) * 100);
+        document.getElementById('total-score').textContent = `Total Score: ${totalCorrect} / ${totalQuestions} (${percentage}%)`;
+    });
+    </script>
+</body>
+</html>
