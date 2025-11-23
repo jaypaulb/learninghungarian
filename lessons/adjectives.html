@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 9: Basic Adjectives & Agreement - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .flip-card { perspective: 1000px; cursor: pointer; }
+        .flip-card-inner { transition: transform 0.6s; transform-style: preserve-3d; }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { backface-visibility: hidden; position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; border-radius: 0.5rem; }
+        .flip-card-front { background: linear-gradient(135deg, #0f766e, #14b8a6); color: white; }
+        .flip-card-back { background: linear-gradient(135deg, #475569, #64748b); color: white; transform: rotateY(180deg); }
+        .color-swatch { width: 60px; height: 60px; border-radius: 0.5rem; border: 2px solid #e2e8f0; }
+        .drag-item { cursor: grab; transition: transform 0.2s, box-shadow 0.2s; }
+        .drag-item:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .drag-item.dragging { opacity: 0.5; }
+        .drop-zone { border: 2px dashed #cbd5e1; transition: border-color 0.2s, background-color 0.2s; }
+        .drop-zone.drag-over { border-color: #0f766e; background-color: #f0fdfa; }
+        .drop-zone.matched { border-style: solid; border-color: #22c55e; background-color: #f0fdf4; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 9: Basic Adjectives & Agreement <span class="block text-xl text-slate-500 font-normal">(Melleknevek)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Learn common Hungarian adjectives, understand their placement rules, and master the difference between attributive (before noun) and predicative (after noun) usage.</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    const mainContent = document.getElementById('main-content');
+
+    // Utility function for accent-insensitive comparison
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuU\u0151\u0150\u0171\u0170]/g, function(m) {
+            const map = { '\u0151':'o','\u0150':'O','\u0171':'u','\u0170':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeAnswer(str) {
+        return str.trim().toLowerCase();
+    }
+
+    // ============================================
+    // SECTION 1: Common Adjectives Reference
+    // ============================================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Common Adjectives</h2>
+        <p class="mb-4 text-slate-600">Hungarian adjectives are descriptive words that modify nouns. Here are essential adjectives with their opposites:</p>
+        <table class="mb-4">
+            <tr><th class="text-left">Hungarian</th><th class="text-left">English</th><th class="text-left">Opposite (HU)</th><th class="text-left">Opposite (EN)</th></tr>
+            <tr><td class="font-semibold text-teal-700">nagy</td><td>big</td><td class="font-semibold text-teal-700">kicsi</td><td>small</td></tr>
+            <tr><td class="font-semibold text-teal-700">jo</td><td>good</td><td class="font-semibold text-teal-700">rossz</td><td>bad</td></tr>
+            <tr><td class="font-semibold text-teal-700">szep</td><td>beautiful</td><td class="font-semibold text-teal-700">csunya</td><td>ugly</td></tr>
+            <tr><td class="font-semibold text-teal-700">regi</td><td>old (things)</td><td class="font-semibold text-teal-700">uj</td><td>new</td></tr>
+            <tr><td class="font-semibold text-teal-700">oreg</td><td>old (people)</td><td class="font-semibold text-teal-700">fiatal</td><td>young</td></tr>
+            <tr><td class="font-semibold text-teal-700">draga</td><td>expensive</td><td class="font-semibold text-teal-700">olcso</td><td>cheap</td></tr>
+            <tr><td class="font-semibold text-teal-700">gyors</td><td>fast</td><td class="font-semibold text-teal-700">lassu</td><td>slow</td></tr>
+            <tr><td class="font-semibold text-teal-700">konnyu</td><td>easy/light</td><td class="font-semibold text-teal-700">nehez</td><td>difficult/heavy</td></tr>
+            <tr><td class="font-semibold text-teal-700">hideg</td><td>cold</td><td class="font-semibold text-teal-700">meleg</td><td>warm/hot</td></tr>
+            <tr><td class="font-semibold text-teal-700">magas</td><td>tall</td><td class="font-semibold text-teal-700">alacsony</td><td>short</td></tr>
+        </table>
+    `;
+    mainContent.appendChild(section1);
+
+    // ============================================
+    // SECTION 2: Adjective Placement Rules
+    // ============================================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Adjective Placement</h2>
+        <div class="bg-teal-50 border-l-4 border-teal-500 p-4 mb-4">
+            <h3 class="font-bold text-teal-800 mb-2">Attributive Position (Before Noun)</h3>
+            <p class="text-slate-700 mb-2">When an adjective comes <strong>before</strong> the noun, it does <strong>NOT</strong> change for plural!</p>
+            <ul class="list-disc pl-6 text-slate-600">
+                <li><strong>a nagy haz</strong> - the big house</li>
+                <li><strong>a nagy hazak</strong> - the big houses (adjective unchanged!)</li>
+                <li><strong>a szep lany</strong> - the beautiful girl</li>
+                <li><strong>a szep lanyok</strong> - the beautiful girls (adjective unchanged!)</li>
+            </ul>
+        </div>
+        <div class="bg-amber-50 border-l-4 border-amber-500 p-4 mb-4">
+            <h3 class="font-bold text-amber-800 mb-2">Predicative Position (After Noun with van/vannak)</h3>
+            <p class="text-slate-700 mb-2">When an adjective comes <strong>after</strong> the noun (with van/vannak), it <strong>DOES</strong> take a plural marker!</p>
+            <ul class="list-disc pl-6 text-slate-600">
+                <li><strong>A haz nagy.</strong> - The house is big.</li>
+                <li><strong>A hazak nagyok.</strong> - The houses are big. (plural marker -ok!)</li>
+                <li><strong>A lany szep.</strong> - The girl is beautiful.</li>
+                <li><strong>A lanyok szepek.</strong> - The girls are beautiful. (plural marker -ek!)</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // ============================================
+    // SECTION 3: Predicative Plural Forms
+    // ============================================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Predicative Plural Forms</h2>
+        <p class="mb-4 text-slate-600">Add <strong>-k</strong>, <strong>-ak</strong>, <strong>-ek</strong>, or <strong>-ok</strong> to form plural predicative adjectives:</p>
+        <table class="mb-4">
+            <tr><th>Singular</th><th>Plural</th><th>Rule</th></tr>
+            <tr><td>nagy</td><td><strong>nagyok</strong></td><td>Back vowel + -ok</td></tr>
+            <tr><td>szep</td><td><strong>szepek</strong></td><td>Front vowel + -ek</td></tr>
+            <tr><td>jo</td><td><strong>jok</strong></td><td>Ending in vowel + -k</td></tr>
+            <tr><td>kicsi</td><td><strong>kicsik</strong></td><td>Ending in -i + -k</td></tr>
+            <tr><td>uj</td><td><strong>ujak</strong></td><td>Back vowel + -ak</td></tr>
+            <tr><td>regi</td><td><strong>regiek</strong></td><td>Front vowel + -ek</td></tr>
+            <tr><td>fiatal</td><td><strong>fiatalok</strong></td><td>Back vowel + -ok</td></tr>
+            <tr><td>hideg</td><td><strong>hidegek</strong></td><td>Front vowel + -ek</td></tr>
+        </table>
+    `;
+    mainContent.appendChild(section3);
+
+    // ============================================
+    // SECTION 4: Colors Reference
+    // ============================================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Colors (Szinek)</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                <div class="color-swatch" style="background-color: #ef4444;"></div>
+                <div><strong class="text-slate-700">piros</strong><br><span class="text-sm text-slate-500">red</span></div>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                <div class="color-swatch" style="background-color: #3b82f6;"></div>
+                <div><strong class="text-slate-700">kek</strong><br><span class="text-sm text-slate-500">blue</span></div>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                <div class="color-swatch" style="background-color: #22c55e;"></div>
+                <div><strong class="text-slate-700">zold</strong><br><span class="text-sm text-slate-500">green</span></div>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                <div class="color-swatch" style="background-color: #eab308;"></div>
+                <div><strong class="text-slate-700">sarga</strong><br><span class="text-sm text-slate-500">yellow</span></div>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                <div class="color-swatch" style="background-color: #1f2937;"></div>
+                <div><strong class="text-slate-700">fekete</strong><br><span class="text-sm text-slate-500">black</span></div>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                <div class="color-swatch" style="background-color: #f8fafc; border: 2px solid #cbd5e1;"></div>
+                <div><strong class="text-slate-700">feher</strong><br><span class="text-sm text-slate-500">white</span></div>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                <div class="color-swatch" style="background-color: #92400e;"></div>
+                <div><strong class="text-slate-700">barna</strong><br><span class="text-sm text-slate-500">brown</span></div>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                <div class="color-swatch" style="background-color: #f97316;"></div>
+                <div><strong class="text-slate-700">narancssarga</strong><br><span class="text-sm text-slate-500">orange</span></div>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // ============================================
+    // STAGE 1: Adjective Vocabulary - Card Flip (12 items)
+    // ============================================
+    const stage1Data = [
+        { hungarian: 'nagy', english: 'big' },
+        { hungarian: 'kicsi', english: 'small' },
+        { hungarian: 'jo', english: 'good' },
+        { hungarian: 'rossz', english: 'bad' },
+        { hungarian: 'szep', english: 'beautiful' },
+        { hungarian: 'csunya', english: 'ugly' },
+        { hungarian: 'regi', english: 'old (things)' },
+        { hungarian: 'uj', english: 'new' },
+        { hungarian: 'gyors', english: 'fast' },
+        { hungarian: 'lassu', english: 'slow' },
+        { hungarian: 'hideg', english: 'cold' },
+        { hungarian: 'meleg', english: 'warm/hot' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Adjective Vocabulary (Card Flip)</h2>
+        <p class="mb-4 text-slate-600">Click each card to flip it and reveal the English translation. Try to recall the meaning before flipping!</p>
+        <div id="stage1-cards" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4"></div>
+        <div id="stage1-score" class="text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Cards = document.getElementById('stage1-cards');
+    let stage1Flipped = 0;
+
+    stage1Data.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'flip-card h-24 relative';
+        card.innerHTML = `
+            <div class="flip-card-inner w-full h-full">
+                <div class="flip-card-front text-lg font-bold">${item.hungarian}</div>
+                <div class="flip-card-back text-sm font-medium p-2">${item.english}</div>
+            </div>
+        `;
+        card.addEventListener('click', () => {
+            if (!card.classList.contains('flipped')) {
+                card.classList.add('flipped');
+                stage1Flipped++;
+                document.getElementById('stage1-score').textContent = `Cards flipped: ${stage1Flipped} / ${stage1Data.length}`;
+            }
+        });
+        stage1Cards.appendChild(card);
+    });
+    document.getElementById('stage1-score').textContent = `Cards flipped: 0 / ${stage1Data.length}`;
+
+    // ============================================
+    // STAGE 2: Opposites Matching - Drag and Drop (10 items = 5 pairs)
+    // ============================================
+    const stage2Pairs = [
+        { left: 'nagy', right: 'kicsi' },
+        { left: 'jo', right: 'rossz' },
+        { left: 'szep', right: 'csunya' },
+        { left: 'regi', right: 'uj' },
+        { left: 'oreg', right: 'fiatal' },
+        { left: 'draga', right: 'olcso' },
+        { left: 'gyors', right: 'lassu' },
+        { left: 'konnyu', right: 'nehez' },
+        { left: 'hideg', right: 'meleg' },
+        { left: 'magas', right: 'alacsony' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Opposites Matching</h2>
+        <p class="mb-4 text-slate-600">Match each adjective with its opposite by selecting from the dropdown.</p>
+        <div id="stage2-exercise" class="space-y-3 mb-4"></div>
+        <div id="stage2-score" class="text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Exercise = document.getElementById('stage2-exercise');
+    const shuffledRights = [...stage2Pairs].map(p => p.right).sort(() => Math.random() - 0.5);
+
+    stage2Pairs.forEach((pair, idx) => {
+        const row = document.createElement('div');
+        row.className = 'flex items-center gap-4 p-3 bg-slate-50 rounded-lg';
+        row.innerHTML = `
+            <span class="font-semibold text-teal-700 min-w-[100px]">${pair.left}</span>
+            <span class="text-slate-400">is opposite of</span>
+            <select class="border border-slate-300 rounded-md px-3 py-1 focus:ring-2 focus:ring-teal-500" data-correct="${pair.right}">
+                <option value="">-- Select --</option>
+                ${shuffledRights.map(r => `<option value="${r}">${r}</option>`).join('')}
+            </select>
+            <span class="feedback text-sm font-semibold"></span>
+        `;
+        stage2Exercise.appendChild(row);
+    });
+
+    stage2Exercise.querySelectorAll('select').forEach(select => {
+        select.addEventListener('change', () => {
+            const feedback = select.parentElement.querySelector('.feedback');
+            const correct = select.dataset.correct;
+            if (select.value === correct) {
+                feedback.textContent = 'Correct!';
+                feedback.className = 'feedback text-sm font-semibold text-green-600';
+            } else if (select.value === '') {
+                feedback.textContent = '';
+            } else {
+                feedback.textContent = 'Try again!';
+                feedback.className = 'feedback text-sm font-semibold text-red-600';
+            }
+            updateStage2Score();
+        });
+    });
+
+    function updateStage2Score() {
+        const selects = stage2Exercise.querySelectorAll('select');
+        let correct = 0;
+        selects.forEach(s => {
+            if (s.value === s.dataset.correct) correct++;
+        });
+        document.getElementById('stage2-score').textContent = `Score: ${correct} / ${stage2Pairs.length}`;
+    }
+    updateStage2Score();
+
+    // ============================================
+    // STAGE 3: Attributive Usage - Fill-in (8 items)
+    // ============================================
+    const stage3Questions = [
+        { sentence: 'a ___ haz (big)', answer: 'nagy', translation: 'the big house' },
+        { sentence: 'a ___ auto (new)', answer: 'uj', translation: 'the new car' },
+        { sentence: 'a ___ lany (beautiful)', answer: 'szep', translation: 'the beautiful girl' },
+        { sentence: 'a ___ fiu (young)', answer: 'fiatal', translation: 'the young boy' },
+        { sentence: 'a ___ kutya (small)', answer: 'kicsi', translation: 'the small dog' },
+        { sentence: 'a ___ konyv (old)', answer: 'regi', translation: 'the old book' },
+        { sentence: 'a ___ vonat (fast)', answer: 'gyors', translation: 'the fast train' },
+        { sentence: 'a ___ viz (cold)', answer: 'hideg', translation: 'the cold water' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Attributive Usage (Fill-in)</h2>
+        <p class="mb-4 text-slate-600">Fill in the correct adjective. Remember: in attributive position (before noun), adjectives do NOT change!</p>
+        <div id="stage3-exercise" class="space-y-4 mb-4"></div>
+        <div id="stage3-score" class="text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Exercise = document.getElementById('stage3-exercise');
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2';
+        wrapper.innerHTML = `
+            <span class="min-w-[200px] text-slate-800">${q.sentence}</span>
+            <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-32 text-center focus:ring-2 focus:ring-teal-500" data-answer="${q.answer}" data-translation="${q.translation}" aria-label="Answer for: ${q.sentence}">
+            <span class="feedback ml-2 text-sm font-semibold"></span>
+        `;
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage3(wrapper);
+        });
+        input.addEventListener('blur', () => checkStage3(wrapper));
+        stage3Exercise.appendChild(wrapper);
+    });
+
+    function checkStage3(wrapper) {
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('.feedback');
+        const correct = input.dataset.answer;
+        const translation = input.dataset.translation;
+        const userAnswer = normalizeAnswer(input.value);
+
+        if (userAnswer === correct) {
+            feedback.textContent = `Correct! (${translation})`;
+            feedback.className = 'feedback ml-2 text-sm font-semibold text-green-600';
+        } else if (removeAccents(userAnswer) === removeAccents(correct) && userAnswer !== '') {
+            feedback.textContent = `Watch your accents! (${translation})`;
+            feedback.className = 'feedback ml-2 text-sm font-semibold text-yellow-600';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+            feedback.className = 'feedback ml-2 text-sm font-semibold';
+        } else {
+            feedback.textContent = `Try again! (${translation})`;
+            feedback.className = 'feedback ml-2 text-sm font-semibold text-red-600';
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        const inputs = stage3Exercise.querySelectorAll('input');
+        let correct = 0;
+        inputs.forEach(input => {
+            if (normalizeAnswer(input.value) === input.dataset.answer) correct++;
+        });
+        document.getElementById('stage3-score').textContent = `Score: ${correct} / ${stage3Questions.length}`;
+    }
+    updateStage3Score();
+
+    // ============================================
+    // STAGE 4: Predicative Forms - Conversion (8 items)
+    // ============================================
+    const stage4Questions = [
+        { singular: 'A haz nagy.', plural: 'A hazak ___.', answer: 'nagyok', hint: 'The houses are big.' },
+        { singular: 'A lany szep.', plural: 'A lanyok ___.', answer: 'szepek', hint: 'The girls are beautiful.' },
+        { singular: 'A fiu fiatal.', plural: 'A fiuk ___.', answer: 'fiatalok', hint: 'The boys are young.' },
+        { singular: 'A kutya kicsi.', plural: 'A kutyak ___.', answer: 'kicsik', hint: 'The dogs are small.' },
+        { singular: 'A konyv uj.', plural: 'A konyvek ___.', answer: 'ujak', hint: 'The books are new.' },
+        { singular: 'A vonat gyors.', plural: 'A vonatok ___.', answer: 'gyorsak', hint: 'The trains are fast.' },
+        { singular: 'A viz hideg.', plural: 'A vizek ___.', answer: 'hidegek', hint: 'The waters are cold.' },
+        { singular: 'A feladat nehez.', plural: 'A feladatok ___.', answer: 'nehezek', hint: 'The tasks are difficult.' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Predicative Forms (Singular to Plural)</h2>
+        <p class="mb-4 text-slate-600">Convert the singular predicative form to plural. Remember: predicative adjectives DO take plural markers!</p>
+        <div id="stage4-exercise" class="space-y-4 mb-4"></div>
+        <div id="stage4-score" class="text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Exercise = document.getElementById('stage4-exercise');
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-3 bg-slate-50 rounded-lg';
+        wrapper.innerHTML = `
+            <div class="text-sm text-slate-500 mb-1">Singular: <span class="text-slate-700">${q.singular}</span></div>
+            <div class="flex flex-col md:flex-row items-center gap-2">
+                <span class="text-slate-800">${q.plural}</span>
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-32 text-center focus:ring-2 focus:ring-teal-500" data-answer="${q.answer}" data-hint="${q.hint}" aria-label="Plural form">
+                <span class="feedback ml-2 text-sm font-semibold"></span>
+            </div>
+        `;
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(wrapper);
+        });
+        input.addEventListener('blur', () => checkStage4(wrapper));
+        stage4Exercise.appendChild(wrapper);
+    });
+
+    function checkStage4(wrapper) {
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('.feedback');
+        const correct = input.dataset.answer;
+        const hint = input.dataset.hint;
+        const userAnswer = normalizeAnswer(input.value);
+
+        if (userAnswer === correct) {
+            feedback.textContent = `Correct! (${hint})`;
+            feedback.className = 'feedback ml-2 text-sm font-semibold text-green-600';
+        } else if (removeAccents(userAnswer) === removeAccents(correct) && userAnswer !== '') {
+            feedback.textContent = `Watch your accents! (${hint})`;
+            feedback.className = 'feedback ml-2 text-sm font-semibold text-yellow-600';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+            feedback.className = 'feedback ml-2 text-sm font-semibold';
+        } else {
+            feedback.textContent = `Try again! Answer: ${correct}`;
+            feedback.className = 'feedback ml-2 text-sm font-semibold text-red-600';
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        const inputs = stage4Exercise.querySelectorAll('input');
+        let correct = 0;
+        inputs.forEach(input => {
+            if (normalizeAnswer(input.value) === input.dataset.answer) correct++;
+        });
+        document.getElementById('stage4-score').textContent = `Score: ${correct} / ${stage4Questions.length}`;
+    }
+    updateStage4Score();
+
+    // ============================================
+    // STAGE 5: Description Building - Mixed (8 items)
+    // ============================================
+    const stage5Questions = [
+        { prompt: 'Say "the old man" (attributive)', answer: 'az oreg ember', type: 'attributive' },
+        { prompt: 'Say "The man is old" (predicative)', answer: 'az ember oreg', type: 'predicative' },
+        { prompt: 'Say "the beautiful flowers" (attributive)', answer: 'a szep viragok', type: 'attributive' },
+        { prompt: 'Say "The flowers are beautiful" (predicative, plural!)', answer: 'a viragok szepek', type: 'predicative' },
+        { prompt: 'Say "the expensive car" (attributive)', answer: 'a draga auto', type: 'attributive' },
+        { prompt: 'Say "The cars are expensive" (predicative, plural!)', answer: 'az autok dragak', type: 'predicative' },
+        { prompt: 'Say "the cold coffee" (attributive)', answer: 'a hideg kave', type: 'attributive' },
+        { prompt: 'Say "The coffees are cold" (predicative, plural!)', answer: 'a kavek hidegek', type: 'predicative' }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Description Building</h2>
+        <p class="mb-4 text-slate-600">Translate the phrases, paying attention to whether they are attributive or predicative!</p>
+        <div id="stage5-exercise" class="space-y-4 mb-4"></div>
+        <div id="stage5-score" class="text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Exercise = document.getElementById('stage5-exercise');
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-3 bg-slate-50 rounded-lg';
+        const typeClass = q.type === 'attributive' ? 'bg-teal-100 text-teal-800' : 'bg-amber-100 text-amber-800';
+        wrapper.innerHTML = `
+            <div class="flex items-center gap-2 mb-2">
+                <span class="text-xs font-medium px-2 py-1 rounded ${typeClass}">${q.type}</span>
+                <span class="text-slate-700">${q.prompt}</span>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-64 focus:ring-2 focus:ring-teal-500" data-answer="${q.answer}" placeholder="Type Hungarian..." aria-label="Translation">
+                <span class="feedback text-sm font-semibold"></span>
+            </div>
+        `;
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage5(wrapper);
+        });
+        input.addEventListener('blur', () => checkStage5(wrapper));
+        stage5Exercise.appendChild(wrapper);
+    });
+
+    function checkStage5(wrapper) {
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('.feedback');
+        const correct = input.dataset.answer;
+        const userAnswer = normalizeAnswer(input.value);
+        const correctNorm = normalizeAnswer(correct);
+
+        if (userAnswer === correctNorm) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'feedback text-sm font-semibold text-green-600';
+        } else if (removeAccents(userAnswer) === removeAccents(correctNorm) && userAnswer !== '') {
+            feedback.textContent = 'Watch your accents!';
+            feedback.className = 'feedback text-sm font-semibold text-yellow-600';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+            feedback.className = 'feedback text-sm font-semibold';
+        } else {
+            feedback.textContent = `Try again! Answer: ${correct}`;
+            feedback.className = 'feedback text-sm font-semibold text-red-600';
+        }
+        updateStage5Score();
+    }
+
+    function updateStage5Score() {
+        const inputs = stage5Exercise.querySelectorAll('input');
+        let correct = 0;
+        inputs.forEach(input => {
+            const userAnswer = normalizeAnswer(input.value);
+            const correctAnswer = normalizeAnswer(input.dataset.answer);
+            if (userAnswer === correctAnswer) correct++;
+        });
+        document.getElementById('stage5-score').textContent = `Score: ${correct} / ${stage5Questions.length}`;
+    }
+    updateStage5Score();
+
+    // ============================================
+    // STAGE 6: Color Identification - Visual (6 items)
+    // ============================================
+    const stage6Colors = [
+        { color: '#ef4444', hungarian: 'piros', english: 'red' },
+        { color: '#3b82f6', hungarian: 'kek', english: 'blue' },
+        { color: '#22c55e', hungarian: 'zold', english: 'green' },
+        { color: '#eab308', hungarian: 'sarga', english: 'yellow' },
+        { color: '#1f2937', hungarian: 'fekete', english: 'black' },
+        { color: '#f97316', hungarian: 'narancssarga', english: 'orange' }
+    ];
+
+    const stage6Section = document.createElement('section');
+    stage6Section.className = 'mb-8';
+    stage6Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 6: Color Identification</h2>
+        <p class="mb-4 text-slate-600">Type the Hungarian name for each color shown:</p>
+        <div id="stage6-exercise" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"></div>
+        <div id="stage6-score" class="text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage6Section);
+
+    const stage6Exercise = document.getElementById('stage6-exercise');
+    stage6Colors.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex items-center gap-4 p-4 bg-slate-50 rounded-lg';
+        wrapper.innerHTML = `
+            <div class="color-swatch flex-shrink-0" style="background-color: ${item.color};"></div>
+            <div class="flex-grow">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full focus:ring-2 focus:ring-teal-500" data-answer="${item.hungarian}" data-english="${item.english}" placeholder="Hungarian color name..." aria-label="Color name for ${item.english}">
+                <span class="feedback block mt-1 text-sm font-semibold"></span>
+            </div>
+        `;
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage6(wrapper);
+        });
+        input.addEventListener('blur', () => checkStage6(wrapper));
+        stage6Exercise.appendChild(wrapper);
+    });
+
+    function checkStage6(wrapper) {
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('.feedback');
+        const correct = input.dataset.answer;
+        const english = input.dataset.english;
+        const userAnswer = normalizeAnswer(input.value);
+
+        if (userAnswer === correct) {
+            feedback.textContent = `Correct! (${english})`;
+            feedback.className = 'feedback block mt-1 text-sm font-semibold text-green-600';
+        } else if (removeAccents(userAnswer) === removeAccents(correct) && userAnswer !== '') {
+            feedback.textContent = `Watch your accents! (${english})`;
+            feedback.className = 'feedback block mt-1 text-sm font-semibold text-yellow-600';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+            feedback.className = 'feedback block mt-1 text-sm font-semibold';
+        } else {
+            feedback.textContent = `Try again! Answer: ${correct} (${english})`;
+            feedback.className = 'feedback block mt-1 text-sm font-semibold text-red-600';
+        }
+        updateStage6Score();
+    }
+
+    function updateStage6Score() {
+        const inputs = stage6Exercise.querySelectorAll('input');
+        let correct = 0;
+        inputs.forEach(input => {
+            if (normalizeAnswer(input.value) === input.dataset.answer) correct++;
+        });
+        document.getElementById('stage6-score').textContent = `Score: ${correct} / ${stage6Colors.length}`;
+    }
+    updateStage6Score();
+
+    // ============================================
+    // TOTAL SCORE SUMMARY
+    // ============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mt-8 p-6 bg-gradient-to-r from-teal-50 to-slate-50 rounded-xl border border-teal-200';
+    summarySection.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-4">Lesson Summary</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+                <div class="text-2xl font-bold text-teal-600" id="total-exercises">52</div>
+                <div class="text-sm text-slate-500">Total Exercises</div>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+                <div class="text-2xl font-bold text-teal-600">6</div>
+                <div class="text-sm text-slate-500">Stages</div>
+            </div>
+            <div class="bg-white p-3 rounded-lg shadow-sm">
+                <div class="text-2xl font-bold text-teal-600">18</div>
+                <div class="text-sm text-slate-500">Adjectives Learned</div>
+            </div>
+        </div>
+        <div class="mt-4 p-4 bg-white rounded-lg">
+            <h3 class="font-semibold text-slate-700 mb-2">Key Takeaways:</h3>
+            <ul class="list-disc pl-6 text-slate-600 space-y-1">
+                <li><strong>Attributive position:</strong> Adjective before noun - NO agreement (a nagy hazak)</li>
+                <li><strong>Predicative position:</strong> Adjective after noun - plural marker needed (A hazak nagyok)</li>
+                <li>Plural endings depend on vowel harmony: -ok, -ek, -ak, or -k</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+    </script>
+</body>
+</html>
