@@ -46,6 +46,8 @@ This site documents and supports my journey to learn the Hungarian language. Her
 
 [Lesson 30: Dative Case (-nak/-nek)](lessons/dative_case.html)
 
+[Lesson 31: Instrumental Case (-val/-vel)](lessons/instrumental_case.html)
+
 ---
 
 More A2 and B1 lessons coming soon! Stay tuned.

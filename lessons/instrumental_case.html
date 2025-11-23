@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 31: Instrumental Case - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .grammar-note {
+            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+            border-left: 4px solid #0f766e;
+        }
+        .warning-note {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #d97706;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 31: Instrumental Case <span class="block text-xl text-slate-500 font-normal">(-val/-vel)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Learn the Hungarian instrumental case, used to express "with" - both for accompaniment (with a person) and means/tools (with an instrument).</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    const mainContent = document.getElementById('main-content');
+
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiI]/g, m => ({ 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U' }[m] || m));
+    }
+
+    function normalizeHungarian(str) { return str.trim().toLowerCase(); }
+
+    function checkWithAccentWarning(input, correct) {
+        const inputVal = normalizeHungarian(input);
+        const correctVal = normalizeHungarian(correct);
+        if (inputVal === correctVal) return 'correct';
+        else if (removeAccents(inputVal) === removeAccents(correctVal)) return 'accent-warning';
+        return 'incorrect';
+    }
+
+    // ==================== SECTION 1: WHAT IS THE INSTRUMENTAL CASE ====================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: What is the Instrumental Case?</h2>
+        <p class="mb-4 text-slate-600">The instrumental case (-val/-vel) expresses <strong>"with"</strong> in two main senses:</p>
+
+        <ul class="list-disc pl-6 mb-4 text-slate-600">
+            <li><strong>Accompaniment:</strong> With whom? - Peterrel megyek. (I go with Peter.)</li>
+            <li><strong>Means/Tool:</strong> With what? - Tollal irok. (I write with a pen.)</li>
+        </ul>
+
+        <div class="grammar-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">Key Feature: Consonant Assimilation</h4>
+            <p class="text-slate-700 text-sm">When a word ends in a consonant, the <strong>-v-</strong> in -val/-vel assimilates to that consonant, creating a double consonant: <strong>Peter + -vel = Peterrel</strong> (not Petervel).</p>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Examples of Both Uses</h3>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Type</th><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2">Accompaniment</td><td class="border px-2 font-medium">Mariával talalkoztam.</td><td class="border px-2">I met with Maria.</td></tr>
+            <tr><td class="border px-2">Accompaniment</td><td class="border px-2 font-medium">A barataimmal vacsorazok.</td><td class="border px-2">I'm having dinner with my friends.</td></tr>
+            <tr><td class="border px-2">Tool/Means</td><td class="border px-2 font-medium">Kessel vagom a kenyeret.</td><td class="border px-2">I cut the bread with a knife.</td></tr>
+            <tr><td class="border px-2">Tool/Means</td><td class="border px-2 font-medium">Autoval megyek munkaba.</td><td class="border px-2">I go to work by car.</td></tr>
+        </table>
+    `;
+    mainContent.appendChild(section1);
+
+    // ==================== SECTION 2: FORMING THE INSTRUMENTAL ====================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Forming the Instrumental (-val/-vel)</h2>
+        <p class="mb-4 text-slate-600">The instrumental suffix follows vowel harmony:</p>
+
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Vowel Type</th><th class="border px-2">Suffix</th><th class="border px-2">Example</th></tr>
+            <tr><td class="border px-2">Back vowels (a, o, u)</td><td class="border px-2 font-medium">-val</td><td class="border px-2">auto → autoval</td></tr>
+            <tr><td class="border px-2">Front vowels (e, i, o, u)</td><td class="border px-2 font-medium">-vel</td><td class="border px-2">kes → kessel</td></tr>
+        </table>
+
+        <div class="warning-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-amber-800 mb-2">Important: Consonant Assimilation</h4>
+            <p class="text-slate-700 text-sm">When the word ends in a <strong>consonant</strong>, the -v- becomes the same as that consonant:</p>
+            <ul class="list-disc pl-6 text-sm text-slate-700 mt-2">
+                <li>Peter + -vel → Peter<strong>r</strong>el (not Petervel)</li>
+                <li>kes (knife) + -vel → kes<strong>s</strong>el</li>
+                <li>toll (pen) + -val → tol<strong>l</strong>al</li>
+                <li>viz (water) + -vel → viz<strong>z</strong>el</li>
+            </ul>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">When -v- is Kept</h3>
+        <p class="mb-4 text-slate-600">The -v- is kept when the word ends in a <strong>vowel</strong>:</p>
+        <ul class="list-disc pl-6 mb-4 text-slate-600">
+            <li>Maria + -val → Maria<strong>v</strong>al</li>
+            <li>auto + -val → auto<strong>v</strong>al</li>
+            <li>kave (coffee) + -val → kave<strong>v</strong>al</li>
+        </ul>
+    `;
+    mainContent.appendChild(section2);
+
+    // ==================== SECTION 3: PRONOUN INSTRUMENTALS ====================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Personal Pronouns in Instrumental</h2>
+        <p class="mb-4 text-slate-600">Personal pronouns have special instrumental forms:</p>
+
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Person</th><th class="border px-2">Nominative</th><th class="border px-2">Instrumental</th><th class="border px-2">Example</th></tr>
+            <tr><td class="border px-2">I</td><td class="border px-2">en</td><td class="border px-2 font-medium">velem</td><td class="border px-2">Gyere velem! (Come with me!)</td></tr>
+            <tr><td class="border px-2">you (sg.)</td><td class="border px-2">te</td><td class="border px-2 font-medium">veled</td><td class="border px-2">Beszélek veled. (I talk with you.)</td></tr>
+            <tr><td class="border px-2">he/she</td><td class="border px-2">o</td><td class="border px-2 font-medium">vele</td><td class="border px-2">Megyek vele. (I go with him/her.)</td></tr>
+            <tr><td class="border px-2">you (formal)</td><td class="border px-2">On</td><td class="border px-2 font-medium">Onnel</td><td class="border px-2">Onnel beszelek. (I speak with you.)</td></tr>
+            <tr><td class="border px-2">we</td><td class="border px-2">mi</td><td class="border px-2 font-medium">velunk</td><td class="border px-2">Gyere velunk! (Come with us!)</td></tr>
+            <tr><td class="border px-2">you (pl.)</td><td class="border px-2">ti</td><td class="border px-2 font-medium">veletek</td><td class="border px-2">Talalkoztam veletek. (I met with you all.)</td></tr>
+            <tr><td class="border px-2">they</td><td class="border px-2">ok</td><td class="border px-2 font-medium">veluk</td><td class="border px-2">Vacsorazom veluk. (I dine with them.)</td></tr>
+        </table>
+
+        <div class="grammar-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">Common Phrases with Pronouns</h4>
+            <p class="text-slate-700 text-sm">
+                Mi van veled? (What's wrong with you?)<br>
+                Menjel vele! (Go with him/her!)<br>
+                Beszélek veluk errol. (I'll talk with them about this.)
+            </p>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // ==================== SECTION 4: TRANSPORTATION & MEANS ====================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Transportation & Means</h2>
+        <p class="mb-4 text-slate-600">The instrumental is commonly used to express means of transportation:</p>
+
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Vehicle</th><th class="border px-2">Instrumental</th><th class="border px-2">Example</th></tr>
+            <tr><td class="border px-2">auto (car)</td><td class="border px-2 font-medium">autoval</td><td class="border px-2">Autoval megyek. (I go by car.)</td></tr>
+            <tr><td class="border px-2">busz (bus)</td><td class="border px-2 font-medium">busszal</td><td class="border px-2">Busszal utazom. (I travel by bus.)</td></tr>
+            <tr><td class="border px-2">vonat (train)</td><td class="border px-2 font-medium">vonattal</td><td class="border px-2">Vonattal jon. (He comes by train.)</td></tr>
+            <tr><td class="border px-2">repulo (plane)</td><td class="border px-2 font-medium">repulovel</td><td class="border px-2">Repulovel megyunk. (We go by plane.)</td></tr>
+            <tr><td class="border px-2">bicikli (bicycle)</td><td class="border px-2 font-medium">biciklivel</td><td class="border px-2">Biciklivel jarok. (I go by bicycle.)</td></tr>
+            <tr><td class="border px-2">metro (subway)</td><td class="border px-2 font-medium">metroval</td><td class="border px-2">Metroval megyek. (I go by subway.)</td></tr>
+            <tr><td class="border px-2">taxi</td><td class="border px-2 font-medium">taxival</td><td class="border px-2">Taxival erkeztek. (They arrive by taxi.)</td></tr>
+        </table>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Tools and Instruments</h3>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Tool</th><th class="border px-2">Instrumental</th><th class="border px-2">Example</th></tr>
+            <tr><td class="border px-2">toll (pen)</td><td class="border px-2 font-medium">tollal</td><td class="border px-2">Tollal irok. (I write with a pen.)</td></tr>
+            <tr><td class="border px-2">kes (knife)</td><td class="border px-2 font-medium">kessel</td><td class="border px-2">Kessel vagom. (I cut with a knife.)</td></tr>
+            <tr><td class="border px-2">villa (fork)</td><td class="border px-2 font-medium">villaval</td><td class="border px-2">Villaval eszem. (I eat with a fork.)</td></tr>
+            <tr><td class="border px-2">kanal (spoon)</td><td class="border px-2 font-medium">kanallal</td><td class="border px-2">Kanallal eszem. (I eat with a spoon.)</td></tr>
+            <tr><td class="border px-2">kez (hand)</td><td class="border px-2 font-medium">kezzel</td><td class="border px-2">Kezzel eszem. (I eat with my hand.)</td></tr>
+        </table>
+    `;
+    mainContent.appendChild(section4);
+
+    // ==================== STAGE 1: INSTRUMENTAL FORMATION (12 items) ====================
+    const stage1Data = [
+        { noun: 'auto', answer: 'autoval', english: 'car' },
+        { noun: 'busz', answer: 'busszal', english: 'bus' },
+        { noun: 'vonat', answer: 'vonattal', english: 'train' },
+        { noun: 'toll', answer: 'tollal', english: 'pen' },
+        { noun: 'kes', answer: 'kessel', english: 'knife' },
+        { noun: 'viz', answer: 'vizzel', english: 'water' },
+        { noun: 'kave', answer: 'kaveval', english: 'coffee' },
+        { noun: 'tej', answer: 'tejjel', english: 'milk' },
+        { noun: 'Peter', answer: 'Peterrel', english: 'Peter' },
+        { noun: 'Maria', answer: 'Mariaval', english: 'Maria' },
+        { noun: 'barat', answer: 'barattal', english: 'friend' },
+        { noun: 'csalad', answer: 'csaladd', english: 'family' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Form the Instrumental</h2>
+        <p class="mb-4 text-slate-600">Add the correct instrumental suffix (-val/-vel) with proper assimilation. Press Enter to check.</p>
+        <div id="stage1-exercise" class="space-y-4"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage1Data.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Exercise = document.getElementById('stage1-exercise');
+    const stage1Score = document.getElementById('stage1-score');
+    let stage1Results = new Array(stage1Data.length).fill(null);
+
+    stage1Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. ${item.noun} (${item.english})</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-48 focus:ring-2 focus:ring-teal-500 focus:border-teal-500" placeholder="Type instrumental...">
+                <span class="text-sm font-semibold stage1-feedback"></span>
+            </div>
+        `;
+        stage1Exercise.appendChild(wrapper);
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage1(idx, input, wrapper); });
+    });
+
+    function checkStage1(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage1-feedback');
+        const item = stage1Data[idx];
+        const result = checkWithAccentWarning(input.value, item.answer);
+        if (result === 'correct') {
+            feedback.textContent = `Correct! "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage1-feedback';
+            stage1Results[idx] = true;
+        } else if (result === 'accent-warning') {
+            feedback.textContent = `Almost! Watch accents: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage1-feedback';
+            stage1Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage1Results[idx] = null;
+        } else {
+            feedback.textContent = `Try again. Expected: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage1-feedback';
+            stage1Results[idx] = false;
+        }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        stage1Score.textContent = `Score: ${stage1Results.filter(r => r === true).length} / ${stage1Data.length}`;
+    }
+
+    // ==================== STAGE 2: PRONOUN INSTRUMENTALS (8 items) ====================
+    const stage2Data = [
+        { prompt: 'with me', answer: 'velem' },
+        { prompt: 'with you (sg)', answer: 'veled' },
+        { prompt: 'with him/her', answer: 'vele' },
+        { prompt: 'with us', answer: 'velunk' },
+        { prompt: 'with you (pl)', answer: 'veletek' },
+        { prompt: 'with them', answer: 'veluk' },
+        { prompt: 'with you (formal)', answer: 'Onnel' },
+        { prompt: 'with you (formal pl)', answer: 'Onokkel' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Pronoun Instrumentals</h2>
+        <p class="mb-4 text-slate-600">Write the instrumental form of each pronoun. Press Enter to check.</p>
+        <div id="stage2-exercise" class="space-y-4"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage2Data.length}</div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Exercise = document.getElementById('stage2-exercise');
+    const stage2Score = document.getElementById('stage2-score');
+    let stage2Results = new Array(stage2Data.length).fill(null);
+
+    stage2Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. ${item.prompt}</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-48 focus:ring-2 focus:ring-teal-500 focus:border-teal-500" placeholder="Type pronoun...">
+                <span class="text-sm font-semibold stage2-feedback"></span>
+            </div>
+        `;
+        stage2Exercise.appendChild(wrapper);
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage2(idx, input, wrapper); });
+    });
+
+    function checkStage2(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage2-feedback');
+        const item = stage2Data[idx];
+        const result = checkWithAccentWarning(input.value, item.answer);
+        if (result === 'correct') {
+            feedback.textContent = `Correct! "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage2-feedback';
+            stage2Results[idx] = true;
+        } else if (result === 'accent-warning') {
+            feedback.textContent = `Almost! Watch accents.`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage2-feedback';
+            stage2Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage2Results[idx] = null;
+        } else {
+            feedback.textContent = `Try again. Expected: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage2-feedback';
+            stage2Results[idx] = false;
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        stage2Score.textContent = `Score: ${stage2Results.filter(r => r === true).length} / ${stage2Data.length}`;
+    }
+
+    // ==================== STAGE 3: SENTENCE COMPLETION (10 items) ====================
+    const stage3Data = [
+        { sentence: '_____ megyek munkaba.', blank: 'Autoval', translation: 'I go to work by car.' },
+        { sentence: 'Gyere _____!', blank: 'velem', translation: 'Come with me!' },
+        { sentence: '_____ irok.', blank: 'Tollal', translation: 'I write with a pen.' },
+        { sentence: 'Beszelek _____.', blank: 'vele', translation: 'I talk with him/her.' },
+        { sentence: '_____ vagom a kenyeret.', blank: 'Kessel', translation: 'I cut the bread with a knife.' },
+        { sentence: '_____ utazom.', blank: 'Vonattal', translation: 'I travel by train.' },
+        { sentence: 'Talalkoztam _____.', blank: 'Peterrel', translation: 'I met with Peter.' },
+        { sentence: '_____ eszem a levest.', blank: 'Kanallal', translation: 'I eat the soup with a spoon.' },
+        { sentence: 'Gyertek _____!', blank: 'velunk', translation: 'Come with us!' },
+        { sentence: 'Iszom a _____.', blank: 'kaveval', translation: 'I drink coffee.' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Complete the Sentence</h2>
+        <p class="mb-4 text-slate-600">Fill in the blank with the correct instrumental form. Press Enter to check.</p>
+        <div id="stage3-exercise" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage3Data.length}</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Exercise = document.getElementById('stage3-exercise');
+    const stage3Score = document.getElementById('stage3-score');
+    let stage3Results = new Array(stage3Data.length).fill(null);
+
+    stage3Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. ${item.sentence}</p>
+            <p class="text-sm text-slate-500">(${item.translation})</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-48 focus:ring-2 focus:ring-teal-500 focus:border-teal-500" placeholder="Fill in blank...">
+                <span class="text-sm font-semibold stage3-feedback"></span>
+            </div>
+        `;
+        stage3Exercise.appendChild(wrapper);
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage3(idx, input, wrapper); });
+    });
+
+    function checkStage3(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage3-feedback');
+        const item = stage3Data[idx];
+        const result = checkWithAccentWarning(input.value, item.blank);
+        if (result === 'correct') {
+            feedback.textContent = `Correct!`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage3-feedback';
+            stage3Results[idx] = true;
+        } else if (result === 'accent-warning') {
+            feedback.textContent = `Almost! Watch accents: "${item.blank}"`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage3-feedback';
+            stage3Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage3Results[idx] = null;
+        } else {
+            feedback.textContent = `Expected: "${item.blank}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage3-feedback';
+            stage3Results[idx] = false;
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        stage3Score.textContent = `Score: ${stage3Results.filter(r => r === true).length} / ${stage3Data.length}`;
+    }
+
+    // ==================== STAGE 4: TRANSLATION (10 items) ====================
+    const stage4Data = [
+        { english: 'I go by bus.', hungarian: 'Busszal megyek.' },
+        { english: 'Come with me!', hungarian: 'Gyere velem!' },
+        { english: 'I write with a pen.', hungarian: 'Tollal irok.' },
+        { english: 'I eat with a fork.', hungarian: 'Villaval eszem.' },
+        { english: 'He travels by train.', hungarian: 'Vonattal utazik.' },
+        { english: 'I met with Maria.', hungarian: 'Talalkoztam Mariaval.' },
+        { english: 'Go with them!', hungarian: 'Menj veluk!' },
+        { english: 'I cut with a knife.', hungarian: 'Kessel vagok.' },
+        { english: 'I drink coffee with milk.', hungarian: 'Kavét iszom tejjel.' },
+        { english: 'Talk with her!', hungarian: 'Beszelj vele!' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Translation</h2>
+        <p class="mb-4 text-slate-600">Translate each sentence into Hungarian. Press Enter to check.</p>
+        <div id="stage4-exercise" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage4Data.length}</div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Exercise = document.getElementById('stage4-exercise');
+    const stage4Score = document.getElementById('stage4-score');
+    let stage4Results = new Array(stage4Data.length).fill(null);
+
+    stage4Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. "${item.english}"</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full focus:ring-2 focus:ring-teal-500 focus:border-teal-500" placeholder="Type Hungarian...">
+                <span class="text-sm font-semibold stage4-feedback"></span>
+            </div>
+        `;
+        stage4Exercise.appendChild(wrapper);
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage4(idx, input, wrapper); });
+    });
+
+    function checkStage4(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage4-feedback');
+        const item = stage4Data[idx];
+        const result = checkWithAccentWarning(input.value, item.hungarian);
+        if (result === 'correct') {
+            feedback.textContent = `Correct!`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage4-feedback';
+            stage4Results[idx] = true;
+        } else if (result === 'accent-warning') {
+            feedback.textContent = `Almost! Watch accents.`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage4-feedback';
+            stage4Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage4Results[idx] = null;
+        } else {
+            feedback.textContent = `Expected: "${item.hungarian}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage4-feedback';
+            stage4Results[idx] = false;
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        stage4Score.textContent = `Score: ${stage4Results.filter(r => r === true).length} / ${stage4Data.length}`;
+    }
+
+    // ==================== FINAL SUMMARY ====================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 mt-12 bg-gradient-to-r from-teal-50 to-slate-50 p-6 rounded-xl';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Lesson Summary</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Instrumental Formation</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li><strong>-val</strong> - back vowels (autoval)</li>
+                    <li><strong>-vel</strong> - front vowels (kessel)</li>
+                    <li>Consonant assimilation: -v- → final consonant</li>
+                    <li>Vowel endings keep -v- (Mariaval)</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Key Uses</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li>Accompaniment: Megyek Peterrel (I go with Peter)</li>
+                    <li>Transportation: Busszal megyek (I go by bus)</li>
+                    <li>Tools: Tollal irok (I write with a pen)</li>
+                    <li>Pronouns: velem, veled, vele, velunk, veletek, veluk</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+    </script>
+</body>
+</html>
