@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 22: Possession & Possessive Suffixes - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .highlight { background-color: #fef3c7; font-weight: bold; }
+        .suffix { color: #0f766e; font-weight: bold; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 22: Possession & Possessive Suffixes <span class="block text-xl text-slate-500 font-normal">(Birtokos szerkezet)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Learn how Hungarian expresses possession using suffixes attached directly to nouns. This critical feature allows you to say "my house," "your book," "their car" without separate possessive pronouns.</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    const main = document.getElementById('main-content');
+
+    // Helper function for accent-insensitive comparison
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[őŐöÖüÜűŰáÁéÉíÍóÓúÚ]/g, function(m) {
+            const map = { 'á':'a','Á':'A','é':'e','É':'E','í':'i','Í':'I','ó':'o','Ó':'O','ö':'o','Ö':'O','ő':'o','Ő':'O','ú':'u','Ú':'U','ü':'u','Ü':'U','ű':'u','Ű':'U' };
+            return map[m] || m;
+        });
+    }
+
+    // Section 1: Introduction to Possessive Suffixes
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">The Hungarian Possessive System</h2>
+        <p class="mb-4">Unlike English, which uses separate words like "my," "your," "his," Hungarian attaches <b>possessive suffixes</b> directly to nouns. This is one of the most distinctive and important features of Hungarian grammar.</p>
+        <div class="bg-sky-50 border-l-4 border-sky-500 p-4 mb-4">
+            <p class="mb-2"><b>English:</b> <span class="highlight">my</span> house, <span class="highlight">your</span> book, <span class="highlight">their</span> car</p>
+            <p><b>Hungarian:</b> ház<span class="suffix">am</span>, könyv<span class="suffix">ed</span>, autó<span class="suffix">juk</span></p>
+        </div>
+        <p class="mb-2">The suffix changes based on:</p>
+        <ul class="list-disc pl-6 mb-4">
+            <li><b>Who possesses:</b> 1st, 2nd, or 3rd person; singular or plural</li>
+            <li><b>Vowel harmony:</b> Back vowel vs front vowel nouns</li>
+            <li><b>Noun ending:</b> Vowel vs consonant ending</li>
+        </ul>
+        <p class="text-slate-600 italic">Mastering possessive suffixes will dramatically improve your Hungarian!</p>
+    `;
+    main.appendChild(section1);
+
+    // Section 2: Complete Possessive Suffix Table
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Possessive Suffix Paradigm</h2>
+        <p class="mb-4">Here is the complete system of possessive suffixes for nouns ending in consonants:</p>
+        <div class="overflow-x-auto">
+            <table class="mb-4 w-full border text-sm">
+                <tr>
+                    <th class="border px-2">Person</th>
+                    <th class="border px-2">English</th>
+                    <th class="border px-2">Back Vowel</th>
+                    <th class="border px-2">Front Vowel</th>
+                    <th class="border px-2">Example (ház)</th>
+                    <th class="border px-2">Example (kert)</th>
+                </tr>
+                <tr>
+                    <td class="border px-2">1st sg.</td>
+                    <td class="border px-2">my</td>
+                    <td class="border px-2 font-bold text-teal-700">-om / -am</td>
+                    <td class="border px-2 font-bold text-teal-700">-em / -öm</td>
+                    <td class="border px-2">ház<span class="suffix">am</span></td>
+                    <td class="border px-2">kert<span class="suffix">em</span></td>
+                </tr>
+                <tr>
+                    <td class="border px-2">2nd sg.</td>
+                    <td class="border px-2">your (te)</td>
+                    <td class="border px-2 font-bold text-teal-700">-od / -ad</td>
+                    <td class="border px-2 font-bold text-teal-700">-ed / -öd</td>
+                    <td class="border px-2">ház<span class="suffix">ad</span></td>
+                    <td class="border px-2">kert<span class="suffix">ed</span></td>
+                </tr>
+                <tr>
+                    <td class="border px-2">3rd sg.</td>
+                    <td class="border px-2">his/her/its</td>
+                    <td class="border px-2 font-bold text-teal-700">-ja / -a</td>
+                    <td class="border px-2 font-bold text-teal-700">-je / -e</td>
+                    <td class="border px-2">ház<span class="suffix">a</span></td>
+                    <td class="border px-2">kert<span class="suffix">je</span></td>
+                </tr>
+                <tr>
+                    <td class="border px-2">1st pl.</td>
+                    <td class="border px-2">our</td>
+                    <td class="border px-2 font-bold text-teal-700">-unk</td>
+                    <td class="border px-2 font-bold text-teal-700">-ünk</td>
+                    <td class="border px-2">ház<span class="suffix">unk</span></td>
+                    <td class="border px-2">kert<span class="suffix">ünk</span></td>
+                </tr>
+                <tr>
+                    <td class="border px-2">2nd pl.</td>
+                    <td class="border px-2">your (ti)</td>
+                    <td class="border px-2 font-bold text-teal-700">-otok / -atok</td>
+                    <td class="border px-2 font-bold text-teal-700">-etek / -ötök</td>
+                    <td class="border px-2">ház<span class="suffix">atok</span></td>
+                    <td class="border px-2">kert<span class="suffix">etek</span></td>
+                </tr>
+                <tr>
+                    <td class="border px-2">3rd pl.</td>
+                    <td class="border px-2">their</td>
+                    <td class="border px-2 font-bold text-teal-700">-juk / -uk</td>
+                    <td class="border px-2 font-bold text-teal-700">-jük / -ük</td>
+                    <td class="border px-2">ház<span class="suffix">uk</span></td>
+                    <td class="border px-2">kert<span class="suffix">jük</span></td>
+                </tr>
+            </table>
+        </div>
+        <div class="bg-amber-50 border-l-4 border-amber-500 p-4">
+            <p><b>Vowel-ending nouns:</b> For nouns ending in -a or -e, the vowel lengthens and no linking vowel is needed:</p>
+            <ul class="list-disc pl-6 mt-2">
+                <li>alma (apple) → almám (my apple), almád (your apple), almája (his/her apple)</li>
+                <li>körte (pear) → körtém (my pear), körtéd (your pear), körtéje (his/her pear)</li>
+            </ul>
+        </div>
+    `;
+    main.appendChild(section2);
+
+    // Section 3: Case Stacking
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Possessive + Case (Stacking)</h2>
+        <p class="mb-4">A powerful feature of Hungarian: you can add <b>other case suffixes after the possessive suffix</b>. The possessive always comes first!</p>
+        <div class="bg-teal-50 border-l-4 border-teal-500 p-4 mb-4">
+            <p class="text-lg font-semibold mb-2">Noun + Possessive + Case</p>
+            <ul class="list-disc pl-6">
+                <li>ház + am + at → <b>házamat</b> (my house - accusative)</li>
+                <li>ház + ad + ban → <b>házadban</b> (in your house - inessive)</li>
+                <li>kert + ünk + be → <b>kertünkbe</b> (into our garden - illative)</li>
+            </ul>
+        </div>
+        <table class="mb-4 w-full border text-sm">
+            <tr>
+                <th class="border px-2">Hungarian</th>
+                <th class="border px-2">Breakdown</th>
+                <th class="border px-2">English</th>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">Látom a házamat.</td>
+                <td class="border px-2">ház + am + at</td>
+                <td class="border px-2">I see my house.</td>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">A házadban vagyok.</td>
+                <td class="border px-2">ház + ad + ban</td>
+                <td class="border px-2">I am in your house.</td>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">Az autójukkal megyünk.</td>
+                <td class="border px-2">autó + juk + val</td>
+                <td class="border px-2">We go with their car.</td>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">A könyvemből olvasok.</td>
+                <td class="border px-2">könyv + em + ből</td>
+                <td class="border px-2">I read from my book.</td>
+            </tr>
+        </table>
+    `;
+    main.appendChild(section3);
+
+    // Section 4: Using with Pronouns
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Emphatic Possession with Pronouns</h2>
+        <p class="mb-4">Personal pronouns are <b>optional</b> with possessive suffixes (since the suffix already shows the possessor). However, pronouns can be added for <b>emphasis or contrast</b>:</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr>
+                <th class="border px-2">Neutral</th>
+                <th class="border px-2">Emphatic</th>
+                <th class="border px-2">English</th>
+            </tr>
+            <tr>
+                <td class="border px-2">A házam nagy.</td>
+                <td class="border px-2 font-bold text-teal-700">Az én házam nagy.</td>
+                <td class="border px-2">MY house is big (not yours).</td>
+            </tr>
+            <tr>
+                <td class="border px-2">A könyved itt van.</td>
+                <td class="border px-2 font-bold text-teal-700">A te könyved itt van.</td>
+                <td class="border px-2">YOUR book is here.</td>
+            </tr>
+            <tr>
+                <td class="border px-2">Az autójuk drága.</td>
+                <td class="border px-2 font-bold text-teal-700">Az ő autójuk drága.</td>
+                <td class="border px-2">THEIR car is expensive.</td>
+            </tr>
+        </table>
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-4">
+            <p><b>Possessive pronouns for emphasis:</b></p>
+            <ul class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+                <li><b>az én</b> ... -m (my)</li>
+                <li><b>a te</b> ... -d (your)</li>
+                <li><b>az ő</b> ... -ja/-je (his/her)</li>
+                <li><b>a mi</b> ... -nk (our)</li>
+                <li><b>a ti</b> ... -tok/-tek (your pl.)</li>
+                <li><b>az ő</b> ... -juk/-jük (their)</li>
+            </ul>
+        </div>
+    `;
+    main.appendChild(section4);
+
+    // Section 5: Irregular Forms
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Irregular Possessed Forms</h2>
+        <p class="mb-4">Some common nouns have <b>irregular changes</b> when possessive suffixes are added:</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr>
+                <th class="border px-2">Noun</th>
+                <th class="border px-2">Meaning</th>
+                <th class="border px-2">My</th>
+                <th class="border px-2">Your</th>
+                <th class="border px-2">His/Her</th>
+                <th class="border px-2">Note</th>
+            </tr>
+            <tr>
+                <td class="border px-2">apa</td>
+                <td class="border px-2">father</td>
+                <td class="border px-2 font-bold">apám</td>
+                <td class="border px-2">apád</td>
+                <td class="border px-2">apja</td>
+                <td class="border px-2">Vowel lengthens</td>
+            </tr>
+            <tr>
+                <td class="border px-2">anya</td>
+                <td class="border px-2">mother</td>
+                <td class="border px-2 font-bold">anyám</td>
+                <td class="border px-2">anyád</td>
+                <td class="border px-2">anyja</td>
+                <td class="border px-2">Vowel lengthens</td>
+            </tr>
+            <tr>
+                <td class="border px-2">kéz</td>
+                <td class="border px-2">hand</td>
+                <td class="border px-2 font-bold">kezem</td>
+                <td class="border px-2">kezed</td>
+                <td class="border px-2">keze</td>
+                <td class="border px-2">é → e</td>
+            </tr>
+            <tr>
+                <td class="border px-2">víz</td>
+                <td class="border px-2">water</td>
+                <td class="border px-2 font-bold">vizem</td>
+                <td class="border px-2">vized</td>
+                <td class="border px-2">vize</td>
+                <td class="border px-2">í → i</td>
+            </tr>
+            <tr>
+                <td class="border px-2">tó</td>
+                <td class="border px-2">lake</td>
+                <td class="border px-2 font-bold">tavam</td>
+                <td class="border px-2">tavad</td>
+                <td class="border px-2">tava</td>
+                <td class="border px-2">ó → av</td>
+            </tr>
+            <tr>
+                <td class="border px-2">fű</td>
+                <td class="border px-2">grass</td>
+                <td class="border px-2 font-bold">füvem</td>
+                <td class="border px-2">füved</td>
+                <td class="border px-2">füve</td>
+                <td class="border px-2">ű → üv</td>
+            </tr>
+        </table>
+        <div class="bg-rose-50 border-l-4 border-rose-500 p-4">
+            <p><b>Family terms are very common!</b> Memorize: anyám (my mother), apám (my father), testvérem (my sibling), gyerekem (my child)</p>
+        </div>
+    `;
+    main.appendChild(section5);
+
+    // ==================== EXERCISES ====================
+
+    // Stage 1: Suffix Formation (15 items)
+    const stage1Questions = [
+        { noun: 'ház', person: 'my', answer: 'házam', translation: 'my house' },
+        { noun: 'kert', person: 'my', answer: 'kertem', translation: 'my garden' },
+        { noun: 'könyv', person: 'your (te)', answer: 'könyved', translation: 'your book' },
+        { noun: 'autó', person: 'his/her', answer: 'autója', translation: 'his/her car' },
+        { noun: 'szoba', person: 'our', answer: 'szobánk', translation: 'our room' },
+        { noun: 'iskola', person: 'your (ti)', answer: 'iskolátok', translation: 'your school' },
+        { noun: 'város', person: 'their', answer: 'városuk', translation: 'their city' },
+        { noun: 'barát', person: 'my', answer: 'barátom', translation: 'my friend' },
+        { noun: 'kutya', person: 'your (te)', answer: 'kutyád', translation: 'your dog' },
+        { noun: 'macska', person: 'his/her', answer: 'macskája', translation: 'his/her cat' },
+        { noun: 'asztal', person: 'our', answer: 'asztalunk', translation: 'our table' },
+        { noun: 'szék', person: 'your (ti)', answer: 'széketek', translation: 'your chair' },
+        { noun: 'ablak', person: 'their', answer: 'ablakuk', translation: 'their window' },
+        { noun: 'ajtó', person: 'my', answer: 'ajtóm', translation: 'my door' },
+        { noun: 'kocsi', person: 'his/her', answer: 'kocsija', translation: 'his/her car' }
+    ];
+
+    const stage1Div = document.createElement('section');
+    stage1Div.className = 'mb-8';
+    stage1Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Suffix Formation (15 items)</h2>
+        <p class="mb-4">Add the correct possessive suffix to form the possessed noun:</p>
+        <div id="stage1-exercise" class="space-y-3"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage1Div);
+
+    const stage1Exercise = document.getElementById('stage1-exercise');
+    const stage1Score = document.getElementById('stage1-score');
+
+    stage1Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[180px] text-slate-800';
+        label.innerHTML = `<b>${q.noun}</b> + <span class="text-teal-700">${q.person}</span> =`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-32 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `${q.person} form of ${q.noun}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkStage1(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage1Exercise.appendChild(wrapper);
+    });
+
+    function checkStage1(idx) {
+        const wrapper = stage1Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage1Questions[idx];
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = q.answer.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = `Correct! (${q.translation})`;
+            feedback.className = 'ml-2 text-green-600 font-semibold text-sm';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Watch accents! ${q.answer}`;
+            feedback.className = 'ml-2 text-yellow-600 font-semibold text-sm';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Correct: ${q.answer}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold text-sm';
+        }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let correct = 0;
+        for (let i = 0; i < stage1Questions.length; i++) {
+            const wrapper = stage1Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage1Score.textContent = `Score: ${correct} / ${stage1Questions.length}`;
+    }
+
+    // Stage 2: Vowel Harmony Practice (10 items)
+    const stage2Questions = [
+        { noun: 'óra', meaning: 'clock/hour', options: ['órám', 'órém', 'órom'], correct: 'órám', person: 'my' },
+        { noun: 'cipő', meaning: 'shoe', options: ['cipőm', 'cipőm', 'cipöm'], correct: 'cipőm', person: 'my' },
+        { noun: 'gyerek', meaning: 'child', options: ['gyerekem', 'gyereköm', 'gyerekam'], correct: 'gyerekem', person: 'my' },
+        { noun: 'toll', meaning: 'pen', options: ['tollom', 'tollem', 'tollam'], correct: 'tollam', person: 'my' },
+        { noun: 'füzet', meaning: 'notebook', options: ['füzetem', 'füzetöm', 'füzetam'], correct: 'füzetem', person: 'my' },
+        { noun: 'kabát', meaning: 'coat', options: ['kabátom', 'kabátam', 'kabátem'], correct: 'kabátom', person: 'my' },
+        { noun: 'pohár', meaning: 'glass', options: ['poharam', 'pohárom', 'poharem'], correct: 'poharam', person: 'my' },
+        { noun: 'tükör', meaning: 'mirror', options: ['tükröm', 'tüköröm', 'tükrem'], correct: 'tükröm', person: 'my' },
+        { noun: 'idő', meaning: 'time/weather', options: ['időm', 'idöm', 'idom'], correct: 'időm', person: 'my' },
+        { noun: 'lakás', meaning: 'apartment', options: ['lakásom', 'lakásam', 'lakásem'], correct: 'lakásom', person: 'my' }
+    ];
+
+    const stage2Div = document.createElement('section');
+    stage2Div.className = 'mb-8';
+    stage2Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Vowel Harmony Practice (10 items)</h2>
+        <p class="mb-4">Select the correct possessive form based on vowel harmony:</p>
+        <div id="stage2-exercise" class="space-y-3"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage2Div);
+
+    const stage2Exercise = document.getElementById('stage2-exercise');
+    const stage2Score = document.getElementById('stage2-score');
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[160px] text-slate-800';
+        label.innerHTML = `<b>${q.noun}</b> <span class="text-slate-500">(${q.meaning})</span> → ${q.person}:`;
+
+        const select = document.createElement('select');
+        select.className = 'border border-slate-300 rounded-md px-3 py-1 w-36 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        select.innerHTML = '<option value="">??</option>';
+        q.options.forEach(opt => {
+            const option = document.createElement('option');
+            option.value = opt;
+            option.textContent = opt;
+            select.appendChild(option);
+        });
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        select.addEventListener('change', function() {
+            checkStage2(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(select);
+        wrapper.appendChild(feedback);
+        stage2Exercise.appendChild(wrapper);
+    });
+
+    function checkStage2(idx) {
+        const wrapper = stage2Exercise.children[idx];
+        const select = wrapper.querySelector('select');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage2Questions[idx];
+
+        if (select.value === q.correct) {
+            feedback.textContent = `Correct!`;
+            feedback.className = 'ml-2 text-green-600 font-semibold text-sm';
+        } else if (select.value === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Correct: ${q.correct}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold text-sm';
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        for (let i = 0; i < stage2Questions.length; i++) {
+            const wrapper = stage2Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage2Score.textContent = `Score: ${correct} / ${stage2Questions.length}`;
+    }
+
+    // Stage 3: Translation (12 items)
+    const stage3Questions = [
+        { english: 'my book', hungarian: 'a könyvem' },
+        { english: 'your house', hungarian: 'a házad' },
+        { english: 'his car', hungarian: 'az autója' },
+        { english: 'her mother', hungarian: 'az anyja' },
+        { english: 'our garden', hungarian: 'a kertünk' },
+        { english: 'your (pl.) school', hungarian: 'az iskolátok' },
+        { english: 'their dog', hungarian: 'a kutyájuk' },
+        { english: 'my father', hungarian: 'az apám' },
+        { english: 'your friend', hungarian: 'a barátod' },
+        { english: 'her child', hungarian: 'a gyereke' },
+        { english: 'our city', hungarian: 'a városunk' },
+        { english: 'their apartment', hungarian: 'a lakásuk' }
+    ];
+
+    const stage3Div = document.createElement('section');
+    stage3Div.className = 'mb-8';
+    stage3Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Translation Practice (12 items)</h2>
+        <p class="mb-4">Translate the English possessive phrase to Hungarian (include the article "a/az"):</p>
+        <div id="stage3-exercise" class="space-y-3"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage3Div);
+
+    const stage3Exercise = document.getElementById('stage3-exercise');
+    const stage3Score = document.getElementById('stage3-score');
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[160px] text-slate-800 font-medium';
+        label.textContent = q.english;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-40 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Translate: ${q.english}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkStage3(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage3Exercise.appendChild(wrapper);
+    });
+
+    function checkStage3(idx) {
+        const wrapper = stage3Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage3Questions[idx];
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = q.hungarian.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = `Correct!`;
+            feedback.className = 'ml-2 text-green-600 font-semibold text-sm';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Watch accents! ${q.hungarian}`;
+            feedback.className = 'ml-2 text-yellow-600 font-semibold text-sm';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Correct: ${q.hungarian}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold text-sm';
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let correct = 0;
+        for (let i = 0; i < stage3Questions.length; i++) {
+            const wrapper = stage3Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage3Score.textContent = `Score: ${correct} / ${stage3Questions.length}`;
+    }
+
+    // Stage 4: Case Stacking (10 items)
+    const stage4Questions = [
+        { english: 'I see my house', noun: 'ház', possessive: 'am', case: 'at', answer: 'házamat', hungarian: 'Látom a házamat.' },
+        { english: 'in your room', noun: 'szoba', possessive: 'ád', case: 'ban', answer: 'szobádban', hungarian: 'a szobádban' },
+        { english: 'to our garden', noun: 'kert', possessive: 'ünk', case: 'be', answer: 'kertünkbe', hungarian: 'a kertünkbe' },
+        { english: 'from his book', noun: 'könyv', possessive: 'e', case: 'ből', answer: 'könyvéből', hungarian: 'a könyvéből' },
+        { english: 'with their car', noun: 'autó', possessive: 'juk', case: 'val', answer: 'autójukkal', hungarian: 'az autójukkal' },
+        { english: 'I love your dog', noun: 'kutya', possessive: 'ád', case: 'at', answer: 'kutyádat', hungarian: 'Szeretem a kutyádat.' },
+        { english: 'on my table', noun: 'asztal', possessive: 'om', case: 'on', answer: 'asztalomon', hungarian: 'az asztalomon' },
+        { english: 'to your (pl.) school', noun: 'iskola', possessive: 'átok', case: 'ba', answer: 'iskolátokba', hungarian: 'az iskolátokba' },
+        { english: 'for her child', noun: 'gyerek', possessive: 'e', case: 'nek', answer: 'gyerekének', hungarian: 'a gyerekének' },
+        { english: 'about our city', noun: 'város', possessive: 'unk', case: 'ról', answer: 'városunkról', hungarian: 'a városunkról' }
+    ];
+
+    const stage4Div = document.createElement('section');
+    stage4Div.className = 'mb-8';
+    stage4Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Case Stacking (10 items)</h2>
+        <p class="mb-4">Combine the possessive suffix with another case suffix. Write the complete form:</p>
+        <div id="stage4-exercise" class="space-y-3"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage4Div);
+
+    const stage4Exercise = document.getElementById('stage4-exercise');
+    const stage4Score = document.getElementById('stage4-score');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 bg-teal-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'text-slate-800';
+        label.innerHTML = `<b>"${q.english}"</b> → <span class="text-teal-700">${q.noun} + possessive + case</span>`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-44 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Case stacking for: ${q.english}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkStage4(idx);
+        });
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(label);
+        wrapper.appendChild(inputRow);
+        stage4Exercise.appendChild(wrapper);
+    });
+
+    function checkStage4(idx) {
+        const wrapper = stage4Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage4Questions[idx];
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = q.answer.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = `Correct! (${q.hungarian})`;
+            feedback.className = 'ml-2 text-green-600 font-semibold text-sm';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Watch accents! ${q.answer}`;
+            feedback.className = 'ml-2 text-yellow-600 font-semibold text-sm';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Correct: ${q.answer}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold text-sm';
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        for (let i = 0; i < stage4Questions.length; i++) {
+            const wrapper = stage4Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage4Score.textContent = `Score: ${correct} / ${stage4Questions.length}`;
+    }
+
+    // Stage 5: Family Possession (8 items)
+    const stage5Questions = [
+        { sentence: '___ tanár.', hint: 'My mother', answer: 'Az anyám', translation: 'My mother is a teacher.' },
+        { sentence: '___ orvos.', hint: 'His father', answer: 'Az apja', translation: 'His father is a doctor.' },
+        { sentence: '___ Budapesten laknak.', hint: 'Our parents', answer: 'A szüleink', translation: 'Our parents live in Budapest.' },
+        { sentence: '___ még kicsi.', hint: 'Their child', answer: 'A gyerekük', translation: 'Their child is still small.' },
+        { sentence: '___ egyetemre jár.', hint: 'Your (te) sister', answer: 'A nővéred', translation: 'Your sister goes to university.' },
+        { sentence: '___ nagyon kedves.', hint: 'Her grandmother', answer: 'A nagymamája', translation: 'Her grandmother is very kind.' },
+        { sentence: '___ mérnök.', hint: 'My brother', answer: 'A bátyám', translation: 'My brother is an engineer.' },
+        { sentence: '___ nagy család.', hint: 'Our family', answer: 'A családunk', translation: 'Our family is a big family.' }
+    ];
+
+    const stage5Div = document.createElement('section');
+    stage5Div.className = 'mb-8';
+    stage5Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Family Possession (8 items)</h2>
+        <p class="mb-4">Complete the sentence with the correct family term with possessive suffix:</p>
+        <div id="stage5-exercise" class="space-y-3"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage5Div);
+
+    const stage5Exercise = document.getElementById('stage5-exercise');
+    const stage5Score = document.getElementById('stage5-score');
+
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 bg-rose-50 rounded-lg';
+
+        const hintSpan = document.createElement('span');
+        hintSpan.className = 'text-slate-600 text-sm';
+        hintSpan.innerHTML = `<i>Hint: ${q.hint}</i>`;
+
+        const sentenceRow = document.createElement('div');
+        sentenceRow.className = 'flex flex-col md:flex-row items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-40 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Family term for: ${q.hint}`);
+
+        const label = document.createElement('span');
+        label.className = 'text-slate-800';
+        label.textContent = q.sentence.replace('___', '');
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkStage5(idx);
+        });
+
+        sentenceRow.appendChild(input);
+        sentenceRow.appendChild(label);
+        sentenceRow.appendChild(feedback);
+        wrapper.appendChild(hintSpan);
+        wrapper.appendChild(sentenceRow);
+        stage5Exercise.appendChild(wrapper);
+    });
+
+    function checkStage5(idx) {
+        const wrapper = stage5Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage5Questions[idx];
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = q.answer.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = `Correct! (${q.translation})`;
+            feedback.className = 'ml-2 text-green-600 font-semibold text-sm';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Watch accents! ${q.answer}`;
+            feedback.className = 'ml-2 text-yellow-600 font-semibold text-sm';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Correct: ${q.answer}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold text-sm';
+        }
+        updateStage5Score();
+    }
+
+    function updateStage5Score() {
+        let correct = 0;
+        for (let i = 0; i < stage5Questions.length; i++) {
+            const wrapper = stage5Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage5Score.textContent = `Score: ${correct} / ${stage5Questions.length}`;
+    }
+
+    // Stage 6: Dialogue with Possession (8 items)
+    const stage6Questions = [
+        { speaker: 'A', prompt: 'Ez a te ___?', hint: 'car', answer: 'autód', context: 'Is this your car?' },
+        { speaker: 'B', prompt: 'Igen, ez az én ___.', hint: 'car', answer: 'autóm', context: 'Yes, this is my car.' },
+        { speaker: 'A', prompt: 'Milyen nagy a ___!', hint: 'your dog', answer: 'kutyád', context: 'How big your dog is!' },
+        { speaker: 'B', prompt: 'Köszönöm! A ___ is nagy.', hint: 'his brother', answer: 'bátyja', context: 'Thanks! His brother is big too.' },
+        { speaker: 'A', prompt: 'Hol van a ___?', hint: 'your (pl.) teacher', answer: 'tanárotok', context: 'Where is your teacher?' },
+        { speaker: 'B', prompt: 'A ___ az osztályban van.', hint: 'our teacher', answer: 'tanárunk', context: 'Our teacher is in the classroom.' },
+        { speaker: 'A', prompt: 'Tetszik a ___?', hint: 'their house', answer: 'házuk', context: 'Do you like their house?' },
+        { speaker: 'B', prompt: 'Igen, de a ___ nagyobb.', hint: 'our house', answer: 'házunk', context: 'Yes, but our house is bigger.' }
+    ];
+
+    const stage6Div = document.createElement('section');
+    stage6Div.className = 'mb-8';
+    stage6Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 6: Dialogue with Possession (8 items)</h2>
+        <p class="mb-4">Complete the dialogue by filling in the correct possessive form:</p>
+        <div id="stage6-exercise" class="space-y-3"></div>
+        <div id="stage6-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage6Div);
+
+    const stage6Exercise = document.getElementById('stage6-exercise');
+    const stage6Score = document.getElementById('stage6-score');
+
+    stage6Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 bg-purple-50 rounded-lg';
+
+        const contextSpan = document.createElement('span');
+        contextSpan.className = 'text-purple-700 text-sm italic';
+        contextSpan.textContent = `(${q.context})`;
+
+        const dialogueRow = document.createElement('div');
+        dialogueRow.className = 'flex flex-col md:flex-row items-center gap-2';
+
+        const speakerSpan = document.createElement('span');
+        speakerSpan.className = 'font-bold text-slate-700 min-w-[30px]';
+        speakerSpan.textContent = `${q.speaker}:`;
+
+        const promptParts = q.prompt.split('___');
+        const beforeBlank = document.createElement('span');
+        beforeBlank.className = 'text-slate-800';
+        beforeBlank.textContent = promptParts[0];
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-2 py-1 w-28 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Dialogue: ${q.hint}`);
+        input.setAttribute('placeholder', q.hint);
+
+        const afterBlank = document.createElement('span');
+        afterBlank.className = 'text-slate-800';
+        afterBlank.textContent = promptParts[1] || '';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkStage6(idx);
+        });
+
+        dialogueRow.appendChild(speakerSpan);
+        dialogueRow.appendChild(beforeBlank);
+        dialogueRow.appendChild(input);
+        dialogueRow.appendChild(afterBlank);
+        dialogueRow.appendChild(feedback);
+        wrapper.appendChild(contextSpan);
+        wrapper.appendChild(dialogueRow);
+        stage6Exercise.appendChild(wrapper);
+    });
+
+    function checkStage6(idx) {
+        const wrapper = stage6Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage6Questions[idx];
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = q.answer.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = `Correct!`;
+            feedback.className = 'ml-2 text-green-600 font-semibold text-sm';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Watch accents! ${q.answer}`;
+            feedback.className = 'ml-2 text-yellow-600 font-semibold text-sm';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Correct: ${q.answer}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold text-sm';
+        }
+        updateStage6Score();
+    }
+
+    function updateStage6Score() {
+        let correct = 0;
+        for (let i = 0; i < stage6Questions.length; i++) {
+            const wrapper = stage6Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage6Score.textContent = `Score: ${correct} / ${stage6Questions.length}`;
+    }
+
+    // Summary section
+    const summaryDiv = document.createElement('section');
+    summaryDiv.className = 'mb-8 bg-teal-50 border border-teal-200 rounded-lg p-6';
+    summaryDiv.innerHTML = `
+        <h2 class="text-xl font-bold text-teal-800 mb-4">Lesson Summary</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Key Suffixes:</h3>
+                <ul class="list-disc pl-5 text-slate-700 space-y-1">
+                    <li>my: <b>-om/-am/-em/-öm</b></li>
+                    <li>your (te): <b>-od/-ad/-ed/-öd</b></li>
+                    <li>his/her: <b>-ja/-a/-je/-e</b></li>
+                    <li>our: <b>-unk/-ünk</b></li>
+                    <li>your (ti): <b>-otok/-atok/-etek/-ötök</b></li>
+                    <li>their: <b>-juk/-uk/-jük/-ük</b></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Key Patterns:</h3>
+                <ul class="list-disc pl-5 text-slate-700 space-y-1">
+                    <li>ház → házam, házad, háza...</li>
+                    <li>kert → kertem, kerted, kertje...</li>
+                    <li>Case stacking: ház + am + at → házamat</li>
+                    <li>Emphasis: az én házam (MY house)</li>
+                    <li>Family: anyám, apám, testvérem</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-3 bg-white rounded border border-teal-300">
+            <p class="text-teal-800"><b>Practice tip:</b> Possessive suffixes are used constantly in Hungarian. Practice with family terms first (anyám, apám) as these are the most common, then expand to everyday objects!</p>
+        </div>
+    `;
+    main.appendChild(summaryDiv);
+
+    // Total score section
+    const totalScoreDiv = document.createElement('section');
+    totalScoreDiv.className = 'text-center py-4 bg-slate-100 rounded-lg';
+    totalScoreDiv.innerHTML = `
+        <h2 class="text-lg font-semibold text-slate-700">Total Exercises: 63</h2>
+        <p class="text-slate-600">Stage 1: 15 | Stage 2: 10 | Stage 3: 12 | Stage 4: 10 | Stage 5: 8 | Stage 6: 8</p>
+    `;
+    main.appendChild(totalScoreDiv);
+    </script>
+</body>
+</html>
