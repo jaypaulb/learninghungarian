@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 8: Accusative Case (-t suffix) - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .highlight { background-color: #fef3c7; font-weight: bold; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 8: The Accusative Case <span class="block text-xl text-slate-500 font-normal">(A tárgyeset: -t rag)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Learn how Hungarian marks direct objects using the accusative case suffix -t. This is essential for building proper sentences with verbs like "see," "eat," "read," and more.</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    const main = document.getElementById('main-content');
+
+    // Helper function for accent-insensitive comparison
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[őŐöÖüÜűŰáÁéÉíÍóÓúÚ]/g, function(m) {
+            const map = { 'á':'a','Á':'A','é':'e','É':'E','í':'i','Í':'I','ó':'o','Ó':'O','ö':'o','Ö':'O','ő':'o','Ő':'O','ú':'u','Ú':'U','ü':'u','Ü':'U','ű':'u','Ű':'U' };
+            return map[m] || m;
+        });
+    }
+
+    // Section 1: What is the Accusative Case?
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">What is the Accusative Case?</h2>
+        <p class="mb-4">In Hungarian, <b>grammatical cases</b> are suffixes added to nouns to show their role in a sentence. The <b>accusative case</b> marks the <b>direct object</b> - the thing that receives the action of the verb.</p>
+        <div class="bg-sky-50 border-l-4 border-sky-500 p-4 mb-4">
+            <p class="mb-2"><b>English:</b> "I see <span class="highlight">the house</span>."</p>
+            <p><b>Hungarian:</b> "Latom <span class="highlight">a hazat</span>." (haz + -at)</p>
+        </div>
+        <p class="mb-2">In English, word order tells us the object (it comes after the verb). In Hungarian, the <b>-t suffix</b> marks the object, allowing more flexible word order.</p>
+        <ul class="list-disc pl-6 mb-4">
+            <li><b>Subject:</b> The doer of the action (nominative case - no suffix)</li>
+            <li><b>Direct Object:</b> The receiver of the action (accusative case - <b>-t</b> suffix)</li>
+        </ul>
+        <p class="text-slate-600 italic">Example: "Peter latja a hazat." = "Peter sees the house." (haz becomes hazat)</p>
+    `;
+    main.appendChild(section1);
+
+    // Section 2: Basic -t Suffix Rules
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Basic -t Suffix Rules</h2>
+        <p class="mb-4">The accusative suffix varies based on <b>vowel harmony</b> and the final sound of the noun:</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr>
+                <th class="border px-2">Noun Ending</th>
+                <th class="border px-2">Suffix</th>
+                <th class="border px-2">Example</th>
+                <th class="border px-2">Accusative</th>
+            </tr>
+            <tr>
+                <td class="border px-2">Vowel</td>
+                <td class="border px-2">+ t</td>
+                <td class="border px-2">alma (apple)</td>
+                <td class="border px-2">almat</td>
+            </tr>
+            <tr>
+                <td class="border px-2">Consonant (back vowel word)</td>
+                <td class="border px-2">+ ot / at</td>
+                <td class="border px-2">haz (house)</td>
+                <td class="border px-2">hazat</td>
+            </tr>
+            <tr>
+                <td class="border px-2">Consonant (front vowel word)</td>
+                <td class="border px-2">+ et</td>
+                <td class="border px-2">kert (garden)</td>
+                <td class="border px-2">kertet</td>
+            </tr>
+            <tr>
+                <td class="border px-2">Consonant (front rounded vowel)</td>
+                <td class="border px-2">+ ot</td>
+                <td class="border px-2">gyumolcs (fruit)</td>
+                <td class="border px-2">gyumolcsot</td>
+            </tr>
+        </table>
+        <div class="bg-amber-50 border-l-4 border-amber-500 p-4">
+            <p><b>Vowel Harmony Reminder:</b></p>
+            <ul class="list-disc pl-6">
+                <li><b>Back vowels:</b> a, o, u (use -ot/-at)</li>
+                <li><b>Front vowels:</b> e, i (use -et)</li>
+                <li><b>Front rounded:</b> o, u (use -ot)</li>
+            </ul>
+        </div>
+    `;
+    main.appendChild(section2);
+
+    // Section 3: Vowel Changes Before -t
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Vowel Changes Before -t</h2>
+        <p class="mb-4"><b>Important:</b> When a word ends in <b>-a</b> or <b>-e</b>, these vowels <b>lengthen</b> before adding -t:</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr>
+                <th class="border px-2">Original</th>
+                <th class="border px-2">Meaning</th>
+                <th class="border px-2">Accusative</th>
+                <th class="border px-2">Change</th>
+            </tr>
+            <tr>
+                <td class="border px-2">alma</td>
+                <td class="border px-2">apple</td>
+                <td class="border px-2 font-bold text-teal-700">almat</td>
+                <td class="border px-2">a &rarr; a</td>
+            </tr>
+            <tr>
+                <td class="border px-2">korte</td>
+                <td class="border px-2">pear</td>
+                <td class="border px-2 font-bold text-teal-700">kortet</td>
+                <td class="border px-2">e &rarr; e</td>
+            </tr>
+            <tr>
+                <td class="border px-2">anya</td>
+                <td class="border px-2">mother</td>
+                <td class="border px-2 font-bold text-teal-700">anyat</td>
+                <td class="border px-2">a &rarr; a</td>
+            </tr>
+            <tr>
+                <td class="border px-2">fa</td>
+                <td class="border px-2">tree</td>
+                <td class="border px-2 font-bold text-teal-700">fat</td>
+                <td class="border px-2">a &rarr; a</td>
+            </tr>
+            <tr>
+                <td class="border px-2">fekete</td>
+                <td class="border px-2">black (adj)</td>
+                <td class="border px-2 font-bold text-teal-700">feketet</td>
+                <td class="border px-2">e &rarr; e</td>
+            </tr>
+        </table>
+        <div class="bg-rose-50 border-l-4 border-rose-500 p-4">
+            <p><b>Critical for accuracy:</b> The accent marks (a vs a, e vs e) are essential! "almat" and "almat" are different spellings, and correct Hungarian requires the lengthened vowel.</p>
+        </div>
+    `;
+    main.appendChild(section3);
+
+    // Section 4: Special Cases
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Special Cases</h2>
+        <p class="mb-4">Some words have irregular or special accusative forms:</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr>
+                <th class="border px-2">Word</th>
+                <th class="border px-2">Meaning</th>
+                <th class="border px-2">Accusative</th>
+                <th class="border px-2">Note</th>
+            </tr>
+            <tr>
+                <td class="border px-2">mi</td>
+                <td class="border px-2">what</td>
+                <td class="border px-2 font-bold">mit</td>
+                <td class="border px-2">Interrogative</td>
+            </tr>
+            <tr>
+                <td class="border px-2">ki</td>
+                <td class="border px-2">who</td>
+                <td class="border px-2 font-bold">kit</td>
+                <td class="border px-2">Interrogative</td>
+            </tr>
+            <tr>
+                <td class="border px-2">ez</td>
+                <td class="border px-2">this</td>
+                <td class="border px-2 font-bold">ezt</td>
+                <td class="border px-2">Demonstrative</td>
+            </tr>
+            <tr>
+                <td class="border px-2">az</td>
+                <td class="border px-2">that</td>
+                <td class="border px-2 font-bold">azt</td>
+                <td class="border px-2">Demonstrative</td>
+            </tr>
+            <tr>
+                <td class="border px-2">o</td>
+                <td class="border px-2">he/she</td>
+                <td class="border px-2 font-bold">ot</td>
+                <td class="border px-2">Personal pronoun</td>
+            </tr>
+        </table>
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-4">
+            <p><b>Pro tip:</b> Questions with accusative objects use "mit" (what) and "kit" (whom):</p>
+            <ul class="list-disc pl-6 mt-2">
+                <li><b>Mit latsz?</b> - What do you see?</li>
+                <li><b>Kit keresel?</b> - Whom are you looking for?</li>
+            </ul>
+        </div>
+    `;
+    main.appendChild(section4);
+
+    // Section 5: Sentence Structure with Accusative
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Sentence Structure with Accusative</h2>
+        <p class="mb-4">The basic pattern for sentences with direct objects:</p>
+        <div class="bg-teal-50 border-l-4 border-teal-500 p-4 mb-4">
+            <p class="text-lg font-semibold mb-2">Subject + Verb + Object<sub>-t</sub></p>
+        </div>
+        <table class="mb-4 w-full border text-sm">
+            <tr>
+                <th class="border px-2">Hungarian</th>
+                <th class="border px-2">Breakdown</th>
+                <th class="border px-2">English</th>
+            </tr>
+            <tr>
+                <td class="border px-2">Peter latja a hazat.</td>
+                <td class="border px-2">Peter + latja + a haz<b>at</b></td>
+                <td class="border px-2">Peter sees the house.</td>
+            </tr>
+            <tr>
+                <td class="border px-2">Eszem az almat.</td>
+                <td class="border px-2">(En) + eszem + az alma<b>t</b></td>
+                <td class="border px-2">I eat the apple.</td>
+            </tr>
+            <tr>
+                <td class="border px-2">Olvasom a konyvet.</td>
+                <td class="border px-2">(En) + olvasom + a konyv<b>et</b></td>
+                <td class="border px-2">I read the book.</td>
+            </tr>
+            <tr>
+                <td class="border px-2">Iszom a vizet.</td>
+                <td class="border px-2">(En) + iszom + a viz<b>et</b></td>
+                <td class="border px-2">I drink the water.</td>
+            </tr>
+        </table>
+        <div class="bg-slate-100 p-4 rounded-lg">
+            <p class="font-semibold mb-2">Common Verbs that Take Accusative Objects:</p>
+            <ul class="grid grid-cols-2 md:grid-cols-3 gap-2">
+                <li><b>lat</b> - to see</li>
+                <li><b>eszik</b> - to eat</li>
+                <li><b>iszik</b> - to drink</li>
+                <li><b>olvas</b> - to read</li>
+                <li><b>ir</b> - to write</li>
+                <li><b>vesz</b> - to buy</li>
+                <li><b>keres</b> - to look for</li>
+                <li><b>szeret</b> - to love/like</li>
+                <li><b>hall</b> - to hear</li>
+            </ul>
+        </div>
+    `;
+    main.appendChild(section5);
+
+    // Stage 1: Suffix Selection (Multiple Choice) - 10 items
+    const stage1Questions = [
+        { noun: 'alma', options: ['-t', '-ot', '-at', '-et'], correct: '-t', explanation: 'Ends in vowel -a, just add -t (with lengthening: almat)' },
+        { noun: 'haz', options: ['-t', '-ot', '-at', '-et'], correct: '-at', explanation: 'Back vowel word ending in consonant, add -at' },
+        { noun: 'kert', options: ['-t', '-ot', '-at', '-et'], correct: '-et', explanation: 'Front vowel word ending in consonant, add -et' },
+        { noun: 'auto', options: ['-t', '-ot', '-at', '-et'], correct: '-t', explanation: 'Ends in vowel -o, just add -t' },
+        { noun: 'szek', options: ['-t', '-ot', '-at', '-et'], correct: '-et', explanation: 'Front vowel word ending in consonant, add -et' },
+        { noun: 'asztal', options: ['-t', '-ot', '-at', '-et'], correct: '-t', explanation: 'Back vowel word, ends in -l, add -t' },
+        { noun: 'viz', options: ['-t', '-ot', '-at', '-et'], correct: '-et', explanation: 'Front vowel word ending in consonant, add -et' },
+        { noun: 'konyv', options: ['-t', '-ot', '-at', '-et'], correct: '-et', explanation: 'Front vowel word ending in consonant, add -et' },
+        { noun: 'ablak', options: ['-t', '-ot', '-at', '-et'], correct: '-ot', explanation: 'Back vowel word ending in -k, add -ot' },
+        { noun: 'level', options: ['-t', '-ot', '-at', '-et'], correct: '-et', explanation: 'Front vowel word ending in consonant, add -et' }
+    ];
+
+    const stage1Div = document.createElement('section');
+    stage1Div.className = 'mb-8';
+    stage1Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Suffix Selection</h2>
+        <p class="mb-4">Choose the correct accusative suffix for each noun:</p>
+        <div id="stage1-exercise" class="space-y-4"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage1Div);
+
+    const stage1Exercise = document.getElementById('stage1-exercise');
+    const stage1Score = document.getElementById('stage1-score');
+
+    stage1Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[100px] text-slate-800 font-medium';
+        label.textContent = q.noun;
+
+        const select = document.createElement('select');
+        select.className = 'border border-slate-300 rounded-md px-3 py-1 w-24 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        select.innerHTML = '<option value="">??</option>';
+        q.options.forEach(opt => {
+            const option = document.createElement('option');
+            option.value = opt;
+            option.textContent = opt;
+            select.appendChild(option);
+        });
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        select.addEventListener('change', function() {
+            checkStage1(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(select);
+        wrapper.appendChild(feedback);
+        stage1Exercise.appendChild(wrapper);
+    });
+
+    function checkStage1(idx) {
+        const wrapper = stage1Exercise.children[idx];
+        const select = wrapper.querySelector('select');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage1Questions[idx];
+
+        if (select.value === q.correct) {
+            feedback.textContent = `Correct! ${q.explanation}`;
+            feedback.className = 'ml-2 text-green-600 font-semibold text-sm';
+        } else if (select.value === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Hint: ${q.explanation}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold text-sm';
+        }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let correct = 0;
+        for (let i = 0; i < stage1Questions.length; i++) {
+            const wrapper = stage1Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage1Score.textContent = `Score: ${correct} / ${stage1Questions.length}`;
+    }
+
+    // Stage 2: Accusative Formation (Fill-in-blank) - 12 items
+    const stage2Questions = [
+        { nominative: 'alma', accusative: 'almat', meaning: 'apple' },
+        { nominative: 'haz', accusative: 'hazat', meaning: 'house' },
+        { nominative: 'kert', accusative: 'kertet', meaning: 'garden' },
+        { nominative: 'viz', accusative: 'vizet', meaning: 'water' },
+        { nominative: 'konyv', accusative: 'konyvet', meaning: 'book' },
+        { nominative: 'auto', accusative: 'autot', meaning: 'car' },
+        { nominative: 'anya', accusative: 'anyat', meaning: 'mother' },
+        { nominative: 'apa', accusative: 'apat', meaning: 'father' },
+        { nominative: 'korte', accusative: 'kortet', meaning: 'pear' },
+        { nominative: 'level', accusative: 'levelet', meaning: 'letter' },
+        { nominative: 'szek', accusative: 'szeket', meaning: 'chair' },
+        { nominative: 'ablak', accusative: 'ablakot', meaning: 'window' }
+    ];
+
+    const stage2Div = document.createElement('section');
+    stage2Div.className = 'mb-8';
+    stage2Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Accusative Formation</h2>
+        <p class="mb-4">Write the accusative form of each noun (pay attention to accents!):</p>
+        <div id="stage2-exercise" class="space-y-4"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage2Div);
+
+    const stage2Exercise = document.getElementById('stage2-exercise');
+    const stage2Score = document.getElementById('stage2-score');
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[120px] text-slate-800';
+        label.innerHTML = `<b>${q.nominative}</b> <span class="text-slate-500">(${q.meaning})</span> &rarr;`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-32 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Accusative of ${q.nominative}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkStage2(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage2Exercise.appendChild(wrapper);
+    });
+
+    function checkStage2(idx) {
+        const wrapper = stage2Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage2Questions[idx];
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = q.accusative.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = `Correct! ${q.nominative} -> ${q.accusative}`;
+            feedback.className = 'ml-2 text-green-600 font-semibold text-sm';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Watch the accents! Correct: ${q.accusative}`;
+            feedback.className = 'ml-2 text-yellow-600 font-semibold text-sm';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Correct: ${q.accusative}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold text-sm';
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        for (let i = 0; i < stage2Questions.length; i++) {
+            const wrapper = stage2Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage2Score.textContent = `Score: ${correct} / ${stage2Questions.length}`;
+    }
+
+    // Stage 3: Sentence Completion - 8 items
+    const stage3Questions = [
+        { sentence: 'Latom ___.', noun: 'haz', answer: 'a hazat', translation: 'I see the house.' },
+        { sentence: 'Eszem ___.', noun: 'alma', answer: 'az almat', translation: 'I eat the apple.' },
+        { sentence: 'Olvasom ___.', noun: 'konyv', answer: 'a konyvet', translation: 'I read the book.' },
+        { sentence: 'Iszom ___.', noun: 'viz', answer: 'a vizet', translation: 'I drink the water.' },
+        { sentence: 'Szeretem ___.', noun: 'kert', answer: 'a kertet', translation: 'I love the garden.' },
+        { sentence: 'Irom ___.', noun: 'level', answer: 'a levelet', translation: 'I write the letter.' },
+        { sentence: 'Keresem ___.', noun: 'kulcs', answer: 'a kulcsot', translation: 'I look for the key.' },
+        { sentence: 'Hallom ___.', noun: 'zene', answer: 'a zenet', translation: 'I hear the music.' }
+    ];
+
+    const stage3Div = document.createElement('section');
+    stage3Div.className = 'mb-8';
+    stage3Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Sentence Completion</h2>
+        <p class="mb-4">Complete each sentence with the noun in accusative form (include the article "a/az"):</p>
+        <div id="stage3-exercise" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage3Div);
+
+    const stage3Exercise = document.getElementById('stage3-exercise');
+    const stage3Score = document.getElementById('stage3-score');
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[140px] text-slate-800';
+        label.innerHTML = `${q.sentence} <span class="text-slate-500">(${q.noun})</span>`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-40 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Complete: ${q.sentence}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkStage3(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage3Exercise.appendChild(wrapper);
+    });
+
+    function checkStage3(idx) {
+        const wrapper = stage3Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage3Questions[idx];
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = q.answer.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = `Correct! (${q.translation})`;
+            feedback.className = 'ml-2 text-green-600 font-semibold text-sm';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Watch accents! Correct: ${q.answer}`;
+            feedback.className = 'ml-2 text-yellow-600 font-semibold text-sm';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Correct: ${q.answer}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold text-sm';
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let correct = 0;
+        for (let i = 0; i < stage3Questions.length; i++) {
+            const wrapper = stage3Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage3Score.textContent = `Score: ${correct} / ${stage3Questions.length}`;
+    }
+
+    // Stage 4: Translation Practice - 8 items
+    const stage4Questions = [
+        { english: 'I see the cat.', hungarian: 'Latom a macskat.', hint: 'macska' },
+        { english: 'She reads the newspaper.', hungarian: 'Olvassa az ujsagot.', hint: 'ujsag' },
+        { english: 'We eat the bread.', hungarian: 'Esszuk a kenyeret.', hint: 'kenyer' },
+        { english: 'They drink the milk.', hungarian: 'Isszak a tejet.', hint: 'tej' },
+        { english: 'He loves the dog.', hungarian: 'Szereti a kutyat.', hint: 'kutya' },
+        { english: 'I write a letter.', hungarian: 'Irok egy levelet.', hint: 'level' },
+        { english: 'You buy the car.', hungarian: 'Veszed az autot.', hint: 'auto' },
+        { english: 'She hears the music.', hungarian: 'Hallja a zenet.', hint: 'zene' }
+    ];
+
+    const stage4Div = document.createElement('section');
+    stage4Div.className = 'mb-8';
+    stage4Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Translation Practice</h2>
+        <p class="mb-4">Translate to Hungarian (use the correct accusative form):</p>
+        <div id="stage4-exercise" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage4Div);
+
+    const stage4Exercise = document.getElementById('stage4-exercise');
+    const stage4Score = document.getElementById('stage4-score');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'text-slate-800';
+        label.innerHTML = `<b>${q.english}</b> <span class="text-slate-500">(hint: ${q.hint})</span>`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-full md:w-64 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Translate: ${q.english}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkStage4(idx);
+        });
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(label);
+        wrapper.appendChild(inputRow);
+        stage4Exercise.appendChild(wrapper);
+    });
+
+    function checkStage4(idx) {
+        const wrapper = stage4Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage4Questions[idx];
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = q.hungarian.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'ml-2 text-green-600 font-semibold text-sm';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Watch accents! ${q.hungarian}`;
+            feedback.className = 'ml-2 text-yellow-600 font-semibold text-sm';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Correct: ${q.hungarian}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold text-sm';
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        for (let i = 0; i < stage4Questions.length; i++) {
+            const wrapper = stage4Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage4Score.textContent = `Score: ${correct} / ${stage4Questions.length}`;
+    }
+
+    // Stage 5: Error Correction - 6 items
+    const stage5Questions = [
+        { incorrect: 'Latom a haz.', correct: 'Latom a hazat.', error: 'Missing accusative suffix on "haz"' },
+        { incorrect: 'Eszem az almat.', correct: 'Eszem az almat.', error: 'Missing accent: "almat" should be "almat"' },
+        { incorrect: 'Olvasom a konyvot.', correct: 'Olvasom a konyvet.', error: 'Wrong suffix: front vowel word needs -et, not -ot' },
+        { incorrect: 'Iszom a viz.', correct: 'Iszom a vizet.', error: 'Missing accusative suffix on "viz"' },
+        { incorrect: 'Szeretem az anyam.', correct: 'Szeretem az anyamat.', error: 'Need accusative on possessed noun: anyam -> anyamat' },
+        { incorrect: 'Latom a kutya.', correct: 'Latom a kutyat.', error: 'Missing accusative suffix on "kutya"' }
+    ];
+
+    const stage5Div = document.createElement('section');
+    stage5Div.className = 'mb-8';
+    stage5Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Error Correction</h2>
+        <p class="mb-4">Each sentence has an error with the accusative case. Write the corrected sentence:</p>
+        <div id="stage5-exercise" class="space-y-4"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage5Div);
+
+    const stage5Exercise = document.getElementById('stage5-exercise');
+    const stage5Score = document.getElementById('stage5-score');
+
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 bg-rose-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'text-slate-800';
+        label.innerHTML = `<b class="text-red-600">Incorrect:</b> ${q.incorrect}`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-center gap-2';
+
+        const inputLabel = document.createElement('span');
+        inputLabel.className = 'text-slate-600 text-sm';
+        inputLabel.textContent = 'Corrected:';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-full md:w-64 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Correct: ${q.incorrect}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkStage5(idx);
+        });
+
+        inputRow.appendChild(inputLabel);
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(label);
+        wrapper.appendChild(inputRow);
+        stage5Exercise.appendChild(wrapper);
+    });
+
+    function checkStage5(idx) {
+        const wrapper = stage5Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage5Questions[idx];
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = q.correct.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = `Correct! Error was: ${q.error}`;
+            feedback.className = 'ml-2 text-green-600 font-semibold text-sm';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Watch accents! ${q.correct}`;
+            feedback.className = 'ml-2 text-yellow-600 font-semibold text-sm';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Correct: ${q.correct}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold text-sm';
+        }
+        updateStage5Score();
+    }
+
+    function updateStage5Score() {
+        let correct = 0;
+        for (let i = 0; i < stage5Questions.length; i++) {
+            const wrapper = stage5Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage5Score.textContent = `Score: ${correct} / ${stage5Questions.length}`;
+    }
+
+    // Summary section
+    const summaryDiv = document.createElement('section');
+    summaryDiv.className = 'mb-8 bg-teal-50 border border-teal-200 rounded-lg p-6';
+    summaryDiv.innerHTML = `
+        <h2 class="text-xl font-bold text-teal-800 mb-4">Lesson Summary</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Key Rules:</h3>
+                <ul class="list-disc pl-5 text-slate-700 space-y-1">
+                    <li>Accusative marks direct objects with <b>-t</b></li>
+                    <li>Vowel ending: just add <b>-t</b></li>
+                    <li>Consonant + back vowel: add <b>-ot/-at</b></li>
+                    <li>Consonant + front vowel: add <b>-et</b></li>
+                    <li>Final -a/-e lengthens: a&rarr;a, e&rarr;e</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Common Patterns:</h3>
+                <ul class="list-disc pl-5 text-slate-700 space-y-1">
+                    <li>alma &rarr; almat</li>
+                    <li>haz &rarr; hazat</li>
+                    <li>kert &rarr; kertet</li>
+                    <li>konyv &rarr; konyvet</li>
+                    <li>mi &rarr; mit, ki &rarr; kit</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-3 bg-white rounded border border-teal-300">
+            <p class="text-teal-800"><b>Practice tip:</b> When you see a verb like "lat" (see), "eszik" (eat), or "olvas" (read), remember that the object needs the accusative -t suffix!</p>
+        </div>
+    `;
+    main.appendChild(summaryDiv);
+
+    // Total score
+    const totalScoreDiv = document.createElement('section');
+    totalScoreDiv.className = 'text-center py-4 bg-slate-100 rounded-lg';
+    totalScoreDiv.innerHTML = `
+        <h2 class="text-lg font-semibold text-slate-700">Total Exercises: 44</h2>
+        <p class="text-slate-600">Stage 1: 10 | Stage 2: 12 | Stage 3: 8 | Stage 4: 8 | Stage 5: 6</p>
+    `;
+    main.appendChild(totalScoreDiv);
+    </script>
+</body>
+</html>
