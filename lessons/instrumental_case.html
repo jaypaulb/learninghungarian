@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 31: Instrumental Case - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 31: Instrumental Case <span class="block text-xl text-slate-500 font-normal">(-val/-vel)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Learn the Hungarian instrumental case for expressing "with" - both accompaniment and means.</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6"></main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    }
+
+    // Learning Section 1: Formation
+    const ls1 = document.createElement('section');
+    ls1.className = 'mb-8';
+    ls1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Understanding the Instrumental Case</h2>
+        <p class="mb-4 text-slate-600">The instrumental case expresses <strong>"with"</strong> - either accompaniment (with a person) or means (using a tool). Add <strong>-val</strong> (back vowels) or <strong>-vel</strong> (front vowels).</p>
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Formation Rules</h3>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th>Vowel Type</th><th>Suffix</th><th>Example</th></tr>
+            <tr><td>Back (a, o, u)</td><td>-val</td><td>autó → autóval (by car)</td></tr>
+            <tr><td>Front (e, i, o, u)</td><td>-vel</td><td>kés → késsel (with a knife)</td></tr>
+        </table>
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Consonant Assimilation</h3>
+        <p class="mb-2 text-slate-600">When a word ends in a consonant, the v of -val/-vel assimilates:</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th>Base</th><th>Expected</th><th>Actual</th><th>Meaning</th></tr>
+            <tr><td>barát</td><td>barátval</td><td>baráttal</td><td>with friend</td></tr>
+            <tr><td>kés</td><td>késvel</td><td>késsel</td><td>with knife</td></tr>
+            <tr><td>busz</td><td>buszval</td><td>busszal</td><td>by bus</td></tr>
+            <tr><td>vonat</td><td>vonatval</td><td>vonattal</td><td>by train</td></tr>
+            <tr><td>toll</td><td>tollval</td><td>tollal</td><td>with pen</td></tr>
+        </table>`;
+    document.querySelector('main').appendChild(ls1);
+
+    // Stage 1: Formation Practice (12 items)
+    const s1q = [
+        { word: 'autó', a: 'autóval', t: 'by car' },
+        { word: 'vonat', a: 'vonattal', t: 'by train' },
+        { word: 'busz', a: 'busszal', t: 'by bus' },
+        { word: 'bicikli', a: 'biciklivel', t: 'by bicycle' },
+        { word: 'repulo', a: 'repülővel', t: 'by plane' },
+        { word: 'kés', a: 'késsel', t: 'with knife' },
+        { word: 'villa', a: 'villával', t: 'with fork' },
+        { word: 'kanál', a: 'kanállal', t: 'with spoon' },
+        { word: 'toll', a: 'tollal', t: 'with pen' },
+        { word: 'ceruza', a: 'ceruzával', t: 'with pencil' },
+        { word: 'számítógép', a: 'számítógéppel', t: 'with computer' },
+        { word: 'telefon', a: 'telefonnal', t: 'by phone' }
+    ];
+    const s1d = document.createElement('section');
+    s1d.className = 'mb-8';
+    s1d.innerHTML = `<h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Formation Practice (12 items)</h2>
+        <p class="mb-4 text-slate-600">Add the correct instrumental suffix (-val/-vel with assimilation):</p>
+        <div id="s1e" class="space-y-3"></div><div id="s1s" class="mt-4 text-slate-700 font-medium"></div>`;
+    document.querySelector('main').appendChild(s1d);
+    const s1e = document.getElementById('s1e'), s1s = document.getElementById('s1s');
+    s1q.forEach((q,i) => {
+        const w = document.createElement('div');
+        w.className = 'flex flex-col md:flex-row items-center gap-2';
+        w.innerHTML = `<span class="min-w-[150px] text-slate-800">${q.word} → </span>
+            <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-44 text-center" data-idx="${i}">
+            <span class="ml-2 text-sm font-semibold"></span>`;
+        w.querySelector('input').addEventListener('keydown', e => { if(e.key==='Enter') chk1(i); });
+        s1e.appendChild(w);
+    });
+    function chk1(i) {
+        const w = s1e.children[i], inp = w.querySelector('input'), fb = w.querySelector('span:last-child');
+        const ua = inp.value.trim().toLowerCase(), ca = s1q[i].a;
+        if(ua === ca) { fb.textContent = `Correct! (${s1q[i].t})`; fb.className = 'ml-2 text-green-600 font-semibold'; }
+        else if(removeAccents(ua) === removeAccents(ca)) { fb.textContent = `Close! (${s1q[i].t})`; fb.className = 'ml-2 text-yellow-600 font-semibold'; }
+        else if(ua === '') { fb.textContent = ''; }
+        else { fb.textContent = `Try: ${ca} (${s1q[i].t})`; fb.className = 'ml-2 text-red-600 font-semibold'; }
+        upd1();
+    }
+    function upd1() {
+        let c = 0;
+        for(let i=0; i<s1q.length; i++) if(s1e.children[i].querySelector('span:last-child').textContent.startsWith('Correct')) c++;
+        s1s.textContent = `Score: ${c} / ${s1q.length}`;
+    }
+
+    // Learning Section 2: Accompaniment
+    const ls2 = document.createElement('section');
+    ls2.className = 'mb-8 mt-8 pt-6 border-t border-slate-200';
+    ls2.innerHTML = `<h3 class="text-lg font-semibold text-slate-700 mb-2">Accompaniment ("with someone")</h3>
+        <p class="mb-4 text-slate-600">Use instrumental to express being with a person:</p>
+        <ul class="list-disc pl-6 mb-4 text-slate-600">
+            <li><strong>Péterrel megyek.</strong> - I'm going with Péter.</li>
+            <li><strong>A barátommal vacsorázom.</strong> - I'm having dinner with my friend.</li>
+            <li><strong>Kivel beszélsz?</strong> - Who are you talking with?</li>
+        </ul>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th>Pronoun</th><th>Instrumental</th><th>Example</th></tr>
+            <tr><td>én</td><td>velem</td><td>Gyere velem! (Come with me!)</td></tr>
+            <tr><td>te</td><td>veled</td><td>Megyek veled. (I'm going with you.)</td></tr>
+            <tr><td>ő</td><td>vele</td><td>Beszélek vele. (I'm talking with him/her.)</td></tr>
+            <tr><td>mi</td><td>velünk</td><td>Jöjjön velünk! (Come with us!)</td></tr>
+            <tr><td>ti</td><td>veletek</td><td>Megyünk veletek. (We're going with you.)</td></tr>
+            <tr><td>ők</td><td>velük</td><td>Találkozom velük. (I'm meeting with them.)</td></tr>
+        </table>`;
+    document.querySelector('main').appendChild(ls2);
+
+    // Stage 2: Accompaniment Sentences (10 items)
+    const s2q = [
+        { s: 'Megyek ___ moziba. (barát)', a: 'baráttal', t: 'I go to the cinema with my friend.' },
+        { s: 'Vacsorázom ___ este. (család)', a: 'családdal', t: 'I have dinner with family tonight.' },
+        { s: 'Beszélgetek ___. (szomszéd)', a: 'szomszéddal', t: 'I chat with the neighbor.' },
+        { s: 'Találkozom ___ holnap. (orvos)', a: 'orvossal', t: 'I meet with the doctor tomorrow.' },
+        { s: 'Sétálok ___ a parkban. (kutya)', a: 'kutyával', t: 'I walk with the dog in the park.' },
+        { s: 'Utazom ___ Párizsba. (feleség)', a: 'feleséggel', t: 'I travel to Paris with my wife.' },
+        { s: 'Tanulok ___ a könyvtárban. (diák)', a: 'diákkal', t: 'I study with the student in the library.' },
+        { s: 'Játszom ___ focit. (gyerek)', a: 'gyerekkel', t: 'I play football with the child.' },
+        { s: 'Dolgozom ___ a projekten. (kolléga)', a: 'kollégával', t: 'I work with my colleague on the project.' },
+        { s: 'Lakom ___ egy házban. (testvér)', a: 'testvérrel', t: 'I live with my sibling in a house.' }
+    ];
+    const s2d = document.createElement('section');
+    s2d.className = 'mb-8';
+    s2d.innerHTML = `<h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Accompaniment (10 items)</h2>
+        <p class="mb-4 text-slate-600">Complete with the instrumental form:</p>
+        <div id="s2e" class="space-y-3"></div><div id="s2s" class="mt-4 text-slate-700 font-medium"></div>`;
+    document.querySelector('main').appendChild(s2d);
+    const s2e = document.getElementById('s2e'), s2s = document.getElementById('s2s');
+    s2q.forEach((q,i) => {
+        const w = document.createElement('div');
+        w.className = 'flex flex-col gap-2';
+        w.innerHTML = `<span class="text-slate-800">${q.s}</span>
+            <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-48" data-idx="${i}">
+            <span class="text-sm font-semibold"></span>`;
+        w.querySelector('input').addEventListener('keydown', e => { if(e.key==='Enter') chk2(i); });
+        s2e.appendChild(w);
+    });
+    function chk2(i) {
+        const w = s2e.children[i], inp = w.querySelector('input'), fb = w.querySelector('span:last-child');
+        const ua = inp.value.trim().toLowerCase(), ca = s2q[i].a;
+        if(ua === ca) { fb.textContent = `Correct! (${s2q[i].t})`; fb.className = 'text-green-600 font-semibold'; }
+        else if(removeAccents(ua) === removeAccents(ca)) { fb.textContent = `Close! (${s2q[i].t})`; fb.className = 'text-yellow-600 font-semibold'; }
+        else if(ua === '') { fb.textContent = ''; }
+        else { fb.textContent = `Try: ${ca} (${s2q[i].t})`; fb.className = 'text-red-600 font-semibold'; }
+        upd2();
+    }
+    function upd2() {
+        let c = 0;
+        for(let i=0; i<s2q.length; i++) if(s2e.children[i].querySelector('span:last-child').textContent.startsWith('Correct')) c++;
+        s2s.textContent = `Score: ${c} / ${s2q.length}`;
+    }
+
+    // Learning Section 3: Means/Tools
+    const ls3 = document.createElement('section');
+    ls3.className = 'mb-8 mt-8 pt-6 border-t border-slate-200';
+    ls3.innerHTML = `<h3 class="text-lg font-semibold text-slate-700 mb-2">Means/Tools ("with something")</h3>
+        <p class="mb-4 text-slate-600">Use instrumental to express using a tool or means:</p>
+        <ul class="list-disc pl-6 mb-4 text-slate-600">
+            <li><strong>Autóval megyek.</strong> - I go by car.</li>
+            <li><strong>Késsel vágom.</strong> - I cut with a knife.</li>
+            <li><strong>Tollal írok.</strong> - I write with a pen.</li>
+        </ul>`;
+    document.querySelector('main').appendChild(ls3);
+
+    // Stage 3: Means/Tools Sentences (10 items)
+    const s3q = [
+        { s: 'Megyek a munkába ___. (autó)', a: 'autóval', t: 'I go to work by car.' },
+        { s: 'Vágom a kenyeret ___. (kés)', a: 'késsel', t: 'I cut the bread with a knife.' },
+        { s: 'Írok a levelet ___. (toll)', a: 'tollal', t: 'I write the letter with a pen.' },
+        { s: 'Eszem a levest ___. (kanál)', a: 'kanállal', t: 'I eat the soup with a spoon.' },
+        { s: 'Utazom Londonba ___. (repülő)', a: 'repülővel', t: 'I travel to London by plane.' },
+        { s: 'Megyek a boltba ___. (bicikli)', a: 'biciklivel', t: 'I go to the store by bicycle.' },
+        { s: 'Dolgozom a projekten ___. (számítógép)', a: 'számítógéppel', t: 'I work on the project with a computer.' },
+        { s: 'Hívom a barátom ___. (telefon)', a: 'telefonnal', t: 'I call my friend by phone.' },
+        { s: 'Fésülöm a hajamat ___. (fésű)', a: 'fésűvel', t: 'I comb my hair with a comb.' },
+        { s: 'Nyitom az ajtót ___. (kulcs)', a: 'kulccsal', t: 'I open the door with a key.' }
+    ];
+    const s3d = document.createElement('section');
+    s3d.className = 'mb-8';
+    s3d.innerHTML = `<h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Means/Tools (10 items)</h2>
+        <p class="mb-4 text-slate-600">Complete with the instrumental form:</p>
+        <div id="s3e" class="space-y-3"></div><div id="s3s" class="mt-4 text-slate-700 font-medium"></div>`;
+    document.querySelector('main').appendChild(s3d);
+    const s3e = document.getElementById('s3e'), s3s = document.getElementById('s3s');
+    s3q.forEach((q,i) => {
+        const w = document.createElement('div');
+        w.className = 'flex flex-col gap-2';
+        w.innerHTML = `<span class="text-slate-800">${q.s}</span>
+            <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-48" data-idx="${i}">
+            <span class="text-sm font-semibold"></span>`;
+        w.querySelector('input').addEventListener('keydown', e => { if(e.key==='Enter') chk3(i); });
+        s3e.appendChild(w);
+    });
+    function chk3(i) {
+        const w = s3e.children[i], inp = w.querySelector('input'), fb = w.querySelector('span:last-child');
+        const ua = inp.value.trim().toLowerCase(), ca = s3q[i].a;
+        if(ua === ca) { fb.textContent = `Correct! (${s3q[i].t})`; fb.className = 'text-green-600 font-semibold'; }
+        else if(removeAccents(ua) === removeAccents(ca)) { fb.textContent = `Close! (${s3q[i].t})`; fb.className = 'text-yellow-600 font-semibold'; }
+        else if(ua === '') { fb.textContent = ''; }
+        else { fb.textContent = `Try: ${ca} (${s3q[i].t})`; fb.className = 'text-red-600 font-semibold'; }
+        upd3();
+    }
+    function upd3() {
+        let c = 0;
+        for(let i=0; i<s3q.length; i++) if(s3e.children[i].querySelector('span:last-child').textContent.startsWith('Correct')) c++;
+        s3s.textContent = `Score: ${c} / ${s3q.length}`;
+    }
+
+    // Stage 4: Assimilation Drills (10 items)
+    const s4q = [
+        { base: 'ház', a: 'házzal', t: 'with house (z+v→zz)' },
+        { base: 'kenyér', a: 'kenyérrel', t: 'with bread (r+v→rr)' },
+        { base: 'pohár', a: 'pohárral', t: 'with glass (r+v→rr)' },
+        { base: 'könyv', a: 'könyvvel', t: 'with book (v+v→vv)' },
+        { base: 'szék', a: 'székkel', t: 'with chair (k+v→kk)' },
+        { base: 'kard', a: 'karddal', t: 'with sword (d+v→dd)' },
+        { base: 'víz', a: 'vízzel', t: 'with water (z+v→zz)' },
+        { base: 'nap', a: 'nappal', t: 'with day/by day (p+v→pp)' },
+        { base: 'tej', a: 'tejjel', t: 'with milk (j+v→jj)' },
+        { base: 'méz', a: 'mézzel', t: 'with honey (z+v→zz)' }
+    ];
+    const s4d = document.createElement('section');
+    s4d.className = 'mb-8 mt-8 pt-6 border-t border-slate-200';
+    s4d.innerHTML = `<h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Assimilation Drills (10 items)</h2>
+        <p class="mb-4 text-slate-600">Apply consonant assimilation rules:</p>
+        <div id="s4e" class="space-y-3"></div><div id="s4s" class="mt-4 text-slate-700 font-medium"></div>`;
+    document.querySelector('main').appendChild(s4d);
+    const s4e = document.getElementById('s4e'), s4s = document.getElementById('s4s');
+    s4q.forEach((q,i) => {
+        const w = document.createElement('div');
+        w.className = 'flex flex-col md:flex-row items-center gap-2';
+        w.innerHTML = `<span class="min-w-[120px] text-slate-800">${q.base} → </span>
+            <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-40 text-center" data-idx="${i}">
+            <span class="ml-2 text-sm font-semibold"></span>`;
+        w.querySelector('input').addEventListener('keydown', e => { if(e.key==='Enter') chk4(i); });
+        s4e.appendChild(w);
+    });
+    function chk4(i) {
+        const w = s4e.children[i], inp = w.querySelector('input'), fb = w.querySelector('span:last-child');
+        const ua = inp.value.trim().toLowerCase(), ca = s4q[i].a;
+        if(ua === ca) { fb.textContent = `Correct! (${s4q[i].t})`; fb.className = 'ml-2 text-green-600 font-semibold'; }
+        else if(removeAccents(ua) === removeAccents(ca)) { fb.textContent = `Close! (${s4q[i].t})`; fb.className = 'ml-2 text-yellow-600 font-semibold'; }
+        else if(ua === '') { fb.textContent = ''; }
+        else { fb.textContent = `Try: ${ca} (${s4q[i].t})`; fb.className = 'ml-2 text-red-600 font-semibold'; }
+        upd4();
+    }
+    function upd4() {
+        let c = 0;
+        for(let i=0; i<s4q.length; i++) if(s4e.children[i].querySelector('span:last-child').textContent.startsWith('Correct')) c++;
+        s4s.textContent = `Score: ${c} / ${s4q.length}`;
+    }
+
+    // Stage 5: Translation Practice (8 items)
+    const s5q = [
+        { e: 'I go to work by car.', a: 'autóval megyek a munkába', t: 'Translation' },
+        { e: 'She is talking with her friend.', a: 'beszél a barátjával', t: 'Translation' },
+        { e: 'I eat with a fork.', a: 'villával eszem', t: 'Translation' },
+        { e: 'Come with me!', a: 'gyere velem', t: 'Translation' },
+        { e: 'I travel by train.', a: 'vonattal utazom', t: 'Translation' },
+        { e: 'He writes with a pen.', a: 'tollal ír', t: 'Translation' },
+        { e: 'We live with our parents.', a: 'a szüleinkkel élünk', t: 'Translation' },
+        { e: 'I cut bread with a knife.', a: 'késsel vágom a kenyeret', t: 'Translation' }
+    ];
+    const s5d = document.createElement('section');
+    s5d.className = 'mb-8 mt-8 pt-6 border-t border-slate-200';
+    s5d.innerHTML = `<h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Translation (8 items)</h2>
+        <p class="mb-4 text-slate-600">Translate to Hungarian:</p>
+        <div id="s5e" class="space-y-3"></div><div id="s5s" class="mt-4 text-slate-700 font-medium"></div>`;
+    document.querySelector('main').appendChild(s5d);
+    const s5e = document.getElementById('s5e'), s5s = document.getElementById('s5s');
+    s5q.forEach((q,i) => {
+        const w = document.createElement('div');
+        w.className = 'flex flex-col gap-2';
+        w.innerHTML = `<span class="text-slate-800 font-medium">${q.e}</span>
+            <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full" placeholder="Type Hungarian..." data-idx="${i}">
+            <span class="text-sm font-semibold"></span>`;
+        w.querySelector('input').addEventListener('keydown', e => { if(e.key==='Enter') chk5(i); });
+        s5e.appendChild(w);
+    });
+    function chk5(i) {
+        const w = s5e.children[i], inp = w.querySelector('input'), fb = w.querySelector('span:last-child');
+        const ua = inp.value.trim().toLowerCase(), ca = s5q[i].a;
+        const keys = ca.split(' ').filter(w => w.length > 3);
+        const match = keys.filter(k => removeAccents(ua).includes(removeAccents(k))).length;
+        if(ua === ca || removeAccents(ua) === removeAccents(ca)) { fb.textContent = `Correct!`; fb.className = 'text-green-600 font-semibold'; }
+        else if(match >= keys.length - 1 && match > 0) { fb.textContent = `Close! Expected: ${ca}`; fb.className = 'text-yellow-600 font-semibold'; }
+        else if(ua === '') { fb.textContent = ''; }
+        else { fb.textContent = `Expected: ${ca}`; fb.className = 'text-red-600 font-semibold'; }
+        upd5();
+    }
+    function upd5() {
+        let c = 0;
+        for(let i=0; i<s5q.length; i++) if(s5e.children[i].querySelector('span:last-child').textContent.startsWith('Correct')) c++;
+        s5s.textContent = `Score: ${c} / ${s5q.length}`;
+    }
+
+    // Summary
+    const sum = document.createElement('section');
+    sum.className = 'mb-8 mt-8 pt-6 border-t border-slate-200';
+    sum.innerHTML = `<h2 class="text-2xl font-bold text-slate-700 mb-4">Summary</h2>
+        <div class="bg-teal-50 p-4 rounded-lg">
+            <ul class="list-disc pl-6 text-teal-700 space-y-2">
+                <li><strong>Suffix:</strong> -val (back vowels), -vel (front vowels)</li>
+                <li><strong>Assimilation:</strong> Final consonant + v → doubled consonant</li>
+                <li><strong>Pronouns:</strong> velem, veled, vele, velünk, veletek, velük</li>
+                <li><strong>Accompaniment:</strong> "with someone" (Péterrel megyek)</li>
+                <li><strong>Means:</strong> "by/with something" (autóval, késsel)</li>
+            </ul>
+        </div>`;
+    document.querySelector('main').appendChild(sum);
+    </script>
+</body>
+</html>
