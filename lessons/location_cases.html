@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 15: Location & Direction Cases - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .static-highlight { color: #0369a1; font-weight: 600; }
+        .to-highlight { color: #15803d; font-weight: 600; }
+        .from-highlight { color: #b91c1c; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 15: Location & Direction Cases <span class="block text-xl text-slate-500 font-normal">(Helyhatározók)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Master the Hungarian three-way location system: where (static), where to (motion toward), and where from (motion away).</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    // Helper functions
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[őŐöÖüÜűŰáÁéÉíÍóÓúÚ]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    const mainContent = document.getElementById('main-content');
+
+    // =============================================
+    // SECTION 1: The Three-Way Location System
+    // =============================================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: The Three-Way Location System</h2>
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+            <p class="text-slate-700 mb-2"><strong>Hungarian distinguishes THREE types of location:</strong></p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><strong class="static-highlight">Hol?</strong> (Where?) - static location</li>
+                <li><strong class="to-highlight">Hová?</strong> (Where to?) - motion toward</li>
+                <li><strong class="from-highlight">Honnan?</strong> (Where from?) - motion away</li>
+            </ul>
+        </div>
+
+        <p class="mb-4">Each question has THREE sets of suffixes for different types of location:</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>IN/Inside</th>
+                        <th>ON/Surface</th>
+                        <th>AT/Near</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-semibold static-highlight">Hol? (Where?)</td>
+                        <td>-ban/-ben</td>
+                        <td>-n/-on/-en/-ön</td>
+                        <td>-nál/-nél</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold to-highlight">Hová? (Where to?)</td>
+                        <td>-ba/-be</td>
+                        <td>-ra/-re</td>
+                        <td>-hoz/-hez/-höz</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold from-highlight">Honnan? (Where from?)</td>
+                        <td>-ból/-ből</td>
+                        <td>-ról/-ről</td>
+                        <td>-tól/-től</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // =============================================
+    // SECTION 2: Inside Location (-ban/-ben System)
+    // =============================================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Inside Location (IN/INTO/OUT OF)</h2>
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mb-4">
+            <p class="text-slate-700"><strong>Used for:</strong> Enclosed spaces, buildings, cities (usually), countries</p>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="text-sm mb-4">
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Back Vowel</th>
+                        <th>Front Vowel</th>
+                        <th>Example: haz (house)</th>
+                        <th>Example: kert (garden)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="static-highlight font-semibold">Hol? (in)</td>
+                        <td>-ban</td>
+                        <td>-ben</td>
+                        <td class="static-highlight">hazban</td>
+                        <td class="static-highlight">kertben</td>
+                    </tr>
+                    <tr>
+                        <td class="to-highlight font-semibold">Hová? (into)</td>
+                        <td>-ba</td>
+                        <td>-be</td>
+                        <td class="to-highlight">hazba</td>
+                        <td class="to-highlight">kertbe</td>
+                    </tr>
+                    <tr>
+                        <td class="from-highlight font-semibold">Honnan? (out of)</td>
+                        <td>-ból</td>
+                        <td>-ből</td>
+                        <td class="from-highlight">hazból</td>
+                        <td class="from-highlight">kertből</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-3">Examples:</h3>
+        <div class="grid md:grid-cols-3 gap-4">
+            <div class="bg-blue-50 p-3 rounded-lg">
+                <h4 class="font-semibold static-highlight mb-2">WHERE (Static)</h4>
+                <ul class="text-sm space-y-1">
+                    <li>A haz<strong>ban</strong> vagyok. (I am in the house.)</li>
+                    <li>Az iskola<strong>ban</strong> tanul. (He studies in school.)</li>
+                </ul>
+            </div>
+            <div class="bg-green-50 p-3 rounded-lg">
+                <h4 class="font-semibold to-highlight mb-2">WHERE TO (Motion)</h4>
+                <ul class="text-sm space-y-1">
+                    <li>A haz<strong>ba</strong> megyek. (I go into the house.)</li>
+                    <li>Az iskola<strong>ba</strong> jar. (He goes to school.)</li>
+                </ul>
+            </div>
+            <div class="bg-red-50 p-3 rounded-lg">
+                <h4 class="font-semibold from-highlight mb-2">WHERE FROM (Away)</h4>
+                <ul class="text-sm space-y-1">
+                    <li>A haz<strong>ból</strong> jovok. (I come from the house.)</li>
+                    <li>Az iskola<strong>ból</strong> jon. (He comes from school.)</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // =============================================
+    // SECTION 3: Surface Location (-n/-on/-en/-ön System)
+    // =============================================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Surface Location (ON/ONTO/OFF)</h2>
+        <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+            <p class="text-slate-700"><strong>Used for:</strong> Surfaces, open areas, many countries and cities (!), some idioms</p>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="text-sm mb-4">
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>After vowel</th>
+                        <th>Back vowel</th>
+                        <th>Front vowel</th>
+                        <th>Front rounded</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="static-highlight font-semibold">Hol? (on)</td>
+                        <td>-n</td>
+                        <td>-on</td>
+                        <td>-en</td>
+                        <td>-ön</td>
+                    </tr>
+                    <tr>
+                        <td class="to-highlight font-semibold">Hová? (onto)</td>
+                        <td colspan="4">-ra / -re</td>
+                    </tr>
+                    <tr>
+                        <td class="from-highlight font-semibold">Honnan? (off)</td>
+                        <td colspan="4">-ról / -ről</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-3">Examples:</h3>
+        <div class="grid md:grid-cols-3 gap-4 mb-4">
+            <div class="bg-blue-50 p-3 rounded-lg">
+                <h4 class="font-semibold static-highlight mb-2">WHERE (Static)</h4>
+                <ul class="text-sm space-y-1">
+                    <li>Az asztal<strong>on</strong> van. (It's on the table.)</li>
+                    <li>A szék<strong>en</strong> ül. (He sits on the chair.)</li>
+                    <li>A föld<strong>ön</strong> fekszik. (He lies on the floor.)</li>
+                </ul>
+            </div>
+            <div class="bg-green-50 p-3 rounded-lg">
+                <h4 class="font-semibold to-highlight mb-2">WHERE TO (Motion)</h4>
+                <ul class="text-sm space-y-1">
+                    <li>Az asztal<strong>ra</strong> teszem. (I put it on the table.)</li>
+                    <li>A szék<strong>re</strong> ül. (He sits onto the chair.)</li>
+                </ul>
+            </div>
+            <div class="bg-red-50 p-3 rounded-lg">
+                <h4 class="font-semibold from-highlight mb-2">WHERE FROM (Away)</h4>
+                <ul class="text-sm space-y-1">
+                    <li>Az asztal<strong>ról</strong> veszem. (I take it off the table.)</li>
+                    <li>A szék<strong>ről</strong> feláll. (He stands up from the chair.)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+            <p class="font-semibold mb-2">Special: Countries use -on/-en/-ön (surface)!</p>
+            <ul class="text-sm space-y-1">
+                <li><strong class="static-highlight">Magyarország<strong>on</strong></strong> lakom. (I live in Hungary.)</li>
+                <li><strong class="to-highlight">Magyarország<strong>ra</strong></strong> megyek. (I go to Hungary.)</li>
+                <li><strong class="from-highlight">Magyarország<strong>ról</strong></strong> jovok. (I come from Hungary.)</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // =============================================
+    // SECTION 4: Proximity Location (-nál/-nél System)
+    // =============================================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Proximity Location (AT/TO/FROM)</h2>
+        <div class="bg-orange-50 border-l-4 border-orange-500 p-4 mb-4">
+            <p class="text-slate-700"><strong>Used for:</strong> Near people, at someone's place, professionals (doctor, etc.)</p>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="text-sm mb-4">
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Back Vowel</th>
+                        <th>Front Vowel</th>
+                        <th>Example: Peter</th>
+                        <th>Example: orvos (doctor)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="static-highlight font-semibold">Hol? (at)</td>
+                        <td>-nál</td>
+                        <td>-nél</td>
+                        <td class="static-highlight">Péternél</td>
+                        <td class="static-highlight">orvosnál</td>
+                    </tr>
+                    <tr>
+                        <td class="to-highlight font-semibold">Hová? (to)</td>
+                        <td>-hoz</td>
+                        <td>-hez / -höz</td>
+                        <td class="to-highlight">Péterhez</td>
+                        <td class="to-highlight">orvoshoz</td>
+                    </tr>
+                    <tr>
+                        <td class="from-highlight font-semibold">Honnan? (from)</td>
+                        <td>-tól</td>
+                        <td>-től</td>
+                        <td class="from-highlight">Pétertől</td>
+                        <td class="from-highlight">orvostól</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-3">Examples:</h3>
+        <div class="grid md:grid-cols-3 gap-4">
+            <div class="bg-blue-50 p-3 rounded-lg">
+                <h4 class="font-semibold static-highlight mb-2">WHERE (At)</h4>
+                <ul class="text-sm space-y-1">
+                    <li>Peter<strong>nél</strong> vagyok. (I'm at Peter's.)</li>
+                    <li>Az orvos<strong>nál</strong> voltam. (I was at the doctor's.)</li>
+                </ul>
+            </div>
+            <div class="bg-green-50 p-3 rounded-lg">
+                <h4 class="font-semibold to-highlight mb-2">WHERE TO (To)</h4>
+                <ul class="text-sm space-y-1">
+                    <li>Peter<strong>hez</strong> megyek. (I go to Peter's.)</li>
+                    <li>Az orvos<strong>hoz</strong> megyek. (I go to the doctor.)</li>
+                </ul>
+            </div>
+            <div class="bg-red-50 p-3 rounded-lg">
+                <h4 class="font-semibold from-highlight mb-2">WHERE FROM (From)</h4>
+                <ul class="text-sm space-y-1">
+                    <li>Peter<strong>től</strong> jovok. (I come from Peter's.)</li>
+                    <li>Az orvos<strong>tól</strong> jovok. (I come from the doctor.)</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // =============================================
+    // STAGE 1: Case Recognition (12 items)
+    // =============================================
+    const stage1Questions = [
+        { sentence: 'A hazban vagyok.', case: 'static', system: 'in', translation: 'I am in the house.' },
+        { sentence: 'Az iskolaba megyek.', case: 'to', system: 'in', translation: 'I go to school.' },
+        { sentence: 'Az asztalon van.', case: 'static', system: 'on', translation: 'It is on the table.' },
+        { sentence: 'A kertbol jovok.', case: 'from', system: 'in', translation: 'I come from the garden.' },
+        { sentence: 'Peterhez megyek.', case: 'to', system: 'at', translation: 'I go to Peter\'s.' },
+        { sentence: 'Az orvosnál voltam.', case: 'static', system: 'at', translation: 'I was at the doctor\'s.' },
+        { sentence: 'Az asztalra teszem.', case: 'to', system: 'on', translation: 'I put it on the table.' },
+        { sentence: 'A szekrol felall.', case: 'from', system: 'on', translation: 'He stands up from the chair.' },
+        { sentence: 'Magyarorszagon lakok.', case: 'static', system: 'on', translation: 'I live in Hungary.' },
+        { sentence: 'A boltbol jovok.', case: 'from', system: 'in', translation: 'I come from the shop.' },
+        { sentence: 'A baratodtol kaptam.', case: 'from', system: 'at', translation: 'I got it from your friend.' },
+        { sentence: 'A szobaba lepek.', case: 'to', system: 'in', translation: 'I step into the room.' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 1: Case Recognition</h2>
+        <p class="mb-4 text-slate-600">Identify whether each sentence shows static location, motion TO, or motion FROM.</p>
+        <div id="stage1-exercises" class="space-y-3"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Container = document.getElementById('stage1-exercises');
+
+    stage1Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-3 bg-slate-50 rounded-lg';
+
+        wrapper.innerHTML = `
+            <div class="mb-2">
+                <strong class="text-slate-800">${q.sentence}</strong>
+                <span class="text-slate-500 text-sm ml-2">(${q.translation})</span>
+            </div>
+            <div class="flex gap-2 items-center flex-wrap">
+                <button class="px-3 py-1 bg-blue-100 text-blue-800 rounded hover:bg-blue-200 text-sm font-medium" onclick="checkStage1(${idx}, 'static')">Static (Where)</button>
+                <button class="px-3 py-1 bg-green-100 text-green-800 rounded hover:bg-green-200 text-sm font-medium" onclick="checkStage1(${idx}, 'to')">To (Motion)</button>
+                <button class="px-3 py-1 bg-red-100 text-red-800 rounded hover:bg-red-200 text-sm font-medium" onclick="checkStage1(${idx}, 'from')">From (Away)</button>
+                <span id="stage1-feedback-${idx}" class="text-sm font-semibold ml-2"></span>
+            </div>
+        `;
+
+        stage1Container.appendChild(wrapper);
+    });
+
+    window.checkStage1 = function(idx, answer) {
+        const feedback = document.getElementById(`stage1-feedback-${idx}`);
+        const q = stage1Questions[idx];
+
+        if (answer === q.case) {
+            feedback.textContent = `Correct! (${q.system} system)`;
+            feedback.className = 'text-sm text-green-600 font-semibold ml-2';
+        } else {
+            feedback.textContent = `Try again! It's ${q.case} (${q.system})`;
+            feedback.className = 'text-sm text-red-600 font-semibold ml-2';
+        }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let correct = 0;
+        for (let i = 0; i < stage1Questions.length; i++) {
+            const feedback = document.getElementById(`stage1-feedback-${i}`);
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        document.getElementById('stage1-score').textContent = `Score: ${correct} / ${stage1Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 2: Static Location Drill (12 items)
+    // =============================================
+    const stage2Questions = [
+        { noun: 'haz', suffix: '-ban', answer: 'hazban', translation: 'in the house', system: 'in' },
+        { noun: 'kert', suffix: '-ben', answer: 'kertben', translation: 'in the garden', system: 'in' },
+        { noun: 'asztal', suffix: '-on', answer: 'asztalon', translation: 'on the table', system: 'on' },
+        { noun: 'szek', suffix: '-en', answer: 'szeken', answer: 'szeken', translation: 'on the chair', system: 'on' },
+        { noun: 'Peter', suffix: '-nél', answer: 'peternél', translation: 'at Peter\'s', system: 'at' },
+        { noun: 'orvos', suffix: '-nál', answer: 'orvosnál', translation: 'at the doctor\'s', system: 'at' },
+        { noun: 'iskola', suffix: '-ban', answer: 'iskolaban', translation: 'in school', system: 'in' },
+        { noun: 'utca', suffix: '-n', answer: 'utcan', translation: 'on the street', system: 'on' },
+        { noun: 'fold', suffix: '-ön', answer: 'foldon', translation: 'on the floor', system: 'on' },
+        { noun: 'bolt', suffix: '-ban', answer: 'boltban', translation: 'in the shop', system: 'in' },
+        { noun: 'Magyarorszag', suffix: '-on', answer: 'magyarorszagon', translation: 'in Hungary', system: 'on' },
+        { noun: 'barat', suffix: '-nál', answer: 'baratnál', translation: 'at friend\'s', system: 'at' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 2: Static Location Drill (Where?)</h2>
+        <p class="mb-4 text-slate-600">Add the correct static location suffix to each noun.</p>
+        <div id="stage2-exercises" class="space-y-3"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-3 bg-blue-50 rounded-lg flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        wrapper.innerHTML = `
+            <span class="min-w-[150px]"><strong>${q.noun}</strong> <span class="text-slate-500 text-sm">(${q.translation})</span></span>
+            <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-40 focus:ring-2 focus:ring-blue-500"
+                   placeholder="Add suffix" id="stage2-input-${idx}">
+            <span id="stage2-feedback-${idx}" class="text-sm font-semibold"></span>
+        `;
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage2(idx);
+        });
+
+        stage2Container.appendChild(wrapper);
+    });
+
+    function checkStage2(idx) {
+        const input = document.getElementById(`stage2-input-${idx}`);
+        const feedback = document.getElementById(`stage2-feedback-${idx}`);
+        const q = stage2Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correctAnswer = normalizeHungarian(q.answer);
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = 'Check accents!';
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        for (let i = 0; i < stage2Questions.length; i++) {
+            const input = document.getElementById(`stage2-input-${i}`);
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage2Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage2-score').textContent = `Score: ${correct} / ${stage2Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 3: Dynamic Location Drill (12 items)
+    // =============================================
+    const stage3Questions = [
+        { noun: 'haz', direction: 'to', answer: 'hazba', translation: 'into the house', system: 'in' },
+        { noun: 'haz', direction: 'from', answer: 'hazból', translation: 'out of the house', system: 'in' },
+        { noun: 'asztal', direction: 'to', answer: 'asztalra', translation: 'onto the table', system: 'on' },
+        { noun: 'asztal', direction: 'from', answer: 'asztalról', translation: 'off the table', system: 'on' },
+        { noun: 'Peter', direction: 'to', answer: 'péterhez', translation: 'to Peter\'s', system: 'at' },
+        { noun: 'Peter', direction: 'from', answer: 'pétertől', translation: 'from Peter\'s', system: 'at' },
+        { noun: 'iskola', direction: 'to', answer: 'iskolaba', translation: 'to school', system: 'in' },
+        { noun: 'iskola', direction: 'from', answer: 'iskolából', translation: 'from school', system: 'in' },
+        { noun: 'Magyarorszag', direction: 'to', answer: 'magyarorszagra', translation: 'to Hungary', system: 'on' },
+        { noun: 'Magyarorszag', direction: 'from', answer: 'magyarorszagról', translation: 'from Hungary', system: 'on' },
+        { noun: 'orvos', direction: 'to', answer: 'orvoshoz', translation: 'to the doctor', system: 'at' },
+        { noun: 'orvos', direction: 'from', answer: 'orvostól', translation: 'from the doctor', system: 'at' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 3: Dynamic Location Drill (Where to/from?)</h2>
+        <p class="mb-4 text-slate-600">Add the correct motion suffix (to or from) to each noun.</p>
+        <div id="stage3-exercises" class="space-y-3"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+
+    stage3Questions.forEach((q, idx) => {
+        const dirColor = q.direction === 'to' ? 'text-green-700' : 'text-red-700';
+        const bgColor = q.direction === 'to' ? 'bg-green-50' : 'bg-red-50';
+
+        const wrapper = document.createElement('div');
+        wrapper.className = `p-3 ${bgColor} rounded-lg flex flex-col md:flex-row items-start md:items-center gap-2`;
+
+        wrapper.innerHTML = `
+            <span class="min-w-[200px]">
+                <strong>${q.noun}</strong>
+                <span class="${dirColor} font-semibold">(${q.direction.toUpperCase()})</span>
+                <span class="text-slate-500 text-sm">${q.translation}</span>
+            </span>
+            <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-40 focus:ring-2 focus:ring-teal-500"
+                   placeholder="Add suffix" id="stage3-input-${idx}">
+            <span id="stage3-feedback-${idx}" class="text-sm font-semibold"></span>
+        `;
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage3(idx);
+        });
+
+        stage3Container.appendChild(wrapper);
+    });
+
+    function checkStage3(idx) {
+        const input = document.getElementById(`stage3-input-${idx}`);
+        const feedback = document.getElementById(`stage3-feedback-${idx}`);
+        const q = stage3Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correctAnswer = normalizeHungarian(q.answer);
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = 'Check accents!';
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let correct = 0;
+        for (let i = 0; i < stage3Questions.length; i++) {
+            const input = document.getElementById(`stage3-input-${i}`);
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage3Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage3-score').textContent = `Score: ${correct} / ${stage3Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 4: Translation Practice (10 items)
+    // =============================================
+    const stage4Questions = [
+        { english: 'I am in the house.', hungarian: 'A hazban vagyok.', hint: 'static, in' },
+        { english: 'I go to school.', hungarian: 'Az iskolaba megyek.', hint: 'to, in' },
+        { english: 'It is on the table.', hungarian: 'Az asztalon van.', hint: 'static, on' },
+        { english: 'I come from the garden.', hungarian: 'A kertbol jovok.', hint: 'from, in' },
+        { english: 'I am at Peter\'s.', hungarian: 'Peternél vagyok.', hint: 'static, at' },
+        { english: 'I go to the doctor.', hungarian: 'Az orvoshoz megyek.', hint: 'to, at' },
+        { english: 'I put it on the chair.', hungarian: 'A szekre teszem.', hint: 'to, on' },
+        { english: 'I come from Hungary.', hungarian: 'Magyarorszagrol jovok.', hint: 'from, on' },
+        { english: 'She lives in Budapest.', hungarian: 'Budapesten lakik.', hint: 'static, on (cities!)' },
+        { english: 'We go to the shop.', hungarian: 'A boltba megyunk.', hint: 'to, in' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 4: Translation Practice</h2>
+        <p class="mb-4 text-slate-600">Translate the sentences using correct location cases.</p>
+        <div id="stage4-exercises" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-slate-50 rounded-lg';
+
+        wrapper.innerHTML = `
+            <div class="mb-2">
+                <strong>${q.english}</strong>
+                <span class="text-slate-500 text-sm ml-2">(${q.hint})</span>
+            </div>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-teal-500"
+                       id="stage4-input-${idx}">
+                <span id="stage4-feedback-${idx}" class="text-sm font-semibold"></span>
+            </div>
+        `;
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(idx);
+        });
+
+        stage4Container.appendChild(wrapper);
+    });
+
+    function checkStage4(idx) {
+        const input = document.getElementById(`stage4-input-${idx}`);
+        const feedback = document.getElementById(`stage4-feedback-${idx}`);
+        const q = stage4Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correctAnswer = normalizeHungarian(q.hungarian);
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = 'Check accents!';
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.hungarian}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        for (let i = 0; i < stage4Questions.length; i++) {
+            const input = document.getElementById(`stage4-input-${i}`);
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage4Questions[i].hungarian)) correct++;
+        }
+        document.getElementById('stage4-score').textContent = `Score: ${correct} / ${stage4Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 5: Direction Dialogue (8 items)
+    // =============================================
+    const stage5Questions = [
+        { prompt: 'Ask: "Where are you?"', answer: 'Hol vagy?', hint: 'hol' },
+        { prompt: 'Ask: "Where are you going?"', answer: 'Hová mesz?', hint: 'hová' },
+        { prompt: 'Ask: "Where are you coming from?"', answer: 'Honnan jossz?', hint: 'honnan' },
+        { prompt: 'Answer: "I am at home."', answer: 'Itthon vagyok.', hint: 'itthon (static)' },
+        { prompt: 'Answer: "I am going home."', answer: 'Haza megyek.', hint: 'haza (to)' },
+        { prompt: 'Answer: "I am coming from work."', answer: 'A munkabol jovok.', hint: 'munka + ból' },
+        { prompt: 'Say: "The book is on the table."', answer: 'A konyv az asztalon van.', hint: 'asztal + on' },
+        { prompt: 'Say: "I go to Budapest."', answer: 'Budapestre megyek.', hint: 'Budapest + re' }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 5: Direction Questions & Answers</h2>
+        <p class="mb-4 text-slate-600">Practice asking and answering location questions.</p>
+        <div id="stage5-exercises" class="space-y-4"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Container = document.getElementById('stage5-exercises');
+
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-purple-50 rounded-lg';
+
+        wrapper.innerHTML = `
+            <div class="mb-2">
+                <strong>${q.prompt}</strong>
+                <span class="text-slate-500 text-sm ml-2">(${q.hint})</span>
+            </div>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-72 focus:ring-2 focus:ring-purple-500"
+                       id="stage5-input-${idx}">
+                <span id="stage5-feedback-${idx}" class="text-sm font-semibold"></span>
+            </div>
+        `;
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage5(idx);
+        });
+
+        stage5Container.appendChild(wrapper);
+    });
+
+    function checkStage5(idx) {
+        const input = document.getElementById(`stage5-input-${idx}`);
+        const feedback = document.getElementById(`stage5-feedback-${idx}`);
+        const q = stage5Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correctAnswer = normalizeHungarian(q.answer);
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = 'Check accents!';
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage5Score();
+    }
+
+    function updateStage5Score() {
+        let correct = 0;
+        for (let i = 0; i < stage5Questions.length; i++) {
+            const input = document.getElementById(`stage5-input-${i}`);
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage5Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage5-score').textContent = `Score: ${correct} / ${stage5Questions.length}`;
+    }
+
+    // =============================================
+    // SUMMARY
+    // =============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 p-6 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg border border-blue-200';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Summary: Location Cases</h2>
+        <div class="overflow-x-auto">
+            <table class="text-sm mb-4">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="static-highlight">WHERE (Static)</th>
+                        <th class="to-highlight">WHERE TO</th>
+                        <th class="from-highlight">WHERE FROM</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-semibold">IN</td>
+                        <td>-ban/-ben</td>
+                        <td>-ba/-be</td>
+                        <td>-ból/-ből</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">ON</td>
+                        <td>-n/-on/-en/-ön</td>
+                        <td>-ra/-re</td>
+                        <td>-ról/-ről</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">AT</td>
+                        <td>-nál/-nél</td>
+                        <td>-hoz/-hez/-höz</td>
+                        <td>-tól/-től</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="bg-white p-3 rounded border">
+                <h4 class="font-semibold mb-2">Key Questions:</h4>
+                <ul class="text-sm space-y-1">
+                    <li><strong class="static-highlight">Hol?</strong> - Where?</li>
+                    <li><strong class="to-highlight">Hová?</strong> - Where to?</li>
+                    <li><strong class="from-highlight">Honnan?</strong> - Where from?</li>
+                </ul>
+            </div>
+            <div class="bg-white p-3 rounded border">
+                <h4 class="font-semibold mb-2">Remember:</h4>
+                <ul class="text-sm space-y-1">
+                    <li>Countries use surface (-on/-en/-ön)</li>
+                    <li>People use proximity (-nál/-nél)</li>
+                    <li>Vowel harmony always applies!</li>
+                </ul>
+            </div>
+        </div>
+        <p class="mt-4 text-sm text-slate-600">Continue to Lesson 16 to learn about time expressions and calendar.</p>
+    `;
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>

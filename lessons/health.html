@@ -6,7 +6,7 @@
     <title>Lesson 25: Health & Body Parts - Learning Hungarian</title>
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
         table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
@@ -17,14 +17,22 @@
             transition: all 0.2s;
             user-select: none;
         }
-        .match-card:hover { transform: scale(1.02); }
+        .match-card:hover {
+            transform: scale(1.02);
+        }
         .match-card.selected {
             border-color: #0f766e;
             background-color: #f0fdfa;
             box-shadow: 0 0 0 2px #0f766e;
         }
-        .match-card.correct { border-color: #16a34a; background-color: #dcfce7; }
-        .match-card.incorrect { border-color: #dc2626; background-color: #fef2f2; }
+        .match-card.correct {
+            border-color: #16a34a;
+            background-color: #dcfce7;
+        }
+        .match-card.incorrect {
+            border-color: #dc2626;
+            background-color: #fef2f2;
+        }
         .cultural-note {
             background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
             border-left: 4px solid #0f766e;
@@ -32,10 +40,6 @@
         .emergency-box {
             background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
             border-left: 4px solid #dc2626;
-        }
-        .body-diagram {
-            max-width: 200px;
-            margin: 0 auto;
         }
     </style>
 </head>
@@ -49,8 +53,8 @@
                 Back to Lessons
             </a>
         </div>
-        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 25: Health & Body Parts <span class="block text-xl text-slate-500 font-normal">(Egeszseg es testreszek)</span></h1>
-        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Learn essential vocabulary for discussing health, body parts, and medical situations in Hungarian.</p>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 25: Health & Body Parts <span class="block text-xl text-slate-500 font-normal">(Egeszseg es testresek)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Learn essential vocabulary for discussing health, body parts, visiting the doctor, and getting medicine at the pharmacy.</p>
     </header>
     <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
     </main>
@@ -60,6 +64,7 @@
     <script>
     const mainContent = document.getElementById('main-content');
 
+    // Accent handling utilities
     function removeAccents(str) {
         return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiI]/g, function(m) {
             const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U' };
@@ -67,138 +72,193 @@
         });
     }
 
-    function normalizeHungarian(str) { return str.trim().toLowerCase(); }
-
-    function checkWithAccentWarning(input, correct) {
-        const inputVal = normalizeHungarian(input);
-        const correctVal = normalizeHungarian(correct);
-        if (inputVal === correctVal) return 'correct';
-        if (removeAccents(inputVal) === removeAccents(correctVal)) return 'accent-warning';
-        return 'incorrect';
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
     }
 
-    function shuffle(array) {
-        const arr = [...array];
-        for (let i = arr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-        return arr;
-    }
+    // ==================== EMERGENCY BOX ====================
+    const emergencyBox = document.createElement('div');
+    emergencyBox.className = 'emergency-box p-4 rounded-lg mb-8';
+    emergencyBox.innerHTML = `
+        <h3 class="font-bold text-red-800 mb-2">Emergency Phrases - Veszhivasz</h3>
+        <ul class="text-sm text-slate-700 space-y-1">
+            <li><strong>Segitsteg!</strong> - Help!</li>
+            <li><strong>Hivja a mentőket!</strong> - Call an ambulance!</li>
+            <li><strong>Orvosra van szuksegem.</strong> - I need a doctor.</li>
+            <li><strong>Ez surgős!</strong> - It's urgent!</li>
+            <li><strong>Faj!</strong> - It hurts!</li>
+        </ul>
+        <p class="text-xs text-red-700 mt-2">Emergency number in Hungary: <strong>112</strong> (EU) or <strong>104</strong> (Ambulance)</p>
+    `;
+    mainContent.appendChild(emergencyBox);
 
-    // SECTION 1: BODY PARTS
+    // ==================== SECTION 1: BODY PARTS ====================
     const section1 = document.createElement('section');
     section1.className = 'mb-8';
     section1.innerHTML = `
-        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Body Parts (Testreszek)</h2>
-        <p class="mb-4 text-slate-600">Essential body part vocabulary for describing health issues.</p>
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Body Parts</h2>
+        <p class="mb-4 text-slate-600">Learn the Hungarian names for different parts of the body.</p>
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Head & Face (Fej es arc)</h3>
         <table class="mb-4 w-full border text-sm">
-            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
-            <tr><td class="border px-2 font-medium">fej</td><td class="border px-2">head</td><td class="border px-2 font-medium">nyak</td><td class="border px-2">neck</td></tr>
-            <tr><td class="border px-2 font-medium">szem</td><td class="border px-2">eye</td><td class="border px-2 font-medium">ful</td><td class="border px-2">ear</td></tr>
-            <tr><td class="border px-2 font-medium">orr</td><td class="border px-2">nose</td><td class="border px-2 font-medium">szaj</td><td class="border px-2">mouth</td></tr>
-            <tr><td class="border px-2 font-medium">fog</td><td class="border px-2">tooth</td><td class="border px-2 font-medium">nyelv</td><td class="border px-2">tongue</td></tr>
-            <tr><td class="border px-2 font-medium">torok</td><td class="border px-2">throat</td><td class="border px-2 font-medium">vall</td><td class="border px-2">shoulder</td></tr>
-            <tr><td class="border px-2 font-medium">kar</td><td class="border px-2">arm</td><td class="border px-2 font-medium">kez</td><td class="border px-2">hand</td></tr>
-            <tr><td class="border px-2 font-medium">ujj</td><td class="border px-2">finger</td><td class="border px-2 font-medium">mellkas</td><td class="border px-2">chest</td></tr>
-            <tr><td class="border px-2 font-medium">has</td><td class="border px-2">stomach</td><td class="border px-2 font-medium">hat</td><td class="border px-2">back</td></tr>
-            <tr><td class="border px-2 font-medium">lab</td><td class="border px-2">leg/foot</td><td class="border px-2 font-medium">terd</td><td class="border px-2">knee</td></tr>
-            <tr><td class="border px-2 font-medium">boka</td><td class="border px-2">ankle</td><td class="border px-2 font-medium">sziv</td><td class="border px-2">heart</td></tr>
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2 font-medium">fej</td><td class="border px-2">head</td></tr>
+            <tr><td class="border px-2 font-medium">arc</td><td class="border px-2">face</td></tr>
+            <tr><td class="border px-2 font-medium">szem</td><td class="border px-2">eye</td></tr>
+            <tr><td class="border px-2 font-medium">ful</td><td class="border px-2">ear</td></tr>
+            <tr><td class="border px-2 font-medium">orr</td><td class="border px-2">nose</td></tr>
+            <tr><td class="border px-2 font-medium">szaj</td><td class="border px-2">mouth</td></tr>
+            <tr><td class="border px-2 font-medium">fog</td><td class="border px-2">tooth</td></tr>
+            <tr><td class="border px-2 font-medium">nyelv</td><td class="border px-2">tongue</td></tr>
+            <tr><td class="border px-2 font-medium">haj</td><td class="border px-2">hair</td></tr>
+            <tr><td class="border px-2 font-medium">nyak</td><td class="border px-2">neck</td></tr>
+            <tr><td class="border px-2 font-medium">torok</td><td class="border px-2">throat</td></tr>
         </table>
-        <div class="cultural-note p-4 rounded-lg mb-4">
-            <h4 class="font-semibold text-teal-800 mb-2">Grammar Note: Body Part Possession</h4>
-            <p class="text-slate-700 text-sm">In Hungarian, when talking about your own body parts, you use possessive suffixes: <strong>a fejem</strong> (my head), <strong>a kezem</strong> (my hand). "Faj a fejem" = My head hurts.</p>
-        </div>
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Body (Test)</h3>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2 font-medium">test</td><td class="border px-2">body</td></tr>
+            <tr><td class="border px-2 font-medium">kar</td><td class="border px-2">arm</td></tr>
+            <tr><td class="border px-2 font-medium">kez</td><td class="border px-2">hand</td></tr>
+            <tr><td class="border px-2 font-medium">ujj</td><td class="border px-2">finger</td></tr>
+            <tr><td class="border px-2 font-medium">lab</td><td class="border px-2">leg/foot</td></tr>
+            <tr><td class="border px-2 font-medium">labfej</td><td class="border px-2">foot</td></tr>
+            <tr><td class="border px-2 font-medium">terd</td><td class="border px-2">knee</td></tr>
+            <tr><td class="border px-2 font-medium">hat</td><td class="border px-2">back</td></tr>
+            <tr><td class="border px-2 font-medium">mell</td><td class="border px-2">chest</td></tr>
+            <tr><td class="border px-2 font-medium">has</td><td class="border px-2">stomach/belly</td></tr>
+            <tr><td class="border px-2 font-medium">sziv</td><td class="border px-2">heart</td></tr>
+            <tr><td class="border px-2 font-medium">vall</td><td class="border px-2">shoulder</td></tr>
+        </table>
     `;
     mainContent.appendChild(section1);
 
-    // SECTION 2: SYMPTOMS AND AILMENTS
+    // ==================== SECTION 2: ILLNESS & SYMPTOMS ====================
     const section2 = document.createElement('section');
     section2.className = 'mb-8';
     section2.innerHTML = `
-        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Symptoms & Ailments</h2>
-        <p class="mb-4 text-slate-600">Common ways to describe how you feel and what hurts.</p>
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Illness & Symptoms</h2>
+        <p class="mb-4 text-slate-600">Learn how to describe symptoms and common health conditions.</p>
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Common Symptoms</h3>
         <table class="mb-4 w-full border text-sm">
             <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
-            <tr><td class="border px-2 font-medium">Faj a fejem.</td><td class="border px-2">My head hurts. (I have a headache.)</td></tr>
+            <tr><td class="border px-2 font-medium">Faj a fejem.</td><td class="border px-2">My head hurts. / I have a headache.</td></tr>
             <tr><td class="border px-2 font-medium">Faj a torkom.</td><td class="border px-2">My throat hurts.</td></tr>
             <tr><td class="border px-2 font-medium">Faj a hasam.</td><td class="border px-2">My stomach hurts.</td></tr>
-            <tr><td class="border px-2 font-medium">Lazas vagyok.</td><td class="border px-2">I have a fever.</td></tr>
-            <tr><td class="border px-2 font-medium">Megfaztam.</td><td class="border px-2">I caught a cold.</td></tr>
-            <tr><td class="border px-2 font-medium">Kohorok.</td><td class="border px-2">I'm coughing.</td></tr>
-            <tr><td class="border px-2 font-medium">Tusszogok.</td><td class="border px-2">I'm sneezing.</td></tr>
-            <tr><td class="border px-2 font-medium">Rosszul vagyok.</td><td class="border px-2">I feel sick.</td></tr>
-            <tr><td class="border px-2 font-medium">Szedulok.</td><td class="border px-2">I feel dizzy.</td></tr>
+            <tr><td class="border px-2 font-medium">Faj a hatam.</td><td class="border px-2">My back hurts.</td></tr>
+            <tr><td class="border px-2 font-medium">Lázam van.</td><td class="border px-2">I have a fever.</td></tr>
+            <tr><td class="border px-2 font-medium">Kohogok.</td><td class="border px-2">I'm coughing.</td></tr>
+            <tr><td class="border px-2 font-medium">Tusszentek.</td><td class="border px-2">I'm sneezing.</td></tr>
+            <tr><td class="border px-2 font-medium">Fázom.</td><td class="border px-2">I feel cold / I'm shivering.</td></tr>
+            <tr><td class="border px-2 font-medium">Hanyingerem van.</td><td class="border px-2">I feel nauseous.</td></tr>
+            <tr><td class="border px-2 font-medium">Szédulok.</td><td class="border px-2">I feel dizzy.</td></tr>
             <tr><td class="border px-2 font-medium">Faradt vagyok.</td><td class="border px-2">I'm tired.</td></tr>
-            <tr><td class="border px-2 font-medium">allergia</td><td class="border px-2">allergy</td></tr>
-            <tr><td class="border px-2 font-medium">megfazas</td><td class="border px-2">cold (illness)</td></tr>
+            <tr><td class="border px-2 font-medium">Rosszul vagyok.</td><td class="border px-2">I feel unwell.</td></tr>
         </table>
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Common Conditions</h3>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2 font-medium">megfazas</td><td class="border px-2">cold (illness)</td></tr>
+            <tr><td class="border px-2 font-medium">influenza / grip</td><td class="border px-2">flu</td></tr>
+            <tr><td class="border px-2 font-medium">allergia</td><td class="border px-2">allergy</td></tr>
+            <tr><td class="border px-2 font-medium">fejfajas</td><td class="border px-2">headache</td></tr>
+            <tr><td class="border px-2 font-medium">hasfajas</td><td class="border px-2">stomachache</td></tr>
+            <tr><td class="border px-2 font-medium">fogfajas</td><td class="border px-2">toothache</td></tr>
+            <tr><td class="border px-2 font-medium">serules</td><td class="border px-2">injury</td></tr>
+            <tr><td class="border px-2 font-medium">törés</td><td class="border px-2">fracture/break</td></tr>
+        </table>
+        <div class="cultural-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">The "Faj" Pattern</h4>
+            <p class="text-slate-700 text-sm">In Hungarian, to say something hurts, use: <strong>Faj a [body part]-m</strong> (My [body part] hurts). The possessive suffix changes: fejem (my head), kezem (my hand), lábam (my leg). For someone else: "Faj a feje" (His/her head hurts).</p>
+        </div>
     `;
     mainContent.appendChild(section2);
 
-    // SECTION 3: DOCTOR VISIT
+    // ==================== SECTION 3: AT THE DOCTOR ====================
     const section3 = document.createElement('section');
     section3.className = 'mb-8';
     section3.innerHTML = `
         <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: At the Doctor's Office</h2>
+        <p class="mb-4 text-slate-600">Learn useful phrases for visiting the doctor in Hungary.</p>
         <table class="mb-4 w-full border text-sm">
             <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
             <tr><td class="border px-2 font-medium">orvos</td><td class="border px-2">doctor</td></tr>
-            <tr><td class="border px-2 font-medium">haziorvos</td><td class="border px-2">general practitioner (GP)</td></tr>
-            <tr><td class="border px-2 font-medium">rendelo</td><td class="border px-2">doctor's office</td></tr>
+            <tr><td class="border px-2 font-medium">nővér</td><td class="border px-2">nurse</td></tr>
+            <tr><td class="border px-2 font-medium">rendelő</td><td class="border px-2">doctor's office</td></tr>
             <tr><td class="border px-2 font-medium">korhaz</td><td class="border px-2">hospital</td></tr>
-            <tr><td class="border px-2 font-medium">Mi a panasza?</td><td class="border px-2">What is your complaint?</td></tr>
-            <tr><td class="border px-2 font-medium">Hol faj?</td><td class="border px-2">Where does it hurt?</td></tr>
-            <tr><td class="border px-2 font-medium">Mikor kezdodott?</td><td class="border px-2">When did it start?</td></tr>
-            <tr><td class="border px-2 font-medium">recept</td><td class="border px-2">prescription</td></tr>
+            <tr><td class="border px-2 font-medium">időpont</td><td class="border px-2">appointment</td></tr>
             <tr><td class="border px-2 font-medium">vizsgalat</td><td class="border px-2">examination</td></tr>
-            <tr><td class="border px-2 font-medium">diagnozis</td><td class="border px-2">diagnosis</td></tr>
+            <tr><td class="border px-2 font-medium">recept</td><td class="border px-2">prescription</td></tr>
+            <tr><td class="border px-2 font-medium">betegség</td><td class="border px-2">illness/disease</td></tr>
         </table>
-        <div class="emergency-box p-4 rounded-lg mb-4">
-            <h4 class="font-semibold text-red-800 mb-2">Emergency Phrases</h4>
-            <p class="text-slate-700 text-sm"><strong>Segitseg!</strong> - Help! | <strong>Hivja a mentot!</strong> - Call an ambulance! | <strong>Surgos!</strong> - Urgent! | Emergency number: <strong>104</strong> (ambulance) or <strong>112</strong> (general)</p>
-        </div>
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Doctor Visit Phrases</h3>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2 font-medium">Időpontot szeretnék kérni.</td><td class="border px-2">I'd like to make an appointment.</td></tr>
+            <tr><td class="border px-2 font-medium">Mi a panasza?</td><td class="border px-2">What's your complaint? (doctor asks)</td></tr>
+            <tr><td class="border px-2 font-medium">Mióta érzi magát rosszul?</td><td class="border px-2">How long have you felt unwell?</td></tr>
+            <tr><td class="border px-2 font-medium">Tegnap óta.</td><td class="border px-2">Since yesterday.</td></tr>
+            <tr><td class="border px-2 font-medium">Két napja.</td><td class="border px-2">For two days.</td></tr>
+            <tr><td class="border px-2 font-medium">Vetkőzzön le!</td><td class="border px-2">Please undress.</td></tr>
+            <tr><td class="border px-2 font-medium">Légezzen mélyen!</td><td class="border px-2">Breathe deeply.</td></tr>
+            <tr><td class="border px-2 font-medium">Nyissa ki a száját!</td><td class="border px-2">Open your mouth.</td></tr>
+            <tr><td class="border px-2 font-medium">Irok egy receptet.</td><td class="border px-2">I'll write you a prescription.</td></tr>
+        </table>
     `;
     mainContent.appendChild(section3);
 
-    // SECTION 4: PHARMACY
+    // ==================== SECTION 4: AT THE PHARMACY ====================
     const section4 = document.createElement('section');
     section4.className = 'mb-8';
     section4.innerHTML = `
-        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: At the Pharmacy (Gyogyszertarban)</h2>
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: At the Pharmacy</h2>
+        <p class="mb-4 text-slate-600">Learn how to get medicine and talk to the pharmacist.</p>
         <table class="mb-4 w-full border text-sm">
             <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
-            <tr><td class="border px-2 font-medium">gyogyszertar</td><td class="border px-2">pharmacy</td></tr>
-            <tr><td class="border px-2 font-medium">gyogyszer</td><td class="border px-2">medicine/medication</td></tr>
+            <tr><td class="border px-2 font-medium">gyogyszertar / patika</td><td class="border px-2">pharmacy</td></tr>
+            <tr><td class="border px-2 font-medium">gyogyszer</td><td class="border px-2">medicine</td></tr>
             <tr><td class="border px-2 font-medium">tabletta</td><td class="border px-2">pill/tablet</td></tr>
             <tr><td class="border px-2 font-medium">szirup</td><td class="border px-2">syrup</td></tr>
             <tr><td class="border px-2 font-medium">krem</td><td class="border px-2">cream/ointment</td></tr>
             <tr><td class="border px-2 font-medium">fajdalomcsillapito</td><td class="border px-2">painkiller</td></tr>
-            <tr><td class="border px-2 font-medium">lazcsillapito</td><td class="border px-2">fever reducer</td></tr>
-            <tr><td class="border px-2 font-medium">antibiotikum</td><td class="border px-2">antibiotic</td></tr>
-            <tr><td class="border px-2 font-medium">Van valami ... ellen?</td><td class="border px-2">Do you have something for...?</td></tr>
-            <tr><td class="border px-2 font-medium">Naponta haromszor</td><td class="border px-2">Three times daily</td></tr>
+            <tr><td class="border px-2 font-medium">lázcsillapító</td><td class="border px-2">fever reducer</td></tr>
+            <tr><td class="border px-2 font-medium">kohoges elleni</td><td class="border px-2">cough medicine</td></tr>
+            <tr><td class="border px-2 font-medium">vitaminok</td><td class="border px-2">vitamins</td></tr>
         </table>
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Pharmacy Phrases</h3>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2 font-medium">Van receptje?</td><td class="border px-2">Do you have a prescription?</td></tr>
+            <tr><td class="border px-2 font-medium">Recept nélkul is kapható?</td><td class="border px-2">Is it available without prescription?</td></tr>
+            <tr><td class="border px-2 font-medium">Hogyan kell szedni?</td><td class="border px-2">How should I take it?</td></tr>
+            <tr><td class="border px-2 font-medium">Naponta háromszor.</td><td class="border px-2">Three times a day.</td></tr>
+            <tr><td class="border px-2 font-medium">Étkezés után.</td><td class="border px-2">After meals.</td></tr>
+            <tr><td class="border px-2 font-medium">Étkezés előtt.</td><td class="border px-2">Before meals.</td></tr>
+            <tr><td class="border px-2 font-medium">Van mellékhatása?</td><td class="border px-2">Are there side effects?</td></tr>
+        </table>
+        <div class="cultural-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">Hungarian Healthcare</h4>
+            <p class="text-slate-700 text-sm">Hungary has both public (TB-funded) and private healthcare. Look for a green cross sign for pharmacies (gyogyszertar). Many pharmacies have night duty (ügyeletes patika) for after-hours emergencies. Basic medicines like painkillers are available without prescription.</p>
+        </div>
     `;
     mainContent.appendChild(section4);
 
-    // STAGE 1: BODY PARTS LABELING (15 items)
+    // ==================== STAGE 1: BODY PARTS MATCHING (15 items) ====================
     const stage1Data = [
         { hungarian: 'fej', english: 'head' },
         { hungarian: 'szem', english: 'eye' },
         { hungarian: 'ful', english: 'ear' },
         { hungarian: 'orr', english: 'nose' },
         { hungarian: 'szaj', english: 'mouth' },
-        { hungarian: 'nyak', english: 'neck' },
-        { hungarian: 'vall', english: 'shoulder' },
-        { hungarian: 'kar', english: 'arm' },
+        { hungarian: 'fog', english: 'tooth' },
         { hungarian: 'kez', english: 'hand' },
-        { hungarian: 'ujj', english: 'finger' },
-        { hungarian: 'has', english: 'stomach' },
-        { hungarian: 'hat', english: 'back' },
-        { hungarian: 'lab', english: 'leg' },
+        { hungarian: 'kar', english: 'arm' },
+        { hungarian: 'lab', english: 'leg/foot' },
         { hungarian: 'terd', english: 'knee' },
-        { hungarian: 'sziv', english: 'heart' }
+        { hungarian: 'hat', english: 'back' },
+        { hungarian: 'has', english: 'stomach' },
+        { hungarian: 'sziv', english: 'heart' },
+        { hungarian: 'nyak', english: 'neck' },
+        { hungarian: 'torok', english: 'throat' }
     ];
 
     let stage1Selected = null;
@@ -207,13 +267,13 @@
     const stage1Section = document.createElement('section');
     stage1Section.className = 'mb-8';
     stage1Section.innerHTML = `
-        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Body Parts Labeling (15 items)</h2>
-        <p class="mb-4 text-slate-600">Match Hungarian body parts with their English translations.</p>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Body Parts</h2>
+        <p class="mb-4 text-slate-600">Match the Hungarian body part words with their English translations.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="stage1-exercise">
             <div id="stage1-hungarian" class="space-y-2"></div>
             <div id="stage1-english" class="space-y-2"></div>
         </div>
-        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / 15</div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage1Data.length}</div>
     `;
     mainContent.appendChild(stage1Section);
 
@@ -221,341 +281,451 @@
     const stage1English = document.getElementById('stage1-english');
     const stage1Score = document.getElementById('stage1-score');
 
-    const shuffledEnglish1 = shuffle(stage1Data);
+    const shuffledEnglish1 = [...stage1Data].sort(() => Math.random() - 0.5);
 
     stage1Data.forEach((item, idx) => {
         const card = document.createElement('div');
-        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 bg-white text-center font-medium';
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
         card.textContent = item.hungarian;
-        card.dataset.idx = idx;
-        card.onclick = () => selectCard1(card, 'hungarian', idx);
+        card.dataset.index = idx;
+        card.dataset.type = 'hungarian';
+        card.addEventListener('click', () => handleStage1Click(card, 'hungarian', idx));
         stage1Hungarian.appendChild(card);
     });
 
-    shuffledEnglish1.forEach((item) => {
+    shuffledEnglish1.forEach((item, idx) => {
         const card = document.createElement('div');
-        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 bg-white text-center';
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
         card.textContent = item.english;
-        card.dataset.hungarian = item.hungarian;
-        card.onclick = () => selectCard1(card, 'english', item.hungarian);
+        card.dataset.originalIndex = stage1Data.findIndex(d => d.english === item.english);
+        card.dataset.type = 'english';
+        card.addEventListener('click', () => handleStage1Click(card, 'english', parseInt(card.dataset.originalIndex)));
         stage1English.appendChild(card);
     });
 
-    function selectCard1(card, type, value) {
+    function handleStage1Click(card, type, index) {
         if (card.classList.contains('correct')) return;
-        if (type === 'hungarian') {
-            document.querySelectorAll('#stage1-hungarian .match-card').forEach(c => c.classList.remove('selected'));
+
+        if (stage1Selected === null) {
+            stage1Selected = { card, type, index };
             card.classList.add('selected');
-            stage1Selected = { type, value, card };
-        } else if (type === 'english' && stage1Selected && stage1Selected.type === 'hungarian') {
-            const hungarianWord = stage1Data[stage1Selected.value].hungarian;
-            if (value === hungarianWord) {
+        } else if (stage1Selected.type === type) {
+            stage1Selected.card.classList.remove('selected');
+            stage1Selected = { card, type, index };
+            card.classList.add('selected');
+        } else {
+            if (stage1Selected.index === index) {
                 stage1Selected.card.classList.remove('selected');
                 stage1Selected.card.classList.add('correct');
                 card.classList.add('correct');
-                stage1Matches.add(hungarianWord);
-                stage1Score.textContent = `Score: ${stage1Matches.size} / 15`;
-                if (stage1Matches.size === 15) {
-                    stage1Score.innerHTML += ' <span class="text-green-600 ml-2">All matched!</span>';
-                }
+                stage1Matches.add(index);
+                updateStage1Score();
             } else {
+                stage1Selected.card.classList.add('incorrect');
                 card.classList.add('incorrect');
-                setTimeout(() => card.classList.remove('incorrect'), 500);
+                setTimeout(() => {
+                    stage1Selected.card.classList.remove('selected', 'incorrect');
+                    card.classList.remove('incorrect');
+                    stage1Selected = null;
+                }, 800);
+                return;
             }
             stage1Selected = null;
         }
     }
 
-    // STAGE 2: SYMPTOM DESCRIPTION (10 items)
-    const stage2Data = [
-        { prompt: 'My head hurts:', answer: 'Faj a fejem', hint: 'Hurts the my-head' },
-        { prompt: 'My throat hurts:', answer: 'Faj a torkom', hint: 'Hurts the my-throat' },
-        { prompt: 'I have a fever:', answer: 'Lazas vagyok', hint: 'Feverish I-am' },
-        { prompt: 'I caught a cold:', answer: 'Megfaztam', hint: 'I-caught-cold' },
-        { prompt: 'I feel sick:', answer: 'Rosszul vagyok', hint: 'Badly I-am' },
-        { prompt: 'I am coughing:', answer: 'Kohorok', hint: 'I-cough' },
-        { prompt: 'I am sneezing:', answer: 'Tusszogok', hint: 'I-sneeze' },
-        { prompt: 'I feel dizzy:', answer: 'Szedulok', hint: 'I-dizzy' },
-        { prompt: 'I am tired:', answer: 'Faradt vagyok', hint: 'Tired I-am' },
-        { prompt: 'My stomach hurts:', answer: 'Faj a hasam', hint: 'Hurts the my-stomach' }
-    ];
+    function updateStage1Score() {
+        stage1Score.textContent = `Score: ${stage1Matches.size} / ${stage1Data.length}`;
+    }
 
-    let stage2Score = 0;
+    // ==================== STAGE 2: SYMPTOM DESCRIPTIONS (10 items) ====================
+    const stage2Data = [
+        { prompt: 'I have a headache.', answer: 'Faj a fejem', hint: 'head hurts', alternatives: ['faj a fejem'] },
+        { prompt: 'My throat hurts.', answer: 'Faj a torkom', hint: 'throat hurts', alternatives: ['faj a torkom'] },
+        { prompt: 'I have a fever.', answer: 'Lázam van', hint: 'fever have', alternatives: ['lazam van'] },
+        { prompt: 'I feel unwell.', answer: 'Rosszul vagyok', hint: 'badly am', alternatives: ['rosszul vagyok'] },
+        { prompt: 'My stomach hurts.', answer: 'Faj a hasam', hint: 'stomach hurts', alternatives: ['faj a hasam'] },
+        { prompt: 'I am coughing.', answer: 'Köhögök', hint: 'I cough', alternatives: ['kohogok'] },
+        { prompt: 'I feel dizzy.', answer: 'Szédülök', hint: 'I dizzy', alternatives: ['szedulok'] },
+        { prompt: 'My back hurts.', answer: 'Faj a hátam', hint: 'back hurts', alternatives: ['faj a hatam'] },
+        { prompt: 'I am tired.', answer: 'Fáradt vagyok', hint: 'tired am', alternatives: ['faradt vagyok'] },
+        { prompt: 'I feel nauseous.', answer: 'Hányingerem van', hint: 'nausea have', alternatives: ['hanyingerem van'] }
+    ];
 
     const stage2Section = document.createElement('section');
     stage2Section.className = 'mb-8';
     stage2Section.innerHTML = `
-        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Symptom Description (10 items)</h2>
-        <p class="mb-4 text-slate-600">Write the Hungarian phrase for each symptom.</p>
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Describing Symptoms</h2>
+        <p class="mb-4 text-slate-600">Translate the symptoms into Hungarian. Press Enter to check.</p>
         <div id="stage2-exercise" class="space-y-4"></div>
-        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / 10</div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage2Data.length}</div>
     `;
     mainContent.appendChild(stage2Section);
 
     const stage2Exercise = document.getElementById('stage2-exercise');
-    const stage2ScoreEl = document.getElementById('stage2-score');
+    const stage2Score = document.getElementById('stage2-score');
+    let stage2Results = new Array(stage2Data.length).fill(null);
 
     stage2Data.forEach((item, idx) => {
-        const div = document.createElement('div');
-        div.className = 'bg-slate-50 p-4 rounded-lg';
-        div.innerHTML = `
-            <p class="font-medium text-slate-700 mb-2">${idx + 1}. ${item.prompt}</p>
-            <p class="text-sm text-slate-500 mb-2 italic">Hint: ${item.hint}</p>
-            <div class="flex flex-wrap gap-2 items-center">
-                <input type="text" id="stage2-input-${idx}" class="border border-slate-300 rounded-md px-3 py-2 flex-grow" placeholder="Type in Hungarian...">
-                <button onclick="checkStage2(${idx})" class="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700">Check</button>
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. "${item.prompt}"</p>
+            <p class="text-sm text-slate-500">Hint: ${item.hint}</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-64 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                       placeholder="Type Hungarian..." aria-label="Answer">
+                <span class="text-sm font-semibold stage2-feedback"></span>
             </div>
-            <p id="stage2-feedback-${idx}" class="mt-2 text-sm"></p>
         `;
-        stage2Exercise.appendChild(div);
+        stage2Exercise.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage2(idx, input, wrapper, item);
+        });
     });
 
-    window.checkStage2 = function(idx) {
-        const input = document.getElementById('stage2-input-' + idx);
-        const feedback = document.getElementById('stage2-feedback-' + idx);
-        const result = checkWithAccentWarning(input.value, stage2Data[idx].answer);
-        if (result === 'correct') {
-            if (!input.dataset.correct) {
-                stage2Score++;
-                input.dataset.correct = 'true';
-                stage2ScoreEl.textContent = 'Score: ' + stage2Score + ' / 10';
-            }
-            feedback.textContent = 'Correct! Helyes!';
-            feedback.className = 'mt-2 text-sm text-green-600 font-medium';
-            input.classList.add('border-green-500', 'bg-green-50');
-            input.disabled = true;
-        } else if (result === 'accent-warning') {
-            feedback.textContent = 'Almost! Check accents: ' + stage2Data[idx].answer;
-            feedback.className = 'mt-2 text-sm text-yellow-600 font-medium';
+    function checkStage2(idx, input, wrapper, item) {
+        const feedback = wrapper.querySelector('.stage2-feedback');
+        const userAnswer = input.value.trim().toLowerCase().replace(/[.!?]/g, '');
+        const correctAnswer = item.answer.toLowerCase().replace(/[.!?]/g, '');
+        const alternatives = item.alternatives.map(a => a.toLowerCase().replace(/[.!?]/g, ''));
+
+        if (userAnswer === correctAnswer || alternatives.includes(userAnswer)) {
+            feedback.textContent = `Correct! "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage2-feedback';
+            stage2Results[idx] = true;
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Almost! Watch the accents: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage2-feedback';
+            stage2Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage2Results[idx] = null;
         } else {
-            feedback.textContent = 'Try again. Answer: ' + stage2Data[idx].answer;
-            feedback.className = 'mt-2 text-sm text-red-600';
+            feedback.textContent = `Try again. Expected: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage2-feedback';
+            stage2Results[idx] = false;
         }
-    };
+        updateStage2Score();
+    }
 
-    // STAGE 3: DOCTOR DIALOGUE (10 items)
+    function updateStage2Score() {
+        const correct = stage2Results.filter(r => r === true).length;
+        stage2Score.textContent = `Score: ${correct} / ${stage2Data.length}`;
+    }
+
+    // ==================== STAGE 3: MEDICAL DIALOGUE (10 items) ====================
     const stage3Data = [
-        { context: 'Doctor asks what your complaint is:', blank: 'Mi a panasza', hint: 'What is your complaint?', sentence: '___?' },
-        { context: 'Doctor asks where it hurts:', blank: 'Hol faj', hint: 'Where does it hurt?', sentence: '___?' },
-        { context: 'You say your head hurts:', blank: 'A fejem', hint: 'The my-head', sentence: '___ faj.' },
-        { context: 'Doctor asks when it started:', blank: 'Mikor kezdodott', hint: 'When did it start?', sentence: '___?' },
-        { context: 'You need to see a doctor:', blank: 'orvos', hint: 'doctor', sentence: 'Szuksegem van egy ___ra.' },
-        { context: 'The doctor writes a prescription:', blank: 'recept', hint: 'prescription', sentence: 'Itt a ___.' },
-        { context: 'You need an examination:', blank: 'vizsgalat', hint: 'examination', sentence: 'Szukseges egy ___.' },
-        { context: 'Going to the hospital:', blank: 'korhaz', hint: 'hospital', sentence: 'Mennem kell a ___ba.' },
-        { context: 'The doctor gives a diagnosis:', blank: 'diagnozis', hint: 'diagnosis', sentence: 'A ___ megfazas.' },
-        { context: 'At the doctors office:', blank: 'rendelo', hint: 'office', sentence: 'A ___ben vagyok.' }
+        {
+            title: 'At the Doctor',
+            lines: [
+                { speaker: 'Orvos', text: 'Jo napot! Mi a _____?', blanks: ['panasza'], type: 'fill' },
+                { speaker: 'Beteg', text: 'Faj a fejem es lázam van.', type: 'given' },
+                { speaker: 'Orvos', text: 'Mióta érzi magát _____?', blanks: ['rosszul'], type: 'fill' },
+                { speaker: 'Beteg', text: 'Ket napja.', type: 'given' }
+            ]
+        },
+        {
+            title: 'Examination',
+            lines: [
+                { speaker: 'Orvos', text: 'Kerem, nyissa ki a _____!', blanks: ['szajat'], type: 'fill' },
+                { speaker: 'Beteg', text: 'Igy jo?', type: 'given' },
+                { speaker: 'Orvos', text: 'Igen. Légezzen _____!', blanks: ['melyen'], type: 'fill' },
+                { speaker: 'Beteg', text: 'Rendben.', type: 'given' }
+            ]
+        },
+        {
+            title: 'Diagnosis',
+            lines: [
+                { speaker: 'Orvos', text: 'Megfázás van. Irok egy _____.', blanks: ['receptet'], type: 'fill' },
+                { speaker: 'Beteg', text: 'Koszonom doktor ur!', type: 'given' },
+                { speaker: 'Orvos', text: 'Pihenjen sokat és igyon sok _____!', blanks: ['vizet'], type: 'fill' }
+            ]
+        }
     ];
-
-    let stage3Score = 0;
 
     const stage3Section = document.createElement('section');
     stage3Section.className = 'mb-8';
     stage3Section.innerHTML = `
-        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Doctor Dialogue Completion (10 items)</h2>
-        <p class="mb-4 text-slate-600">Fill in the blanks with the correct Hungarian word or phrase.</p>
-        <div id="stage3-exercise" class="space-y-4"></div>
-        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / 10</div>
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Medical Dialogue</h2>
+        <p class="mb-4 text-slate-600">Complete the doctor-patient dialogues. Press Enter after each input.</p>
+        <div id="stage3-exercise" class="space-y-6"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / 0</div>
     `;
     mainContent.appendChild(stage3Section);
 
     const stage3Exercise = document.getElementById('stage3-exercise');
-    const stage3ScoreEl = document.getElementById('stage3-score');
+    const stage3Score = document.getElementById('stage3-score');
+    let stage3Total = 0;
+    let stage3Results = [];
 
-    stage3Data.forEach((item, idx) => {
-        const div = document.createElement('div');
-        div.className = 'bg-slate-50 p-4 rounded-lg';
-        div.innerHTML = `
-            <p class="font-medium text-slate-700 mb-1">${idx + 1}. ${item.context}</p>
-            <p class="text-sm text-slate-500 mb-2">Hint: ${item.hint}</p>
-            <p class="mb-2 text-slate-600">${item.sentence.replace('___', '<input type="text" id="stage3-input-' + idx + '" class="border-b-2 border-teal-500 bg-transparent w-40 text-center mx-1" placeholder="...">')}</p>
-            <button onclick="checkStage3(${idx})" class="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700">Check</button>
-            <p id="stage3-feedback-${idx}" class="mt-2 text-sm"></p>
-        `;
-        stage3Exercise.appendChild(div);
+    stage3Data.forEach((dialogue, dIdx) => {
+        const dialogueDiv = document.createElement('div');
+        dialogueDiv.className = 'bg-slate-50 p-4 rounded-lg';
+        dialogueDiv.innerHTML = `<h3 class="font-semibold text-slate-700 mb-3">${dialogue.title}</h3>`;
+
+        dialogue.lines.forEach((line, lIdx) => {
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'mb-2 flex flex-wrap items-center gap-1';
+
+            const speakerSpan = document.createElement('span');
+            speakerSpan.className = 'font-medium text-teal-700 min-w-[80px]';
+            speakerSpan.textContent = `${line.speaker}:`;
+            lineDiv.appendChild(speakerSpan);
+
+            if (line.type === 'given') {
+                const textSpan = document.createElement('span');
+                textSpan.className = 'text-slate-700';
+                textSpan.textContent = line.text;
+                lineDiv.appendChild(textSpan);
+            } else {
+                const parts = line.text.split('_____');
+                parts.forEach((part, pIdx) => {
+                    if (part) {
+                        const partSpan = document.createElement('span');
+                        partSpan.className = 'text-slate-700';
+                        partSpan.textContent = part;
+                        lineDiv.appendChild(partSpan);
+                    }
+                    if (pIdx < line.blanks.length) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.className = 'border border-slate-300 rounded px-2 py-1 w-24 text-center focus:ring-2 focus:ring-teal-500 focus:border-teal-500 mx-1';
+                        input.dataset.answer = line.blanks[pIdx];
+                        input.dataset.resultIndex = stage3Total;
+                        stage3Results.push(null);
+                        stage3Total++;
+
+                        input.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter') checkStage3Input(input);
+                        });
+
+                        lineDiv.appendChild(input);
+                    }
+                });
+            }
+
+            dialogueDiv.appendChild(lineDiv);
+        });
+
+        stage3Exercise.appendChild(dialogueDiv);
     });
 
-    window.checkStage3 = function(idx) {
-        const input = document.getElementById('stage3-input-' + idx);
-        const feedback = document.getElementById('stage3-feedback-' + idx);
-        const result = checkWithAccentWarning(input.value, stage3Data[idx].blank);
-        if (result === 'correct') {
-            if (!input.dataset.correct) {
-                stage3Score++;
-                input.dataset.correct = 'true';
-                stage3ScoreEl.textContent = 'Score: ' + stage3Score + ' / 10';
-            }
-            feedback.textContent = 'Correct! Helyes!';
-            feedback.className = 'mt-2 text-sm text-green-600 font-medium';
-            input.classList.add('border-green-500');
-            input.disabled = true;
-        } else if (result === 'accent-warning') {
-            feedback.textContent = 'Almost! Check accents: ' + stage3Data[idx].blank;
-            feedback.className = 'mt-2 text-sm text-yellow-600';
+    stage3Score.textContent = `Score: 0 / ${stage3Total}`;
+
+    function checkStage3Input(input) {
+        const correct = input.dataset.answer.toLowerCase();
+        const userAnswer = input.value.trim().toLowerCase();
+        const resultIdx = parseInt(input.dataset.resultIndex);
+
+        if (userAnswer === correct) {
+            input.classList.remove('border-red-500', 'border-yellow-500');
+            input.classList.add('border-green-500', 'bg-green-50');
+            stage3Results[resultIdx] = true;
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            input.classList.remove('border-red-500', 'border-green-500');
+            input.classList.add('border-yellow-500', 'bg-yellow-50');
+            stage3Results[resultIdx] = 'partial';
+        } else if (userAnswer === '') {
+            input.classList.remove('border-green-500', 'border-red-500', 'border-yellow-500', 'bg-green-50', 'bg-red-50', 'bg-yellow-50');
+            stage3Results[resultIdx] = null;
         } else {
-            feedback.textContent = 'Answer: ' + stage3Data[idx].blank;
-            feedback.className = 'mt-2 text-sm text-red-600';
+            input.classList.remove('border-green-500', 'border-yellow-500');
+            input.classList.add('border-red-500', 'bg-red-50');
+            stage3Results[resultIdx] = false;
         }
-    };
+        updateStage3Score();
+    }
 
-    // STAGE 4: PHARMACY SCENARIO (8 items)
+    function updateStage3Score() {
+        const correct = stage3Results.filter(r => r === true).length;
+        stage3Score.textContent = `Score: ${correct} / ${stage3Total}`;
+    }
+
+    // ==================== STAGE 4: PHARMACY SCENARIO (8 items) ====================
     const stage4Data = [
-        { prompt: 'I need a painkiller:', answer: 'fajdalomcsillapito', hint: 'pain-reliever' },
-        { prompt: 'Where is the pharmacy?', answer: 'gyogyszertar', hint: 'medicine-store' },
-        { prompt: 'I need medicine:', answer: 'gyogyszer', hint: 'medicine' },
-        { prompt: 'I need a fever reducer:', answer: 'lazcsillapito', hint: 'fever-reliever' },
-        { prompt: 'I need pills/tablets:', answer: 'tabletta', hint: 'tablet' },
-        { prompt: 'I need cough syrup:', answer: 'szirup', hint: 'syrup' },
-        { prompt: 'Do you have something for headaches?', answer: 'fejfajas', hint: 'head-pain' },
-        { prompt: 'I need cream/ointment:', answer: 'krem', hint: 'cream' }
+        { prompt: 'You need a painkiller. Ask for it:', answer: 'Fajdalomcsillapitot kerek', hint: 'painkiller please', alternatives: ['fajdalomcsillapitot kerek', 'kerek fajdalomcsillapitot'] },
+        { prompt: 'Ask if you need a prescription:', answer: 'Kell recept', hint: 'need prescription?', alternatives: ['kell recept', 'Kell recept?', 'Receptre van szükseg?'] },
+        { prompt: 'Ask "How should I take it?":', answer: 'Hogyan kell szedni', hint: 'how take it?', alternatives: ['hogyan kell szedni', 'Hogyan kell szedni?'] },
+        { prompt: 'Say "Three times a day":', answer: 'Naponta háromszor', hint: 'daily three times', alternatives: ['naponta haromszor'] },
+        { prompt: 'Ask about side effects:', answer: 'Van mellékhatása', hint: 'has side effects?', alternatives: ['van mellekhatasa', 'Van mellékhatása?'] },
+        { prompt: 'Say "After meals":', answer: 'Étkezés után', hint: 'eating after', alternatives: ['etkezes utan'] },
+        { prompt: 'Ask for cough medicine:', answer: 'Köhögés elleni gyógyszert kérek', hint: 'cough against medicine please', alternatives: ['kohöges elleni gyogyszert kerek', 'kerek kohöges elleni gyogyszert'] },
+        { prompt: 'Say "I have a prescription":', answer: 'Van receptem', hint: 'have prescription', alternatives: ['van receptem'] }
     ];
-
-    let stage4Score = 0;
 
     const stage4Section = document.createElement('section');
     stage4Section.className = 'mb-8';
     stage4Section.innerHTML = `
-        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Pharmacy Scenario (8 items)</h2>
-        <p class="mb-4 text-slate-600">Write the Hungarian word for each pharmacy item or situation.</p>
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: At the Pharmacy</h2>
+        <p class="mb-4 text-slate-600">Practice pharmacy conversations. Press Enter to check.</p>
         <div id="stage4-exercise" class="space-y-4"></div>
-        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / 8</div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage4Data.length}</div>
     `;
     mainContent.appendChild(stage4Section);
 
     const stage4Exercise = document.getElementById('stage4-exercise');
-    const stage4ScoreEl = document.getElementById('stage4-score');
+    const stage4Score = document.getElementById('stage4-score');
+    let stage4Results = new Array(stage4Data.length).fill(null);
 
     stage4Data.forEach((item, idx) => {
-        const div = document.createElement('div');
-        div.className = 'bg-slate-50 p-4 rounded-lg';
-        div.innerHTML = `
-            <p class="font-medium text-slate-700 mb-2">${idx + 1}. ${item.prompt}</p>
-            <p class="text-sm text-slate-500 mb-2 italic">Hint: ${item.hint}</p>
-            <div class="flex flex-wrap gap-2 items-center">
-                <input type="text" id="stage4-input-${idx}" class="border border-slate-300 rounded-md px-3 py-2 flex-grow" placeholder="Hungarian word...">
-                <button onclick="checkStage4(${idx})" class="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700">Check</button>
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. ${item.prompt}</p>
+            <p class="text-sm text-slate-500">Hint: ${item.hint}</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                       placeholder="Type Hungarian..." aria-label="Answer">
+                <span class="text-sm font-semibold stage4-feedback"></span>
             </div>
-            <p id="stage4-feedback-${idx}" class="mt-2 text-sm"></p>
         `;
-        stage4Exercise.appendChild(div);
+        stage4Exercise.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(idx, input, wrapper, item);
+        });
     });
 
-    window.checkStage4 = function(idx) {
-        const input = document.getElementById('stage4-input-' + idx);
-        const feedback = document.getElementById('stage4-feedback-' + idx);
-        const result = checkWithAccentWarning(input.value, stage4Data[idx].answer);
-        if (result === 'correct') {
-            if (!input.dataset.correct) {
-                stage4Score++;
-                input.dataset.correct = 'true';
-                stage4ScoreEl.textContent = 'Score: ' + stage4Score + ' / 8';
-            }
-            feedback.textContent = 'Correct! Helyes!';
-            feedback.className = 'mt-2 text-sm text-green-600 font-medium';
-            input.classList.add('border-green-500', 'bg-green-50');
-            input.disabled = true;
-        } else if (result === 'accent-warning') {
-            feedback.textContent = 'Almost! Check accents: ' + stage4Data[idx].answer;
-            feedback.className = 'mt-2 text-sm text-yellow-600 font-medium';
+    function checkStage4(idx, input, wrapper, item) {
+        const feedback = wrapper.querySelector('.stage4-feedback');
+        const userAnswer = input.value.trim().toLowerCase().replace(/[.!?]/g, '');
+        const correctAnswer = item.answer.toLowerCase().replace(/[.!?]/g, '');
+        const alternatives = item.alternatives.map(a => a.toLowerCase().replace(/[.!?]/g, ''));
+
+        if (userAnswer === correctAnswer || alternatives.includes(userAnswer)) {
+            feedback.textContent = `Correct! "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage4-feedback';
+            stage4Results[idx] = true;
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Almost! Watch the accents: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage4-feedback';
+            stage4Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage4Results[idx] = null;
         } else {
-            feedback.textContent = 'Answer: ' + stage4Data[idx].answer;
-            feedback.className = 'mt-2 text-sm text-red-600';
+            feedback.textContent = `Try again. Expected: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage4-feedback';
+            stage4Results[idx] = false;
         }
-    };
+        updateStage4Score();
+    }
 
-    // STAGE 5: HEALTH ADVICE COMPREHENSION (8 items)
-    const adviceText = `
-        <div class="bg-green-50 p-4 rounded-lg mb-4 border border-green-200">
-            <h3 class="font-bold text-green-800 mb-2">Orvosi tanacsok (Medical Advice)</h3>
-            <ul class="text-slate-700 text-sm space-y-1">
-                <li><strong>1.</strong> Igyon sok vizet es pihenjen.</li>
-                <li><strong>2.</strong> Vegyen be fajdalomcsillapitot naponta haromszor.</li>
-                <li><strong>3.</strong> Maradjon otthon ket napig.</li>
-                <li><strong>4.</strong> Ne menjen dolgozni, amig lazas.</li>
-                <li><strong>5.</strong> Egyen konnyú eteleket.</li>
-            </ul>
-        </div>
-    `;
+    function updateStage4Score() {
+        const correct = stage4Results.filter(r => r === true).length;
+        stage4Score.textContent = `Score: ${correct} / ${stage4Data.length}`;
+    }
 
-    const stage5Data = [
-        { question: 'What should you drink a lot of?', answer: 'viz', hungarian: 'Mit kell inni sokat?' },
-        { question: 'How many times daily should you take the painkiller?', answer: 'haromszor', hungarian: 'Naponta hanyszor?' },
-        { question: 'How many days should you stay home?', answer: 'ket', hungarian: 'Hany napig maradjon otthon?' },
-        { question: 'What should you not do while feverish?', answer: 'dolgozni', hungarian: 'Mit ne tegyen amig lazas?' },
-        { question: 'What kind of foods should you eat?', answer: 'konnyu', hungarian: 'Milyen eteleket egyen?' },
-        { question: 'What should you also do besides drinking water?', answer: 'pihenjen', hungarian: 'Mit tegyen meg a vizivas mellett?' },
-        { question: 'What medication is mentioned?', answer: 'fajdalomcsillapito', hungarian: 'Milyen gyogyszert emlitenek?' },
-        { question: 'Where should you stay?', answer: 'otthon', hungarian: 'Hol maradjon?' }
-    ];
-
-    let stage5Score = 0;
-
+    // ==================== STAGE 5: HEALTH COMPREHENSION (8 items) ====================
     const stage5Section = document.createElement('section');
     stage5Section.className = 'mb-8';
     stage5Section.innerHTML = `
-        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Health Advice Comprehension (8 items)</h2>
-        <p class="mb-4 text-slate-600">Read the medical advice and answer the questions.</p>
-        ${adviceText}
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Health Comprehension</h2>
+        <p class="mb-4 text-slate-600">Read the health scenarios and answer the questions.</p>
+        <div class="bg-blue-50 p-4 rounded-lg mb-6">
+            <h3 class="font-bold text-slate-800 mb-2">Anna beteg</h3>
+            <p class="text-slate-700 text-sm">Anna rosszul érzi magát. Tegnap óta fáj a feje és a torka. Ma reggel láza is van - 38 fok. Köhög és fáradt. Elmegy az orvoshoz. Az orvos megvizsgálja és azt mondja, hogy megfázás van. Ír egy receptet. Anna elmegy a patikába és vesz gyógyszert. A gyógyszerész azt mondja, hogy naponta háromszor kell szedni, étkezés után.</p>
+        </div>
         <div id="stage5-exercise" class="space-y-4"></div>
         <div id="stage5-score" class="mt-4 text-slate-700 font-medium">Score: 0 / 8</div>
     `;
     mainContent.appendChild(stage5Section);
 
-    const stage5Exercise = document.getElementById('stage5-exercise');
-    const stage5ScoreEl = document.getElementById('stage5-score');
+    const stage5Questions = [
+        { question: 'Mióta beteg Anna?', answer: 'Tegnap óta', options: ['Ma reggel óta', 'Tegnap óta', 'Ket napja', 'Egy hete'] },
+        { question: 'Mi faj Annának?', answer: 'A feje és a torka', options: ['A hasa', 'A feje és a torka', 'A lába', 'A keze'] },
+        { question: 'Hány fok láza van?', answer: '38', options: ['36', '37', '38', '39'] },
+        { question: 'Hova megy Anna?', answer: 'Az orvoshoz', options: ['A boltba', 'Az orvoshoz', 'Haza', 'A munkaba'] },
+        { question: 'Mi a diagnózis?', answer: 'Megfázás', options: ['Allergia', 'Megfázás', 'Törés', 'Fejfájás'] },
+        { question: 'Mit ír az orvos?', answer: 'Receptet', options: ['Levelet', 'Receptet', 'Könyvet', 'Üzenetet'] },
+        { question: 'Hova megy Anna a gyógyszerért?', answer: 'Patikába', options: ['Boltba', 'Kórházba', 'Patikába', 'Rendelőbe'] },
+        { question: 'Hogyan kell szedni a gyógyszert?', answer: 'Naponta háromszor', options: ['Naponta egyszer', 'Naponta kétszer', 'Naponta háromszor', 'Hetente egyszer'] }
+    ];
 
-    stage5Data.forEach((item, idx) => {
-        const div = document.createElement('div');
-        div.className = 'bg-slate-50 p-4 rounded-lg';
-        div.innerHTML = `
-            <p class="font-medium text-slate-700 mb-1">${idx + 1}. ${item.question}</p>
-            <p class="text-sm text-slate-500 mb-2 italic">In Hungarian: ${item.hungarian}</p>
-            <div class="flex flex-wrap gap-2 items-center">
-                <input type="text" id="stage5-input-${idx}" class="border border-slate-300 rounded-md px-3 py-2 flex-grow" placeholder="Your answer...">
-                <button onclick="checkStage5(${idx})" class="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700">Check</button>
+    const stage5Exercise = document.getElementById('stage5-exercise');
+    const stage5Score = document.getElementById('stage5-score');
+    let stage5Correct = 0;
+
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700 mb-3">${idx + 1}. ${q.question}</p>
+            <div class="flex flex-wrap gap-2">
+                ${q.options.map(opt => `
+                    <button class="px-4 py-2 border-2 border-slate-300 rounded-lg bg-white hover:bg-slate-50 transition-colors stage5-btn" data-answer="${opt}">
+                        ${opt}
+                    </button>
+                `).join('')}
             </div>
-            <p id="stage5-feedback-${idx}" class="mt-2 text-sm"></p>
+            <p class="mt-2 text-sm font-semibold stage5-feedback"></p>
         `;
-        stage5Exercise.appendChild(div);
+        stage5Exercise.appendChild(wrapper);
+
+        const buttons = wrapper.querySelectorAll('.stage5-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => checkStage5(idx, btn, wrapper, buttons, q));
+        });
     });
 
-    window.checkStage5 = function(idx) {
-        const input = document.getElementById('stage5-input-' + idx);
-        const feedback = document.getElementById('stage5-feedback-' + idx);
-        const userAnswer = input.value.trim().toLowerCase();
-        const correctAnswer = stage5Data[idx].answer.toLowerCase();
-        const isCorrect = userAnswer === correctAnswer || removeAccents(userAnswer) === removeAccents(correctAnswer);
-        if (isCorrect) {
-            if (!input.dataset.correct) {
-                stage5Score++;
-                input.dataset.correct = 'true';
-                stage5ScoreEl.textContent = 'Score: ' + stage5Score + ' / 8';
-            }
-            feedback.textContent = 'Correct! Helyes!';
-            feedback.className = 'mt-2 text-sm text-green-600 font-medium';
-            input.classList.add('border-green-500', 'bg-green-50');
-            input.disabled = true;
-        } else {
-            feedback.textContent = 'Answer: ' + stage5Data[idx].answer;
-            feedback.className = 'mt-2 text-sm text-red-600';
-        }
-    };
+    function checkStage5(idx, btn, wrapper, buttons, question) {
+        const feedback = wrapper.querySelector('.stage5-feedback');
+        const wasCorrect = Array.from(buttons).some(b => b.classList.contains('bg-green-100'));
 
-    // SUMMARY
+        buttons.forEach(b => {
+            b.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+        });
+
+        if (btn.dataset.answer === question.answer) {
+            btn.classList.add('bg-green-100', 'border-green-500');
+            feedback.textContent = 'Correct!';
+            feedback.className = 'mt-2 text-sm font-semibold text-green-600 stage5-feedback';
+            if (!wasCorrect) stage5Correct++;
+        } else {
+            btn.classList.add('bg-red-100', 'border-red-500');
+            feedback.textContent = `Not quite. The correct answer is: ${question.answer}`;
+            feedback.className = 'mt-2 text-sm font-semibold text-red-600 stage5-feedback';
+            if (wasCorrect) stage5Correct--;
+        }
+        stage5Score.textContent = `Score: ${stage5Correct} / ${stage5Questions.length}`;
+    }
+
+    // ==================== FINAL SUMMARY ====================
     const summarySection = document.createElement('section');
-    summarySection.className = 'mb-8 mt-8 bg-gradient-to-r from-teal-50 to-blue-50 p-6 rounded-lg';
+    summarySection.className = 'mb-8 mt-12 bg-gradient-to-r from-teal-50 to-slate-50 p-6 rounded-xl';
     summarySection.innerHTML = `
-        <h2 class="text-xl font-bold text-slate-700 mb-4">Lesson Summary</h2>
-        <p class="text-slate-600 mb-4">Great work! You now know essential health vocabulary in Hungarian:</p>
-        <ul class="list-disc list-inside text-slate-600 space-y-2">
-            <li><strong>Body parts:</strong> fej, szem, ful, orr, szaj, kar, kez, lab, has, hat</li>
-            <li><strong>Symptoms:</strong> Faj a..., lazas vagyok, megfaztam, rosszul vagyok</li>
-            <li><strong>Medical:</strong> orvos, korhaz, recept, vizsgalat, diagnozis</li>
-            <li><strong>Pharmacy:</strong> gyogyszertar, gyogyszer, tabletta, fajdalomcsillapito</li>
-        </ul>
-        <div class="mt-6 p-4 bg-white rounded-lg emergency-box">
-            <h3 class="font-semibold text-red-800 mb-2">Remember Emergency Numbers</h3>
-            <p class="text-slate-600 text-sm"><strong>104</strong> - Ambulance | <strong>105</strong> - Fire | <strong>107</strong> - Police | <strong>112</strong> - General Emergency</p>
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Lesson Summary</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Key Body Parts</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li><strong>fej, szem, ful, orr, szaj</strong> - head, eye, ear, nose, mouth</li>
+                    <li><strong>kez, kar, lab, terd</strong> - hand, arm, leg, knee</li>
+                    <li><strong>has, hat, sziv, torok</strong> - stomach, back, heart, throat</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Important Phrases</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li><strong>Faj a [testrész]-m</strong> - My [body part] hurts</li>
+                    <li><strong>Rosszul vagyok</strong> - I feel unwell</li>
+                    <li><strong>Lázam van</strong> - I have a fever</li>
+                    <li><strong>Orvosra van szükségem</strong> - I need a doctor</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-4 bg-white rounded-lg">
+            <h3 class="font-semibold text-red-700 mb-2">Emergency Numbers in Hungary</h3>
+            <ul class="text-slate-700 space-y-1 text-sm">
+                <li><strong>112</strong> - General Emergency (EU standard)</li>
+                <li><strong>104</strong> - Ambulance (Mentők)</li>
+                <li><strong>105</strong> - Fire Department (Tűzoltók)</li>
+                <li><strong>107</strong> - Police (Rendőrség)</li>
+            </ul>
         </div>
     `;
     mainContent.appendChild(summarySection);

@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 26: A2 Review & Extended Dialogue - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .match-card {
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .match-card:hover {
+            transform: scale(1.02);
+        }
+        .match-card.selected {
+            border-color: #0f766e;
+            background-color: #f0fdfa;
+            box-shadow: 0 0 0 2px #0f766e;
+        }
+        .match-card.correct {
+            border-color: #16a34a;
+            background-color: #dcfce7;
+        }
+        .match-card.incorrect {
+            border-color: #dc2626;
+            background-color: #fef2f2;
+        }
+        .review-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            border-left: 4px solid #3b82f6;
+        }
+        .progress-box {
+            background: linear-gradient(135deg, #dcfce7 0%, #d1fae5 100%);
+            border-left: 4px solid #10b981;
+        }
+        .checklist-item {
+            transition: all 0.2s;
+        }
+        .checklist-item:hover {
+            background-color: #f0fdfa;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 26: A2 Review & Extended Dialogue <span class="block text-xl text-slate-500 font-normal">(A2 Attekintes es Parbeszedek)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Congratulations on completing A2! Review everything you have learned and practice extended conversations. Prepare yourself for B1!</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    const mainContent = document.getElementById('main-content');
+
+    // Accent handling utilities
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiI]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    // ==================== INTRO BOX ====================
+    const introBox = document.createElement('div');
+    introBox.className = 'progress-box p-4 rounded-lg mb-8';
+    introBox.innerHTML = `
+        <h3 class="font-bold text-green-800 mb-2">A2 Level Achievement</h3>
+        <p class="text-sm text-slate-700 mb-2">By completing A2, you can now:</p>
+        <ul class="text-sm text-slate-700 space-y-1 ml-4 list-disc">
+            <li>Understand sentences about familiar topics (family, shopping, work)</li>
+            <li>Communicate in simple, routine tasks</li>
+            <li>Describe your background, immediate environment, and matters of need</li>
+            <li>Handle basic travel situations in Hungary</li>
+        </ul>
+    `;
+    mainContent.appendChild(introBox);
+
+    // ==================== SECTION 1: GRAMMAR REVIEW ====================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Grammar Review</h2>
+        <p class="mb-4 text-slate-600">Review the key grammar points from A2.</p>
+
+        <div class="review-box p-4 rounded-lg mb-4">
+            <h3 class="font-semibold text-blue-800 mb-2">Definite vs Indefinite Conjugation</h3>
+            <p class="text-sm text-slate-700 mb-2"><strong>Indefinite:</strong> No specific object or intransitive</p>
+            <p class="text-sm text-slate-700 mb-2"><strong>Definite:</strong> Specific, known object (a/az + noun)</p>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+                <div class="bg-white p-2 rounded"><strong>Olvasok</strong> - I read (something)</div>
+                <div class="bg-white p-2 rounded"><strong>Olvasom a könyvet</strong> - I read the book</div>
+            </div>
+        </div>
+
+        <div class="review-box p-4 rounded-lg mb-4">
+            <h3 class="font-semibold text-blue-800 mb-2">Negation Patterns</h3>
+            <ul class="text-sm text-slate-700 space-y-1">
+                <li><strong>nem</strong> - simple negation (Nem látom - I don't see it)</li>
+                <li><strong>nincs/nincsenek</strong> - there is not (Nincs pénzem - I have no money)</li>
+                <li><strong>sincs/sincsenek</strong> - neither (Nekem sincs - I don't have one either)</li>
+            </ul>
+        </div>
+
+        <div class="review-box p-4 rounded-lg mb-4">
+            <h3 class="font-semibold text-blue-800 mb-2">Location Cases</h3>
+            <table class="text-sm w-full bg-white rounded">
+                <tr><th class="p-2">Question</th><th class="p-2">In</th><th class="p-2">On</th><th class="p-2">At</th></tr>
+                <tr><td class="p-2">Hol? (Where?)</td><td class="p-2">-ban/-ben</td><td class="p-2">-n/-on/-en</td><td class="p-2">-nál/-nél</td></tr>
+                <tr><td class="p-2">Hová? (Whereto?)</td><td class="p-2">-ba/-be</td><td class="p-2">-ra/-re</td><td class="p-2">-hoz/-hez</td></tr>
+                <tr><td class="p-2">Honnan? (From?)</td><td class="p-2">-ból/-ből</td><td class="p-2">-ról/-ről</td><td class="p-2">-tól/-től</td></tr>
+            </table>
+        </div>
+
+        <div class="review-box p-4 rounded-lg mb-4">
+            <h3 class="font-semibold text-blue-800 mb-2">Key A2 Vocabulary Themes</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+                <div class="bg-white p-2 rounded text-center">Time & Calendar</div>
+                <div class="bg-white p-2 rounded text-center">Food & Shopping</div>
+                <div class="bg-white p-2 rounded text-center">Transportation</div>
+                <div class="bg-white p-2 rounded text-center">Weather</div>
+                <div class="bg-white p-2 rounded text-center">Health</div>
+                <div class="bg-white p-2 rounded text-center">Modal Verbs</div>
+                <div class="bg-white p-2 rounded text-center">Past Tense</div>
+                <div class="bg-white p-2 rounded text-center">Possession</div>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // ==================== STAGE 1: MIXED GRAMMAR REVIEW (15 items) ====================
+    const stage1Data = [
+        { question: 'Choose definite or indefinite: "_____ a könyvet" (I read the book)', options: ['Olvasok', 'Olvasom'], correct: 'Olvasom', explanation: 'Definite because "a könyvet" is specific.' },
+        { question: 'Negate: "Van pénzem" → "_____"', options: ['Nem van pénzem', 'Nincs pénzem'], correct: 'Nincs pénzem', explanation: 'Use nincs for "there is not".' },
+        { question: 'Fill the location case: "A szobá___ vagyok" (in the room)', options: ['-ban', '-ba', '-ból'], correct: '-ban', explanation: 'Static location inside = -ban/-ben' },
+        { question: 'Choose: "Megyek a bolt_____" (to the shop)', options: ['-ban', '-ba', '-ból'], correct: '-ba', explanation: 'Direction into = -ba/-be' },
+        { question: 'Which is correct? "_____ magyarul" (I speak Hungarian)', options: ['Beszélek', 'Beszélem'], correct: 'Beszélek', explanation: 'Indefinite - no specific object.' },
+        { question: 'Complete: "Ő _____ tudja" (He knows it)', options: ['nem', 'nincs'], correct: 'nem', explanation: 'Simple negation before verb.' },
+        { question: 'Fill: "Az asztal_____ van a könyv" (on the table)', options: ['-on', '-ra', '-ról'], correct: '-on', explanation: 'Static location on surface = -n/-on/-en' },
+        { question: 'Choose: "Jövök Budapestről" means...', options: ['I go to Budapest', 'I come from Budapest'], correct: 'I come from Budapest', explanation: '-ról/-ről indicates origin.' },
+        { question: 'Select definite: "___ a filmet" (I watch the film)', options: ['Nézek', 'Nézem'], correct: 'Nézem', explanation: 'Definite with "a filmet".' },
+        { question: 'Complete: "Péter_____ megyek" (to Peter)', options: ['-nál', '-hoz', '-tól'], correct: '-hoz', explanation: 'Direction toward person = -hoz/-hez' },
+        { question: 'Negate: "Ő is tudja" → "Ő _____ tudja"', options: ['nem', 'sem'], correct: 'sem', explanation: 'Sem negates "is" (also/too).' },
+        { question: 'Choose: "Látod ___?" (Do you see it?)', options: ['őt', 'azt'], correct: 'azt', explanation: 'Azt for things, őt for people.' },
+        { question: 'Fill: "Hétfő_____ dolgozom" (on Monday)', options: ['-n', '-ban', '-ra'], correct: '-n', explanation: 'Days use -n suffix.' },
+        { question: 'Select: "Kérem _____ könyvet" (this book)', options: ['ez', 'ezt'], correct: 'ezt', explanation: 'Accusative of "ez" = "ezt".' },
+        { question: 'Choose: "_____ mész?" (Where are you going?)', options: ['Hol', 'Hová', 'Honnan'], correct: 'Hová', explanation: 'Hová for direction/destination.' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Grammar Review</h2>
+        <p class="mb-4 text-slate-600">Test your knowledge of A2 grammar concepts.</p>
+        <div id="stage1-exercise" class="space-y-4"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage1Data.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Exercise = document.getElementById('stage1-exercise');
+    const stage1Score = document.getElementById('stage1-score');
+    let stage1Correct = 0;
+
+    stage1Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700 mb-3">${idx + 1}. ${item.question}</p>
+            <div class="flex flex-wrap gap-2">
+                ${item.options.map(opt => `
+                    <button class="px-4 py-2 border-2 border-slate-300 rounded-lg bg-white hover:bg-slate-50 transition-colors stage1-btn" data-answer="${opt}">
+                        ${opt}
+                    </button>
+                `).join('')}
+            </div>
+            <p class="mt-2 text-sm font-semibold stage1-feedback"></p>
+        `;
+        stage1Exercise.appendChild(wrapper);
+
+        const buttons = wrapper.querySelectorAll('.stage1-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => checkStage1(idx, btn, wrapper, buttons, item));
+        });
+    });
+
+    function checkStage1(idx, btn, wrapper, buttons, item) {
+        const feedback = wrapper.querySelector('.stage1-feedback');
+        const wasCorrect = Array.from(buttons).some(b => b.classList.contains('bg-green-100'));
+
+        buttons.forEach(b => {
+            b.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+        });
+
+        if (btn.dataset.answer === item.correct) {
+            btn.classList.add('bg-green-100', 'border-green-500');
+            feedback.textContent = `Correct! ${item.explanation}`;
+            feedback.className = 'mt-2 text-sm font-semibold text-green-600 stage1-feedback';
+            if (!wasCorrect) stage1Correct++;
+        } else {
+            btn.classList.add('bg-red-100', 'border-red-500');
+            feedback.textContent = `Not quite. ${item.explanation}`;
+            feedback.className = 'mt-2 text-sm font-semibold text-red-600 stage1-feedback';
+            if (wasCorrect) stage1Correct--;
+        }
+        stage1Score.textContent = `Score: ${stage1Correct} / ${stage1Data.length}`;
+    }
+
+    // ==================== STAGE 2: VOCABULARY CHALLENGE (15 items) ====================
+    const stage2Data = [
+        { category: 'Time', hungarian: 'holnap', english: 'tomorrow' },
+        { category: 'Time', hungarian: 'hétfő', english: 'Monday' },
+        { category: 'Time', hungarian: 'január', english: 'January' },
+        { category: 'Transport', hungarian: 'vonat', english: 'train' },
+        { category: 'Transport', hungarian: 'megálló', english: 'stop' },
+        { category: 'Transport', hungarian: 'jegy', english: 'ticket' },
+        { category: 'Weather', hungarian: 'napos', english: 'sunny' },
+        { category: 'Weather', hungarian: 'hideg', english: 'cold' },
+        { category: 'Weather', hungarian: 'tavasz', english: 'spring' },
+        { category: 'Health', hungarian: 'orvos', english: 'doctor' },
+        { category: 'Health', hungarian: 'fáj', english: 'hurts' },
+        { category: 'Health', hungarian: 'gyógyszer', english: 'medicine' },
+        { category: 'Location', hungarian: 'mellett', english: 'next to' },
+        { category: 'Location', hungarian: 'szemben', english: 'opposite' },
+        { category: 'Location', hungarian: 'sarok', english: 'corner' }
+    ];
+
+    let stage2Selected = null;
+    let stage2Matches = new Set();
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Vocabulary Challenge</h2>
+        <p class="mb-4 text-slate-600">Match the Hungarian words with their English translations from various A2 topics.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="stage2-exercise">
+            <div id="stage2-hungarian" class="space-y-2"></div>
+            <div id="stage2-english" class="space-y-2"></div>
+        </div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage2Data.length}</div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Hungarian = document.getElementById('stage2-hungarian');
+    const stage2English = document.getElementById('stage2-english');
+    const stage2Score = document.getElementById('stage2-score');
+
+    const shuffledEnglish2 = [...stage2Data].sort(() => Math.random() - 0.5);
+
+    stage2Data.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.innerHTML = `<span class="font-medium">${item.hungarian}</span><br><span class="text-xs text-slate-500">${item.category}</span>`;
+        card.dataset.index = idx;
+        card.dataset.type = 'hungarian';
+        card.addEventListener('click', () => handleStage2Click(card, 'hungarian', idx));
+        stage2Hungarian.appendChild(card);
+    });
+
+    shuffledEnglish2.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.english;
+        card.dataset.originalIndex = stage2Data.findIndex(d => d.english === item.english);
+        card.dataset.type = 'english';
+        card.addEventListener('click', () => handleStage2Click(card, 'english', parseInt(card.dataset.originalIndex)));
+        stage2English.appendChild(card);
+    });
+
+    function handleStage2Click(card, type, index) {
+        if (card.classList.contains('correct')) return;
+
+        if (stage2Selected === null) {
+            stage2Selected = { card, type, index };
+            card.classList.add('selected');
+        } else if (stage2Selected.type === type) {
+            stage2Selected.card.classList.remove('selected');
+            stage2Selected = { card, type, index };
+            card.classList.add('selected');
+        } else {
+            if (stage2Selected.index === index) {
+                stage2Selected.card.classList.remove('selected');
+                stage2Selected.card.classList.add('correct');
+                card.classList.add('correct');
+                stage2Matches.add(index);
+                updateStage2Score();
+            } else {
+                stage2Selected.card.classList.add('incorrect');
+                card.classList.add('incorrect');
+                setTimeout(() => {
+                    stage2Selected.card.classList.remove('selected', 'incorrect');
+                    card.classList.remove('incorrect');
+                    stage2Selected = null;
+                }, 800);
+                return;
+            }
+            stage2Selected = null;
+        }
+    }
+
+    function updateStage2Score() {
+        stage2Score.textContent = `Score: ${stage2Matches.size} / ${stage2Data.length}`;
+    }
+
+    // ==================== STAGE 3: EXTENDED DIALOGUE (10 items) ====================
+    const stage3Data = [
+        {
+            title: 'At the Train Station',
+            lines: [
+                { speaker: 'Utas', text: 'Jo napot! Egy jegyet _____ Debrecenbe.', blanks: ['kerek'], type: 'fill' },
+                { speaker: 'Pénztáros', text: 'Csak oda, vagy vissza is?', type: 'given' },
+                { speaker: 'Utas', text: 'Retour jegyet kerek. Mennyibe _____?', blanks: ['kerül'], type: 'fill' },
+                { speaker: 'Pénztáros', text: 'Hatezer forint. Mikor szeretne utazni?', type: 'given' },
+                { speaker: 'Utas', text: 'Ma délután. _____ indul a következő vonat?', blanks: ['Mikor'], type: 'fill' },
+                { speaker: 'Pénztáros', text: 'Három órakor. A harmadik vágányról.', type: 'given' }
+            ]
+        },
+        {
+            title: 'At the Doctor',
+            lines: [
+                { speaker: 'Orvos', text: 'Jo napot! Mi a _____?', blanks: ['panasza'], type: 'fill' },
+                { speaker: 'Beteg', text: 'Rosszul érzem magam. Faj a fejem és lázam van.', type: 'given' },
+                { speaker: 'Orvos', text: '_____ érzi magát rosszul?', blanks: ['Mióta'], type: 'fill' },
+                { speaker: 'Beteg', text: 'Tegnap óta. Köhögök is.', type: 'given' },
+                { speaker: 'Orvos', text: 'Megfázás. Pihenjen sokat és igyon sok _____!', blanks: ['vizet'], type: 'fill' }
+            ]
+        }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Extended Dialogue</h2>
+        <p class="mb-4 text-slate-600">Complete these realistic conversation scenarios. Press Enter after each input.</p>
+        <div id="stage3-exercise" class="space-y-6"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / 0</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Exercise = document.getElementById('stage3-exercise');
+    const stage3Score = document.getElementById('stage3-score');
+    let stage3Total = 0;
+    let stage3Results = [];
+
+    stage3Data.forEach((dialogue, dIdx) => {
+        const dialogueDiv = document.createElement('div');
+        dialogueDiv.className = 'bg-slate-50 p-4 rounded-lg';
+        dialogueDiv.innerHTML = `<h3 class="font-semibold text-slate-700 mb-3">${dialogue.title}</h3>`;
+
+        dialogue.lines.forEach((line, lIdx) => {
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'mb-2 flex flex-wrap items-center gap-1';
+
+            const speakerSpan = document.createElement('span');
+            speakerSpan.className = 'font-medium text-teal-700 min-w-[100px]';
+            speakerSpan.textContent = `${line.speaker}:`;
+            lineDiv.appendChild(speakerSpan);
+
+            if (line.type === 'given') {
+                const textSpan = document.createElement('span');
+                textSpan.className = 'text-slate-700';
+                textSpan.textContent = line.text;
+                lineDiv.appendChild(textSpan);
+            } else {
+                const parts = line.text.split('_____');
+                parts.forEach((part, pIdx) => {
+                    if (part) {
+                        const partSpan = document.createElement('span');
+                        partSpan.className = 'text-slate-700';
+                        partSpan.textContent = part;
+                        lineDiv.appendChild(partSpan);
+                    }
+                    if (pIdx < line.blanks.length) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.className = 'border border-slate-300 rounded px-2 py-1 w-24 text-center focus:ring-2 focus:ring-teal-500 focus:border-teal-500 mx-1';
+                        input.dataset.answer = line.blanks[pIdx];
+                        input.dataset.resultIndex = stage3Total;
+                        stage3Results.push(null);
+                        stage3Total++;
+
+                        input.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter') checkStage3Input(input);
+                        });
+
+                        lineDiv.appendChild(input);
+                    }
+                });
+            }
+
+            dialogueDiv.appendChild(lineDiv);
+        });
+
+        stage3Exercise.appendChild(dialogueDiv);
+    });
+
+    stage3Score.textContent = `Score: 0 / ${stage3Total}`;
+
+    function checkStage3Input(input) {
+        const correct = input.dataset.answer.toLowerCase();
+        const userAnswer = input.value.trim().toLowerCase();
+        const resultIdx = parseInt(input.dataset.resultIndex);
+
+        if (userAnswer === correct) {
+            input.classList.remove('border-red-500', 'border-yellow-500');
+            input.classList.add('border-green-500', 'bg-green-50');
+            stage3Results[resultIdx] = true;
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            input.classList.remove('border-red-500', 'border-green-500');
+            input.classList.add('border-yellow-500', 'bg-yellow-50');
+            stage3Results[resultIdx] = 'partial';
+        } else if (userAnswer === '') {
+            input.classList.remove('border-green-500', 'border-red-500', 'border-yellow-500', 'bg-green-50', 'bg-red-50', 'bg-yellow-50');
+            stage3Results[resultIdx] = null;
+        } else {
+            input.classList.remove('border-green-500', 'border-yellow-500');
+            input.classList.add('border-red-500', 'bg-red-50');
+            stage3Results[resultIdx] = false;
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        const correct = stage3Results.filter(r => r === true).length;
+        stage3Score.textContent = `Score: ${correct} / ${stage3Total}`;
+    }
+
+    // ==================== STAGE 4: SCENARIO ROLE-PLAY (8 items) ====================
+    const stage4Data = [
+        { scenario: 'You arrive at a hotel. Greet the receptionist formally.', answer: 'Jo napot kivanok', hint: 'formal greeting', alternatives: ['jo napot', 'jo napot kivanok'] },
+        { scenario: 'Ask "Where is the metro station?"', answer: 'Hol van a metro allomas', hint: 'where + metro station', alternatives: ['hol van a metro allomas', 'hol van a metroallomas'] },
+        { scenario: 'Say you feel unwell and need a doctor.', answer: 'Rosszul vagyok. Orvosra van szuksegem', hint: 'unwell + need doctor', alternatives: ['rosszul vagyok', 'rosszul erzem magam'] },
+        { scenario: 'Order two coffees at a cafe.', answer: 'Ket kavet kerek', hint: 'two coffees please', alternatives: ['ket kavet kerek', 'kerek ket kavet'] },
+        { scenario: 'Ask what time the train departs.', answer: 'Mikor indul a vonat', hint: 'when leaves train', alternatives: ['mikor indul a vonat', 'mikor megy a vonat'] },
+        { scenario: 'Say it is raining today.', answer: 'Ma esik az eso', hint: 'today rains', alternatives: ['ma esik az eso', 'ma esos az ido', 'esik'] },
+        { scenario: 'Ask if you can pay by card.', answer: 'Kartyaval fizethetek', hint: 'card can-pay', alternatives: ['kartyaval fizethetek', 'lehet kartyaval fizetni'] },
+        { scenario: 'Say goodbye formally when leaving a shop.', answer: 'Viszontlatasra', hint: 'formal goodbye', alternatives: ['viszontlatasra', 'viszlat'] }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Scenario Role-Play</h2>
+        <p class="mb-4 text-slate-600">Respond appropriately to each situation. Press Enter to check.</p>
+        <div id="stage4-exercise" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage4Data.length}</div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Exercise = document.getElementById('stage4-exercise');
+    const stage4Score = document.getElementById('stage4-score');
+    let stage4Results = new Array(stage4Data.length).fill(null);
+
+    stage4Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. ${item.scenario}</p>
+            <p class="text-sm text-slate-500">Hint: ${item.hint}</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                       placeholder="Type Hungarian..." aria-label="Response">
+                <span class="text-sm font-semibold stage4-feedback"></span>
+            </div>
+        `;
+        stage4Exercise.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(idx, input, wrapper, item);
+        });
+    });
+
+    function checkStage4(idx, input, wrapper, item) {
+        const feedback = wrapper.querySelector('.stage4-feedback');
+        const userAnswer = input.value.trim().toLowerCase().replace(/[.!?]/g, '');
+        const correctAnswer = item.answer.toLowerCase().replace(/[.!?]/g, '');
+        const alternatives = item.alternatives.map(a => a.toLowerCase().replace(/[.!?]/g, ''));
+
+        if (userAnswer === correctAnswer || alternatives.includes(userAnswer) || alternatives.some(a => userAnswer.includes(a))) {
+            feedback.textContent = `Correct! "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage4-feedback';
+            stage4Results[idx] = true;
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Almost! Watch the accents: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage4-feedback';
+            stage4Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage4Results[idx] = null;
+        } else {
+            feedback.textContent = `Try again. Example: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage4-feedback';
+            stage4Results[idx] = false;
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        const correct = stage4Results.filter(r => r === true).length;
+        stage4Score.textContent = `Score: ${correct} / ${stage4Data.length}`;
+    }
+
+    // ==================== STAGE 5: B1 READINESS SELF-ASSESSMENT ====================
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: B1 Readiness Self-Assessment</h2>
+        <p class="mb-4 text-slate-600">Honestly assess your abilities. Check the boxes for skills you feel confident about.</p>
+        <div id="stage5-checklist" class="space-y-3"></div>
+        <div id="stage5-result" class="mt-6 p-4 bg-slate-100 rounded-lg">
+            <p class="font-medium text-slate-700">Skills checked: <span id="checklist-count">0</span> / 15</p>
+            <p class="text-sm text-slate-600 mt-1" id="checklist-feedback">Complete the self-assessment to see your B1 readiness.</p>
+        </div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const checklistItems = [
+        'I can conjugate verbs in both definite and indefinite forms.',
+        'I understand and can use negation (nem, nincs, sincs).',
+        'I can use location cases (-ban/-ben, -ra/-re, -hoz/-hez, etc.).',
+        'I can tell time and talk about schedules in Hungarian.',
+        'I can order food and drinks at a restaurant or cafe.',
+        'I can buy tickets and ask about transportation.',
+        'I can describe weather conditions and seasons.',
+        'I can describe symptoms and communicate at a pharmacy.',
+        'I can ask for and understand directions.',
+        'I can handle basic hotel/accommodation conversations.',
+        'I can talk about past events using past tense.',
+        'I can express possession using possessive suffixes.',
+        'I can have simple phone conversations.',
+        'I understand native speakers when they speak slowly.',
+        'I can read simple texts and signs in Hungarian.'
+    ];
+
+    const checklistContainer = document.getElementById('stage5-checklist');
+    const checklistCount = document.getElementById('checklist-count');
+    const checklistFeedback = document.getElementById('checklist-feedback');
+
+    checklistItems.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'checklist-item flex items-start gap-3 p-3 border border-slate-200 rounded-lg';
+        wrapper.innerHTML = `
+            <input type="checkbox" id="check-${idx}" class="mt-1 w-5 h-5 rounded border-slate-300 text-teal-600 focus:ring-teal-500">
+            <label for="check-${idx}" class="text-slate-700 cursor-pointer">${item}</label>
+        `;
+        checklistContainer.appendChild(wrapper);
+
+        wrapper.querySelector('input').addEventListener('change', updateChecklist);
+    });
+
+    function updateChecklist() {
+        const checked = document.querySelectorAll('#stage5-checklist input:checked').length;
+        checklistCount.textContent = checked;
+
+        if (checked >= 13) {
+            checklistFeedback.textContent = 'Excellent! You are well-prepared for B1. Consider starting B1 lessons!';
+            checklistFeedback.className = 'text-sm text-green-600 mt-1';
+        } else if (checked >= 10) {
+            checklistFeedback.textContent = 'Good progress! Review a few more areas before moving to B1.';
+            checklistFeedback.className = 'text-sm text-yellow-600 mt-1';
+        } else if (checked >= 5) {
+            checklistFeedback.textContent = 'Keep practicing! Review the A2 lessons you feel less confident about.';
+            checklistFeedback.className = 'text-sm text-orange-600 mt-1';
+        } else {
+            checklistFeedback.textContent = 'Consider reviewing A2 material before proceeding. Practice makes perfect!';
+            checklistFeedback.className = 'text-sm text-red-600 mt-1';
+        }
+    }
+
+    // ==================== FINAL SUMMARY ====================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 mt-12 bg-gradient-to-r from-teal-50 to-slate-50 p-6 rounded-xl';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">A2 Level Complete!</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">What You Have Learned</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li>Definite and indefinite conjugation</li>
+                    <li>All negation patterns</li>
+                    <li>Location and direction cases</li>
+                    <li>Time expressions and calendar</li>
+                    <li>Transportation vocabulary</li>
+                    <li>Weather and seasons</li>
+                    <li>Health and body parts</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Next Steps: B1</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li>Future tense and intentions</li>
+                    <li>Conditional mood</li>
+                    <li>Imperative (commands)</li>
+                    <li>More complex case stacking</li>
+                    <li>Comparatives and superlatives</li>
+                    <li>Relative clauses</li>
+                    <li>Work and professional vocabulary</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-4 bg-white rounded-lg">
+            <h3 class="font-semibold text-teal-700 mb-2">Congratulations!</h3>
+            <p class="text-slate-700 text-sm">You have completed the A2 level of Hungarian! You can now handle most common situations a traveler might encounter in Hungary. Keep practicing and you will be ready for B1 in no time!</p>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>
