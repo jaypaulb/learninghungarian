@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 18: Shopping & Money - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .vocab-card {
+            cursor: pointer;
+            transition: all 0.3s;
+            user-select: none;
+        }
+        .vocab-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card.revealed {
+            background-color: #f0fdfa;
+            border-color: #0f766e;
+        }
+        .match-card {
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .match-card:hover {
+            transform: scale(1.02);
+        }
+        .match-card.selected {
+            border-color: #0f766e;
+            background-color: #f0fdfa;
+            box-shadow: 0 0 0 2px #0f766e;
+        }
+        .match-card.correct {
+            border-color: #16a34a;
+            background-color: #dcfce7;
+        }
+        .match-card.incorrect {
+            border-color: #dc2626;
+            background-color: #fef2f2;
+        }
+        .cultural-note {
+            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+            border-left: 4px solid #0f766e;
+        }
+        .price-tag {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #d97706;
+        }
+        .shop-item {
+            transition: all 0.2s;
+        }
+        .shop-item:hover {
+            transform: scale(1.02);
+        }
+        .negotiation-bubble {
+            position: relative;
+            background: white;
+            border-radius: 1rem;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .negotiation-bubble.customer {
+            background: #dbeafe;
+            margin-left: 2rem;
+        }
+        .negotiation-bubble.seller {
+            background: #fef3c7;
+            margin-right: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 18: Shopping & Money <span class="block text-xl text-slate-500 font-normal">(Vasarlas es penz)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Learn essential vocabulary for shopping in Hungary, including prices, currency, and common transaction phrases. Master the art of buying, selling, and even negotiating!</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    const mainContent = document.getElementById('main-content');
+
+    // Accent handling utilities
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiI]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U' };
+            return map[m] || m;
+        }).replace(/[oOuUaAeEiI]/g, function(m) {
+            return m;
+        }).replace(/[oOuUaAeEiI]/g, function(m) {
+            return m;
+        }).replace(/[oOuUaAeEiI]/g, function(m) {
+            return m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    function checkWithAccentWarning(input, correct) {
+        const inputVal = normalizeHungarian(input);
+        const correctVal = normalizeHungarian(correct);
+        if (inputVal === correctVal) {
+            return 'correct';
+        } else if (removeAccents(inputVal) === removeAccents(correctVal)) {
+            return 'accent-warning';
+        }
+        return 'incorrect';
+    }
+
+    // ==================== SECTION 1: HUNGARIAN CURRENCY ====================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Hungarian Currency (Magyar penz)</h2>
+        <p class="mb-4 text-slate-600">Hungary uses the <strong>Forint (Ft)</strong> as its currency. The international code is <strong>HUF</strong>. Let's learn the essential money vocabulary.</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th><th class="border px-2">Notes</th></tr>
+            <tr><td class="border px-2 font-medium">forint (Ft)</td><td class="border px-2">Hungarian Forint</td><td class="border px-2">Official currency</td></tr>
+            <tr><td class="border px-2 font-medium">penz</td><td class="border px-2">money</td><td class="border px-2">General term</td></tr>
+            <tr><td class="border px-2 font-medium">keszpenz</td><td class="border px-2">cash</td><td class="border px-2">Physical money</td></tr>
+            <tr><td class="border px-2 font-medium">bankjegy</td><td class="border px-2">banknote</td><td class="border px-2">Paper money</td></tr>
+            <tr><td class="border px-2 font-medium">erme</td><td class="border px-2">coin</td><td class="border px-2">Metal money</td></tr>
+            <tr><td class="border px-2 font-medium">bankkartya</td><td class="border px-2">bank card</td><td class="border px-2">Debit/credit card</td></tr>
+            <tr><td class="border px-2 font-medium">hitelkartya</td><td class="border px-2">credit card</td><td class="border px-2">Credit specifically</td></tr>
+            <tr><td class="border px-2 font-medium">visszajaro</td><td class="border px-2">change (money back)</td><td class="border px-2">When paying more</td></tr>
+            <tr><td class="border px-2 font-medium">apriopenz</td><td class="border px-2">small change</td><td class="border px-2">Coins</td></tr>
+            <tr><td class="border px-2 font-medium">szamla</td><td class="border px-2">bill / receipt</td><td class="border px-2">Document of purchase</td></tr>
+        </table>
+        <div class="cultural-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">Cultural Note: Hungarian Forint</h4>
+            <p class="text-slate-700 text-sm">Common banknotes: 500 Ft, 1000 Ft, 2000 Ft, 5000 Ft, 10000 Ft, 20000 Ft. Coins: 5 Ft, 10 Ft, 20 Ft, 50 Ft, 100 Ft, 200 Ft. Prices are often rounded to the nearest 5 Ft. Card payment is widely accepted in cities, but smaller shops and markets may prefer cash.</p>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // ==================== SECTION 2: SHOP TYPES ====================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Types of Shops (Boltok tipusai)</h2>
+        <p class="mb-4 text-slate-600">Hungary has various types of shops, from large supermarkets to small specialized stores.</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2 font-medium">bolt / uzlet</td><td class="border px-2">shop / store</td></tr>
+            <tr><td class="border px-2 font-medium">aruhaz</td><td class="border px-2">department store</td></tr>
+            <tr><td class="border px-2 font-medium">szupermarket</td><td class="border px-2">supermarket</td></tr>
+            <tr><td class="border px-2 font-medium">piac</td><td class="border px-2">market</td></tr>
+            <tr><td class="border px-2 font-medium">pekseg</td><td class="border px-2">bakery</td></tr>
+            <tr><td class="border px-2 font-medium">hentes</td><td class="border px-2">butcher</td></tr>
+            <tr><td class="border px-2 font-medium">zoldseges</td><td class="border px-2">greengrocer</td></tr>
+            <tr><td class="border px-2 font-medium">gyogyszertar / patika</td><td class="border px-2">pharmacy</td></tr>
+            <tr><td class="border px-2 font-medium">konyvbolt</td><td class="border px-2">bookshop</td></tr>
+            <tr><td class="border px-2 font-medium">ruhazati bolt</td><td class="border px-2">clothing store</td></tr>
+            <tr><td class="border px-2 font-medium">cipobolt</td><td class="border px-2">shoe shop</td></tr>
+            <tr><td class="border px-2 font-medium">ekszerbolt</td><td class="border px-2">jewelry shop</td></tr>
+            <tr><td class="border px-2 font-medium">ajandekbolt</td><td class="border px-2">gift shop</td></tr>
+            <tr><td class="border px-2 font-medium">elektronikai bolt</td><td class="border px-2">electronics store</td></tr>
+        </table>
+    `;
+    mainContent.appendChild(section2);
+
+    // ==================== SECTION 3: PRICE EXPRESSIONS ====================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Asking About Prices (Arak)</h2>
+        <p class="mb-4 text-slate-600">Learn how to ask about prices and understand the responses.</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2 font-medium">Mennyibe kerul?</td><td class="border px-2">How much does it cost?</td></tr>
+            <tr><td class="border px-2 font-medium">Mennyibe kerul ez?</td><td class="border px-2">How much does this cost?</td></tr>
+            <tr><td class="border px-2 font-medium">Mi az ara?</td><td class="border px-2">What is the price?</td></tr>
+            <tr><td class="border px-2 font-medium">Ez mennyit er?</td><td class="border px-2">How much is this worth?</td></tr>
+            <tr><td class="border px-2 font-medium">... forintba kerul</td><td class="border px-2">It costs ... forints</td></tr>
+            <tr><td class="border px-2 font-medium">olcso</td><td class="border px-2">cheap</td></tr>
+            <tr><td class="border px-2 font-medium">draga</td><td class="border px-2">expensive</td></tr>
+            <tr><td class="border px-2 font-medium">kedvezmeny</td><td class="border px-2">discount</td></tr>
+            <tr><td class="border px-2 font-medium">akcio</td><td class="border px-2">sale / special offer</td></tr>
+            <tr><td class="border px-2 font-medium">ingyenes</td><td class="border px-2">free (no cost)</td></tr>
+            <tr><td class="border px-2 font-medium">ar</td><td class="border px-2">price</td></tr>
+            <tr><td class="border px-2 font-medium">osszesen</td><td class="border px-2">total / altogether</td></tr>
+        </table>
+        <div class="bg-slate-50 p-4 rounded-lg mb-4">
+            <p class="font-semibold mb-2">Price Examples:</p>
+            <ul class="list-disc pl-6 space-y-1 text-slate-700">
+                <li><strong>500 Ft</strong> - otszaz forint (five hundred forints)</li>
+                <li><strong>1 200 Ft</strong> - ezerkettoszaz forint (one thousand two hundred forints)</li>
+                <li><strong>3 500 Ft</strong> - haromezerotsszaz forint (three thousand five hundred forints)</li>
+                <li><strong>10 000 Ft</strong> - tizezer forint (ten thousand forints)</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // ==================== SECTION 4: SHOPPING PHRASES ====================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Shopping Phrases (Vasarlasi kifejezesek)</h2>
+        <p class="mb-4 text-slate-600">Essential phrases for shopping transactions.</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th><th class="border px-2">Context</th></tr>
+            <tr><td class="border px-2 font-medium">Miben segithetek?</td><td class="border px-2">How can I help you?</td><td class="border px-2">Shop assistant</td></tr>
+            <tr><td class="border px-2 font-medium">Csak nezelodok.</td><td class="border px-2">I'm just looking.</td><td class="border px-2">Customer</td></tr>
+            <tr><td class="border px-2 font-medium">Szeretnek venni...</td><td class="border px-2">I would like to buy...</td><td class="border px-2">Customer</td></tr>
+            <tr><td class="border px-2 font-medium">Kerek egy...</td><td class="border px-2">I'd like a/one...</td><td class="border px-2">Customer</td></tr>
+            <tr><td class="border px-2 font-medium">Van...?</td><td class="border px-2">Do you have...?</td><td class="border px-2">Customer</td></tr>
+            <tr><td class="border px-2 font-medium">Nincs. / Elfogyott.</td><td class="border px-2">We don't have it. / Sold out.</td><td class="border px-2">Shop assistant</td></tr>
+            <tr><td class="border px-2 font-medium">Mas szin/meret?</td><td class="border px-2">Another color/size?</td><td class="border px-2">Customer</td></tr>
+            <tr><td class="border px-2 font-medium">Kiprobálhatom?</td><td class="border px-2">Can I try it?</td><td class="border px-2">Customer</td></tr>
+            <tr><td class="border px-2 font-medium">Hol van a probafülke?</td><td class="border px-2">Where is the fitting room?</td><td class="border px-2">Customer</td></tr>
+            <tr><td class="border px-2 font-medium">Jo lesz ez?</td><td class="border px-2">Will this be okay?</td><td class="border px-2">Either</td></tr>
+            <tr><td class="border px-2 font-medium">Ezt kerem.</td><td class="border px-2">I'll take this one.</td><td class="border px-2">Customer</td></tr>
+            <tr><td class="border px-2 font-medium">Megveszem.</td><td class="border px-2">I'll buy it.</td><td class="border px-2">Customer</td></tr>
+            <tr><td class="border px-2 font-medium">Nem kell, koszonom.</td><td class="border px-2">No, thank you.</td><td class="border px-2">Customer</td></tr>
+        </table>
+    `;
+    mainContent.appendChild(section4);
+
+    // ==================== SECTION 5: PAYMENT PHRASES ====================
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 5: Payment (Fizetes)</h2>
+        <p class="mb-4 text-slate-600">Vocabulary and phrases for completing your purchase.</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2 font-medium">Hol fizethetek?</td><td class="border px-2">Where can I pay?</td></tr>
+            <tr><td class="border px-2 font-medium">penztár</td><td class="border px-2">cash register / checkout</td></tr>
+            <tr><td class="border px-2 font-medium">Keszpenzzel vagy kartyaval?</td><td class="border px-2">Cash or card?</td></tr>
+            <tr><td class="border px-2 font-medium">Keszpenzzel kerem.</td><td class="border px-2">Cash, please.</td></tr>
+            <tr><td class="border px-2 font-medium">Kartyaval fizetek.</td><td class="border px-2">I'll pay by card.</td></tr>
+            <tr><td class="border px-2 font-medium">Elfogadnak kartyat?</td><td class="border px-2">Do you accept cards?</td></tr>
+            <tr><td class="border px-2 font-medium">Tessek!</td><td class="border px-2">Here you go!</td></tr>
+            <tr><td class="border px-2 font-medium">A visszajaro.</td><td class="border px-2">Here's your change.</td></tr>
+            <tr><td class="border px-2 font-medium">Kerek szamlat.</td><td class="border px-2">I'd like a receipt.</td></tr>
+            <tr><td class="border px-2 font-medium">Kell zacsko?</td><td class="border px-2">Do you need a bag?</td></tr>
+            <tr><td class="border px-2 font-medium">Igen, kerek. / Nem, koszonom.</td><td class="border px-2">Yes, please. / No, thank you.</td></tr>
+        </table>
+        <div class="cultural-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">Cultural Note: Shopping Bags</h4>
+            <p class="text-slate-700 text-sm">In Hungary, shopping bags (zacsko or szatyor) usually cost extra. Many people bring their own reusable bags. When asked "Kell zacsko?" you can politely decline with "Nem, koszonom" if you have your own.</p>
+        </div>
+    `;
+    mainContent.appendChild(section5);
+
+    // ==================== STAGE 1: VOCABULARY RECOGNITION (12 items) ====================
+    const stage1Data = [
+        { hungarian: 'penz', english: 'money' },
+        { hungarian: 'bolt', english: 'shop' },
+        { hungarian: 'ar', english: 'price' },
+        { hungarian: 'olcso', english: 'cheap' },
+        { hungarian: 'draga', english: 'expensive' },
+        { hungarian: 'penztár', english: 'cash register' },
+        { hungarian: 'visszajaro', english: 'change' },
+        { hungarian: 'szamla', english: 'receipt' },
+        { hungarian: 'kedvezmeny', english: 'discount' },
+        { hungarian: 'piac', english: 'market' },
+        { hungarian: 'keszpenz', english: 'cash' },
+        { hungarian: 'bankkartya', english: 'bank card' }
+    ];
+
+    let stage1Revealed = new Set();
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Vocabulary Recognition</h2>
+        <p class="mb-4 text-slate-600">Click each card to reveal the English translation. Try to guess before clicking!</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3" id="stage1-exercise"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Cards revealed: 0 / ${stage1Data.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Exercise = document.getElementById('stage1-exercise');
+    const stage1Score = document.getElementById('stage1-score');
+
+    stage1Data.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'vocab-card border-2 border-slate-300 rounded-lg p-4 text-center bg-white min-h-[80px] flex flex-col justify-center';
+        card.innerHTML = `
+            <span class="font-bold text-teal-700">${item.hungarian}</span>
+            <span class="text-sm text-slate-500 hidden" id="stage1-english-${idx}">${item.english}</span>
+        `;
+        card.addEventListener('click', () => {
+            if (!stage1Revealed.has(idx)) {
+                stage1Revealed.add(idx);
+                card.classList.add('revealed');
+                document.getElementById(`stage1-english-${idx}`).classList.remove('hidden');
+                stage1Score.textContent = `Cards revealed: ${stage1Revealed.size} / ${stage1Data.length}`;
+            }
+        });
+        stage1Exercise.appendChild(card);
+    });
+
+    // ==================== STAGE 2: SHOP TYPE MATCHING (8 items) ====================
+    const stage2Data = [
+        { hungarian: 'pekseg', english: 'bakery' },
+        { hungarian: 'hentes', english: 'butcher' },
+        { hungarian: 'gyogyszertar', english: 'pharmacy' },
+        { hungarian: 'konyvbolt', english: 'bookshop' },
+        { hungarian: 'cipobolt', english: 'shoe shop' },
+        { hungarian: 'zoldseges', english: 'greengrocer' },
+        { hungarian: 'ekszerbolt', english: 'jewelry shop' },
+        { hungarian: 'aruhaz', english: 'department store' }
+    ];
+
+    let stage2Selected = null;
+    let stage2Matches = new Set();
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Shop Type Matching</h2>
+        <p class="mb-4 text-slate-600">Match the Hungarian shop names with their English translations. Click a card on the left, then click its match on the right.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="stage2-exercise">
+            <div id="stage2-hungarian" class="space-y-2"></div>
+            <div id="stage2-english" class="space-y-2"></div>
+        </div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage2Data.length}</div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Hungarian = document.getElementById('stage2-hungarian');
+    const stage2English = document.getElementById('stage2-english');
+    const stage2Score = document.getElementById('stage2-score');
+
+    const shuffledStage2English = [...stage2Data].sort(() => Math.random() - 0.5);
+
+    stage2Data.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.hungarian;
+        card.dataset.index = idx;
+        card.dataset.type = 'hungarian';
+        card.addEventListener('click', () => handleStage2Click(card, 'hungarian', idx));
+        stage2Hungarian.appendChild(card);
+    });
+
+    shuffledStage2English.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.english;
+        card.dataset.originalIndex = stage2Data.findIndex(d => d.english === item.english);
+        card.dataset.type = 'english';
+        card.addEventListener('click', () => handleStage2Click(card, 'english', parseInt(card.dataset.originalIndex)));
+        stage2English.appendChild(card);
+    });
+
+    function handleStage2Click(card, type, index) {
+        if (card.classList.contains('correct')) return;
+
+        if (stage2Selected === null) {
+            stage2Selected = { card, type, index };
+            card.classList.add('selected');
+        } else if (stage2Selected.type === type) {
+            stage2Selected.card.classList.remove('selected');
+            stage2Selected = { card, type, index };
+            card.classList.add('selected');
+        } else {
+            if (stage2Selected.index === index) {
+                stage2Selected.card.classList.remove('selected');
+                stage2Selected.card.classList.add('correct');
+                card.classList.add('correct');
+                stage2Matches.add(index);
+                stage2Score.textContent = `Score: ${stage2Matches.size} / ${stage2Data.length}`;
+            } else {
+                stage2Selected.card.classList.add('incorrect');
+                card.classList.add('incorrect');
+                setTimeout(() => {
+                    stage2Selected.card.classList.remove('selected', 'incorrect');
+                    card.classList.remove('incorrect');
+                    stage2Selected = null;
+                }, 800);
+                return;
+            }
+            stage2Selected = null;
+        }
+    }
+
+    // ==================== STAGE 3: PRICE READING (8 items) ====================
+    const stage3Data = [
+        { price: '500 Ft', hungarian: 'otszaz forint', options: ['otszaz forint', 'otsz forint', 'otezer forint', 'otven forint'] },
+        { price: '1 000 Ft', hungarian: 'ezer forint', options: ['szaz forint', 'ezer forint', 'tizezer forint', 'ketszaz forint'] },
+        { price: '2 500 Ft', hungarian: 'ketezerotsszaz forint', options: ['ketszazotven forint', 'ketezerotsszaz forint', 'huszonotzaz forint', 'otezerokettoszaz forint'] },
+        { price: '750 Ft', hungarian: 'hetszazotven forint', options: ['hetven forint', 'hetezerot forint', 'hetszazotven forint', 'hetszaz forint'] },
+        { price: '3 000 Ft', hungarian: 'haromezer forint', options: ['haromszaz forint', 'haromezer forint', 'harmincezeer forint', 'haromszazezer forint'] },
+        { price: '1 200 Ft', hungarian: 'ezerkettoszaz forint', options: ['tizenketto forint', 'ezerkettoszaz forint', 'ezerhuszonegy forint', 'szazhuszonegy forint'] },
+        { price: '4 500 Ft', hungarian: 'negyezerotsszaz forint', options: ['negyezer forint', 'negyvenot forint', 'negyezerotsszaz forint', 'negyszazotven forint'] },
+        { price: '10 000 Ft', hungarian: 'tizezer forint', options: ['ezer forint', 'szazezer forint', 'tiz forint', 'tizezer forint'] }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Price Reading</h2>
+        <p class="mb-4 text-slate-600">For each price shown, select the correct Hungarian pronunciation.</p>
+        <div id="stage3-exercise" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage3Data.length}</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Exercise = document.getElementById('stage3-exercise');
+    const stage3Score = document.getElementById('stage3-score');
+    let stage3Correct = 0;
+
+    stage3Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <div class="flex items-center gap-4 mb-3">
+                <div class="price-tag px-4 py-2 rounded-lg">
+                    <span class="text-xl font-bold text-amber-800">${item.price}</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2" id="stage3-options-${idx}"></div>
+            <div id="stage3-feedback-${idx}" class="mt-2 text-sm font-semibold"></div>
+        `;
+        stage3Exercise.appendChild(wrapper);
+
+        const optionsDiv = document.getElementById(`stage3-options-${idx}`);
+        const shuffledOptions = [...item.options].sort(() => Math.random() - 0.5);
+
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'px-4 py-2 border border-slate-300 rounded-md hover:bg-slate-100 transition-colors text-left';
+            btn.textContent = opt;
+            btn.addEventListener('click', function() {
+                checkStage3(idx, opt, item.hungarian);
+            });
+            optionsDiv.appendChild(btn);
+        });
+    });
+
+    function checkStage3(idx, selected, correct) {
+        const feedback = document.getElementById(`stage3-feedback-${idx}`);
+        const optionsDiv = document.getElementById(`stage3-options-${idx}`);
+        const buttons = optionsDiv.querySelectorAll('button');
+        const wasAnswered = buttons[0].disabled;
+
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            if (btn.textContent === correct) {
+                btn.className = 'px-4 py-2 border border-green-500 rounded-md bg-green-100 text-green-700 text-left';
+            } else if (btn.textContent === selected && selected !== correct) {
+                btn.className = 'px-4 py-2 border border-red-500 rounded-md bg-red-100 text-red-700 text-left';
+            }
+        });
+
+        if (selected === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'mt-2 text-green-600 font-semibold';
+            if (!wasAnswered) stage3Correct++;
+        } else {
+            feedback.textContent = `Incorrect. The answer is: ${correct}`;
+            feedback.className = 'mt-2 text-red-600 font-semibold';
+        }
+        stage3Score.textContent = `Score: ${stage3Correct} / ${stage3Data.length}`;
+    }
+
+    // ==================== STAGE 4: SHOPPING PHRASE COMPLETION (10 items) ====================
+    const stage4Data = [
+        { prompt: 'How much does it cost?', answer: 'Mennyibe kerul', alternatives: ['mennyibe kerul', 'mennyibe kerul?'] },
+        { prompt: 'I\'m just looking.', answer: 'Csak nezelodok', alternatives: ['csak nezelodok', 'csak nezelodok.'] },
+        { prompt: 'I would like to buy...', answer: 'Szeretnek venni', alternatives: ['szeretnek venni', 'szeretnek venni...'] },
+        { prompt: 'Do you have...?', answer: 'Van', alternatives: ['van', 'van...?'] },
+        { prompt: 'I\'ll take this one.', answer: 'Ezt kerem', alternatives: ['ezt kerem', 'ezt kerem.'] },
+        { prompt: 'Where can I pay?', answer: 'Hol fizethetek', alternatives: ['hol fizethetek', 'hol fizethetek?'] },
+        { prompt: 'Cash, please.', answer: 'Keszpenzzel kerem', alternatives: ['keszpenzzel kerem', 'keszpenzzel kerem.'] },
+        { prompt: 'I\'ll pay by card.', answer: 'Kartyaval fizetek', alternatives: ['kartyaval fizetek', 'kartyaval fizetek.'] },
+        { prompt: 'I\'d like a receipt.', answer: 'Kerek szamlat', alternatives: ['kerek szamlat', 'kerek szamlat.'] },
+        { prompt: 'It\'s expensive.', answer: 'Draga', alternatives: ['draga', 'draga.', 'ez draga'] }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Shopping Phrase Completion</h2>
+        <p class="mb-4 text-slate-600">Type the Hungarian translation for each phrase. Press Enter to check.</p>
+        <div id="stage4-exercise" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage4Data.length}</div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Exercise = document.getElementById('stage4-exercise');
+    const stage4Score = document.getElementById('stage4-score');
+    let stage4Results = new Array(stage4Data.length).fill(null);
+
+    stage4Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. "${item.prompt}"</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-64 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                       placeholder="Type in Hungarian..." aria-label="Hungarian for: ${item.prompt}">
+                <span class="text-sm font-semibold stage4-feedback"></span>
+            </div>
+        `;
+        stage4Exercise.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(idx, input, wrapper);
+        });
+    });
+
+    function checkStage4(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage4-feedback');
+        const item = stage4Data[idx];
+        const userAnswer = input.value.trim().toLowerCase().replace(/[!.,?]/g, '');
+        const correctAnswer = item.answer.toLowerCase();
+        const alternatives = item.alternatives.map(a => a.toLowerCase().replace(/[!.,?]/g, ''));
+
+        if (userAnswer === correctAnswer || alternatives.includes(userAnswer)) {
+            feedback.textContent = `Correct! "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage4-feedback';
+            stage4Results[idx] = true;
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Almost! Watch accents: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage4-feedback';
+            stage4Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage4Results[idx] = null;
+        } else {
+            feedback.textContent = `Try again. Expected: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage4-feedback';
+            stage4Results[idx] = false;
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        const correct = stage4Results.filter(r => r === true).length;
+        stage4Score.textContent = `Score: ${correct} / ${stage4Data.length}`;
+    }
+
+    // ==================== STAGE 5: TRANSACTION DIALOGUE (6 items) ====================
+    const stage5Data = [
+        {
+            title: 'At the bakery',
+            lines: [
+                { speaker: 'Elado', text: 'Jo napot! Miben segithetek?', type: 'given' },
+                { speaker: 'Vevo', text: '_____ ket kiflit, kerem.', blanks: ['Kerek'], type: 'fill' },
+                { speaker: 'Elado', text: 'Tessek. Mas valamit?', type: 'given' },
+                { speaker: 'Vevo', text: 'Nem, _____. Mennyibe _____?', blanks: ['koszonom', 'kerul'], type: 'fill' },
+                { speaker: 'Elado', text: '400 forint osszesen.', type: 'given' },
+                { speaker: 'Vevo', text: '_____!', blanks: ['Tessek'], type: 'fill' }
+            ]
+        },
+        {
+            title: 'At the clothing store',
+            lines: [
+                { speaker: 'Elado', text: 'Szia! Segithetek?', type: 'given' },
+                { speaker: 'Vevo', text: 'Csak _____.', blanks: ['nezelodok'], type: 'fill' },
+                { speaker: 'Elado', text: 'Rendben. Ha kell valami, szolj!', type: 'given' },
+                { speaker: 'Vevo', text: 'Van ez a polo _____ szinben?', blanks: ['mas'], type: 'fill' },
+                { speaker: 'Elado', text: 'Igen, van fekete es kek is.', type: 'given' }
+            ]
+        },
+        {
+            title: 'Paying at the supermarket',
+            lines: [
+                { speaker: 'Penztar', text: 'Osszesen 3500 forint. Keszpenzzel vagy kartyaval?', type: 'given' },
+                { speaker: 'Vevo', text: '_____ fizetek.', blanks: ['Kartyaval'], type: 'fill' },
+                { speaker: 'Penztar', text: 'Kerem a kartyat... Koszonom. Kell _____?', blanks: ['zacsko'], type: 'fill' },
+                { speaker: 'Vevo', text: 'Nem, _____.', blanks: ['koszonom'], type: 'fill' },
+                { speaker: 'Penztar', text: 'Viszontlatasra!', type: 'given' }
+            ]
+        }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Transaction Dialogue</h2>
+        <p class="mb-4 text-slate-600">Complete the shopping dialogues. (Elado = Seller, Vevo = Customer, Penztar = Cashier)</p>
+        <div id="stage5-exercise" class="space-y-6"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium">Score: 0 / 0</div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Exercise = document.getElementById('stage5-exercise');
+    const stage5Score = document.getElementById('stage5-score');
+    let stage5Total = 0;
+    let stage5Results = [];
+
+    stage5Data.forEach((dialogue, dIdx) => {
+        const dialogueDiv = document.createElement('div');
+        dialogueDiv.className = 'bg-slate-50 p-4 rounded-lg';
+        dialogueDiv.innerHTML = `<h3 class="font-semibold text-slate-700 mb-3">${dialogue.title}</h3>`;
+
+        dialogue.lines.forEach((line, lIdx) => {
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'mb-2 flex flex-wrap items-center gap-1';
+
+            const speakerSpan = document.createElement('span');
+            speakerSpan.className = 'font-medium text-teal-700 min-w-[80px]';
+            speakerSpan.textContent = `${line.speaker}:`;
+            lineDiv.appendChild(speakerSpan);
+
+            if (line.type === 'given') {
+                const textSpan = document.createElement('span');
+                textSpan.className = 'text-slate-700';
+                textSpan.textContent = line.text;
+                lineDiv.appendChild(textSpan);
+            } else {
+                const parts = line.text.split('_____');
+                parts.forEach((part, pIdx) => {
+                    if (part) {
+                        const partSpan = document.createElement('span');
+                        partSpan.className = 'text-slate-700';
+                        partSpan.textContent = part;
+                        lineDiv.appendChild(partSpan);
+                    }
+                    if (pIdx < line.blanks.length) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.className = 'border border-slate-300 rounded px-2 py-1 w-28 text-center focus:ring-2 focus:ring-teal-500 focus:border-teal-500 mx-1';
+                        input.dataset.answer = line.blanks[pIdx];
+                        input.dataset.resultIndex = stage5Total;
+                        stage5Results.push(null);
+                        stage5Total++;
+
+                        input.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter') checkStage5Input(input);
+                        });
+
+                        lineDiv.appendChild(input);
+                    }
+                });
+            }
+
+            dialogueDiv.appendChild(lineDiv);
+        });
+
+        stage5Exercise.appendChild(dialogueDiv);
+    });
+
+    stage5Score.textContent = `Score: 0 / ${stage5Total}`;
+
+    function checkStage5Input(input) {
+        const correct = input.dataset.answer.toLowerCase();
+        const userAnswer = input.value.trim().toLowerCase();
+        const resultIdx = parseInt(input.dataset.resultIndex);
+
+        if (userAnswer === correct) {
+            input.classList.remove('border-red-500', 'border-yellow-500', 'bg-red-50', 'bg-yellow-50');
+            input.classList.add('border-green-500', 'bg-green-50');
+            stage5Results[resultIdx] = true;
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            input.classList.remove('border-red-500', 'border-green-500', 'bg-red-50', 'bg-green-50');
+            input.classList.add('border-yellow-500', 'bg-yellow-50');
+            stage5Results[resultIdx] = 'partial';
+        } else if (userAnswer === '') {
+            input.classList.remove('border-green-500', 'border-red-500', 'border-yellow-500', 'bg-green-50', 'bg-red-50', 'bg-yellow-50');
+            stage5Results[resultIdx] = null;
+        } else {
+            input.classList.remove('border-green-500', 'border-yellow-500', 'bg-green-50', 'bg-yellow-50');
+            input.classList.add('border-red-500', 'bg-red-50');
+            stage5Results[resultIdx] = false;
+        }
+        updateStage5Score();
+    }
+
+    function updateStage5Score() {
+        const correct = stage5Results.filter(r => r === true).length;
+        stage5Score.textContent = `Score: ${correct} / ${stage5Total}`;
+    }
+
+    // ==================== STAGE 6: PRICE NEGOTIATION SIMULATION ====================
+    const stage6Section = document.createElement('section');
+    stage6Section.className = 'mb-8';
+    stage6Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 6: Price Negotiation Simulation</h2>
+        <p class="mb-4 text-slate-600">Practice negotiating prices at a Hungarian market! Select the appropriate response at each step.</p>
+        <div id="stage6-exercise" class="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-lg border-2 border-amber-200"></div>
+        <div id="stage6-score" class="mt-4 text-slate-700 font-medium">Negotiation Progress: 0 / 6 steps</div>
+    `;
+    mainContent.appendChild(stage6Section);
+
+    const negotiationSteps = [
+        {
+            seller: 'Jo napot! Szep kezmuves taskat nezegel. Ez a legjobb minoseg!',
+            sellerTranslation: 'Good day! You\'re looking at a beautiful handmade bag. This is the best quality!',
+            question: 'How do you ask the price?',
+            options: [
+                { text: 'Mennyibe kerul?', correct: true },
+                { text: 'Koszonom szepen!', correct: false },
+                { text: 'Viszontlatasra!', correct: false }
+            ]
+        },
+        {
+            seller: 'Ez a taska 15000 forint.',
+            sellerTranslation: 'This bag is 15000 forints.',
+            question: 'You think it\'s expensive. What do you say?',
+            options: [
+                { text: 'Nagyon jo ar!', correct: false },
+                { text: 'Jaj, ez tul draga!', correct: true },
+                { text: 'Kerem a szamlat!', correct: false }
+            ]
+        },
+        {
+            seller: 'De nezze, milyen szep! Kezzel keszult.',
+            sellerTranslation: 'But look how beautiful it is! It\'s handmade.',
+            question: 'How do you ask for a discount?',
+            options: [
+                { text: 'Van kedvezmeny?', correct: true },
+                { text: 'Hol van a penztár?', correct: false },
+                { text: 'Kerek zacskot!', correct: false }
+            ]
+        },
+        {
+            seller: 'Rendben, adok 10%-ot. Tehat 13500 forint.',
+            sellerTranslation: 'Okay, I\'ll give you 10%. So 13500 forints.',
+            question: 'You want to offer a lower price. What do you say?',
+            options: [
+                { text: 'Tessek!', correct: false },
+                { text: 'Megveszem ezen az aron.', correct: false },
+                { text: 'Tudna adni 12000-ert?', correct: true }
+            ]
+        },
+        {
+            seller: 'Hmm... Rendben, 12500 forint. Ez a legkevesebb.',
+            sellerTranslation: 'Hmm... Okay, 12500 forints. This is the lowest.',
+            question: 'You agree to this price. What do you say?',
+            options: [
+                { text: 'Nem kell, koszonom.', correct: false },
+                { text: 'Rendben, megveszem!', correct: true },
+                { text: 'Meg mindig draga.', correct: false }
+            ]
+        },
+        {
+            seller: 'Remek! Keszpenzzel vagy kartyaval fizet?',
+            sellerTranslation: 'Great! Will you pay by cash or card?',
+            question: 'You want to pay by card. What do you say?',
+            options: [
+                { text: 'Keszpenzzel kerem.', correct: false },
+                { text: 'Kartyaval fizetek.', correct: true },
+                { text: 'Nincs nalam penz.', correct: false }
+            ]
+        }
+    ];
+
+    const stage6Exercise = document.getElementById('stage6-exercise');
+    const stage6Score = document.getElementById('stage6-score');
+    let currentNegotiationStep = 0;
+    let negotiationScore = 0;
+
+    function renderNegotiationStep() {
+        if (currentNegotiationStep >= negotiationSteps.length) {
+            stage6Exercise.innerHTML = `
+                <div class="text-center py-8">
+                    <h3 class="text-2xl font-bold text-green-600 mb-4">Gratulalok! (Congratulations!)</h3>
+                    <p class="text-slate-700 mb-2">You completed the negotiation simulation!</p>
+                    <p class="text-slate-600">You successfully negotiated from 15000 Ft down to 12500 Ft!</p>
+                    <p class="text-lg font-semibold text-teal-700 mt-4">Final Score: ${negotiationScore} / ${negotiationSteps.length}</p>
+                    <button onclick="resetNegotiation()" class="mt-4 px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors">
+                        Try Again
+                    </button>
+                </div>
+            `;
+            return;
+        }
+
+        const step = negotiationSteps[currentNegotiationStep];
+        const shuffledOptions = [...step.options].sort(() => Math.random() - 0.5);
+
+        stage6Exercise.innerHTML = `
+            <div class="space-y-4">
+                <div class="negotiation-bubble seller">
+                    <p class="font-medium text-amber-800">${step.seller}</p>
+                    <p class="text-sm text-amber-600 mt-1">(${step.sellerTranslation})</p>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg border-2 border-blue-200">
+                    <p class="font-semibold text-slate-700 mb-3">${step.question}</p>
+                    <div class="space-y-2" id="negotiation-options"></div>
+                </div>
+
+                <div id="negotiation-feedback" class="hidden p-3 rounded-lg"></div>
+            </div>
+        `;
+
+        const optionsContainer = document.getElementById('negotiation-options');
+        shuffledOptions.forEach(option => {
+            const btn = document.createElement('button');
+            btn.className = 'w-full px-4 py-3 border-2 border-slate-300 rounded-lg bg-white hover:bg-blue-50 hover:border-blue-300 transition-colors text-left';
+            btn.textContent = option.text;
+            btn.addEventListener('click', () => handleNegotiationChoice(option, btn));
+            optionsContainer.appendChild(btn);
+        });
+    }
+
+    function handleNegotiationChoice(option, btn) {
+        const feedback = document.getElementById('negotiation-feedback');
+        const buttons = document.querySelectorAll('#negotiation-options button');
+
+        buttons.forEach(b => b.disabled = true);
+
+        if (option.correct) {
+            btn.classList.add('bg-green-100', 'border-green-500');
+            feedback.innerHTML = '<span class="text-green-600 font-semibold">Helyes! (Correct!)</span> Great choice for the negotiation.';
+            feedback.className = 'p-3 rounded-lg bg-green-50 border border-green-200';
+            negotiationScore++;
+        } else {
+            btn.classList.add('bg-red-100', 'border-red-500');
+            const correctOption = negotiationSteps[currentNegotiationStep].options.find(o => o.correct);
+            feedback.innerHTML = `<span class="text-red-600 font-semibold">Nem egeszen! (Not quite!)</span> Better response: "${correctOption.text}"`;
+            feedback.className = 'p-3 rounded-lg bg-red-50 border border-red-200';
+        }
+
+        feedback.classList.remove('hidden');
+        stage6Score.textContent = `Negotiation Progress: ${currentNegotiationStep + 1} / ${negotiationSteps.length} steps`;
+
+        setTimeout(() => {
+            currentNegotiationStep++;
+            renderNegotiationStep();
+        }, 2000);
+    }
+
+    window.resetNegotiation = function() {
+        currentNegotiationStep = 0;
+        negotiationScore = 0;
+        stage6Score.textContent = `Negotiation Progress: 0 / ${negotiationSteps.length} steps`;
+        renderNegotiationStep();
+    };
+
+    renderNegotiationStep();
+
+    // ==================== STAGE 7: SITUATION RESPONSE (6 items) ====================
+    const stage7Data = [
+        {
+            situation: 'You\'re at a store and the clerk asks "Miben segithetek?"',
+            options: ['Csak nezelodok.', 'Viszontlatasra!', 'Koszonom szepen!'],
+            correct: 'Csak nezelodok.',
+            explanation: 'This means "I\'m just looking" - perfect for browsing.'
+        },
+        {
+            situation: 'You want to know if an item is on sale.',
+            options: ['Van akcio ezen?', 'Hol van a penztár?', 'Ez draga!'],
+            correct: 'Van akcio ezen?',
+            explanation: '"Van akcio ezen?" asks if there\'s a sale/discount on this item.'
+        },
+        {
+            situation: 'The cashier says the total is 2500 Ft. You only have card.',
+            options: ['Keszpenzzel kerem.', 'Elfogadnak kartyat?', 'Ez tul draga!'],
+            correct: 'Elfogadnak kartyat?',
+            explanation: 'Ask "Do you accept cards?" before trying to pay.'
+        },
+        {
+            situation: 'You want to try on a shirt.',
+            options: ['Mennyibe kerul?', 'Kiprobálhatom?', 'Megveszem!'],
+            correct: 'Kiprobálhatom?',
+            explanation: '"Kiprobálhatom?" means "Can I try it?"'
+        },
+        {
+            situation: 'The clerk hands you your change.',
+            options: ['Tessek!', 'Koszonom!', 'Mennyibe kerul?'],
+            correct: 'Koszonom!',
+            explanation: 'Always say thank you when receiving change!'
+        },
+        {
+            situation: 'You\'ve decided to buy the item.',
+            options: ['Csak nezelodok.', 'Nem kell, koszonom.', 'Ezt kerem!'],
+            correct: 'Ezt kerem!',
+            explanation: '"Ezt kerem!" means "I\'ll take this one!"'
+        }
+    ];
+
+    const stage7Section = document.createElement('section');
+    stage7Section.className = 'mb-8';
+    stage7Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 7: Situation Response</h2>
+        <p class="mb-4 text-slate-600">Choose the most appropriate response for each shopping situation.</p>
+        <div id="stage7-exercise" class="space-y-4"></div>
+        <div id="stage7-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage7Data.length}</div>
+    `;
+    mainContent.appendChild(stage7Section);
+
+    const stage7Exercise = document.getElementById('stage7-exercise');
+    const stage7Score = document.getElementById('stage7-score');
+    let stage7Correct = 0;
+
+    stage7Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700 mb-3">${idx + 1}. ${item.situation}</p>
+            <div class="flex flex-wrap gap-2" id="stage7-options-${idx}">
+                ${item.options.map(opt => `
+                    <button class="px-4 py-2 border-2 border-slate-300 rounded-lg bg-white hover:bg-slate-50 transition-colors stage7-btn" data-answer="${opt}">
+                        ${opt}
+                    </button>
+                `).join('')}
+            </div>
+            <p class="mt-2 text-sm font-semibold stage7-feedback hidden"></p>
+        `;
+        stage7Exercise.appendChild(wrapper);
+
+        const buttons = wrapper.querySelectorAll('.stage7-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => checkStage7(idx, btn, wrapper, buttons));
+        });
+    });
+
+    function checkStage7(idx, btn, wrapper, buttons) {
+        const feedback = wrapper.querySelector('.stage7-feedback');
+        const correct = stage7Data[idx].correct;
+        const wasCorrect = Array.from(buttons).some(b => b.classList.contains('bg-green-100'));
+
+        buttons.forEach(b => {
+            b.disabled = true;
+            b.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500', 'hover:bg-slate-50');
+        });
+
+        if (btn.dataset.answer === correct) {
+            btn.classList.add('bg-green-100', 'border-green-500');
+            feedback.textContent = `Correct! ${stage7Data[idx].explanation}`;
+            feedback.className = 'mt-2 text-sm font-semibold text-green-600 stage7-feedback';
+            if (!wasCorrect) stage7Correct++;
+        } else {
+            btn.classList.add('bg-red-100', 'border-red-500');
+            buttons.forEach(b => {
+                if (b.dataset.answer === correct) {
+                    b.classList.add('bg-green-100', 'border-green-500');
+                }
+            });
+            feedback.textContent = `Not quite. ${stage7Data[idx].explanation}`;
+            feedback.className = 'mt-2 text-sm font-semibold text-red-600 stage7-feedback';
+        }
+        feedback.classList.remove('hidden');
+        stage7Score.textContent = `Score: ${stage7Correct} / ${stage7Data.length}`;
+    }
+
+    // ==================== STAGE 8: FULL TRANSACTION WRITING (4 items) ====================
+    const stage8Data = [
+        { english: 'How much does this cost?', hungarian: 'Mennyibe kerul ez?' },
+        { english: 'I would like to buy this bag.', hungarian: 'Szeretnek venni ezt a taskat.' },
+        { english: 'Do you have a bigger size?', hungarian: 'Van nagyobb meret?' },
+        { english: 'I\'ll pay by cash.', hungarian: 'Keszpenzzel fizetek.' }
+    ];
+
+    const stage8Section = document.createElement('section');
+    stage8Section.className = 'mb-8';
+    stage8Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 8: Translation Practice</h2>
+        <p class="mb-4 text-slate-600">Translate these shopping sentences into Hungarian. Press Enter to check.</p>
+        <div id="stage8-exercise" class="space-y-4"></div>
+        <div id="stage8-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage8Data.length}</div>
+    `;
+    mainContent.appendChild(stage8Section);
+
+    const stage8Exercise = document.getElementById('stage8-exercise');
+    const stage8Score = document.getElementById('stage8-score');
+    let stage8Results = new Array(stage8Data.length).fill(null);
+
+    stage8Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700 mb-2">${idx + 1}. "${item.english}"</p>
+            <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                   placeholder="Type the Hungarian translation..." aria-label="Hungarian translation">
+            <p class="mt-2 text-sm font-semibold stage8-feedback"></p>
+        `;
+        stage8Exercise.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage8(idx, input, wrapper);
+        });
+    });
+
+    function checkStage8(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage8-feedback');
+        const item = stage8Data[idx];
+        const userAnswer = normalizeHungarian(input.value).replace(/[!.,?]/g, '');
+        const correctAnswer = normalizeHungarian(item.hungarian).replace(/[!.,?]/g, '');
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = `Correct! "${item.hungarian}"`;
+            feedback.className = 'mt-2 text-sm font-semibold text-green-600 stage8-feedback';
+            stage8Results[idx] = true;
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Almost! Watch accents: "${item.hungarian}"`;
+            feedback.className = 'mt-2 text-sm font-semibold text-yellow-600 stage8-feedback';
+            stage8Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage8Results[idx] = null;
+        } else {
+            feedback.textContent = `Try again. Expected: "${item.hungarian}"`;
+            feedback.className = 'mt-2 text-sm font-semibold text-red-600 stage8-feedback';
+            stage8Results[idx] = false;
+        }
+
+        const correct = stage8Results.filter(r => r === true).length;
+        stage8Score.textContent = `Score: ${correct} / ${stage8Data.length}`;
+    }
+
+    // ==================== FINAL SUMMARY ====================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 mt-12 bg-gradient-to-r from-teal-50 to-slate-50 p-6 rounded-xl';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Lesson Summary</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Key Shopping Phrases</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li><strong>Mennyibe kerul?</strong> - How much does it cost?</li>
+                    <li><strong>Csak nezelodok</strong> - I'm just looking</li>
+                    <li><strong>Szeretnek venni...</strong> - I would like to buy...</li>
+                    <li><strong>Ezt kerem</strong> - I'll take this one</li>
+                    <li><strong>Van kedvezmeny?</strong> - Is there a discount?</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Payment Phrases</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li><strong>Hol fizethetek?</strong> - Where can I pay?</li>
+                    <li><strong>Keszpenzzel kerem</strong> - Cash, please</li>
+                    <li><strong>Kartyaval fizetek</strong> - I'll pay by card</li>
+                    <li><strong>Kerek szamlat</strong> - I'd like a receipt</li>
+                    <li><strong>A visszajaro</strong> - Here's your change</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4">
+            <h3 class="font-semibold text-teal-700 mb-2">Remember</h3>
+            <ul class="text-slate-700 space-y-1 text-sm">
+                <li>Hungary uses the <strong>Forint (Ft / HUF)</strong> as currency</li>
+                <li>Prices are often rounded to the nearest 5 Ft</li>
+                <li>Shopping bags usually cost extra - bring your own!</li>
+                <li>At markets, negotiation is sometimes possible</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+
+    // ==================== VOCABULARY REFERENCE ====================
+    const vocabSection = document.createElement('section');
+    vocabSection.className = 'mb-8';
+    vocabSection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Complete Vocabulary Reference</h2>
+        <p class="mb-4 text-slate-600">All vocabulary from this lesson for review:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-teal-700 mb-2">Money & Currency</h4>
+                <ul class="text-sm space-y-1">
+                    <li><strong>forint</strong> - Hungarian Forint</li>
+                    <li><strong>penz</strong> - money</li>
+                    <li><strong>keszpenz</strong> - cash</li>
+                    <li><strong>bankjegy</strong> - banknote</li>
+                    <li><strong>erme</strong> - coin</li>
+                    <li><strong>bankkartya</strong> - bank card</li>
+                    <li><strong>visszajaro</strong> - change</li>
+                    <li><strong>szamla</strong> - receipt</li>
+                </ul>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-teal-700 mb-2">Shop Types</h4>
+                <ul class="text-sm space-y-1">
+                    <li><strong>bolt / uzlet</strong> - shop</li>
+                    <li><strong>aruhaz</strong> - department store</li>
+                    <li><strong>piac</strong> - market</li>
+                    <li><strong>pekseg</strong> - bakery</li>
+                    <li><strong>hentes</strong> - butcher</li>
+                    <li><strong>gyogyszertar</strong> - pharmacy</li>
+                    <li><strong>konyvbolt</strong> - bookshop</li>
+                </ul>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-teal-700 mb-2">Price Words</h4>
+                <ul class="text-sm space-y-1">
+                    <li><strong>ar</strong> - price</li>
+                    <li><strong>olcso</strong> - cheap</li>
+                    <li><strong>draga</strong> - expensive</li>
+                    <li><strong>kedvezmeny</strong> - discount</li>
+                    <li><strong>akcio</strong> - sale</li>
+                    <li><strong>ingyenes</strong> - free</li>
+                    <li><strong>osszesen</strong> - total</li>
+                </ul>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-teal-700 mb-2">Useful Items</h4>
+                <ul class="text-sm space-y-1">
+                    <li><strong>taska</strong> - bag (handbag)</li>
+                    <li><strong>zacsko</strong> - bag (shopping)</li>
+                    <li><strong>meret</strong> - size</li>
+                    <li><strong>szin</strong> - color</li>
+                    <li><strong>probafülke</strong> - fitting room</li>
+                    <li><strong>penztár</strong> - checkout</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(vocabSection);
+
+    </script>
+</body>
+</html>

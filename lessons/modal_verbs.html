@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 19: Modal Verbs - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .modal-highlight { color: #0f766e; font-weight: 600; }
+        .infinitive-highlight { color: #7c3aed; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 19: Modal Verbs <span class="block text-xl text-slate-500 font-normal">(Modalitast kifejezo igek)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn Hungarian modal verbs to express ability, desire, necessity, and permission. Master the modal + infinitive patterns essential for everyday conversation.</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    // Helper functions for validation
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiI]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    const mainContent = document.getElementById('main-content');
+
+    // =============================================
+    // SECTION 1: Introduction to Modal Verbs
+    // =============================================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: What are Modal Verbs?</h2>
+        <div class="bg-teal-50 border-l-4 border-teal-500 p-4 mb-4">
+            <p class="text-slate-700 mb-2"><strong>Modal verbs</strong> express concepts like ability, desire, necessity, and permission. In Hungarian, they typically combine with an <strong>infinitive</strong> (the "-ni" form of verbs).</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-green-800 mb-2">Hungarian Modal Verbs:</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><span class="modal-highlight">tud</span> - can, know how to (ability)</li>
+                    <li><span class="modal-highlight">akar</span> - want (desire)</li>
+                    <li><span class="modal-highlight">kell</span> - must, need to (necessity)</li>
+                    <li><span class="modal-highlight">szabad</span> - may, be allowed (permission)</li>
+                </ul>
+            </div>
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-blue-800 mb-2">Pattern: Modal + Infinitive</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><span class="modal-highlight">Tudok</span> <span class="infinitive-highlight">uszni</span>. (I can swim.)</li>
+                    <li><span class="modal-highlight">Akarok</span> <span class="infinitive-highlight">enni</span>. (I want to eat.)</li>
+                    <li><span class="modal-highlight">Kell</span> <span class="infinitive-highlight">mennem</span>. (I must go.)</li>
+                    <li><span class="modal-highlight">Szabad</span> <span class="infinitive-highlight">bemenni</span>? (May I come in?)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+            <p class="text-sm"><strong>Key Insight:</strong> Hungarian infinitives end in <strong>-ni</strong> (e.g., enni, inni, menni, tanulni). Some modal verbs require the infinitive to take personal suffixes!</p>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // =============================================
+    // SECTION 2: TUD (can, know how to)
+    // =============================================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Tud (Can / Know How To)</h2>
+        <p class="mb-4">The verb <strong class="modal-highlight">tud</strong> expresses <strong>ability</strong> or <strong>knowing how to do something</strong>. It conjugates like a regular back-vowel verb.</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Person</th>
+                        <th>Hungarian</th>
+                        <th>Example</th>
+                        <th>Translation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="font-semibold">en (I)</td><td class="modal-highlight">tudok</td><td>Tudok uszni.</td><td>I can swim.</td></tr>
+                    <tr><td class="font-semibold">te (you)</td><td class="modal-highlight">tudsz</td><td>Tudsz vezetni?</td><td>Can you drive?</td></tr>
+                    <tr><td class="font-semibold">o/On (he/she/you formal)</td><td class="modal-highlight">tud</td><td>O tud magyarul.</td><td>He/She can speak Hungarian.</td></tr>
+                    <tr><td class="font-semibold">mi (we)</td><td class="modal-highlight">tudunk</td><td>Tudunk segiteni.</td><td>We can help.</td></tr>
+                    <tr><td class="font-semibold">ti (you pl.)</td><td class="modal-highlight">tudtok</td><td>Tudtok jonni?</td><td>Can you (pl.) come?</td></tr>
+                    <tr><td class="font-semibold">ok (they)</td><td class="modal-highlight">tudnak</td><td>Ok tudnak tancelni.</td><td>They can dance.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mt-4">
+            <p class="text-sm"><strong>Note:</strong> "Tud" can also mean "to know" (a fact): <em>"Tudod, hogy...?"</em> (Do you know that...?)</p>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // =============================================
+    // SECTION 3: AKAR (want)
+    // =============================================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Akar (Want)</h2>
+        <p class="mb-4">The verb <strong class="modal-highlight">akar</strong> expresses <strong>desire or intention</strong>. It conjugates like a regular back-vowel verb.</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Person</th>
+                        <th>Hungarian</th>
+                        <th>Example</th>
+                        <th>Translation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="font-semibold">en (I)</td><td class="modal-highlight">akarok</td><td>Akarok enni.</td><td>I want to eat.</td></tr>
+                    <tr><td class="font-semibold">te (you)</td><td class="modal-highlight">akarsz</td><td>Akarsz jonni?</td><td>Do you want to come?</td></tr>
+                    <tr><td class="font-semibold">o/On (he/she/you formal)</td><td class="modal-highlight">akar</td><td>O akar tanulni.</td><td>He/She wants to study.</td></tr>
+                    <tr><td class="font-semibold">mi (we)</td><td class="modal-highlight">akarunk</td><td>Akarunk pihenni.</td><td>We want to rest.</td></tr>
+                    <tr><td class="font-semibold">ti (you pl.)</td><td class="modal-highlight">akartok</td><td>Akartok jatszani?</td><td>Do you (pl.) want to play?</td></tr>
+                    <tr><td class="font-semibold">ok (they)</td><td class="modal-highlight">akarnak</td><td>Ok akarnak maradni.</td><td>They want to stay.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bg-green-50 border-l-4 border-green-500 p-4 mt-4">
+            <p class="text-sm"><strong>Usage:</strong> "Akar" is commonly used in everyday speech: <em>"Mit akarsz?"</em> (What do you want?)</p>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // =============================================
+    // SECTION 4: KELL (must, need to)
+    // =============================================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Kell (Must / Need To)</h2>
+        <p class="mb-4">The verb <strong class="modal-highlight">kell</strong> expresses <strong>necessity or obligation</strong>. It is typically used <strong>impersonally</strong> (stays in 3rd person singular), and the infinitive takes <strong>personal suffixes</strong>!</p>
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
+            <p class="text-sm"><strong>Important:</strong> Unlike "tud" and "akar," the verb "kell" does NOT conjugate for person. Instead, the <strong>infinitive</strong> takes the personal ending.</p>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Person</th>
+                        <th>Pattern</th>
+                        <th>Example (menni = to go)</th>
+                        <th>Translation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="font-semibold">en (I)</td><td>Kell + <span class="infinitive-highlight">infinitive-m</span></td><td>Kell menne<strong>m</strong>.</td><td>I must go.</td></tr>
+                    <tr><td class="font-semibold">te (you)</td><td>Kell + <span class="infinitive-highlight">infinitive-d</span></td><td>Kell menne<strong>d</strong>.</td><td>You must go.</td></tr>
+                    <tr><td class="font-semibold">o/On (he/she)</td><td>Kell + <span class="infinitive-highlight">infinitive-e</span></td><td>Kell menni<strong>e</strong>.</td><td>He/She must go.</td></tr>
+                    <tr><td class="font-semibold">mi (we)</td><td>Kell + <span class="infinitive-highlight">infinitive-nk</span></td><td>Kell mennu<strong>nk</strong>.</td><td>We must go.</td></tr>
+                    <tr><td class="font-semibold">ti (you pl.)</td><td>Kell + <span class="infinitive-highlight">infinitive-tek</span></td><td>Kell menne<strong>tek</strong>.</td><td>You (pl.) must go.</td></tr>
+                    <tr><td class="font-semibold">ok (they)</td><td>Kell + <span class="infinitive-highlight">infinitive-uk</span></td><td>Kell menniu<strong>k</strong>.</td><td>They must go.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-4 grid md:grid-cols-2 gap-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-blue-800 mb-2">Personal Infinitive Suffixes:</h3>
+                <ul class="text-sm space-y-1">
+                    <li><strong>-nem/-nom</strong> (I) - tanulnom kell</li>
+                    <li><strong>-ned/-nod</strong> (you) - tanulnod kell</li>
+                    <li><strong>-nie/-nia</strong> (he/she) - tanulnia kell</li>
+                    <li><strong>-nunk</strong> (we) - tanulnunk kell</li>
+                    <li><strong>-netek/-notok</strong> (you pl.) - tanulnotok kell</li>
+                    <li><strong>-niuk/-niok</strong> (they) - tanulniuk kell</li>
+                </ul>
+            </div>
+            <div class="bg-orange-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-orange-800 mb-2">More Examples:</h3>
+                <ul class="text-sm space-y-1">
+                    <li>Dolgoznom kell. (I must work.)</li>
+                    <li>Tanulnod kell. (You must study.)</li>
+                    <li>Varnia kell. (He/She must wait.)</li>
+                    <li>Fizetnunk kell. (We must pay.)</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // =============================================
+    // SECTION 5: SZABAD (may, be allowed)
+    // =============================================
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 5: Szabad (May / Be Allowed)</h2>
+        <p class="mb-4">The word <strong class="modal-highlight">szabad</strong> expresses <strong>permission</strong>. Like "kell," it is used <strong>impersonally</strong> and the infinitive can take personal suffixes.</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Usage</th>
+                        <th>Example</th>
+                        <th>Translation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="font-semibold">General permission</td><td>Szabad bemenni?</td><td>May one enter? / Is it allowed to enter?</td></tr>
+                    <tr><td class="font-semibold">I (may I?)</td><td>Szabad bemennem?</td><td>May I enter?</td></tr>
+                    <tr><td class="font-semibold">You (may you?)</td><td>Szabad bemenned?</td><td>May you enter?</td></tr>
+                    <tr><td class="font-semibold">He/She</td><td>Szabad bemennie?</td><td>May he/she enter?</td></tr>
+                    <tr><td class="font-semibold">We</td><td>Szabad bemennunk?</td><td>May we enter?</td></tr>
+                    <tr><td class="font-semibold">You (pl.)</td><td>Szabad bemennetek?</td><td>May you (pl.) enter?</td></tr>
+                    <tr><td class="font-semibold">They</td><td>Szabad bemenniuk?</td><td>May they enter?</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bg-green-50 border-l-4 border-green-500 p-4 mt-4">
+            <p class="text-sm mb-2"><strong>Negation:</strong> "Nem szabad" means "it is not allowed" / "must not":</p>
+            <ul class="text-sm list-disc pl-6">
+                <li>Nem szabad dohanyozni. (Smoking is not allowed.)</li>
+                <li>Nem szabad itt parkolni. (Parking is not allowed here.)</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section5);
+
+    // =============================================
+    // SECTION 6: Common Infinitives
+    // =============================================
+    const section6 = document.createElement('section');
+    section6.className = 'mb-8';
+    section6.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 6: Common Infinitives</h2>
+        <p class="mb-4">Here are common verbs in their infinitive form, used with modal verbs:</p>
+        <div class="grid md:grid-cols-3 gap-4">
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-slate-800 mb-2">Basic Actions:</h3>
+                <ul class="text-sm space-y-1">
+                    <li><span class="infinitive-highlight">enni</span> - to eat</li>
+                    <li><span class="infinitive-highlight">inni</span> - to drink</li>
+                    <li><span class="infinitive-highlight">menni</span> - to go</li>
+                    <li><span class="infinitive-highlight">jonni</span> - to come</li>
+                    <li><span class="infinitive-highlight">aludni</span> - to sleep</li>
+                </ul>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-slate-800 mb-2">Activities:</h3>
+                <ul class="text-sm space-y-1">
+                    <li><span class="infinitive-highlight">tanulni</span> - to study</li>
+                    <li><span class="infinitive-highlight">dolgozni</span> - to work</li>
+                    <li><span class="infinitive-highlight">olvasni</span> - to read</li>
+                    <li><span class="infinitive-highlight">irni</span> - to write</li>
+                    <li><span class="infinitive-highlight">beszelni</span> - to speak</li>
+                </ul>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-slate-800 mb-2">Skills & Movement:</h3>
+                <ul class="text-sm space-y-1">
+                    <li><span class="infinitive-highlight">uszni</span> - to swim</li>
+                    <li><span class="infinitive-highlight">vezetni</span> - to drive</li>
+                    <li><span class="infinitive-highlight">futni</span> - to run</li>
+                    <li><span class="infinitive-highlight">segiteni</span> - to help</li>
+                    <li><span class="infinitive-highlight">varni</span> - to wait</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section6);
+
+    // =============================================
+    // STAGE 1: TUD Conjugation Practice (8 items)
+    // =============================================
+    const stage1Questions = [
+        { sentence: 'En ___ uszni.', answer: 'tudok', translation: 'I can swim.' },
+        { sentence: 'Te ___ vezetni?', answer: 'tudsz', translation: 'Can you drive?' },
+        { sentence: 'O ___ magyarul beszelni.', answer: 'tud', translation: 'He/She can speak Hungarian.' },
+        { sentence: 'Mi ___ segiteni neked.', answer: 'tudunk', translation: 'We can help you.' },
+        { sentence: 'Ti ___ jonni holnap?', answer: 'tudtok', translation: 'Can you (pl.) come tomorrow?' },
+        { sentence: 'Ok ___ tancelni.', answer: 'tudnak', translation: 'They can dance.' },
+        { sentence: 'En nem ___ aludni.', answer: 'tudok', translation: 'I cannot sleep.' },
+        { sentence: 'Te ___ fozni?', answer: 'tudsz', translation: 'Can you cook?' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 1: Tud - Ability Practice</h2>
+        <p class="mb-4 text-slate-600">Fill in the correct form of "tud" (can/know how to). Press Enter to check.</p>
+        <div id="stage1-exercises" class="space-y-3"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Container = document.getElementById('stage1-exercises');
+
+    stage1Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-teal-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[280px] text-slate-800';
+        label.textContent = q.sentence;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-28 text-center focus:ring-2 focus:ring-teal-500';
+        input.setAttribute('aria-label', `Answer for: ${q.sentence}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage1(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage1Container.appendChild(wrapper);
+    });
+
+    function checkStage1(idx) {
+        const wrapper = stage1Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage1Questions[idx].answer;
+        const userAnswer = normalizeHungarian(input.value);
+
+        if (userAnswer === normalizeHungarian(correct)) {
+            feedback.textContent = `Correct! (${stage1Questions[idx].translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(normalizeHungarian(correct))) {
+            feedback.textContent = `Check accents! (${stage1Questions[idx].translation})`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Answer: ${correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let correct = 0;
+        for (let i = 0; i < stage1Questions.length; i++) {
+            const input = stage1Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage1Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage1-score').textContent = `Score: ${correct} / ${stage1Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 2: AKAR Conjugation Practice (8 items)
+    // =============================================
+    const stage2Questions = [
+        { sentence: 'En ___ enni.', answer: 'akarok', translation: 'I want to eat.' },
+        { sentence: 'Te ___ jonni velunk?', answer: 'akarsz', translation: 'Do you want to come with us?' },
+        { sentence: 'O ___ pihenni.', answer: 'akar', translation: 'He/She wants to rest.' },
+        { sentence: 'Mi ___ latni a varost.', answer: 'akarunk', translation: 'We want to see the city.' },
+        { sentence: 'Ti ___ jatszani?', answer: 'akartok', translation: 'Do you (pl.) want to play?' },
+        { sentence: 'Ok ___ maradni.', answer: 'akarnak', translation: 'They want to stay.' },
+        { sentence: 'Mit ___ inni?', answer: 'akarsz', translation: 'What do you want to drink?' },
+        { sentence: 'En ___ beszelni veled.', answer: 'akarok', translation: 'I want to talk to you.' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 2: Akar - Desire Practice</h2>
+        <p class="mb-4 text-slate-600">Fill in the correct form of "akar" (want). Press Enter to check.</p>
+        <div id="stage2-exercises" class="space-y-3"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-green-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[280px] text-slate-800';
+        label.textContent = q.sentence;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-28 text-center focus:ring-2 focus:ring-green-500';
+        input.setAttribute('aria-label', `Answer for: ${q.sentence}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage2(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage2Container.appendChild(wrapper);
+    });
+
+    function checkStage2(idx) {
+        const wrapper = stage2Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage2Questions[idx].answer;
+        const userAnswer = normalizeHungarian(input.value);
+
+        if (userAnswer === normalizeHungarian(correct)) {
+            feedback.textContent = `Correct! (${stage2Questions[idx].translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(normalizeHungarian(correct))) {
+            feedback.textContent = `Check accents! (${stage2Questions[idx].translation})`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Answer: ${correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        for (let i = 0; i < stage2Questions.length; i++) {
+            const input = stage2Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage2Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage2-score').textContent = `Score: ${correct} / ${stage2Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 3: KELL with Personal Infinitives (10 items)
+    // =============================================
+    const stage3Questions = [
+        { sentence: 'Kell ___ (menni, I).', answer: 'mennem', translation: 'I must go.' },
+        { sentence: 'Kell ___ (tanulni, you).', answer: 'tanulnod', translation: 'You must study.' },
+        { sentence: 'Kell ___ (dolgozni, he/she).', answer: 'dolgoznia', translation: 'He/She must work.' },
+        { sentence: 'Kell ___ (varni, we).', answer: 'varnunk', translation: 'We must wait.' },
+        { sentence: 'Kell ___ (fizetni, you pl.).', answer: 'fizetnotok', translation: 'You (pl.) must pay.' },
+        { sentence: 'Kell ___ (enni, they).', answer: 'enniuk', translation: 'They must eat.' },
+        { sentence: 'Ma kell ___ (irni, I).', answer: 'irnom', translation: 'I must write today.' },
+        { sentence: 'Korán kell ___ (kelni, you).', answer: 'kelned', translation: 'You must get up early.' },
+        { sentence: 'Kell ___ (beszélni, we).', answer: 'beszelnunk', translation: 'We must talk.' },
+        { sentence: 'Kell ___ (olvasni, he/she).', answer: 'olvasnia', translation: 'He/She must read.' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 3: Kell - Personal Infinitives</h2>
+        <p class="mb-4 text-slate-600">Fill in the correct personal infinitive form with "kell" (must). The verb and person are shown in parentheses.</p>
+        <div id="stage3-exercises" class="space-y-3"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-red-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[300px] text-slate-800';
+        label.textContent = q.sentence;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-32 text-center focus:ring-2 focus:ring-red-500';
+        input.setAttribute('aria-label', `Answer for: ${q.sentence}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage3(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage3Container.appendChild(wrapper);
+    });
+
+    function checkStage3(idx) {
+        const wrapper = stage3Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage3Questions[idx].answer;
+        const userAnswer = normalizeHungarian(input.value);
+
+        if (userAnswer === normalizeHungarian(correct)) {
+            feedback.textContent = `Correct! (${stage3Questions[idx].translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(normalizeHungarian(correct))) {
+            feedback.textContent = `Check accents! (${stage3Questions[idx].translation})`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Answer: ${correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let correct = 0;
+        for (let i = 0; i < stage3Questions.length; i++) {
+            const input = stage3Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage3Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage3-score').textContent = `Score: ${correct} / ${stage3Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 4: SZABAD Permission Practice (6 items)
+    // =============================================
+    const stage4Questions = [
+        { sentence: '___ itt parkolni?', answer: 'szabad', translation: 'Is parking allowed here?' },
+        { sentence: '___ bemennem?', answer: 'szabad', translation: 'May I come in?' },
+        { sentence: 'Nem ___ dohanyozni.', answer: 'szabad', translation: 'Smoking is not allowed.' },
+        { sentence: '___ kerdeznem valamit?', answer: 'szabad', translation: 'May I ask something?' },
+        { sentence: 'Itt nem ___ futni.', answer: 'szabad', translation: 'Running is not allowed here.' },
+        { sentence: '___ leulnom?', answer: 'szabad', translation: 'May I sit down?' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 4: Szabad - Permission Practice</h2>
+        <p class="mb-4 text-slate-600">Fill in "szabad" in the correct place. Remember: szabad expresses permission!</p>
+        <div id="stage4-exercises" class="space-y-3"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-purple-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[280px] text-slate-800';
+        label.textContent = q.sentence;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-28 text-center focus:ring-2 focus:ring-purple-500';
+        input.setAttribute('aria-label', `Answer for: ${q.sentence}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage4Container.appendChild(wrapper);
+    });
+
+    function checkStage4(idx) {
+        const wrapper = stage4Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage4Questions[idx].answer;
+        const userAnswer = normalizeHungarian(input.value);
+
+        if (userAnswer === normalizeHungarian(correct)) {
+            feedback.textContent = `Correct! (${stage4Questions[idx].translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(normalizeHungarian(correct))) {
+            feedback.textContent = `Check accents! (${stage4Questions[idx].translation})`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Answer: ${correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        for (let i = 0; i < stage4Questions.length; i++) {
+            const input = stage4Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage4Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage4-score').textContent = `Score: ${correct} / ${stage4Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 5: Modal Verb Selection (10 items)
+    // =============================================
+    const stage5Questions = [
+        { sentence: '___ segiteni? (Can you help?)', options: ['tudsz', 'akarsz', 'kell', 'szabad'], answer: 'tudsz', translation: 'Can you help?' },
+        { sentence: '___ enni. (I want to eat.)', options: ['tudok', 'akarok', 'kell', 'szabad'], answer: 'akarok', translation: 'I want to eat.' },
+        { sentence: 'Mennem ___. (I must go.)', options: ['tudok', 'akarok', 'kell', 'szabad'], answer: 'kell', translation: 'I must go.' },
+        { sentence: '___ itt ulni? (May I sit here?)', options: ['tudok', 'akarok', 'kell', 'szabad'], answer: 'szabad', translation: 'May I sit here?' },
+        { sentence: 'Ok ___ jol tancelni. (They can dance well.)', options: ['tudnak', 'akarnak', 'kell', 'szabad'], answer: 'tudnak', translation: 'They can dance well.' },
+        { sentence: 'Mit ___ csinalni? (What do you want to do?)', options: ['tudsz', 'akarsz', 'kell', 'szabad'], answer: 'akarsz', translation: 'What do you want to do?' },
+        { sentence: 'Nem ___ zajonni. (Making noise is not allowed.)', options: ['tudok', 'akarok', 'kell', 'szabad'], answer: 'szabad', translation: 'Making noise is not allowed.' },
+        { sentence: 'Mi ___ varni. (We must wait.)', options: ['tudunk', 'akarunk', 'kell varnunk', 'szabad'], answer: 'kell varnunk', translation: 'We must wait.' },
+        { sentence: 'En ___ uszni. (I can swim.)', options: ['tudok', 'akarok', 'kell', 'szabad'], answer: 'tudok', translation: 'I can swim.' },
+        { sentence: 'Ti ___ maradni? (Do you want to stay?)', options: ['tudtok', 'akartok', 'kell', 'szabad'], answer: 'akartok', translation: 'Do you want to stay?' }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 5: Choose the Correct Modal</h2>
+        <p class="mb-4 text-slate-600">Select the appropriate modal verb form for each sentence.</p>
+        <div id="stage5-exercises" class="space-y-3"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Container = document.getElementById('stage5-exercises');
+
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-blue-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[300px] text-slate-800';
+        label.textContent = q.sentence;
+
+        const select = document.createElement('select');
+        select.className = 'border border-slate-300 rounded-md px-3 py-1 w-36 focus:ring-2 focus:ring-blue-500';
+        select.innerHTML = '<option value="">Select...</option>' + q.options.map(opt => `<option value="${opt}">${opt}</option>`).join('');
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        select.addEventListener('change', () => checkStage5(idx));
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(select);
+        wrapper.appendChild(feedback);
+        stage5Container.appendChild(wrapper);
+    });
+
+    function checkStage5(idx) {
+        const wrapper = stage5Container.children[idx];
+        const select = wrapper.querySelector('select');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage5Questions[idx].answer;
+
+        if (select.value === correct) {
+            feedback.textContent = `Correct! (${stage5Questions[idx].translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (select.value === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Answer: ${correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage5Score();
+    }
+
+    function updateStage5Score() {
+        let correct = 0;
+        for (let i = 0; i < stage5Questions.length; i++) {
+            const select = stage5Container.children[i].querySelector('select');
+            if (select.value === stage5Questions[i].answer) correct++;
+        }
+        document.getElementById('stage5-score').textContent = `Score: ${correct} / ${stage5Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 6: Translation - English to Hungarian (10 items)
+    // =============================================
+    const stage6Questions = [
+        { english: 'I can speak Hungarian.', answer: 'tudok magyarul beszelni', alternates: ['magyarul tudok beszelni'] },
+        { english: 'Do you want to eat?', answer: 'akarsz enni', alternates: ['enni akarsz'] },
+        { english: 'She must work.', answer: 'dolgoznia kell', alternates: ['kell dolgoznia'] },
+        { english: 'May I help?', answer: 'szabad segitenem', alternates: ['segitenem szabad'] },
+        { english: 'We can come tomorrow.', answer: 'tudunk holnap jonni', alternates: ['holnap tudunk jonni'] },
+        { english: 'They want to stay.', answer: 'akarnak maradni', alternates: ['maradni akarnak', 'ok akarnak maradni'] },
+        { english: 'You must study.', answer: 'tanulnod kell', alternates: ['kell tanulnod'] },
+        { english: 'Can he drive?', answer: 'tud vezetni', alternates: ['o tud vezetni'] },
+        { english: 'I want to sleep.', answer: 'akarok aludni', alternates: ['aludni akarok'] },
+        { english: 'It is not allowed to smoke here.', answer: 'nem szabad itt dohanyozni', alternates: ['itt nem szabad dohanyozni'] }
+    ];
+
+    const stage6Section = document.createElement('section');
+    stage6Section.className = 'mb-8';
+    stage6Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 6: Translation Practice</h2>
+        <p class="mb-4 text-slate-600">Translate the English sentences into Hungarian using the correct modal verbs.</p>
+        <div id="stage6-exercises" class="space-y-3"></div>
+        <div id="stage6-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage6Section);
+
+    const stage6Container = document.getElementById('stage6-exercises');
+
+    stage6Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 bg-orange-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'text-slate-800 font-medium';
+        label.textContent = q.english;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-full md:w-80 focus:ring-2 focus:ring-orange-500';
+        input.setAttribute('aria-label', `Translation for: ${q.english}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage6(idx);
+        });
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(label);
+        wrapper.appendChild(inputRow);
+        stage6Container.appendChild(wrapper);
+    });
+
+    function checkStage6(idx) {
+        const wrapper = stage6Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span');
+        const userAnswer = normalizeHungarian(input.value);
+        const correct = stage6Questions[idx].answer;
+        const alternates = stage6Questions[idx].alternates || [];
+        const allAnswers = [correct, ...alternates];
+
+        const exactMatch = allAnswers.some(a => normalizeHungarian(a) === userAnswer);
+        const accentMatch = allAnswers.some(a => removeAccents(normalizeHungarian(a)) === removeAccents(userAnswer));
+
+        if (exactMatch) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (accentMatch) {
+            feedback.textContent = 'Close! Check your accents.';
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Answer: ${correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage6Score();
+    }
+
+    function updateStage6Score() {
+        let correct = 0;
+        for (let i = 0; i < stage6Questions.length; i++) {
+            const input = stage6Container.children[i].querySelector('input');
+            const userAnswer = normalizeHungarian(input.value);
+            const answers = [stage6Questions[i].answer, ...(stage6Questions[i].alternates || [])];
+            if (answers.some(a => normalizeHungarian(a) === userAnswer)) correct++;
+        }
+        document.getElementById('stage6-score').textContent = `Score: ${correct} / ${stage6Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 7: Negation with Modals (6 items)
+    // =============================================
+    const stage7Questions = [
+        { sentence: 'Nem ___ jonni. (I cannot come.)', answer: 'tudok', translation: 'I cannot come.' },
+        { sentence: 'Nem ___ enni. (He/She does not want to eat.)', answer: 'akar', translation: 'He/She does not want to eat.' },
+        { sentence: 'Nem ___ itt dohanyozni. (Smoking is not allowed here.)', answer: 'szabad', translation: 'Smoking is not allowed here.' },
+        { sentence: 'Nem ___ beszelni. (They cannot speak.)', answer: 'tudnak', translation: 'They cannot speak.' },
+        { sentence: 'Nem ___ maradnom. (I don\'t have to stay.)', answer: 'kell', translation: 'I don\'t have to stay.' },
+        { sentence: 'Nem ___ varni. (We don\'t want to wait.)', answer: 'akarunk', translation: 'We don\'t want to wait.' }
+    ];
+
+    const stage7Section = document.createElement('section');
+    stage7Section.className = 'mb-8';
+    stage7Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 7: Negation with Modals</h2>
+        <p class="mb-4 text-slate-600">Fill in the correct modal verb in negative sentences. "Nem" is already provided.</p>
+        <div id="stage7-exercises" class="space-y-3"></div>
+        <div id="stage7-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage7Section);
+
+    const stage7Container = document.getElementById('stage7-exercises');
+
+    stage7Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-slate-100 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[320px] text-slate-800';
+        label.textContent = q.sentence;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-28 text-center focus:ring-2 focus:ring-slate-500';
+        input.setAttribute('aria-label', `Answer for: ${q.sentence}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage7(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage7Container.appendChild(wrapper);
+    });
+
+    function checkStage7(idx) {
+        const wrapper = stage7Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage7Questions[idx].answer;
+        const userAnswer = normalizeHungarian(input.value);
+
+        if (userAnswer === normalizeHungarian(correct)) {
+            feedback.textContent = `Correct! (${stage7Questions[idx].translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(normalizeHungarian(correct))) {
+            feedback.textContent = `Check accents! (${stage7Questions[idx].translation})`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Answer: ${correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage7Score();
+    }
+
+    function updateStage7Score() {
+        let correct = 0;
+        for (let i = 0; i < stage7Questions.length; i++) {
+            const input = stage7Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage7Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage7-score').textContent = `Score: ${correct} / ${stage7Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 8: Dialogue Completion (8 items)
+    // =============================================
+    const stage8Questions = [
+        { speaker: 'A', prompt: '___ segiteni nekem? (Can you help me?)', answer: 'tudsz', translation: 'Can you help me?' },
+        { speaker: 'B', prompt: 'Persze, mit ___? (Of course, what do you want?)', answer: 'akarsz', translation: 'Of course, what do you want?' },
+        { speaker: 'A', prompt: '___ mennem a boltba. (I must go to the store.)', answer: 'kell', translation: 'I must go to the store.' },
+        { speaker: 'B', prompt: '___ jonnom veled? (May I come with you?)', answer: 'szabad', translation: 'May I come with you?' },
+        { speaker: 'A', prompt: 'Persze! ___ autot vezetni? (Of course! Can you drive a car?)', answer: 'tudsz', translation: 'Of course! Can you drive a car?' },
+        { speaker: 'B', prompt: 'Igen, ___ vezetni. (Yes, I can drive.)', answer: 'tudok', translation: 'Yes, I can drive.' },
+        { speaker: 'A', prompt: 'Jo! Nem ___ keson maradnunk. (Good! We must not stay late.)', answer: 'szabad', translation: 'Good! We must not stay late.' },
+        { speaker: 'B', prompt: 'Ertem. Mikor ___ indulni? (I understand. When do you want to leave?)', answer: 'akarsz', translation: 'I understand. When do you want to leave?' }
+    ];
+
+    const stage8Section = document.createElement('section');
+    stage8Section.className = 'mb-8';
+    stage8Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 8: Dialogue Completion</h2>
+        <p class="mb-4 text-slate-600">Complete the dialogue between two people using the correct modal verbs.</p>
+        <div id="stage8-exercises" class="space-y-3 bg-indigo-50 p-4 rounded-lg"></div>
+        <div id="stage8-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage8Section);
+
+    const stage8Container = document.getElementById('stage8-exercises');
+
+    stage8Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 py-2 border-b border-indigo-200 last:border-b-0';
+
+        const speakerBadge = document.createElement('span');
+        speakerBadge.className = `px-2 py-1 rounded text-white text-xs font-bold ${q.speaker === 'A' ? 'bg-indigo-600' : 'bg-pink-600'}`;
+        speakerBadge.textContent = q.speaker;
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[300px] text-slate-800';
+        label.textContent = q.prompt;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-28 text-center focus:ring-2 focus:ring-indigo-500';
+        input.setAttribute('aria-label', `Answer for: ${q.prompt}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage8(idx);
+        });
+
+        wrapper.appendChild(speakerBadge);
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage8Container.appendChild(wrapper);
+    });
+
+    function checkStage8(idx) {
+        const wrapper = stage8Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage8Questions[idx].answer;
+        const userAnswer = normalizeHungarian(input.value);
+
+        if (userAnswer === normalizeHungarian(correct)) {
+            feedback.textContent = `Correct! (${stage8Questions[idx].translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(normalizeHungarian(correct))) {
+            feedback.textContent = `Check accents! (${stage8Questions[idx].translation})`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Answer: ${correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage8Score();
+    }
+
+    function updateStage8Score() {
+        let correct = 0;
+        for (let i = 0; i < stage8Questions.length; i++) {
+            const input = stage8Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage8Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage8-score').textContent = `Score: ${correct} / ${stage8Questions.length}`;
+    }
+
+    // =============================================
+    // FINAL SUMMARY
+    // =============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 p-6 bg-gradient-to-r from-teal-50 to-purple-50 rounded-lg border border-teal-200';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Summary: Hungarian Modal Verbs</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-teal-800 mb-2">Key Modal Verbs:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li><strong>tud</strong> - can/know how to (conjugates normally)</li>
+                    <li><strong>akar</strong> - want (conjugates normally)</li>
+                    <li><strong>kell</strong> - must/need (impersonal + personal infinitive)</li>
+                    <li><strong>szabad</strong> - may/allowed (impersonal)</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-teal-800 mb-2">Key Patterns:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li>Modal + infinitive: <em>Tudok uszni.</em></li>
+                    <li>Kell + personal infinitive: <em>Mennem kell.</em></li>
+                    <li>Negation: <em>Nem tudok / Nem szabad</em></li>
+                    <li>Questions: <em>Tudsz...? Akarsz...? Szabad...?</em></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-4 bg-white rounded-lg">
+            <h3 class="font-semibold text-slate-800 mb-2">Personal Infinitive Endings (for kell):</h3>
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-2 text-sm">
+                <div class="text-center"><strong>I</strong><br>-nem/-nom</div>
+                <div class="text-center"><strong>you</strong><br>-ned/-nod</div>
+                <div class="text-center"><strong>he/she</strong><br>-nie/-nia</div>
+                <div class="text-center"><strong>we</strong><br>-nunk</div>
+                <div class="text-center"><strong>you (pl.)</strong><br>-netek/-notok</div>
+                <div class="text-center"><strong>they</strong><br>-niuk/-niok</div>
+            </div>
+        </div>
+        <p class="mt-4 text-sm text-slate-600">Great work! You've learned the essential modal verbs in Hungarian. Practice using them in everyday conversations!</p>
+    `;
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>

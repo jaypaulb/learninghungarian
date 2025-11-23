@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 16: Time Expressions & Calendar - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .flip-card { perspective: 1000px; cursor: pointer; }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+        }
+        .flip-card-back { transform: rotateY(180deg); }
+        .clock-face {
+            width: 120px;
+            height: 120px;
+            border: 4px solid #0f766e;
+            border-radius: 50%;
+            position: relative;
+            background: white;
+        }
+        .clock-center {
+            width: 8px;
+            height: 8px;
+            background: #0f766e;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+        .clock-hour {
+            width: 4px;
+            height: 30px;
+            background: #0f766e;
+            position: absolute;
+            left: 50%;
+            bottom: 50%;
+            transform-origin: bottom center;
+            border-radius: 2px;
+            margin-left: -2px;
+        }
+        .clock-minute {
+            width: 3px;
+            height: 45px;
+            background: #14b8a6;
+            position: absolute;
+            left: 50%;
+            bottom: 50%;
+            transform-origin: bottom center;
+            border-radius: 2px;
+            margin-left: -1.5px;
+        }
+        .clock-mark {
+            position: absolute;
+            width: 2px;
+            height: 8px;
+            background: #94a3b8;
+            left: 50%;
+            margin-left: -1px;
+            transform-origin: center 56px;
+        }
+        .clock-number {
+            position: absolute;
+            font-size: 12px;
+            font-weight: 600;
+            color: #334155;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 16: Time Expressions & Calendar <span class="block text-xl text-slate-500 font-normal">(Idokifejezesek es naptar)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Learn to tell time, name days and months, express dates, and schedule appointments in Hungarian. Time expressions are essential for daily communication and planning.</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    // Helper function to remove accents for comparison
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiI]/g, function(m) {
+            return m;
+        }).replace(/[oOuUaAeEiIaAeEoOuU]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U' };
+            return map[m] || m;
+        }).toLowerCase();
+    }
+
+    // Normalize Hungarian characters for flexible matching
+    function normalizeHungarian(str) {
+        return str.toLowerCase().trim()
+            .replace(/[aA]/g, 'a').replace(/[eE]/g, 'e')
+            .replace(/[iI]/g, 'i').replace(/[oO]/g, 'o').replace(/[uU]/g, 'u');
+    }
+
+    // Days of the week data
+    const daysOfWeek = [
+        { hungarian: 'hetfo', display: 'hetfo', english: 'Monday', suffix: 'hetfon' },
+        { hungarian: 'kedd', display: 'kedd', english: 'Tuesday', suffix: 'kedden' },
+        { hungarian: 'szerda', display: 'szerda', english: 'Wednesday', suffix: 'szerdan' },
+        { hungarian: 'csutortok', display: 'csutortok', english: 'Thursday', suffix: 'csutortokon' },
+        { hungarian: 'pentek', display: 'pentek', english: 'Friday', suffix: 'penteken' },
+        { hungarian: 'szombat', display: 'szombat', english: 'Saturday', suffix: 'szombaton' },
+        { hungarian: 'vasarnap', display: 'vasarnap', english: 'Sunday', suffix: 'vasarnap' }
+    ];
+
+    // Months data
+    const months = [
+        { hungarian: 'januar', english: 'January', suffix: 'januarban' },
+        { hungarian: 'februar', english: 'February', suffix: 'februarban' },
+        { hungarian: 'marcius', english: 'March', suffix: 'marciusban' },
+        { hungarian: 'aprilis', english: 'April', suffix: 'aprilisban' },
+        { hungarian: 'majus', english: 'May', suffix: 'majusban' },
+        { hungarian: 'junius', english: 'June', suffix: 'juniusban' },
+        { hungarian: 'julius', english: 'July', suffix: 'juliusban' },
+        { hungarian: 'augusztus', english: 'August', suffix: 'augusztusban' },
+        { hungarian: 'szeptember', english: 'September', suffix: 'szeptemberben' },
+        { hungarian: 'oktober', english: 'October', suffix: 'oktoberben' },
+        { hungarian: 'november', english: 'November', suffix: 'novemberben' },
+        { hungarian: 'december', english: 'December', suffix: 'decemberben' }
+    ];
+
+    const main = document.querySelector('main');
+
+    // =====================
+    // SECTION 1: Telling Time
+    // =====================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Section 1: Telling Time</h2>
+        <p class="mb-4">In Hungarian, telling time follows a unique pattern. The question "What time is it?" is <b>Hany ora (van)?</b></p>
+
+        <div class="bg-slate-50 p-4 rounded-lg mb-4">
+            <p class="font-semibold mb-2">Full Hours:</p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><b>Egy ora</b> - 1:00 (one o'clock)</li>
+                <li><b>Ket ora</b> - 2:00 (two o'clock)</li>
+                <li><b>Harom ora</b> - 3:00 (three o'clock)</li>
+                <li><b>Del</b> - 12:00 noon</li>
+                <li><b>Ejfel</b> - 12:00 midnight</li>
+            </ul>
+        </div>
+
+        <div class="bg-teal-50 p-4 rounded-lg mb-4">
+            <p class="font-semibold mb-2 text-teal-800">Important: Hungarian Half Hours!</p>
+            <p class="mb-2 text-teal-900">In Hungarian, half hours refer to the NEXT hour, not the current one:</p>
+            <ul class="list-disc pl-6 space-y-1 text-teal-900">
+                <li><b>Fel ketto</b> = 1:30 (literally "half two" = half TO two)</li>
+                <li><b>Fel harom</b> = 2:30 (half TO three)</li>
+                <li><b>Fel negy</b> = 3:30 (half TO four)</li>
+            </ul>
+            <p class="mt-2 text-sm text-teal-700">This is the opposite of English! "Half two" in Hungarian means 1:30, not 2:30.</p>
+        </div>
+
+        <div class="bg-slate-50 p-4 rounded-lg mb-4">
+            <p class="font-semibold mb-2">Quarter Hours:</p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><b>Negyed ketto</b> = 1:15 (quarter TO two)</li>
+                <li><b>Haromnegyed ketto</b> = 1:45 (three-quarters TO two)</li>
+                <li><b>Negyed harom</b> = 2:15 (quarter TO three)</li>
+                <li><b>Haromnegyed harom</b> = 2:45 (three-quarters TO three)</li>
+            </ul>
+        </div>
+
+        <table class="mb-2 w-full border text-sm">
+            <tr><th class="border px-2">Time</th><th class="border px-2">Hungarian</th><th class="border px-2">Literal Meaning</th></tr>
+            <tr><td class="border px-2">1:00</td><td class="border px-2 font-semibold">Egy ora</td><td class="border px-2">One hour</td></tr>
+            <tr><td class="border px-2">1:15</td><td class="border px-2 font-semibold">Negyed ketto</td><td class="border px-2">Quarter to two</td></tr>
+            <tr><td class="border px-2">1:30</td><td class="border px-2 font-semibold">Fel ketto</td><td class="border px-2">Half to two</td></tr>
+            <tr><td class="border px-2">1:45</td><td class="border px-2 font-semibold">Haromnegyed ketto</td><td class="border px-2">Three-quarters to two</td></tr>
+            <tr><td class="border px-2">2:00</td><td class="border px-2 font-semibold">Ket ora</td><td class="border px-2">Two hours</td></tr>
+            <tr><td class="border px-2">12:00 (noon)</td><td class="border px-2 font-semibold">Del</td><td class="border px-2">Noon</td></tr>
+            <tr><td class="border px-2">12:00 (midnight)</td><td class="border px-2 font-semibold">Ejfel</td><td class="border px-2">Midnight</td></tr>
+        </table>
+
+        <div class="bg-slate-50 p-4 rounded-lg mt-4">
+            <p class="font-semibold mb-2">Adding Minutes:</p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><b>Ot ora tiz perc</b> = 5:10 (five hours ten minutes)</li>
+                <li><b>Hat ora husz perc</b> = 6:20 (six hours twenty minutes)</li>
+                <li><b>Ket ora ot perc mulva</b> = in 5 minutes past 2:00</li>
+            </ul>
+        </div>
+    `;
+    main.appendChild(section1);
+
+    // =====================
+    // SECTION 2: Days of the Week
+    // =====================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Section 2: Days of the Week</h2>
+        <p class="mb-4">Days in Hungarian are not capitalized (unlike in English). To say "on [day]", add the suffix <b>-n/-on/-en/-on</b>.</p>
+        <table class="mb-2 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th><th class="border px-2">"On [day]"</th></tr>
+            <tr><td class="border px-2 font-semibold">hetfo</td><td class="border px-2">Monday</td><td class="border px-2">hetfon</td></tr>
+            <tr><td class="border px-2 font-semibold">kedd</td><td class="border px-2">Tuesday</td><td class="border px-2">kedden</td></tr>
+            <tr><td class="border px-2 font-semibold">szerda</td><td class="border px-2">Wednesday</td><td class="border px-2">szerdan</td></tr>
+            <tr><td class="border px-2 font-semibold">csutortok</td><td class="border px-2">Thursday</td><td class="border px-2">csutortokon</td></tr>
+            <tr><td class="border px-2 font-semibold">pentek</td><td class="border px-2">Friday</td><td class="border px-2">penteken</td></tr>
+            <tr><td class="border px-2 font-semibold">szombat</td><td class="border px-2">Saturday</td><td class="border px-2">szombaton</td></tr>
+            <tr><td class="border px-2 font-semibold">vasarnap</td><td class="border px-2">Sunday</td><td class="border px-2">vasarnap</td></tr>
+        </table>
+        <p class="text-sm text-slate-600 mt-2"><b>Note:</b> "vasarnap" (Sunday) doesn't change when saying "on Sunday".</p>
+    `;
+    main.appendChild(section2);
+
+    // =====================
+    // SECTION 3: Months of the Year
+    // =====================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Section 3: Months of the Year</h2>
+        <p class="mb-4">Months in Hungarian are also not capitalized. To say "in [month]", add <b>-ban/-ben</b> (inessive case).</p>
+        <table class="mb-2 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th><th class="border px-2">"In [month]"</th></tr>
+            ${months.map(m => `<tr><td class="border px-2 font-semibold">${m.hungarian}</td><td class="border px-2">${m.english}</td><td class="border px-2">${m.suffix}</td></tr>`).join('')}
+        </table>
+    `;
+    main.appendChild(section3);
+
+    // =====================
+    // SECTION 4: Dates and Time Expressions
+    // =====================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Section 4: Dates and Time Expressions</h2>
+        <p class="mb-4">Hungarian date format is: <b>Year. Month Day.</b> (e.g., 2024. januar 15.)</p>
+
+        <div class="bg-slate-50 p-4 rounded-lg mb-4">
+            <p class="font-semibold mb-2">Common Time Words:</p>
+            <table class="w-full border text-sm">
+                <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+                <tr><td class="border px-2 font-semibold">ma</td><td class="border px-2">today</td></tr>
+                <tr><td class="border px-2 font-semibold">tegnap</td><td class="border px-2">yesterday</td></tr>
+                <tr><td class="border px-2 font-semibold">holnap</td><td class="border px-2">tomorrow</td></tr>
+                <tr><td class="border px-2 font-semibold">tegnapelott</td><td class="border px-2">the day before yesterday</td></tr>
+                <tr><td class="border px-2 font-semibold">holnaputan</td><td class="border px-2">the day after tomorrow</td></tr>
+                <tr><td class="border px-2 font-semibold">most</td><td class="border px-2">now</td></tr>
+                <tr><td class="border px-2 font-semibold">kesobb</td><td class="border px-2">later</td></tr>
+                <tr><td class="border px-2 font-semibold">korabban</td><td class="border px-2">earlier</td></tr>
+                <tr><td class="border px-2 font-semibold">reggel</td><td class="border px-2">morning</td></tr>
+                <tr><td class="border px-2 font-semibold">delutan</td><td class="border px-2">afternoon</td></tr>
+                <tr><td class="border px-2 font-semibold">este</td><td class="border px-2">evening</td></tr>
+                <tr><td class="border px-2 font-semibold">ejjel</td><td class="border px-2">night</td></tr>
+            </table>
+        </div>
+
+        <div class="bg-slate-50 p-4 rounded-lg mb-4">
+            <p class="font-semibold mb-2">Duration Expressions:</p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><b>Egy oraja</b> - for an hour / an hour ago</li>
+                <li><b>Ket napig</b> - for two days</li>
+                <li><b>Egy hete</b> - for a week / a week ago</li>
+                <li><b>Egy honapig</b> - for a month</li>
+                <li><b>Ket eve</b> - for two years / two years ago</li>
+            </ul>
+        </div>
+
+        <div class="bg-slate-50 p-4 rounded-lg">
+            <p class="font-semibold mb-2">Asking About Time:</p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><b>Hany ora van?</b> - What time is it?</li>
+                <li><b>Mikor?</b> - When?</li>
+                <li><b>Mikor erkezel?</b> - When do you arrive?</li>
+                <li><b>Meddig?</b> - Until when? / How long?</li>
+                <li><b>Hanyadikan?</b> - On what date?</li>
+            </ul>
+        </div>
+    `;
+    main.appendChild(section4);
+
+    // =====================
+    // INTERACTIVE EXERCISES
+    // =====================
+
+    // Function to create clock SVG
+    function createClock(hours, minutes) {
+        const hourAngle = (hours % 12 + minutes / 60) * 30 - 90;
+        const minuteAngle = minutes * 6 - 90;
+
+        return `
+            <div class="clock-face mx-auto">
+                <div class="clock-center"></div>
+                <div class="clock-hour" style="transform: rotate(${hourAngle + 90}deg);"></div>
+                <div class="clock-minute" style="transform: rotate(${minuteAngle + 90}deg);"></div>
+                <span class="clock-number" style="top: 8px; left: 50%; transform: translateX(-50%);">12</span>
+                <span class="clock-number" style="top: 50%; right: 8px; transform: translateY(-50%);">3</span>
+                <span class="clock-number" style="bottom: 8px; left: 50%; transform: translateX(-50%);">6</span>
+                <span class="clock-number" style="top: 50%; left: 8px; transform: translateY(-50%);">9</span>
+            </div>
+        `;
+    }
+
+    // =====================
+    // STAGE 1: Clock Reading (10 items)
+    // =====================
+    const stage1Questions = [
+        { hours: 1, minutes: 0, answer: 'egy ora', translation: '1:00' },
+        { hours: 3, minutes: 0, answer: 'harom ora', translation: '3:00' },
+        { hours: 1, minutes: 30, answer: 'fel ketto', translation: '1:30 (half to two)' },
+        { hours: 2, minutes: 30, answer: 'fel harom', translation: '2:30 (half to three)' },
+        { hours: 1, minutes: 15, answer: 'negyed ketto', translation: '1:15 (quarter to two)' },
+        { hours: 5, minutes: 0, answer: 'ot ora', translation: '5:00' },
+        { hours: 3, minutes: 45, answer: 'haromnegyed negy', translation: '3:45 (three-quarters to four)' },
+        { hours: 6, minutes: 30, answer: 'fel het', translation: '6:30 (half to seven)' },
+        { hours: 9, minutes: 15, answer: 'negyed tiz', translation: '9:15 (quarter to ten)' },
+        { hours: 11, minutes: 45, answer: 'haromnegyed tizenketto', translation: '11:45 (three-quarters to twelve)' }
+    ];
+
+    const stage1Div = document.createElement('section');
+    stage1Div.className = 'mb-8';
+    stage1Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Clock Reading</h2>
+        <p class="mb-4">Look at each clock and select the correct Hungarian time expression. Remember: Hungarian half hours refer to the NEXT hour!</p>
+        <div id="clock-exercise" class="space-y-6"></div>
+        <div id="clock-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage1Questions.length}</div>
+    `;
+    main.appendChild(stage1Div);
+
+    const clockExerciseDiv = document.getElementById('clock-exercise');
+    let clockCorrect = 0;
+
+    stage1Questions.forEach((q, idx) => {
+        // Generate wrong options
+        const allOptions = [
+            'egy ora', 'ket ora', 'harom ora', 'negy ora', 'ot ora', 'hat ora',
+            'fel ketto', 'fel harom', 'fel negy', 'fel het', 'fel nyolc',
+            'negyed ketto', 'negyed harom', 'negyed tiz',
+            'haromnegyed negy', 'haromnegyed ot', 'haromnegyed tizenketto'
+        ];
+        const options = [q.answer];
+        while (options.length < 4) {
+            const randomOpt = allOptions[Math.floor(Math.random() * allOptions.length)];
+            if (!options.includes(randomOpt)) {
+                options.push(randomOpt);
+            }
+        }
+        options.sort(() => Math.random() - 0.5);
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <div class="flex flex-col md:flex-row items-center gap-4">
+                <div class="flex-shrink-0">
+                    ${createClock(q.hours, q.minutes)}
+                    <p class="text-center text-sm text-slate-500 mt-2">${q.hours}:${q.minutes.toString().padStart(2, '0')}</p>
+                </div>
+                <div class="flex-grow">
+                    <p class="mb-2 font-medium text-slate-700">What time is it in Hungarian?</p>
+                    <div class="grid grid-cols-2 gap-2" id="clock-options-${idx}"></div>
+                    <div id="clock-feedback-${idx}" class="mt-2 text-sm font-semibold"></div>
+                </div>
+            </div>
+        `;
+        clockExerciseDiv.appendChild(wrapper);
+
+        const optionsDiv = document.getElementById(`clock-options-${idx}`);
+        options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'px-3 py-2 border border-slate-300 rounded-md hover:bg-slate-100 transition-colors text-sm';
+            btn.textContent = opt;
+            btn.addEventListener('click', function() {
+                checkClockAnswer(idx, opt, q.answer, q.translation);
+            });
+            optionsDiv.appendChild(btn);
+        });
+    });
+
+    function checkClockAnswer(idx, selected, correct, translation) {
+        const feedback = document.getElementById(`clock-feedback-${idx}`);
+        const optionsDiv = document.getElementById(`clock-options-${idx}`);
+        const buttons = optionsDiv.querySelectorAll('button');
+
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            if (btn.textContent === correct) {
+                btn.className = 'px-3 py-2 border border-green-500 rounded-md bg-green-100 text-green-700 text-sm';
+            } else if (btn.textContent === selected && selected !== correct) {
+                btn.className = 'px-3 py-2 border border-red-500 rounded-md bg-red-100 text-red-700 text-sm';
+            }
+        });
+
+        if (selected === correct) {
+            feedback.textContent = `Correct! ${translation}`;
+            feedback.className = 'mt-2 text-green-600 font-semibold';
+            clockCorrect++;
+        } else {
+            feedback.textContent = `Incorrect. The answer is: ${correct} (${translation})`;
+            feedback.className = 'mt-2 text-red-600 font-semibold';
+        }
+        document.getElementById('clock-score').textContent = `Score: ${clockCorrect} / ${stage1Questions.length}`;
+    }
+
+    // =====================
+    // STAGE 2: Days & Months Vocabulary (14 items)
+    // =====================
+    const stage2Items = [
+        { hungarian: 'hetfo', english: 'Monday', type: 'day' },
+        { hungarian: 'kedd', english: 'Tuesday', type: 'day' },
+        { hungarian: 'szerda', english: 'Wednesday', type: 'day' },
+        { hungarian: 'csutortok', english: 'Thursday', type: 'day' },
+        { hungarian: 'pentek', english: 'Friday', type: 'day' },
+        { hungarian: 'szombat', english: 'Saturday', type: 'day' },
+        { hungarian: 'vasarnap', english: 'Sunday', type: 'day' },
+        { hungarian: 'januar', english: 'January', type: 'month' },
+        { hungarian: 'marcius', english: 'March', type: 'month' },
+        { hungarian: 'majus', english: 'May', type: 'month' },
+        { hungarian: 'julius', english: 'July', type: 'month' },
+        { hungarian: 'szeptember', english: 'September', type: 'month' },
+        { hungarian: 'november', english: 'November', type: 'month' },
+        { hungarian: 'december', english: 'December', type: 'month' }
+    ];
+
+    const stage2Div = document.createElement('section');
+    stage2Div.className = 'mb-8';
+    stage2Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Days & Months Vocabulary</h2>
+        <p class="mb-4">Click each card to reveal the English translation. Try to recall the meaning before flipping!</p>
+        <div id="vocab-cards" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+        <div id="vocab-score" class="mt-4 text-slate-700 font-medium">Cards revealed: 0 / ${stage2Items.length}</div>
+    `;
+    main.appendChild(stage2Div);
+
+    const vocabCardsDiv = document.getElementById('vocab-cards');
+    let vocabRevealed = 0;
+
+    stage2Items.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'flip-card h-24';
+        const bgColor = item.type === 'day' ? 'bg-teal-600' : 'bg-indigo-600';
+        const bgColorBack = item.type === 'day' ? 'bg-teal-100 text-teal-800' : 'bg-indigo-100 text-indigo-800';
+        card.innerHTML = `
+            <div class="flip-card-inner">
+                <div class="flip-card-front ${bgColor} text-white h-24 shadow-md">
+                    <span class="text-lg font-bold">${item.hungarian}</span>
+                    <span class="text-xs mt-1">${item.type}</span>
+                </div>
+                <div class="flip-card-back ${bgColorBack} h-24 shadow-md">
+                    <span class="text-lg font-bold">${item.english}</span>
+                </div>
+            </div>
+        `;
+        card.addEventListener('click', function() {
+            if (!this.classList.contains('flipped')) {
+                this.classList.add('flipped');
+                vocabRevealed++;
+                document.getElementById('vocab-score').textContent = `Cards revealed: ${vocabRevealed} / ${stage2Items.length}`;
+            }
+        });
+        vocabCardsDiv.appendChild(card);
+    });
+
+    // =====================
+    // STAGE 3: Time Expression Fill-in (10 items)
+    // =====================
+    const stage3Questions = [
+        { sentence: 'Hetfon ___-kor talalkounk.', hint: 'at 3:00', answer: 'harom', translation: 'We meet on Monday at 3:00.' },
+        { sentence: 'A vonat ___ indul.', hint: 'at 5:30', answer: 'fel hatkor', translation: 'The train leaves at 5:30.' },
+        { sentence: '___ megyek a boltba.', hint: 'Tomorrow', answer: 'holnap', translation: 'Tomorrow I go to the store.' },
+        { sentence: 'A film ___ kezdodik.', hint: 'at 8:00', answer: 'nyolckor', translation: 'The movie starts at 8:00.' },
+        { sentence: '___ lattam Annát.', hint: 'Yesterday', answer: 'tegnap', translation: 'Yesterday I saw Anna.' },
+        { sentence: 'Az ertekezlet ___-n lesz.', hint: 'Wednesday', answer: 'szerda', translation: 'The meeting will be on Wednesday.' },
+        { sentence: 'A nyaralás ___ kezdodik.', hint: 'in July', answer: 'juliusban', translation: 'The vacation starts in July.' },
+        { sentence: '___ van a szuletesnapod?', hint: 'When', answer: 'mikor', translation: 'When is your birthday?' },
+        { sentence: 'A reggeli ___ van.', hint: 'at 7:00', answer: 'hetkor', translation: 'Breakfast is at 7:00.' },
+        { sentence: '___ van. Menjunk haza!', hint: 'Late', answer: 'keso', translation: 'It is late. Let us go home!' }
+    ];
+
+    const stage3Div = document.createElement('section');
+    stage3Div.className = 'mb-8';
+    stage3Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Time Expression Fill-in</h2>
+        <p class="mb-4">Complete each sentence with the correct time expression. Press Enter to check.</p>
+        <div id="fill-in-exercise" class="space-y-4"></div>
+        <div id="fill-in-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage3Questions.length}</div>
+    `;
+    main.appendChild(stage3Div);
+
+    const fillInDiv = document.getElementById('fill-in-exercise');
+    let fillInCorrect = 0;
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-3 rounded-lg';
+        wrapper.innerHTML = `
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <span class="text-slate-800">${q.sentence}</span>
+                <span class="text-slate-500 text-sm">(${q.hint})</span>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-48 focus:ring-2 focus:ring-teal-500 focus:border-teal-500" aria-label="Answer for: ${q.sentence}" id="fill-input-${idx}">
+                <span id="fill-feedback-${idx}" class="text-sm font-semibold"></span>
+            </div>
+        `;
+        fillInDiv.appendChild(wrapper);
+
+        document.getElementById(`fill-input-${idx}`).addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkFillIn(idx);
+        });
+    });
+
+    function checkFillIn(idx) {
+        const input = document.getElementById(`fill-input-${idx}`);
+        const feedback = document.getElementById(`fill-feedback-${idx}`);
+        const correct = stage3Questions[idx].answer.toLowerCase();
+        const userAnswer = input.value.trim().toLowerCase();
+
+        if (userAnswer === correct || removeAccents(userAnswer) === removeAccents(correct)) {
+            if (userAnswer === correct) {
+                feedback.textContent = `Correct! (${stage3Questions[idx].translation})`;
+                feedback.className = 'text-green-600 font-semibold';
+            } else {
+                feedback.textContent = `Close! Watch accents. (${stage3Questions[idx].translation})`;
+                feedback.className = 'text-yellow-600 font-semibold';
+            }
+            if (!input.dataset.scored) {
+                fillInCorrect++;
+                input.dataset.scored = 'true';
+            }
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Correct: ${stage3Questions[idx].answer}`;
+            feedback.className = 'text-red-600 font-semibold';
+        }
+        document.getElementById('fill-in-score').textContent = `Score: ${fillInCorrect} / ${stage3Questions.length}`;
+    }
+
+    // =====================
+    // STAGE 4: Schedule Reading (8 items)
+    // =====================
+    const schedule = {
+        title: "Anna heti programja (Anna's Weekly Schedule)",
+        events: [
+            { day: 'hetfo', time: '9:00', event: 'Magyar ora', english: 'Hungarian class' },
+            { day: 'hetfo', time: '14:00', event: 'Orvos', english: 'Doctor' },
+            { day: 'kedd', time: '10:30', event: 'Talalkozas Peterrel', english: 'Meeting with Peter' },
+            { day: 'szerda', time: '8:00', event: 'Uszas', english: 'Swimming' },
+            { day: 'csutortok', time: '15:00', event: 'Bevásárlas', english: 'Shopping' },
+            { day: 'pentek', time: '19:00', event: 'Mozi', english: 'Cinema' },
+            { day: 'szombat', time: '11:00', event: 'Ebéd a nagymamánál', english: 'Lunch at grandma\'s' },
+            { day: 'vasarnap', time: '16:00', event: 'Kirándulás', english: 'Excursion/Hike' }
+        ]
+    };
+
+    const stage4Questions = [
+        { question: 'Mikor van a magyar ora?', answer: 'hetfon kilenckor', translation: 'When is Hungarian class?' },
+        { question: 'Melyik napon megy Anna az orvoshoz?', answer: 'hetfon', translation: 'Which day does Anna go to the doctor?' },
+        { question: 'Hany orakor talalkozik Peterrel?', answer: 'fel tizenegykor', altAnswer: 'tiz ora harminckor', translation: 'What time does she meet Peter?' },
+        { question: 'Mit csinal Anna szerdan?', answer: 'uszik', altAnswer: 'uszas', translation: 'What does Anna do on Wednesday?' },
+        { question: 'Mikor megy bevasarolni?', answer: 'csutortokon', translation: 'When does she go shopping?' },
+        { question: 'Hany orakor kezdodik a mozi?', answer: 'het orakor', altAnswer: 'tizenkilenckor', translation: 'What time does the movie start?' },
+        { question: 'Hol ebedel szombaton?', answer: 'a nagymamajnal', altAnswer: 'nagymamajnal', translation: 'Where does she have lunch on Saturday?' },
+        { question: 'Mit csinal vasarnap delutan?', answer: 'kirandulas', altAnswer: 'kirandul', translation: 'What does she do on Sunday afternoon?' }
+    ];
+
+    const stage4Div = document.createElement('section');
+    stage4Div.className = 'mb-8';
+    stage4Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Schedule Reading</h2>
+        <p class="mb-4">Study Anna's weekly schedule and answer the questions in Hungarian.</p>
+
+        <div class="bg-teal-50 p-4 rounded-lg mb-6">
+            <h3 class="font-semibold text-teal-800 mb-3">${schedule.title}</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full border text-sm bg-white">
+                    <tr class="bg-teal-100">
+                        <th class="border px-2 py-1">Nap (Day)</th>
+                        <th class="border px-2 py-1">Ido (Time)</th>
+                        <th class="border px-2 py-1">Esemeny (Event)</th>
+                    </tr>
+                    ${schedule.events.map(e => `<tr><td class="border px-2 py-1">${e.day}</td><td class="border px-2 py-1">${e.time}</td><td class="border px-2 py-1">${e.event} <span class="text-slate-400 text-xs">(${e.english})</span></td></tr>`).join('')}
+                </table>
+            </div>
+        </div>
+
+        <div id="schedule-exercise" class="space-y-4"></div>
+        <div id="schedule-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage4Questions.length}</div>
+    `;
+    main.appendChild(stage4Div);
+
+    const scheduleDiv = document.getElementById('schedule-exercise');
+    let scheduleCorrect = 0;
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-3 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="text-slate-800 font-medium">${q.question}</p>
+            <p class="text-slate-500 text-sm">(${q.translation})</p>
+            <div class="flex flex-col md:flex-row items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-64 focus:ring-2 focus:ring-teal-500 focus:border-teal-500" id="schedule-input-${idx}">
+                <span id="schedule-feedback-${idx}" class="text-sm font-semibold"></span>
+            </div>
+        `;
+        scheduleDiv.appendChild(wrapper);
+
+        document.getElementById(`schedule-input-${idx}`).addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkSchedule(idx);
+        });
+    });
+
+    function checkSchedule(idx) {
+        const input = document.getElementById(`schedule-input-${idx}`);
+        const feedback = document.getElementById(`schedule-feedback-${idx}`);
+        const q = stage4Questions[idx];
+        const userAnswer = removeAccents(input.value.trim().toLowerCase());
+        const correct = removeAccents(q.answer.toLowerCase());
+        const altCorrect = q.altAnswer ? removeAccents(q.altAnswer.toLowerCase()) : null;
+
+        if (userAnswer === correct || userAnswer === altCorrect ||
+            userAnswer.includes(correct) || (altCorrect && userAnswer.includes(altCorrect))) {
+            feedback.textContent = `Correct!`;
+            feedback.className = 'text-green-600 font-semibold';
+            if (!input.dataset.scored) {
+                scheduleCorrect++;
+                input.dataset.scored = 'true';
+            }
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Example: ${q.answer}`;
+            feedback.className = 'text-red-600 font-semibold';
+        }
+        document.getElementById('schedule-score').textContent = `Score: ${scheduleCorrect} / ${stage4Questions.length}`;
+    }
+
+    // =====================
+    // STAGE 5: Appointment Dialogue (8 items)
+    // =====================
+    const stage5Questions = [
+        { speaker: 'A', prompt: 'Szia! ___ talalkozhhatunk?', hint: 'When', answer: 'mikor', translation: 'Hi! When can we meet?' },
+        { speaker: 'B', prompt: '___ raerek, harom ora utan.', hint: 'Tomorrow', answer: 'holnap', translation: 'Tomorrow I\'m free, after 3:00.' },
+        { speaker: 'A', prompt: 'Oké, akkor holnap ___ orakor?', hint: 'four', answer: 'negy', translation: 'Okay, then tomorrow at four o\'clock?' },
+        { speaker: 'B', prompt: 'Jo lesz! ___ talalkozunk?', hint: 'Where', answer: 'hol', translation: 'That works! Where do we meet?' },
+        { speaker: 'A', prompt: 'A kavezóban, a ___ mellett.', hint: 'bank', answer: 'bank', translation: 'At the cafe, next to the bank.' },
+        { speaker: 'B', prompt: '___ tart az ertekezlet?', hint: 'How long', answer: 'meddig', translation: 'How long does the meeting last?' },
+        { speaker: 'A', prompt: 'Korulbelul egy ___.', hint: 'hour', answer: 'ora', translation: 'About one hour.' },
+        { speaker: 'B', prompt: 'Rendben, ___ talalkozunk!', hint: 'then', answer: 'akkor', translation: 'Alright, see you then!' }
+    ];
+
+    const stage5Div = document.createElement('section');
+    stage5Div.className = 'mb-8';
+    stage5Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Appointment Dialogue</h2>
+        <p class="mb-4">Complete this dialogue about making an appointment. Press Enter to check each answer.</p>
+        <div id="dialogue-exercise" class="space-y-3 bg-slate-50 p-4 rounded-lg"></div>
+        <div id="dialogue-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage5Questions.length}</div>
+    `;
+    main.appendChild(stage5Div);
+
+    const dialogueDiv = document.getElementById('dialogue-exercise');
+    let dialogueCorrect = 0;
+
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-1';
+        const bgClass = q.speaker === 'A' ? 'bg-teal-100' : 'bg-blue-100';
+        wrapper.innerHTML = `
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2 ${bgClass} p-2 rounded">
+                <span class="font-bold text-slate-700">${q.speaker}:</span>
+                <span class="text-slate-800">${q.prompt}</span>
+                <span class="text-slate-500 text-sm">(${q.hint})</span>
+            </div>
+            <div class="flex items-center gap-2 pl-4">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-40 focus:ring-2 focus:ring-teal-500 focus:border-teal-500" id="dialogue-input-${idx}">
+                <span id="dialogue-feedback-${idx}" class="text-sm font-semibold"></span>
+            </div>
+        `;
+        dialogueDiv.appendChild(wrapper);
+
+        document.getElementById(`dialogue-input-${idx}`).addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkDialogue(idx);
+        });
+    });
+
+    function checkDialogue(idx) {
+        const input = document.getElementById(`dialogue-input-${idx}`);
+        const feedback = document.getElementById(`dialogue-feedback-${idx}`);
+        const correct = stage5Questions[idx].answer.toLowerCase();
+        const userAnswer = input.value.trim().toLowerCase();
+
+        if (userAnswer === correct || removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Correct! (${stage5Questions[idx].translation})`;
+            feedback.className = 'text-green-600 font-semibold';
+            if (!input.dataset.scored) {
+                dialogueCorrect++;
+                input.dataset.scored = 'true';
+            }
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Correct: ${stage5Questions[idx].answer}`;
+            feedback.className = 'text-red-600 font-semibold';
+        }
+        document.getElementById('dialogue-score').textContent = `Score: ${dialogueCorrect} / ${stage5Questions.length}`;
+    }
+
+    // =====================
+    // BONUS STAGE 6: More Clock Practice (6 items)
+    // =====================
+    const stage6Questions = [
+        { hours: 4, minutes: 30, answer: 'fel ot', options: ['negy ora', 'fel ot', 'negyed ot', 'haromnegyed ot'] },
+        { hours: 7, minutes: 45, answer: 'haromnegyed nyolc', options: ['het ora', 'fel nyolc', 'negyed nyolc', 'haromnegyed nyolc'] },
+        { hours: 10, minutes: 15, answer: 'negyed tizenegy', options: ['tiz ora', 'fel tizenegy', 'negyed tizenegy', 'haromnegyed tizenegy'] },
+        { hours: 12, minutes: 0, answer: 'del', options: ['tizenketto ora', 'del', 'ejfel', 'fel egy'] },
+        { hours: 8, minutes: 30, answer: 'fel kilenc', options: ['nyolc ora', 'fel kilenc', 'negyed kilenc', 'haromnegyed kilenc'] },
+        { hours: 2, minutes: 45, answer: 'haromnegyed harom', options: ['ket ora', 'fel harom', 'negyed harom', 'haromnegyed harom'] }
+    ];
+
+    const stage6Div = document.createElement('section');
+    stage6Div.className = 'mb-8';
+    stage6Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 6: Advanced Clock Practice</h2>
+        <p class="mb-4">More practice with Hungarian time! Select the correct time for each clock.</p>
+        <div id="advanced-clock-exercise" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        <div id="advanced-clock-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage6Questions.length}</div>
+    `;
+    main.appendChild(stage6Div);
+
+    const advClockDiv = document.getElementById('advanced-clock-exercise');
+    let advClockCorrect = 0;
+
+    stage6Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <div class="flex flex-col items-center gap-3">
+                ${createClock(q.hours, q.minutes)}
+                <p class="text-sm text-slate-500">${q.hours}:${q.minutes.toString().padStart(2, '0')}</p>
+                <div class="grid grid-cols-2 gap-2 w-full" id="adv-clock-options-${idx}"></div>
+                <div id="adv-clock-feedback-${idx}" class="text-sm font-semibold"></div>
+            </div>
+        `;
+        advClockDiv.appendChild(wrapper);
+
+        const optionsDiv = document.getElementById(`adv-clock-options-${idx}`);
+        q.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'px-3 py-2 border border-slate-300 rounded-md hover:bg-slate-100 transition-colors text-sm';
+            btn.textContent = opt;
+            btn.addEventListener('click', function() {
+                checkAdvClock(idx, opt, q.answer);
+            });
+            optionsDiv.appendChild(btn);
+        });
+    });
+
+    function checkAdvClock(idx, selected, correct) {
+        const feedback = document.getElementById(`adv-clock-feedback-${idx}`);
+        const optionsDiv = document.getElementById(`adv-clock-options-${idx}`);
+        const buttons = optionsDiv.querySelectorAll('button');
+
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            if (btn.textContent === correct) {
+                btn.className = 'px-3 py-2 border border-green-500 rounded-md bg-green-100 text-green-700 text-sm';
+            } else if (btn.textContent === selected && selected !== correct) {
+                btn.className = 'px-3 py-2 border border-red-500 rounded-md bg-red-100 text-red-700 text-sm';
+            }
+        });
+
+        if (selected === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-green-600 font-semibold';
+            advClockCorrect++;
+        } else {
+            feedback.textContent = `Incorrect. Answer: ${correct}`;
+            feedback.className = 'text-red-600 font-semibold';
+        }
+        document.getElementById('advanced-clock-score').textContent = `Score: ${advClockCorrect} / ${stage6Questions.length}`;
+    }
+
+    // =====================
+    // BONUS STAGE 7: Day/Month Translation (8 items)
+    // =====================
+    const stage7Questions = [
+        { english: 'on Monday', answer: 'hetfon', translation: 'on Monday' },
+        { english: 'on Friday', answer: 'penteken', translation: 'on Friday' },
+        { english: 'in January', answer: 'januarban', translation: 'in January' },
+        { english: 'in December', answer: 'decemberben', translation: 'in December' },
+        { english: 'on Saturday', answer: 'szombaton', translation: 'on Saturday' },
+        { english: 'in March', answer: 'marciusban', translation: 'in March' },
+        { english: 'on Wednesday', answer: 'szerdan', translation: 'on Wednesday' },
+        { english: 'in August', answer: 'augusztusban', translation: 'in August' }
+    ];
+
+    const stage7Div = document.createElement('section');
+    stage7Div.className = 'mb-8';
+    stage7Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 7: Day & Month Translation</h2>
+        <p class="mb-4">Translate these time expressions to Hungarian with the correct suffix. Press Enter to check.</p>
+        <div id="translation-exercise" class="space-y-4"></div>
+        <div id="translation-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage7Questions.length}</div>
+    `;
+    main.appendChild(stage7Div);
+
+    const translationDiv = document.getElementById('translation-exercise');
+    let translationCorrect = 0;
+
+    stage7Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2 bg-slate-50 p-3 rounded-lg';
+        wrapper.innerHTML = `
+            <span class="min-w-[120px] text-slate-800 font-medium">${q.english}</span>
+            <span class="text-slate-500">=</span>
+            <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-40 focus:ring-2 focus:ring-teal-500 focus:border-teal-500" id="trans-input-${idx}">
+            <span id="trans-feedback-${idx}" class="text-sm font-semibold"></span>
+        `;
+        translationDiv.appendChild(wrapper);
+
+        document.getElementById(`trans-input-${idx}`).addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkTranslation(idx);
+        });
+    });
+
+    function checkTranslation(idx) {
+        const input = document.getElementById(`trans-input-${idx}`);
+        const feedback = document.getElementById(`trans-feedback-${idx}`);
+        const correct = stage7Questions[idx].answer.toLowerCase();
+        const userAnswer = input.value.trim().toLowerCase();
+
+        if (userAnswer === correct || removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-green-600 font-semibold';
+            if (!input.dataset.scored) {
+                translationCorrect++;
+                input.dataset.scored = 'true';
+            }
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Correct: ${stage7Questions[idx].answer}`;
+            feedback.className = 'text-red-600 font-semibold';
+        }
+        document.getElementById('translation-score').textContent = `Score: ${translationCorrect} / ${stage7Questions.length}`;
+    }
+
+    // =====================
+    // FINAL SUMMARY
+    // =====================
+    const summaryDiv = document.createElement('section');
+    summaryDiv.className = 'mb-8 bg-teal-50 p-6 rounded-lg';
+    summaryDiv.innerHTML = `
+        <h2 class="text-xl font-semibold text-teal-800 mb-4">Lesson Summary</h2>
+        <div class="space-y-3 text-teal-900">
+            <p><b>Asking Time:</b> Hany ora van? (What time is it?)</p>
+            <p><b>Full Hours:</b> egy ora, ket ora, harom ora... (1:00, 2:00, 3:00...)</p>
+            <p><b>Half Hours:</b> fel ketto (1:30), fel harom (2:30) - refers to NEXT hour!</p>
+            <p><b>Quarter Hours:</b> negyed ketto (1:15), haromnegyed ketto (1:45)</p>
+            <p><b>Days:</b> hetfo, kedd, szerda, csutortok, pentek, szombat, vasarnap</p>
+            <p><b>"On [day]":</b> Use suffix -n/-on/-en (hetfon, kedden, szerdan...)</p>
+            <p><b>Months:</b> januar, februar, marcius... december</p>
+            <p><b>"In [month]":</b> Use suffix -ban/-ben (januarban, oktoberben...)</p>
+            <p><b>Time words:</b> ma (today), tegnap (yesterday), holnap (tomorrow), most (now)</p>
+        </div>
+    `;
+    main.appendChild(summaryDiv);
+
+    // =====================
+    // PRACTICE DIALOGUES
+    // =====================
+    const practiceDiv = document.createElement('section');
+    practiceDiv.className = 'mb-8';
+    practiceDiv.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-4">Practice: Real-World Dialogues</h2>
+        <div class="space-y-4">
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <p class="font-semibold text-slate-800 mb-2">At the Doctor's Office</p>
+                <div class="space-y-1 text-slate-700">
+                    <p><b>Receptionist:</b> Jo napot! Mikor szeretne jonni?</p>
+                    <p class="text-slate-500 text-sm">(Good day! When would you like to come?)</p>
+                    <p><b>Patient:</b> Van szabad idopontjuk kedden?</p>
+                    <p class="text-slate-500 text-sm">(Do you have a free appointment on Tuesday?)</p>
+                    <p><b>Receptionist:</b> Igen, fel tizkor vagy harom orakor.</p>
+                    <p class="text-slate-500 text-sm">(Yes, at 9:30 or at 3:00.)</p>
+                    <p><b>Patient:</b> A harom ora jo lesz.</p>
+                    <p class="text-slate-500 text-sm">(3:00 will be good.)</p>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <p class="font-semibold text-slate-800 mb-2">Making Plans with a Friend</p>
+                <div class="space-y-1 text-slate-700">
+                    <p><b>Anna:</b> Mit csinalsz szombaton?</p>
+                    <p class="text-slate-500 text-sm">(What are you doing on Saturday?)</p>
+                    <p><b>Peter:</b> Reggel uszom, de delutan szabad vagyok.</p>
+                    <p class="text-slate-500 text-sm">(I swim in the morning, but I'm free in the afternoon.)</p>
+                    <p><b>Anna:</b> Menjunk moziba! A film fel nyolckor kezdodik.</p>
+                    <p class="text-slate-500 text-sm">(Let's go to the movies! The film starts at 7:30.)</p>
+                    <p><b>Peter:</b> Remek! Hol talalkozunk?</p>
+                    <p class="text-slate-500 text-sm">(Great! Where do we meet?)</p>
+                    <p><b>Anna:</b> A mozi elott, het orakor.</p>
+                    <p class="text-slate-500 text-sm">(In front of the cinema, at 7:00.)</p>
+                </div>
+            </div>
+        </div>
+    `;
+    main.appendChild(practiceDiv);
+
+    // Total exercises count display
+    const totalExercises = stage1Questions.length + stage2Items.length + stage3Questions.length +
+                          stage4Questions.length + stage5Questions.length + stage6Questions.length +
+                          stage7Questions.length;
+
+    const exerciseCountDiv = document.createElement('div');
+    exerciseCountDiv.className = 'text-center text-slate-500 text-sm mt-8 pt-4 border-t border-slate-200';
+    exerciseCountDiv.innerHTML = `<p>Total interactive exercises in this lesson: <b>${totalExercises}</b></p>`;
+    main.appendChild(exerciseCountDiv);
+
+    </script>
+</body>
+</html>
