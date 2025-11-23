@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5: Greetings & Polite Phrases - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .match-card {
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .match-card:hover {
+            transform: scale(1.02);
+        }
+        .match-card.selected {
+            border-color: #0f766e;
+            background-color: #f0fdfa;
+            box-shadow: 0 0 0 2px #0f766e;
+        }
+        .match-card.correct {
+            border-color: #16a34a;
+            background-color: #dcfce7;
+        }
+        .match-card.incorrect {
+            border-color: #dc2626;
+            background-color: #fef2f2;
+        }
+        .cultural-note {
+            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+            border-left: 4px solid #0f766e;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 5: Greetings & Polite Phrases <span class="block text-xl text-slate-500 font-normal">(Udvozlesek es udvarias kifejezesek)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Learn essential Hungarian greetings, polite expressions, and how to navigate formal and informal social situations. Mastering these phrases will help you make a great first impression!</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    const mainContent = document.getElementById('main-content');
+
+    // Accent handling utilities
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiI]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    function checkWithAccentWarning(input, correct) {
+        const inputVal = normalizeHungarian(input);
+        const correctVal = normalizeHungarian(correct);
+        if (inputVal === correctVal) {
+            return 'correct';
+        } else if (removeAccents(inputVal) === removeAccents(correctVal)) {
+            return 'accent-warning';
+        }
+        return 'incorrect';
+    }
+
+    // ==================== SECTION 1: BASIC GREETINGS ====================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Basic Greetings</h2>
+        <p class="mb-4 text-slate-600">Hungarian has different greetings for formal and informal situations. The informal greetings are used with friends, family, and people your age or younger.</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th><th class="border px-2">Usage</th></tr>
+            <tr><td class="border px-2 font-medium">Szia!</td><td class="border px-2">Hi! / Bye!</td><td class="border px-2">Informal, single person</td></tr>
+            <tr><td class="border px-2 font-medium">Sziasztok!</td><td class="border px-2">Hi! / Bye! (plural)</td><td class="border px-2">Informal, multiple people</td></tr>
+            <tr><td class="border px-2 font-medium">Hello!</td><td class="border px-2">Hello!</td><td class="border px-2">Informal</td></tr>
+            <tr><td class="border px-2 font-medium">Viszlat!</td><td class="border px-2">Goodbye!</td><td class="border px-2">Neutral</td></tr>
+            <tr><td class="border px-2 font-medium">Viszontlatasra!</td><td class="border px-2">Goodbye!</td><td class="border px-2">Formal</td></tr>
+        </table>
+        <div class="cultural-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">Cultural Note: Te vs On</h4>
+            <p class="text-slate-700 text-sm"><strong>Te</strong> (informal "you") is used with friends, family, children, and peers. <strong>On</strong> (formal "you") is used with strangers, elders, officials, and in professional settings. When in doubt, use the formal form - Hungarians appreciate politeness!</p>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // ==================== SECTION 2: TIME-BASED GREETINGS ====================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Time-Based Greetings</h2>
+        <p class="mb-4 text-slate-600">Hungarians often greet each other based on the time of day. These greetings are generally more formal and respectful.</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th><th class="border px-2">Time of Use</th></tr>
+            <tr><td class="border px-2 font-medium">Jo reggelt!</td><td class="border px-2">Good morning!</td><td class="border px-2">Until ~9am</td></tr>
+            <tr><td class="border px-2 font-medium">Jo napot (kivanok)!</td><td class="border px-2">Good day!</td><td class="border px-2">Daytime, formal</td></tr>
+            <tr><td class="border px-2 font-medium">Jo estet!</td><td class="border px-2">Good evening!</td><td class="border px-2">Evening (after ~6pm)</td></tr>
+            <tr><td class="border px-2 font-medium">Jo ejszakat!</td><td class="border px-2">Good night!</td><td class="border px-2">Bedtime / late night farewell</td></tr>
+        </table>
+        <div class="cultural-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">Cultural Note: "Jo napot kivanok"</h4>
+            <p class="text-slate-700 text-sm">The full phrase "Jo napot kivanok" (literally "I wish you a good day") is very formal and polite. In casual situations, "Jo napot" alone is sufficient. Adding "kivanok" shows extra respect.</p>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // ==================== SECTION 3: POLITE EXPRESSIONS ====================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Polite Expressions</h2>
+        <p class="mb-4 text-slate-600">These essential phrases will help you navigate daily interactions politely.</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2 font-medium">Kerem (szepen)</td><td class="border px-2">Please</td></tr>
+            <tr><td class="border px-2 font-medium">Koszonom (szepen)</td><td class="border px-2">Thank you</td></tr>
+            <tr><td class="border px-2 font-medium">Szivesen</td><td class="border px-2">You're welcome</td></tr>
+            <tr><td class="border px-2 font-medium">Elnezest</td><td class="border px-2">Excuse me / Sorry</td></tr>
+            <tr><td class="border px-2 font-medium">Bocsanat</td><td class="border px-2">Sorry / Pardon</td></tr>
+            <tr><td class="border px-2 font-medium">Sajnalom</td><td class="border px-2">I'm sorry (empathy)</td></tr>
+        </table>
+        <div class="cultural-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">Cultural Note: Different Types of "Sorry"</h4>
+            <p class="text-slate-700 text-sm"><strong>Elnezest</strong> is used to get attention or apologize for minor inconveniences. <strong>Bocsanat</strong> is a direct apology ("I apologize"). <strong>Sajnalom</strong> expresses empathy or regret about a situation (like saying "I'm sorry to hear that").</p>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // ==================== SECTION 4: CONVERSATIONAL PHRASES ====================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Conversational Phrases</h2>
+        <p class="mb-4 text-slate-600">Use these phrases to have basic conversations and show interest in others.</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th><th class="border px-2">Register</th></tr>
+            <tr><td class="border px-2 font-medium">Hogy vagy?</td><td class="border px-2">How are you?</td><td class="border px-2">Informal (te)</td></tr>
+            <tr><td class="border px-2 font-medium">Hogy van?</td><td class="border px-2">How are you?</td><td class="border px-2">Formal (On)</td></tr>
+            <tr><td class="border px-2 font-medium">Jol vagyok</td><td class="border px-2">I'm fine</td><td class="border px-2">Both</td></tr>
+            <tr><td class="border px-2 font-medium">Es te?</td><td class="border px-2">And you?</td><td class="border px-2">Informal</td></tr>
+            <tr><td class="border px-2 font-medium">Es On?</td><td class="border px-2">And you?</td><td class="border px-2">Formal</td></tr>
+            <tr><td class="border px-2 font-medium">Orulok, hogy megismertelek</td><td class="border px-2">Nice to meet you</td><td class="border px-2">Informal</td></tr>
+            <tr><td class="border px-2 font-medium">Orulok, hogy megismertem</td><td class="border px-2">Nice to meet you</td><td class="border px-2">Formal</td></tr>
+        </table>
+    `;
+    mainContent.appendChild(section4);
+
+    // ==================== STAGE 1: GREETING RECOGNITION (8 items) ====================
+    const stage1Data = [
+        { hungarian: 'Szia!', english: 'Hi! / Bye!' },
+        { hungarian: 'Jo reggelt!', english: 'Good morning!' },
+        { hungarian: 'Koszonom!', english: 'Thank you!' },
+        { hungarian: 'Viszontlatasra!', english: 'Goodbye! (formal)' },
+        { hungarian: 'Elnezest!', english: 'Excuse me!' },
+        { hungarian: 'Szivesen!', english: "You're welcome!" },
+        { hungarian: 'Jo ejszakat!', english: 'Good night!' },
+        { hungarian: 'Bocsanat!', english: 'Sorry! / Pardon!' }
+    ];
+
+    let stage1Selected = null;
+    let stage1Matches = new Set();
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Greeting Recognition</h2>
+        <p class="mb-4 text-slate-600">Match the Hungarian greetings with their English translations. Click a card on the left, then click its match on the right.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="stage1-exercise">
+            <div id="stage1-hungarian" class="space-y-2"></div>
+            <div id="stage1-english" class="space-y-2"></div>
+        </div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage1Data.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Hungarian = document.getElementById('stage1-hungarian');
+    const stage1English = document.getElementById('stage1-english');
+    const stage1Score = document.getElementById('stage1-score');
+
+    // Shuffle English cards
+    const shuffledEnglish = [...stage1Data].sort(() => Math.random() - 0.5);
+
+    stage1Data.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.hungarian;
+        card.dataset.index = idx;
+        card.dataset.type = 'hungarian';
+        card.addEventListener('click', () => handleStage1Click(card, 'hungarian', idx));
+        stage1Hungarian.appendChild(card);
+    });
+
+    shuffledEnglish.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.english;
+        card.dataset.originalIndex = stage1Data.findIndex(d => d.english === item.english);
+        card.dataset.type = 'english';
+        card.addEventListener('click', () => handleStage1Click(card, 'english', parseInt(card.dataset.originalIndex)));
+        stage1English.appendChild(card);
+    });
+
+    function handleStage1Click(card, type, index) {
+        if (card.classList.contains('correct')) return;
+
+        if (stage1Selected === null) {
+            stage1Selected = { card, type, index };
+            card.classList.add('selected');
+        } else if (stage1Selected.type === type) {
+            stage1Selected.card.classList.remove('selected');
+            stage1Selected = { card, type, index };
+            card.classList.add('selected');
+        } else {
+            // Check match
+            if (stage1Selected.index === index) {
+                stage1Selected.card.classList.remove('selected');
+                stage1Selected.card.classList.add('correct');
+                card.classList.add('correct');
+                stage1Matches.add(index);
+                updateStage1Score();
+            } else {
+                stage1Selected.card.classList.add('incorrect');
+                card.classList.add('incorrect');
+                setTimeout(() => {
+                    stage1Selected.card.classList.remove('selected', 'incorrect');
+                    card.classList.remove('incorrect');
+                    stage1Selected = null;
+                }, 800);
+                return;
+            }
+            stage1Selected = null;
+        }
+    }
+
+    function updateStage1Score() {
+        stage1Score.textContent = `Score: ${stage1Matches.size} / ${stage1Data.length}`;
+    }
+
+    // ==================== STAGE 2: FORMAL VS INFORMAL (8 items) ====================
+    const stage2Data = [
+        { scenario: 'Meeting your friend at a cafe', options: ['Szia!', 'Jo napot kivanok!'], correct: 'Szia!', explanation: 'Use informal with friends.' },
+        { scenario: 'Entering a government office', options: ['Hello!', 'Jo napot kivanok!'], correct: 'Jo napot kivanok!', explanation: 'Formal settings require formal greetings.' },
+        { scenario: 'Saying goodbye to your boss', options: ['Szia!', 'Viszontlatasra!'], correct: 'Viszontlatasra!', explanation: 'Use formal goodbye with superiors.' },
+        { scenario: 'Greeting a group of close friends', options: ['Sziasztok!', 'Jo napot!'], correct: 'Sziasztok!', explanation: 'Informal plural for friends.' },
+        { scenario: 'Asking "How are you?" to an elderly neighbor', options: ['Hogy vagy?', 'Hogy van?'], correct: 'Hogy van?', explanation: 'Show respect to elders with formal form.' },
+        { scenario: 'Asking "How are you?" to your sibling', options: ['Hogy vagy?', 'Hogy van?'], correct: 'Hogy vagy?', explanation: 'Informal with family members.' },
+        { scenario: 'Saying "And you?" to a doctor', options: ['Es te?', 'Es On?'], correct: 'Es On?', explanation: 'Formal with professionals.' },
+        { scenario: 'Leaving a shop after buying something', options: ['Szia!', 'Viszlat!'], correct: 'Viszlat!', explanation: 'Neutral goodbye is appropriate for shops.' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Formal vs Informal</h2>
+        <p class="mb-4 text-slate-600">Choose the appropriate greeting for each situation. Consider whether the context is formal or informal.</p>
+        <div id="stage2-exercise" class="space-y-4"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage2Data.length}</div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Exercise = document.getElementById('stage2-exercise');
+    const stage2Score = document.getElementById('stage2-score');
+    let stage2Correct = 0;
+
+    stage2Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700 mb-2">${idx + 1}. ${item.scenario}</p>
+            <select class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-auto focus:ring-2 focus:ring-teal-500 focus:border-teal-500" data-index="${idx}">
+                <option value="">-- Select greeting --</option>
+                ${item.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+            </select>
+            <span class="ml-2 text-sm font-semibold stage2-feedback"></span>
+        `;
+        stage2Exercise.appendChild(wrapper);
+
+        const select = wrapper.querySelector('select');
+        select.addEventListener('change', () => checkStage2(idx, select, wrapper));
+    });
+
+    function checkStage2(idx, select, wrapper) {
+        const feedback = wrapper.querySelector('.stage2-feedback');
+        const correct = stage2Data[idx].correct;
+        const wasCorrect = feedback.textContent.includes('Correct');
+
+        if (select.value === correct) {
+            feedback.textContent = `Correct! ${stage2Data[idx].explanation}`;
+            feedback.className = 'ml-2 text-sm font-semibold text-green-600 stage2-feedback';
+            if (!wasCorrect) stage2Correct++;
+        } else if (select.value === '') {
+            feedback.textContent = '';
+            if (wasCorrect) stage2Correct--;
+        } else {
+            feedback.textContent = `Try again! ${stage2Data[idx].explanation}`;
+            feedback.className = 'ml-2 text-sm font-semibold text-red-600 stage2-feedback';
+            if (wasCorrect) stage2Correct--;
+        }
+        stage2Score.textContent = `Score: ${stage2Correct} / ${stage2Data.length}`;
+    }
+
+    // ==================== STAGE 3: TIME-APPROPRIATE GREETINGS (6 items) ====================
+    const stage3Data = [
+        { context: 'You arrive at work at 8:00 AM', options: ['Jo reggelt!', 'Jo napot!', 'Jo estet!', 'Jo ejszakat!'], correct: 'Jo reggelt!' },
+        { context: 'You meet a colleague at 2:00 PM', options: ['Jo reggelt!', 'Jo napot!', 'Jo estet!', 'Jo ejszakat!'], correct: 'Jo napot!' },
+        { context: 'You arrive at a dinner party at 7:30 PM', options: ['Jo reggelt!', 'Jo napot!', 'Jo estet!', 'Jo ejszakat!'], correct: 'Jo estet!' },
+        { context: 'You say goodbye to your children before they sleep', options: ['Jo reggelt!', 'Jo napot!', 'Jo estet!', 'Jo ejszakat!'], correct: 'Jo ejszakat!' },
+        { context: 'You enter a shop at 11:00 AM', options: ['Jo reggelt!', 'Jo napot!', 'Jo estet!', 'Jo ejszakat!'], correct: 'Jo napot!' },
+        { context: 'You greet your neighbor at 8:00 PM', options: ['Jo reggelt!', 'Jo napot!', 'Jo estet!', 'Jo ejszakat!'], correct: 'Jo estet!' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Time-Appropriate Greetings</h2>
+        <p class="mb-4 text-slate-600">Select the correct greeting based on the time of day described in each scenario.</p>
+        <div id="stage3-exercise" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage3Data.length}</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Exercise = document.getElementById('stage3-exercise');
+    const stage3Score = document.getElementById('stage3-score');
+    let stage3Correct = 0;
+
+    stage3Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700 mb-3">${idx + 1}. ${item.context}</p>
+            <div class="flex flex-wrap gap-2" id="stage3-options-${idx}">
+                ${item.options.map(opt => `
+                    <button class="px-4 py-2 border-2 border-slate-300 rounded-lg bg-white hover:bg-slate-50 transition-colors stage3-btn" data-answer="${opt}">
+                        ${opt}
+                    </button>
+                `).join('')}
+            </div>
+            <p class="mt-2 text-sm font-semibold stage3-feedback"></p>
+        `;
+        stage3Exercise.appendChild(wrapper);
+
+        const buttons = wrapper.querySelectorAll('.stage3-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => checkStage3(idx, btn, wrapper, buttons));
+        });
+    });
+
+    function checkStage3(idx, btn, wrapper, buttons) {
+        const feedback = wrapper.querySelector('.stage3-feedback');
+        const correct = stage3Data[idx].correct;
+        const wasCorrect = Array.from(buttons).some(b => b.classList.contains('bg-green-100'));
+
+        buttons.forEach(b => {
+            b.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+        });
+
+        if (btn.dataset.answer === correct) {
+            btn.classList.add('bg-green-100', 'border-green-500');
+            feedback.textContent = 'Correct!';
+            feedback.className = 'mt-2 text-sm font-semibold text-green-600 stage3-feedback';
+            if (!wasCorrect) stage3Correct++;
+        } else {
+            btn.classList.add('bg-red-100', 'border-red-500');
+            feedback.textContent = `Not quite. The correct answer is: ${correct}`;
+            feedback.className = 'mt-2 text-sm font-semibold text-red-600 stage3-feedback';
+            if (wasCorrect) stage3Correct--;
+        }
+        stage3Score.textContent = `Score: ${stage3Correct} / ${stage3Data.length}`;
+    }
+
+    // ==================== STAGE 4: RESPONSE MATCHING (6 items) ====================
+    const stage4Data = [
+        { prompt: 'Someone says "Koszonom!" to you. You reply:', answer: 'Szivesen', hint: "You're welcome", alternatives: ['szivesen', 'Szivesen!', 'szivesen!'] },
+        { prompt: 'Someone greets you with "Jo reggelt!" You respond:', answer: 'Jo reggelt', hint: 'Good morning', alternatives: ['jo reggelt', 'Jo reggelt!', 'jo reggelt!'] },
+        { prompt: 'Someone asks "Hogy vagy?" You reply:', answer: 'Jol vagyok', hint: "I'm fine", alternatives: ['jol vagyok', 'Jol vagyok!', 'jol vagyok!', 'jol vagyok, koszonom'] },
+        { prompt: 'Someone says "Viszontlatasra!" You reply:', answer: 'Viszontlatasra', hint: 'Goodbye', alternatives: ['viszontlatasra', 'Viszontlatasra!', 'viszontlatasra!'] },
+        { prompt: 'You bumped into someone. You say:', answer: 'Elnezest', hint: 'Excuse me', alternatives: ['elnezest', 'Elnezest!', 'elnezest!', 'bocsanat', 'Bocsanat', 'Bocsanat!'] },
+        { prompt: 'Someone introduces themselves. You say:', answer: 'Orulok', hint: 'Nice to meet you (starts with...)', alternatives: ['orulok', 'Orulok!', 'orulok, hogy megismertelek', 'orulok hogy megismertelek'] }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Response Matching</h2>
+        <p class="mb-4 text-slate-600">Type the appropriate response for each situation. Press Enter to check your answer.</p>
+        <div id="stage4-exercise" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage4Data.length}</div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Exercise = document.getElementById('stage4-exercise');
+    const stage4Score = document.getElementById('stage4-score');
+    let stage4Results = new Array(stage4Data.length).fill(null);
+
+    stage4Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. ${item.prompt}</p>
+            <p class="text-sm text-slate-500">Hint: ${item.hint}</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-64 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                       placeholder="Type your answer..." aria-label="Answer for: ${item.prompt}">
+                <span class="text-sm font-semibold stage4-feedback"></span>
+            </div>
+        `;
+        stage4Exercise.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(idx, input, wrapper);
+        });
+    });
+
+    function checkStage4(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage4-feedback');
+        const item = stage4Data[idx];
+        const userAnswer = input.value.trim().toLowerCase().replace(/[!.,?]/g, '');
+        const correctAnswer = item.answer.toLowerCase();
+        const alternatives = item.alternatives.map(a => a.toLowerCase().replace(/[!.,?]/g, ''));
+
+        if (userAnswer === correctAnswer || alternatives.includes(userAnswer) || userAnswer.startsWith(correctAnswer)) {
+            feedback.textContent = `Correct! "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage4-feedback';
+            stage4Results[idx] = true;
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Almost! Watch the accents: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage4-feedback';
+            stage4Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage4Results[idx] = null;
+        } else {
+            feedback.textContent = `Try again. Expected: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage4-feedback';
+            stage4Results[idx] = false;
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        const correct = stage4Results.filter(r => r === true).length;
+        stage4Score.textContent = `Score: ${correct} / ${stage4Data.length}`;
+    }
+
+    // ==================== STAGE 5: DIALOGUE COMPLETION (6 items) ====================
+    const stage5Data = [
+        {
+            title: 'Meeting a friend',
+            lines: [
+                { speaker: 'Anna', text: 'Szia, Peter!', type: 'given' },
+                { speaker: 'Peter', text: '_____, Anna! Hogy _____?', blanks: ['Szia', 'vagy'], type: 'fill' },
+                { speaker: 'Anna', text: 'Jol vagyok, koszonom. Es te?', type: 'given' },
+                { speaker: 'Peter', text: '_____ vagyok.', blanks: ['Jol'], type: 'fill' }
+            ]
+        },
+        {
+            title: 'At a shop (formal)',
+            lines: [
+                { speaker: 'Customer', text: 'Jo napot _____!', blanks: ['kivanok'], type: 'fill' },
+                { speaker: 'Shopkeeper', text: 'Jo napot! Miben segithetek?', type: 'given' },
+                { speaker: 'Customer', text: '_____ szepen, kerek egy kiflit.', blanks: ['Kerem'], type: 'fill' },
+                { speaker: 'Shopkeeper', text: 'Tessek. Mas valamit?', type: 'given' },
+                { speaker: 'Customer', text: 'Nem, _____.', blanks: ['koszonom'], type: 'fill' }
+            ]
+        },
+        {
+            title: 'Saying goodbye',
+            lines: [
+                { speaker: 'Maria', text: 'Nos, mennem kell. _____!', blanks: ['Viszlat'], type: 'fill' },
+                { speaker: 'Gabor', text: 'Viszontlatasra! _____ ejszakat!', blanks: ['Jo'], type: 'fill' }
+            ]
+        }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Dialogue Completion</h2>
+        <p class="mb-4 text-slate-600">Complete the dialogues by filling in the missing words. Press Enter after each input to check.</p>
+        <div id="stage5-exercise" class="space-y-6"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium">Score: 0 / 0</div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Exercise = document.getElementById('stage5-exercise');
+    const stage5Score = document.getElementById('stage5-score');
+    let stage5Total = 0;
+    let stage5Results = [];
+
+    stage5Data.forEach((dialogue, dIdx) => {
+        const dialogueDiv = document.createElement('div');
+        dialogueDiv.className = 'bg-slate-50 p-4 rounded-lg';
+        dialogueDiv.innerHTML = `<h3 class="font-semibold text-slate-700 mb-3">${dialogue.title}</h3>`;
+
+        dialogue.lines.forEach((line, lIdx) => {
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'mb-2 flex flex-wrap items-center gap-1';
+
+            const speakerSpan = document.createElement('span');
+            speakerSpan.className = 'font-medium text-teal-700 min-w-[80px]';
+            speakerSpan.textContent = `${line.speaker}:`;
+            lineDiv.appendChild(speakerSpan);
+
+            if (line.type === 'given') {
+                const textSpan = document.createElement('span');
+                textSpan.className = 'text-slate-700';
+                textSpan.textContent = line.text;
+                lineDiv.appendChild(textSpan);
+            } else {
+                // Parse text with blanks
+                const parts = line.text.split('_____');
+                parts.forEach((part, pIdx) => {
+                    if (part) {
+                        const partSpan = document.createElement('span');
+                        partSpan.className = 'text-slate-700';
+                        partSpan.textContent = part;
+                        lineDiv.appendChild(partSpan);
+                    }
+                    if (pIdx < line.blanks.length) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.className = 'border border-slate-300 rounded px-2 py-1 w-24 text-center focus:ring-2 focus:ring-teal-500 focus:border-teal-500 mx-1';
+                        input.dataset.answer = line.blanks[pIdx];
+                        input.dataset.resultIndex = stage5Total;
+                        stage5Results.push(null);
+                        stage5Total++;
+
+                        input.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter') checkStage5Input(input);
+                        });
+
+                        lineDiv.appendChild(input);
+                    }
+                });
+            }
+
+            dialogueDiv.appendChild(lineDiv);
+        });
+
+        stage5Exercise.appendChild(dialogueDiv);
+    });
+
+    stage5Score.textContent = `Score: 0 / ${stage5Total}`;
+
+    function checkStage5Input(input) {
+        const correct = input.dataset.answer.toLowerCase();
+        const userAnswer = input.value.trim().toLowerCase();
+        const resultIdx = parseInt(input.dataset.resultIndex);
+
+        if (userAnswer === correct) {
+            input.classList.remove('border-red-500', 'border-yellow-500');
+            input.classList.add('border-green-500', 'bg-green-50');
+            stage5Results[resultIdx] = true;
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            input.classList.remove('border-red-500', 'border-green-500');
+            input.classList.add('border-yellow-500', 'bg-yellow-50');
+            stage5Results[resultIdx] = 'partial';
+        } else if (userAnswer === '') {
+            input.classList.remove('border-green-500', 'border-red-500', 'border-yellow-500', 'bg-green-50', 'bg-red-50', 'bg-yellow-50');
+            stage5Results[resultIdx] = null;
+        } else {
+            input.classList.remove('border-green-500', 'border-yellow-500');
+            input.classList.add('border-red-500', 'bg-red-50');
+            stage5Results[resultIdx] = false;
+        }
+        updateStage5Score();
+    }
+
+    function updateStage5Score() {
+        const correct = stage5Results.filter(r => r === true).length;
+        stage5Score.textContent = `Score: ${correct} / ${stage5Total}`;
+    }
+
+    // ==================== FINAL SUMMARY ====================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 mt-12 bg-gradient-to-r from-teal-50 to-slate-50 p-6 rounded-xl';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Lesson Summary</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Key Phrases to Remember</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li><strong>Szia / Sziasztok</strong> - Informal hi/bye</li>
+                    <li><strong>Jo napot (kivanok)</strong> - Formal daytime greeting</li>
+                    <li><strong>Koszonom / Szivesen</strong> - Thank you / You're welcome</li>
+                    <li><strong>Hogy vagy? / Hogy van?</strong> - How are you? (informal/formal)</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Remember</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li>Use <strong>te</strong> forms with friends and family</li>
+                    <li>Use <strong>On</strong> forms with strangers and in formal settings</li>
+                    <li>Match greetings to the time of day</li>
+                    <li>When unsure, choose the formal option</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>

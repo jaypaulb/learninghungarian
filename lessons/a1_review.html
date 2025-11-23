@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 12: A1 Review & Self-Introduction - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: left; }
+        th { background: #f1f5f9; }
+        .stage-complete { background: linear-gradient(to right, #d1fae5, #ecfdf5); }
+        .intro-box { background: #f0fdfa; border: 2px solid #0f766e; border-radius: 0.75rem; padding: 1.5rem; }
+        .category-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 1rem; }
+        .progress-bar { height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; background: #0f766e; transition: width 0.3s ease; }
+        .checklist-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; border-radius: 0.375rem; }
+        .checklist-item:hover { background: #f1f5f9; }
+        .character-bubble { background: #f0fdfa; border-left: 4px solid #0f766e; padding: 1rem; margin: 0.5rem 0; border-radius: 0 0.5rem 0.5rem 0; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 12: A1 Review & Self-Introduction <span class="block text-xl text-slate-500 font-normal mt-2">(A1 Osszefoglalas es Bemutatkozas)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Congratulations on reaching the final lesson of A1! This comprehensive review consolidates everything you've learned across Lessons 1-11, prepares you for extended self-introductions, and assesses your readiness for A2 level.</p>
+
+        <!-- Overall Progress -->
+        <div class="max-w-xl mx-auto mt-6 bg-white rounded-lg p-4 shadow-sm">
+            <div class="flex justify-between text-sm text-slate-600 mb-2">
+                <span>Overall A1 Review Progress</span>
+                <span id="overall-progress-text">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div id="overall-progress-fill" class="progress-fill" style="width: 0%"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6">
+        <!-- Learning Objectives -->
+        <section class="mb-8 p-4 bg-teal-50 rounded-lg border border-teal-200">
+            <h2 class="text-xl font-semibold text-teal-800 mb-3">Learning Objectives</h2>
+            <ul class="list-disc pl-6 text-teal-700 space-y-1">
+                <li>Consolidate all A1 grammar and vocabulary from Lessons 1-11</li>
+                <li>Produce extended self-introductions in Hungarian</li>
+                <li>Engage in basic conversations on familiar topics</li>
+                <li>Assess your readiness for A2 level</li>
+            </ul>
+        </section>
+
+        <!-- Section 1: Grammar Review Summaries -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-slate-700 mb-4 pb-2 border-b-2 border-teal-500">Section 1: Grammar Review Summaries</h2>
+
+            <!-- Verb "to be" Recap -->
+            <div class="category-card mb-4">
+                <h3 class="text-lg font-semibold text-slate-700 mb-2">Verb "to be" (lenni) - Conjugation Recap</h3>
+                <table class="text-sm">
+                    <tr>
+                        <th>Pronoun</th><th>Present</th><th>Past</th><th>Example</th>
+                    </tr>
+                    <tr><td>en (I)</td><td>vagyok</td><td>voltam</td><td>Tanар vagyok. (I am a teacher.)</td></tr>
+                    <tr><td>te (you)</td><td>vagy</td><td>voltal</td><td>Diak vagy. (You are a student.)</td></tr>
+                    <tr><td>o (he/she)</td><td>van / -</td><td>volt</td><td>O orvos. (He/She is a doctor.)</td></tr>
+                    <tr><td>mi (we)</td><td>vagyunk</td><td>voltunk</td><td>Magyarok vagyunk. (We are Hungarians.)</td></tr>
+                    <tr><td>ti (you pl.)</td><td>vagytok</td><td>voltatok</td><td>Baratok vagytok. (You are friends.)</td></tr>
+                    <tr><td>ok (they)</td><td>vannak / -</td><td>voltak</td><td>Ok diakok. (They are students.)</td></tr>
+                </table>
+                <p class="text-sm text-slate-600 mt-2"><strong>Remember:</strong> "van/vannak" is omitted when the predicate is a noun or adjective, but used for location/existence.</p>
+            </div>
+
+            <!-- Accusative Case Reminder -->
+            <div class="category-card mb-4">
+                <h3 class="text-lg font-semibold text-slate-700 mb-2">Accusative Case (-t suffix)</h3>
+                <p class="text-slate-600 mb-2">The accusative marks the direct object of a sentence:</p>
+                <ul class="list-disc pl-6 text-slate-600 text-sm space-y-1">
+                    <li><strong>After vowels:</strong> add -t (alma → almat - apple)</li>
+                    <li><strong>After consonants:</strong> add -at/-et/-ot/-ot (asztal → asztalt - table)</li>
+                    <li>Examples: Latok egy hazat. (I see a house.) / Szeretek konyvet olvasni. (I like to read books.)</li>
+                </ul>
+            </div>
+
+            <!-- Question Formation Review -->
+            <div class="category-card mb-4">
+                <h3 class="text-lg font-semibold text-slate-700 mb-2">Question Formation</h3>
+                <table class="text-sm">
+                    <tr><th>Question Word</th><th>Meaning</th><th>Example</th></tr>
+                    <tr><td>Ki?</td><td>Who?</td><td>Ki vagy? (Who are you?)</td></tr>
+                    <tr><td>Mi?</td><td>What?</td><td>Mi ez? (What is this?)</td></tr>
+                    <tr><td>Hol?</td><td>Where?</td><td>Hol laksz? (Where do you live?)</td></tr>
+                    <tr><td>Honnan?</td><td>Where from?</td><td>Honnan jossz? (Where are you from?)</td></tr>
+                    <tr><td>Hany?</td><td>How many?</td><td>Hany eves vagy? (How old are you?)</td></tr>
+                    <tr><td>Milyen?</td><td>What kind?</td><td>Milyen a hazad? (What is your house like?)</td></tr>
+                </table>
+                <p class="text-sm text-slate-600 mt-2"><strong>Yes/No questions:</strong> Use rising intonation or add "-e" particle.</p>
+            </div>
+
+            <!-- Article Usage Summary -->
+            <div class="category-card mb-4">
+                <h3 class="text-lg font-semibold text-slate-700 mb-2">Article Usage</h3>
+                <table class="text-sm">
+                    <tr><th>Article</th><th>Usage</th><th>Example</th></tr>
+                    <tr><td>a</td><td>Definite (before consonants)</td><td>a haz (the house)</td></tr>
+                    <tr><td>az</td><td>Definite (before vowels)</td><td>az alma (the apple)</td></tr>
+                    <tr><td>egy</td><td>Indefinite</td><td>egy konyv (a book)</td></tr>
+                </table>
+                <p class="text-sm text-slate-600 mt-2"><strong>Note:</strong> Articles are often omitted with professions and nationalities: "Tanar vagyok." (I am a teacher.)</p>
+            </div>
+        </section>
+
+        <!-- Section 2: Vocabulary Review by Category -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-slate-700 mb-4 pb-2 border-b-2 border-teal-500">Section 2: Vocabulary Review by Category</h2>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <!-- Numbers and Age -->
+                <div class="category-card">
+                    <h3 class="text-lg font-semibold text-slate-700 mb-2">Numbers & Age</h3>
+                    <div class="text-sm text-slate-600 space-y-1">
+                        <p><strong>0-10:</strong> nulla, egy, ketto, harom, negy, ot, hat, het, nyolc, kilenc, tiz</p>
+                        <p><strong>11-20:</strong> tizenegy, tizenketto, tizenharom... husz</p>
+                        <p><strong>Tens:</strong> harminc, negyven, otven, hatvan, hetven, nyolcvan, kilencven, szaz</p>
+                        <p><strong>Age:</strong> ... eves vagyok (I am ... years old)</p>
+                    </div>
+                </div>
+
+                <!-- Greetings and Politeness -->
+                <div class="category-card">
+                    <h3 class="text-lg font-semibold text-slate-700 mb-2">Greetings & Politeness</h3>
+                    <div class="text-sm text-slate-600 space-y-1">
+                        <p><strong>Hello:</strong> Szia! (informal), Jo napot! (formal)</p>
+                        <p><strong>Goodbye:</strong> Viszlat! Viszontlatasra!</p>
+                        <p><strong>Please:</strong> Kerem / Legyen szives</p>
+                        <p><strong>Thank you:</strong> Koszonom / Kosz</p>
+                        <p><strong>Nice to meet you:</strong> Orulok, hogy megismertelek!</p>
+                    </div>
+                </div>
+
+                <!-- Family Members -->
+                <div class="category-card">
+                    <h3 class="text-lg font-semibold text-slate-700 mb-2">Family Members</h3>
+                    <div class="text-sm text-slate-600 space-y-1">
+                        <p><strong>Parents:</strong> anya/apa (mom/dad), anyuka/apuka</p>
+                        <p><strong>Siblings:</strong> testver, batya (older brother), hugom (younger sister)</p>
+                        <p><strong>Grandparents:</strong> nagymama, nagypapa</p>
+                        <p><strong>Children:</strong> gyerek, fiu, lany</p>
+                        <p><strong>Spouse:</strong> ferj (husband), feleseg (wife)</p>
+                    </div>
+                </div>
+
+                <!-- Basic Adjectives -->
+                <div class="category-card">
+                    <h3 class="text-lg font-semibold text-slate-700 mb-2">Basic Adjectives</h3>
+                    <div class="text-sm text-slate-600 space-y-1">
+                        <p><strong>Size:</strong> nagy (big), kicsi (small)</p>
+                        <p><strong>Quality:</strong> jo (good), rossz (bad), szep (beautiful)</p>
+                        <p><strong>Age:</strong> fiatal (young), oreg (old), uj (new), regi (old)</p>
+                        <p><strong>Character:</strong> kedves (kind), okos (smart), erdekes (interesting)</p>
+                    </div>
+                </div>
+
+                <!-- Common Verbs -->
+                <div class="category-card md:col-span-2">
+                    <h3 class="text-lg font-semibold text-slate-700 mb-2">Common Verbs</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm text-slate-600">
+                        <div><strong>lenni</strong> - to be</div>
+                        <div><strong>lakni</strong> - to live</div>
+                        <div><strong>dolgozni</strong> - to work</div>
+                        <div><strong>tanulni</strong> - to learn/study</div>
+                        <div><strong>beszalni</strong> - to speak</div>
+                        <div><strong>szeretni</strong> - to love/like</div>
+                        <div><strong>enni</strong> - to eat</div>
+                        <div><strong>inni</strong> - to drink</div>
+                        <div><strong>olvasni</strong> - to read</div>
+                        <div><strong>irni</strong> - to write</div>
+                        <div><strong>menni</strong> - to go</div>
+                        <div><strong>jonni</strong> - to come</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Extended Self-Introduction Model -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-slate-700 mb-4 pb-2 border-b-2 border-teal-500">Section 3: Extended Self-Introduction Model</h2>
+
+            <div class="intro-box mb-4">
+                <h3 class="text-lg font-semibold text-teal-800 mb-3">Model Introduction (Bemutatkozas)</h3>
+                <div class="text-slate-700 space-y-2">
+                    <p class="text-lg">Szia! En Kovacs Anna vagyok. Huszonot eves vagyok.</p>
+                    <p class="text-lg">Budapesten lakom. Tanar vagyok.</p>
+                    <p class="text-lg">Van egy batyam es egy hugom.</p>
+                    <p class="text-lg">A batyam harminceves, orvos. A hugom huszeves, egyetemista.</p>
+                    <p class="text-lg">Szeretek olvasni es utazni.</p>
+                    <p class="text-lg">Orulok, hogy megismertelek!</p>
+                </div>
+                <div class="mt-4 pt-4 border-t border-teal-200 text-sm text-slate-600">
+                    <p><strong>Translation:</strong></p>
+                    <p>Hi! I am Anna Kovacs. I am twenty-five years old.</p>
+                    <p>I live in Budapest. I am a teacher.</p>
+                    <p>I have an older brother and a younger sister.</p>
+                    <p>My older brother is thirty, a doctor. My younger sister is twenty, a university student.</p>
+                    <p>I like to read and travel.</p>
+                    <p>Nice to meet you!</p>
+                </div>
+            </div>
+
+            <!-- Character Introductions -->
+            <h3 class="text-lg font-semibold text-slate-700 mb-3">Meet Our Characters</h3>
+
+            <div class="character-bubble">
+                <p class="font-semibold text-teal-700">Sophie Dubois (France)</p>
+                <p class="text-slate-700">Sophie Dubois vagyok. Francia vagyok. Franciaorszagban elek. Parizsi vagyok, de Lyonban elek. 29 (Huszonkilenc) eves vagyok. Franciaul es angolul beszelek. Most magyarul tanulok. Orvos vagyok.</p>
+            </div>
+
+            <div class="character-bubble">
+                <p class="font-semibold text-teal-700">David Kim (South Korea)</p>
+                <p class="text-slate-700">David Kim vagyok. Koreai vagyok. Del-Koreaban elek. Szouli vagyok, de Busanban elek. 41 (Negyvenegy) eves vagyok. Koreaiul es angolul beszelek. Most magyarul tanulok. Mernok vagyok.</p>
+            </div>
+
+            <div class="character-bubble">
+                <p class="font-semibold text-teal-700">Elena Rossi (Italy)</p>
+                <p class="text-slate-700">Elena Rossi vagyok. Olasz vagyok. Olaszorszagban elek. Romai vagyok, de Milanoban elek. 35 (Harmincot) eves vagyok. Olaszul es angolul beszelek. Most magyarul tanulok. Tanar vagyok.</p>
+            </div>
+        </section>
+
+        <!-- Section 4: Conversation Topics -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-slate-700 mb-4 pb-2 border-b-2 border-teal-500">Section 4: Common Conversation Topics</h2>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="category-card">
+                    <h3 class="font-semibold text-slate-700 mb-2">Personal Information</h3>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                        <li>Hogy hivnak? - What is your name?</li>
+                        <li>Hany eves vagy? - How old are you?</li>
+                        <li>Honnan jossz? - Where are you from?</li>
+                        <li>Mi a foglalkozasod? - What is your profession?</li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <h3 class="font-semibold text-slate-700 mb-2">Family Description</h3>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                        <li>Van testvered? - Do you have siblings?</li>
+                        <li>Hany testvered van? - How many siblings do you have?</li>
+                        <li>Hol laknak a szuleid? - Where do your parents live?</li>
+                        <li>Hazas vagy? - Are you married?</li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <h3 class="font-semibold text-slate-700 mb-2">Daily Activities</h3>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                        <li>Hol dolgozol? - Where do you work?</li>
+                        <li>Mit csinals? - What are you doing?</li>
+                        <li>Hol tanulsz? - Where do you study?</li>
+                        <li>Mikor kelsz fel? - When do you wake up?</li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <h3 class="font-semibold text-slate-700 mb-2">Likes & Preferences</h3>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                        <li>Mit szeretsz csinalni? - What do you like to do?</li>
+                        <li>Szeretsz olvasni? - Do you like to read?</li>
+                        <li>Mi a kedvenc eteled? - What is your favorite food?</li>
+                        <li>Milyen zenat szeretsz? - What music do you like?</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Exercises -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-slate-700 mb-4 pb-2 border-b-2 border-teal-500">Interactive Exercises</h2>
+            <p class="text-slate-600 mb-6">Complete all six stages to review your A1 knowledge. Each stage focuses on different skills.</p>
+
+            <!-- Stage 1: Grammar Quick Review -->
+            <div id="stage1" class="mb-8 p-4 bg-slate-50 rounded-lg">
+                <h3 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Grammar Quick Review (10 items)</h3>
+                <p class="text-slate-600 mb-4">Test your knowledge of all A1 grammar topics with these mixed exercises.</p>
+                <div id="grammar-exercise" class="space-y-4"></div>
+                <div id="grammar-score" class="mt-4 text-slate-700 font-medium"></div>
+            </div>
+
+            <!-- Stage 2: Vocabulary Recognition -->
+            <div id="stage2" class="mb-8 p-4 bg-slate-50 rounded-lg">
+                <h3 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Vocabulary Recognition (15 items)</h3>
+                <p class="text-slate-600 mb-4">Match Hungarian words with their English meanings. Select the correct answer for each.</p>
+                <div id="vocab-exercise" class="space-y-4"></div>
+                <div id="vocab-score" class="mt-4 text-slate-700 font-medium"></div>
+            </div>
+
+            <!-- Stage 3: Reading Comprehension -->
+            <div id="stage3" class="mb-8 p-4 bg-slate-50 rounded-lg">
+                <h3 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Reading Comprehension (6 items)</h3>
+                <p class="text-slate-600 mb-4">Read the self-introduction below and answer the questions.</p>
+
+                <div class="intro-box mb-4">
+                    <p class="text-slate-700">Szia! Peter vagyok. Harmincketto eves vagyok. Budapesten lakom, de Debrecenbol szarmazom. Mernok vagyok, egy nagy cegnel dolgozom. Van egy felesegem, Mariat hivjak. O tanar. Ket gyerekunk van: egy fiu es egy lany. A fiunkat Tamaskent hivjak, nyolc eves. A lanyunk Anna, hat eves. Szeretek focizni es utazni. A csaladnyal szeretem tolteni az idot.</p>
+                </div>
+
+                <div id="comprehension-exercise" class="space-y-4"></div>
+                <div id="comprehension-score" class="mt-4 text-slate-700 font-medium"></div>
+            </div>
+
+            <!-- Stage 4: Self-Introduction Writing -->
+            <div id="stage4" class="mb-8 p-4 bg-slate-50 rounded-lg">
+                <h3 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Self-Introduction Writing</h3>
+                <p class="text-slate-600 mb-4">Complete each sentence about yourself in Hungarian. Use the prompts to guide you.</p>
+                <div id="writing-exercise" class="space-y-4"></div>
+                <div class="mt-4">
+                    <button id="show-model-btn" class="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors">Show Model Answers</button>
+                    <div id="model-answers" class="hidden mt-4 p-4 bg-teal-50 rounded-lg">
+                        <h4 class="font-semibold text-teal-800 mb-2">Example Answers:</h4>
+                        <div id="model-content" class="text-slate-700 space-y-1"></div>
+                    </div>
+                </div>
+                <div id="writing-score" class="mt-4 text-slate-700 font-medium"></div>
+            </div>
+
+            <!-- Stage 5: Role-Play Dialogue -->
+            <div id="stage5" class="mb-8 p-4 bg-slate-50 rounded-lg">
+                <h3 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Role-Play Dialogue (8 items)</h3>
+                <p class="text-slate-600 mb-4">Complete the conversation between Sophie and David. Fill in the missing parts.</p>
+                <div id="dialogue-exercise" class="space-y-3"></div>
+                <div id="dialogue-score" class="mt-4 text-slate-700 font-medium"></div>
+            </div>
+
+            <!-- Stage 6: Self-Assessment Checklist -->
+            <div id="stage6" class="mb-8 p-4 bg-slate-50 rounded-lg">
+                <h3 class="text-xl font-semibold text-slate-700 mb-2">Stage 6: Self-Assessment Checklist</h3>
+                <p class="text-slate-600 mb-4">Check off each skill you feel confident about. Be honest - this helps you identify areas to review!</p>
+                <div id="checklist-container" class="space-y-2"></div>
+                <div id="checklist-result" class="mt-4 p-4 bg-white rounded-lg border hidden">
+                    <h4 class="font-semibold text-slate-700 mb-2">Your A1 Readiness Assessment:</h4>
+                    <div id="assessment-text" class="text-slate-600"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- A2 Progression Section -->
+        <section class="mb-8 p-6 bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl border-2 border-teal-200">
+            <h2 class="text-2xl font-bold text-teal-800 mb-4">Ready for A2?</h2>
+            <p class="text-slate-700 mb-4">Congratulations on completing A1! Here's what awaits you at the A2 level:</p>
+            <ul class="list-disc pl-6 text-slate-600 space-y-2 mb-4">
+                <li><strong>Past tense mastery</strong> - Tell stories about your past</li>
+                <li><strong>Future expressions</strong> - Discuss plans and intentions</li>
+                <li><strong>More cases</strong> - Dative, instrumental, and more</li>
+                <li><strong>Complex sentences</strong> - Conjunctions and subordinate clauses</li>
+                <li><strong>Expanded vocabulary</strong> - 1000+ words across various topics</li>
+            </ul>
+            <div id="a2-recommendation" class="p-4 bg-white rounded-lg">
+                <p class="text-slate-600">Complete all exercises above to see your personalized A2 readiness recommendation.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+
+    <script>
+    // Utility function for accent-insensitive comparison
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiI]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U' };
+            return map[m] || m;
+        }).toLowerCase();
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    // Score tracking
+    const stageScores = {
+        stage1: { correct: 0, total: 10 },
+        stage2: { correct: 0, total: 15 },
+        stage3: { correct: 0, total: 6 },
+        stage4: { correct: 0, total: 6 },
+        stage5: { correct: 0, total: 8 }
+    };
+
+    function updateOverallProgress() {
+        let totalCorrect = 0;
+        let totalQuestions = 0;
+        for (let stage in stageScores) {
+            totalCorrect += stageScores[stage].correct;
+            totalQuestions += stageScores[stage].total;
+        }
+        const percentage = Math.round((totalCorrect / totalQuestions) * 100);
+        document.getElementById('overall-progress-fill').style.width = percentage + '%';
+        document.getElementById('overall-progress-text').textContent = percentage + '%';
+
+        // Update A2 recommendation
+        const recommendationDiv = document.getElementById('a2-recommendation');
+        if (percentage >= 80) {
+            recommendationDiv.innerHTML = '<p class="text-green-700 font-semibold">Excellent! You are ready to move on to A2! You have demonstrated strong mastery of A1 concepts.</p>';
+            recommendationDiv.className = 'p-4 bg-green-100 rounded-lg border border-green-300';
+        } else if (percentage >= 60) {
+            recommendationDiv.innerHTML = '<p class="text-yellow-700 font-semibold">Good progress! Consider reviewing weak areas before moving to A2. Focus on the exercises where you scored lower.</p>';
+            recommendationDiv.className = 'p-4 bg-yellow-100 rounded-lg border border-yellow-300';
+        } else if (percentage >= 40) {
+            recommendationDiv.innerHTML = '<p class="text-orange-700 font-semibold">Keep practicing! Review Lessons 1-11 before attempting A2. Pay special attention to grammar and vocabulary.</p>';
+            recommendationDiv.className = 'p-4 bg-orange-100 rounded-lg border border-orange-300';
+        } else if (totalCorrect > 0) {
+            recommendationDiv.innerHTML = '<p class="text-red-700 font-semibold">More practice needed. Go back through the A1 lessons and complete all exercises before retrying this review.</p>';
+            recommendationDiv.className = 'p-4 bg-red-100 rounded-lg border border-red-300';
+        }
+    }
+
+    // Stage 1: Grammar Quick Review (10 items)
+    const grammarQuestions = [
+        { type: 'fill', sentence: 'En tanar ___.', answer: 'vagyok', hint: 'verb "to be" for I', translation: 'I am a teacher.' },
+        { type: 'fill', sentence: 'A konyv az asztalon ___.', answer: 'van', hint: 'verb "to be" for location', translation: 'The book is on the table.' },
+        { type: 'fill', sentence: 'Latok egy ___. (haz)', answer: 'hazat', hint: 'accusative case', translation: 'I see a house.' },
+        { type: 'choice', sentence: 'O tanar. ("van" needed?)', options: ['Yes, van is needed', 'No, van is omitted'], correct: 1, translation: 'He/She is a teacher.' },
+        { type: 'fill', sentence: '___ eves vagy?', answer: 'hany', hint: 'question word for "how many"', translation: 'How old are you?' },
+        { type: 'fill', sentence: 'Mi magyarok ___.', answer: 'vagyunk', hint: 'verb "to be" for we', translation: 'We are Hungarians.' },
+        { type: 'choice', sentence: 'Which is correct for "the apple"?', options: ['a alma', 'az alma', 'egy alma'], correct: 1, translation: 'the apple' },
+        { type: 'fill', sentence: 'Ti diakok ___?', answer: 'vagytok', hint: 'verb "to be" for you (plural)', translation: 'Are you students?' },
+        { type: 'fill', sentence: 'En diak ___.', answer: 'voltam', hint: 'past tense "to be" for I', translation: 'I was a student.' },
+        { type: 'choice', sentence: 'What does "Hol laksz?" mean?', options: ['What is your name?', 'Where do you live?', 'How old are you?'], correct: 1, translation: 'Where do you live?' }
+    ];
+
+    const grammarDiv = document.getElementById('grammar-exercise');
+    const grammarScoreDiv = document.getElementById('grammar-score');
+
+    grammarQuestions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-3 bg-white rounded-lg border';
+
+        if (q.type === 'fill') {
+            wrapper.innerHTML = `
+                <div class="flex flex-col md:flex-row md:items-center gap-2">
+                    <span class="text-slate-800 flex-grow">${idx + 1}. ${q.sentence}</span>
+                    <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-32 text-center focus:ring-2 focus:ring-teal-500" placeholder="${q.hint}" data-idx="${idx}">
+                    <span class="feedback text-sm font-semibold"></span>
+                </div>
+            `;
+            wrapper.querySelector('input').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') checkGrammar(idx);
+            });
+            wrapper.querySelector('input').addEventListener('blur', () => checkGrammar(idx));
+        } else {
+            let optionsHtml = q.options.map((opt, i) => `
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="radio" name="grammar-${idx}" value="${i}" class="text-teal-600">
+                    <span>${opt}</span>
+                </label>
+            `).join('');
+            wrapper.innerHTML = `
+                <div class="space-y-2">
+                    <span class="text-slate-800 font-medium">${idx + 1}. ${q.sentence}</span>
+                    <div class="flex flex-wrap gap-4 ml-4">${optionsHtml}</div>
+                    <span class="feedback text-sm font-semibold"></span>
+                </div>
+            `;
+            wrapper.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', () => checkGrammar(idx));
+            });
+        }
+        grammarDiv.appendChild(wrapper);
+    });
+
+    function checkGrammar(idx) {
+        const wrapper = grammarDiv.children[idx];
+        const feedback = wrapper.querySelector('.feedback');
+        const q = grammarQuestions[idx];
+        let isCorrect = false;
+
+        if (q.type === 'fill') {
+            const input = wrapper.querySelector('input');
+            const userAnswer = normalizeHungarian(input.value);
+            const correctAnswer = normalizeHungarian(q.answer);
+
+            if (userAnswer === correctAnswer) {
+                isCorrect = true;
+                feedback.textContent = `Correct! (${q.translation})`;
+                feedback.className = 'feedback text-sm font-semibold text-green-600';
+            } else if (removeAccents(userAnswer) === removeAccents(correctAnswer) && userAnswer !== '') {
+                feedback.textContent = `Watch your accents! (${q.translation})`;
+                feedback.className = 'feedback text-sm font-semibold text-yellow-600';
+            } else if (userAnswer === '') {
+                feedback.textContent = '';
+            } else {
+                feedback.textContent = `Try again! Hint: ${q.hint}`;
+                feedback.className = 'feedback text-sm font-semibold text-red-600';
+            }
+        } else {
+            const selected = wrapper.querySelector('input[type="radio"]:checked');
+            if (selected && parseInt(selected.value) === q.correct) {
+                isCorrect = true;
+                feedback.textContent = `Correct! (${q.translation})`;
+                feedback.className = 'feedback text-sm font-semibold text-green-600';
+            } else if (selected) {
+                feedback.textContent = 'Try again!';
+                feedback.className = 'feedback text-sm font-semibold text-red-600';
+            }
+        }
+
+        updateGrammarScore();
+    }
+
+    function updateGrammarScore() {
+        let correct = 0;
+        grammarQuestions.forEach((q, idx) => {
+            const wrapper = grammarDiv.children[idx];
+            const feedback = wrapper.querySelector('.feedback');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        });
+        stageScores.stage1.correct = correct;
+        grammarScoreDiv.textContent = `Score: ${correct} / ${grammarQuestions.length}`;
+        if (correct === grammarQuestions.length) {
+            document.getElementById('stage1').classList.add('stage-complete');
+        }
+        updateOverallProgress();
+    }
+
+    // Stage 2: Vocabulary Recognition (15 items)
+    const vocabQuestions = [
+        { hungarian: 'huszonot', options: ['fifteen', 'twenty-five', 'fifty'], correct: 1 },
+        { hungarian: 'nagymama', options: ['mother', 'grandmother', 'aunt'], correct: 1 },
+        { hungarian: 'kedves', options: ['big', 'kind', 'old'], correct: 1 },
+        { hungarian: 'dolgozni', options: ['to study', 'to work', 'to live'], correct: 1 },
+        { hungarian: 'koszonom', options: ['please', 'hello', 'thank you'], correct: 2 },
+        { hungarian: 'feleseg', options: ['wife', 'daughter', 'sister'], correct: 0 },
+        { hungarian: 'fiatal', options: ['old', 'young', 'beautiful'], correct: 1 },
+        { hungarian: 'olvasni', options: ['to read', 'to write', 'to speak'], correct: 0 },
+        { hungarian: 'szaz', options: ['ten', 'fifty', 'hundred'], correct: 2 },
+        { hungarian: 'orvos', options: ['teacher', 'doctor', 'engineer'], correct: 1 },
+        { hungarian: 'honnan', options: ['where', 'when', 'where from'], correct: 2 },
+        { hungarian: 'testver', options: ['parent', 'sibling', 'child'], correct: 1 },
+        { hungarian: 'szeretni', options: ['to want', 'to love/like', 'to need'], correct: 1 },
+        { hungarian: 'nagy', options: ['small', 'new', 'big'], correct: 2 },
+        { hungarian: 'viszontlatasra', options: ['goodbye', 'hello', 'thank you'], correct: 0 }
+    ];
+
+    const vocabDiv = document.getElementById('vocab-exercise');
+    const vocabScoreDiv = document.getElementById('vocab-score');
+
+    vocabQuestions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-3 bg-white rounded-lg border';
+
+        let optionsHtml = q.options.map((opt, i) => `
+            <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="vocab-${idx}" value="${i}" class="text-teal-600">
+                <span>${opt}</span>
+            </label>
+        `).join('');
+
+        wrapper.innerHTML = `
+            <div class="space-y-2">
+                <span class="text-slate-800 font-medium">${idx + 1}. <span class="text-teal-700 font-semibold">${q.hungarian}</span> means:</span>
+                <div class="flex flex-wrap gap-4 ml-4">${optionsHtml}</div>
+                <span class="feedback text-sm font-semibold"></span>
+            </div>
+        `;
+
+        wrapper.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', () => checkVocab(idx));
+        });
+
+        vocabDiv.appendChild(wrapper);
+    });
+
+    function checkVocab(idx) {
+        const wrapper = vocabDiv.children[idx];
+        const feedback = wrapper.querySelector('.feedback');
+        const selected = wrapper.querySelector('input[type="radio"]:checked');
+
+        if (selected && parseInt(selected.value) === vocabQuestions[idx].correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'feedback text-sm font-semibold text-green-600';
+        } else if (selected) {
+            feedback.textContent = 'Try again!';
+            feedback.className = 'feedback text-sm font-semibold text-red-600';
+        }
+
+        updateVocabScore();
+    }
+
+    function updateVocabScore() {
+        let correct = 0;
+        vocabQuestions.forEach((q, idx) => {
+            const wrapper = vocabDiv.children[idx];
+            const feedback = wrapper.querySelector('.feedback');
+            if (feedback.textContent === 'Correct!') correct++;
+        });
+        stageScores.stage2.correct = correct;
+        vocabScoreDiv.textContent = `Score: ${correct} / ${vocabQuestions.length}`;
+        if (correct === vocabQuestions.length) {
+            document.getElementById('stage2').classList.add('stage-complete');
+        }
+        updateOverallProgress();
+    }
+
+    // Stage 3: Reading Comprehension (6 items)
+    const comprehensionQuestions = [
+        { question: 'How old is Peter?', options: ['22 years old', '32 years old', '42 years old'], correct: 1 },
+        { question: 'Where does Peter live now?', options: ['Debrecen', 'Budapest', 'Szeged'], correct: 1 },
+        { question: 'What is Peter\'s profession?', options: ['Teacher', 'Doctor', 'Engineer'], correct: 2 },
+        { question: 'What is Maria\'s profession?', options: ['Doctor', 'Teacher', 'Engineer'], correct: 1 },
+        { question: 'How many children do they have?', options: ['One', 'Two', 'Three'], correct: 1 },
+        { question: 'How old is Anna?', options: ['Six years old', 'Eight years old', 'Ten years old'], correct: 0 }
+    ];
+
+    const comprehensionDiv = document.getElementById('comprehension-exercise');
+    const comprehensionScoreDiv = document.getElementById('comprehension-score');
+
+    comprehensionQuestions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-3 bg-white rounded-lg border';
+
+        let optionsHtml = q.options.map((opt, i) => `
+            <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="comp-${idx}" value="${i}" class="text-teal-600">
+                <span>${opt}</span>
+            </label>
+        `).join('');
+
+        wrapper.innerHTML = `
+            <div class="space-y-2">
+                <span class="text-slate-800 font-medium">${idx + 1}. ${q.question}</span>
+                <div class="flex flex-wrap gap-4 ml-4">${optionsHtml}</div>
+                <span class="feedback text-sm font-semibold"></span>
+            </div>
+        `;
+
+        wrapper.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', () => checkComprehension(idx));
+        });
+
+        comprehensionDiv.appendChild(wrapper);
+    });
+
+    function checkComprehension(idx) {
+        const wrapper = comprehensionDiv.children[idx];
+        const feedback = wrapper.querySelector('.feedback');
+        const selected = wrapper.querySelector('input[type="radio"]:checked');
+
+        if (selected && parseInt(selected.value) === comprehensionQuestions[idx].correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'feedback text-sm font-semibold text-green-600';
+        } else if (selected) {
+            feedback.textContent = 'Try again! Re-read the text carefully.';
+            feedback.className = 'feedback text-sm font-semibold text-red-600';
+        }
+
+        updateComprehensionScore();
+    }
+
+    function updateComprehensionScore() {
+        let correct = 0;
+        comprehensionQuestions.forEach((q, idx) => {
+            const wrapper = comprehensionDiv.children[idx];
+            const feedback = wrapper.querySelector('.feedback');
+            if (feedback.textContent === 'Correct!') correct++;
+        });
+        stageScores.stage3.correct = correct;
+        comprehensionScoreDiv.textContent = `Score: ${correct} / ${comprehensionQuestions.length}`;
+        if (correct === comprehensionQuestions.length) {
+            document.getElementById('stage3').classList.add('stage-complete');
+        }
+        updateOverallProgress();
+    }
+
+    // Stage 4: Self-Introduction Writing (6 guided prompts)
+    const writingPrompts = [
+        { prompt: 'Say your name (... vagyok)', model: '[Your name] vagyok.', example: 'Anna vagyok.' },
+        { prompt: 'State your age (... eves vagyok)', model: '[Number] eves vagyok.', example: 'Huszonot eves vagyok.' },
+        { prompt: 'Say where you live (... lakom)', model: '[City]-ban/-ben lakom.', example: 'Budapesten lakom.' },
+        { prompt: 'State your profession (... vagyok)', model: '[Profession] vagyok.', example: 'Tanar vagyok.' },
+        { prompt: 'Mention a family member (Van egy ...)', model: 'Van egy [family member]-m/-om/-em.', example: 'Van egy hugom.' },
+        { prompt: 'Say what you like to do (Szeretek ...)', model: 'Szeretek [activity].', example: 'Szeretek olvasni.' }
+    ];
+
+    const writingDiv = document.getElementById('writing-exercise');
+    const writingScoreDiv = document.getElementById('writing-score');
+    const modelContent = document.getElementById('model-content');
+
+    writingPrompts.forEach((p, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-3 bg-white rounded-lg border';
+
+        wrapper.innerHTML = `
+            <div class="space-y-2">
+                <label class="text-slate-800 font-medium block">${idx + 1}. ${p.prompt}</label>
+                <input type="text" class="w-full border border-slate-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-teal-500" placeholder="Type your answer in Hungarian..." data-idx="${idx}">
+                <span class="feedback text-sm font-semibold"></span>
+            </div>
+        `;
+
+        wrapper.querySelector('input').addEventListener('blur', () => checkWriting(idx));
+        wrapper.querySelector('input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkWriting(idx);
+        });
+
+        writingDiv.appendChild(wrapper);
+
+        // Add to model answers
+        const modelItem = document.createElement('p');
+        modelItem.innerHTML = `<strong>${idx + 1}.</strong> ${p.model} (e.g., "${p.example}")`;
+        modelContent.appendChild(modelItem);
+    });
+
+    function checkWriting(idx) {
+        const wrapper = writingDiv.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('.feedback');
+        const value = input.value.trim();
+
+        if (value.length > 0) {
+            // Basic validation - check if it contains expected keywords
+            const p = writingPrompts[idx];
+            let isValid = false;
+
+            if (idx === 0 && value.toLowerCase().includes('vagyok')) isValid = true;
+            if (idx === 1 && value.toLowerCase().includes('eves')) isValid = true;
+            if (idx === 2 && value.toLowerCase().includes('lakom')) isValid = true;
+            if (idx === 3 && value.toLowerCase().includes('vagyok')) isValid = true;
+            if (idx === 4 && value.toLowerCase().includes('van')) isValid = true;
+            if (idx === 5 && value.toLowerCase().includes('szeret')) isValid = true;
+
+            if (isValid) {
+                feedback.textContent = 'Good job! Your sentence follows the pattern.';
+                feedback.className = 'feedback text-sm font-semibold text-green-600';
+            } else {
+                feedback.textContent = `Check the pattern: ${p.model}`;
+                feedback.className = 'feedback text-sm font-semibold text-yellow-600';
+            }
+        } else {
+            feedback.textContent = '';
+        }
+
+        updateWritingScore();
+    }
+
+    function updateWritingScore() {
+        let correct = 0;
+        writingPrompts.forEach((p, idx) => {
+            const wrapper = writingDiv.children[idx];
+            const feedback = wrapper.querySelector('.feedback');
+            if (feedback.textContent.startsWith('Good job!')) correct++;
+        });
+        stageScores.stage4.correct = correct;
+        writingScoreDiv.textContent = `Completed: ${correct} / ${writingPrompts.length}`;
+        if (correct === writingPrompts.length) {
+            document.getElementById('stage4').classList.add('stage-complete');
+        }
+        updateOverallProgress();
+    }
+
+    document.getElementById('show-model-btn').addEventListener('click', function() {
+        const modelDiv = document.getElementById('model-answers');
+        modelDiv.classList.toggle('hidden');
+        this.textContent = modelDiv.classList.contains('hidden') ? 'Show Model Answers' : 'Hide Model Answers';
+    });
+
+    // Stage 5: Role-Play Dialogue (8 items)
+    const dialogueLines = [
+        { speaker: 'Sophie', line: 'Szia! En Sophie vagyok. Es te?', answer: null, translation: 'Hi! I am Sophie. And you?' },
+        { speaker: 'David', line: '___ David vagyok.', answer: 'en', translation: 'I am David.' },
+        { speaker: 'Sophie', line: 'Orulok! Honnan ___?', answer: 'jossz', translation: 'Nice to meet you! Where are you from?' },
+        { speaker: 'David', line: 'Del-Koreabol juvok. Es te ___ vagy?', answer: 'honnan', translation: 'I am from South Korea. And where are you from?' },
+        { speaker: 'Sophie', line: 'Franciaorszagbol. ___ eves vagy?', answer: 'hany', translation: 'From France. How old are you?' },
+        { speaker: 'David', line: 'Negyvenegy ___ vagyok. Es te?', answer: 'eves', translation: 'I am forty-one years old. And you?' },
+        { speaker: 'Sophie', line: 'Huszonkilenc eves ___. Mi a foglalkozasod?', answer: 'vagyok', translation: 'I am twenty-nine years old. What is your profession?' },
+        { speaker: 'David', line: 'Mernok vagyok. Es te? ___ vagy?', answer: 'mi', translation: 'I am an engineer. And you? What are you?' }
+    ];
+
+    const dialogueDiv = document.getElementById('dialogue-exercise');
+    const dialogueScoreDiv = document.getElementById('dialogue-score');
+
+    dialogueLines.forEach((d, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-3 bg-white rounded-lg border';
+
+        const speakerColor = d.speaker === 'Sophie' ? 'text-pink-600' : 'text-blue-600';
+
+        if (d.answer === null) {
+            wrapper.innerHTML = `
+                <div class="flex items-start gap-3">
+                    <span class="${speakerColor} font-semibold min-w-[60px]">${d.speaker}:</span>
+                    <span class="text-slate-700">${d.line}</span>
+                </div>
+                <p class="text-xs text-slate-500 ml-[72px] mt-1">(${d.translation})</p>
+            `;
+        } else {
+            const parts = d.line.split('___');
+            wrapper.innerHTML = `
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="${speakerColor} font-semibold min-w-[60px]">${d.speaker}:</span>
+                    <span class="text-slate-700">${parts[0]}</span>
+                    <input type="text" class="border border-slate-300 rounded-md px-2 py-1 w-24 text-center focus:ring-2 focus:ring-teal-500" data-idx="${idx}">
+                    <span class="text-slate-700">${parts[1] || ''}</span>
+                    <span class="feedback text-sm font-semibold"></span>
+                </div>
+                <p class="text-xs text-slate-500 ml-[72px] mt-1">(${d.translation})</p>
+            `;
+
+            wrapper.querySelector('input').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') checkDialogue(idx);
+            });
+            wrapper.querySelector('input').addEventListener('blur', () => checkDialogue(idx));
+        }
+
+        dialogueDiv.appendChild(wrapper);
+    });
+
+    function checkDialogue(idx) {
+        const wrapper = dialogueDiv.children[idx];
+        const input = wrapper.querySelector('input');
+        if (!input) return;
+
+        const feedback = wrapper.querySelector('.feedback');
+        const d = dialogueLines[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correctAnswer = normalizeHungarian(d.answer);
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'feedback text-sm font-semibold text-green-600';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer) && userAnswer !== '') {
+            feedback.textContent = 'Watch accents!';
+            feedback.className = 'feedback text-sm font-semibold text-yellow-600';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = 'Try again!';
+            feedback.className = 'feedback text-sm font-semibold text-red-600';
+        }
+
+        updateDialogueScore();
+    }
+
+    function updateDialogueScore() {
+        let correct = 0;
+        let answerable = 0;
+        dialogueLines.forEach((d, idx) => {
+            if (d.answer !== null) {
+                answerable++;
+                const wrapper = dialogueDiv.children[idx];
+                const feedback = wrapper.querySelector('.feedback');
+                if (feedback && feedback.textContent === 'Correct!') correct++;
+            }
+        });
+        stageScores.stage5.correct = correct;
+        stageScores.stage5.total = answerable;
+        dialogueScoreDiv.textContent = `Score: ${correct} / ${answerable}`;
+        if (correct === answerable) {
+            document.getElementById('stage5').classList.add('stage-complete');
+        }
+        updateOverallProgress();
+    }
+
+    // Stage 6: Self-Assessment Checklist
+    const checklistItems = [
+        { skill: 'Say the Hungarian alphabet and identify special letters', lesson: 'Lesson 1' },
+        { skill: 'Pronounce Hungarian vowels correctly (short and long)', lesson: 'Lesson 2' },
+        { skill: 'Conjugate the verb "to be" (lenni) in present and past tense', lesson: 'Lesson 3' },
+        { skill: 'Count from 0 to 100 in Hungarian', lesson: 'Lesson 4' },
+        { skill: 'Ask and answer questions about age', lesson: 'Lesson 5' },
+        { skill: 'Use basic greetings and polite expressions', lesson: 'Lesson 6' },
+        { skill: 'Name family members and describe relationships', lesson: 'Lesson 7' },
+        { skill: 'Form basic questions using question words', lesson: 'Lesson 8' },
+        { skill: 'Use articles (a, az, egy) correctly', lesson: 'Lesson 9' },
+        { skill: 'Apply the accusative case (-t) to direct objects', lesson: 'Lesson 10' },
+        { skill: 'Use common adjectives to describe things', lesson: 'Lesson 11' },
+        { skill: 'Introduce yourself with extended information', lesson: 'Lesson 12' },
+        { skill: 'Engage in simple conversations about familiar topics', lesson: 'All lessons' },
+        { skill: 'Understand basic written Hungarian texts', lesson: 'All lessons' }
+    ];
+
+    const checklistContainer = document.getElementById('checklist-container');
+    const checklistResult = document.getElementById('checklist-result');
+    const assessmentText = document.getElementById('assessment-text');
+
+    checklistItems.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'checklist-item';
+        wrapper.innerHTML = `
+            <input type="checkbox" id="check-${idx}" class="w-5 h-5 text-teal-600 rounded focus:ring-teal-500">
+            <label for="check-${idx}" class="flex-grow text-slate-700 cursor-pointer">${item.skill}</label>
+            <span class="text-xs text-slate-500">(${item.lesson})</span>
+        `;
+
+        wrapper.querySelector('input').addEventListener('change', updateChecklist);
+        checklistContainer.appendChild(wrapper);
+    });
+
+    function updateChecklist() {
+        const checked = checklistContainer.querySelectorAll('input:checked').length;
+        const total = checklistItems.length;
+        const percentage = Math.round((checked / total) * 100);
+
+        checklistResult.classList.remove('hidden');
+
+        if (percentage >= 90) {
+            assessmentText.innerHTML = `<span class="text-green-700">Excellent! You checked ${checked}/${total} skills (${percentage}%). You are well-prepared for A2!</span>`;
+        } else if (percentage >= 70) {
+            assessmentText.innerHTML = `<span class="text-teal-700">Good progress! You checked ${checked}/${total} skills (${percentage}%). Review unchecked areas before A2.</span>`;
+        } else if (percentage >= 50) {
+            assessmentText.innerHTML = `<span class="text-yellow-700">Making progress! You checked ${checked}/${total} skills (${percentage}%). More practice recommended.</span>`;
+        } else {
+            assessmentText.innerHTML = `<span class="text-red-700">Keep learning! You checked ${checked}/${total} skills (${percentage}%). Review earlier lessons.</span>`;
+        }
+    }
+
+    // Initialize scores display
+    grammarScoreDiv.textContent = `Score: 0 / ${grammarQuestions.length}`;
+    vocabScoreDiv.textContent = `Score: 0 / ${vocabQuestions.length}`;
+    comprehensionScoreDiv.textContent = `Score: 0 / ${comprehensionQuestions.length}`;
+    writingScoreDiv.textContent = `Completed: 0 / ${writingPrompts.length}`;
+    dialogueScoreDiv.textContent = `Score: 0 / ${dialogueLines.filter(d => d.answer !== null).length}`;
+    </script>
+</body>
+</html>
