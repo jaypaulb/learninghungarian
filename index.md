@@ -48,6 +48,8 @@ This site documents and supports my journey to learn the Hungarian language. Her
 
 [Lesson 31: Instrumental Case (-val/-vel)](lessons/instrumental_case.html)
 
+[Lesson 32: Ablative & Location Cases](lessons/ablative_cases.html)
+
 ---
 
 More A2 and B1 lessons coming soon! Stay tuned.
