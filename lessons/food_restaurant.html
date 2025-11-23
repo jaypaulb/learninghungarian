@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 17: Food & Restaurant Vocabulary - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .food-highlight { color: #ea580c; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 17: Food & Restaurant</h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn essential food vocabulary and restaurant phrases in Hungarian.</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content"></main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    function normalizeHungarian(str) { return str.trim().toLowerCase(); }
+
+    const mainContent = document.getElementById('main-content');
+
+    // SECTION 1: Basic Food Items
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Basic Food Items</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="overflow-x-auto">
+                <table class="text-sm">
+                    <thead><tr><th>Hungarian</th><th>English</th></tr></thead>
+                    <tbody>
+                        <tr><td class="food-highlight">kenyer</td><td>bread</td></tr>
+                        <tr><td class="food-highlight">hus</td><td>meat</td></tr>
+                        <tr><td class="food-highlight">csirke</td><td>chicken</td></tr>
+                        <tr><td class="food-highlight">hal</td><td>fish</td></tr>
+                        <tr><td class="food-highlight">tojas</td><td>egg</td></tr>
+                        <tr><td class="food-highlight">sajt</td><td>cheese</td></tr>
+                        <tr><td class="food-highlight">vaj</td><td>butter</td></tr>
+                        <tr><td class="food-highlight">tej</td><td>milk</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="text-sm">
+                    <thead><tr><th>Hungarian</th><th>English</th></tr></thead>
+                    <tbody>
+                        <tr><td class="food-highlight">gyumolcs</td><td>fruit</td></tr>
+                        <tr><td class="food-highlight">alma</td><td>apple</td></tr>
+                        <tr><td class="food-highlight">narancs</td><td>orange</td></tr>
+                        <tr><td class="food-highlight">banan</td><td>banana</td></tr>
+                        <tr><td class="food-highlight">zoldseg</td><td>vegetable</td></tr>
+                        <tr><td class="food-highlight">burgonya</td><td>potato</td></tr>
+                        <tr><td class="food-highlight">paradicsom</td><td>tomato</td></tr>
+                        <tr><td class="food-highlight">hagyma</td><td>onion</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // SECTION 2: Drinks
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Drinks (Italok)</h2>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead><tr><th>Hungarian</th><th>English</th><th>Example</th></tr></thead>
+                <tbody>
+                    <tr><td class="food-highlight">viz</td><td>water</td><td>Egy pohar vizet kerek.</td></tr>
+                    <tr><td class="food-highlight">kave</td><td>coffee</td><td>Egy kavet kerek.</td></tr>
+                    <tr><td class="food-highlight">tea</td><td>tea</td><td>Teat iszom.</td></tr>
+                    <tr><td class="food-highlight">sor</td><td>beer</td><td>Kerek egy sort.</td></tr>
+                    <tr><td class="food-highlight">bor</td><td>wine</td><td>Vorosbort vagy feherbort?</td></tr>
+                    <tr><td class="food-highlight">gyumolcsle</td><td>juice</td><td>Narancslet kerek.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // SECTION 3: Restaurant Phrases
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Restaurant Phrases</h2>
+        <div class="space-y-3">
+            <div class="bg-orange-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-orange-800 mb-2">Ordering</h3>
+                <ul class="text-sm space-y-1">
+                    <li><span class="food-highlight">Kerek egy...</span> - I would like a...</li>
+                    <li><span class="food-highlight">Mit ajanlanak?</span> - What do you recommend?</li>
+                    <li><span class="food-highlight">Az etlapot kerem.</span> - The menu please.</li>
+                    <li><span class="food-highlight">Rendelhetunk?</span> - Can we order?</li>
+                </ul>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-green-800 mb-2">During the Meal</h3>
+                <ul class="text-sm space-y-1">
+                    <li><span class="food-highlight">Jo etvagyat!</span> - Enjoy your meal!</li>
+                    <li><span class="food-highlight">Finom!</span> - Delicious!</li>
+                    <li><span class="food-highlight">Elegem van.</span> - I've had enough.</li>
+                    <li><span class="food-highlight">Meg egy kicsit kerek.</span> - I'd like a little more.</li>
+                </ul>
+            </div>
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-blue-800 mb-2">Paying</h3>
+                <ul class="text-sm space-y-1">
+                    <li><span class="food-highlight">Fizetek.</span> - I'll pay.</li>
+                    <li><span class="food-highlight">A szamlat kerem.</span> - The bill please.</li>
+                    <li><span class="food-highlight">Mennyibe kerul?</span> - How much does it cost?</li>
+                    <li><span class="food-highlight">Kartyaval fizethetek?</span> - Can I pay by card?</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // SECTION 4: Meals
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Meals of the Day</h2>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead><tr><th>Hungarian</th><th>English</th><th>Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="food-highlight">reggeli</td><td>breakfast</td><td>7-9 AM</td></tr>
+                    <tr><td class="food-highlight">ebed</td><td>lunch</td><td>12-2 PM</td></tr>
+                    <tr><td class="food-highlight">vacsora</td><td>dinner</td><td>6-8 PM</td></tr>
+                    <tr><td class="food-highlight">uzsonna</td><td>afternoon snack</td><td>4-5 PM</td></tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // STAGE 1: Food Vocabulary
+    const stage1Questions = [
+        { hungarian: 'kenyer', english: 'bread' },
+        { hungarian: 'hus', english: 'meat' },
+        { hungarian: 'csirke', english: 'chicken' },
+        { hungarian: 'alma', english: 'apple' },
+        { hungarian: 'viz', english: 'water' },
+        { hungarian: 'kave', english: 'coffee' },
+        { hungarian: 'tej', english: 'milk' },
+        { hungarian: 'sajt', english: 'cheese' },
+        { hungarian: 'tojas', english: 'egg' },
+        { hungarian: 'burgonya', english: 'potato' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = '<h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 1: Food Vocabulary</h2><p class="mb-4 text-slate-600">Match the Hungarian word to its English meaning.</p><div id="stage1-exercises" class="space-y-3"></div><div id="stage1-score" class="mt-4 text-slate-700 font-medium"></div>';
+    mainContent.appendChild(stage1Section);
+
+    const stage1Container = document.getElementById('stage1-exercises');
+    stage1Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-orange-50 rounded-lg';
+        wrapper.innerHTML = '<span class="min-w-[150px] font-semibold text-orange-700">' + q.hungarian + '</span><input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-40 focus:ring-2 focus:ring-orange-500" placeholder="English meaning..."><span class="text-sm font-semibold"></span>';
+        wrapper.querySelector('input').addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage1(idx); });
+        stage1Container.appendChild(wrapper);
+    });
+
+    function checkStage1(idx) {
+        const input = stage1Container.children[idx].querySelector('input');
+        const feedback = stage1Container.children[idx].querySelector('span:last-child');
+        const user = normalizeHungarian(input.value);
+        const correct = stage1Questions[idx].english;
+        if (user === correct) { feedback.textContent = 'Correct!'; feedback.className = 'text-sm text-green-600 font-semibold'; }
+        else if (user === '') { feedback.textContent = ''; }
+        else { feedback.textContent = 'Answer: ' + correct; feedback.className = 'text-sm text-red-600 font-semibold'; }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let correct = 0;
+        for (let i = 0; i < stage1Questions.length; i++) {
+            if (normalizeHungarian(stage1Container.children[i].querySelector('input').value) === stage1Questions[i].english) correct++;
+        }
+        document.getElementById('stage1-score').textContent = 'Score: ' + correct + ' / ' + stage1Questions.length;
+    }
+
+    // STAGE 2: English to Hungarian
+    const stage2Questions = [
+        { english: 'water', hungarian: 'viz' },
+        { english: 'bread', hungarian: 'kenyer' },
+        { english: 'chicken', hungarian: 'csirke' },
+        { english: 'coffee', hungarian: 'kave' },
+        { english: 'fish', hungarian: 'hal' },
+        { english: 'milk', hungarian: 'tej' },
+        { english: 'beer', hungarian: 'sor' },
+        { english: 'wine', hungarian: 'bor' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = '<h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 2: English to Hungarian</h2><p class="mb-4 text-slate-600">Write the Hungarian word for each English term.</p><div id="stage2-exercises" class="space-y-3"></div><div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>';
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-green-50 rounded-lg';
+        wrapper.innerHTML = '<span class="min-w-[150px] font-semibold text-green-700">' + q.english + '</span><input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-40 focus:ring-2 focus:ring-green-500" placeholder="Hungarian word..."><span class="text-sm font-semibold"></span>';
+        wrapper.querySelector('input').addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage2(idx); });
+        stage2Container.appendChild(wrapper);
+    });
+
+    function checkStage2(idx) {
+        const input = stage2Container.children[idx].querySelector('input');
+        const feedback = stage2Container.children[idx].querySelector('span:last-child');
+        const user = normalizeHungarian(input.value);
+        const correct = stage2Questions[idx].hungarian;
+        if (user === correct) { feedback.textContent = 'Correct!'; feedback.className = 'text-sm text-green-600 font-semibold'; }
+        else if (user === '') { feedback.textContent = ''; }
+        else { feedback.textContent = 'Answer: ' + correct; feedback.className = 'text-sm text-red-600 font-semibold'; }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        for (let i = 0; i < stage2Questions.length; i++) {
+            if (normalizeHungarian(stage2Container.children[i].querySelector('input').value) === stage2Questions[i].hungarian) correct++;
+        }
+        document.getElementById('stage2-score').textContent = 'Score: ' + correct + ' / ' + stage2Questions.length;
+    }
+
+    // STAGE 3: Restaurant Phrases
+    const stage3Questions = [
+        { english: 'I would like a coffee.', hungarian: 'Kerek egy kavet.', hint: 'Kerek egy...' },
+        { english: 'The menu please.', hungarian: 'Az etlapot kerem.', hint: 'Az etlapot...' },
+        { english: 'Enjoy your meal!', hungarian: 'Jo etvagyat!', hint: 'Jo...' },
+        { english: 'The bill please.', hungarian: 'A szamlat kerem.', hint: 'A szamlat...' },
+        { english: 'How much does it cost?', hungarian: 'Mennyibe kerul?', hint: 'Mennyibe...' },
+        { english: 'Delicious!', hungarian: 'Finom!', hint: 'Finom' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = '<h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 3: Restaurant Phrases</h2><p class="mb-4 text-slate-600">Translate the restaurant phrases.</p><div id="stage3-exercises" class="space-y-4"></div><div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>';
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-blue-50 rounded-lg';
+        wrapper.innerHTML = '<p class="font-semibold text-slate-800 mb-1">' + q.english + '</p><p class="text-xs text-slate-500 mb-2 italic">Hint: ' + q.hint + '</p><div class="flex flex-col md:flex-row items-start md:items-center gap-2"><input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-blue-500" placeholder="Type Hungarian..."><span class="text-sm font-semibold"></span></div>';
+        wrapper.querySelector('input').addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage3(idx); });
+        stage3Container.appendChild(wrapper);
+    });
+
+    function checkStage3(idx) {
+        const input = stage3Container.children[idx].querySelector('input');
+        const feedback = stage3Container.children[idx].querySelector('span');
+        const user = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(stage3Questions[idx].hungarian);
+        if (user === correct) { feedback.textContent = 'Correct!'; feedback.className = 'text-sm text-green-600 font-semibold'; }
+        else if (user === '') { feedback.textContent = ''; }
+        else { feedback.textContent = 'Answer: ' + stage3Questions[idx].hungarian; feedback.className = 'text-sm text-red-600 font-semibold'; }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let correct = 0;
+        for (let i = 0; i < stage3Questions.length; i++) {
+            if (normalizeHungarian(stage3Container.children[i].querySelector('input').value) === normalizeHungarian(stage3Questions[i].hungarian)) correct++;
+        }
+        document.getElementById('stage3-score').textContent = 'Score: ' + correct + ' / ' + stage3Questions.length;
+    }
+
+    // STAGE 4: Ordering Dialogue
+    const stage4Questions = [
+        { waiter: 'Mit parancsol?', response: 'Kerek egy gulyaslevest.', english: 'What would you like? -> I would like a goulash soup.' },
+        { waiter: 'Mit inna?', response: 'Egy sort kerek.', english: 'What would you like to drink? -> I would like a beer.' },
+        { waiter: 'Parancsol meg valamit?', response: 'Nem, koszonom.', english: 'Would you like anything else? -> No, thank you.' },
+        { waiter: 'Fizetne?', response: 'Igen, a szamlat kerem.', english: 'Would you like to pay? -> Yes, the bill please.' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = '<h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 4: Ordering Dialogue</h2><p class="mb-4 text-slate-600">Complete the restaurant dialogue.</p><div id="stage4-exercises" class="space-y-4"></div><div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>';
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-purple-50 rounded-lg';
+        wrapper.innerHTML = '<p class="font-semibold text-purple-700 mb-1">Waiter: "' + q.waiter + '"</p><p class="text-xs text-slate-500 mb-2 italic">' + q.english + '</p><div class="flex flex-col md:flex-row items-start md:items-center gap-2"><span class="font-semibold">You:</span><input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-purple-500" placeholder="Your response..."><span class="text-sm font-semibold"></span></div>';
+        wrapper.querySelector('input').addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage4(idx); });
+        stage4Container.appendChild(wrapper);
+    });
+
+    function checkStage4(idx) {
+        const input = stage4Container.children[idx].querySelector('input');
+        const feedback = stage4Container.children[idx].querySelector('span:last-child');
+        const user = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(stage4Questions[idx].response);
+        if (user === correct) { feedback.textContent = 'Correct!'; feedback.className = 'text-sm text-green-600 font-semibold'; }
+        else if (user === '') { feedback.textContent = ''; }
+        else { feedback.textContent = 'Answer: ' + stage4Questions[idx].response; feedback.className = 'text-sm text-red-600 font-semibold'; }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        for (let i = 0; i < stage4Questions.length; i++) {
+            if (normalizeHungarian(stage4Container.children[i].querySelector('input').value) === normalizeHungarian(stage4Questions[i].response)) correct++;
+        }
+        document.getElementById('stage4-score').textContent = 'Score: ' + correct + ' / ' + stage4Questions.length;
+    }
+
+    // SUMMARY
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 p-6 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-lg border border-orange-200';
+    summarySection.innerHTML = '<h2 class="text-2xl font-bold text-slate-700 mb-4">Summary: Food & Restaurant</h2><div class="grid md:grid-cols-2 gap-4"><div><h3 class="font-semibold text-orange-800 mb-2">Key Phrases:</h3><ul class="list-disc pl-6 space-y-1 text-sm text-slate-700"><li>Kerek egy... (I would like a...)</li><li>Az etlapot kerem. (The menu please.)</li><li>A szamlat kerem. (The bill please.)</li><li>Jo etvagyat! (Enjoy your meal!)</li></ul></div><div><h3 class="font-semibold text-orange-800 mb-2">Meals:</h3><ul class="list-disc pl-6 space-y-1 text-sm text-slate-700"><li>reggeli - breakfast</li><li>ebed - lunch</li><li>vacsora - dinner</li><li>uzsonna - snack</li></ul></div></div><p class="mt-4 text-sm text-slate-600">Continue to Lesson 18 for shopping and money vocabulary!</p>';
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>
