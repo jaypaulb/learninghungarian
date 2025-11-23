@@ -44,6 +44,8 @@ This site documents and supports my journey to learn the Hungarian language. Her
 
 [Lesson 29: Imperative Mood (Commands/Requests)](lessons/imperative_mood.html)
 
+[Lesson 30: Dative Case (-nak/-nek)](lessons/dative_case.html)
+
 ---
 
 More A2 and B1 lessons coming soon! Stay tuned.

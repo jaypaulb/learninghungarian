@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 30: Dative Case - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .grammar-note {
+            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+            border-left: 4px solid #0f766e;
+        }
+        .warning-note {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #d97706;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 30: Dative Case <span class="block text-xl text-slate-500 font-normal">(-nak/-nek)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Learn the Hungarian dative case, used for indirect objects (to whom/for whom). This case is essential for expressing giving, telling, and showing actions.</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    const mainContent = document.getElementById('main-content');
+
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiI]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    function checkWithAccentWarning(input, correct) {
+        const inputVal = normalizeHungarian(input);
+        const correctVal = normalizeHungarian(correct);
+        if (inputVal === correctVal) return 'correct';
+        else if (removeAccents(inputVal) === removeAccents(correctVal)) return 'accent-warning';
+        return 'incorrect';
+    }
+
+    // ==================== SECTION 1: WHAT IS THE DATIVE CASE ====================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: What is the Dative Case?</h2>
+        <p class="mb-4 text-slate-600">The dative case in Hungarian marks the <strong>indirect object</strong> of a sentence - the person or thing that receives something or benefits from an action. In English, we often use "to" or "for" to express this.</p>
+
+        <div class="grammar-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">English vs Hungarian</h4>
+            <p class="text-slate-700 text-sm">
+                English: I give <strong>to Peter</strong> a book.<br>
+                Hungarian: Adok <strong>Peternek</strong> egy konyvet.<br><br>
+                The suffix <strong>-nak/-nek</strong> replaces English "to/for".
+            </p>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Common Verbs That Use Dative</h3>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th><th class="border px-2">Example</th></tr>
+            <tr><td class="border px-2">ad</td><td class="border px-2">to give</td><td class="border px-2">Adok neked egy ajandekot. (I give you a gift.)</td></tr>
+            <tr><td class="border px-2">mond</td><td class="border px-2">to say/tell</td><td class="border px-2">Mondok valamit Marinak. (I tell Maria something.)</td></tr>
+            <tr><td class="border px-2">mutat</td><td class="border px-2">to show</td><td class="border px-2">Mutatok nekik kepeket. (I show them pictures.)</td></tr>
+            <tr><td class="border px-2">kuld</td><td class="border px-2">to send</td><td class="border px-2">Kuldok anyamnak egy levelet. (I send my mother a letter.)</td></tr>
+            <tr><td class="border px-2">ir</td><td class="border px-2">to write</td><td class="border px-2">Irok a barataimnak. (I write to my friends.)</td></tr>
+            <tr><td class="border px-2">segit</td><td class="border px-2">to help</td><td class="border px-2">Segítek a szomszedomnak. (I help my neighbor.)</td></tr>
+        </table>
+    `;
+    mainContent.appendChild(section1);
+
+    // ==================== SECTION 2: FORMING THE DATIVE ====================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Forming the Dative (-nak/-nek)</h2>
+        <p class="mb-4 text-slate-600">The dative suffix follows vowel harmony rules:</p>
+
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Vowel Type</th><th class="border px-2">Suffix</th><th class="border px-2">Examples</th></tr>
+            <tr><td class="border px-2">Back vowels (a, o, u)</td><td class="border px-2 font-medium">-nak</td><td class="border px-2">Peter → Peternek, Mari → Marinak</td></tr>
+            <tr><td class="border px-2">Front vowels (e, i, o, u)</td><td class="border px-2 font-medium">-nek</td><td class="border px-2">gyerek → gyereknek, ember → embernek</td></tr>
+        </table>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Examples with Common Nouns</h3>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Noun</th><th class="border px-2">Meaning</th><th class="border px-2">Dative Form</th><th class="border px-2">In Sentence</th></tr>
+            <tr><td class="border px-2">anya</td><td class="border px-2">mother</td><td class="border px-2 font-medium">anyanak</td><td class="border px-2">Viragot adok anyamnak. (I give flowers to my mother.)</td></tr>
+            <tr><td class="border px-2">apa</td><td class="border px-2">father</td><td class="border px-2 font-medium">apanak</td><td class="border px-2">Segítek apamnak. (I help my father.)</td></tr>
+            <tr><td class="border px-2">gyerek</td><td class="border px-2">child</td><td class="border px-2 font-medium">gyereknek</td><td class="border px-2">Mesét mondok a gyereknek. (I tell a story to the child.)</td></tr>
+            <tr><td class="border px-2">tanar</td><td class="border px-2">teacher</td><td class="border px-2 font-medium">tanarnak</td><td class="border px-2">Kerdest teszek fel a tanarnak. (I ask a question to the teacher.)</td></tr>
+            <tr><td class="border px-2">barat</td><td class="border px-2">friend</td><td class="border px-2 font-medium">baratnak</td><td class="border px-2">Irok a baratomnak. (I write to my friend.)</td></tr>
+        </table>
+
+        <div class="warning-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-amber-800 mb-2">Note: With Possessive Suffixes</h4>
+            <p class="text-slate-700 text-sm">When the noun already has a possessive suffix, the dative suffix goes after it: <strong>anyam</strong> (my mother) → <strong>anyamnak</strong> (to my mother)</p>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // ==================== SECTION 3: PERSONAL PRONOUN DATIVES ====================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Personal Pronouns in Dative</h2>
+        <p class="mb-4 text-slate-600">Personal pronouns have special dative forms that are commonly used:</p>
+
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Person</th><th class="border px-2">Nominative</th><th class="border px-2">Dative</th><th class="border px-2">Example</th></tr>
+            <tr><td class="border px-2">I</td><td class="border px-2">en</td><td class="border px-2 font-medium">nekem</td><td class="border px-2">Adsz nekem vizet? (Will you give me water?)</td></tr>
+            <tr><td class="border px-2">you (sg.)</td><td class="border px-2">te</td><td class="border px-2 font-medium">neked</td><td class="border px-2">Mit adjak neked? (What shall I give you?)</td></tr>
+            <tr><td class="border px-2">he/she</td><td class="border px-2">o</td><td class="border px-2 font-medium">neki</td><td class="border px-2">Mondj neki valamit! (Tell him/her something!)</td></tr>
+            <tr><td class="border px-2">you (formal)</td><td class="border px-2">On</td><td class="border px-2 font-medium">Onnek</td><td class="border px-2">Mit adhatok Onnek? (What can I give you?)</td></tr>
+            <tr><td class="border px-2">we</td><td class="border px-2">mi</td><td class="border px-2 font-medium">nekunk</td><td class="border px-2">Adjatok nekunk idot! (Give us time!)</td></tr>
+            <tr><td class="border px-2">you (pl.)</td><td class="border px-2">ti</td><td class="border px-2 font-medium">nektek</td><td class="border px-2">Mutatok nektek valamit. (I show you something.)</td></tr>
+            <tr><td class="border px-2">they</td><td class="border px-2">ok</td><td class="border px-2 font-medium">nekik</td><td class="border px-2">Segítek nekik. (I help them.)</td></tr>
+        </table>
+
+        <div class="grammar-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">Word Order</h4>
+            <p class="text-slate-700 text-sm">The dative pronoun/noun usually comes <strong>before</strong> the direct object: Adok <strong>neked</strong> <u>egy konyvet</u>. (I give <strong>you</strong> <u>a book</u>.)</p>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // ==================== SECTION 4: OTHER USES OF DATIVE ====================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Other Uses of the Dative</h2>
+        <p class="mb-4 text-slate-600">Besides indirect objects, the dative case has several other important uses:</p>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">1. Expressing Possession (have)</h3>
+        <p class="mb-2 text-slate-600">Hungarian doesn't have a verb "to have" - instead, it uses dative + van:</p>
+        <ul class="list-disc pl-6 mb-4 text-slate-600">
+            <li><strong>Nekem van egy kutyam.</strong> (I have a dog. - lit. "To me there is a dog of mine.")</li>
+            <li><strong>Peternek nincs autoja.</strong> (Peter doesn't have a car.)</li>
+            <li><strong>Nekik van nagy hazuk.</strong> (They have a big house.)</li>
+        </ul>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">2. Expressing Feelings/Experiences</h3>
+        <ul class="list-disc pl-6 mb-4 text-slate-600">
+            <li><strong>Jol van nekem.</strong> (I'm doing well. - lit. "It's good to me.")</li>
+            <li><strong>Hideg van nekem.</strong> (I'm cold.)</li>
+            <li><strong>Tetszik nekem ez a film.</strong> (I like this film.)</li>
+        </ul>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">3. Purpose/Beneficiary (for)</h3>
+        <ul class="list-disc pl-6 mb-4 text-slate-600">
+            <li><strong>Ez a taska neked van.</strong> (This bag is for you.)</li>
+            <li><strong>Fontos ez a munka az orszagnak.</strong> (This work is important for the country.)</li>
+        </ul>
+    `;
+    mainContent.appendChild(section4);
+
+    // ==================== STAGE 1: DATIVE FORMATION (12 items) ====================
+    const stage1Data = [
+        { noun: 'barat', answer: 'baratnak', english: 'friend' },
+        { noun: 'anya', answer: 'anyanak', english: 'mother' },
+        { noun: 'gyerek', answer: 'gyereknek', english: 'child' },
+        { noun: 'tanar', answer: 'tanarnak', english: 'teacher' },
+        { noun: 'orvos', answer: 'orvosnak', english: 'doctor' },
+        { noun: 'ember', answer: 'embernek', english: 'person' },
+        { noun: 'nover', answer: 'novernek', english: 'sister' },
+        { noun: 'diak', answer: 'diaknak', english: 'student' },
+        { noun: 'szomszed', answer: 'szomszenak', english: 'neighbor' },
+        { noun: 'kolléga', answer: 'kolleganak', english: 'colleague' },
+        { noun: 'ferj', answer: 'ferjnek', english: 'husband' },
+        { noun: 'feleseg', answer: 'felesegnek', english: 'wife' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Form the Dative</h2>
+        <p class="mb-4 text-slate-600">Add the correct dative suffix (-nak/-nek) to each noun. Press Enter to check.</p>
+        <div id="stage1-exercise" class="space-y-4"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage1Data.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Exercise = document.getElementById('stage1-exercise');
+    const stage1Score = document.getElementById('stage1-score');
+    let stage1Results = new Array(stage1Data.length).fill(null);
+
+    stage1Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. ${item.noun} (${item.english})</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-48 focus:ring-2 focus:ring-teal-500 focus:border-teal-500" placeholder="Type dative form..." aria-label="Dative of: ${item.noun}">
+                <span class="text-sm font-semibold stage1-feedback"></span>
+            </div>
+        `;
+        stage1Exercise.appendChild(wrapper);
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage1(idx, input, wrapper); });
+    });
+
+    function checkStage1(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage1-feedback');
+        const item = stage1Data[idx];
+        const result = checkWithAccentWarning(input.value, item.answer);
+        if (result === 'correct') {
+            feedback.textContent = `Correct! "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage1-feedback';
+            stage1Results[idx] = true;
+        } else if (result === 'accent-warning') {
+            feedback.textContent = `Almost! Watch accents: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage1-feedback';
+            stage1Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage1Results[idx] = null;
+        } else {
+            feedback.textContent = `Try again. Expected: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage1-feedback';
+            stage1Results[idx] = false;
+        }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        const correct = stage1Results.filter(r => r === true).length;
+        stage1Score.textContent = `Score: ${correct} / ${stage1Data.length}`;
+    }
+
+    // ==================== STAGE 2: PRONOUN DATIVES (8 items) ====================
+    const stage2Data = [
+        { prompt: 'I (to me)', answer: 'nekem' },
+        { prompt: 'you - singular (to you)', answer: 'neked' },
+        { prompt: 'he/she (to him/her)', answer: 'neki' },
+        { prompt: 'we (to us)', answer: 'nekunk' },
+        { prompt: 'you - plural (to you all)', answer: 'nektek' },
+        { prompt: 'they (to them)', answer: 'nekik' },
+        { prompt: 'you - formal (to you)', answer: 'Onnek' },
+        { prompt: 'you - formal plural', answer: 'Onoknek' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Personal Pronoun Datives</h2>
+        <p class="mb-4 text-slate-600">Write the dative form of each personal pronoun. Press Enter to check.</p>
+        <div id="stage2-exercise" class="space-y-4"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage2Data.length}</div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Exercise = document.getElementById('stage2-exercise');
+    const stage2Score = document.getElementById('stage2-score');
+    let stage2Results = new Array(stage2Data.length).fill(null);
+
+    stage2Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. ${item.prompt}</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-48 focus:ring-2 focus:ring-teal-500 focus:border-teal-500" placeholder="Type dative pronoun...">
+                <span class="text-sm font-semibold stage2-feedback"></span>
+            </div>
+        `;
+        stage2Exercise.appendChild(wrapper);
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage2(idx, input, wrapper); });
+    });
+
+    function checkStage2(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage2-feedback');
+        const item = stage2Data[idx];
+        const result = checkWithAccentWarning(input.value, item.answer);
+        if (result === 'correct') {
+            feedback.textContent = `Correct! "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage2-feedback';
+            stage2Results[idx] = true;
+        } else if (result === 'accent-warning') {
+            feedback.textContent = `Almost! Watch accents: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage2-feedback';
+            stage2Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage2Results[idx] = null;
+        } else {
+            feedback.textContent = `Try again. Expected: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage2-feedback';
+            stage2Results[idx] = false;
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        const correct = stage2Results.filter(r => r === true).length;
+        stage2Score.textContent = `Score: ${correct} / ${stage2Data.length}`;
+    }
+
+    // ==================== STAGE 3: SENTENCE COMPLETION (10 items) ====================
+    const stage3Data = [
+        { sentence: 'Adok _____ egy konyvet.', blank: 'neked', translation: 'I give you a book.' },
+        { sentence: 'Mondok valamit _____.', blank: 'Marinak', translation: 'I tell Maria something.' },
+        { sentence: 'Segítek _____.', blank: 'nekik', translation: 'I help them.' },
+        { sentence: 'Irok _____ egy levelet.', blank: 'anyamnak', translation: 'I write my mother a letter.' },
+        { sentence: 'Ez a virag _____ van.', blank: 'neked', translation: 'This flower is for you.' },
+        { sentence: 'Mutatok _____ kepeket.', blank: 'nekunk', translation: 'I show us pictures.' },
+        { sentence: '_____ van egy kutyam.', blank: 'Nekem', translation: 'I have a dog.' },
+        { sentence: 'Tetszik _____ ez a film.', blank: 'neki', translation: 'He/she likes this film.' },
+        { sentence: 'Kuldok _____ egy uzenet.', blank: 'Peternek', translation: 'I send Peter a message.' },
+        { sentence: 'Jo ez _____.', blank: 'nektek', translation: 'This is good for you (plural).' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Complete the Sentence</h2>
+        <p class="mb-4 text-slate-600">Fill in the blank with the correct dative form. Press Enter to check.</p>
+        <div id="stage3-exercise" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage3Data.length}</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Exercise = document.getElementById('stage3-exercise');
+    const stage3Score = document.getElementById('stage3-score');
+    let stage3Results = new Array(stage3Data.length).fill(null);
+
+    stage3Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. ${item.sentence}</p>
+            <p class="text-sm text-slate-500">(${item.translation})</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-48 focus:ring-2 focus:ring-teal-500 focus:border-teal-500" placeholder="Fill in the blank...">
+                <span class="text-sm font-semibold stage3-feedback"></span>
+            </div>
+        `;
+        stage3Exercise.appendChild(wrapper);
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage3(idx, input, wrapper); });
+    });
+
+    function checkStage3(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage3-feedback');
+        const item = stage3Data[idx];
+        const result = checkWithAccentWarning(input.value, item.blank);
+        if (result === 'correct') {
+            feedback.textContent = `Correct!`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage3-feedback';
+            stage3Results[idx] = true;
+        } else if (result === 'accent-warning') {
+            feedback.textContent = `Almost! Watch accents: "${item.blank}"`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage3-feedback';
+            stage3Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage3Results[idx] = null;
+        } else {
+            feedback.textContent = `Try again. Expected: "${item.blank}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage3-feedback';
+            stage3Results[idx] = false;
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        const correct = stage3Results.filter(r => r === true).length;
+        stage3Score.textContent = `Score: ${correct} / ${stage3Data.length}`;
+    }
+
+    // ==================== STAGE 4: TRANSLATION (10 items) ====================
+    const stage4Data = [
+        { english: 'I give her a book.', hungarian: 'Adok neki egy konyvet.' },
+        { english: 'I write to my friend.', hungarian: 'Irok a baratomnak.' },
+        { english: 'I have a car.', hungarian: 'Nekem van egy autom.' },
+        { english: 'He tells the children a story.', hungarian: 'Mesél a gyerekeknek.' },
+        { english: 'This is for you.', hungarian: 'Ez neked van.' },
+        { english: 'I help my mother.', hungarian: 'Segítek anyamnak.' },
+        { english: 'She shows me photos.', hungarian: 'Mutat nekem kepeket.' },
+        { english: 'Peter has a dog.', hungarian: 'Peternek van egy kutyaja.' },
+        { english: 'I send them a message.', hungarian: 'Kuldok nekik egy uzenetet.' },
+        { english: 'This is good for us.', hungarian: 'Ez jo nekunk.' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Translation</h2>
+        <p class="mb-4 text-slate-600">Translate each sentence into Hungarian. Press Enter to check.</p>
+        <div id="stage4-exercise" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage4Data.length}</div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Exercise = document.getElementById('stage4-exercise');
+    const stage4Score = document.getElementById('stage4-score');
+    let stage4Results = new Array(stage4Data.length).fill(null);
+
+    stage4Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. "${item.english}"</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full focus:ring-2 focus:ring-teal-500 focus:border-teal-500" placeholder="Type Hungarian translation...">
+                <span class="text-sm font-semibold stage4-feedback"></span>
+            </div>
+        `;
+        stage4Exercise.appendChild(wrapper);
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage4(idx, input, wrapper); });
+    });
+
+    function checkStage4(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage4-feedback');
+        const item = stage4Data[idx];
+        const result = checkWithAccentWarning(input.value, item.hungarian);
+        if (result === 'correct') {
+            feedback.textContent = `Correct!`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage4-feedback';
+            stage4Results[idx] = true;
+        } else if (result === 'accent-warning') {
+            feedback.textContent = `Almost! Watch accents.`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage4-feedback';
+            stage4Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage4Results[idx] = null;
+        } else {
+            feedback.textContent = `Expected: "${item.hungarian}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage4-feedback';
+            stage4Results[idx] = false;
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        const correct = stage4Results.filter(r => r === true).length;
+        stage4Score.textContent = `Score: ${correct} / ${stage4Data.length}`;
+    }
+
+    // ==================== STAGE 5: POSSESSION WITH DATIVE (8 items) ====================
+    const stage5Data = [
+        { subject: 'I', object: 'house', answer: 'Nekem van egy hazam.' },
+        { subject: 'Peter', object: 'car', answer: 'Peternek van egy autoja.' },
+        { subject: 'We', object: 'dog', answer: 'Nekunk van egy kutyank.' },
+        { subject: 'She', object: 'brother', answer: 'Neki van egy batyja.' },
+        { subject: 'They', object: 'children', answer: 'Nekik vannak gyerekeik.' },
+        { subject: 'You (sg)', object: 'bicycle', answer: 'Neked van egy biciklid.' },
+        { subject: 'Maria', object: 'garden', answer: 'Marianak van egy kertje.' },
+        { subject: 'The teacher', object: 'book', answer: 'A tanarnak van egy konyve.' }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Expressing "Have" with Dative</h2>
+        <p class="mb-4 text-slate-600">Form sentences expressing possession using the dative + van pattern.</p>
+        <div id="stage5-exercise" class="space-y-4"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage5Data.length}</div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Exercise = document.getElementById('stage5-exercise');
+    const stage5Score = document.getElementById('stage5-score');
+    let stage5Results = new Array(stage5Data.length).fill(null);
+
+    stage5Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. "${item.subject} has a ${item.object}."</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full focus:ring-2 focus:ring-teal-500 focus:border-teal-500" placeholder="Type Hungarian...">
+                <span class="text-sm font-semibold stage5-feedback"></span>
+            </div>
+        `;
+        stage5Exercise.appendChild(wrapper);
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage5(idx, input, wrapper); });
+    });
+
+    function checkStage5(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage5-feedback');
+        const item = stage5Data[idx];
+        const result = checkWithAccentWarning(input.value, item.answer);
+        if (result === 'correct') {
+            feedback.textContent = `Correct!`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage5-feedback';
+            stage5Results[idx] = true;
+        } else if (result === 'accent-warning') {
+            feedback.textContent = `Almost! Watch accents.`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage5-feedback';
+            stage5Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage5Results[idx] = null;
+        } else {
+            feedback.textContent = `Expected: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage5-feedback';
+            stage5Results[idx] = false;
+        }
+        updateStage5Score();
+    }
+
+    function updateStage5Score() {
+        const correct = stage5Results.filter(r => r === true).length;
+        stage5Score.textContent = `Score: ${correct} / ${stage5Data.length}`;
+    }
+
+    // ==================== FINAL SUMMARY ====================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 mt-12 bg-gradient-to-r from-teal-50 to-slate-50 p-6 rounded-xl';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Lesson Summary</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Dative Suffixes</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li><strong>-nak</strong> - back vowel words</li>
+                    <li><strong>-nek</strong> - front vowel words</li>
+                    <li>nekem, neked, neki, nekunk, nektek, nekik</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Key Uses</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li>Indirect objects (to/for whom)</li>
+                    <li>Possession: Nekem van... (I have...)</li>
+                    <li>Feelings: Tetszik nekem (I like it)</li>
+                    <li>Beneficiary: Ez neked van (This is for you)</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+    </script>
+</body>
+</html>
