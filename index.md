@@ -50,6 +50,8 @@ This site documents and supports my journey to learn the Hungarian language. Her
 
 [Lesson 32: Ablative & Location Cases](lessons/ablative_cases.html)
 
+[Lesson 33: Comparatives & Superlatives](lessons/comparatives_superlatives.html)
+
 ---
 
 More A2 and B1 lessons coming soon! Stay tuned.
