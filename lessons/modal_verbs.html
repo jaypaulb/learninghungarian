@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 19: Modal Verbs - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .modal-highlight { color: #7c3aed; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 19: Modal Verbs</h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn to express ability, desire, necessity, and permission in Hungarian.</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content"></main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    function normalizeHungarian(str) { return str.trim().toLowerCase(); }
+
+    const mainContent = document.getElementById('main-content');
+
+    // SECTION 1: Tud (Can/Know how to)
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Tud (Can / Know how to)</h2>
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mb-4">
+            <p class="text-slate-700"><strong class="modal-highlight">Tud</strong> expresses ability or knowledge of how to do something.</p>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead><tr><th>Person</th><th>Indefinite</th><th>Definite</th></tr></thead>
+                <tbody>
+                    <tr><td>en</td><td class="modal-highlight">tudok</td><td class="modal-highlight">tudom</td></tr>
+                    <tr><td>te</td><td class="modal-highlight">tudsz</td><td class="modal-highlight">tudod</td></tr>
+                    <tr><td>o</td><td class="modal-highlight">tud</td><td class="modal-highlight">tudja</td></tr>
+                    <tr><td>mi</td><td class="modal-highlight">tudunk</td><td class="modal-highlight">tudjuk</td></tr>
+                    <tr><td>ti</td><td class="modal-highlight">tudtok</td><td class="modal-highlight">tudjatok</td></tr>
+                    <tr><td>ok</td><td class="modal-highlight">tudnak</td><td class="modal-highlight">tudjak</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-4 p-3 bg-purple-50 rounded-lg">
+            <p class="text-sm"><strong>Examples:</strong></p>
+            <ul class="text-sm mt-1 space-y-1">
+                <li>Tudok uszni. (I can swim.)</li>
+                <li>Tudsz magyarul? (Can you speak Hungarian?)</li>
+                <li>Tudom a valaszt. (I know the answer.)</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // SECTION 2: Akar (Want)
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Akar (Want)</h2>
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+            <p class="text-slate-700"><strong class="modal-highlight">Akar</strong> expresses desire or intention.</p>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead><tr><th>Person</th><th>Indefinite</th><th>Definite</th></tr></thead>
+                <tbody>
+                    <tr><td>en</td><td class="modal-highlight">akarok</td><td class="modal-highlight">akarom</td></tr>
+                    <tr><td>te</td><td class="modal-highlight">akarsz</td><td class="modal-highlight">akarod</td></tr>
+                    <tr><td>o</td><td class="modal-highlight">akar</td><td class="modal-highlight">akarja</td></tr>
+                    <tr><td>mi</td><td class="modal-highlight">akarunk</td><td class="modal-highlight">akarjuk</td></tr>
+                    <tr><td>ti</td><td class="modal-highlight">akartok</td><td class="modal-highlight">akarjatok</td></tr>
+                    <tr><td>ok</td><td class="modal-highlight">akarnak</td><td class="modal-highlight">akarjak</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-4 p-3 bg-blue-50 rounded-lg">
+            <p class="text-sm"><strong>Examples:</strong></p>
+            <ul class="text-sm mt-1 space-y-1">
+                <li>Akarok menni. (I want to go.)</li>
+                <li>Akarsz enni? (Do you want to eat?)</li>
+                <li>Akarom latni. (I want to see it.)</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // SECTION 3: Kell (Must/Need)
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Kell (Must / Need)</h2>
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
+            <p class="text-slate-700"><strong class="modal-highlight">Kell</strong> expresses necessity or obligation. It's impersonal!</p>
+        </div>
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-4">
+            <p class="text-sm"><strong>Special Pattern:</strong> Kell + infinitive + dative suffix</p>
+            <p class="text-sm mt-1">"Nekem kell mennem" = I must go (lit. "To-me it-is-necessary to-go-I")</p>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead><tr><th>Person</th><th>Pattern</th><th>Example</th></tr></thead>
+                <tbody>
+                    <tr><td>en</td><td>(Nekem) kell + infinitive-m</td><td>Mennem kell. (I must go.)</td></tr>
+                    <tr><td>te</td><td>(Neked) kell + infinitive-d</td><td>Menned kell. (You must go.)</td></tr>
+                    <tr><td>o</td><td>(Neki) kell + infinitive-e/-a</td><td>Mennie kell. (He must go.)</td></tr>
+                    <tr><td>mi</td><td>(Nekunk) kell + infinitive-unk</td><td>Mennunk kell. (We must go.)</td></tr>
+                    <tr><td>ti</td><td>(Nektek) kell + infinitive-tek</td><td>Mennetek kell. (You must go.)</td></tr>
+                    <tr><td>ok</td><td>(Nekik) kell + infinitive-uk</td><td>Menniuk kell. (They must go.)</td></tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // SECTION 4: Szabad (May/Allowed)
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Szabad (May / Allowed)</h2>
+        <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+            <p class="text-slate-700"><strong class="modal-highlight">Szabad</strong> expresses permission. Also impersonal like kell!</p>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead><tr><th>Hungarian</th><th>English</th></tr></thead>
+                <tbody>
+                    <tr><td class="modal-highlight">Szabad bemenni?</td><td>May I come in?</td></tr>
+                    <tr><td class="modal-highlight">Nem szabad dohanyozni.</td><td>Smoking is not allowed.</td></tr>
+                    <tr><td class="modal-highlight">Szabad itt parkolni?</td><td>Is parking allowed here?</td></tr>
+                    <tr><td class="modal-highlight">Szabad kerdenem?</td><td>May I ask?</td></tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // STAGE 1: Tud Practice
+    const stage1Questions = [
+        { sentence: 'En (tud) uszni.', answer: 'tudok', translation: 'I can swim.' },
+        { sentence: 'Te (tud) vezetni?', answer: 'tudsz', translation: 'Can you drive?' },
+        { sentence: 'O (tud) a valaszt.', answer: 'tudja', translation: 'He knows the answer.' },
+        { sentence: 'Mi (tud) segiteni.', answer: 'tudunk', translation: 'We can help.' },
+        { sentence: 'Ti (tud) magyarul?', answer: 'tudtok', translation: 'Can you speak Hungarian?' },
+        { sentence: 'Ok (tud) fozni.', answer: 'tudnak', translation: 'They can cook.' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = '<h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 1: Tud (Can)</h2><p class="mb-4 text-slate-600">Conjugate "tud" correctly.</p><div id="stage1-exercises" class="space-y-3"></div><div id="stage1-score" class="mt-4 text-slate-700 font-medium"></div>';
+    mainContent.appendChild(stage1Section);
+
+    const stage1Container = document.getElementById('stage1-exercises');
+    stage1Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-purple-50 rounded-lg';
+        wrapper.innerHTML = '<span class="min-w-[250px]">' + q.sentence + '</span><input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-32 focus:ring-2 focus:ring-purple-500" placeholder="tud..."><span class="text-sm font-semibold"></span>';
+        wrapper.querySelector('input').addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage1(idx); });
+        stage1Container.appendChild(wrapper);
+    });
+
+    function checkStage1(idx) {
+        const input = stage1Container.children[idx].querySelector('input');
+        const feedback = stage1Container.children[idx].querySelector('span:last-child');
+        const user = normalizeHungarian(input.value);
+        const correct = stage1Questions[idx].answer;
+        if (user === correct) { feedback.textContent = 'Correct! (' + stage1Questions[idx].translation + ')'; feedback.className = 'text-sm text-green-600 font-semibold'; }
+        else if (user === '') { feedback.textContent = ''; }
+        else { feedback.textContent = 'Answer: ' + correct; feedback.className = 'text-sm text-red-600 font-semibold'; }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let correct = 0;
+        for (let i = 0; i < stage1Questions.length; i++) {
+            if (normalizeHungarian(stage1Container.children[i].querySelector('input').value) === stage1Questions[i].answer) correct++;
+        }
+        document.getElementById('stage1-score').textContent = 'Score: ' + correct + ' / ' + stage1Questions.length;
+    }
+
+    // STAGE 2: Akar Practice
+    const stage2Questions = [
+        { sentence: 'En (akar) enni.', answer: 'akarok', translation: 'I want to eat.' },
+        { sentence: 'Te (akar) jonni?', answer: 'akarsz', translation: 'Do you want to come?' },
+        { sentence: 'O (akar) latni a filmet.', answer: 'akarja', translation: 'She wants to see the movie.' },
+        { sentence: 'Mi (akar) maradni.', answer: 'akarunk', translation: 'We want to stay.' },
+        { sentence: 'Ti (akar) tanulni?', answer: 'akartok', translation: 'Do you want to study?' },
+        { sentence: 'Ok (akar) menni.', answer: 'akarnak', translation: 'They want to go.' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = '<h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 2: Akar (Want)</h2><p class="mb-4 text-slate-600">Conjugate "akar" correctly.</p><div id="stage2-exercises" class="space-y-3"></div><div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>';
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-blue-50 rounded-lg';
+        wrapper.innerHTML = '<span class="min-w-[250px]">' + q.sentence + '</span><input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-32 focus:ring-2 focus:ring-blue-500" placeholder="akar..."><span class="text-sm font-semibold"></span>';
+        wrapper.querySelector('input').addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage2(idx); });
+        stage2Container.appendChild(wrapper);
+    });
+
+    function checkStage2(idx) {
+        const input = stage2Container.children[idx].querySelector('input');
+        const feedback = stage2Container.children[idx].querySelector('span:last-child');
+        const user = normalizeHungarian(input.value);
+        const correct = stage2Questions[idx].answer;
+        if (user === correct) { feedback.textContent = 'Correct! (' + stage2Questions[idx].translation + ')'; feedback.className = 'text-sm text-green-600 font-semibold'; }
+        else if (user === '') { feedback.textContent = ''; }
+        else { feedback.textContent = 'Answer: ' + correct; feedback.className = 'text-sm text-red-600 font-semibold'; }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        for (let i = 0; i < stage2Questions.length; i++) {
+            if (normalizeHungarian(stage2Container.children[i].querySelector('input').value) === stage2Questions[i].answer) correct++;
+        }
+        document.getElementById('stage2-score').textContent = 'Score: ' + correct + ' / ' + stage2Questions.length;
+    }
+
+    // STAGE 3: Kell Practice
+    const stage3Questions = [
+        { english: 'I must go.', hungarian: 'Mennem kell.', hint: 'mennem + kell' },
+        { english: 'You must eat.', hungarian: 'Enned kell.', hint: 'enned + kell' },
+        { english: 'He must work.', hungarian: 'Dolgoznia kell.', hint: 'dolgoznia + kell' },
+        { english: 'We must sleep.', hungarian: 'Aludnunk kell.', hint: 'aludnunk + kell' },
+        { english: 'You (pl.) must wait.', hungarian: 'Varnotok kell.', hint: 'varnotok + kell' },
+        { english: 'They must come.', hungarian: 'Jonniuk kell.', hint: 'jonniuk + kell' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = '<h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 3: Kell (Must)</h2><p class="mb-4 text-slate-600">Translate using kell + personalized infinitive.</p><div id="stage3-exercises" class="space-y-4"></div><div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>';
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-red-50 rounded-lg';
+        wrapper.innerHTML = '<p class="font-semibold text-slate-800 mb-1">' + q.english + '</p><p class="text-xs text-slate-500 mb-2 italic">Hint: ' + q.hint + '</p><div class="flex flex-col md:flex-row items-start md:items-center gap-2"><input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-red-500" placeholder="Type Hungarian..."><span class="text-sm font-semibold"></span></div>';
+        wrapper.querySelector('input').addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage3(idx); });
+        stage3Container.appendChild(wrapper);
+    });
+
+    function checkStage3(idx) {
+        const input = stage3Container.children[idx].querySelector('input');
+        const feedback = stage3Container.children[idx].querySelector('span');
+        const user = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(stage3Questions[idx].hungarian);
+        if (user === correct) { feedback.textContent = 'Correct!'; feedback.className = 'text-sm text-green-600 font-semibold'; }
+        else if (user === '') { feedback.textContent = ''; }
+        else { feedback.textContent = 'Answer: ' + stage3Questions[idx].hungarian; feedback.className = 'text-sm text-red-600 font-semibold'; }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let correct = 0;
+        for (let i = 0; i < stage3Questions.length; i++) {
+            if (normalizeHungarian(stage3Container.children[i].querySelector('input').value) === normalizeHungarian(stage3Questions[i].hungarian)) correct++;
+        }
+        document.getElementById('stage3-score').textContent = 'Score: ' + correct + ' / ' + stage3Questions.length;
+    }
+
+    // STAGE 4: Mixed Modal Practice
+    const stage4Questions = [
+        { english: 'Can you help?', hungarian: 'Tudsz segiteni?', hint: 'tud + segiteni' },
+        { english: 'I want to sleep.', hungarian: 'Akarok aludni.', hint: 'akar + aludni' },
+        { english: 'May I sit here?', hungarian: 'Szabad itt ulni?', hint: 'szabad + itt + ulni' },
+        { english: 'She must work.', hungarian: 'Dolgoznia kell.', hint: 'dolgozni + -a + kell' },
+        { english: 'We want to stay.', hungarian: 'Akarunk maradni.', hint: 'akar + maradni' },
+        { english: 'Smoking is not allowed.', hungarian: 'Nem szabad dohanyozni.', hint: 'nem + szabad + dohanyozni' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = '<h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 4: Mixed Modal Practice</h2><p class="mb-4 text-slate-600">Translate using the appropriate modal verb.</p><div id="stage4-exercises" class="space-y-4"></div><div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>';
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-green-50 rounded-lg';
+        wrapper.innerHTML = '<p class="font-semibold text-slate-800 mb-1">' + q.english + '</p><p class="text-xs text-slate-500 mb-2 italic">Hint: ' + q.hint + '</p><div class="flex flex-col md:flex-row items-start md:items-center gap-2"><input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-green-500" placeholder="Type Hungarian..."><span class="text-sm font-semibold"></span></div>';
+        wrapper.querySelector('input').addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage4(idx); });
+        stage4Container.appendChild(wrapper);
+    });
+
+    function checkStage4(idx) {
+        const input = stage4Container.children[idx].querySelector('input');
+        const feedback = stage4Container.children[idx].querySelector('span');
+        const user = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(stage4Questions[idx].hungarian);
+        if (user === correct) { feedback.textContent = 'Correct!'; feedback.className = 'text-sm text-green-600 font-semibold'; }
+        else if (user === '') { feedback.textContent = ''; }
+        else { feedback.textContent = 'Answer: ' + stage4Questions[idx].hungarian; feedback.className = 'text-sm text-red-600 font-semibold'; }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        for (let i = 0; i < stage4Questions.length; i++) {
+            if (normalizeHungarian(stage4Container.children[i].querySelector('input').value) === normalizeHungarian(stage4Questions[i].hungarian)) correct++;
+        }
+        document.getElementById('stage4-score').textContent = 'Score: ' + correct + ' / ' + stage4Questions.length;
+    }
+
+    // SUMMARY
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 p-6 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-purple-200';
+    summarySection.innerHTML = '<h2 class="text-2xl font-bold text-slate-700 mb-4">Summary: Modal Verbs</h2><div class="grid md:grid-cols-2 gap-4"><div><h3 class="font-semibold text-purple-800 mb-2">Modal Verbs:</h3><ul class="list-disc pl-6 space-y-1 text-sm text-slate-700"><li><strong>Tud</strong> - can/know how to</li><li><strong>Akar</strong> - want</li><li><strong>Kell</strong> - must/need (impersonal)</li><li><strong>Szabad</strong> - may/allowed (impersonal)</li></ul></div><div><h3 class="font-semibold text-purple-800 mb-2">Pattern:</h3><p class="text-sm text-slate-700">Modal + infinitive</p><p class="text-sm text-slate-700 mt-2"><strong>Kell special:</strong> personalized infinitive + kell</p><p class="text-sm text-slate-600 italic mt-1">Mennem kell = I must go</p></div></div><p class="mt-4 text-sm text-slate-600">Continue to Lesson 20 for past tense!</p>';
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>
