@@ -50,6 +50,8 @@ This site documents and supports my journey to learn the Hungarian language. Her
 
 [Lesson 25: Health & Body Parts](lessons/health.html)
 
+[Lesson 26: A2 Review & Extended Dialogue](lessons/a2_review.html)
+
 ---
 
 More A2 and B1 lessons coming soon! Stay tuned.
