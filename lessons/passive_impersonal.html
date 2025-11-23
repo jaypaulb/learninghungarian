@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 43: Passive & Impersonal Constructions - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .passive-highlight { color: #dc2626; font-weight: 700; }
+        .active-highlight { color: #059669; font-weight: 700; }
+        .cultural-note { background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-left: 4px solid #dc2626; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 43: Passive & Impersonal Constructions <span class="block text-xl text-slate-500 font-normal">(Szenvedő szerkezetek)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn Hungarian passive voice alternatives and impersonal constructions for formal and academic contexts.</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content"></main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    function removeAccents(str) { return str.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+    function normalizeHungarian(str) { return str.trim().toLowerCase(); }
+    const mainContent = document.getElementById('main-content');
+
+    // SECTION 1: Passive Verb Formation
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Passive Verb Formation</h2>
+        <p class="mb-4 text-slate-600">Hungarian rarely uses true passive voice. Instead, it uses reflexive-like suffixes to express passive meaning.</p>
+
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-4">
+            <p class="text-slate-700"><strong>Key insight:</strong> Hungarian prefers active constructions! True passive is mainly used in formal/written contexts.</p>
+        </div>
+
+        <h3 class="text-xl font-semibold text-slate-700 mb-3">Passive Suffixes: -ódik/-ődik (Back/Front vowel)</h3>
+        <table class="mb-4 text-sm">
+            <tr><th>Active Verb</th><th>Passive Form</th><th>Meaning</th></tr>
+            <tr><td>ir (write)</td><td class="passive-highlight">irodik</td><td>is being written</td></tr>
+            <tr><td>mond (say)</td><td class="passive-highlight">mondodik</td><td>is being said</td></tr>
+            <tr><td>gyart (manufacture)</td><td class="passive-highlight">gyartodik</td><td>is being manufactured</td></tr>
+            <tr><td>fejleszt (develop)</td><td class="passive-highlight">fejlesztodik</td><td>is being developed</td></tr>
+            <tr><td>old (solve)</td><td class="passive-highlight">oldodik</td><td>is being solved</td></tr>
+            <tr><td>nyit (open)</td><td class="passive-highlight">nyilik</td><td>opens (by itself)</td></tr>
+        </table>
+
+        <h3 class="text-xl font-semibold text-slate-700 mb-3">Result-State Suffixes: -ul/-ül</h3>
+        <table class="mb-4 text-sm">
+            <tr><th>Base</th><th>Form with -ul/-ul</th><th>Meaning</th></tr>
+            <tr><td>javit (repair)</td><td class="passive-highlight">javul</td><td>gets repaired/improves</td></tr>
+            <tr><td>romlik (spoil)</td><td class="passive-highlight">romlik</td><td>gets spoiled/worsens</td></tr>
+            <tr><td>tanul (learn)</td><td class="passive-highlight">tanul</td><td>learns/gets learned</td></tr>
+            <tr><td>fordul (turn)</td><td class="passive-highlight">fordul</td><td>turns (itself)</td></tr>
+        </table>
+
+        <div class="cultural-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-red-800 mb-2">Passive vs. Active Preference</h4>
+            <p class="text-slate-700 text-sm">Unlike English, Hungarian strongly prefers active voice. "The book was written by Peter" = "A konyvet Peter irta" (active: Peter wrote the book). Use passive only when the agent is truly unknown or unimportant.</p>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // SECTION 2: Impersonal Constructions
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Impersonal Constructions</h2>
+        <p class="mb-4 text-slate-600">Hungarian often uses 3rd person plural without a subject to express passive-like meanings.</p>
+
+        <h3 class="text-xl font-semibold text-slate-700 mb-3">Third Person Plural (General Subject)</h3>
+        <table class="mb-4 text-sm">
+            <tr><th>Hungarian</th><th>Literal</th><th>English Passive</th></tr>
+            <tr><td class="passive-highlight">Mondják, hogy...</td><td>They say that...</td><td>It is said that...</td></tr>
+            <tr><td class="passive-highlight">Azt hiszik, hogy...</td><td>They believe that...</td><td>It is believed that...</td></tr>
+            <tr><td class="passive-highlight">Itt nem dohányoznak.</td><td>They don't smoke here.</td><td>Smoking is not allowed here.</td></tr>
+            <tr><td class="passive-highlight">A bort hidegen szolgálják fel.</td><td>They serve the wine cold.</td><td>The wine is served cold.</td></tr>
+        </table>
+
+        <h3 class="text-xl font-semibold text-slate-700 mb-3">Impersonal "One" Constructions</h3>
+        <table class="mb-4 text-sm">
+            <tr><th>Hungarian Pattern</th><th>Example</th><th>English</th></tr>
+            <tr><td>lehet + infinitive</td><td>Lehet látni a hegyet.</td><td>One can see / The mountain can be seen.</td></tr>
+            <tr><td>kell + infinitive</td><td>Meg kell csinálni.</td><td>It must be done.</td></tr>
+            <tr><td>tilos + infinitive</td><td>Tilos dohányozni.</td><td>Smoking is forbidden.</td></tr>
+            <tr><td>szabad + infinitive</td><td>Szabad belépni.</td><td>Entry is permitted.</td></tr>
+        </table>
+
+        <h3 class="text-xl font-semibold text-slate-700 mb-3">Formal "Az ember" (One/People)</h3>
+        <table class="text-sm">
+            <tr><th>Hungarian</th><th>English</th></tr>
+            <tr><td>Az ember nem tudja...</td><td>One doesn't know... / You never know...</td></tr>
+            <tr><td>Az ember azt hinné...</td><td>One would think...</td></tr>
+        </table>
+    `;
+    mainContent.appendChild(section2);
+
+    // SECTION 3: Active to Passive Transformation
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Active to Passive Transformation</h2>
+        <p class="mb-4 text-slate-600">Learn how to convert between active and passive-equivalent constructions.</p>
+
+        <h3 class="text-xl font-semibold text-slate-700 mb-3">Transformation Strategies</h3>
+        <table class="mb-4 text-sm">
+            <tr><th>Active (Hungarian)</th><th>Passive Equivalent</th><th>English</th></tr>
+            <tr>
+                <td class="active-highlight">Peter megirta a konyvet.</td>
+                <td class="passive-highlight">A konyv megíródott. / A konyvet megirtak.</td>
+                <td>The book was written.</td>
+            </tr>
+            <tr>
+                <td class="active-highlight">A mérnokök épitik a hidat.</td>
+                <td class="passive-highlight">A hid épül. / A hidat épitik.</td>
+                <td>The bridge is being built.</td>
+            </tr>
+            <tr>
+                <td class="active-highlight">A tanár elmagyarázta a leckét.</td>
+                <td class="passive-highlight">A lecke el lett magyarazva.</td>
+                <td>The lesson was explained.</td>
+            </tr>
+        </table>
+
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+            <h4 class="font-semibold text-blue-800 mb-2">The "lett" Construction (Formal)</h4>
+            <p class="text-slate-700 text-sm">In formal/written Hungarian, you may see: <strong>X lett + past participle</strong> (X was done). Example: "A level meg lett irva" (The letter was written). This is influenced by German and considered less natural in spoken Hungarian.</p>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // SECTION 4: Formal Writing Style
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Formal Writing Style</h2>
+        <p class="mb-4 text-slate-600">Passive and impersonal constructions are common in academic and formal Hungarian.</p>
+
+        <h3 class="text-xl font-semibold text-slate-700 mb-3">Academic Writing Patterns</h3>
+        <table class="mb-4 text-sm">
+            <tr><th>Pattern</th><th>Example</th><th>Context</th></tr>
+            <tr><td>Megállapítható, hogy...</td><td>Megallapithato, hogy az adatok helyesek.</td><td>It can be established that...</td></tr>
+            <tr><td>Kijelenthetjük, hogy...</td><td>Kijelenthetjuk, hogy sikeres volt.</td><td>We can state that... (royal we)</td></tr>
+            <tr><td>Látható, hogy...</td><td>Lathato, hogy nott a szam.</td><td>It can be seen that...</td></tr>
+            <tr><td>Feltételezhető, hogy...</td><td>Feltetelezheto, hogy igaz.</td><td>It can be assumed that...</td></tr>
+        </table>
+
+        <h3 class="text-xl font-semibold text-slate-700 mb-3">News/Media Style</h3>
+        <table class="text-sm">
+            <tr><th>Hungarian</th><th>English</th></tr>
+            <tr><td>Bejelentették, hogy...</td><td>It was announced that...</td></tr>
+            <tr><td>A rendorseg kozolte...</td><td>The police reported... (passive sense)</td></tr>
+            <tr><td>Nem erősitették meg a hirt.</td><td>The news was not confirmed.</td></tr>
+        </table>
+    `;
+    mainContent.appendChild(section4);
+
+    // STAGE 1: Passive Formation (12 items)
+    const stage1Data = [
+        { active: 'ir', passive: 'irodik', meaning: 'is written' },
+        { active: 'gyart', passive: 'gyartodik', meaning: 'is manufactured' },
+        { active: 'epit', passive: 'epul', meaning: 'is built' },
+        { active: 'nyit', passive: 'nyilik', meaning: 'opens (by itself)' },
+        { active: 'zar', passive: 'zarul', meaning: 'closes (by itself)' },
+        { active: 'fejleszt', passive: 'fejlodik', meaning: 'develops' },
+        { active: 'javit', passive: 'javul', meaning: 'improves' },
+        { active: 'ront', passive: 'romlik', meaning: 'worsens' },
+        { active: 'old', passive: 'oldodik', meaning: 'is solved' },
+        { active: 'kezd', passive: 'kezdodik', meaning: 'begins' },
+        { active: 'vegez', passive: 'vegzodik', meaning: 'ends' },
+        { active: 'torol', passive: 'torlodik', meaning: 'is deleted' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Passive Formation (12 items)</h2>
+        <p class="mb-4 text-slate-600">Write the passive form for each active verb.</p>
+        <div id="stage1-exercise" class="space-y-3"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage1Data.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Exercise = document.getElementById('stage1-exercise');
+    const stage1Score = document.getElementById('stage1-score');
+    let stage1Results = new Array(stage1Data.length).fill(null);
+
+    stage1Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-3 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="text-sm"><strong>${item.active}</strong> (${item.meaning})</p>
+            <div class="flex items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-40" placeholder="Passive form...">
+                <span class="text-sm font-semibold stage1-feedback"></span>
+            </div>
+        `;
+        stage1Exercise.appendChild(wrapper);
+        wrapper.querySelector('input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const feedback = wrapper.querySelector('.stage1-feedback');
+                const userAnswer = normalizeHungarian(e.target.value);
+                if (userAnswer === item.passive || removeAccents(userAnswer) === removeAccents(item.passive)) {
+                    feedback.textContent = `Correct! ${item.passive}`;
+                    feedback.className = 'text-sm font-semibold text-green-600 stage1-feedback';
+                    stage1Results[idx] = true;
+                } else {
+                    feedback.textContent = `Expected: ${item.passive}`;
+                    feedback.className = 'text-sm font-semibold text-red-600 stage1-feedback';
+                    stage1Results[idx] = false;
+                }
+                stage1Score.textContent = `Score: ${stage1Results.filter(r => r === true).length} / ${stage1Data.length}`;
+            }
+        });
+    });
+
+    // STAGE 2: Active-Passive Transformation (12 items)
+    const stage2Data = [
+        { active: 'Peter megirta a levelet.', passive: 'A level megirodott', note: 'The letter was written.' },
+        { active: 'A mernokok epitik a hidat.', passive: 'A hid epul', note: 'The bridge is being built.' },
+        { active: 'A tanár elmagyarázta a leckét.', passive: 'A lecke elmagyarazodott', note: 'The lesson was explained.' },
+        { active: 'A gyar gyartja az autokat.', passive: 'Az autok gyartodnak', note: 'The cars are manufactured.' },
+        { active: 'A kutatok felfedeztek egy uj elemet.', passive: 'Egy uj elem fedezodott fel', note: 'A new element was discovered.' },
+        { active: 'A kormany bevezette a torvényt.', passive: 'A torveny bevezetodott', note: 'The law was introduced.' },
+        { active: 'Az uzlet ma nyit.', passive: 'Az uzlet ma nyilik', note: 'The shop opens today.' },
+        { active: 'A munka ma kezdodik.', passive: 'A munka ma kezdodik', note: 'The work begins today.' },
+        { active: 'A problem megoldodik.', passive: 'A problem megoldodik', note: 'The problem is being solved.' },
+        { active: 'Az ajto zarul.', passive: 'Az ajto zarul', note: 'The door closes.' },
+        { active: 'A helyzet javul.', passive: 'A helyzet javul', note: 'The situation improves.' },
+        { active: 'Az adatok torlodnek.', passive: 'Az adatok torlodnek', note: 'The data is being deleted.' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Active to Passive (12 items)</h2>
+        <p class="mb-4 text-slate-600">Transform each active sentence to passive equivalent.</p>
+        <div id="stage2-exercise" class="space-y-3"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage2Data.length}</div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Exercise = document.getElementById('stage2-exercise');
+    const stage2Score = document.getElementById('stage2-score');
+    let stage2Results = new Array(stage2Data.length).fill(null);
+
+    stage2Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-3 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="text-sm"><strong>${item.active}</strong></p>
+            <p class="text-xs text-slate-500">${item.note}</p>
+            <div class="flex items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-72" placeholder="Passive form...">
+                <span class="text-sm font-semibold stage2-feedback"></span>
+            </div>
+        `;
+        stage2Exercise.appendChild(wrapper);
+        wrapper.querySelector('input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const feedback = wrapper.querySelector('.stage2-feedback');
+                const userAnswer = normalizeHungarian(e.target.value).replace(/[.,!?]/g, '');
+                const correct = normalizeHungarian(item.passive);
+                if (userAnswer === correct || removeAccents(userAnswer) === removeAccents(correct)) {
+                    feedback.textContent = `Correct!`;
+                    feedback.className = 'text-sm font-semibold text-green-600 stage2-feedback';
+                    stage2Results[idx] = true;
+                } else {
+                    feedback.textContent = `Expected: ${item.passive}`;
+                    feedback.className = 'text-sm font-semibold text-red-600 stage2-feedback';
+                    stage2Results[idx] = false;
+                }
+                stage2Score.textContent = `Score: ${stage2Results.filter(r => r === true).length} / ${stage2Data.length}`;
+            }
+        });
+    });
+
+    // STAGE 3: Impersonal Constructions (10 items)
+    const stage3Data = [
+        { english: 'It is said that he is rich.', hungarian: 'Mondjak, hogy gazdag' },
+        { english: 'Smoking is forbidden here.', hungarian: 'Tilos itt dohanyozni' },
+        { english: 'It can be seen that...', hungarian: 'Lathato, hogy' },
+        { english: 'One would think...', hungarian: 'Az ember azt hinne' },
+        { english: 'Entry is permitted.', hungarian: 'Szabad belepni' },
+        { english: 'It must be done.', hungarian: 'Meg kell csinalni' },
+        { english: 'It is believed that...', hungarian: 'Azt hiszik, hogy' },
+        { english: 'It was announced that...', hungarian: 'Bejelentettek, hogy' },
+        { english: 'The news was not confirmed.', hungarian: 'A hirt nem erositettek meg' },
+        { english: 'It can be established that...', hungarian: 'Megallapithato, hogy' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Impersonal Constructions (10 items)</h2>
+        <p class="mb-4 text-slate-600">Translate using impersonal constructions.</p>
+        <div id="stage3-exercise" class="space-y-3"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage3Data.length}</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Exercise = document.getElementById('stage3-exercise');
+    const stage3Score = document.getElementById('stage3-score');
+    let stage3Results = new Array(stage3Data.length).fill(null);
+
+    stage3Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-3 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="text-sm font-medium">"${item.english}"</p>
+            <div class="flex items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-72" placeholder="Hungarian...">
+                <span class="text-sm font-semibold stage3-feedback"></span>
+            </div>
+        `;
+        stage3Exercise.appendChild(wrapper);
+        wrapper.querySelector('input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const feedback = wrapper.querySelector('.stage3-feedback');
+                const userAnswer = normalizeHungarian(e.target.value).replace(/[.,!?]/g, '');
+                const correct = normalizeHungarian(item.hungarian);
+                if (userAnswer === correct || removeAccents(userAnswer) === removeAccents(correct) || userAnswer.includes(removeAccents(correct).split(' ')[0])) {
+                    feedback.textContent = `Correct!`;
+                    feedback.className = 'text-sm font-semibold text-green-600 stage3-feedback';
+                    stage3Results[idx] = true;
+                } else {
+                    feedback.textContent = `Expected: ${item.hungarian}`;
+                    feedback.className = 'text-sm font-semibold text-red-600 stage3-feedback';
+                    stage3Results[idx] = false;
+                }
+                stage3Score.textContent = `Score: ${stage3Results.filter(r => r === true).length} / ${stage3Data.length}`;
+            }
+        });
+    });
+
+    // STAGE 4: Formal Style (8 items)
+    const stage4Data = [
+        { informal: 'Tudjuk, hogy igaz.', formal: 'Megallapithato, hogy igaz.', note: 'Convert to formal academic style' },
+        { informal: 'Latjuk, hogy nott.', formal: 'Lathato, hogy nott.', note: 'Use impersonal construction' },
+        { informal: 'Azt gondolom, hogy...', formal: 'Feltetelezheto, hogy...', note: 'Academic hedging' },
+        { informal: 'Megcsinaltak.', formal: 'El lett vegezve.', note: 'Formal passive' },
+        { informal: 'Az emberek mondják...', formal: 'Mondjak, hogy...', note: 'Impersonal 3rd plural' },
+        { informal: 'En ugy latom...', formal: 'Megfigyelheto, hogy...', note: 'Scientific style' },
+        { informal: 'Meg kell nezni.', formal: 'Vizsgalatra szorul.', note: 'Formal expression' },
+        { informal: 'Tudni akarom.', formal: 'Tisztazni szukseges.', note: 'Formal alternative' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Formal Style (8 items)</h2>
+        <p class="mb-4 text-slate-600">Rewrite in formal/academic style.</p>
+        <div id="stage4-exercise" class="space-y-3"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage4Data.length}</div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Exercise = document.getElementById('stage4-exercise');
+    const stage4Score = document.getElementById('stage4-score');
+    let stage4Results = new Array(stage4Data.length).fill(null);
+
+    stage4Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-3 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="text-sm"><strong>Informal:</strong> ${item.informal}</p>
+            <p class="text-xs text-slate-500">${item.note}</p>
+            <div class="flex items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-72" placeholder="Formal version...">
+                <span class="text-sm font-semibold stage4-feedback"></span>
+            </div>
+        `;
+        stage4Exercise.appendChild(wrapper);
+        wrapper.querySelector('input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const feedback = wrapper.querySelector('.stage4-feedback');
+                const userAnswer = normalizeHungarian(e.target.value).replace(/[.,!?]/g, '');
+                const correct = normalizeHungarian(item.formal);
+                if (userAnswer === correct || removeAccents(userAnswer) === removeAccents(correct)) {
+                    feedback.textContent = `Correct!`;
+                    feedback.className = 'text-sm font-semibold text-green-600 stage4-feedback';
+                    stage4Results[idx] = true;
+                } else {
+                    feedback.textContent = `Expected: ${item.formal}`;
+                    feedback.className = 'text-sm font-semibold text-red-600 stage4-feedback';
+                    stage4Results[idx] = false;
+                }
+                stage4Score.textContent = `Score: ${stage4Results.filter(r => r === true).length} / ${stage4Data.length}`;
+            }
+        });
+    });
+
+    // STAGE 5: Translation (8 items)
+    const stage5Data = [
+        { en: 'The book was written in 1990.', hu: 'A konyv 1990-ben irodott' },
+        { en: 'The door opens at 9.', hu: 'Az ajto 9-kor nyilik' },
+        { en: 'It is forbidden to park here.', hu: 'Tilos itt parkolni' },
+        { en: 'The news was confirmed.', hu: 'A hirt megerositettek' },
+        { en: 'One can see the mountains.', hu: 'Latni lehet a hegyeket' },
+        { en: 'The situation is improving.', hu: 'A helyzet javul' },
+        { en: 'It was decided that...', hu: 'Eldonottek, hogy' },
+        { en: 'The problem was solved.', hu: 'A problema megoldodott' }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Translation Practice (8 items)</h2>
+        <p class="mb-4 text-slate-600">Translate using appropriate passive/impersonal forms.</p>
+        <div id="stage5-exercise" class="space-y-3"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage5Data.length}</div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Exercise = document.getElementById('stage5-exercise');
+    const stage5Score = document.getElementById('stage5-score');
+    let stage5Results = new Array(stage5Data.length).fill(null);
+
+    stage5Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-3 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="text-sm font-medium">"${item.en}"</p>
+            <div class="flex items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-72" placeholder="Hungarian...">
+                <span class="text-sm font-semibold stage5-feedback"></span>
+            </div>
+        `;
+        stage5Exercise.appendChild(wrapper);
+        wrapper.querySelector('input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const feedback = wrapper.querySelector('.stage5-feedback');
+                const userAnswer = normalizeHungarian(e.target.value).replace(/[.,!?]/g, '');
+                const correct = normalizeHungarian(item.hu);
+                if (userAnswer === correct || removeAccents(userAnswer) === removeAccents(correct)) {
+                    feedback.textContent = `Correct!`;
+                    feedback.className = 'text-sm font-semibold text-green-600 stage5-feedback';
+                    stage5Results[idx] = true;
+                } else {
+                    feedback.textContent = `Expected: ${item.hu}`;
+                    feedback.className = 'text-sm font-semibold text-red-600 stage5-feedback';
+                    stage5Results[idx] = false;
+                }
+                stage5Score.textContent = `Score: ${stage5Results.filter(r => r === true).length} / ${stage5Data.length}`;
+            }
+        });
+    });
+
+    // SUMMARY
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mt-12 bg-gradient-to-r from-red-50 to-slate-100 p-6 rounded-xl';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Lesson Summary</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <h3 class="font-semibold text-red-800 mb-2">Passive Patterns:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li><strong>-ódik/-ődik</strong>: process passive</li>
+                    <li><strong>-ul/-ül</strong>: result state</li>
+                    <li><strong>-ik</strong>: middle voice verbs</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-red-800 mb-2">Impersonal Patterns:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li>3rd person plural (mondják...)</li>
+                    <li>lehet/kell/tilos + infinitive</li>
+                    <li>-ható/-hető (can be done)</li>
+                </ul>
+            </div>
+        </div>
+        <p class="mt-4 text-sm text-slate-600"><strong>Total exercises:</strong> 50 (12 + 12 + 10 + 8 + 8)</p>
+    `;
+    mainContent.appendChild(summarySection);
+    </script>
+</body>
+</html>
