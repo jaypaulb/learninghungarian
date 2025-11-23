@@ -40,6 +40,10 @@ This site documents and supports my journey to learn the Hungarian language. Her
 
 [Lesson 12: A1 Review & Self-Introduction](lessons/a1_review.html)
 
+### B1 Level: Threshold (Weeks 27-40)
+
+[Lesson 29: Imperative Mood (Commands/Requests)](lessons/imperative_mood.html)
+
 ---
 
 More A2 and B1 lessons coming soon! Stay tuned.
