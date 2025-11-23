@@ -40,6 +40,16 @@ This site documents and supports my journey to learn the Hungarian language. Her
 
 [Lesson 12: A1 Review & Self-Introduction](lessons/a1_review.html)
 
+### A2 Level: Waystage (Weeks 13-26)
+
+[Lesson 13: Present Tense Definite Conjugation](lessons/definite_conjugation.html)
+
+[Lesson 14: Negation (nem, nincs, sincs)](lessons/negation.html)
+
+[Lesson 15: Location & Direction Cases](lessons/location_cases.html)
+
+[Lesson 25: Health & Body Parts](lessons/health.html)
+
 ---
 
 More A2 and B1 lessons coming soon! Stay tuned.
