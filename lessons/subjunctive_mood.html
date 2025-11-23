@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 42: Subjunctive Mood - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .subj-highlight { color: #7c3aed; font-weight: 700; }
+        .cultural-note { background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border-left: 4px solid #7c3aed; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 42: Subjunctive Mood <span class="block text-xl text-slate-500 font-normal">(Felszolito mod)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Master the Hungarian subjunctive mood to express wishes, purposes, and hypothetical situations. Essential for advanced fluency!</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content"></main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    function removeAccents(str) { return str.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+    function normalizeHungarian(str) { return str.trim().toLowerCase(); }
+    const mainContent = document.getElementById('main-content');
+
+    // SECTION 1: Subjunctive Formation
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Subjunctive Formation</h2>
+        <p class="mb-4 text-slate-600">The Hungarian subjunctive (felszolito mod) is used for wishes, commands, and purpose clauses. It's formed by adding <strong>-j-</strong> to the verb stem.</p>
+
+        <h3 class="text-xl font-semibold text-slate-700 mb-3">Indefinite Conjugation (Subjunctive)</h3>
+        <table class="mb-4 text-sm">
+            <tr><th>Person</th><th>Ending</th><th>varni (to wait)</th><th>kerni (to ask)</th></tr>
+            <tr><td>en</td><td>-jak/-jek</td><td class="subj-highlight">varjak</td><td class="subj-highlight">kerjek</td></tr>
+            <tr><td>te</td><td>-j/-jal/-jel</td><td class="subj-highlight">varj / varjal</td><td class="subj-highlight">kerj / kerjel</td></tr>
+            <tr><td>o/On</td><td>-jon/-jen/-jon</td><td class="subj-highlight">varjon</td><td class="subj-highlight">kerjen</td></tr>
+            <tr><td>mi</td><td>-junk/-junk</td><td class="subj-highlight">varjunk</td><td class="subj-highlight">kerjunk</td></tr>
+            <tr><td>ti</td><td>-jatok/-jetek</td><td class="subj-highlight">varjatok</td><td class="subj-highlight">kerjetek</td></tr>
+            <tr><td>ok</td><td>-janak/-jenek</td><td class="subj-highlight">varjanak</td><td class="subj-highlight">kerjenek</td></tr>
+        </table>
+
+        <h3 class="text-xl font-semibold text-slate-700 mb-3">Definite Conjugation (Subjunctive)</h3>
+        <table class="mb-4 text-sm">
+            <tr><th>Person</th><th>Ending</th><th>latni (to see)</th><th>nezni (to watch)</th></tr>
+            <tr><td>en</td><td>-jam/-jem</td><td class="subj-highlight">lassam</td><td class="subj-highlight">nezzem</td></tr>
+            <tr><td>te</td><td>-jad/-jed OR -d</td><td class="subj-highlight">lassad / lasd</td><td class="subj-highlight">nezzed / nezd</td></tr>
+            <tr><td>o/On</td><td>-ja/-je</td><td class="subj-highlight">lassa</td><td class="subj-highlight">nezze</td></tr>
+            <tr><td>mi</td><td>-juk/-juk</td><td class="subj-highlight">lassuk</td><td class="subj-highlight">nezzuk</td></tr>
+            <tr><td>ti</td><td>-jatok/-jetek</td><td class="subj-highlight">lassatok</td><td class="subj-highlight">nezzetek</td></tr>
+            <tr><td>ok</td><td>-jak/-jek</td><td class="subj-highlight">lassak</td><td class="subj-highlight">nezzek</td></tr>
+        </table>
+
+        <div class="cultural-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-purple-800 mb-2">Consonant Assimilation</h4>
+            <p class="text-slate-700 text-sm">When -j- meets certain consonants, they merge: <strong>t+j = ss</strong> (lat+ja = lassa), <strong>d+j = gy/ggy</strong> (mond+ja = mondja), <strong>z+j = zz</strong> (nez+je = nezze).</p>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // SECTION 2: Expressing Wishes
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Expressing Wishes</h2>
+        <p class="mb-4 text-slate-600">The subjunctive is used after verbs of wishing, wanting, and hoping.</p>
+
+        <h3 class="text-xl font-semibold text-slate-700 mb-3">Common Wish Expressions</h3>
+        <table class="mb-4 text-sm">
+            <tr><th>Hungarian</th><th>English</th><th>Example</th></tr>
+            <tr><td>Szeretnem, hogy...</td><td>I would like that...</td><td>Szeretnem, hogy <span class="subj-highlight">gyere</span>l. (I'd like you to come.)</td></tr>
+            <tr><td>Akarom, hogy...</td><td>I want that...</td><td>Akarom, hogy <span class="subj-highlight">tudd</span>. (I want you to know.)</td></tr>
+            <tr><td>Remellem, hogy...</td><td>I hope that...</td><td>Remellem, hogy <span class="subj-highlight">sikeruljon</span>. (I hope it succeeds.)</td></tr>
+            <tr><td>Kivnom, hogy...</td><td>I wish that...</td><td>Kivnom, hogy itt <span class="subj-highlight">legy</span>. (I wish you were here.)</td></tr>
+        </table>
+
+        <h3 class="text-xl font-semibold text-slate-700 mb-3">Standalone Wishes (3rd person)</h3>
+        <table class="mb-4 text-sm">
+            <tr><th>Hungarian</th><th>English</th></tr>
+            <tr><td>Eljen!</td><td>Long live! / Cheers!</td></tr>
+            <tr><td>Isten <span class="subj-highlight">aldjon</span> meg!</td><td>God bless you!</td></tr>
+            <tr><td><span class="subj-highlight">Legyen</span> szerencsed!</td><td>Good luck! (May you have luck!)</td></tr>
+            <tr><td>Jo <span class="subj-highlight">reggelt kivanok</span>!</td><td>Good morning! (I wish you...)</td></tr>
+        </table>
+    `;
+    mainContent.appendChild(section2);
+
+    // SECTION 3: Purpose Clauses (hogy + subjunctive)
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Purpose Clauses (hogy + Subjunctive)</h2>
+        <p class="mb-4 text-slate-600">Purpose clauses in Hungarian use <strong>hogy</strong> + subjunctive to express "so that" or "in order to."</p>
+
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mb-4">
+            <p class="text-slate-700"><strong>Pattern:</strong> Main clause + <span class="subj-highlight">hogy</span> + subjunctive clause</p>
+        </div>
+
+        <h3 class="text-xl font-semibold text-slate-700 mb-3">Examples</h3>
+        <table class="mb-4 text-sm">
+            <tr><th>Hungarian</th><th>English</th></tr>
+            <tr><td>Azert jottem, <span class="subj-highlight">hogy segitsek</span>.</td><td>I came (in order) to help.</td></tr>
+            <tr><td>Kerem, <span class="subj-highlight">hogy varjon</span>.</td><td>I ask that you wait. / Please wait.</td></tr>
+            <tr><td>Fontos, <span class="subj-highlight">hogy ezt tudd</span>.</td><td>It's important that you know this.</td></tr>
+            <tr><td>Mond meg neki, <span class="subj-highlight">hogy jonjon</span>!</td><td>Tell him to come!</td></tr>
+            <tr><td>Arra kerem, <span class="subj-highlight">hogy segitsen</span>.</td><td>I ask you to help.</td></tr>
+        </table>
+
+        <div class="cultural-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-purple-800 mb-2">Hogy vs Infinitive</h4>
+            <p class="text-slate-700 text-sm">When the subject is the same in both clauses, you can use infinitive: "Jottem segiteni" (I came to help). When subjects differ, use hogy + subjunctive: "Jottem, hogy segitsek neked" (I came to help you).</p>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // SECTION 4: Hypotheticals
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Hypothetical Situations</h2>
+        <p class="mb-4 text-slate-600">The subjunctive appears in hypothetical and potential contexts.</p>
+
+        <h3 class="text-xl font-semibold text-slate-700 mb-3">Hypothetical Patterns</h3>
+        <table class="mb-4 text-sm">
+            <tr><th>Pattern</th><th>Example</th><th>English</th></tr>
+            <tr><td>Ha + would... (conditional)</td><td>Ha lenne idom...</td><td>If I had time...</td></tr>
+            <tr><td>Barkcsak + subjunctive</td><td>Barcsak itt <span class="subj-highlight">lenne</span>l!</td><td>If only you were here!</td></tr>
+            <tr><td>Mintha + conditional</td><td>Mintha esne az eso.</td><td>As if it were raining.</td></tr>
+            <tr><td>Akarmit + subjunctive</td><td>Akarmit <span class="subj-highlight">mondj</span>on...</td><td>Whatever he says...</td></tr>
+        </table>
+
+        <h3 class="text-xl font-semibold text-slate-700 mb-3">Common Expressions</h3>
+        <table class="text-sm">
+            <tr><th>Hungarian</th><th>English</th></tr>
+            <tr><td>Legyen, ahogy akarod.</td><td>Let it be as you wish.</td></tr>
+            <tr><td>Barmi <span class="subj-highlight">tortenjen</span>...</td><td>Whatever happens...</td></tr>
+            <tr><td>Akar <span class="subj-highlight">jonjon</span>, akar nem...</td><td>Whether he comes or not...</td></tr>
+            <tr><td>Nem mintha <span class="subj-highlight">szamitana</span>.</td><td>Not that it matters.</td></tr>
+        </table>
+    `;
+    mainContent.appendChild(section4);
+
+    // STAGE 1: Subjunctive Formation (12 items)
+    const stage1Data = [
+        { infinitive: 'varni', person: 'en (indef)', answer: 'varjak' },
+        { infinitive: 'kerni', person: 'te (indef)', answer: 'kerj' },
+        { infinitive: 'latni', person: 'o (def)', answer: 'lassa' },
+        { infinitive: 'irni', person: 'mi (indef)', answer: 'irjunk' },
+        { infinitive: 'olvasni', person: 'ti (def)', answer: 'olvassatok' },
+        { infinitive: 'menni', person: 'o (indef)', answer: 'menjen' },
+        { infinitive: 'enni', person: 'en (indef)', answer: 'egyek' },
+        { infinitive: 'inni', person: 'te (indef)', answer: 'igy' },
+        { infinitive: 'tudni', person: 'te (def)', answer: 'tudd' },
+        { infinitive: 'jonni', person: 'o (indef)', answer: 'jojjon' },
+        { infinitive: 'lenni', person: 'o (indef)', answer: 'legyen' },
+        { infinitive: 'adni', person: 'te (def)', answer: 'add' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Subjunctive Formation (12 items)</h2>
+        <p class="mb-4 text-slate-600">Form the subjunctive for each verb and person.</p>
+        <div id="stage1-exercise" class="space-y-3"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage1Data.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Exercise = document.getElementById('stage1-exercise');
+    const stage1Score = document.getElementById('stage1-score');
+    let stage1Results = new Array(stage1Data.length).fill(null);
+
+    stage1Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-3 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="text-sm"><strong>${item.infinitive}</strong> - ${item.person}</p>
+            <div class="flex items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-40" placeholder="Subjunctive...">
+                <span class="text-sm font-semibold stage1-feedback"></span>
+            </div>
+        `;
+        stage1Exercise.appendChild(wrapper);
+        wrapper.querySelector('input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const feedback = wrapper.querySelector('.stage1-feedback');
+                const userAnswer = normalizeHungarian(e.target.value);
+                if (userAnswer === item.answer || removeAccents(userAnswer) === removeAccents(item.answer)) {
+                    feedback.textContent = `Correct! ${item.answer}`;
+                    feedback.className = 'text-sm font-semibold text-green-600 stage1-feedback';
+                    stage1Results[idx] = true;
+                } else {
+                    feedback.textContent = `Expected: ${item.answer}`;
+                    feedback.className = 'text-sm font-semibold text-red-600 stage1-feedback';
+                    stage1Results[idx] = false;
+                }
+                stage1Score.textContent = `Score: ${stage1Results.filter(r => r === true).length} / ${stage1Data.length}`;
+            }
+        });
+    });
+
+    // STAGE 2: Wish Expressions (10 items)
+    const stage2Data = [
+        { prompt: 'I would like you to come.', answer: 'Szeretnem, hogy gyere' },
+        { prompt: 'I want you to know this.', answer: 'Akarom, hogy ezt tudd' },
+        { prompt: 'I hope it succeeds.', answer: 'Remellem, hogy sikerul' },
+        { prompt: 'Long live Hungary! (Eljen...)', answer: 'Eljen Magyarorszag' },
+        { prompt: 'Good luck! (May you have luck)', answer: 'Legyen szerencsed' },
+        { prompt: 'I wish you were here.', answer: 'Barcsak itt lennel' },
+        { prompt: 'May God bless you!', answer: 'Isten aldjon meg' },
+        { prompt: 'I hope you understand.', answer: 'Remellem, hogy megerted' },
+        { prompt: 'I want him to wait.', answer: 'Akarom, hogy varjon' },
+        { prompt: 'May it be so!', answer: 'Legyen ugy' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Wish Expressions (10 items)</h2>
+        <p class="mb-4 text-slate-600">Express these wishes in Hungarian using subjunctive.</p>
+        <div id="stage2-exercise" class="space-y-3"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage2Data.length}</div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Exercise = document.getElementById('stage2-exercise');
+    const stage2Score = document.getElementById('stage2-score');
+    let stage2Results = new Array(stage2Data.length).fill(null);
+
+    stage2Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-3 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="text-sm font-medium">"${item.prompt}"</p>
+            <div class="flex items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-72" placeholder="Hungarian...">
+                <span class="text-sm font-semibold stage2-feedback"></span>
+            </div>
+        `;
+        stage2Exercise.appendChild(wrapper);
+        wrapper.querySelector('input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const feedback = wrapper.querySelector('.stage2-feedback');
+                const userAnswer = normalizeHungarian(e.target.value).replace(/[!.,?]/g, '');
+                const correctAnswer = normalizeHungarian(item.answer);
+                if (userAnswer === correctAnswer || removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+                    feedback.textContent = `Correct!`;
+                    feedback.className = 'text-sm font-semibold text-green-600 stage2-feedback';
+                    stage2Results[idx] = true;
+                } else {
+                    feedback.textContent = `Expected: ${item.answer}`;
+                    feedback.className = 'text-sm font-semibold text-red-600 stage2-feedback';
+                    stage2Results[idx] = false;
+                }
+                stage2Score.textContent = `Score: ${stage2Results.filter(r => r === true).length} / ${stage2Data.length}`;
+            }
+        });
+    });
+
+    // STAGE 3: Purpose Clauses (10 items)
+    const stage3Data = [
+        { prompt: 'Fill: Azert jottem, hogy _____ (segit, I)', answer: 'segitsek' },
+        { prompt: 'Fill: Kerem, hogy _____ (var, you formal)', answer: 'varjon' },
+        { prompt: 'Fill: Fontos, hogy ezt _____ (tud, you)', answer: 'tudd' },
+        { prompt: 'Fill: Mondtam, hogy _____ (jon, he)', answer: 'jojjon' },
+        { prompt: 'Fill: Akarom, hogy _____ (marad, she)', answer: 'maradjon' },
+        { prompt: 'Fill: Arra kerem, hogy _____ (segit, you formal)', answer: 'segitsen' },
+        { prompt: 'Fill: Azert tanulok, hogy _____ (ert, I)', answer: 'ertsek' },
+        { prompt: 'Fill: Mondj meg neki, hogy _____ (ir, he)', answer: 'irjon' },
+        { prompt: 'Fill: Szeretnem, hogy _____ (olvas, you)', answer: 'olvass' },
+        { prompt: 'Fill: Fontos, hogy _____ (legy, we)', answer: 'legyunk' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Purpose Clause Completion (10 items)</h2>
+        <p class="mb-4 text-slate-600">Complete each purpose clause with the correct subjunctive form.</p>
+        <div id="stage3-exercise" class="space-y-3"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage3Data.length}</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Exercise = document.getElementById('stage3-exercise');
+    const stage3Score = document.getElementById('stage3-score');
+    let stage3Results = new Array(stage3Data.length).fill(null);
+
+    stage3Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-3 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="text-sm">${item.prompt}</p>
+            <div class="flex items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-40" placeholder="Answer...">
+                <span class="text-sm font-semibold stage3-feedback"></span>
+            </div>
+        `;
+        stage3Exercise.appendChild(wrapper);
+        wrapper.querySelector('input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const feedback = wrapper.querySelector('.stage3-feedback');
+                const userAnswer = normalizeHungarian(e.target.value);
+                if (userAnswer === item.answer || removeAccents(userAnswer) === removeAccents(item.answer)) {
+                    feedback.textContent = `Correct! ${item.answer}`;
+                    feedback.className = 'text-sm font-semibold text-green-600 stage3-feedback';
+                    stage3Results[idx] = true;
+                } else {
+                    feedback.textContent = `Expected: ${item.answer}`;
+                    feedback.className = 'text-sm font-semibold text-red-600 stage3-feedback';
+                    stage3Results[idx] = false;
+                }
+                stage3Score.textContent = `Score: ${stage3Results.filter(r => r === true).length} / ${stage3Data.length}`;
+            }
+        });
+    });
+
+    // STAGE 4: Hypothetical Scenarios (10 items)
+    const stage4Data = [
+        { scenario: 'Express: "If only you were here!"', options: ['Barcsak itt lennel!', 'Ha itt lennel!', 'Amikor itt vagy!'], correct: 'Barcsak itt lennel!' },
+        { scenario: 'Express: "Whatever happens..."', options: ['Barmi tortenjen...', 'Ha tortenik...', 'Mert tortent...'], correct: 'Barmi tortenjen...' },
+        { scenario: 'Express: "Let it be as you wish."', options: ['Legyen, ahogy akarod.', 'Van, ahogy akarod.', 'Volt, ahogy akartad.'], correct: 'Legyen, ahogy akarod.' },
+        { scenario: 'Express: "Whether he comes or not..."', options: ['Akar jonjon, akar nem...', 'Ha jon vagy nem...', 'Amikor jon...'], correct: 'Akar jonjon, akar nem...' },
+        { scenario: 'Express: "If only I had time!"', options: ['Barcsak lenne idom!', 'Ha van idom!', 'Mert nincs idom!'], correct: 'Barcsak lenne idom!' },
+        { scenario: 'Express: "May he rest in peace."', options: ['Nyugodjon bekeben.', 'Nyugszik bekeben.', 'Nyugodott bekeben.'], correct: 'Nyugodjon bekeben.' },
+        { scenario: 'Express: "Not that it matters."', options: ['Nem mintha szamitana.', 'Nem szamit.', 'Ha szamit.'], correct: 'Nem mintha szamitana.' },
+        { scenario: 'Express: "Whoever says..."', options: ['Barki mondja...', 'Ha valaki mondja...', 'Aki mondja...'], correct: 'Barki mondja...' },
+        { scenario: 'Express: "May it succeed!"', options: ['Sikeruljon!', 'Sikerul!', 'Sikerult!'], correct: 'Sikeruljon!' },
+        { scenario: 'Express: "Let\'s go!"', options: ['Menjunk!', 'Megyunk!', 'Mentunk!'], correct: 'Menjunk!' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Hypothetical Scenarios (10 items)</h2>
+        <p class="mb-4 text-slate-600">Choose the correct Hungarian expression for each hypothetical.</p>
+        <div id="stage4-exercise" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage4Data.length}</div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Exercise = document.getElementById('stage4-exercise');
+    const stage4Score = document.getElementById('stage4-score');
+    let stage4Correct = 0;
+
+    stage4Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="text-sm font-medium mb-2">${item.scenario}</p>
+            <div class="flex flex-wrap gap-2">
+                ${item.options.map(opt => `<button class="px-3 py-2 border-2 border-slate-300 rounded-lg bg-white hover:bg-slate-50 text-sm stage4-btn" data-answer="${opt}">${opt}</button>`).join('')}
+            </div>
+            <p class="mt-2 text-sm font-semibold stage4-feedback"></p>
+        `;
+        stage4Exercise.appendChild(wrapper);
+        wrapper.querySelectorAll('.stage4-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const feedback = wrapper.querySelector('.stage4-feedback');
+                const wasCorrect = Array.from(wrapper.querySelectorAll('.stage4-btn')).some(b => b.classList.contains('bg-green-100'));
+                wrapper.querySelectorAll('.stage4-btn').forEach(b => b.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500'));
+                if (btn.dataset.answer === item.correct) {
+                    btn.classList.add('bg-green-100', 'border-green-500');
+                    feedback.textContent = 'Correct!';
+                    feedback.className = 'mt-2 text-sm font-semibold text-green-600 stage4-feedback';
+                    if (!wasCorrect) stage4Correct++;
+                } else {
+                    btn.classList.add('bg-red-100', 'border-red-500');
+                    feedback.textContent = `Correct: ${item.correct}`;
+                    feedback.className = 'mt-2 text-sm font-semibold text-red-600 stage4-feedback';
+                    if (wasCorrect) stage4Correct--;
+                }
+                stage4Score.textContent = `Score: ${stage4Correct} / ${stage4Data.length}`;
+            });
+        });
+    });
+
+    // STAGE 5: Translation (8 items)
+    const stage5Data = [
+        { en: 'I want you to wait.', hu: 'Akarom, hogy varj' },
+        { en: 'Please help me.', hu: 'Kerem, hogy segitsen' },
+        { en: 'I came to learn.', hu: 'Azert jottem, hogy tanuljak' },
+        { en: 'Let him speak!', hu: 'Hadd beszeljen' },
+        { en: 'I hope you succeed.', hu: 'Remellem, hogy sikeruljon' },
+        { en: 'If only I knew!', hu: 'Barcsak tudnam' },
+        { en: 'May you be happy!', hu: 'Legy boldog' },
+        { en: 'Whatever you decide...', hu: 'Barmit dontsz' }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Translation Practice (8 items)</h2>
+        <p class="mb-4 text-slate-600">Translate using the subjunctive mood.</p>
+        <div id="stage5-exercise" class="space-y-3"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage5Data.length}</div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Exercise = document.getElementById('stage5-exercise');
+    const stage5Score = document.getElementById('stage5-score');
+    let stage5Results = new Array(stage5Data.length).fill(null);
+
+    stage5Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-3 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="text-sm font-medium">"${item.en}"</p>
+            <div class="flex items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-72" placeholder="Hungarian...">
+                <span class="text-sm font-semibold stage5-feedback"></span>
+            </div>
+        `;
+        stage5Exercise.appendChild(wrapper);
+        wrapper.querySelector('input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const feedback = wrapper.querySelector('.stage5-feedback');
+                const userAnswer = normalizeHungarian(e.target.value).replace(/[!.,?]/g, '');
+                const correctAnswer = normalizeHungarian(item.hu);
+                if (userAnswer === correctAnswer || removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+                    feedback.textContent = `Correct!`;
+                    feedback.className = 'text-sm font-semibold text-green-600 stage5-feedback';
+                    stage5Results[idx] = true;
+                } else {
+                    feedback.textContent = `Expected: ${item.hu}`;
+                    feedback.className = 'text-sm font-semibold text-red-600 stage5-feedback';
+                    stage5Results[idx] = false;
+                }
+                stage5Score.textContent = `Score: ${stage5Results.filter(r => r === true).length} / ${stage5Data.length}`;
+            }
+        });
+    });
+
+    // SUMMARY
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mt-12 bg-gradient-to-r from-purple-50 to-slate-100 p-6 rounded-xl';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Lesson Summary</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <h3 class="font-semibold text-purple-800 mb-2">Key Patterns:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li><strong>Wish:</strong> Szeretnem/Akarom, hogy + subj.</li>
+                    <li><strong>Purpose:</strong> Azert..., hogy + subj.</li>
+                    <li><strong>Hope:</strong> Remellem, hogy + subj.</li>
+                    <li><strong>If only:</strong> Barcsak + conditional</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-purple-800 mb-2">Formation Rules:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li>Add <strong>-j-</strong> to verb stem</li>
+                    <li>Watch for consonant assimilation</li>
+                    <li>t+j=ss, d+j=gy, z+j=zz</li>
+                </ul>
+            </div>
+        </div>
+        <p class="mt-4 text-sm text-slate-600"><strong>Total exercises:</strong> 50 (12 + 10 + 10 + 10 + 8)</p>
+    `;
+    mainContent.appendChild(summarySection);
+    </script>
+</body>
+</html>
