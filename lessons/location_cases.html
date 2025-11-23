@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 15: Location & Direction Cases - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .highlight { background-color: #fef3c7; font-weight: bold; }
+        .case-in { background-color: #dbeafe; }
+        .case-on { background-color: #dcfce7; }
+        .case-at { background-color: #fef3c7; }
+        .map-location {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .map-location:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .map-path {
+            position: absolute;
+            height: 4px;
+            background: #94a3b8;
+            transform-origin: left center;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 15: Location & Direction Cases <span class="block text-xl text-slate-500 font-normal">(Helyhatározói esetek)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Master the Hungarian locative case system - learn to express where things are, where they're going, and where they're coming from using suffixes.</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    const main = document.getElementById('main-content');
+
+    // Helper function for accent-insensitive comparison
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[őŐöÖüÜűŰáÁéÉíÍóÓúÚ]/g, function(m) {
+            const map = { 'á':'a','Á':'A','é':'e','É':'E','í':'i','Í':'I','ó':'o','Ó':'O','ö':'o','Ö':'O','ő':'o','Ő':'O','ú':'u','Ú':'U','ü':'u','Ü':'U','ű':'u','Ű':'U' };
+            return map[m] || m;
+        });
+    }
+
+    // Section 1: The Three-Way Location System
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">The Three-Way Location System</h2>
+        <p class="mb-4">Hungarian uses a sophisticated <b>three-way system</b> for expressing location. For each type of spatial relationship (in, on, at), there are three different suffixes depending on the direction:</p>
+        <div class="bg-sky-50 border-l-4 border-sky-500 p-4 mb-4">
+            <ul class="space-y-2">
+                <li><b>Hol?</b> (Where?) - Static location - "I am IN the house"</li>
+                <li><b>Hova?</b> (Where to?) - Movement toward - "I go INTO the house"</li>
+                <li><b>Honnan?</b> (Where from?) - Movement away - "I come OUT OF the house"</li>
+            </ul>
+        </div>
+        <table class="mb-4 w-full border text-sm">
+            <tr>
+                <th class="border px-2">Question</th>
+                <th class="border px-2 case-in">"In" Type</th>
+                <th class="border px-2 case-on">"On" Type</th>
+                <th class="border px-2 case-at">"At" Type</th>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">Hol? (Where?)</td>
+                <td class="border px-2 case-in">-ban/-ben</td>
+                <td class="border px-2 case-on">-n/-on/-en/-on</td>
+                <td class="border px-2 case-at">-nal/-nel</td>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">Hova? (Where to?)</td>
+                <td class="border px-2 case-in">-ba/-be</td>
+                <td class="border px-2 case-on">-ra/-re</td>
+                <td class="border px-2 case-at">-hoz/-hez/-hoz</td>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">Honnan? (Where from?)</td>
+                <td class="border px-2 case-in">-bol/-bol</td>
+                <td class="border px-2 case-on">-rol/-rol</td>
+                <td class="border px-2 case-at">-tol/-tol</td>
+            </tr>
+        </table>
+        <div class="bg-amber-50 border-l-4 border-amber-500 p-4">
+            <p><b>Vowel Harmony:</b> Choose the suffix based on the word's vowels:</p>
+            <ul class="list-disc pl-6 mt-2">
+                <li><b>Back vowels (a, o, u):</b> -ban, -ba, -bol, -on, -ra, -rol, -nal, -hoz, -tol</li>
+                <li><b>Front vowels (e, i, o, u):</b> -ben, -be, -bol, -en/-on, -re, -rol, -nel, -hez/-hoz, -tol</li>
+            </ul>
+        </div>
+    `;
+    main.appendChild(section1);
+
+    // Section 2: Inside Location (-ban/-ben System)
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Inside Location: The -ban/-ben System</h2>
+        <p class="mb-4">Use this system for <b>enclosed spaces</b>, <b>buildings</b>, <b>cities</b>, and <b>countries</b> (with some exceptions):</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr>
+                <th class="border px-2">Direction</th>
+                <th class="border px-2">Back Vowel</th>
+                <th class="border px-2">Front Vowel</th>
+                <th class="border px-2">Example (haz)</th>
+                <th class="border px-2">Example (kert)</th>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">Static (Hol?)</td>
+                <td class="border px-2">-ban</td>
+                <td class="border px-2">-ben</td>
+                <td class="border px-2">haz<b>ban</b> (in the house)</td>
+                <td class="border px-2">kert<b>ben</b> (in the garden)</td>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">To (Hova?)</td>
+                <td class="border px-2">-ba</td>
+                <td class="border px-2">-be</td>
+                <td class="border px-2">haz<b>ba</b> (into the house)</td>
+                <td class="border px-2">kert<b>be</b> (into the garden)</td>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">From (Honnan?)</td>
+                <td class="border px-2">-bol</td>
+                <td class="border px-2">-bol</td>
+                <td class="border px-2">haz<b>bol</b> (out of the house)</td>
+                <td class="border px-2">kert<b>bol</b> (out of the garden)</td>
+            </tr>
+        </table>
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-blue-800 mb-2">Common Places (Inside):</h4>
+                <ul class="text-sm space-y-1">
+                    <li><b>szoba</b> (room) - szobaban, szobaba, szobabol</li>
+                    <li><b>iskola</b> (school) - iskolaban, iskolaba, iskolabol</li>
+                    <li><b>bolt</b> (shop) - boltban, boltba, boltbol</li>
+                    <li><b>etterem</b> (restaurant) - etteremben, etterembe, etterembol</li>
+                    <li><b>korhaz</b> (hospital) - korhazban, korhazba, korhazbol</li>
+                </ul>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-green-800 mb-2">Example Sentences:</h4>
+                <ul class="text-sm space-y-1">
+                    <li>"A konyv az asztalon van." - The book is on the table.</li>
+                    <li>"Megyek a boltba." - I'm going to the shop.</li>
+                    <li>"Jovok az iskolabol." - I'm coming from school.</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    main.appendChild(section2);
+
+    // Section 3: Surface Location (-n System)
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Surface Location: The -n/-on/-en/-on System</h2>
+        <p class="mb-4">Use this system for <b>surfaces</b>, <b>geographic locations</b>, and certain idiomatic expressions:</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr>
+                <th class="border px-2">Direction</th>
+                <th class="border px-2">Back Vowel</th>
+                <th class="border px-2">Front Vowel</th>
+                <th class="border px-2">Example (asztal)</th>
+                <th class="border px-2">Example (szek)</th>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">Static (Hol?)</td>
+                <td class="border px-2">-on/-n</td>
+                <td class="border px-2">-en/-on/-n</td>
+                <td class="border px-2">asztal<b>on</b> (on the table)</td>
+                <td class="border px-2">szek<b>en</b> (on the chair)</td>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">To (Hova?)</td>
+                <td class="border px-2">-ra</td>
+                <td class="border px-2">-re</td>
+                <td class="border px-2">asztal<b>ra</b> (onto the table)</td>
+                <td class="border px-2">szek<b>re</b> (onto the chair)</td>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">From (Honnan?)</td>
+                <td class="border px-2">-rol</td>
+                <td class="border px-2">-rol</td>
+                <td class="border px-2">asztal<b>rol</b> (off the table)</td>
+                <td class="border px-2">szek<b>rol</b> (off the chair)</td>
+            </tr>
+        </table>
+        <div class="bg-rose-50 border-l-4 border-rose-500 p-4 mb-4">
+            <p><b>Important Exception - Hungary!</b></p>
+            <p class="mt-2">Hungary uses the "on" system (not "in"), like an island:</p>
+            <ul class="list-disc pl-6 mt-2">
+                <li><b>Magyarorszagon</b> - in Hungary (literally "on Hungary")</li>
+                <li><b>Magyarorszagra</b> - to Hungary</li>
+                <li><b>Magyarorszagrol</b> - from Hungary</li>
+            </ul>
+            <p class="mt-2 text-sm italic">Same pattern applies to most countries ending in -orszag.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-green-800 mb-2">Surface Examples:</h4>
+                <ul class="text-sm space-y-1">
+                    <li><b>fal</b> (wall) - falon, falra, falrol</li>
+                    <li><b>fold</b> (ground) - foldon, foldre, foldrol</li>
+                    <li><b>utca</b> (street) - utcan, utcara, utcarol</li>
+                    <li><b>ter</b> (square) - teren, terre, terrol</li>
+                </ul>
+            </div>
+            <div class="bg-yellow-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-yellow-800 mb-2">Cities with "On" (Special!):</h4>
+                <ul class="text-sm space-y-1">
+                    <li><b>Budapest</b> - Budapesten, Budapestre, Budapestrol</li>
+                    <li><b>Szeged</b> - Szegeden, Szegedre, Szegedrol</li>
+                    <li><b>Pecs</b> - Pecsen, Pecsre, Pecsrol</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    main.appendChild(section3);
+
+    // Section 4: Proximity Location (-nal/-nel System)
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Proximity Location: The -nal/-nel System</h2>
+        <p class="mb-4">Use this system for being <b>at/near</b> someone or something, often with people or when visiting:</p>
+        <table class="mb-4 w-full border text-sm">
+            <tr>
+                <th class="border px-2">Direction</th>
+                <th class="border px-2">Back Vowel</th>
+                <th class="border px-2">Front Vowel</th>
+                <th class="border px-2">Example (orvos)</th>
+                <th class="border px-2">Example (Peter)</th>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">Static (Hol?)</td>
+                <td class="border px-2">-nal</td>
+                <td class="border px-2">-nel</td>
+                <td class="border px-2">orvos<b>nal</b> (at the doctor's)</td>
+                <td class="border px-2">Peter<b>nel</b> (at Peter's place)</td>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">To (Hova?)</td>
+                <td class="border px-2">-hoz</td>
+                <td class="border px-2">-hez/-hoz</td>
+                <td class="border px-2">orvos<b>hoz</b> (to the doctor)</td>
+                <td class="border px-2">Peter<b>hez</b> (to Peter's place)</td>
+            </tr>
+            <tr>
+                <td class="border px-2 font-bold">From (Honnan?)</td>
+                <td class="border px-2">-tol</td>
+                <td class="border px-2">-tol</td>
+                <td class="border px-2">orvos<b>tol</b> (from the doctor)</td>
+                <td class="border px-2">Peter<b>tol</b> (from Peter's)</td>
+            </tr>
+        </table>
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mb-4">
+            <p><b>Common Usage:</b></p>
+            <ul class="list-disc pl-6 mt-2">
+                <li><b>At someone's place:</b> "Marianel vagyok." (I'm at Maria's place.)</li>
+                <li><b>To the professional:</b> "Megyek az orvoshoz." (I'm going to the doctor.)</li>
+                <li><b>Near something:</b> "Az ablaknal ulok." (I'm sitting by the window.)</li>
+            </ul>
+        </div>
+    `;
+    main.appendChild(section4);
+
+    // Visual Map Section
+    const mapSection = document.createElement('section');
+    mapSection.className = 'mb-8';
+    mapSection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Visual Map: Location Types</h2>
+        <p class="mb-4">Click on the locations to see example sentences for each location type:</p>
+        <div id="location-map" class="relative bg-slate-200 rounded-lg p-4" style="height: 320px;">
+            <!-- Map elements will be added by JS -->
+        </div>
+        <div id="map-info" class="mt-4 p-4 bg-slate-50 rounded-lg min-h-[100px]">
+            <p class="text-slate-500 italic">Click on a location above to see example sentences...</p>
+        </div>
+    `;
+    main.appendChild(mapSection);
+
+    // Build the visual map
+    const mapContainer = document.getElementById('location-map');
+    const mapInfo = document.getElementById('map-info');
+
+    const mapLocations = [
+        { id: 'house', emoji: '🏠', label: 'Haz', x: 20, y: 30, type: 'in',
+          examples: [
+            { hu: 'A hazban vagyok.', en: 'I am in the house.' },
+            { hu: 'Megyek a hazba.', en: 'I am going into the house.' },
+            { hu: 'Jovok a hazbol.', en: 'I am coming from the house.' }
+          ]},
+        { id: 'table', emoji: '🪑', label: 'Asztal', x: 50, y: 60, type: 'on',
+          examples: [
+            { hu: 'A konyv az asztalon van.', en: 'The book is on the table.' },
+            { hu: 'Teszem a konyvot az asztalra.', en: 'I put the book onto the table.' },
+            { hu: 'Veszem a konyvot az asztalrol.', en: 'I take the book from the table.' }
+          ]},
+        { id: 'doctor', emoji: '👨‍⚕️', label: 'Orvos', x: 80, y: 25, type: 'at',
+          examples: [
+            { hu: 'Az orvosnal vagyok.', en: 'I am at the doctor\'s.' },
+            { hu: 'Megyek az orvoshoz.', en: 'I am going to the doctor.' },
+            { hu: 'Jovok az orvostol.', en: 'I am coming from the doctor.' }
+          ]},
+        { id: 'school', emoji: '🏫', label: 'Iskola', x: 35, y: 70, type: 'in',
+          examples: [
+            { hu: 'Az iskolaban tanulok.', en: 'I study at school.' },
+            { hu: 'Megyek az iskolaba.', en: 'I am going to school.' },
+            { hu: 'Jovok az iskolabol.', en: 'I am coming from school.' }
+          ]},
+        { id: 'budapest', emoji: '🌆', label: 'Budapest', x: 65, y: 35, type: 'on',
+          examples: [
+            { hu: 'Budapesten lakom.', en: 'I live in Budapest.' },
+            { hu: 'Megyek Budapestre.', en: 'I am going to Budapest.' },
+            { hu: 'Jovok Budapestrol.', en: 'I am coming from Budapest.' }
+          ]},
+        { id: 'peter', emoji: '👤', label: 'Peter', x: 15, y: 70, type: 'at',
+          examples: [
+            { hu: 'Peternel vagyok.', en: 'I am at Peter\'s place.' },
+            { hu: 'Megyek Peterhez.', en: 'I am going to Peter\'s.' },
+            { hu: 'Jovok Petertol.', en: 'I am coming from Peter\'s.' }
+          ]}
+    ];
+
+    mapLocations.forEach(loc => {
+        const div = document.createElement('div');
+        div.className = 'map-location';
+        div.style.left = loc.x + '%';
+        div.style.top = loc.y + '%';
+        div.style.transform = 'translate(-50%, -50%)';
+
+        if (loc.type === 'in') {
+            div.style.backgroundColor = '#dbeafe';
+            div.style.border = '3px solid #3b82f6';
+        } else if (loc.type === 'on') {
+            div.style.backgroundColor = '#dcfce7';
+            div.style.border = '3px solid #22c55e';
+        } else {
+            div.style.backgroundColor = '#fef3c7';
+            div.style.border = '3px solid #f59e0b';
+        }
+
+        div.innerHTML = `<span>${loc.emoji}</span>`;
+        div.title = loc.label;
+
+        div.addEventListener('click', () => {
+            showMapInfo(loc);
+        });
+
+        mapContainer.appendChild(div);
+    });
+
+    function showMapInfo(loc) {
+        let typeLabel = loc.type === 'in' ? 'INSIDE (-ban/-ben)' :
+                       loc.type === 'on' ? 'SURFACE (-n/-on/-en)' : 'PROXIMITY (-nal/-nel)';
+        let typeColor = loc.type === 'in' ? 'blue' : loc.type === 'on' ? 'green' : 'amber';
+
+        let html = `
+            <h4 class="font-bold text-lg text-${typeColor}-700 mb-2">${loc.emoji} ${loc.label} - ${typeLabel}</h4>
+            <div class="space-y-2">
+        `;
+
+        loc.examples.forEach((ex, i) => {
+            const direction = i === 0 ? 'Hol? (Static)' : i === 1 ? 'Hova? (To)' : 'Honnan? (From)';
+            html += `
+                <div class="flex flex-col md:flex-row gap-2">
+                    <span class="text-slate-500 text-sm min-w-[100px]">${direction}</span>
+                    <span class="font-medium">${ex.hu}</span>
+                    <span class="text-slate-600 italic">(${ex.en})</span>
+                </div>
+            `;
+        });
+
+        html += '</div>';
+        mapInfo.innerHTML = html;
+    }
+
+    // Legend for map
+    const legendDiv = document.createElement('div');
+    legendDiv.className = 'flex flex-wrap gap-4 mt-2 text-sm';
+    legendDiv.innerHTML = `
+        <span class="flex items-center gap-1"><span class="w-4 h-4 rounded case-in border-2 border-blue-500"></span> Inside (-ban/-ben)</span>
+        <span class="flex items-center gap-1"><span class="w-4 h-4 rounded case-on border-2 border-green-500"></span> Surface (-n/-on/-en)</span>
+        <span class="flex items-center gap-1"><span class="w-4 h-4 rounded case-at border-2 border-amber-500"></span> Proximity (-nal/-nel)</span>
+    `;
+    mapSection.appendChild(legendDiv);
+
+    // Stage 1: Case Recognition (12 items)
+    const stage1Questions = [
+        { sentence: 'A szobaban vagyok.', caseType: 'static-in', translation: 'I am in the room.', explanation: '-ban = static inside location' },
+        { sentence: 'Megyek a boltba.', caseType: 'to-in', translation: 'I am going to the shop.', explanation: '-ba = movement into' },
+        { sentence: 'Jovok az iskolabol.', caseType: 'from-in', translation: 'I am coming from school.', explanation: '-bol = movement out of' },
+        { sentence: 'A konyv az asztalon van.', caseType: 'static-on', translation: 'The book is on the table.', explanation: '-on = static on surface' },
+        { sentence: 'Teszem a tanyerra.', caseType: 'to-on', translation: 'I put it onto the plate.', explanation: '-ra = movement onto' },
+        { sentence: 'Leesett a szekrol.', caseType: 'from-on', translation: 'It fell off the chair.', explanation: '-rol = movement off surface' },
+        { sentence: 'Az orvosnal vagyok.', caseType: 'static-at', translation: 'I am at the doctor\'s.', explanation: '-nal = static at/near' },
+        { sentence: 'Megyek a barataimhoz.', caseType: 'to-at', translation: 'I am going to my friends.', explanation: '-hoz = movement to (person)' },
+        { sentence: 'Jovok a nagymamtol.', caseType: 'from-at', translation: 'I am coming from grandma.', explanation: '-tol = movement from (person)' },
+        { sentence: 'Budapesten lakom.', caseType: 'static-on', translation: 'I live in Budapest.', explanation: '-en = surface (cities!)' },
+        { sentence: 'Utazom Szegedre.', caseType: 'to-on', translation: 'I am traveling to Szeged.', explanation: '-re = to (city surface)' },
+        { sentence: 'Erkeztem Debrecenbol.', caseType: 'from-in', translation: 'I arrived from Debrecen.', explanation: '-bol = from (city inside)' }
+    ];
+
+    const stage1Div = document.createElement('section');
+    stage1Div.className = 'mb-8';
+    stage1Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Case Recognition (12 items)</h2>
+        <p class="mb-4">Identify which case type is used in each sentence:</p>
+        <div id="stage1-exercise" class="space-y-4"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage1Div);
+
+    const stage1Exercise = document.getElementById('stage1-exercise');
+    const stage1Score = document.getElementById('stage1-score');
+
+    const caseOptions = [
+        { value: 'static-in', label: 'Static Inside (-ban/-ben)' },
+        { value: 'to-in', label: 'Into (-ba/-be)' },
+        { value: 'from-in', label: 'Out of (-bol/-bol)' },
+        { value: 'static-on', label: 'Static On (-n/-on/-en)' },
+        { value: 'to-on', label: 'Onto (-ra/-re)' },
+        { value: 'from-on', label: 'Off (-rol/-rol)' },
+        { value: 'static-at', label: 'At (-nal/-nel)' },
+        { value: 'to-at', label: 'To (person) (-hoz/-hez)' },
+        { value: 'from-at', label: 'From (person) (-tol/-tol)' }
+    ];
+
+    stage1Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const sentenceDiv = document.createElement('div');
+        sentenceDiv.className = 'text-slate-800 font-medium';
+        sentenceDiv.innerHTML = `<span class="text-teal-700">${q.sentence}</span> <span class="text-slate-500 text-sm">(${q.translation})</span>`;
+
+        const selectRow = document.createElement('div');
+        selectRow.className = 'flex flex-col md:flex-row items-center gap-2';
+
+        const select = document.createElement('select');
+        select.className = 'border border-slate-300 rounded-md px-3 py-1 w-full md:w-64 text-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        select.innerHTML = '<option value="">-- Select case type --</option>';
+        caseOptions.forEach(opt => {
+            const option = document.createElement('option');
+            option.value = opt.value;
+            option.textContent = opt.label;
+            select.appendChild(option);
+        });
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        select.addEventListener('change', function() {
+            checkStage1(idx);
+        });
+
+        selectRow.appendChild(select);
+        selectRow.appendChild(feedback);
+        wrapper.appendChild(sentenceDiv);
+        wrapper.appendChild(selectRow);
+        stage1Exercise.appendChild(wrapper);
+    });
+
+    function checkStage1(idx) {
+        const wrapper = stage1Exercise.children[idx];
+        const select = wrapper.querySelector('select');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage1Questions[idx];
+
+        if (select.value === q.caseType) {
+            feedback.textContent = `Correct! ${q.explanation}`;
+            feedback.className = 'text-green-600 font-semibold text-sm';
+        } else if (select.value === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Hint: ${q.explanation}`;
+            feedback.className = 'text-red-600 font-semibold text-sm';
+        }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let correct = 0;
+        for (let i = 0; i < stage1Questions.length; i++) {
+            const wrapper = stage1Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage1Score.textContent = `Score: ${correct} / ${stage1Questions.length}`;
+    }
+
+    // Stage 2: Static Location Drill (12 items)
+    const stage2Questions = [
+        { noun: 'haz', suffix: 'ban', full: 'hazban', meaning: 'in the house', type: 'in' },
+        { noun: 'kert', suffix: 'ben', full: 'kertben', meaning: 'in the garden', type: 'in' },
+        { noun: 'asztal', suffix: 'on', full: 'asztalon', meaning: 'on the table', type: 'on' },
+        { noun: 'szek', suffix: 'en', full: 'szeken', meaning: 'on the chair', type: 'on' },
+        { noun: 'orvos', suffix: 'nal', full: 'orvosnal', meaning: 'at the doctor', type: 'at' },
+        { noun: 'Peter', suffix: 'nel', full: 'Peternel', meaning: 'at Peter\'s', type: 'at' },
+        { noun: 'bolt', suffix: 'ban', full: 'boltban', meaning: 'in the shop', type: 'in' },
+        { noun: 'iskola', suffix: 'ban', full: 'iskolaban', meaning: 'in school', type: 'in' },
+        { noun: 'fal', suffix: 'on', full: 'falon', meaning: 'on the wall', type: 'on' },
+        { noun: 'ablak', suffix: 'nal', full: 'ablaknal', meaning: 'at the window', type: 'at' },
+        { noun: 'Budapest', suffix: 'en', full: 'Budapesten', meaning: 'in Budapest', type: 'on' },
+        { noun: 'etterem', suffix: 'ben', full: 'etteremben', meaning: 'in the restaurant', type: 'in' }
+    ];
+
+    const stage2Div = document.createElement('section');
+    stage2Div.className = 'mb-8';
+    stage2Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Static Location Drill (12 items)</h2>
+        <p class="mb-4">Add the correct static location suffix (Hol? - Where?):</p>
+        <div id="stage2-exercise" class="space-y-4"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage2Div);
+
+    const stage2Exercise = document.getElementById('stage2-exercise');
+    const stage2Score = document.getElementById('stage2-score');
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[140px] text-slate-800';
+        label.innerHTML = `<b>${q.noun}</b> <span class="text-slate-500">(${q.meaning})</span> &rarr;`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-40 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Static location of ${q.noun}`);
+        input.placeholder = q.noun + '___';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkStage2(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage2Exercise.appendChild(wrapper);
+    });
+
+    function checkStage2(idx) {
+        const wrapper = stage2Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage2Questions[idx];
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = q.full.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = `Correct! ${q.noun} + -${q.suffix}`;
+            feedback.className = 'ml-2 text-green-600 font-semibold text-sm';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Watch accents! Correct: ${q.full}`;
+            feedback.className = 'ml-2 text-yellow-600 font-semibold text-sm';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Correct: ${q.full}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold text-sm';
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        for (let i = 0; i < stage2Questions.length; i++) {
+            const wrapper = stage2Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage2Score.textContent = `Score: ${correct} / ${stage2Questions.length}`;
+    }
+
+    // Stage 3: Dynamic Location Drill (12 items)
+    const stage3Questions = [
+        { noun: 'haz', direction: 'to', suffix: 'ba', full: 'hazba', meaning: 'into the house' },
+        { noun: 'haz', direction: 'from', suffix: 'bol', full: 'hazbol', meaning: 'from the house' },
+        { noun: 'asztal', direction: 'to', suffix: 'ra', full: 'asztalra', meaning: 'onto the table' },
+        { noun: 'asztal', direction: 'from', suffix: 'rol', full: 'asztalrol', meaning: 'from the table' },
+        { noun: 'orvos', direction: 'to', suffix: 'hoz', full: 'orvoshoz', meaning: 'to the doctor' },
+        { noun: 'orvos', direction: 'from', suffix: 'tol', full: 'orvostol', meaning: 'from the doctor' },
+        { noun: 'kert', direction: 'to', suffix: 'be', full: 'kertbe', meaning: 'into the garden' },
+        { noun: 'kert', direction: 'from', suffix: 'bol', full: 'kertbol', meaning: 'from the garden' },
+        { noun: 'Budapest', direction: 'to', suffix: 're', full: 'Budapestre', meaning: 'to Budapest' },
+        { noun: 'Budapest', direction: 'from', suffix: 'rol', full: 'Budapestrol', meaning: 'from Budapest' },
+        { noun: 'barat', direction: 'to', suffix: 'hoz', full: 'barathoz', meaning: 'to friend' },
+        { noun: 'barat', direction: 'from', suffix: 'tol', full: 'barattol', meaning: 'from friend' }
+    ];
+
+    const stage3Div = document.createElement('section');
+    stage3Div.className = 'mb-8';
+    stage3Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Dynamic Location Drill (12 items)</h2>
+        <p class="mb-4">Add the correct directional suffix (Hova?/Honnan? - Where to?/Where from?):</p>
+        <div id="stage3-exercise" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage3Div);
+
+    const stage3Exercise = document.getElementById('stage3-exercise');
+    const stage3Score = document.getElementById('stage3-score');
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const directionIcon = q.direction === 'to' ? '&rarr;' : '&larr;';
+        const directionText = q.direction === 'to' ? 'TO' : 'FROM';
+        const directionColor = q.direction === 'to' ? 'text-green-600' : 'text-orange-600';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[180px] text-slate-800';
+        label.innerHTML = `<span class="${directionColor} font-bold">${directionText}</span> <b>${q.noun}</b> <span class="text-slate-500">(${q.meaning})</span>`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-40 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `${q.direction} ${q.noun}`);
+        input.placeholder = q.noun + '___';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkStage3(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage3Exercise.appendChild(wrapper);
+    });
+
+    function checkStage3(idx) {
+        const wrapper = stage3Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage3Questions[idx];
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = q.full.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = `Correct! ${q.noun} + -${q.suffix}`;
+            feedback.className = 'ml-2 text-green-600 font-semibold text-sm';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Watch accents! Correct: ${q.full}`;
+            feedback.className = 'ml-2 text-yellow-600 font-semibold text-sm';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Correct: ${q.full}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold text-sm';
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let correct = 0;
+        for (let i = 0; i < stage3Questions.length; i++) {
+            const wrapper = stage3Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage3Score.textContent = `Score: ${correct} / ${stage3Questions.length}`;
+    }
+
+    // Stage 4: Translation Practice (10 items)
+    const stage4Questions = [
+        { english: 'I am in the house.', hungarian: 'A hazban vagyok.', hint: 'haz + ban' },
+        { english: 'She goes to school.', hungarian: 'Iskolaba megy.', hint: 'iskola + ba' },
+        { english: 'The book is on the table.', hungarian: 'A konyv az asztalon van.', hint: 'asztal + on' },
+        { english: 'I am coming from the shop.', hungarian: 'A boltbol jovok.', hint: 'bolt + bol' },
+        { english: 'He is at the doctor\'s.', hungarian: 'Az orvosnal van.', hint: 'orvos + nal' },
+        { english: 'I live in Budapest.', hungarian: 'Budapesten lakom.', hint: 'Budapest + en' },
+        { english: 'She is going to Peter\'s.', hungarian: 'Peterhez megy.', hint: 'Peter + hez' },
+        { english: 'The picture is on the wall.', hungarian: 'A kep a falon van.', hint: 'fal + on' },
+        { english: 'I am coming from Maria.', hungarian: 'Mariatol jovok.', hint: 'Maria + tol' },
+        { english: 'We are traveling to Szeged.', hungarian: 'Szegedre utazunk.', hint: 'Szeged + re' }
+    ];
+
+    const stage4Div = document.createElement('section');
+    stage4Div.className = 'mb-8';
+    stage4Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Translation Practice (10 items)</h2>
+        <p class="mb-4">Translate to Hungarian using the correct location case:</p>
+        <div id="stage4-exercise" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage4Div);
+
+    const stage4Exercise = document.getElementById('stage4-exercise');
+    const stage4Score = document.getElementById('stage4-score');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'text-slate-800';
+        label.innerHTML = `<b>${q.english}</b> <span class="text-slate-500 text-sm">(hint: ${q.hint})</span>`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-full md:w-80 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Translate: ${q.english}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkStage4(idx);
+        });
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(label);
+        wrapper.appendChild(inputRow);
+        stage4Exercise.appendChild(wrapper);
+    });
+
+    function checkStage4(idx) {
+        const wrapper = stage4Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage4Questions[idx];
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = q.hungarian.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-green-600 font-semibold text-sm';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Watch accents! ${q.hungarian}`;
+            feedback.className = 'text-yellow-600 font-semibold text-sm';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Correct: ${q.hungarian}`;
+            feedback.className = 'text-red-600 font-semibold text-sm';
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        for (let i = 0; i < stage4Questions.length; i++) {
+            const wrapper = stage4Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage4Score.textContent = `Score: ${correct} / ${stage4Questions.length}`;
+    }
+
+    // Stage 5: Map Exercise (6 items)
+    const stage5Div = document.createElement('section');
+    stage5Div.className = 'mb-8';
+    stage5Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Map Exercise (6 items)</h2>
+        <p class="mb-4">Look at the map and describe the movements using the correct location cases:</p>
+        <div class="relative bg-slate-200 rounded-lg p-4 mb-4" style="height: 200px;">
+            <div class="absolute bg-blue-100 border-2 border-blue-500 rounded-lg p-2 text-center" style="left: 10%; top: 30%; width: 70px;">🏠<br><span class="text-xs">Haz</span></div>
+            <div class="absolute bg-green-100 border-2 border-green-500 rounded-lg p-2 text-center" style="left: 40%; top: 25%; width: 70px;">🏫<br><span class="text-xs">Iskola</span></div>
+            <div class="absolute bg-yellow-100 border-2 border-yellow-500 rounded-lg p-2 text-center" style="left: 70%; top: 35%; width: 70px;">🏪<br><span class="text-xs">Bolt</span></div>
+            <div class="absolute bg-purple-100 border-2 border-purple-500 rounded-lg p-2 text-center" style="left: 25%; top: 70%; width: 70px;">🏥<br><span class="text-xs">Korhaz</span></div>
+            <div class="absolute bg-red-100 border-2 border-red-500 rounded-lg p-2 text-center" style="left: 60%; top: 65%; width: 70px;">🍽️<br><span class="text-xs">Etterem</span></div>
+        </div>
+        <div id="stage5-exercise" class="space-y-4"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage5Div);
+
+    const stage5Questions = [
+        { prompt: 'Anna is at home. (Use "in")', answer: 'Anna a hazban van.', hint: 'haz + ban' },
+        { prompt: 'Peter goes from home to school.', answer: 'Peter a hazbol az iskolaba megy.', hint: 'hazbol ... iskolaba' },
+        { prompt: 'Maria is coming from the shop.', answer: 'Maria a boltbol jon.', hint: 'bolt + bol' },
+        { prompt: 'We are going to the hospital.', answer: 'A korhazba megyunk.', hint: 'korhaz + ba' },
+        { prompt: 'They are in the restaurant.', answer: 'Az etteremben vannak.', hint: 'etterem + ben' },
+        { prompt: 'I am going from school to the shop.', answer: 'Az iskolabol a boltba megyek.', hint: 'iskolabol ... boltba' }
+    ];
+
+    const stage5Exercise = document.getElementById('stage5-exercise');
+    const stage5Score = document.getElementById('stage5-score');
+
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'text-slate-800';
+        label.innerHTML = `<b>${q.prompt}</b> <span class="text-slate-500 text-sm">(${q.hint})</span>`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-full md:w-96 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Translate: ${q.prompt}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkStage5(idx);
+        });
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(label);
+        wrapper.appendChild(inputRow);
+        stage5Exercise.appendChild(wrapper);
+    });
+
+    function checkStage5(idx) {
+        const wrapper = stage5Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage5Questions[idx];
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = q.answer.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-green-600 font-semibold text-sm';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Watch accents! ${q.answer}`;
+            feedback.className = 'text-yellow-600 font-semibold text-sm';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Correct: ${q.answer}`;
+            feedback.className = 'text-red-600 font-semibold text-sm';
+        }
+        updateStage5Score();
+    }
+
+    function updateStage5Score() {
+        let correct = 0;
+        for (let i = 0; i < stage5Questions.length; i++) {
+            const wrapper = stage5Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage5Score.textContent = `Score: ${correct} / ${stage5Questions.length}`;
+    }
+
+    // Stage 6: Dialogue with Directions (8 items)
+    const stage6Questions = [
+        { speaker: 'A', prompt: 'Hol laksz? (Where do you live?)', answer: 'Budapesten lakom.', translation: 'I live in Budapest.', hint: 'Budapest + en' },
+        { speaker: 'B', prompt: 'Hova mesz most? (Where are you going now?)', answer: 'A boltba megyek.', translation: 'I am going to the shop.', hint: 'bolt + ba' },
+        { speaker: 'A', prompt: 'Honnan jossz? (Where are you coming from?)', answer: 'Az iskolabol jovok.', translation: 'I am coming from school.', hint: 'iskola + bol' },
+        { speaker: 'B', prompt: 'Hol van a konyv? (Where is the book?)', answer: 'A konyv az asztalon van.', translation: 'The book is on the table.', hint: 'asztal + on' },
+        { speaker: 'A', prompt: 'Hova teszed a taskat? (Where do you put the bag?)', answer: 'A szekre teszem.', translation: 'I put it on the chair.', hint: 'szek + re' },
+        { speaker: 'B', prompt: 'Hol van Peter? (Where is Peter?)', answer: 'Az orvosnal van.', translation: 'He is at the doctor\'s.', hint: 'orvos + nal' },
+        { speaker: 'A', prompt: 'Hova megy Anna? (Where is Anna going?)', answer: 'Anna a baratnojhez megy.', translation: 'Anna is going to her friend\'s.', hint: 'baratno + hez' },
+        { speaker: 'B', prompt: 'Honnan jon a busz? (Where does the bus come from?)', answer: 'A busz Szegedrol jon.', translation: 'The bus comes from Szeged.', hint: 'Szeged + rol' }
+    ];
+
+    const stage6Div = document.createElement('section');
+    stage6Div.className = 'mb-8';
+    stage6Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 6: Dialogue with Directions (8 items)</h2>
+        <p class="mb-4">Complete the dialogue by answering each question with the correct location case:</p>
+        <div id="stage6-exercise" class="space-y-4"></div>
+        <div id="stage6-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage6Div);
+
+    const stage6Exercise = document.getElementById('stage6-exercise');
+    const stage6Score = document.getElementById('stage6-score');
+
+    stage6Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 rounded-lg ' + (q.speaker === 'A' ? 'bg-sky-50' : 'bg-teal-50');
+
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'text-slate-800';
+        questionDiv.innerHTML = `<span class="font-bold text-slate-600">${q.speaker}:</span> <span class="italic">${q.prompt}</span>`;
+
+        const answerDiv = document.createElement('div');
+        answerDiv.className = 'flex flex-col md:flex-row items-center gap-2 ml-4';
+
+        const answerLabel = document.createElement('span');
+        answerLabel.className = 'text-slate-500 text-sm';
+        answerLabel.innerHTML = `Your answer <span class="text-xs">(${q.hint})</span>:`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-full md:w-72 text-center focus:ring-2 focus:ring-sky-500 focus:border-sky-500';
+        input.setAttribute('aria-label', `Answer to: ${q.prompt}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkStage6(idx);
+        });
+
+        answerDiv.appendChild(answerLabel);
+        answerDiv.appendChild(input);
+        answerDiv.appendChild(feedback);
+        wrapper.appendChild(questionDiv);
+        wrapper.appendChild(answerDiv);
+        stage6Exercise.appendChild(wrapper);
+    });
+
+    function checkStage6(idx) {
+        const wrapper = stage6Exercise.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage6Questions[idx];
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = q.answer.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+            feedback.textContent = `Correct! (${q.translation})`;
+            feedback.className = 'text-green-600 font-semibold text-sm';
+        } else if (removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Watch accents! ${q.answer}`;
+            feedback.className = 'text-yellow-600 font-semibold text-sm';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Correct: ${q.answer}`;
+            feedback.className = 'text-red-600 font-semibold text-sm';
+        }
+        updateStage6Score();
+    }
+
+    function updateStage6Score() {
+        let correct = 0;
+        for (let i = 0; i < stage6Questions.length; i++) {
+            const wrapper = stage6Exercise.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        stage6Score.textContent = `Score: ${correct} / ${stage6Questions.length}`;
+    }
+
+    // Summary section
+    const summaryDiv = document.createElement('section');
+    summaryDiv.className = 'mb-8 bg-teal-50 border border-teal-200 rounded-lg p-6';
+    summaryDiv.innerHTML = `
+        <h2 class="text-xl font-bold text-teal-800 mb-4">Lesson Summary</h2>
+        <div class="grid md:grid-cols-3 gap-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-blue-800 mb-2">Inside (-ban/-ben)</h3>
+                <ul class="text-sm space-y-1">
+                    <li><b>Hol?</b> -ban/-ben</li>
+                    <li><b>Hova?</b> -ba/-be</li>
+                    <li><b>Honnan?</b> -bol/-bol</li>
+                    <li class="text-slate-600 italic">Buildings, rooms, cities*</li>
+                </ul>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-green-800 mb-2">Surface (-n/-on/-en)</h3>
+                <ul class="text-sm space-y-1">
+                    <li><b>Hol?</b> -n/-on/-en/-on</li>
+                    <li><b>Hova?</b> -ra/-re</li>
+                    <li><b>Honnan?</b> -rol/-rol</li>
+                    <li class="text-slate-600 italic">Tables, Hungary, Budapest</li>
+                </ul>
+            </div>
+            <div class="bg-yellow-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-yellow-800 mb-2">Proximity (-nal/-nel)</h3>
+                <ul class="text-sm space-y-1">
+                    <li><b>Hol?</b> -nal/-nel</li>
+                    <li><b>Hova?</b> -hoz/-hez/-hoz</li>
+                    <li><b>Honnan?</b> -tol/-tol</li>
+                    <li class="text-slate-600 italic">People, "at someone's"</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-3 bg-white rounded border border-teal-300">
+            <p class="text-teal-800"><b>Remember:</b> Always ask yourself three questions:</p>
+            <ol class="list-decimal pl-6 mt-2 text-sm">
+                <li>What type of location? (in/on/at)</li>
+                <li>Static or moving? (Hol?/Hova?/Honnan?)</li>
+                <li>Back or front vowels? (vowel harmony)</li>
+            </ol>
+        </div>
+    `;
+    main.appendChild(summaryDiv);
+
+    // Quick Reference Card
+    const referenceDiv = document.createElement('section');
+    referenceDiv.className = 'mb-8 bg-slate-100 rounded-lg p-4';
+    referenceDiv.innerHTML = `
+        <h3 class="text-lg font-bold text-slate-700 mb-3">Quick Reference: All Nine Cases</h3>
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+                <tr>
+                    <th class="border px-2 py-1"></th>
+                    <th class="border px-2 py-1 case-in">IN</th>
+                    <th class="border px-2 py-1 case-on">ON</th>
+                    <th class="border px-2 py-1 case-at">AT</th>
+                </tr>
+                <tr>
+                    <td class="border px-2 py-1 font-bold">Hol? (Where?)</td>
+                    <td class="border px-2 py-1 case-in">-ban/-ben</td>
+                    <td class="border px-2 py-1 case-on">-n/-on/-en/-on</td>
+                    <td class="border px-2 py-1 case-at">-nal/-nel</td>
+                </tr>
+                <tr>
+                    <td class="border px-2 py-1 font-bold">Hova? (Where to?)</td>
+                    <td class="border px-2 py-1 case-in">-ba/-be</td>
+                    <td class="border px-2 py-1 case-on">-ra/-re</td>
+                    <td class="border px-2 py-1 case-at">-hoz/-hez/-hoz</td>
+                </tr>
+                <tr>
+                    <td class="border px-2 py-1 font-bold">Honnan? (Where from?)</td>
+                    <td class="border px-2 py-1 case-in">-bol/-bol</td>
+                    <td class="border px-2 py-1 case-on">-rol/-rol</td>
+                    <td class="border px-2 py-1 case-at">-tol/-tol</td>
+                </tr>
+            </table>
+        </div>
+    `;
+    main.appendChild(referenceDiv);
+
+    // Total score
+    const totalScoreDiv = document.createElement('section');
+    totalScoreDiv.className = 'text-center py-4 bg-slate-100 rounded-lg';
+    totalScoreDiv.innerHTML = `
+        <h2 class="text-lg font-semibold text-slate-700">Total Exercises: 60</h2>
+        <p class="text-slate-600">Stage 1: 12 | Stage 2: 12 | Stage 3: 12 | Stage 4: 10 | Stage 5: 6 | Stage 6: 8</p>
+    `;
+    main.appendChild(totalScoreDiv);
+    </script>
+</body>
+</html>
