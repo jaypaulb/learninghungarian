@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 35: Comparative & Superlative - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .comp-highlight { color: #ea580c; font-weight: 600; }
+        .super-highlight { color: #7c3aed; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 35: Comparative & Superlative <span class="block text-xl text-slate-500 font-normal">(Kozepfok es felsofok)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn how to compare things in Hungarian using the comparative (-bb) and superlative (leg-...-bb) forms. Master regular patterns and important irregular adjectives!</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    // Helper functions
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiIoOuU]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','o':'o','O':'O','o':'o','O':'O','u':'u','U':'U','u':'u','U':'U','u':'u','U':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    const mainContent = document.getElementById('main-content');
+
+    // =============================================
+    // SECTION 1: Introduction to Comparison
+    // =============================================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Introduction to Comparison</h2>
+        <div class="bg-orange-50 border-l-4 border-orange-500 p-4 mb-4">
+            <p class="text-slate-700 mb-2"><strong>Hungarian adjectives have three degrees:</strong></p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><strong>Positive:</strong> The basic form (nagy = big)</li>
+                <li><strong>Comparative (<span class="comp-highlight">kozepfok</span>):</strong> Comparing two things (nagyobb = bigger)</li>
+                <li><strong>Superlative (<span class="super-highlight">felsofok</span>):</strong> The highest degree (legnagyobb = biggest)</li>
+            </ul>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4">
+            <div class="bg-slate-50 p-4 rounded-lg text-center">
+                <p class="text-sm text-slate-500">Positive</p>
+                <p class="text-2xl font-bold text-slate-700">nagy</p>
+                <p class="text-sm">big</p>
+            </div>
+            <div class="bg-orange-50 p-4 rounded-lg text-center">
+                <p class="text-sm text-orange-600">Comparative</p>
+                <p class="text-2xl font-bold text-orange-700">nagy<span class="comp-highlight">obb</span></p>
+                <p class="text-sm">bigger</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg text-center">
+                <p class="text-sm text-purple-600">Superlative</p>
+                <p class="text-2xl font-bold text-purple-700"><span class="super-highlight">leg</span>nagy<span class="super-highlight">obb</span></p>
+                <p class="text-sm">biggest</p>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // =============================================
+    // SECTION 2: Comparative Formation (-bb)
+    // =============================================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Forming the Comparative (<span class="comp-highlight">-bb</span>)</h2>
+        <p class="mb-4">The comparative is formed by adding <span class="comp-highlight">-bb</span> (or <span class="comp-highlight">-abb/-ebb/-obb</span>) to the adjective:</p>
+
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Adjective Ending</th>
+                        <th>Suffix</th>
+                        <th>Example</th>
+                        <th>Comparative</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Vowel</td><td class="comp-highlight">-bb</td><td>draga (expensive)</td><td>dragabb</td></tr>
+                    <tr><td>Consonant (back vowel)</td><td class="comp-highlight">-abb</td><td>magas (tall)</td><td>magasabb</td></tr>
+                    <tr><td>Consonant (front vowel)</td><td class="comp-highlight">-ebb</td><td>szep (beautiful)</td><td>szebb</td></tr>
+                    <tr><td>Consonant (o/u vowel)</td><td class="comp-highlight">-obb</td><td>hosszu (long)</td><td>hosszabb</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4">
+            <p class="font-semibold mb-2">Linking Vowels:</p>
+            <p class="text-sm">When the adjective ends in a consonant, a linking vowel is needed before -bb. The choice follows vowel harmony:</p>
+            <ul class="list-disc pl-6 text-sm">
+                <li>Back vowel words: <span class="comp-highlight">-abb</span> (magas &rarr; magasabb)</li>
+                <li>Front vowel words: <span class="comp-highlight">-ebb</span> (hideg &rarr; hidegebb)</li>
+                <li>Some words with o/u: <span class="comp-highlight">-obb</span> (borut &rarr; borutobb)</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // =============================================
+    // SECTION 3: Superlative Formation (leg-...-bb)
+    // =============================================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Forming the Superlative (<span class="super-highlight">leg-...-bb</span>)</h2>
+        <p class="mb-4">The superlative is formed by adding the prefix <span class="super-highlight">leg-</span> to the comparative form:</p>
+
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Positive</th>
+                        <th>Comparative</th>
+                        <th>Superlative</th>
+                        <th>English</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>nagy</td><td class="comp-highlight">nagyobb</td><td class="super-highlight">legnagyobb</td><td>big - bigger - biggest</td></tr>
+                    <tr><td>szep</td><td class="comp-highlight">szebb</td><td class="super-highlight">legszebb</td><td>beautiful - more beautiful - most beautiful</td></tr>
+                    <tr><td>okos</td><td class="comp-highlight">okosabb</td><td class="super-highlight">legokosabb</td><td>smart - smarter - smartest</td></tr>
+                    <tr><td>fiatal</td><td class="comp-highlight">fiatalabb</td><td class="super-highlight">legfiatalabb</td><td>young - younger - youngest</td></tr>
+                    <tr><td>eros</td><td class="comp-highlight">erosebb</td><td class="super-highlight">legerosebb</td><td>strong - stronger - strongest</td></tr>
+                    <tr><td>gyors</td><td class="comp-highlight">gyorsabb</td><td class="super-highlight">leggyorsabb</td><td>fast - faster - fastest</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mt-4">
+            <p class="text-sm"><strong>Simple formula:</strong> Superlative = <span class="super-highlight">leg-</span> + Comparative</p>
+            <p class="text-sm mt-2">Example: szebb (more beautiful) &rarr; <span class="super-highlight">leg</span>szebb (most beautiful)</p>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // =============================================
+    // SECTION 4: Irregular Comparatives and Superlatives
+    // =============================================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Irregular Forms</h2>
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
+            <p class="text-slate-700"><strong>Important!</strong> These common adjectives have irregular comparative and superlative forms that must be memorized:</p>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Positive</th>
+                        <th>Meaning</th>
+                        <th>Comparative</th>
+                        <th>Superlative</th>
+                    </tr>
+                </thead>
+                <tbody class="font-medium">
+                    <tr class="bg-red-50">
+                        <td>jo</td>
+                        <td>good</td>
+                        <td class="comp-highlight">jobb</td>
+                        <td class="super-highlight">legjobb</td>
+                    </tr>
+                    <tr class="bg-red-50">
+                        <td>rossz</td>
+                        <td>bad</td>
+                        <td class="comp-highlight">rosszabb</td>
+                        <td class="super-highlight">legrosszabb</td>
+                    </tr>
+                    <tr class="bg-red-50">
+                        <td>sok</td>
+                        <td>much/many</td>
+                        <td class="comp-highlight">tobb</td>
+                        <td class="super-highlight">legtobb</td>
+                    </tr>
+                    <tr class="bg-red-50">
+                        <td>kevés</td>
+                        <td>few/little</td>
+                        <td class="comp-highlight">kevesebb</td>
+                        <td class="super-highlight">legkevesebb</td>
+                    </tr>
+                    <tr class="bg-red-50">
+                        <td>nagy</td>
+                        <td>big</td>
+                        <td class="comp-highlight">nagyobb</td>
+                        <td class="super-highlight">legnagyobb</td>
+                    </tr>
+                    <tr class="bg-red-50">
+                        <td>kicsi / kis</td>
+                        <td>small</td>
+                        <td class="comp-highlight">kisebb</td>
+                        <td class="super-highlight">legkisebb</td>
+                    </tr>
+                    <tr class="bg-red-50">
+                        <td>szep</td>
+                        <td>beautiful</td>
+                        <td class="comp-highlight">szebb</td>
+                        <td class="super-highlight">legszebb</td>
+                    </tr>
+                    <tr class="bg-red-50">
+                        <td>hosszu</td>
+                        <td>long</td>
+                        <td class="comp-highlight">hosszabb</td>
+                        <td class="super-highlight">leghosszabb</td>
+                    </tr>
+                    <tr class="bg-red-50">
+                        <td>konnyű</td>
+                        <td>easy/light</td>
+                        <td class="comp-highlight">konnyebb</td>
+                        <td class="super-highlight">legkonnyebb</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // =============================================
+    // SECTION 5: Comparison Structures
+    // =============================================
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 5: Comparison Sentence Structures</h2>
+
+        <div class="space-y-4">
+            <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                <h3 class="font-bold text-orange-800 mb-2">Comparative with "mint" (than)</h3>
+                <p class="text-sm mb-2">A + comparative + <strong>mint</strong> + B</p>
+                <ul class="list-disc pl-6 text-sm space-y-1">
+                    <li>Peter <span class="comp-highlight">magasabb</span>, <strong>mint</strong> Anna. (Peter is taller than Anna.)</li>
+                    <li>Ez a haz <span class="comp-highlight">nagyobb</span>, <strong>mint</strong> az. (This house is bigger than that one.)</li>
+                    <li>A kutya <span class="comp-highlight">gyorsabb</span>, <strong>mint</strong> a macska. (The dog is faster than the cat.)</li>
+                </ul>
+            </div>
+
+            <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                <h3 class="font-bold text-orange-800 mb-2">Comparative with "-nal/-nél" (than - attached)</h3>
+                <p class="text-sm mb-2">A + comparative + B<strong>-nal/-nél</strong></p>
+                <ul class="list-disc pl-6 text-sm space-y-1">
+                    <li>Peter <span class="comp-highlight">magasabb</span> <strong>Annanal</strong>. (Peter is taller than Anna.)</li>
+                    <li>Ez a haz <span class="comp-highlight">nagyobb</span> <strong>annal</strong>. (This house is bigger than that one.)</li>
+                </ul>
+            </div>
+
+            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                <h3 class="font-bold text-purple-800 mb-2">Superlative Structures</h3>
+                <ul class="list-disc pl-6 text-sm space-y-1">
+                    <li>Peter a <span class="super-highlight">legmagasabb</span>. (Peter is the tallest.)</li>
+                    <li>Ez a <span class="super-highlight">legnagyobb</span> haz. (This is the biggest house.)</li>
+                    <li>O a <span class="super-highlight">legokosabb</span> diak a osztalyban. (He is the smartest student in the class.)</li>
+                </ul>
+            </div>
+
+            <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                <h3 class="font-bold text-green-800 mb-2">Equality: "olyan ... mint" (as ... as)</h3>
+                <ul class="list-disc pl-6 text-sm space-y-1">
+                    <li>Peter <strong>olyan</strong> magas, <strong>mint</strong> Anna. (Peter is as tall as Anna.)</li>
+                    <li>Ez a haz <strong>olyan</strong> nagy, <strong>mint</strong> az. (This house is as big as that one.)</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section5);
+
+    // =============================================
+    // STAGE 1: Comparative Formation (12 items)
+    // =============================================
+    const stage1Questions = [
+        { positive: 'nagy', comparative: 'nagyobb', meaning: 'big' },
+        { positive: 'szep', comparative: 'szebb', meaning: 'beautiful' },
+        { positive: 'magas', comparative: 'magasabb', meaning: 'tall' },
+        { positive: 'hideg', comparative: 'hidegebb', meaning: 'cold' },
+        { positive: 'meleg', comparative: 'melegebb', meaning: 'warm' },
+        { positive: 'gyors', comparative: 'gyorsabb', meaning: 'fast' },
+        { positive: 'lassu', comparative: 'lassabb', meaning: 'slow' },
+        { positive: 'fiatal', comparative: 'fiatalabb', meaning: 'young' },
+        { positive: 'oreg', comparative: 'oregebb', meaning: 'old' },
+        { positive: 'draga', comparative: 'dragabb', meaning: 'expensive' },
+        { positive: 'olcso', comparative: 'olcsobb', meaning: 'cheap' },
+        { positive: 'okos', comparative: 'okosabb', meaning: 'smart' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 1: Comparative Formation</h2>
+        <p class="mb-4 text-slate-600">Write the comparative form of each adjective:</p>
+        <div id="stage1-exercises" class="space-y-3"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Container = document.getElementById('stage1-exercises');
+
+    stage1Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-orange-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[140px] text-slate-800';
+        label.innerHTML = `<strong>${q.positive}</strong> (${q.meaning}) &rarr;`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-36 text-center focus:ring-2 focus:ring-orange-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage1(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage1Container.appendChild(wrapper);
+    });
+
+    function checkStage1(idx) {
+        const wrapper = stage1Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage1Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(q.comparative);
+
+        if (userAnswer === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Check accents! ${q.comparative}`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.comparative}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let correct = 0;
+        stage1Questions.forEach((q, i) => {
+            const input = stage1Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(q.comparative)) correct++;
+        });
+        document.getElementById('stage1-score').textContent = `Score: ${correct} / ${stage1Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 2: Superlative Formation (10 items)
+    // =============================================
+    const stage2Questions = [
+        { positive: 'nagy', superlative: 'legnagyobb', meaning: 'big' },
+        { positive: 'szep', superlative: 'legszebb', meaning: 'beautiful' },
+        { positive: 'jo', superlative: 'legjobb', meaning: 'good' },
+        { positive: 'rossz', superlative: 'legrosszabb', meaning: 'bad' },
+        { positive: 'gyors', superlative: 'leggyorsabb', meaning: 'fast' },
+        { positive: 'kicsi', superlative: 'legkisebb', meaning: 'small' },
+        { positive: 'okos', superlative: 'legokosabb', meaning: 'smart' },
+        { positive: 'fiatal', superlative: 'legfiatalabb', meaning: 'young' },
+        { positive: 'eros', superlative: 'legerosebb', meaning: 'strong' },
+        { positive: 'sok', superlative: 'legtobb', meaning: 'much/many' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 2: Superlative Formation</h2>
+        <p class="mb-4 text-slate-600">Write the superlative form of each adjective:</p>
+        <div id="stage2-exercises" class="space-y-3"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-purple-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[140px] text-slate-800';
+        label.innerHTML = `<strong>${q.positive}</strong> (${q.meaning}) &rarr;`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-40 text-center focus:ring-2 focus:ring-purple-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage2(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage2Container.appendChild(wrapper);
+    });
+
+    function checkStage2(idx) {
+        const wrapper = stage2Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage2Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(q.superlative);
+
+        if (userAnswer === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Check accents! ${q.superlative}`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.superlative}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        stage2Questions.forEach((q, i) => {
+            const input = stage2Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(q.superlative)) correct++;
+        });
+        document.getElementById('stage2-score').textContent = `Score: ${correct} / ${stage2Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 3: Irregular Forms Drill (8 items)
+    // =============================================
+    const stage3Questions = [
+        { prompt: 'jo (comparative)', answer: 'jobb' },
+        { prompt: 'jo (superlative)', answer: 'legjobb' },
+        { prompt: 'rossz (comparative)', answer: 'rosszabb' },
+        { prompt: 'sok (comparative)', answer: 'tobb' },
+        { prompt: 'sok (superlative)', answer: 'legtobb' },
+        { prompt: 'kicsi (comparative)', answer: 'kisebb' },
+        { prompt: 'kicsi (superlative)', answer: 'legkisebb' },
+        { prompt: 'kevés (comparative)', answer: 'kevesebb' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 3: Irregular Forms Drill</h2>
+        <p class="mb-4 text-slate-600">Practice the important irregular forms:</p>
+        <div id="stage3-exercises" class="space-y-3"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-red-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[180px] text-slate-800';
+        label.innerHTML = `<strong>${q.prompt}</strong> &rarr;`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-36 text-center focus:ring-2 focus:ring-red-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage3(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage3Container.appendChild(wrapper);
+    });
+
+    function checkStage3(idx) {
+        const wrapper = stage3Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage3Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(q.answer);
+
+        if (userAnswer === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Check accents! ${q.answer}`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let correct = 0;
+        stage3Questions.forEach((q, i) => {
+            const input = stage3Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(q.answer)) correct++;
+        });
+        document.getElementById('stage3-score').textContent = `Score: ${correct} / ${stage3Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 4: Sentence Completion (10 items)
+    // =============================================
+    const stage4Questions = [
+        { sentence: 'Peter ___ Anna. (taller than)', answer: 'magasabb, mint', translation: 'Peter is taller than Anna.' },
+        { sentence: 'Ez a haz a ___ az utcaban. (biggest)', answer: 'legnagyobb', translation: 'This house is the biggest on the street.' },
+        { sentence: 'A kutyam ___ a tiédnél. (smarter)', answer: 'okosabb', translation: 'My dog is smarter than yours.' },
+        { sentence: 'Ez a ___ nap az évben. (hottest)', answer: 'legmelegebb', translation: 'This is the hottest day of the year.' },
+        { sentence: 'A vonat ___ a busznál. (faster)', answer: 'gyorsabb', translation: 'The train is faster than the bus.' },
+        { sentence: 'O a ___ diak a osztalyban. (best)', answer: 'legjobb', translation: 'He is the best student in the class.' },
+        { sentence: 'Ez a film ___ annál. (better)', answer: 'jobb', translation: 'This movie is better than that one.' },
+        { sentence: 'A tél ___ az osznel. (colder)', answer: 'hidegebb', translation: 'Winter is colder than autumn.' },
+        { sentence: 'Ez a ___ ajandék. (most beautiful)', answer: 'legszebb', translation: 'This is the most beautiful gift.' },
+        { sentence: 'Nekem ___ pénzem van. (less)', answer: 'kevesebb', translation: 'I have less money.' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 4: Sentence Completion</h2>
+        <p class="mb-4 text-slate-600">Complete each sentence with the correct form:</p>
+        <div id="stage4-exercises" class="space-y-3"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-1 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('div');
+        label.innerHTML = `${q.sentence}`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-48 text-center focus:ring-2 focus:ring-teal-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(idx);
+        });
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(label);
+        wrapper.appendChild(inputRow);
+        stage4Container.appendChild(wrapper);
+    });
+
+    function checkStage4(idx) {
+        const wrapper = stage4Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span');
+        const q = stage4Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(q.answer);
+
+        if (userAnswer === correct) {
+            feedback.textContent = `Correct! (${q.translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Check accents! ${q.answer}`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        stage4Questions.forEach((q, i) => {
+            const input = stage4Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(q.answer)) correct++;
+        });
+        document.getElementById('stage4-score').textContent = `Score: ${correct} / ${stage4Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 5: Translation Practice (8 items)
+    // =============================================
+    const stage5Questions = [
+        { english: 'This car is faster.', answer: 'ez az auto gyorsabb', hint: 'gyors' },
+        { english: 'She is the most beautiful.', answer: 'o a legszebb', hint: 'szep' },
+        { english: 'My house is bigger than yours.', answer: 'a hazam nagyobb, mint a tiéd', hint: 'nagy + mint' },
+        { english: 'This is the best book.', answer: 'ez a legjobb konyv', hint: 'jo (irregular)' },
+        { english: 'He is younger than me.', answer: 'o fiatalabb, mint en', hint: 'fiatal' },
+        { english: 'The weather is worse today.', answer: 'az idojaras rosszabb ma', hint: 'rossz' },
+        { english: 'I need more time.', answer: 'tobb idore van szuksegem', hint: 'sok (irregular)' },
+        { english: 'This is the smallest room.', answer: 'ez a legkisebb szoba', hint: 'kicsi (irregular)' }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 5: Translation Practice</h2>
+        <p class="mb-4 text-slate-600">Translate the English sentences into Hungarian:</p>
+        <div id="stage5-exercises" class="space-y-3"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Container = document.getElementById('stage5-exercises');
+
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-1 p-3 bg-blue-50 rounded-lg';
+
+        const label = document.createElement('div');
+        label.innerHTML = `<strong>${q.english}</strong> <span class="text-slate-500 text-sm">(${q.hint})</span>`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-full md:w-72 focus:ring-2 focus:ring-blue-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage5(idx);
+        });
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(label);
+        wrapper.appendChild(inputRow);
+        stage5Container.appendChild(wrapper);
+    });
+
+    function checkStage5(idx) {
+        const wrapper = stage5Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span');
+        const q = stage5Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(q.answer);
+
+        if (userAnswer === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Check accents! ${q.answer}`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage5Score();
+    }
+
+    function updateStage5Score() {
+        let correct = 0;
+        stage5Questions.forEach((q, i) => {
+            const input = stage5Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(q.answer)) correct++;
+        });
+        document.getElementById('stage5-score').textContent = `Score: ${correct} / ${stage5Questions.length}`;
+    }
+
+    // =============================================
+    // SUMMARY
+    // =============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 p-6 bg-gradient-to-r from-orange-50 to-purple-50 rounded-lg border border-orange-200';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Lesson Summary</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-orange-800 mb-2">Comparative (<span class="comp-highlight">-bb</span>)</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li>Add <span class="comp-highlight">-bb</span> (vowel ending)</li>
+                    <li>Add <span class="comp-highlight">-abb/-ebb/-obb</span> (consonant ending)</li>
+                    <li>Use "mint" or "-nal/-nél" for "than"</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-purple-800 mb-2">Superlative (<span class="super-highlight">leg-...-bb</span>)</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li>Add <span class="super-highlight">leg-</span> prefix to comparative</li>
+                    <li>Example: szebb &rarr; legszebb</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-3 bg-white rounded border">
+            <h3 class="font-semibold text-red-800 mb-2">Key Irregular Forms:</h3>
+            <p class="text-sm">jo &rarr; jobb &rarr; legjobb | rossz &rarr; rosszabb &rarr; legrosszabb</p>
+            <p class="text-sm">sok &rarr; tobb &rarr; legtobb | kicsi &rarr; kisebb &rarr; legkisebb</p>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>

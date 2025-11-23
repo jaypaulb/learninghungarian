@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 42: Work & Business - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: left; }
+        th { background: #f1f5f9; }
+        .match-card {
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .match-card:hover { transform: scale(1.02); }
+        .match-card.selected {
+            border-color: #0f766e;
+            background-color: #f0fdfa;
+            box-shadow: 0 0 0 2px #0f766e;
+        }
+        .match-card.correct {
+            border-color: #16a34a;
+            background-color: #dcfce7;
+        }
+        .match-card.incorrect {
+            border-color: #dc2626;
+            background-color: #fef2f2;
+        }
+        .cultural-note {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .vocab-highlight { color: #0f766e; font-weight: 600; }
+        .formal-note {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 42: Work & Business <span class="block text-xl text-slate-500 font-normal">(Munka es uzlet)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn essential vocabulary for the workplace, job-related verbs, and formal business expressions in Hungarian. Perfect for professional settings and job interviews.</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+
+    <script>
+    // ============================================
+    // UTILITY FUNCTIONS
+    // ============================================
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuU]/g, function(m) {
+            const map = { 'o':'o', 'O':'O', 'u':'u', 'U':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeAnswer(str) {
+        return str.trim().toLowerCase();
+    }
+
+    function checkAccentAware(userInput, correctAnswer) {
+        const normalizedInput = normalizeAnswer(userInput);
+        const normalizedCorrect = normalizeAnswer(correctAnswer);
+        if (normalizedInput === normalizedCorrect) return 'correct';
+        if (removeAccents(normalizedInput) === removeAccents(normalizedCorrect)) return 'accent-warning';
+        return 'incorrect';
+    }
+
+    // ============================================
+    // VOCABULARY DATA
+    // ============================================
+    const workplaceVocab = [
+        { hungarian: 'iroda', english: 'office' },
+        { hungarian: 'vallalat', english: 'company / corporation' },
+        { hungarian: 'ceg', english: 'company / firm' },
+        { hungarian: 'gyar', english: 'factory' },
+        { hungarian: 'uzlet', english: 'business / shop' },
+        { hungarian: 'targyal', english: 'meeting room' },
+        { hungarian: 'irodai asztal', english: 'desk' },
+        { hungarian: 'szamitogep', english: 'computer' }
+    ];
+
+    const jobTitles = [
+        { hungarian: 'fonok', english: 'boss' },
+        { hungarian: 'igazgato', english: 'director / manager' },
+        { hungarian: 'alkalmazott', english: 'employee' },
+        { hungarian: 'kolléga', english: 'colleague' },
+        { hungarian: 'ugyfel', english: 'client / customer' },
+        { hungarian: 'titkar', english: 'secretary' },
+        { hungarian: 'konyvelo', english: 'accountant' },
+        { hungarian: 'mernok', english: 'engineer' },
+        { hungarian: 'ugyvéd', english: 'lawyer' },
+        { hungarian: 'orvos', english: 'doctor' }
+    ];
+
+    const workVerbs = [
+        { hungarian: 'dolgozik', english: 'to work' },
+        { hungarian: 'keres', english: 'to earn / to look for' },
+        { hungarian: 'alkalmaz', english: 'to employ / to hire' },
+        { hungarian: 'felvesz', english: 'to hire / to take on' },
+        { hungarian: 'eloleptet', english: 'to promote' },
+        { hungarian: 'kirúg', english: 'to fire / to dismiss' },
+        { hungarian: 'felmond', english: 'to resign / to quit' },
+        { hungarian: 'jelentkezik', english: 'to apply' },
+        { hungarian: 'targyalja', english: 'to negotiate' },
+        { hungarian: 'vezet', english: 'to lead / to manage' }
+    ];
+
+    const businessTerms = [
+        { hungarian: 'megbeszeles', english: 'meeting' },
+        { hungarian: 'projekt', english: 'project' },
+        { hungarian: 'hatar', english: 'deadline' },
+        { hungarian: 'fizetes', english: 'salary / payment' },
+        { hungarian: 'ber', english: 'wage' },
+        { hungarian: 'szerzodes', english: 'contract' },
+        { hungarian: 'allasinterjú', english: 'job interview' },
+        { hungarian: 'oneletrajz', english: 'CV / resume' },
+        { hungarian: 'allas', english: 'job / position' },
+        { hungarian: 'munkahely', english: 'workplace' }
+    ];
+
+    const formalExpressions = [
+        { hungarian: 'Tisztelt Holgyek es Urak!', english: 'Dear Ladies and Gentlemen' },
+        { hungarian: 'Orommel jelentem, hogy...', english: 'I am pleased to report that...' },
+        { hungarian: 'Koszonom a figyelmet.', english: 'Thank you for your attention.' },
+        { hungarian: 'Elore is koszonom.', english: 'Thank you in advance.' },
+        { hungarian: 'Miben segithetek?', english: 'How can I help you?' },
+        { hungarian: 'Egy pillanat, kerem.', english: 'One moment, please.' },
+        { hungarian: 'Visszahivom Ont.', english: 'I will call you back.' },
+        { hungarian: 'Megbeszelt idopont', english: 'Scheduled appointment' }
+    ];
+
+    // ============================================
+    // EXERCISE DATA
+    // ============================================
+    const stage1Matching = [
+        { hungarian: 'iroda', english: 'office' },
+        { hungarian: 'fonok', english: 'boss' },
+        { hungarian: 'dolgozik', english: 'to work' },
+        { hungarian: 'fizetes', english: 'salary' },
+        { hungarian: 'megbeszeles', english: 'meeting' },
+        { hungarian: 'kolléga', english: 'colleague' },
+        { hungarian: 'ceg', english: 'company' },
+        { hungarian: 'szerzodes', english: 'contract' },
+        { hungarian: 'allasinterjú', english: 'job interview' },
+        { hungarian: 'projekt', english: 'project' }
+    ];
+
+    const stage2MultipleChoice = [
+        { question: 'What does "alkalmazott" mean?', options: ['boss', 'employee', 'client', 'director'], correct: 'employee' },
+        { question: 'How do you say "to hire" in Hungarian?', options: ['kirúg', 'felmond', 'felvesz', 'dolgozik'], correct: 'felvesz' },
+        { question: 'What is "CV/resume" in Hungarian?', options: ['szerzodes', 'oneletrajz', 'fizetes', 'allas'], correct: 'oneletrajz' },
+        { question: 'What does "felmond" mean?', options: ['to promote', 'to resign', 'to hire', 'to negotiate'], correct: 'to resign' },
+        { question: 'What is "deadline" in Hungarian?', options: ['projekt', 'hatar', 'megbeszeles', 'fizetes'], correct: 'hatar' },
+        { question: 'What does "ugyfel" mean?', options: ['colleague', 'employee', 'client', 'boss'], correct: 'client' },
+        { question: 'How do you say "factory" in Hungarian?', options: ['iroda', 'gyar', 'uzlet', 'ceg'], correct: 'gyar' },
+        { question: 'What does "eloleptet" mean?', options: ['to fire', 'to hire', 'to promote', 'to quit'], correct: 'to promote' }
+    ];
+
+    const stage3FillBlanks = [
+        { sentence: 'Egy nagy ___ dolgozom.', answer: 'cegnel', english: 'I work at a big company.' },
+        { sentence: 'A ___ nagyon szigorú.', answer: 'fonok', english: 'The boss is very strict.' },
+        { sentence: 'Holnap van az ___.', answer: 'allasinterju', english: 'The job interview is tomorrow.' },
+        { sentence: 'A ___ tiz orakor kezdodik.', answer: 'megbeszeles', english: 'The meeting starts at ten o\'clock.' },
+        { sentence: 'Új ___ keresek.', answer: 'allast', english: 'I am looking for a new job.' },
+        { sentence: 'Jo a ___ ebben a cegben.', answer: 'fizetes', english: 'The salary is good at this company.' },
+        { sentence: 'Alairtam a ___.', answer: 'szerzodest', english: 'I signed the contract.' },
+        { sentence: 'A ___ nagyon fontos.', answer: 'hatarido', english: 'The deadline is very important.' }
+    ];
+
+    const stage4Translation = [
+        { english: 'I work in an office.', answer: 'Irodaban dolgozom', alternates: ['en irodaban dolgozom', 'egy irodaban dolgozom'] },
+        { english: 'The meeting is at three o\'clock.', answer: 'A megbeszeles harom orakor van', alternates: ['harom orakor van a megbeszeles'] },
+        { english: 'I am looking for a job.', answer: 'Allast keresek', alternates: ['munkát keresek', 'en allast keresek'] },
+        { english: 'My colleague is very helpful.', answer: 'A kollegam nagyon segitokesz', alternates: ['nagyon segitokesz a kollegam'] },
+        { english: 'I need to send my CV.', answer: 'El kell kuldenem az oneletrajzomat', alternates: ['az oneletrajzomat el kell kuldenem'] },
+        { english: 'The boss promoted me.', answer: 'A fonok eloléptetett', alternates: ['eloléptetett a fonok', 'a fonokom eloléptetett'] }
+    ];
+
+    const stage5Dialogue = [
+        { speaker: 'A', line: 'Hol dolgozik On?', response: 'Egy nemzetkozi ___ dolgozom.', blank: 'cegnel', responseEnglish: 'I work at an international company.' },
+        { speaker: 'A', line: 'Mi a foglalkozasa?', response: '___ vagyok.', blank: 'Mernok', responseEnglish: 'I am an engineer.' },
+        { speaker: 'A', line: 'Mikor van a megbeszeles?', response: '___ orakor.', blank: 'Kettokor', responseEnglish: 'At two o\'clock.' },
+        { speaker: 'A', line: 'Elegedett a fizetesevel?', response: 'Igen, nagyon jo a ___.', blank: 'fizetes', responseEnglish: 'Yes, the salary is very good.' },
+        { speaker: 'A', line: 'Van tapasztalata ezen a teruleten?', response: 'Igen, ot eve ___ ezen a teruleten.', blank: 'dolgozom', responseEnglish: 'Yes, I have been working in this field for five years.' },
+        { speaker: 'A', line: 'Miert szeretne nálunk dolgozni?', response: 'Mert jo a ___ hirneve.', blank: 'ceg', responseEnglish: 'Because the company has a good reputation.' }
+    ];
+
+    // ============================================
+    // SCORE TRACKING
+    // ============================================
+    let scores = {
+        stage1: { correct: 0, total: stage1Matching.length },
+        stage2: { correct: 0, total: stage2MultipleChoice.length },
+        stage3: { correct: 0, total: stage3FillBlanks.length },
+        stage4: { correct: 0, total: stage4Translation.length },
+        stage5: { correct: 0, total: stage5Dialogue.length }
+    };
+
+    function updateTotalScore() {
+        const totalCorrect = Object.values(scores).reduce((sum, s) => sum + s.correct, 0);
+        const totalQuestions = Object.values(scores).reduce((sum, s) => sum + s.total, 0);
+        const el = document.getElementById('total-score');
+        if (el) el.textContent = `Total Score: ${totalCorrect} / ${totalQuestions}`;
+    }
+
+    // ============================================
+    // BUILD PAGE CONTENT
+    // ============================================
+    const mainContent = document.getElementById('main-content');
+
+    // Learning Objectives
+    const objectivesSection = document.createElement('section');
+    objectivesSection.className = 'mb-8';
+    objectivesSection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Learning Objectives</h2>
+        <ul class="list-disc pl-6 space-y-2 text-slate-600">
+            <li>Learn workplace and office vocabulary</li>
+            <li>Identify job titles and professions</li>
+            <li>Use work-related verbs: dolgozik, keres, alkalmaz</li>
+            <li>Understand business terminology</li>
+            <li>Master formal business expressions</li>
+        </ul>
+    `;
+    mainContent.appendChild(objectivesSection);
+
+    // Cultural Note
+    const culturalNote = document.createElement('div');
+    culturalNote.className = 'cultural-note mb-8';
+    culturalNote.innerHTML = `
+        <h3 class="font-bold text-amber-800 mb-2">Cultural Note: Workplace Formality in Hungary</h3>
+        <p class="text-amber-900">Hungarian workplaces tend to be more formal than in some Western countries. Using <strong>On</strong> (formal "you") is standard with superiors and clients.
+        Business cards (<strong>nevjegy</strong>) are commonly exchanged at first meetings. Punctuality is highly valued - arriving late to meetings is considered disrespectful.
+        The phrase "Tisztelt..." (Dear/Respected...) is the standard opening for formal business correspondence.</p>
+    `;
+    mainContent.appendChild(culturalNote);
+
+    // Section 1: Workplace Vocabulary
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Workplace Vocabulary (Munkahelyi szókincs)</h2>
+        <table>
+            <thead><tr><th>Hungarian</th><th>English</th></tr></thead>
+            <tbody>${workplaceVocab.map(item => `<tr><td class="vocab-highlight">${item.hungarian}</td><td>${item.english}</td></tr>`).join('')}</tbody>
+        </table>
+    `;
+    mainContent.appendChild(section1);
+
+    // Section 2: Job Titles
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Job Titles & Professions (Foglalkozasok)</h2>
+        <table>
+            <thead><tr><th>Hungarian</th><th>English</th></tr></thead>
+            <tbody>${jobTitles.map(item => `<tr><td class="vocab-highlight">${item.hungarian}</td><td>${item.english}</td></tr>`).join('')}</tbody>
+        </table>
+        <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <h4 class="font-semibold text-blue-800 mb-2">Asking About Occupation</h4>
+            <p class="text-blue-700 text-sm"><strong>Mi a foglalkozasa?</strong> (formal) or <strong>Mi a foglalkozasod?</strong> (informal) - "What is your occupation?"
+            <br>Answer: <strong>... vagyok.</strong> - "I am a ..."</p>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // Section 3: Work-Related Verbs
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Work-Related Verbs (Munkaval kapcsolatos igek)</h2>
+        <table>
+            <thead><tr><th>Hungarian</th><th>English</th></tr></thead>
+            <tbody>${workVerbs.map(item => `<tr><td class="vocab-highlight">${item.hungarian}</td><td>${item.english}</td></tr>`).join('')}</tbody>
+        </table>
+        <div class="mt-4 p-4 bg-green-50 rounded-lg border border-green-200">
+            <h4 class="font-semibold text-green-800 mb-2">Example Sentences</h4>
+            <ul class="text-green-700 text-sm space-y-1">
+                <li><strong>Bankban dolgozom.</strong> - I work at a bank.</li>
+                <li><strong>Jo fizetést keresek.</strong> - I earn a good salary.</li>
+                <li><strong>A cég uj alkalmazottakat keres.</strong> - The company is looking for new employees.</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // Section 4: Business Terms
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Business Terms (Uzleti kifejezések)</h2>
+        <table>
+            <thead><tr><th>Hungarian</th><th>English</th></tr></thead>
+            <tbody>${businessTerms.map(item => `<tr><td class="vocab-highlight">${item.hungarian}</td><td>${item.english}</td></tr>`).join('')}</tbody>
+        </table>
+    `;
+    mainContent.appendChild(section4);
+
+    // Section 5: Formal Business Expressions
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 5: Formal Business Expressions (Hivatalos kifejezések)</h2>
+        <div class="bg-slate-50 rounded-lg p-4 space-y-3">
+            ${formalExpressions.map(item => `
+                <div class="flex flex-col md:flex-row md:items-center gap-2">
+                    <span class="font-medium text-teal-700 min-w-[280px]">${item.hungarian}</span>
+                    <span class="text-slate-600">- ${item.english}</span>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    mainContent.appendChild(section5);
+
+    // Formal Note
+    const formalNote = document.createElement('div');
+    formalNote.className = 'formal-note mb-8';
+    formalNote.innerHTML = `
+        <h3 class="font-bold text-blue-800 mb-2">Professional Email Opening and Closing</h3>
+        <p class="text-blue-900 text-sm">
+            <strong>Opening:</strong> "Tisztelt [Name] Úr/Asszony!" (Dear Mr./Mrs. [Name])<br>
+            <strong>Closing:</strong> "Tisztelettel," (Respectfully,) or "Udvozlettel," (With regards,)<br>
+            <strong>For unknown recipients:</strong> "Tisztelt Holgyek és Urak!" (Dear Ladies and Gentlemen)
+        </p>
+    `;
+    mainContent.appendChild(formalNote);
+
+    // Total Score Display
+    const totalScoreSection = document.createElement('div');
+    totalScoreSection.className = 'bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-xl p-4 mb-8 text-center';
+    totalScoreSection.innerHTML = `
+        <h3 class="text-lg font-semibold mb-1">Interactive Exercises</h3>
+        <p id="total-score" class="text-2xl font-bold">Total Score: 0 / ${Object.values(scores).reduce((sum, s) => sum + s.total, 0)}</p>
+    `;
+    mainContent.appendChild(totalScoreSection);
+
+    // ============================================
+    // STAGE 1: VOCABULARY MATCHING
+    // ============================================
+    let stage1Selected = null;
+    let stage1Matches = new Set();
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 1: Vocabulary Matching</h2>
+        <p class="text-slate-600 mb-4">Match the Hungarian words with their English translations.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div id="stage1-hungarian" class="space-y-2"></div>
+            <div id="stage1-english" class="space-y-2"></div>
+        </div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage1Matching.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Hungarian = document.getElementById('stage1-hungarian');
+    const stage1English = document.getElementById('stage1-english');
+    const shuffledEnglish = [...stage1Matching].sort(() => Math.random() - 0.5);
+
+    stage1Matching.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.hungarian;
+        card.dataset.index = idx;
+        card.dataset.type = 'hungarian';
+        card.addEventListener('click', () => handleStage1Click(card, 'hungarian', idx));
+        stage1Hungarian.appendChild(card);
+    });
+
+    shuffledEnglish.forEach((item) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.english;
+        card.dataset.originalIndex = stage1Matching.findIndex(d => d.english === item.english);
+        card.dataset.type = 'english';
+        card.addEventListener('click', () => handleStage1Click(card, 'english', parseInt(card.dataset.originalIndex)));
+        stage1English.appendChild(card);
+    });
+
+    function handleStage1Click(card, type, index) {
+        if (card.classList.contains('correct')) return;
+        if (stage1Selected === null) {
+            stage1Selected = { card, type, index };
+            card.classList.add('selected');
+        } else if (stage1Selected.type === type) {
+            stage1Selected.card.classList.remove('selected');
+            stage1Selected = { card, type, index };
+            card.classList.add('selected');
+        } else {
+            if (stage1Selected.index === index) {
+                stage1Selected.card.classList.remove('selected');
+                stage1Selected.card.classList.add('correct');
+                card.classList.add('correct');
+                stage1Matches.add(index);
+                scores.stage1.correct = stage1Matches.size;
+                document.getElementById('stage1-score').textContent = `Score: ${stage1Matches.size} / ${stage1Matching.length}`;
+                updateTotalScore();
+            } else {
+                stage1Selected.card.classList.add('incorrect');
+                card.classList.add('incorrect');
+                setTimeout(() => {
+                    stage1Selected.card.classList.remove('selected', 'incorrect');
+                    card.classList.remove('incorrect');
+                    stage1Selected = null;
+                }, 800);
+                return;
+            }
+            stage1Selected = null;
+        }
+    }
+
+    // ============================================
+    // STAGE 2: MULTIPLE CHOICE
+    // ============================================
+    const stage2Answered = new Array(stage2MultipleChoice.length).fill(false);
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 2: Multiple Choice</h2>
+        <p class="text-slate-600 mb-4">Select the correct answer for each question.</p>
+        <div id="stage2-exercise" class="space-y-4"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage2MultipleChoice.length}</div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercise');
+
+    stage2MultipleChoice.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700 mb-3">${idx + 1}. ${q.question}</p>
+            <div class="grid grid-cols-2 gap-2" id="stage2-options-${idx}"></div>
+            <p class="mt-2 text-sm font-semibold stage2-feedback"></p>
+        `;
+        stage2Container.appendChild(wrapper);
+
+        const optionsContainer = wrapper.querySelector(`#stage2-options-${idx}`);
+        q.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'px-4 py-2 border-2 border-slate-300 rounded-lg bg-white hover:bg-slate-50 transition-colors text-sm';
+            btn.textContent = opt;
+            btn.addEventListener('click', () => checkStage2(idx, opt, btn, wrapper));
+            optionsContainer.appendChild(btn);
+        });
+    });
+
+    function checkStage2(idx, selected, btn, wrapper) {
+        const feedback = wrapper.querySelector('.stage2-feedback');
+        const buttons = wrapper.querySelectorAll('button');
+        const correct = stage2MultipleChoice[idx].correct;
+
+        buttons.forEach(b => b.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500'));
+
+        if (selected === correct) {
+            btn.classList.add('bg-green-100', 'border-green-500');
+            feedback.textContent = 'Correct!';
+            feedback.className = 'mt-2 text-sm font-semibold text-green-600 stage2-feedback';
+            if (!stage2Answered[idx]) {
+                stage2Answered[idx] = true;
+                scores.stage2.correct++;
+                document.getElementById('stage2-score').textContent = `Score: ${scores.stage2.correct} / ${stage2MultipleChoice.length}`;
+                updateTotalScore();
+            }
+        } else {
+            btn.classList.add('bg-red-100', 'border-red-500');
+            feedback.textContent = `Incorrect. The correct answer is: ${correct}`;
+            feedback.className = 'mt-2 text-sm font-semibold text-red-600 stage2-feedback';
+        }
+    }
+
+    // ============================================
+    // STAGE 3: FILL IN THE BLANKS
+    // ============================================
+    const stage3Answered = new Array(stage3FillBlanks.length).fill(false);
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 3: Fill in the Blanks</h2>
+        <p class="text-slate-600 mb-4">Complete the sentences with the correct Hungarian word. Press Enter to check.</p>
+        <div id="stage3-exercise" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage3FillBlanks.length}</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercise');
+
+    stage3FillBlanks.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const parts = q.sentence.split('___');
+        const row = document.createElement('div');
+        row.className = 'flex flex-wrap items-center gap-1';
+
+        const span1 = document.createElement('span');
+        span1.className = 'text-slate-800';
+        span1.textContent = parts[0];
+        row.appendChild(span1);
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-2 py-1 w-32 text-center focus:ring-2 focus:ring-teal-500';
+        row.appendChild(input);
+
+        if (parts[1]) {
+            const span2 = document.createElement('span');
+            span2.className = 'text-slate-800';
+            span2.textContent = parts[1];
+            row.appendChild(span2);
+        }
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold ml-2';
+        row.appendChild(feedback);
+
+        const translation = document.createElement('div');
+        translation.className = 'text-xs text-slate-500 italic';
+        translation.textContent = `English: ${q.english}`;
+
+        wrapper.appendChild(row);
+        wrapper.appendChild(translation);
+        stage3Container.appendChild(wrapper);
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const result = checkAccentAware(input.value, q.answer);
+                if (result === 'correct') {
+                    feedback.textContent = 'Correct!';
+                    feedback.className = 'text-sm font-semibold text-green-600 ml-2';
+                    input.disabled = true;
+                    input.classList.add('bg-green-50', 'border-green-500');
+                    if (!stage3Answered[idx]) {
+                        stage3Answered[idx] = true;
+                        scores.stage3.correct++;
+                        document.getElementById('stage3-score').textContent = `Score: ${scores.stage3.correct} / ${stage3FillBlanks.length}`;
+                        updateTotalScore();
+                    }
+                } else if (result === 'accent-warning') {
+                    feedback.textContent = 'Almost! Check accents.';
+                    feedback.className = 'text-sm font-semibold text-yellow-600 ml-2';
+                } else {
+                    feedback.textContent = `Try again! Answer: ${q.answer}`;
+                    feedback.className = 'text-sm font-semibold text-red-600 ml-2';
+                }
+            }
+        });
+    });
+
+    // ============================================
+    // STAGE 4: TRANSLATION
+    // ============================================
+    const stage4Answered = new Array(stage4Translation.length).fill(false);
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 4: Translation Practice</h2>
+        <p class="text-slate-600 mb-4">Translate the English sentences into Hungarian. Press Enter to check.</p>
+        <div id="stage4-exercise" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage4Translation.length}</div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercise');
+
+    stage4Translation.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-blue-50 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-800 mb-2">${idx + 1}. ${q.english}</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-blue-500" placeholder="Type Hungarian translation...">
+                <span class="text-sm font-semibold stage4-feedback"></span>
+            </div>
+        `;
+        stage4Container.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('.stage4-feedback');
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const userAnswer = normalizeAnswer(input.value);
+                const correct = normalizeAnswer(q.answer);
+                const alternates = q.alternates.map(a => normalizeAnswer(a));
+                const allCorrect = [correct, ...alternates];
+
+                if (allCorrect.some(ans => userAnswer === ans)) {
+                    feedback.textContent = 'Correct!';
+                    feedback.className = 'text-sm font-semibold text-green-600 stage4-feedback';
+                    input.disabled = true;
+                    input.classList.add('bg-green-50', 'border-green-500');
+                    if (!stage4Answered[idx]) {
+                        stage4Answered[idx] = true;
+                        scores.stage4.correct++;
+                        document.getElementById('stage4-score').textContent = `Score: ${scores.stage4.correct} / ${stage4Translation.length}`;
+                        updateTotalScore();
+                    }
+                } else if (allCorrect.some(ans => removeAccents(userAnswer) === removeAccents(ans))) {
+                    feedback.textContent = 'Almost! Check accents.';
+                    feedback.className = 'text-sm font-semibold text-yellow-600 stage4-feedback';
+                } else {
+                    feedback.textContent = `Try again! One answer: ${q.answer}`;
+                    feedback.className = 'text-sm font-semibold text-red-600 stage4-feedback';
+                }
+            }
+        });
+    });
+
+    // ============================================
+    // STAGE 5: DIALOGUE PRACTICE
+    // ============================================
+    const stage5Answered = new Array(stage5Dialogue.length).fill(false);
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 5: Job Interview Dialogue</h2>
+        <p class="text-slate-600 mb-4">Practice a job interview scenario by filling in the missing words.</p>
+        <div id="stage5-exercise" class="space-y-6"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage5Dialogue.length}</div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Container = document.getElementById('stage5-exercise');
+
+    stage5Dialogue.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-gradient-to-r from-slate-50 to-slate-100 rounded-lg p-4 border border-slate-200';
+
+        const questionLine = document.createElement('div');
+        questionLine.className = 'mb-3';
+        questionLine.innerHTML = `
+            <span class="inline-block bg-teal-600 text-white text-xs font-bold px-2 py-1 rounded mr-2">Interviewer</span>
+            <span class="text-slate-800 font-medium">${q.line}</span>
+        `;
+
+        const responseLine = document.createElement('div');
+        responseLine.className = 'flex flex-wrap items-center gap-2';
+
+        const speakerB = document.createElement('span');
+        speakerB.className = 'inline-block bg-slate-600 text-white text-xs font-bold px-2 py-1 rounded';
+        speakerB.textContent = 'You';
+
+        const responseText = q.response.split('___');
+        const responseSpan = document.createElement('span');
+        responseSpan.className = 'text-slate-800';
+
+        responseSpan.appendChild(document.createTextNode(responseText[0]));
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-2 py-1 w-32 focus:ring-2 focus:ring-teal-500';
+        responseSpan.appendChild(input);
+
+        if (responseText[1]) responseSpan.appendChild(document.createTextNode(responseText[1]));
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        responseLine.appendChild(speakerB);
+        responseLine.appendChild(responseSpan);
+        responseLine.appendChild(feedback);
+
+        const translationLine = document.createElement('div');
+        translationLine.className = 'mt-2 text-xs text-slate-500 italic pl-8';
+        translationLine.textContent = `(${q.responseEnglish})`;
+
+        wrapper.appendChild(questionLine);
+        wrapper.appendChild(responseLine);
+        wrapper.appendChild(translationLine);
+        stage5Container.appendChild(wrapper);
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const result = checkAccentAware(input.value, q.blank);
+                if (result === 'correct') {
+                    feedback.textContent = 'Helyes! (Correct!)';
+                    feedback.className = 'text-sm font-semibold text-green-600';
+                    input.disabled = true;
+                    input.classList.add('bg-green-50', 'border-green-500');
+                    if (!stage5Answered[idx]) {
+                        stage5Answered[idx] = true;
+                        scores.stage5.correct++;
+                        document.getElementById('stage5-score').textContent = `Score: ${scores.stage5.correct} / ${stage5Dialogue.length}`;
+                        updateTotalScore();
+                    }
+                } else if (result === 'accent-warning') {
+                    feedback.textContent = 'Majdnem! (Check accents)';
+                    feedback.className = 'text-sm font-semibold text-yellow-600';
+                } else {
+                    feedback.textContent = `Probald ujra! Answer: ${q.blank}`;
+                    feedback.className = 'text-sm font-semibold text-red-600';
+                }
+            }
+        });
+    });
+
+    // ============================================
+    // SUMMARY SECTION
+    // ============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mt-8 p-6 bg-gradient-to-r from-teal-50 to-slate-50 rounded-xl border border-teal-200';
+    summarySection.innerHTML = `
+        <h2 class="text-xl font-bold text-teal-800 mb-4">Lesson Summary</h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+                <h3 class="font-semibold text-slate-700 mb-2">Key Vocabulary Learned:</h3>
+                <ul class="list-disc pl-5 text-slate-600 space-y-1">
+                    <li>Workplace: iroda, ceg, vallalat, gyar</li>
+                    <li>Job titles: fonok, kolléga, alkalmazott, igazgato</li>
+                    <li>Verbs: dolgozik, keres, alkalmaz, felvesz</li>
+                    <li>Business: megbeszeles, projekt, fizetes, szerzodes</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-700 mb-2">Key Phrases:</h3>
+                <ul class="list-disc pl-5 text-slate-600 space-y-1">
+                    <li>"Egy cegnel dolgozom" - I work at a company</li>
+                    <li>"Mi a foglalkozasa?" - What is your occupation?</li>
+                    <li>"Tisztelt Holgyek es Urak!" - Dear Ladies and Gentlemen</li>
+                    <li>"Elore is koszonom" - Thank you in advance</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-3 bg-amber-50 rounded-lg border border-amber-200">
+            <p class="text-amber-800 text-sm"><strong>Remember:</strong> Hungarian business culture values formality. Always use "On" with superiors and clients, and start emails with "Tisztelt..." for a professional impression!</p>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+
+    updateTotalScore();
+    </script>
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 18: Shopping & Money - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .vocab-highlight { color: #0f766e; font-weight: 600; }
+        .price-tag {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #d97706;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            display: inline-block;
+            font-weight: bold;
+        }
+        .match-card {
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .match-card:hover { transform: scale(1.02); }
+        .match-card.selected {
+            border-color: #0f766e;
+            background-color: #f0fdfa;
+            box-shadow: 0 0 0 2px #0f766e;
+        }
+        .match-card.correct {
+            border-color: #16a34a;
+            background-color: #dcfce7;
+        }
+        .match-card.incorrect {
+            border-color: #dc2626;
+            background-color: #fef2f2;
+        }
+        .cultural-note {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-left: 4px solid #2563eb;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 18: Shopping & Money <span class="block text-xl text-slate-500 font-normal">(Vasarlas es penz)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn essential Hungarian shopping vocabulary, currency terms, and phrases for buying goods. Master asking prices, paying, and navigating Hungarian stores and markets.</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    // Helper functions
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[őŐöÖüÜűŰáÁéÉíÍóÓúÚ]/g, function(m) {
+            const map = { 'á':'a','Á':'A','é':'e','É':'E','í':'i','Í':'I','ó':'o','Ó':'O','ö':'o','Ö':'O','ő':'o','Ő':'O','ú':'u','Ú':'U','ü':'u','Ü':'U','ű':'u','Ű':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    const mainContent = document.getElementById('main-content');
+
+    // =============================================
+    // SECTION 1: Hungarian Currency
+    // =============================================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Hungarian Currency (A forint)</h2>
+        <p class="mb-4 text-slate-600">Hungary uses the <strong>forint (Ft)</strong> as its currency. Understanding prices and money terms is essential for shopping.</p>
+        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+            <h3 class="font-semibold text-blue-800 mb-2">Currency Basics:</h3>
+            <ul class="list-disc pl-6 space-y-1 text-slate-700">
+                <li><strong class="vocab-highlight">forint</strong> (Ft) - Hungarian currency</li>
+                <li><strong class="vocab-highlight">penz</strong> - money</li>
+                <li><strong class="vocab-highlight">bankjegy</strong> - banknote</li>
+                <li><strong class="vocab-highlight">erme</strong> - coin</li>
+                <li><strong class="vocab-highlight">aprópenz</strong> - small change</li>
+            </ul>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-slate-700 mb-2">Coins (Ermek):</h4>
+                <p class="text-sm text-slate-600">5 Ft, 10 Ft, 20 Ft, 50 Ft, 100 Ft, 200 Ft</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-slate-700 mb-2">Banknotes (Bankjegyek):</h4>
+                <p class="text-sm text-slate-600">500 Ft, 1000 Ft, 2000 Ft, 5000 Ft, 10000 Ft, 20000 Ft</p>
+            </div>
+        </div>
+        <div class="cultural-note p-4 rounded-lg mt-4">
+            <h4 class="font-semibold text-blue-800 mb-2">Cultural Note: Prices in Hungary</h4>
+            <p class="text-slate-700 text-sm">Prices are usually written as "1500 Ft" or "1500,-". In speech, you might hear just the number without "forint" for common amounts. Card payments are widely accepted in cities, but carry cash for markets and small shops.</p>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // =============================================
+    // SECTION 2: Numbers Review for Prices
+    // =============================================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Numbers for Prices</h2>
+        <p class="mb-4 text-slate-600">Review key numbers used in prices. Hungarian uses compound numbers written as one word.</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Hungarian</th>
+                        <th>Example Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>100</td><td class="vocab-highlight">szaz</td><td>szaz forint (100 Ft)</td></tr>
+                    <tr><td>200</td><td class="vocab-highlight">ketszaz</td><td>ketszaz forint (200 Ft)</td></tr>
+                    <tr><td>500</td><td class="vocab-highlight">otszaz</td><td>otszaz forint (500 Ft)</td></tr>
+                    <tr><td>1,000</td><td class="vocab-highlight">ezer</td><td>ezer forint (1000 Ft)</td></tr>
+                    <tr><td>1,500</td><td class="vocab-highlight">ezerotszaz</td><td>ezerotszaz forint (1500 Ft)</td></tr>
+                    <tr><td>2,000</td><td class="vocab-highlight">ketezer</td><td>ketezer forint (2000 Ft)</td></tr>
+                    <tr><td>5,000</td><td class="vocab-highlight">otezer</td><td>otezer forint (5000 Ft)</td></tr>
+                    <tr><td>10,000</td><td class="vocab-highlight">tizezer</td><td>tizezer forint (10000 Ft)</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4">
+            <p class="text-sm"><strong>Pattern:</strong> For hundreds, add <strong>-szaz</strong> to the number. For thousands, add <strong>-ezer</strong>. Example: 3000 = <strong>haromezer</strong>, 700 = <strong>hetszaz</strong>.</p>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // =============================================
+    // SECTION 3: Types of Stores
+    // =============================================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Types of Stores (Uzletek)</h2>
+        <p class="mb-4 text-slate-600">Learn the names of different shops and places where you can buy things in Hungary.</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Hungarian</th>
+                        <th>English</th>
+                        <th>What They Sell</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="vocab-highlight">bolt</td><td>shop/store</td><td>General term</td></tr>
+                    <tr><td class="vocab-highlight">aruhaz</td><td>department store</td><td>Various goods</td></tr>
+                    <tr><td class="vocab-highlight">piac</td><td>market</td><td>Fresh produce, local goods</td></tr>
+                    <tr><td class="vocab-highlight">szupermarket</td><td>supermarket</td><td>Groceries</td></tr>
+                    <tr><td class="vocab-highlight">pekseg</td><td>bakery</td><td>Bread, pastries</td></tr>
+                    <tr><td class="vocab-highlight">hentes</td><td>butcher</td><td>Meat</td></tr>
+                    <tr><td class="vocab-highlight">gyogyszertar</td><td>pharmacy</td><td>Medicines</td></tr>
+                    <tr><td class="vocab-highlight">konyvesbolt</td><td>bookstore</td><td>Books</td></tr>
+                    <tr><td class="vocab-highlight">ruhazat/ruhauumluzlet</td><td>clothing store</td><td>Clothes</td></tr>
+                    <tr><td class="vocab-highlight">ajandekbolt</td><td>gift shop</td><td>Souvenirs, gifts</td></tr>
+                    <tr><td class="vocab-highlight">bevazarlozkozpont</td><td>shopping center/mall</td><td>Various stores</td></tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // =============================================
+    // SECTION 4: Shopping Phrases
+    // =============================================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Essential Shopping Phrases</h2>
+        <p class="mb-4 text-slate-600">Master these phrases to navigate shopping situations confidently.</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Hungarian</th>
+                        <th>English</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="vocab-highlight">Mennyibe kerul?</td><td>How much does it cost?</td><td>Asking price</td></tr>
+                    <tr><td class="vocab-highlight">Fizetek!</td><td>I'll pay! / I'm paying!</td><td>Ready to pay</td></tr>
+                    <tr><td class="vocab-highlight">Kartyaval fizetek.</td><td>I'll pay by card.</td><td>Card payment</td></tr>
+                    <tr><td class="vocab-highlight">Keszpenzzel fizetek.</td><td>I'll pay with cash.</td><td>Cash payment</td></tr>
+                    <tr><td class="vocab-highlight">Van visszajaro?</td><td>Do you have change?</td><td>Asking for change</td></tr>
+                    <tr><td class="vocab-highlight">A tobbi a maga.</td><td>Keep the change.</td><td>Tipping</td></tr>
+                    <tr><td class="vocab-highlight">Kerek egy zsakat.</td><td>I need a bag.</td><td>Asking for bag</td></tr>
+                    <tr><td class="vocab-highlight">Van masik szin?</td><td>Is there another color?</td><td>Options</td></tr>
+                    <tr><td class="vocab-highlight">Megnezhetem?</td><td>Can I look at it?</td><td>Asking to see</td></tr>
+                    <tr><td class="vocab-highlight">Csak nezegetek.</td><td>I'm just looking.</td><td>Browsing</td></tr>
+                    <tr><td class="vocab-highlight">Ezt kerem.</td><td>I'll take this.</td><td>Making purchase</td></tr>
+                    <tr><td class="vocab-highlight">Tul draga.</td><td>Too expensive.</td><td>Price comment</td></tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // =============================================
+    // SECTION 5: Payment Vocabulary
+    // =============================================
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 5: Payment Vocabulary</h2>
+        <p class="mb-4 text-slate-600">Words and phrases related to paying and transactions.</p>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-green-800 mb-2">Payment Terms:</h3>
+                <ul class="text-sm space-y-1">
+                    <li><strong class="vocab-highlight">ar</strong> - price</li>
+                    <li><strong class="vocab-highlight">osszeg</strong> - total amount</li>
+                    <li><strong class="vocab-highlight">szamla</strong> - receipt/bill</li>
+                    <li><strong class="vocab-highlight">nyugta</strong> - receipt</li>
+                    <li><strong class="vocab-highlight">fizetes</strong> - payment</li>
+                    <li><strong class="vocab-highlight">kedvezmeny</strong> - discount</li>
+                    <li><strong class="vocab-highlight">akcio</strong> - sale/promotion</li>
+                </ul>
+            </div>
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-blue-800 mb-2">Payment Methods:</h3>
+                <ul class="text-sm space-y-1">
+                    <li><strong class="vocab-highlight">keszpenz</strong> - cash</li>
+                    <li><strong class="vocab-highlight">bankkartya</strong> - bank card</li>
+                    <li><strong class="vocab-highlight">hitelkartya</strong> - credit card</li>
+                    <li><strong class="vocab-highlight">erinteses fizetes</strong> - contactless payment</li>
+                    <li><strong class="vocab-highlight">atutalas</strong> - bank transfer</li>
+                </ul>
+            </div>
+        </div>
+        <div class="cultural-note p-4 rounded-lg mt-4">
+            <h4 class="font-semibold text-blue-800 mb-2">Cultural Note: Shopping in Hungary</h4>
+            <p class="text-slate-700 text-sm">At markets (<strong>piac</strong>), bargaining is sometimes possible, especially for larger quantities. In regular stores, prices are fixed. Most stores accept cards, but markets and small vendors often prefer cash. Plastic bags usually cost extra - bringing your own bag is common and eco-friendly!</p>
+        </div>
+    `;
+    mainContent.appendChild(section5);
+
+    // =============================================
+    // STAGE 1: Shop Name Matching
+    // =============================================
+    const stage1Data = [
+        { hungarian: 'pekseg', english: 'bakery' },
+        { hungarian: 'aruhaz', english: 'department store' },
+        { hungarian: 'piac', english: 'market' },
+        { hungarian: 'gyogyszertar', english: 'pharmacy' },
+        { hungarian: 'hentes', english: 'butcher' },
+        { hungarian: 'konyvesbolt', english: 'bookstore' },
+        { hungarian: 'szupermarket', english: 'supermarket' },
+        { hungarian: 'ajandekbolt', english: 'gift shop' }
+    ];
+
+    let stage1Selected = null;
+    let stage1Matches = new Set();
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 1: Store Name Matching</h2>
+        <p class="mb-4 text-slate-600">Match the Hungarian store names with their English translations.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="stage1-exercise">
+            <div id="stage1-hungarian" class="space-y-2"></div>
+            <div id="stage1-english" class="space-y-2"></div>
+        </div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage1Data.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Hungarian = document.getElementById('stage1-hungarian');
+    const stage1English = document.getElementById('stage1-english');
+    const shuffledEnglish = [...stage1Data].sort(() => Math.random() - 0.5);
+
+    stage1Data.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white font-semibold';
+        card.textContent = item.hungarian;
+        card.dataset.index = idx;
+        card.addEventListener('click', () => handleStage1Click(card, 'hungarian', idx));
+        stage1Hungarian.appendChild(card);
+    });
+
+    shuffledEnglish.forEach((item) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.english;
+        card.dataset.originalIndex = stage1Data.findIndex(d => d.english === item.english);
+        card.addEventListener('click', () => handleStage1Click(card, 'english', parseInt(card.dataset.originalIndex)));
+        stage1English.appendChild(card);
+    });
+
+    function handleStage1Click(card, type, index) {
+        if (card.classList.contains('correct')) return;
+
+        if (stage1Selected === null) {
+            stage1Selected = { card, type, index };
+            card.classList.add('selected');
+        } else if (stage1Selected.type === type) {
+            stage1Selected.card.classList.remove('selected');
+            stage1Selected = { card, type, index };
+            card.classList.add('selected');
+        } else {
+            if (stage1Selected.index === index) {
+                stage1Selected.card.classList.remove('selected');
+                stage1Selected.card.classList.add('correct');
+                card.classList.add('correct');
+                stage1Matches.add(index);
+                document.getElementById('stage1-score').textContent = `Score: ${stage1Matches.size} / ${stage1Data.length}`;
+            } else {
+                stage1Selected.card.classList.add('incorrect');
+                card.classList.add('incorrect');
+                setTimeout(() => {
+                    stage1Selected.card.classList.remove('selected', 'incorrect');
+                    card.classList.remove('incorrect');
+                    stage1Selected = null;
+                }, 800);
+                return;
+            }
+            stage1Selected = null;
+        }
+    }
+
+    // =============================================
+    // STAGE 2: Price Reading Practice
+    // =============================================
+    const stage2Questions = [
+        { price: '500 Ft', answer: 'otszaz forint', hint: 'Five hundred...' },
+        { price: '1000 Ft', answer: 'ezer forint', hint: 'One thousand...' },
+        { price: '2500 Ft', answer: 'ketezerotszaz forint', hint: 'Two thousand five hundred...' },
+        { price: '350 Ft', answer: 'haromszazotven forint', hint: 'Three hundred fifty...' },
+        { price: '1800 Ft', answer: 'ezernyolcszaz forint', hint: 'One thousand eight hundred...' },
+        { price: '5000 Ft', answer: 'otezer forint', hint: 'Five thousand...' },
+        { price: '750 Ft', answer: 'hetszazotven forint', hint: 'Seven hundred fifty...' },
+        { price: '3200 Ft', answer: 'haromezerketszaz forint', hint: 'Three thousand two hundred...' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 2: Price Reading Practice</h2>
+        <p class="mb-4 text-slate-600">Write how you would say each price in Hungarian. Press Enter to check.</p>
+        <div id="stage2-exercises" class="space-y-3"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-yellow-50 rounded-lg';
+
+        wrapper.innerHTML = `
+            <span class="price-tag min-w-[100px]">${q.price}</span>
+            <span class="text-slate-500 text-sm">${q.hint}</span>
+            <input type="text" class="border border-slate-300 rounded-md px-3 py-1 flex-1 md:w-64 focus:ring-2 focus:ring-yellow-500" placeholder="Type in Hungarian...">
+            <span class="text-sm font-semibold"></span>
+        `;
+        stage2Container.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage2(idx);
+        });
+    });
+
+    function checkStage2(idx) {
+        const wrapper = stage2Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage2Questions[idx].answer;
+        const userAnswer = normalizeHungarian(input.value);
+
+        if (userAnswer === normalizeHungarian(correct)) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(normalizeHungarian(correct))) {
+            feedback.textContent = `Check accents! (${correct})`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        for (let i = 0; i < stage2Questions.length; i++) {
+            const input = stage2Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage2Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage2-score').textContent = `Score: ${correct} / ${stage2Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 3: Shopping Phrase Selection
+    // =============================================
+    const stage3Questions = [
+        { scenario: 'You want to ask how much something costs', options: ['Mennyibe kerul?', 'Fizetek!', 'Csak nezegetek.'], correct: 'Mennyibe kerul?' },
+        { scenario: 'You want to pay by card', options: ['Keszpenzzel fizetek.', 'Kartyaval fizetek.', 'Van visszajaro?'], correct: 'Kartyaval fizetek.' },
+        { scenario: 'You are just browsing, not buying', options: ['Ezt kerem.', 'Csak nezegetek.', 'Tul draga.'], correct: 'Csak nezegetek.' },
+        { scenario: 'You want to tell the clerk to keep the change', options: ['Van visszajaro?', 'A tobbi a maga.', 'Mennyibe kerul?'], correct: 'A tobbi a maga.' },
+        { scenario: 'You decided to buy something', options: ['Tul draga.', 'Csak nezegetek.', 'Ezt kerem.'], correct: 'Ezt kerem.' },
+        { scenario: 'You think the price is too high', options: ['Tul draga.', 'Nagyon olcso.', 'Ezt kerem.'], correct: 'Tul draga.' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 3: Shopping Phrase Selection</h2>
+        <p class="mb-4 text-slate-600">Choose the correct Hungarian phrase for each shopping situation.</p>
+        <div id="stage3-exercises" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage3Questions.length}</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+    let stage3Correct = 0;
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700 mb-3">${idx + 1}. ${q.scenario}</p>
+            <div class="flex flex-wrap gap-2" id="stage3-options-${idx}"></div>
+            <p class="mt-2 text-sm font-semibold" id="stage3-feedback-${idx}"></p>
+        `;
+        stage3Container.appendChild(wrapper);
+
+        const optionsDiv = document.getElementById(`stage3-options-${idx}`);
+        q.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'px-4 py-2 border-2 border-slate-300 rounded-lg bg-white hover:bg-slate-100 transition-colors';
+            btn.textContent = opt;
+            btn.addEventListener('click', () => checkStage3(idx, opt, q.correct, wrapper));
+            optionsDiv.appendChild(btn);
+        });
+    });
+
+    function checkStage3(idx, selected, correct, wrapper) {
+        const feedback = document.getElementById(`stage3-feedback-${idx}`);
+        const buttons = wrapper.querySelectorAll('button');
+        const wasCorrect = feedback.textContent.includes('Correct');
+
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            if (btn.textContent === correct) {
+                btn.className = 'px-4 py-2 border-2 border-green-500 rounded-lg bg-green-100 text-green-700';
+            } else if (btn.textContent === selected && selected !== correct) {
+                btn.className = 'px-4 py-2 border-2 border-red-500 rounded-lg bg-red-100 text-red-700';
+            }
+        });
+
+        if (selected === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'mt-2 text-sm font-semibold text-green-600';
+            if (!wasCorrect) stage3Correct++;
+        } else {
+            feedback.textContent = `Incorrect. The correct answer is: ${correct}`;
+            feedback.className = 'mt-2 text-sm font-semibold text-red-600';
+        }
+        document.getElementById('stage3-score').textContent = `Score: ${stage3Correct} / ${stage3Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 4: Shopping Dialogue Completion
+    // =============================================
+    const stage4Questions = [
+        { sentence: 'Vasarlo: Jo napot! _____ kerul ez a polo?', answer: 'Mennyibe', translation: 'Customer: Good day! How much is this t-shirt?' },
+        { sentence: 'Elado: Ez _____ forint.', answer: 'haromezer', translation: 'Seller: This is 3000 forints.' },
+        { sentence: 'Vasarlo: Jo, _____ kerem!', answer: 'ezt', translation: 'Customer: Good, I\'ll take this!' },
+        { sentence: 'Elado: _____ vagy kartyaval fizet?', answer: 'Keszpenzzel', translation: 'Seller: Cash or card?' },
+        { sentence: 'Vasarlo: _____ fizetek.', answer: 'Kartyaval', translation: 'Customer: I\'ll pay by card.' },
+        { sentence: 'Elado: Kerek egy _____?', answer: 'zsakat', translation: 'Seller: Would you like a bag?' },
+        { sentence: 'Vasarlo: Igen, _____. Mennyi?', answer: 'kerem', translation: 'Customer: Yes, please. How much?' },
+        { sentence: 'Elado: Otven forint. Koszonom, _____!', answer: 'viszontlatasra', translation: 'Seller: Fifty forints. Thank you, goodbye!' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 4: Shopping Dialogue Completion</h2>
+        <p class="mb-4 text-slate-600">Complete the shopping dialogue by filling in the missing words. Press Enter to check.</p>
+        <div id="stage4-exercises" class="space-y-3"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 bg-blue-50 rounded-lg';
+
+        wrapper.innerHTML = `
+            <span class="text-slate-800">${q.sentence.replace('_____', '<input type="text" class="border border-slate-300 rounded px-2 py-1 w-32 text-center mx-1 focus:ring-2 focus:ring-blue-500">')}</span>
+            <span class="text-sm font-semibold"></span>
+        `;
+        stage4Container.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(idx);
+        });
+    });
+
+    function checkStage4(idx) {
+        const wrapper = stage4Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage4Questions[idx].answer;
+        const userAnswer = normalizeHungarian(input.value);
+
+        if (userAnswer === normalizeHungarian(correct)) {
+            feedback.textContent = `Correct! (${stage4Questions[idx].translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+            input.classList.add('border-green-500', 'bg-green-50');
+        } else if (removeAccents(userAnswer) === removeAccents(normalizeHungarian(correct))) {
+            feedback.textContent = `Check accents! (${correct})`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+            input.classList.add('border-yellow-500', 'bg-yellow-50');
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Answer: ${correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+            input.classList.add('border-red-500', 'bg-red-50');
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        for (let i = 0; i < stage4Questions.length; i++) {
+            const input = stage4Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage4Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage4-score').textContent = `Score: ${correct} / ${stage4Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 5: Where Would You Go?
+    // =============================================
+    const stage5Questions = [
+        { need: 'You need to buy bread and pastries', options: ['hentes', 'pekseg', 'gyogyszertar'], correct: 'pekseg' },
+        { need: 'You need medicine', options: ['gyogyszertar', 'aruhaz', 'piac'], correct: 'gyogyszertar' },
+        { need: 'You want fresh vegetables from local farmers', options: ['szupermarket', 'piac', 'konyvesbolt'], correct: 'piac' },
+        { need: 'You need to buy meat', options: ['pekseg', 'ajandekbolt', 'hentes'], correct: 'hentes' },
+        { need: 'You want to buy a book', options: ['konyvesbolt', 'hentes', 'gyogyszertar'], correct: 'konyvesbolt' },
+        { need: 'You want to buy various things in one place', options: ['pekseg', 'aruhaz', 'ajandekbolt'], correct: 'aruhaz' }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 5: Where Would You Go?</h2>
+        <p class="mb-4 text-slate-600">Choose the correct store for each shopping need.</p>
+        <div id="stage5-exercises" class="space-y-4"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage5Questions.length}</div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Container = document.getElementById('stage5-exercises');
+    let stage5Correct = 0;
+
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700 mb-3">${idx + 1}. ${q.need}</p>
+            <div class="flex flex-wrap gap-2" id="stage5-options-${idx}"></div>
+            <p class="mt-2 text-sm font-semibold" id="stage5-feedback-${idx}"></p>
+        `;
+        stage5Container.appendChild(wrapper);
+
+        const optionsDiv = document.getElementById(`stage5-options-${idx}`);
+        q.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'px-4 py-2 border-2 border-slate-300 rounded-lg bg-white hover:bg-slate-100 transition-colors';
+            btn.textContent = opt;
+            btn.addEventListener('click', () => checkStage5(idx, opt, q.correct, wrapper));
+            optionsDiv.appendChild(btn);
+        });
+    });
+
+    function checkStage5(idx, selected, correct, wrapper) {
+        const feedback = document.getElementById(`stage5-feedback-${idx}`);
+        const buttons = wrapper.querySelectorAll('button');
+        const wasCorrect = feedback.textContent.includes('Correct');
+
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            if (btn.textContent === correct) {
+                btn.className = 'px-4 py-2 border-2 border-green-500 rounded-lg bg-green-100 text-green-700';
+            } else if (btn.textContent === selected && selected !== correct) {
+                btn.className = 'px-4 py-2 border-2 border-red-500 rounded-lg bg-red-100 text-red-700';
+            }
+        });
+
+        if (selected === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'mt-2 text-sm font-semibold text-green-600';
+            if (!wasCorrect) stage5Correct++;
+        } else {
+            feedback.textContent = `Incorrect. You should go to: ${correct}`;
+            feedback.className = 'mt-2 text-sm font-semibold text-red-600';
+        }
+        document.getElementById('stage5-score').textContent = `Score: ${stage5Correct} / ${stage5Questions.length}`;
+    }
+
+    // =============================================
+    // FINAL SUMMARY
+    // =============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Lesson Summary: Shopping & Money</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-blue-800 mb-2">Key Shopping Phrases:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li><strong>Mennyibe kerul?</strong> - How much does it cost?</li>
+                    <li><strong>Fizetek!</strong> - I'll pay!</li>
+                    <li><strong>Kartyaval/Keszpenzzel fizetek</strong> - I'll pay by card/cash</li>
+                    <li><strong>Ezt kerem</strong> - I'll take this</li>
+                    <li><strong>Csak nezegetek</strong> - I'm just looking</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-blue-800 mb-2">Key Store Types:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li><strong>bolt</strong> - shop/store</li>
+                    <li><strong>piac</strong> - market</li>
+                    <li><strong>aruhaz</strong> - department store</li>
+                    <li><strong>pekseg</strong> - bakery</li>
+                    <li><strong>gyogyszertar</strong> - pharmacy</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 bg-white p-3 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Price Number Pattern:</h3>
+            <p class="text-sm text-slate-700">Hundreds: number + <strong>-szaz</strong> (otszaz = 500) | Thousands: number + <strong>-ezer</strong> (haromezer = 3000)</p>
+        </div>
+        <p class="mt-4 text-sm text-slate-600">Great work! You're now ready to shop in Hungary. Practice these phrases and you'll navigate stores and markets with confidence!</p>
+    `;
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 52: B1 Review & Comprehensive Practice - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: left; }
+        th { background: #f1f5f9; }
+        .progress-bar { height: 12px; background: #e2e8f0; border-radius: 6px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #0f766e, #14b8a6); transition: width 0.3s ease; }
+        .stage-complete { background: linear-gradient(to right, #d1fae5, #ecfdf5); }
+        .grammar-box {
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+            border: 1px solid #14b8a6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        .vocab-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        .celebration-box {
+            background: linear-gradient(135deg, #fdf4ff 0%, #e879f9 20%, #a855f7 80%, #7c3aed 100%);
+            color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+        }
+        .checklist-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; border-radius: 0.375rem; }
+        .checklist-item:hover { background: #f1f5f9; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 52: B1 Review & Comprehensive Practice <span class="block text-xl text-slate-500 font-normal mt-2">(B1 Osszefoglalas es Gyakorlas)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Congratulations on reaching the final lesson of B1! This comprehensive review consolidates your intermediate Hungarian skills and prepares you for B2 level studies.</p>
+
+        <!-- Overall Progress -->
+        <div class="max-w-xl mx-auto mt-6 bg-white rounded-lg p-4 shadow-sm">
+            <div class="flex justify-between text-sm text-slate-600 mb-2">
+                <span>B1 Review Progress</span>
+                <span id="overall-progress-text">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div id="overall-progress-fill" class="progress-fill" style="width: 0%"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+
+    <script>
+    // ============================================
+    // UTILITY FUNCTIONS
+    // ============================================
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    }
+
+    function normalizeAnswer(str) {
+        return str.trim().toLowerCase();
+    }
+
+    function checkAccentAware(userInput, correctAnswer) {
+        const normalizedInput = normalizeAnswer(userInput);
+        const normalizedCorrect = normalizeAnswer(correctAnswer);
+
+        if (normalizedInput === normalizedCorrect) {
+            return 'correct';
+        } else if (removeAccents(normalizedInput) === removeAccents(normalizedCorrect)) {
+            return 'accent-warning';
+        } else {
+            return 'incorrect';
+        }
+    }
+
+    // ============================================
+    // GRAMMAR REVIEW DATA
+    // ============================================
+    const grammarTopics = [
+        { topic: 'Verb Conjugation', hungarian: 'Igeragozas', description: 'Indefinite and definite conjugations in present, past, and future tenses' },
+        { topic: 'Case System', hungarian: 'Esetrendszer', description: 'Nominative, accusative, dative, instrumental, and locative cases' },
+        { topic: 'Possessive Suffixes', hungarian: 'Birtokos ragok', description: 'Expressing possession with suffixes (-m, -d, -ja/-je, etc.)' },
+        { topic: 'Verbal Prefixes', hungarian: 'Igekotok', description: 'Prefixes that modify verb meaning (meg-, el-, ki-, be-, etc.)' },
+        { topic: 'Conditional Mood', hungarian: 'Feltételes mod', description: 'Expressing hypothetical situations and wishes' },
+        { topic: 'Comparative/Superlative', hungarian: 'Fokozás', description: 'Comparing adjectives and adverbs' }
+    ];
+
+    const vocabularyCategories = [
+        { category: 'Daily Life', hungarian: 'Mindennapi élet', words: 'work, home, shopping, transportation' },
+        { category: 'Travel', hungarian: 'Utazas', words: 'airport, hotel, directions, tickets' },
+        { category: 'Health', hungarian: 'Egeszség', words: 'body parts, illnesses, doctor visits' },
+        { category: 'Culture', hungarian: 'Kultura', words: 'history, arts, literature, music' },
+        { category: 'Nature', hungarian: 'Természet', words: 'weather, seasons, environment' },
+        { category: 'Emotions', hungarian: 'Érzelmek', words: 'feelings, opinions, reactions' }
+    ];
+
+    // ============================================
+    // EXERCISE DATA
+    // ============================================
+    const grammarExercises = [
+        { sentence: 'Tegnap ___ egy jo filmet. (lát - past definite)', answer: 'lattam', english: 'Yesterday I saw a good film.' },
+        { sentence: 'Ha lenne penzem, ___ egy hazat. (vesz - conditional)', answer: 'vennek', english: 'If I had money, I would buy a house.' },
+        { sentence: 'A konyv ___ van. (asztal - locative)', answer: 'az asztalon', english: 'The book is on the table.' },
+        { sentence: 'Holnap ___ Budapestre. (megy - future)', answer: 'megyek', alternates: ['menni fogok'], english: 'Tomorrow I will go to Budapest.' },
+        { sentence: 'Ez a haz ___, mint az. (nagy - comparative)', answer: 'nagyobb', english: 'This house is bigger than that one.' },
+        { sentence: 'A baratom___ telefonaltam. (possessive + case)', answer: 'nak', alternates: ['baráatomnak'], english: 'I called my friend.' },
+        { sentence: 'Mar ___ a lecket. (megcsinal - past definite)', answer: 'megcsinaltam', english: 'I have already done the homework.' },
+        { sentence: 'A gyerekek az iskola___ mennek. (locative)', answer: 'ba', alternates: ['iskolaba'], english: 'The children go to school.' },
+        { sentence: '___ a legjobb etterem a varosban? (which)', answer: 'melyik', english: 'Which is the best restaurant in the city?' },
+        { sentence: 'Ha tudnam, ___ neked. (mond - conditional definite)', answer: 'mondanam', english: 'If I knew, I would tell you.' }
+    ];
+
+    const vocabularyExercises = [
+        { hungarian: 'repuloter', options: ['train station', 'airport', 'bus stop', 'port'], correct: 1 },
+        { hungarian: 'gyogyszer', options: ['medicine', 'food', 'drink', 'vitamin'], correct: 0 },
+        { hungarian: 'idojaras', options: ['time', 'weather', 'season', 'climate'], correct: 1 },
+        { hungarian: 'festmeny', options: ['sculpture', 'photo', 'painting', 'drawing'], correct: 2 },
+        { hungarian: 'boldog', options: ['sad', 'angry', 'happy', 'tired'], correct: 2 },
+        { hungarian: 'vallalkozas', options: ['vacation', 'business/enterprise', 'hobby', 'career'], correct: 1 },
+        { hungarian: 'kornyezet', options: ['city', 'country', 'environment', 'nature'], correct: 2 },
+        { hungarian: 'megbeszeles', options: ['meeting', 'presentation', 'interview', 'conversation'], correct: 0 },
+        { hungarian: 'erdekes', options: ['boring', 'interesting', 'difficult', 'easy'], correct: 1 },
+        { hungarian: 'tapasztalat', options: ['experiment', 'experience', 'knowledge', 'skill'], correct: 1 },
+        { hungarian: 'lehetoseg', options: ['problem', 'solution', 'possibility', 'difficulty'], correct: 2 },
+        { hungarian: 'fejlodes', options: ['decline', 'development', 'change', 'stability'], correct: 1 }
+    ];
+
+    const readingPassage = `
+        Kovacs Anna harminc eves, es Budapesten el. O egy nemzetkozi cegnel dolgozik, ahol angol es nemet nyelven kommunikal.
+        Minden nap korán kel, es reggel futni megy a Duna-parton. Utana dolgozni indul metróval.
+        A munkahelyen sok megbeszelese van, es gyakran utazik kulfoldre. Mult heten Becsben volt egy konferencian.
+        Szabadidejeben szereti a magyar irodalmat olvasni es koncertekre jarni. A kedvenc zeneszerzoje Liszt Ferenc.
+        A jovoben szeretne sajat vallalkozast inditani es tobbel utazni.
+    `;
+
+    const readingQuestions = [
+        { question: 'Hany eves Anna?', options: ['25', '30', '35', '40'], correct: 1 },
+        { question: 'Hol dolgozik Anna?', options: ['Egy iskolaban', 'Egy korhazban', 'Egy nemzetkozi cegnel', 'Egy etteremben'], correct: 2 },
+        { question: 'Mit csinal Anna reggel?', options: ['Uszik', 'Fut', 'Olvas', 'Focizik'], correct: 1 },
+        { question: 'Hol volt Anna mult heten?', options: ['Parizsban', 'Londonban', 'Berlinben', 'Becsben'], correct: 3 },
+        { question: 'Ki Anna kedvenc zeneszerzoje?', options: ['Bartok Bela', 'Liszt Ferenc', 'Kodaly Zoltan', 'Erkel Ferenc'], correct: 1 },
+        { question: 'Mit szeretne Anna a jovoben?', options: ['Nyugdijba menni', 'Vallalkozast inditani', 'Kufoldon elni', 'Tanar lenni'], correct: 1 }
+    ];
+
+    const dialogueExercise = [
+        { speaker: 'A', line: 'Szia! Hogy vagy?', response: null },
+        { speaker: 'B', line: 'Koszonom, ___, es te?', answer: 'jol vagyok', english: 'I am fine' },
+        { speaker: 'A', line: 'En is jol. Mit csinaltal a heten?', response: null },
+        { speaker: 'B', line: 'Sokat ___. Volt egy fontos projektem.', answer: 'dolgoztam', english: 'I worked' },
+        { speaker: 'A', line: 'Ertem. Es a hetvegere mi a terved?', response: null },
+        { speaker: 'B', line: 'Szeretnek moziba ___. Van egy uj film.', answer: 'menni', english: 'to go' },
+        { speaker: 'A', line: 'Jo otlet! En is szeretnek csatlakozni.', response: null },
+        { speaker: 'B', line: '___ jossz? A film 7-kor kezdodik.', answer: 'mikor', english: 'when' },
+        { speaker: 'A', line: '6-kor erkezem. Hol talalkozzunk?', response: null },
+        { speaker: 'B', line: 'Talalkozzunk a mozi ___.', answer: 'elott', english: 'in front of' }
+    ];
+
+    const writingPrompts = [
+        { prompt: 'Introduce yourself (name, age, profession)', model: '... vagyok. ... eves vagyok. ... vagyok.', example: 'Peter vagyok. Harmincot eves vagyok. Mernok vagyok.' },
+        { prompt: 'Describe where you live', model: '...-ban/-ben elek/lakom.', example: 'Budapesten lakom egy kis lakasban.' },
+        { prompt: 'Talk about your hobbies', model: 'Szeretek ... -ni.', example: 'Szeretek olvasni es utazni.' },
+        { prompt: 'Describe your daily routine', model: 'Reggel ... Utana ... Este ...', example: 'Reggel futok. Utana dolgozom. Este olvasok.' },
+        { prompt: 'Express a wish or plan', model: 'Szeretnek ... / A jovoben ...', example: 'Szeretnek Magyarorszagra utazni.' },
+        { prompt: 'Give your opinion on something', model: 'Szerintem ... / Azt gondolom, hogy ...', example: 'Szerintem a magyar nyelv erdekes.' }
+    ];
+
+    const selfAssessmentItems = [
+        { skill: 'Understand the main points of clear standard speech on familiar topics', category: 'Listening' },
+        { skill: 'Follow TV news and current affairs programs', category: 'Listening' },
+        { skill: 'Read texts about current issues or personal interests', category: 'Reading' },
+        { skill: 'Understand descriptions of events and feelings in personal letters', category: 'Reading' },
+        { skill: 'Deal with most situations likely to arise while traveling', category: 'Speaking' },
+        { skill: 'Describe experiences, events, dreams, hopes, and ambitions', category: 'Speaking' },
+        { skill: 'Give reasons and explanations for opinions and plans', category: 'Speaking' },
+        { skill: 'Write simple connected text on familiar topics', category: 'Writing' },
+        { skill: 'Write personal letters describing experiences and impressions', category: 'Writing' },
+        { skill: 'Use all major Hungarian cases correctly', category: 'Grammar' },
+        { skill: 'Conjugate verbs in past, present, and future tenses', category: 'Grammar' },
+        { skill: 'Use both definite and indefinite conjugations appropriately', category: 'Grammar' },
+        { skill: 'Form and use the conditional mood', category: 'Grammar' },
+        { skill: 'Use verbal prefixes correctly', category: 'Grammar' },
+        { skill: 'Know vocabulary for daily life, travel, health, and culture', category: 'Vocabulary' }
+    ];
+
+    // ============================================
+    // SCORE TRACKING
+    // ============================================
+    let scores = {
+        stage1: { correct: 0, total: grammarExercises.length },
+        stage2: { correct: 0, total: vocabularyExercises.length },
+        stage3: { correct: 0, total: readingQuestions.length },
+        stage4: { correct: 0, total: dialogueExercise.filter(d => d.answer).length },
+        stage5: { correct: 0, total: writingPrompts.length }
+    };
+
+    function updateOverallProgress() {
+        const totalCorrect = Object.values(scores).reduce((sum, s) => sum + s.correct, 0);
+        const totalQuestions = Object.values(scores).reduce((sum, s) => sum + s.total, 0);
+        const percentage = Math.round((totalCorrect / totalQuestions) * 100);
+        document.getElementById('overall-progress-fill').style.width = percentage + '%';
+        document.getElementById('overall-progress-text').textContent = percentage + '%';
+
+        // Update B2 recommendation
+        const recommendationDiv = document.getElementById('b2-recommendation');
+        if (recommendationDiv) {
+            if (percentage >= 80) {
+                recommendationDiv.innerHTML = '<p class="text-green-700 font-semibold">Excellent! You have demonstrated strong B1 proficiency. You are ready to advance to B2!</p>';
+                recommendationDiv.className = 'p-4 bg-green-100 rounded-lg border border-green-300';
+            } else if (percentage >= 60) {
+                recommendationDiv.innerHTML = '<p class="text-yellow-700 font-semibold">Good progress! Review areas where you scored lower before moving to B2.</p>';
+                recommendationDiv.className = 'p-4 bg-yellow-100 rounded-lg border border-yellow-300';
+            } else if (percentage >= 40) {
+                recommendationDiv.innerHTML = '<p class="text-orange-700 font-semibold">Keep practicing! Focus on grammar and vocabulary before attempting B2.</p>';
+                recommendationDiv.className = 'p-4 bg-orange-100 rounded-lg border border-orange-300';
+            } else if (totalCorrect > 0) {
+                recommendationDiv.innerHTML = '<p class="text-red-700 font-semibold">More practice needed. Review previous B1 lessons thoroughly.</p>';
+                recommendationDiv.className = 'p-4 bg-red-100 rounded-lg border border-red-300';
+            }
+        }
+    }
+
+    // ============================================
+    // BUILD PAGE CONTENT
+    // ============================================
+    const mainContent = document.getElementById('main-content');
+
+    // Learning Objectives
+    const objectivesSection = document.createElement('section');
+    objectivesSection.className = 'mb-8 p-4 bg-teal-50 rounded-lg border border-teal-200';
+    objectivesSection.innerHTML = `
+        <h2 class="text-xl font-semibold text-teal-800 mb-3">B1 Level Objectives</h2>
+        <ul class="list-disc pl-6 text-teal-700 space-y-1">
+            <li>Understand main points of clear standard speech on familiar topics</li>
+            <li>Deal with most situations likely to arise while traveling in Hungary</li>
+            <li>Produce simple connected text on familiar or personal interest topics</li>
+            <li>Describe experiences, events, dreams, hopes, and ambitions</li>
+            <li>Give reasons and explanations for opinions and plans</li>
+        </ul>
+    `;
+    mainContent.appendChild(objectivesSection);
+
+    // Grammar Review Summary
+    const grammarSection = document.createElement('section');
+    grammarSection.className = 'mb-8';
+    grammarSection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4 pb-2 border-b-2 border-teal-500">B1 Grammar Review</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            ${grammarTopics.map(topic => `
+                <div class="grammar-box">
+                    <h3 class="font-bold text-teal-800">${topic.topic}</h3>
+                    <p class="text-sm text-teal-600 italic">${topic.hungarian}</p>
+                    <p class="text-sm text-slate-600 mt-1">${topic.description}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    mainContent.appendChild(grammarSection);
+
+    // Vocabulary Review Summary
+    const vocabSection = document.createElement('section');
+    vocabSection.className = 'mb-8';
+    vocabSection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4 pb-2 border-b-2 border-teal-500">B1 Vocabulary Categories</h2>
+        <div class="grid md:grid-cols-3 gap-4">
+            ${vocabularyCategories.map(cat => `
+                <div class="vocab-box">
+                    <h3 class="font-bold text-amber-800">${cat.category}</h3>
+                    <p class="text-sm text-amber-600 italic">${cat.hungarian}</p>
+                    <p class="text-xs text-slate-600 mt-1">${cat.words}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    mainContent.appendChild(vocabSection);
+
+    // Total Score Display
+    const totalScoreSection = document.createElement('div');
+    totalScoreSection.className = 'bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-xl p-4 mb-8 text-center';
+    totalScoreSection.innerHTML = `
+        <h3 class="text-lg font-semibold mb-1">Comprehensive Practice Exercises</h3>
+        <p id="total-score" class="text-2xl font-bold">Total Score: 0 / ${grammarExercises.length + vocabularyExercises.length + readingQuestions.length + dialogueExercise.filter(d => d.answer).length + writingPrompts.length}</p>
+    `;
+    mainContent.appendChild(totalScoreSection);
+
+    // ============================================
+    // STAGE 1: Grammar Review
+    // ============================================
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8 p-4 bg-slate-50 rounded-lg';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 1: Grammar Review (10 items)</h2>
+        <p class="text-slate-600 mb-4">Complete each sentence with the correct grammatical form.</p>
+        <div id="stage1-exercises" class="space-y-4"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${grammarExercises.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Container = document.getElementById('stage1-exercises');
+    const stage1Answers = new Array(grammarExercises.length).fill(false);
+
+    grammarExercises.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-3 bg-white rounded-lg border';
+
+        const sentenceParts = q.sentence.split('___');
+        const row = document.createElement('div');
+        row.className = 'flex flex-wrap items-center gap-2 mb-2';
+
+        row.innerHTML = `<span class="text-slate-700">${sentenceParts[0]}</span>`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-36 text-center focus:ring-2 focus:ring-teal-500';
+
+        const span2 = document.createElement('span');
+        span2.className = 'text-slate-700';
+        span2.textContent = sentenceParts[1] || '';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold ml-2';
+
+        row.appendChild(input);
+        row.appendChild(span2);
+        row.appendChild(feedback);
+
+        const translation = document.createElement('div');
+        translation.className = 'text-xs text-slate-500 italic';
+        translation.textContent = `(${q.english})`;
+
+        function checkAnswer() {
+            const allCorrect = [q.answer, ...(q.alternates || [])];
+            const userInput = normalizeAnswer(input.value);
+
+            if (allCorrect.some(a => normalizeAnswer(a) === userInput)) {
+                feedback.textContent = 'Correct!';
+                feedback.className = 'text-sm font-semibold text-green-600 ml-2';
+                input.disabled = true;
+                input.className = 'border border-green-500 bg-green-50 rounded-md px-3 py-1 w-36 text-center';
+                if (!stage1Answers[idx]) {
+                    stage1Answers[idx] = true;
+                    scores.stage1.correct++;
+                    document.getElementById('stage1-score').textContent = `Score: ${scores.stage1.correct} / ${grammarExercises.length}`;
+                    updateOverallProgress();
+                }
+            } else if (allCorrect.some(a => removeAccents(normalizeAnswer(a)) === removeAccents(userInput))) {
+                feedback.textContent = 'Check accents!';
+                feedback.className = 'text-sm font-semibold text-yellow-600 ml-2';
+            } else if (input.value.trim() !== '') {
+                feedback.textContent = 'Try again!';
+                feedback.className = 'text-sm font-semibold text-red-600 ml-2';
+            }
+        }
+
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkAnswer(); });
+        input.addEventListener('blur', checkAnswer);
+
+        wrapper.appendChild(row);
+        wrapper.appendChild(translation);
+        stage1Container.appendChild(wrapper);
+    });
+
+    // ============================================
+    // STAGE 2: Vocabulary Review
+    // ============================================
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8 p-4 bg-slate-50 rounded-lg';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 2: Vocabulary Review (12 items)</h2>
+        <p class="text-slate-600 mb-4">Match each Hungarian word with its correct English meaning.</p>
+        <div id="stage2-exercises" class="space-y-3"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${vocabularyExercises.length}</div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+    const stage2Answers = new Array(vocabularyExercises.length).fill(false);
+
+    vocabularyExercises.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-3 p-3 bg-white rounded-lg border';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[140px] font-semibold text-teal-700';
+        label.textContent = q.hungarian;
+
+        const select = document.createElement('select');
+        select.className = 'border border-slate-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-teal-500';
+        select.innerHTML = '<option value="">Select...</option>' + q.options.map((opt, i) => `<option value="${i}">${opt}</option>`).join('');
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        select.addEventListener('change', function() {
+            if (parseInt(this.value) === q.correct) {
+                feedback.textContent = 'Correct!';
+                feedback.className = 'text-sm font-semibold text-green-600';
+                this.disabled = true;
+                this.className = 'border border-green-500 bg-green-50 rounded-md px-3 py-2';
+                if (!stage2Answers[idx]) {
+                    stage2Answers[idx] = true;
+                    scores.stage2.correct++;
+                    document.getElementById('stage2-score').textContent = `Score: ${scores.stage2.correct} / ${vocabularyExercises.length}`;
+                    updateOverallProgress();
+                }
+            } else if (this.value !== '') {
+                feedback.textContent = 'Try again!';
+                feedback.className = 'text-sm font-semibold text-red-600';
+            }
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(select);
+        wrapper.appendChild(feedback);
+        stage2Container.appendChild(wrapper);
+    });
+
+    // ============================================
+    // STAGE 3: Reading Comprehension
+    // ============================================
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8 p-4 bg-slate-50 rounded-lg';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 3: Reading Comprehension (6 items)</h2>
+        <p class="text-slate-600 mb-4">Read the passage below and answer the questions.</p>
+        <div class="p-4 bg-white rounded-lg border mb-4">
+            <p class="text-slate-700 leading-relaxed">${readingPassage}</p>
+        </div>
+        <div id="stage3-exercises" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${readingQuestions.length}</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+    const stage3Answers = new Array(readingQuestions.length).fill(false);
+
+    readingQuestions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-white rounded-lg border';
+
+        let optionsHtml = q.options.map((opt, i) => `
+            <label class="flex items-center gap-2 cursor-pointer p-2 rounded hover:bg-slate-50">
+                <input type="radio" name="reading-${idx}" value="${i}" class="text-teal-600">
+                <span>${opt}</span>
+            </label>
+        `).join('');
+
+        wrapper.innerHTML = `
+            <p class="text-slate-800 font-medium mb-3">${idx + 1}. ${q.question}</p>
+            <div class="grid grid-cols-2 gap-2">${optionsHtml}</div>
+            <span class="feedback text-sm font-semibold mt-2 block"></span>
+        `;
+
+        wrapper.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const feedback = wrapper.querySelector('.feedback');
+                if (parseInt(this.value) === q.correct) {
+                    feedback.textContent = 'Correct!';
+                    feedback.className = 'feedback text-sm font-semibold text-green-600 mt-2 block';
+                    wrapper.querySelectorAll('input[type="radio"]').forEach(r => r.disabled = true);
+                    if (!stage3Answers[idx]) {
+                        stage3Answers[idx] = true;
+                        scores.stage3.correct++;
+                        document.getElementById('stage3-score').textContent = `Score: ${scores.stage3.correct} / ${readingQuestions.length}`;
+                        updateOverallProgress();
+                    }
+                } else {
+                    feedback.textContent = 'Try again!';
+                    feedback.className = 'feedback text-sm font-semibold text-red-600 mt-2 block';
+                }
+            });
+        });
+
+        stage3Container.appendChild(wrapper);
+    });
+
+    // ============================================
+    // STAGE 4: Dialogue Practice
+    // ============================================
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8 p-4 bg-slate-50 rounded-lg';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 4: Dialogue Completion (5 items)</h2>
+        <p class="text-slate-600 mb-4">Complete the conversation by filling in the missing words.</p>
+        <div id="stage4-exercises" class="space-y-3"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${dialogueExercise.filter(d => d.answer).length}</div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+    const stage4Answers = new Array(dialogueExercise.length).fill(false);
+    let answerIdx = 0;
+
+    dialogueExercise.forEach((d, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-3 bg-white rounded-lg border';
+
+        const speakerColor = d.speaker === 'A' ? 'text-teal-600' : 'text-blue-600';
+
+        if (d.answer === null) {
+            wrapper.innerHTML = `
+                <div class="flex items-start gap-3">
+                    <span class="${speakerColor} font-semibold min-w-[30px]">${d.speaker}:</span>
+                    <span class="text-slate-700">${d.line}</span>
+                </div>
+            `;
+        } else {
+            const currentAnswerIdx = answerIdx++;
+            const parts = d.line.split('___');
+            wrapper.innerHTML = `
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="${speakerColor} font-semibold min-w-[30px]">${d.speaker}:</span>
+                    <span class="text-slate-700">${parts[0]}</span>
+                    <input type="text" class="border border-slate-300 rounded-md px-2 py-1 w-28 text-center focus:ring-2 focus:ring-teal-500" data-idx="${currentAnswerIdx}">
+                    <span class="text-slate-700">${parts[1] || ''}</span>
+                    <span class="feedback text-sm font-semibold"></span>
+                </div>
+                <p class="text-xs text-slate-500 italic ml-10 mt-1">(${d.english})</p>
+            `;
+
+            const input = wrapper.querySelector('input');
+            const feedback = wrapper.querySelector('.feedback');
+
+            function checkAnswer() {
+                const result = checkAccentAware(input.value, d.answer);
+                if (result === 'correct') {
+                    feedback.textContent = 'Correct!';
+                    feedback.className = 'feedback text-sm font-semibold text-green-600';
+                    input.disabled = true;
+                    input.className = 'border border-green-500 bg-green-50 rounded-md px-2 py-1 w-28 text-center';
+                    if (!stage4Answers[idx]) {
+                        stage4Answers[idx] = true;
+                        scores.stage4.correct++;
+                        document.getElementById('stage4-score').textContent = `Score: ${scores.stage4.correct} / ${dialogueExercise.filter(d => d.answer).length}`;
+                        updateOverallProgress();
+                    }
+                } else if (result === 'accent-warning') {
+                    feedback.textContent = 'Check accents!';
+                    feedback.className = 'feedback text-sm font-semibold text-yellow-600';
+                } else if (input.value.trim() !== '') {
+                    feedback.textContent = 'Try again!';
+                    feedback.className = 'feedback text-sm font-semibold text-red-600';
+                }
+            }
+
+            input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkAnswer(); });
+            input.addEventListener('blur', checkAnswer);
+        }
+
+        stage4Container.appendChild(wrapper);
+    });
+
+    // ============================================
+    // STAGE 5: Writing Practice
+    // ============================================
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8 p-4 bg-slate-50 rounded-lg';
+    stage5Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 5: Writing Practice (6 items)</h2>
+        <p class="text-slate-600 mb-4">Write sentences in Hungarian based on the prompts. Check the model answers after attempting.</p>
+        <div id="stage5-exercises" class="space-y-4"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium">Completed: 0 / ${writingPrompts.length}</div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Container = document.getElementById('stage5-exercises');
+
+    writingPrompts.forEach((p, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-white rounded-lg border';
+
+        wrapper.innerHTML = `
+            <div class="mb-3">
+                <p class="font-medium text-slate-800">${idx + 1}. ${p.prompt}</p>
+                <p class="text-xs text-slate-500 italic">Pattern: ${p.model}</p>
+            </div>
+            <div class="flex flex-col gap-2">
+                <textarea class="border border-slate-300 rounded-md px-3 py-2 w-full focus:ring-2 focus:ring-teal-500" rows="2" placeholder="Write your answer in Hungarian..."></textarea>
+                <div class="flex gap-2 items-center">
+                    <button class="check-btn px-3 py-1 bg-teal-600 text-white text-sm rounded hover:bg-teal-700">Check</button>
+                    <button class="show-btn px-3 py-1 bg-slate-500 text-white text-sm rounded hover:bg-slate-600">Show Example</button>
+                    <span class="feedback text-sm font-semibold"></span>
+                </div>
+                <div class="example-answer hidden p-2 bg-teal-50 rounded text-sm text-teal-800"></div>
+            </div>
+        `;
+
+        const textarea = wrapper.querySelector('textarea');
+        const checkBtn = wrapper.querySelector('.check-btn');
+        const showBtn = wrapper.querySelector('.show-btn');
+        const feedback = wrapper.querySelector('.feedback');
+        const exampleDiv = wrapper.querySelector('.example-answer');
+
+        checkBtn.addEventListener('click', function() {
+            if (textarea.value.trim().length > 5) {
+                feedback.textContent = 'Good job! Compare with the example.';
+                feedback.className = 'feedback text-sm font-semibold text-green-600';
+                scores.stage5.correct = document.querySelectorAll('#stage5-exercises .feedback.text-green-600').length;
+                document.getElementById('stage5-score').textContent = `Completed: ${scores.stage5.correct} / ${writingPrompts.length}`;
+                updateOverallProgress();
+            } else {
+                feedback.textContent = 'Please write a longer answer.';
+                feedback.className = 'feedback text-sm font-semibold text-yellow-600';
+            }
+        });
+
+        showBtn.addEventListener('click', function() {
+            exampleDiv.textContent = `Example: ${p.example}`;
+            exampleDiv.classList.toggle('hidden');
+            this.textContent = exampleDiv.classList.contains('hidden') ? 'Show Example' : 'Hide Example';
+        });
+
+        stage5Container.appendChild(wrapper);
+    });
+
+    // ============================================
+    // STAGE 6: Self-Assessment Checklist
+    // ============================================
+    const stage6Section = document.createElement('section');
+    stage6Section.className = 'mb-8 p-4 bg-slate-50 rounded-lg';
+    stage6Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 6: B1 Self-Assessment</h2>
+        <p class="text-slate-600 mb-4">Check off each skill you feel confident about. Be honest - this helps identify areas for review!</p>
+        <div id="checklist-container" class="space-y-2"></div>
+        <div id="checklist-result" class="mt-4 p-4 bg-white rounded-lg border hidden">
+            <h4 class="font-semibold text-slate-700 mb-2">Your B1 Readiness Assessment:</h4>
+            <div id="assessment-text" class="text-slate-600"></div>
+        </div>
+    `;
+    mainContent.appendChild(stage6Section);
+
+    const checklistContainer = document.getElementById('checklist-container');
+    const checklistResult = document.getElementById('checklist-result');
+    const assessmentText = document.getElementById('assessment-text');
+
+    selfAssessmentItems.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'checklist-item bg-white rounded border';
+        wrapper.innerHTML = `
+            <input type="checkbox" id="check-${idx}" class="w-5 h-5 text-teal-600 rounded focus:ring-teal-500">
+            <label for="check-${idx}" class="flex-grow text-slate-700 cursor-pointer">${item.skill}</label>
+            <span class="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">${item.category}</span>
+        `;
+
+        wrapper.querySelector('input').addEventListener('change', updateChecklist);
+        checklistContainer.appendChild(wrapper);
+    });
+
+    function updateChecklist() {
+        const checked = checklistContainer.querySelectorAll('input:checked').length;
+        const total = selfAssessmentItems.length;
+        const percentage = Math.round((checked / total) * 100);
+
+        checklistResult.classList.remove('hidden');
+
+        if (percentage >= 90) {
+            assessmentText.innerHTML = `<span class="text-green-700">Excellent! You checked ${checked}/${total} skills (${percentage}%). You are well-prepared for B2!</span>`;
+        } else if (percentage >= 70) {
+            assessmentText.innerHTML = `<span class="text-teal-700">Good progress! You checked ${checked}/${total} skills (${percentage}%). Review unchecked areas before B2.</span>`;
+        } else if (percentage >= 50) {
+            assessmentText.innerHTML = `<span class="text-yellow-700">Making progress! You checked ${checked}/${total} skills (${percentage}%). More practice recommended.</span>`;
+        } else {
+            assessmentText.innerHTML = `<span class="text-red-700">Keep learning! You checked ${checked}/${total} skills (${percentage}%). Review B1 lessons.</span>`;
+        }
+    }
+
+    // ============================================
+    // B2 READINESS SECTION
+    // ============================================
+    const b2Section = document.createElement('section');
+    b2Section.className = 'mb-8 p-6 bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl border-2 border-teal-200';
+    b2Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-teal-800 mb-4">Ready for B2?</h2>
+        <p class="text-slate-700 mb-4">Congratulations on completing B1! Here's what awaits you at the B2 level:</p>
+        <ul class="list-disc pl-6 text-slate-600 space-y-2 mb-4">
+            <li><strong>Complex grammar</strong> - Subjunctive mood, advanced conditionals</li>
+            <li><strong>Idiomatic expressions</strong> - Native-like phrases and sayings</li>
+            <li><strong>Abstract topics</strong> - Discussing complex ideas and opinions</li>
+            <li><strong>Professional Hungarian</strong> - Business and academic language</li>
+            <li><strong>Regional variations</strong> - Understanding different dialects</li>
+        </ul>
+        <div id="b2-recommendation" class="p-4 bg-white rounded-lg">
+            <p class="text-slate-600">Complete all exercises above to see your personalized B2 readiness recommendation.</p>
+        </div>
+    `;
+    mainContent.appendChild(b2Section);
+
+    // ============================================
+    // CELEBRATION SECTION
+    // ============================================
+    const celebrationSection = document.createElement('section');
+    celebrationSection.className = 'mb-8';
+    celebrationSection.innerHTML = `
+        <div class="celebration-box">
+            <h2 class="text-3xl font-bold mb-4">Gratulalok! Congratulations!</h2>
+            <p class="text-xl mb-4">You have completed the B1 Hungarian course!</p>
+            <p class="text-lg opacity-90">You can now:</p>
+            <ul class="text-left max-w-md mx-auto mt-4 space-y-2">
+                <li>Have meaningful conversations in Hungarian</li>
+                <li>Travel confidently in Hungary</li>
+                <li>Understand most standard Hungarian speech</li>
+                <li>Read Hungarian texts on familiar topics</li>
+                <li>Write about your experiences and opinions</li>
+            </ul>
+            <p class="mt-6 text-lg font-semibold">Sok sikert a B2 szinthez! Good luck with B2!</p>
+        </div>
+    `;
+    mainContent.appendChild(celebrationSection);
+
+    // ============================================
+    // SUMMARY SECTION
+    // ============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mt-8 p-6 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl border border-slate-200';
+    summarySection.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-4">B1 Level Summary</h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+                <h3 class="font-semibold text-slate-700 mb-2">Grammar Mastered:</h3>
+                <ul class="list-disc pl-5 text-slate-600 space-y-1">
+                    <li>All major cases (accusative, dative, locative, etc.)</li>
+                    <li>Definite and indefinite verb conjugations</li>
+                    <li>Past, present, and future tenses</li>
+                    <li>Conditional mood</li>
+                    <li>Verbal prefixes and their meanings</li>
+                    <li>Possessive suffixes</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-700 mb-2">Topics Covered:</h3>
+                <ul class="list-disc pl-5 text-slate-600 space-y-1">
+                    <li>Daily life and routines</li>
+                    <li>Travel and transportation</li>
+                    <li>Health and wellbeing</li>
+                    <li>Work and education</li>
+                    <li>Hungarian culture and history</li>
+                    <li>Sports and entertainment</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+
+    // Initialize progress
+    updateOverallProgress();
+    </script>
+</body>
+</html>

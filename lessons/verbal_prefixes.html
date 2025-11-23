@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 33: Verbal Prefixes - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .prefix-highlight { color: #dc2626; font-weight: 600; }
+        .verb-highlight { color: #0f766e; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 33: Verbal Prefixes <span class="block text-xl text-slate-500 font-normal">(Igekotok)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn how Hungarian verbal prefixes modify verb meanings and master their position in different sentence types. Prefixes are essential for expressing direction, completion, and nuance in Hungarian.</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    // Helper functions
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiIoOuU]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','o':'o','O':'O','o':'o','O':'O','u':'u','U':'U','u':'u','U':'U','u':'u','U':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    const mainContent = document.getElementById('main-content');
+
+    // =============================================
+    // SECTION 1: Introduction to Verbal Prefixes
+    // =============================================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: What are Verbal Prefixes?</h2>
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
+            <p class="text-slate-700 mb-2"><strong>Verbal prefixes (igekotok)</strong> are particles that attach to verbs to modify their meaning. They can indicate:</p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><strong>Direction:</strong> movement in, out, up, down, away</li>
+                <li><strong>Completion:</strong> that an action is finished (perfective aspect)</li>
+                <li><strong>Intensity:</strong> emphasis or thoroughness of an action</li>
+                <li><strong>New meaning:</strong> sometimes creating entirely new verbs</li>
+            </ul>
+        </div>
+        <div class="bg-slate-50 p-4 rounded-lg mb-4">
+            <p class="mb-2"><strong>Example:</strong></p>
+            <p class="text-lg"><span class="verb-highlight">megy</span> (to go) vs <span class="prefix-highlight">el</span><span class="verb-highlight">megy</span> (to go away/leave)</p>
+            <p class="text-lg"><span class="verb-highlight">ir</span> (to write) vs <span class="prefix-highlight">meg</span><span class="verb-highlight">ir</span> (to write [completed])</p>
+        </div>
+        <p class="text-slate-600 italic">Unlike English phrasal verbs, Hungarian prefixes can separate from the verb depending on sentence type!</p>
+    `;
+    mainContent.appendChild(section1);
+
+    // =============================================
+    // SECTION 2: Common Prefixes and Their Meanings
+    // =============================================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Common Prefixes and Their Meanings</h2>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Prefix</th>
+                        <th>Primary Meaning</th>
+                        <th>Base Verb</th>
+                        <th>Prefixed Verb</th>
+                        <th>Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="prefix-highlight font-bold">meg-</td><td>completion, perfective</td><td>tanul</td><td class="verb-highlight">megtanul</td><td>to learn (completely)</td></tr>
+                    <tr><td class="prefix-highlight font-bold">el-</td><td>away, departure</td><td>megy</td><td class="verb-highlight">elmegy</td><td>to go away, leave</td></tr>
+                    <tr><td class="prefix-highlight font-bold">ki-</td><td>out, outward</td><td>megy</td><td class="verb-highlight">kimegy</td><td>to go out</td></tr>
+                    <tr><td class="prefix-highlight font-bold">be-</td><td>in, inward</td><td>megy</td><td class="verb-highlight">bemegy</td><td>to go in, enter</td></tr>
+                    <tr><td class="prefix-highlight font-bold">fel-</td><td>up, upward</td><td>megy</td><td class="verb-highlight">felmegy</td><td>to go up</td></tr>
+                    <tr><td class="prefix-highlight font-bold">le-</td><td>down, downward</td><td>megy</td><td class="verb-highlight">lemegy</td><td>to go down</td></tr>
+                    <tr><td class="prefix-highlight font-bold">vissza-</td><td>back, return</td><td>jon</td><td class="verb-highlight">visszajon</td><td>to come back</td></tr>
+                    <tr><td class="prefix-highlight font-bold">at-</td><td>across, through</td><td>megy</td><td class="verb-highlight">atmegy</td><td>to go across</td></tr>
+                    <tr><td class="prefix-highlight font-bold">ossze-</td><td>together</td><td>gyujt</td><td class="verb-highlight">osszegyujt</td><td>to collect together</td></tr>
+                    <tr><td class="prefix-highlight font-bold">szet-</td><td>apart, asunder</td><td>szed</td><td class="verb-highlight">szetszed</td><td>to take apart</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4">
+            <p class="text-sm"><strong>Note:</strong> The prefix <span class="prefix-highlight">meg-</span> is unique - it often just marks that an action is completed without changing the core meaning.</p>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // =============================================
+    // SECTION 3: Prefix Position Rules
+    // =============================================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Prefix Position Rules</h2>
+        <p class="mb-4">The position of the prefix depends on the sentence type. This is one of the most important grammar rules in Hungarian!</p>
+
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                <h3 class="font-bold text-green-800 mb-2">Prefix ATTACHED (before verb)</h3>
+                <ul class="text-sm space-y-2">
+                    <li><strong>Neutral statements:</strong><br><span class="verb-highlight">Megeszem</span> az almat. (I eat the apple.)</li>
+                    <li><strong>Yes/No questions:</strong><br><span class="verb-highlight">Megeszed</span> az almat? (Do you eat the apple?)</li>
+                    <li><strong>Subordinate clauses:</strong><br>Tudom, hogy <span class="verb-highlight">megeszed</span>. (I know that you eat it.)</li>
+                </ul>
+            </div>
+            <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                <h3 class="font-bold text-red-800 mb-2">Prefix SEPARATED (after verb)</h3>
+                <ul class="text-sm space-y-2">
+                    <li><strong>Negation:</strong><br><span class="text-red-600">Nem</span> eszem <span class="prefix-highlight">meg</span>. (I don't eat it.)</li>
+                    <li><strong>Focus on another element:</strong><br><span class="text-blue-600">Peter</span> eszi <span class="prefix-highlight">meg</span>. (PETER eats it.)</li>
+                    <li><strong>Questions with question words:</strong><br><span class="text-purple-600">Mit</span> eszel <span class="prefix-highlight">meg</span>? (What do you eat?)</li>
+                    <li><strong>Imperatives:</strong><br>Edd <span class="prefix-highlight">meg</span>! (Eat it!)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-4">
+            <p class="font-semibold mb-2">The Focus Rule:</p>
+            <p class="text-sm">Whatever comes immediately before the verb is in FOCUS. When the prefix is attached, the verb itself has neutral emphasis. When something else is in focus, the prefix moves after the verb.</p>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // =============================================
+    // SECTION 4: Examples with Different Prefixes
+    // =============================================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Examples with Different Prefixes</h2>
+        <div class="space-y-4">
+            <div class="p-4 bg-slate-50 rounded-lg">
+                <h3 class="font-semibold text-slate-700 mb-2"><span class="prefix-highlight">meg-</span> (completion)</h3>
+                <table class="text-sm">
+                    <tr><td class="font-medium">ir &rarr; megir</td><td>to write &rarr; to write (finish writing)</td></tr>
+                    <tr><td class="font-medium">tanul &rarr; megtanul</td><td>to study &rarr; to learn (completely)</td></tr>
+                    <tr><td class="font-medium">csinál &rarr; megcsinál</td><td>to do &rarr; to complete, finish doing</td></tr>
+                    <tr><td class="font-medium">ert &rarr; megért</td><td>to understand &rarr; to understand (fully)</td></tr>
+                </table>
+            </div>
+            <div class="p-4 bg-slate-50 rounded-lg">
+                <h3 class="font-semibold text-slate-700 mb-2"><span class="prefix-highlight">el-</span> (away)</h3>
+                <table class="text-sm">
+                    <tr><td class="font-medium">megy &rarr; elmegy</td><td>to go &rarr; to go away, leave</td></tr>
+                    <tr><td class="font-medium">olvas &rarr; elolvas</td><td>to read &rarr; to read through</td></tr>
+                    <tr><td class="font-medium">felejt &rarr; elfelejt</td><td>to forget &rarr; to forget (completely)</td></tr>
+                    <tr><td class="font-medium">kezd &rarr; elkezd</td><td>to begin &rarr; to start</td></tr>
+                </table>
+            </div>
+            <div class="p-4 bg-slate-50 rounded-lg">
+                <h3 class="font-semibold text-slate-700 mb-2"><span class="prefix-highlight">ki-</span> / <span class="prefix-highlight">be-</span> (out/in)</h3>
+                <table class="text-sm">
+                    <tr><td class="font-medium">megy &rarr; kimegy / bemegy</td><td>to go out / to go in</td></tr>
+                    <tr><td class="font-medium">jon &rarr; kijon / bejon</td><td>to come out / to come in</td></tr>
+                    <tr><td class="font-medium">néz &rarr; kinéz / benéz</td><td>to look out / to look in</td></tr>
+                </table>
+            </div>
+            <div class="p-4 bg-slate-50 rounded-lg">
+                <h3 class="font-semibold text-slate-700 mb-2"><span class="prefix-highlight">fel-</span> / <span class="prefix-highlight">le-</span> (up/down)</h3>
+                <table class="text-sm">
+                    <tr><td class="font-medium">megy &rarr; felmegy / lemegy</td><td>to go up / to go down</td></tr>
+                    <tr><td class="font-medium">all &rarr; felall / leall</td><td>to stand up / to stop</td></tr>
+                    <tr><td class="font-medium">ul &rarr; felul / leul</td><td>to sit up / to sit down</td></tr>
+                    <tr><td class="font-medium">kel &rarr; felkel</td><td>to get up, wake up</td></tr>
+                </table>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // =============================================
+    // SECTION 5: Cultural Note
+    // =============================================
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 5: Cultural Note</h2>
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4">
+            <p class="mb-2"><strong>Why prefixes matter in Hungarian:</strong></p>
+            <p class="text-sm mb-2">Hungarian doesn't have a future tense like English. Instead, context and prefixes help indicate whether something is ongoing or completed. The prefix <span class="prefix-highlight">meg-</span> is particularly important as it often marks the perfective aspect (completed action).</p>
+            <ul class="list-disc pl-6 text-sm space-y-1">
+                <li><span class="verb-highlight">Irom a levelet.</span> - I am writing the letter. (ongoing)</li>
+                <li><span class="verb-highlight">Megirom a levelet.</span> - I will write the letter. / I'll finish writing the letter.</li>
+            </ul>
+            <p class="text-sm mt-2 italic">This is similar to the Slavic aspect system, which influenced Hungarian through centuries of contact.</p>
+        </div>
+    `;
+    mainContent.appendChild(section5);
+
+    // =============================================
+    // STAGE 1: Prefix Matching (10 items)
+    // =============================================
+    const stage1Questions = [
+        { verb: 'megy', prefix: 'el', meaning: 'to go away/leave', prefixedVerb: 'elmegy' },
+        { verb: 'jon', prefix: 'vissza', meaning: 'to come back', prefixedVerb: 'visszajon' },
+        { verb: 'megy', prefix: 'ki', meaning: 'to go out', prefixedVerb: 'kimegy' },
+        { verb: 'megy', prefix: 'be', meaning: 'to enter/go in', prefixedVerb: 'bemegy' },
+        { verb: 'tanul', prefix: 'meg', meaning: 'to learn completely', prefixedVerb: 'megtanul' },
+        { verb: 'megy', prefix: 'fel', meaning: 'to go up', prefixedVerb: 'felmegy' },
+        { verb: 'megy', prefix: 'le', meaning: 'to go down', prefixedVerb: 'lemegy' },
+        { verb: 'ir', prefix: 'meg', meaning: 'to write (finish)', prefixedVerb: 'megir' },
+        { verb: 'olvas', prefix: 'el', meaning: 'to read through', prefixedVerb: 'elolvas' },
+        { verb: 'kezd', prefix: 'el', meaning: 'to start', prefixedVerb: 'elkezd' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 1: Prefix Matching</h2>
+        <p class="mb-4 text-slate-600">Select the correct prefix to create the given meaning:</p>
+        <div id="stage1-exercises" class="space-y-3"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Container = document.getElementById('stage1-exercises');
+    const prefixOptions = ['meg-', 'el-', 'ki-', 'be-', 'fel-', 'le-', 'vissza-', 'at-'];
+
+    stage1Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[180px] text-slate-800';
+        label.innerHTML = `<span class="verb-highlight">${q.verb}</span> &rarr; "${q.meaning}"`;
+
+        const select = document.createElement('select');
+        select.className = 'border border-slate-300 rounded-md px-3 py-1 w-28 focus:ring-2 focus:ring-red-500';
+        select.innerHTML = '<option value="">??</option>' + prefixOptions.map(p => `<option value="${p}">${p}</option>`).join('');
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        select.addEventListener('change', () => checkStage1(idx));
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(select);
+        wrapper.appendChild(feedback);
+        stage1Container.appendChild(wrapper);
+    });
+
+    function checkStage1(idx) {
+        const wrapper = stage1Container.children[idx];
+        const select = wrapper.querySelector('select');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage1Questions[idx];
+        const correct = q.prefix + '-';
+
+        if (select.value === correct) {
+            feedback.textContent = `Correct! ${q.prefixedVerb}`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (select.value === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Answer: ${correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let correct = 0;
+        stage1Questions.forEach((q, i) => {
+            const select = stage1Container.children[i].querySelector('select');
+            if (select.value === q.prefix + '-') correct++;
+        });
+        document.getElementById('stage1-score').textContent = `Score: ${correct} / ${stage1Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 2: Prefix Position (12 items)
+    // =============================================
+    const stage2Questions = [
+        { sentence: 'Peter ___ az almat.', answer: 'megeszi', type: 'neutral', translation: 'Peter eats the apple.' },
+        { sentence: 'Nem eszem ___ az almat.', answer: 'meg', type: 'negation', translation: 'I don\'t eat the apple.' },
+        { sentence: 'Holnap ___ a koncertre.', answer: 'elmegyunk', type: 'neutral', translation: 'Tomorrow we go to the concert.' },
+        { sentence: 'Mit olvasol ___?', answer: 'el', type: 'question', translation: 'What are you reading?' },
+        { sentence: 'Mari ___ a szobaba.', answer: 'bemegy', type: 'neutral', translation: 'Mari goes into the room.' },
+        { sentence: 'Nem megyek ___ ma.', answer: 'ki', type: 'negation', translation: 'I\'m not going out today.' },
+        { sentence: 'A gyerekek ___ korán.', answer: 'felkelnek', type: 'neutral', translation: 'The children wake up early.' },
+        { sentence: 'Hova mesz ___?', answer: 'el', type: 'question', translation: 'Where are you going?' },
+        { sentence: 'Most ___ a leckét.', answer: 'megirom', type: 'neutral', translation: 'Now I\'ll write the homework.' },
+        { sentence: 'Ki jon ___?', answer: 'be', type: 'question', translation: 'Who is coming in?' },
+        { sentence: 'Soha nem felejtem ___.', answer: 'el', type: 'negation', translation: 'I never forget.' },
+        { sentence: 'A kutya ___ a kertbe.', answer: 'kimegy', type: 'neutral', translation: 'The dog goes out to the garden.' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 2: Prefix Position</h2>
+        <p class="mb-4 text-slate-600">Fill in the blank with the verb+prefix in correct position. Remember: prefixes separate in negation and questions with question words!</p>
+        <div id="stage2-exercises" class="space-y-3"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 rounded-lg';
+        wrapper.className += q.type === 'negation' ? ' bg-red-50' : q.type === 'question' ? ' bg-purple-50' : ' bg-green-50';
+
+        const typeLabel = document.createElement('span');
+        typeLabel.className = 'text-xs px-2 py-1 rounded font-medium';
+        typeLabel.className += q.type === 'negation' ? ' bg-red-200 text-red-800' : q.type === 'question' ? ' bg-purple-200 text-purple-800' : ' bg-green-200 text-green-800';
+        typeLabel.textContent = q.type;
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[220px] text-slate-800';
+        label.textContent = q.sentence;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-32 text-center focus:ring-2 focus:ring-teal-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage2(idx);
+        });
+
+        wrapper.appendChild(typeLabel);
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage2Container.appendChild(wrapper);
+    });
+
+    function checkStage2(idx) {
+        const wrapper = stage2Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage2Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(q.answer);
+
+        if (userAnswer === correct) {
+            feedback.textContent = `Correct! (${q.translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Check accents! (${q.translation})`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        stage2Questions.forEach((q, i) => {
+            const input = stage2Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(q.answer)) correct++;
+        });
+        document.getElementById('stage2-score').textContent = `Score: ${correct} / ${stage2Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 3: Translation with Prefixes (10 items)
+    // =============================================
+    const stage3Questions = [
+        { english: 'I\'m going out.', answer: 'kimegyek', hints: 'ki- + megy' },
+        { english: 'She came back.', answer: 'visszajott', hints: 'vissza- + jon (past)' },
+        { english: 'We\'re going in.', answer: 'bemegyunk', hints: 'be- + megy' },
+        { english: 'He woke up.', answer: 'felkelt', hints: 'fel- + kel (past)' },
+        { english: 'I\'ll finish writing it.', answer: 'megirom', hints: 'meg- + ir' },
+        { english: 'They went down.', answer: 'lementek', hints: 'le- + megy (past, they)' },
+        { english: 'She read it through.', answer: 'elolvasta', hints: 'el- + olvas (past, definite)' },
+        { english: 'I\'m starting now.', answer: 'elkezdem', hints: 'el- + kezd' },
+        { english: 'The train left.', answer: 'elment', hints: 'el- + megy (past)' },
+        { english: 'I learned Hungarian.', answer: 'megtanultam', hints: 'meg- + tanul (past)' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 3: Translation with Prefixes</h2>
+        <p class="mb-4 text-slate-600">Translate the English sentences using the correct prefixed verb:</p>
+        <div id="stage3-exercises" class="space-y-3"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-1 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('div');
+        label.innerHTML = `<strong>${q.english}</strong> <span class="text-slate-500 text-sm">(${q.hints})</span>`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-40 text-center focus:ring-2 focus:ring-teal-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage3(idx);
+        });
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(label);
+        wrapper.appendChild(inputRow);
+        stage3Container.appendChild(wrapper);
+    });
+
+    function checkStage3(idx) {
+        const wrapper = stage3Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span');
+        const q = stage3Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(q.answer);
+
+        if (userAnswer === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Check accents! ${q.answer}`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let correct = 0;
+        stage3Questions.forEach((q, i) => {
+            const input = stage3Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(q.answer)) correct++;
+        });
+        document.getElementById('stage3-score').textContent = `Score: ${correct} / ${stage3Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 4: Sentence Transformation (8 items)
+    // =============================================
+    const stage4Questions = [
+        { original: 'Megeszem az almat.', transform: 'Make negative', answer: 'Nem eszem meg az almat.' },
+        { original: 'Elmegyunk a moziba.', transform: 'Ask "where"', answer: 'Hova megyunk el?' },
+        { original: 'Bemegy a szobaba.', transform: 'Make negative', answer: 'Nem megy be a szobaba.' },
+        { original: 'Felkelek korán.', transform: 'Ask "when"', answer: 'Mikor kelek fel?' },
+        { original: 'Megirom a levelet.', transform: 'Make negative', answer: 'Nem irom meg a levelet.' },
+        { original: 'Visszajonnek holnap.', transform: 'Ask "when"', answer: 'Mikor jonnek vissza?' },
+        { original: 'Elolvasta a konyvot.', transform: 'Make negative', answer: 'Nem olvasta el a konyvot.' },
+        { original: 'Lemegyek a lépcsőn.', transform: 'Ask "where"', answer: 'Hol megyek le?' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 4: Sentence Transformation</h2>
+        <p class="mb-4 text-slate-600">Transform each sentence as indicated. Pay attention to prefix position!</p>
+        <div id="stage4-exercises" class="space-y-3"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 bg-orange-50 rounded-lg';
+
+        const label = document.createElement('div');
+        label.innerHTML = `<strong>${q.original}</strong><br><span class="text-orange-700 text-sm">Task: ${q.transform}</span>`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-full md:w-72 focus:ring-2 focus:ring-orange-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(idx);
+        });
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(label);
+        wrapper.appendChild(inputRow);
+        stage4Container.appendChild(wrapper);
+    });
+
+    function checkStage4(idx) {
+        const wrapper = stage4Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span');
+        const q = stage4Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(q.answer);
+
+        if (userAnswer === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Check accents! ${q.answer}`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        stage4Questions.forEach((q, i) => {
+            const input = stage4Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(q.answer)) correct++;
+        });
+        document.getElementById('stage4-score').textContent = `Score: ${correct} / ${stage4Questions.length}`;
+    }
+
+    // =============================================
+    // SUMMARY
+    // =============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 p-6 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg border border-red-200';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Lesson Summary</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-red-800 mb-2">Common Prefixes:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li><span class="prefix-highlight">meg-</span> completion, perfective</li>
+                    <li><span class="prefix-highlight">el-</span> away, departure</li>
+                    <li><span class="prefix-highlight">ki-</span> out, outward</li>
+                    <li><span class="prefix-highlight">be-</span> in, inward</li>
+                    <li><span class="prefix-highlight">fel-</span> up, upward</li>
+                    <li><span class="prefix-highlight">le-</span> down, downward</li>
+                    <li><span class="prefix-highlight">vissza-</span> back, return</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-red-800 mb-2">Position Rules:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li><strong>Attached:</strong> Neutral statements, yes/no questions</li>
+                    <li><strong>Separated:</strong> Negation (nem), question words (mit, hol, ki), focus constructions, imperatives</li>
+                </ul>
+                <div class="mt-4 p-3 bg-white rounded border">
+                    <p class="text-sm"><strong>Remember:</strong> The element immediately before the verb is in focus!</p>
+                </div>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>

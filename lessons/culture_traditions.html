@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 44: Culture & Hungarian Traditions - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: left; }
+        th { background: #f1f5f9; }
+        .match-card {
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .match-card:hover { transform: scale(1.02); }
+        .match-card.selected {
+            border-color: #0f766e;
+            background-color: #f0fdfa;
+            box-shadow: 0 0 0 2px #0f766e;
+        }
+        .match-card.correct {
+            border-color: #16a34a;
+            background-color: #dcfce7;
+        }
+        .match-card.incorrect {
+            border-color: #dc2626;
+            background-color: #fef2f2;
+        }
+        .cultural-note {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .vocab-highlight { color: #0f766e; font-weight: 600; }
+        .tradition-card {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            border-left: 4px solid #ec4899;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .food-note {
+            background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%);
+            border-left: 4px solid #eab308;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 44: Culture & Hungarian Traditions <span class="block text-xl text-slate-500 font-normal">(Kultura es magyar hagyomanyok)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Discover Hungarian holidays, traditions, folk culture, cuisine, and cultural expressions. Learn to discuss and appreciate Hungary's rich cultural heritage.</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+
+    <script>
+    // ============================================
+    // UTILITY FUNCTIONS
+    // ============================================
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuU]/g, function(m) {
+            const map = { 'o':'o', 'O':'O', 'u':'u', 'U':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeAnswer(str) {
+        return str.trim().toLowerCase();
+    }
+
+    function checkAccentAware(userInput, correctAnswer) {
+        const normalizedInput = normalizeAnswer(userInput);
+        const normalizedCorrect = normalizeAnswer(correctAnswer);
+        if (normalizedInput === normalizedCorrect) return 'correct';
+        if (removeAccents(normalizedInput) === removeAccents(normalizedCorrect)) return 'accent-warning';
+        return 'incorrect';
+    }
+
+    // ============================================
+    // VOCABULARY DATA
+    // ============================================
+    const holidays = [
+        { hungarian: 'Karacsony', english: 'Christmas' },
+        { hungarian: 'Husvet', english: 'Easter' },
+        { hungarian: 'Ujév', english: 'New Year' },
+        { hungarian: 'Szilveszter', english: 'New Year\'s Eve' },
+        { hungarian: 'Mindenszentek', english: 'All Saints\' Day' },
+        { hungarian: 'Nemzeti unnep', english: 'National holiday' },
+        { hungarian: 'Marcius 15.', english: 'March 15 (1848 Revolution)' },
+        { hungarian: 'Augusztus 20.', english: 'August 20 (St. Stephen\'s Day)' },
+        { hungarian: 'Oktober 23.', english: 'October 23 (1956 Revolution)' },
+        { hungarian: 'Anyak napja', english: 'Mother\'s Day' }
+    ];
+
+    const folkCulture = [
+        { hungarian: 'neptanc', english: 'folk dance' },
+        { hungarian: 'nepzene', english: 'folk music' },
+        { hungarian: 'nepdal', english: 'folk song' },
+        { hungarian: 'nepmese', english: 'folk tale' },
+        { hungarian: 'nepviselet', english: 'folk costume' },
+        { hungarian: 'himzes', english: 'embroidery' },
+        { hungarian: 'fazekassag', english: 'pottery' },
+        { hungarian: 'kézmuves', english: 'craftsman / handmade' }
+    ];
+
+    const hungarianCuisine = [
+        { hungarian: 'gulyas', english: 'goulash (soup)' },
+        { hungarian: 'porkolt', english: 'stew' },
+        { hungarian: 'paprikas csirke', english: 'chicken paprikash' },
+        { hungarian: 'langos', english: 'fried dough' },
+        { hungarian: 'kurtoskalacs', english: 'chimney cake' },
+        { hungarian: 'turos csusza', english: 'pasta with cottage cheese' },
+        { hungarian: 'halaszle', english: 'fisherman\'s soup' },
+        { hungarian: 'dobos torta', english: 'Dobos cake' },
+        { hungarian: 'palinka', english: 'fruit brandy' },
+        { hungarian: 'tokaji bor', english: 'Tokaj wine' }
+    ];
+
+    const culturalTerms = [
+        { hungarian: 'hagyomany', english: 'tradition' },
+        { hungarian: 'szokás', english: 'custom / habit' },
+        { hungarian: 'unnep', english: 'holiday / celebration' },
+        { hungarian: 'unnepel', english: 'to celebrate' },
+        { hungarian: 'ajandek', english: 'gift / present' },
+        { hungarian: 'kozosseg', english: 'community' },
+        { hungarian: 'orokség', english: 'heritage' },
+        { hungarian: 'muvészet', english: 'art' }
+    ];
+
+    const culturalPhrases = [
+        { hungarian: 'Boldog Karácsonyt!', english: 'Merry Christmas!' },
+        { hungarian: 'Kellemes Unnepeket!', english: 'Happy Holidays!' },
+        { hungarian: 'Boldog Ujévet!', english: 'Happy New Year!' },
+        { hungarian: 'Kellemes Husvéti Unnepeket!', english: 'Happy Easter!' },
+        { hungarian: 'Jo etvagyat!', english: 'Bon appetit! / Enjoy your meal!' },
+        { hungarian: 'Egészségedre!', english: 'Cheers! / Bless you!' },
+        { hungarian: 'Isten éltessen!', english: 'Happy Birthday! (God bless you)' },
+        { hungarian: 'Sok boldogsagot!', english: 'Best wishes! / Much happiness!' }
+    ];
+
+    // ============================================
+    // EXERCISE DATA
+    // ============================================
+    const stage1Matching = [
+        { hungarian: 'Karacsony', english: 'Christmas' },
+        { hungarian: 'Husvet', english: 'Easter' },
+        { hungarian: 'gulyas', english: 'goulash' },
+        { hungarian: 'neptanc', english: 'folk dance' },
+        { hungarian: 'hagyomany', english: 'tradition' },
+        { hungarian: 'unnep', english: 'holiday' },
+        { hungarian: 'nepzene', english: 'folk music' },
+        { hungarian: 'langos', english: 'fried dough' },
+        { hungarian: 'ajandek', english: 'gift' },
+        { hungarian: 'palinka', english: 'fruit brandy' }
+    ];
+
+    const stage2MultipleChoice = [
+        { question: 'What is "Easter" in Hungarian?', options: ['Karacsony', 'Husvet', 'Ujév', 'Szilveszter'], correct: 'Husvet' },
+        { question: 'What does "nepviselet" mean?', options: ['folk dance', 'folk music', 'folk costume', 'folk tale'], correct: 'folk costume' },
+        { question: 'What is "goulash" in Hungarian?', options: ['porkolt', 'gulyas', 'halaszle', 'langos'], correct: 'gulyas' },
+        { question: 'When is St. Stephen\'s Day celebrated?', options: ['March 15', 'August 20', 'October 23', 'December 25'], correct: 'August 20' },
+        { question: 'What does "unnepel" mean?', options: ['to celebrate', 'to cook', 'to dance', 'to give'], correct: 'to celebrate' },
+        { question: 'What is "chimney cake" in Hungarian?', options: ['langos', 'dobos torta', 'kurtoskalacs', 'turos csusza'], correct: 'kurtoskalacs' },
+        { question: 'How do you say "tradition" in Hungarian?', options: ['szokás', 'unnep', 'hagyomany', 'orokség'], correct: 'hagyomany' },
+        { question: 'What is "himzes" in English?', options: ['pottery', 'embroidery', 'weaving', 'painting'], correct: 'embroidery' }
+    ];
+
+    const stage3FillBlanks = [
+        { sentence: 'Boldog ___!', answer: 'Karácsonyt', english: 'Merry Christmas!' },
+        { sentence: 'A ___ nagyon finom!', answer: 'gulyas', english: 'The goulash is very delicious!' },
+        { sentence: 'Marcius 15. nemzeti ___.', answer: 'unnep', english: 'March 15 is a national holiday.' },
+        { sentence: 'Szeretek ___ táncolni.', answer: 'neptancot', english: 'I like to dance folk dance.' },
+        { sentence: 'A magyar ___ gazdag.', answer: 'hagyomany', english: 'Hungarian tradition is rich.' },
+        { sentence: 'Boldog ___!', answer: 'Ujévet', english: 'Happy New Year!' },
+        { sentence: 'Jo ___!', answer: 'etvagyat', english: 'Bon appetit!' },
+        { sentence: '___ a szuletest napot!', answer: 'Unnepeljuk', english: 'Let\'s celebrate the birthday!' }
+    ];
+
+    const stage4Translation = [
+        { english: 'Merry Christmas!', answer: 'Boldog Karacsonyt', alternates: ['boldog karácsonyt'] },
+        { english: 'Happy New Year!', answer: 'Boldog Ujévet', alternates: ['boldog ujevet'] },
+        { english: 'I like Hungarian traditions.', answer: 'Szeretem a magyar hagyomanyokat', alternates: ['a magyar hagyomanyokat szeretem'] },
+        { english: 'The goulash is delicious.', answer: 'A gulyas finom', alternates: ['finom a gulyas'] },
+        { english: 'We celebrate Easter.', answer: 'Husvetot unnepelunk', alternates: ['unnepeljuk a husvetot', 'mi husvetot unnepelunk'] },
+        { english: 'I love folk music.', answer: 'Szeretem a nepzenét', alternates: ['a nepzenet szeretem', 'imádom a nepzenét'] }
+    ];
+
+    const stage5Dialogue = [
+        { speaker: 'A', line: 'Mit unnepeltek ma?', response: 'Ma van ___!', blank: 'Karacsony', responseEnglish: 'Today is Christmas!' },
+        { speaker: 'A', line: 'Mi a kedvenc magyar eteled?', response: 'A ___ a kedvencem.', blank: 'gulyas', responseEnglish: 'Goulash is my favorite.' },
+        { speaker: 'A', line: 'Szereted a nepzenét?', response: 'Igen, nagyon szeretem a magyar ___.', blank: 'nepzenét', responseEnglish: 'Yes, I really love Hungarian folk music.' },
+        { speaker: 'A', line: 'Mikor van a nemzeti unnep?', response: '___ 20-án.', blank: 'Augusztus', responseEnglish: 'On August 20.' },
+        { speaker: 'A', line: 'Mit mondunk evés elott?', response: 'Jo ___!', blank: 'etvagyat', responseEnglish: 'Bon appetit!' },
+        { speaker: 'A', line: 'Hogy koszontjuk a szulinaposokat?', response: 'Isten ___!', blank: 'éltessen', responseEnglish: 'Happy Birthday! (God bless you!)' }
+    ];
+
+    // ============================================
+    // SCORE TRACKING
+    // ============================================
+    let scores = {
+        stage1: { correct: 0, total: stage1Matching.length },
+        stage2: { correct: 0, total: stage2MultipleChoice.length },
+        stage3: { correct: 0, total: stage3FillBlanks.length },
+        stage4: { correct: 0, total: stage4Translation.length },
+        stage5: { correct: 0, total: stage5Dialogue.length }
+    };
+
+    function updateTotalScore() {
+        const totalCorrect = Object.values(scores).reduce((sum, s) => sum + s.correct, 0);
+        const totalQuestions = Object.values(scores).reduce((sum, s) => sum + s.total, 0);
+        const el = document.getElementById('total-score');
+        if (el) el.textContent = `Total Score: ${totalCorrect} / ${totalQuestions}`;
+    }
+
+    // ============================================
+    // BUILD PAGE CONTENT
+    // ============================================
+    const mainContent = document.getElementById('main-content');
+
+    // Learning Objectives
+    const objectivesSection = document.createElement('section');
+    objectivesSection.className = 'mb-8';
+    objectivesSection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Learning Objectives</h2>
+        <ul class="list-disc pl-6 space-y-2 text-slate-600">
+            <li>Name major Hungarian holidays and their significance</li>
+            <li>Learn folk culture vocabulary: dance, music, crafts</li>
+            <li>Identify traditional Hungarian dishes and drinks</li>
+            <li>Use cultural expressions and holiday greetings</li>
+            <li>Understand Hungarian cultural customs</li>
+        </ul>
+    `;
+    mainContent.appendChild(objectivesSection);
+
+    // Cultural Note
+    const culturalNote = document.createElement('div');
+    culturalNote.className = 'cultural-note mb-8';
+    culturalNote.innerHTML = `
+        <h3 class="font-bold text-amber-800 mb-2">Cultural Note: Hungarian Identity</h3>
+        <p class="text-amber-900">Hungarian culture is deeply rooted in folk traditions, music, and cuisine. The <strong>magyar népmuvészet</strong> (Hungarian folk art)
+        is recognized by UNESCO, with famous styles like <strong>Matyó</strong> and <strong>Kalocsai</strong> embroidery. Hungarians take pride in their unique language,
+        cuisine (especially paprika-based dishes), and musical heritage from composers like Liszt, Bartók, and Kodály. National holidays commemorate the 1848 and 1956 revolutions,
+        reflecting the importance of independence and freedom in Hungarian identity.</p>
+    `;
+    mainContent.appendChild(culturalNote);
+
+    // Section 1: Hungarian Holidays
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Hungarian Holidays (Magyar unnepek)</h2>
+        <table>
+            <thead><tr><th>Hungarian</th><th>English</th></tr></thead>
+            <tbody>${holidays.map(item => `<tr><td class="vocab-highlight">${item.hungarian}</td><td>${item.english}</td></tr>`).join('')}</tbody>
+        </table>
+        <div class="tradition-card mt-4">
+            <h4 class="font-semibold text-pink-800 mb-2">National Holidays</h4>
+            <p class="text-pink-900 text-sm">Hungary has three main national holidays:
+            <br><strong>Marcius 15</strong> - commemorates the 1848 revolution against Habsburg rule
+            <br><strong>Augusztus 20</strong> - St. Stephen's Day, celebrating Hungary's founding
+            <br><strong>Oktober 23</strong> - commemorates the 1956 uprising against Soviet occupation</p>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // Section 2: Folk Culture
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Folk Culture (Nepi kultura)</h2>
+        <table>
+            <thead><tr><th>Hungarian</th><th>English</th></tr></thead>
+            <tbody>${folkCulture.map(item => `<tr><td class="vocab-highlight">${item.hungarian}</td><td>${item.english}</td></tr>`).join('')}</tbody>
+        </table>
+        <div class="mt-4 p-4 bg-purple-50 rounded-lg border border-purple-200">
+            <h4 class="font-semibold text-purple-800 mb-2">Folk Dance Houses (Tanchaz)</h4>
+            <p class="text-purple-700 text-sm">The <strong>tanchaz</strong> (dance house) movement began in the 1970s to preserve Hungarian folk traditions.
+            People gather to learn traditional dances, listen to live folk music, and experience authentic Hungarian culture. These events are still popular today in Budapest and across Hungary!</p>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // Section 3: Hungarian Cuisine
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Hungarian Cuisine (Magyar konyha)</h2>
+        <table>
+            <thead><tr><th>Hungarian</th><th>English</th></tr></thead>
+            <tbody>${hungarianCuisine.map(item => `<tr><td class="vocab-highlight">${item.hungarian}</td><td>${item.english}</td></tr>`).join('')}</tbody>
+        </table>
+    `;
+    mainContent.appendChild(section3);
+
+    // Food Note
+    const foodNote = document.createElement('div');
+    foodNote.className = 'food-note mb-8';
+    foodNote.innerHTML = `
+        <h3 class="font-bold text-yellow-800 mb-2">Culinary Note: Paprika - The Soul of Hungarian Cooking</h3>
+        <p class="text-yellow-900 text-sm"><strong>Paprika</strong> (pirospaprika) is the defining spice of Hungarian cuisine. It comes in sweet (edes) and hot (csipos) varieties.
+        <br><br><strong>Gulyas</strong> is actually a soup, not a stew - the thick meat dish foreigners often call "goulash" is <strong>porkolt</strong>.
+        <strong>Halaszle</strong> (fisherman's soup) is traditionally made with river fish and lots of paprika, often served at Christmas Eve.
+        <strong>Palinka</strong>, the traditional fruit brandy, is served as a digestif and is protected by Hungarian law!</p>
+    `;
+    mainContent.appendChild(foodNote);
+
+    // Section 4: Cultural Terms
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Cultural Terms (Kulturalis kifejezések)</h2>
+        <table>
+            <thead><tr><th>Hungarian</th><th>English</th></tr></thead>
+            <tbody>${culturalTerms.map(item => `<tr><td class="vocab-highlight">${item.hungarian}</td><td>${item.english}</td></tr>`).join('')}</tbody>
+        </table>
+    `;
+    mainContent.appendChild(section4);
+
+    // Section 5: Holiday Greetings & Phrases
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 5: Holiday Greetings & Phrases (Unnepi koszontések)</h2>
+        <div class="bg-slate-50 rounded-lg p-4 space-y-3">
+            ${culturalPhrases.map(item => `
+                <div class="flex flex-col md:flex-row md:items-center gap-2">
+                    <span class="font-medium text-teal-700 min-w-[280px]">${item.hungarian}</span>
+                    <span class="text-slate-600">- ${item.english}</span>
+                </div>
+            `).join('')}
+        </div>
+        <div class="mt-4 p-4 bg-green-50 rounded-lg border border-green-200">
+            <h4 class="font-semibold text-green-800 mb-2">Easter Traditions</h4>
+            <p class="text-green-700 text-sm">On Easter Monday (<strong>Husvet hetfo</strong>), Hungarian boys traditionally sprinkle girls with perfume or water (called <strong>locsolas</strong>).
+            They recite a poem asking permission, and in return receive painted eggs (<strong>himes tojas</strong>) or chocolate. This custom represents spring, fertility, and renewal.</p>
+        </div>
+    `;
+    mainContent.appendChild(section5);
+
+    // Total Score Display
+    const totalScoreSection = document.createElement('div');
+    totalScoreSection.className = 'bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-xl p-4 mb-8 text-center';
+    totalScoreSection.innerHTML = `
+        <h3 class="text-lg font-semibold mb-1">Interactive Exercises</h3>
+        <p id="total-score" class="text-2xl font-bold">Total Score: 0 / ${Object.values(scores).reduce((sum, s) => sum + s.total, 0)}</p>
+    `;
+    mainContent.appendChild(totalScoreSection);
+
+    // ============================================
+    // STAGE 1: VOCABULARY MATCHING
+    // ============================================
+    let stage1Selected = null;
+    let stage1Matches = new Set();
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 1: Cultural Vocabulary Matching</h2>
+        <p class="text-slate-600 mb-4">Match the Hungarian words with their English translations.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div id="stage1-hungarian" class="space-y-2"></div>
+            <div id="stage1-english" class="space-y-2"></div>
+        </div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage1Matching.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Hungarian = document.getElementById('stage1-hungarian');
+    const stage1English = document.getElementById('stage1-english');
+    const shuffledEnglish = [...stage1Matching].sort(() => Math.random() - 0.5);
+
+    stage1Matching.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.hungarian;
+        card.dataset.index = idx;
+        card.dataset.type = 'hungarian';
+        card.addEventListener('click', () => handleStage1Click(card, 'hungarian', idx));
+        stage1Hungarian.appendChild(card);
+    });
+
+    shuffledEnglish.forEach((item) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.english;
+        card.dataset.originalIndex = stage1Matching.findIndex(d => d.english === item.english);
+        card.dataset.type = 'english';
+        card.addEventListener('click', () => handleStage1Click(card, 'english', parseInt(card.dataset.originalIndex)));
+        stage1English.appendChild(card);
+    });
+
+    function handleStage1Click(card, type, index) {
+        if (card.classList.contains('correct')) return;
+        if (stage1Selected === null) {
+            stage1Selected = { card, type, index };
+            card.classList.add('selected');
+        } else if (stage1Selected.type === type) {
+            stage1Selected.card.classList.remove('selected');
+            stage1Selected = { card, type, index };
+            card.classList.add('selected');
+        } else {
+            if (stage1Selected.index === index) {
+                stage1Selected.card.classList.remove('selected');
+                stage1Selected.card.classList.add('correct');
+                card.classList.add('correct');
+                stage1Matches.add(index);
+                scores.stage1.correct = stage1Matches.size;
+                document.getElementById('stage1-score').textContent = `Score: ${stage1Matches.size} / ${stage1Matching.length}`;
+                updateTotalScore();
+            } else {
+                stage1Selected.card.classList.add('incorrect');
+                card.classList.add('incorrect');
+                setTimeout(() => {
+                    stage1Selected.card.classList.remove('selected', 'incorrect');
+                    card.classList.remove('incorrect');
+                    stage1Selected = null;
+                }, 800);
+                return;
+            }
+            stage1Selected = null;
+        }
+    }
+
+    // ============================================
+    // STAGE 2: MULTIPLE CHOICE
+    // ============================================
+    const stage2Answered = new Array(stage2MultipleChoice.length).fill(false);
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 2: Multiple Choice</h2>
+        <p class="text-slate-600 mb-4">Select the correct answer for each question.</p>
+        <div id="stage2-exercise" class="space-y-4"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage2MultipleChoice.length}</div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercise');
+
+    stage2MultipleChoice.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700 mb-3">${idx + 1}. ${q.question}</p>
+            <div class="grid grid-cols-2 gap-2" id="stage2-options-${idx}"></div>
+            <p class="mt-2 text-sm font-semibold stage2-feedback"></p>
+        `;
+        stage2Container.appendChild(wrapper);
+
+        const optionsContainer = wrapper.querySelector(`#stage2-options-${idx}`);
+        q.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'px-4 py-2 border-2 border-slate-300 rounded-lg bg-white hover:bg-slate-50 transition-colors text-sm';
+            btn.textContent = opt;
+            btn.addEventListener('click', () => checkStage2(idx, opt, btn, wrapper));
+            optionsContainer.appendChild(btn);
+        });
+    });
+
+    function checkStage2(idx, selected, btn, wrapper) {
+        const feedback = wrapper.querySelector('.stage2-feedback');
+        const buttons = wrapper.querySelectorAll('button');
+        const correct = stage2MultipleChoice[idx].correct;
+
+        buttons.forEach(b => b.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500'));
+
+        if (selected === correct) {
+            btn.classList.add('bg-green-100', 'border-green-500');
+            feedback.textContent = 'Correct!';
+            feedback.className = 'mt-2 text-sm font-semibold text-green-600 stage2-feedback';
+            if (!stage2Answered[idx]) {
+                stage2Answered[idx] = true;
+                scores.stage2.correct++;
+                document.getElementById('stage2-score').textContent = `Score: ${scores.stage2.correct} / ${stage2MultipleChoice.length}`;
+                updateTotalScore();
+            }
+        } else {
+            btn.classList.add('bg-red-100', 'border-red-500');
+            feedback.textContent = `Incorrect. The correct answer is: ${correct}`;
+            feedback.className = 'mt-2 text-sm font-semibold text-red-600 stage2-feedback';
+        }
+    }
+
+    // ============================================
+    // STAGE 3: FILL IN THE BLANKS
+    // ============================================
+    const stage3Answered = new Array(stage3FillBlanks.length).fill(false);
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 3: Fill in the Blanks</h2>
+        <p class="text-slate-600 mb-4">Complete the sentences with the correct Hungarian word. Press Enter to check.</p>
+        <div id="stage3-exercise" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage3FillBlanks.length}</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercise');
+
+    stage3FillBlanks.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const parts = q.sentence.split('___');
+        const row = document.createElement('div');
+        row.className = 'flex flex-wrap items-center gap-1';
+
+        const span1 = document.createElement('span');
+        span1.className = 'text-slate-800';
+        span1.textContent = parts[0];
+        row.appendChild(span1);
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-2 py-1 w-32 text-center focus:ring-2 focus:ring-teal-500';
+        row.appendChild(input);
+
+        if (parts[1]) {
+            const span2 = document.createElement('span');
+            span2.className = 'text-slate-800';
+            span2.textContent = parts[1];
+            row.appendChild(span2);
+        }
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold ml-2';
+        row.appendChild(feedback);
+
+        const translation = document.createElement('div');
+        translation.className = 'text-xs text-slate-500 italic';
+        translation.textContent = `English: ${q.english}`;
+
+        wrapper.appendChild(row);
+        wrapper.appendChild(translation);
+        stage3Container.appendChild(wrapper);
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const result = checkAccentAware(input.value, q.answer);
+                if (result === 'correct') {
+                    feedback.textContent = 'Correct!';
+                    feedback.className = 'text-sm font-semibold text-green-600 ml-2';
+                    input.disabled = true;
+                    input.classList.add('bg-green-50', 'border-green-500');
+                    if (!stage3Answered[idx]) {
+                        stage3Answered[idx] = true;
+                        scores.stage3.correct++;
+                        document.getElementById('stage3-score').textContent = `Score: ${scores.stage3.correct} / ${stage3FillBlanks.length}`;
+                        updateTotalScore();
+                    }
+                } else if (result === 'accent-warning') {
+                    feedback.textContent = 'Almost! Check accents.';
+                    feedback.className = 'text-sm font-semibold text-yellow-600 ml-2';
+                } else {
+                    feedback.textContent = `Try again! Answer: ${q.answer}`;
+                    feedback.className = 'text-sm font-semibold text-red-600 ml-2';
+                }
+            }
+        });
+    });
+
+    // ============================================
+    // STAGE 4: TRANSLATION
+    // ============================================
+    const stage4Answered = new Array(stage4Translation.length).fill(false);
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 4: Translation Practice</h2>
+        <p class="text-slate-600 mb-4">Translate the English sentences into Hungarian. Press Enter to check.</p>
+        <div id="stage4-exercise" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage4Translation.length}</div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercise');
+
+    stage4Translation.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-blue-50 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-800 mb-2">${idx + 1}. ${q.english}</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-blue-500" placeholder="Type Hungarian translation...">
+                <span class="text-sm font-semibold stage4-feedback"></span>
+            </div>
+        `;
+        stage4Container.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('.stage4-feedback');
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const userAnswer = normalizeAnswer(input.value);
+                const correct = normalizeAnswer(q.answer);
+                const alternates = q.alternates.map(a => normalizeAnswer(a));
+                const allCorrect = [correct, ...alternates];
+
+                if (allCorrect.some(ans => userAnswer === ans)) {
+                    feedback.textContent = 'Correct!';
+                    feedback.className = 'text-sm font-semibold text-green-600 stage4-feedback';
+                    input.disabled = true;
+                    input.classList.add('bg-green-50', 'border-green-500');
+                    if (!stage4Answered[idx]) {
+                        stage4Answered[idx] = true;
+                        scores.stage4.correct++;
+                        document.getElementById('stage4-score').textContent = `Score: ${scores.stage4.correct} / ${stage4Translation.length}`;
+                        updateTotalScore();
+                    }
+                } else if (allCorrect.some(ans => removeAccents(userAnswer) === removeAccents(ans))) {
+                    feedback.textContent = 'Almost! Check accents.';
+                    feedback.className = 'text-sm font-semibold text-yellow-600 stage4-feedback';
+                } else {
+                    feedback.textContent = `Try again! One answer: ${q.answer}`;
+                    feedback.className = 'text-sm font-semibold text-red-600 stage4-feedback';
+                }
+            }
+        });
+    });
+
+    // ============================================
+    // STAGE 5: DIALOGUE PRACTICE
+    // ============================================
+    const stage5Answered = new Array(stage5Dialogue.length).fill(false);
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 5: Cultural Conversation Practice</h2>
+        <p class="text-slate-600 mb-4">Practice conversations about Hungarian culture by filling in the missing words.</p>
+        <div id="stage5-exercise" class="space-y-6"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage5Dialogue.length}</div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Container = document.getElementById('stage5-exercise');
+
+    stage5Dialogue.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-gradient-to-r from-slate-50 to-slate-100 rounded-lg p-4 border border-slate-200';
+
+        const questionLine = document.createElement('div');
+        questionLine.className = 'mb-3';
+        questionLine.innerHTML = `
+            <span class="inline-block bg-teal-600 text-white text-xs font-bold px-2 py-1 rounded mr-2">A</span>
+            <span class="text-slate-800 font-medium">${q.line}</span>
+        `;
+
+        const responseLine = document.createElement('div');
+        responseLine.className = 'flex flex-wrap items-center gap-2';
+
+        const speakerB = document.createElement('span');
+        speakerB.className = 'inline-block bg-slate-600 text-white text-xs font-bold px-2 py-1 rounded';
+        speakerB.textContent = 'B';
+
+        const responseText = q.response.split('___');
+        const responseSpan = document.createElement('span');
+        responseSpan.className = 'text-slate-800';
+
+        responseSpan.appendChild(document.createTextNode(responseText[0]));
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-2 py-1 w-32 focus:ring-2 focus:ring-teal-500';
+        responseSpan.appendChild(input);
+
+        if (responseText[1]) responseSpan.appendChild(document.createTextNode(responseText[1]));
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        responseLine.appendChild(speakerB);
+        responseLine.appendChild(responseSpan);
+        responseLine.appendChild(feedback);
+
+        const translationLine = document.createElement('div');
+        translationLine.className = 'mt-2 text-xs text-slate-500 italic pl-8';
+        translationLine.textContent = `(${q.responseEnglish})`;
+
+        wrapper.appendChild(questionLine);
+        wrapper.appendChild(responseLine);
+        wrapper.appendChild(translationLine);
+        stage5Container.appendChild(wrapper);
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const result = checkAccentAware(input.value, q.blank);
+                if (result === 'correct') {
+                    feedback.textContent = 'Helyes! (Correct!)';
+                    feedback.className = 'text-sm font-semibold text-green-600';
+                    input.disabled = true;
+                    input.classList.add('bg-green-50', 'border-green-500');
+                    if (!stage5Answered[idx]) {
+                        stage5Answered[idx] = true;
+                        scores.stage5.correct++;
+                        document.getElementById('stage5-score').textContent = `Score: ${scores.stage5.correct} / ${stage5Dialogue.length}`;
+                        updateTotalScore();
+                    }
+                } else if (result === 'accent-warning') {
+                    feedback.textContent = 'Majdnem! (Check accents)';
+                    feedback.className = 'text-sm font-semibold text-yellow-600';
+                } else {
+                    feedback.textContent = `Probald ujra! Answer: ${q.blank}`;
+                    feedback.className = 'text-sm font-semibold text-red-600';
+                }
+            }
+        });
+    });
+
+    // ============================================
+    // SUMMARY SECTION
+    // ============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mt-8 p-6 bg-gradient-to-r from-teal-50 to-slate-50 rounded-xl border border-teal-200';
+    summarySection.innerHTML = `
+        <h2 class="text-xl font-bold text-teal-800 mb-4">Lesson Summary</h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+                <h3 class="font-semibold text-slate-700 mb-2">Key Vocabulary Learned:</h3>
+                <ul class="list-disc pl-5 text-slate-600 space-y-1">
+                    <li>Holidays: Karacsony, Husvet, nemzeti unnep</li>
+                    <li>Folk culture: neptanc, nepzene, himzes</li>
+                    <li>Food: gulyas, porkolt, langos, kurtoskalacs</li>
+                    <li>Terms: hagyomany, unnep, szokás, orokség</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-700 mb-2">Key Phrases:</h3>
+                <ul class="list-disc pl-5 text-slate-600 space-y-1">
+                    <li>"Boldog Karácsonyt!" - Merry Christmas!</li>
+                    <li>"Boldog Ujévet!" - Happy New Year!</li>
+                    <li>"Jo etvagyat!" - Bon appetit!</li>
+                    <li>"Egészségedre!" - Cheers! / Bless you!</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-3 bg-amber-50 rounded-lg border border-amber-200">
+            <p class="text-amber-800 text-sm"><strong>Remember:</strong> Hungarian culture places great importance on food, folk traditions, and national holidays. Saying "Jo etvagyat!" before meals and "Egészségedre!" when toasting are essential customs. The three national holidays commemorate the Hungarian fight for freedom and independence!</p>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+
+    updateTotalScore();
+    </script>
+</body>
+</html>

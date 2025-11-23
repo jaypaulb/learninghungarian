@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 34: Dative & Instrumental Cases - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .dative-highlight { color: #7c3aed; font-weight: 600; }
+        .instrumental-highlight { color: #0891b2; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 34: Dative & Instrumental Cases <span class="block text-xl text-slate-500 font-normal">(Reszes eset es eszkozhat&#225;roz&#243;)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Master two essential Hungarian cases: the dative (-nak/-nek) for indirect objects and the instrumental (-val/-vel) for expressing "with." Learn the important consonant assimilation rules!</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    // Helper functions
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiIoOuU]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','o':'o','O':'O','o':'o','O':'O','u':'u','U':'U','u':'u','U':'U','u':'u','U':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    const mainContent = document.getElementById('main-content');
+
+    // =============================================
+    // SECTION 1: The Dative Case (-nak/-nek)
+    // =============================================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: The Dative Case (<span class="dative-highlight">-nak/-nek</span>)</h2>
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mb-4">
+            <p class="text-slate-700 mb-2"><strong>The dative case</strong> indicates the indirect object - the person or thing TO/FOR whom something is done.</p>
+            <p class="text-sm">English uses "to" or "for": I give the book <strong>to Peter</strong>. / I bought flowers <strong>for Mari</strong>.</p>
+        </div>
+
+        <div class="mb-4">
+            <h3 class="font-semibold text-slate-700 mb-2">Suffix Rules (Vowel Harmony):</h3>
+            <table class="text-sm">
+                <tr>
+                    <th>Word Type</th>
+                    <th>Suffix</th>
+                    <th>Example</th>
+                    <th>Dative Form</th>
+                </tr>
+                <tr><td>Back vowel word</td><td class="dative-highlight">-nak</td><td>Anna</td><td>Annanak</td></tr>
+                <tr><td>Front vowel word</td><td class="dative-highlight">-nek</td><td>Peter</td><td>Peternek</td></tr>
+                <tr><td>Word ending in -a</td><td class="dative-highlight">-nak</td><td>mama (grandma)</td><td>mamanak</td></tr>
+                <tr><td>Word ending in -e</td><td class="dative-highlight">-nek</td><td>Emese</td><td>Emesenek</td></tr>
+            </table>
+        </div>
+
+        <div class="bg-slate-50 p-4 rounded-lg">
+            <h3 class="font-semibold mb-2">Common Uses:</h3>
+            <ul class="list-disc pl-6 space-y-2 text-sm">
+                <li><strong>Giving/Sending:</strong> Adok egy konyvot <span class="dative-highlight">Peternek</span>. (I give a book to Peter.)</li>
+                <li><strong>Telling/Saying:</strong> Mondok valamit <span class="dative-highlight">Marinak</span>. (I tell something to Mari.)</li>
+                <li><strong>Showing:</strong> Megmutatom <span class="dative-highlight">a tanaromnak</span>. (I show it to my teacher.)</li>
+                <li><strong>Belonging (whose):</strong> Ez <span class="dative-highlight">Annak</span> a haza. (This is Anna's house.)</li>
+                <li><strong>Seems/Appears:</strong> Jonak tunik <span class="dative-highlight">nekem</span>. (It seems good to me.)</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // =============================================
+    // SECTION 2: Dative Pronouns
+    // =============================================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Dative Pronouns</h2>
+        <p class="mb-4">Personal pronouns have special dative forms:</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Pronoun</th>
+                        <th>Nominative</th>
+                        <th>Dative</th>
+                        <th>English</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>I</td><td>en</td><td class="dative-highlight font-bold">nekem</td><td>to/for me</td></tr>
+                    <tr><td>you (sg)</td><td>te</td><td class="dative-highlight font-bold">neked</td><td>to/for you</td></tr>
+                    <tr><td>he/she</td><td>o</td><td class="dative-highlight font-bold">neki</td><td>to/for him/her</td></tr>
+                    <tr><td>we</td><td>mi</td><td class="dative-highlight font-bold">nekunk</td><td>to/for us</td></tr>
+                    <tr><td>you (pl)</td><td>ti</td><td class="dative-highlight font-bold">nektek</td><td>to/for you</td></tr>
+                    <tr><td>they</td><td>ok</td><td class="dative-highlight font-bold">nekik</td><td>to/for them</td></tr>
+                    <tr><td>you (formal)</td><td>On/Onok</td><td class="dative-highlight font-bold">Onnek/Onoknek</td><td>to/for you (formal)</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4">
+            <p class="text-sm"><strong>Examples:</strong></p>
+            <ul class="list-disc pl-6 text-sm">
+                <li><span class="dative-highlight">Nekem</span> tetszik. (I like it. / It pleases me.)</li>
+                <li>Mit mondtal <span class="dative-highlight">neki</span>? (What did you tell him/her?)</li>
+                <li>Ez <span class="dative-highlight">nekunk</span> fontos. (This is important to us.)</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // =============================================
+    // SECTION 3: The Instrumental Case (-val/-vel)
+    // =============================================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: The Instrumental Case (<span class="instrumental-highlight">-val/-vel</span>)</h2>
+        <div class="bg-cyan-50 border-l-4 border-cyan-500 p-4 mb-4">
+            <p class="text-slate-700 mb-2"><strong>The instrumental case</strong> indicates accompaniment or means - expressing "with" someone or something.</p>
+        </div>
+
+        <div class="mb-4">
+            <h3 class="font-semibold text-slate-700 mb-2">Basic Suffix Rules:</h3>
+            <table class="text-sm">
+                <tr>
+                    <th>Word Type</th>
+                    <th>Suffix</th>
+                    <th>Example</th>
+                    <th>Instrumental Form</th>
+                </tr>
+                <tr><td>Back vowel word</td><td class="instrumental-highlight">-val</td><td>Anna</td><td>Annaval</td></tr>
+                <tr><td>Front vowel word</td><td class="instrumental-highlight">-vel</td><td>Peter</td><td>Peterrel</td></tr>
+            </table>
+        </div>
+
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
+            <h3 class="font-bold text-red-800 mb-2">IMPORTANT: Consonant Assimilation!</h3>
+            <p class="mb-2">When a word ends in a consonant, the <strong>v</strong> of -val/-vel <strong>assimilates</strong> (changes) to match that consonant!</p>
+            <table class="text-sm mt-2">
+                <tr>
+                    <th>Base Word</th>
+                    <th>Expected</th>
+                    <th>Actual Form</th>
+                    <th>Rule</th>
+                </tr>
+                <tr><td>barat (friend)</td><td>*baratval</td><td class="instrumental-highlight font-bold">barattal</td><td>v &rarr; t</td></tr>
+                <tr><td>kez (hand)</td><td>*kezvel</td><td class="instrumental-highlight font-bold">kezzel</td><td>v &rarr; z</td></tr>
+                <tr><td>szem (eye)</td><td>*szemvel</td><td class="instrumental-highlight font-bold">szemmel</td><td>v &rarr; m</td></tr>
+                <tr><td>toll (pen)</td><td>*tollval</td><td class="instrumental-highlight font-bold">tollal</td><td>v &rarr; l</td></tr>
+                <tr><td>bus (bus)</td><td>*busval</td><td class="instrumental-highlight font-bold">buszal</td><td>v &rarr; sz</td></tr>
+            </table>
+        </div>
+
+        <div class="bg-slate-50 p-4 rounded-lg">
+            <h3 class="font-semibold mb-2">Common Uses:</h3>
+            <ul class="list-disc pl-6 space-y-2 text-sm">
+                <li><strong>Accompaniment:</strong> Megyek <span class="instrumental-highlight">Marival</span>. (I'm going with Mari.)</li>
+                <li><strong>Instrument/tool:</strong> Irok <span class="instrumental-highlight">tollal</span>. (I write with a pen.)</li>
+                <li><strong>Means of transport:</strong> Utazom <span class="instrumental-highlight">vonattal</span>. (I travel by train.)</li>
+                <li><strong>Manner:</strong> <span class="instrumental-highlight">Orommel</span> segítek. (I help with joy / gladly.)</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // =============================================
+    // SECTION 4: Instrumental Pronouns
+    // =============================================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Instrumental Pronouns</h2>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Pronoun</th>
+                        <th>Nominative</th>
+                        <th>Instrumental</th>
+                        <th>English</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>I</td><td>en</td><td class="instrumental-highlight font-bold">velem</td><td>with me</td></tr>
+                    <tr><td>you (sg)</td><td>te</td><td class="instrumental-highlight font-bold">veled</td><td>with you</td></tr>
+                    <tr><td>he/she</td><td>o</td><td class="instrumental-highlight font-bold">vele</td><td>with him/her</td></tr>
+                    <tr><td>we</td><td>mi</td><td class="instrumental-highlight font-bold">velunk</td><td>with us</td></tr>
+                    <tr><td>you (pl)</td><td>ti</td><td class="instrumental-highlight font-bold">veletek</td><td>with you</td></tr>
+                    <tr><td>they</td><td>ok</td><td class="instrumental-highlight font-bold">veluk</td><td>with them</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bg-green-50 border-l-4 border-green-500 p-4 mt-4">
+            <p class="text-sm"><strong>Examples:</strong></p>
+            <ul class="list-disc pl-6 text-sm">
+                <li>Gyere <span class="instrumental-highlight">velem</span>! (Come with me!)</li>
+                <li>Beszélni akarok <span class="instrumental-highlight">veled</span>. (I want to talk with you.)</li>
+                <li>Mi van <span class="instrumental-highlight">vele</span>? (What's with him/her? / What's wrong with him/her?)</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // =============================================
+    // SECTION 5: Summary Table
+    // =============================================
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 5: Quick Reference</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                <h3 class="font-bold text-purple-800 mb-2">Dative (<span class="dative-highlight">-nak/-nek</span>)</h3>
+                <p class="text-sm mb-2">= to/for someone</p>
+                <ul class="text-sm space-y-1">
+                    <li>Back vowel: <span class="dative-highlight">-nak</span></li>
+                    <li>Front vowel: <span class="dative-highlight">-nek</span></li>
+                    <li>No assimilation needed</li>
+                </ul>
+            </div>
+            <div class="bg-cyan-50 p-4 rounded-lg border border-cyan-200">
+                <h3 class="font-bold text-cyan-800 mb-2">Instrumental (<span class="instrumental-highlight">-val/-vel</span>)</h3>
+                <p class="text-sm mb-2">= with someone/something</p>
+                <ul class="text-sm space-y-1">
+                    <li>Back vowel: <span class="instrumental-highlight">-val</span></li>
+                    <li>Front vowel: <span class="instrumental-highlight">-vel</span></li>
+                    <li><strong>v assimilates</strong> to final consonant!</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section5);
+
+    // =============================================
+    // STAGE 1: Dative Formation (12 items)
+    // =============================================
+    const stage1Questions = [
+        { word: 'Peter', answer: 'peternek', type: 'front' },
+        { word: 'Anna', answer: 'annanak', type: 'back' },
+        { word: 'a tanar', answer: 'a tanarnak', type: 'back' },
+        { word: 'a gyerek', answer: 'a gyereknek', type: 'front' },
+        { word: 'anyam', answer: 'anyamnak', type: 'back' },
+        { word: 'a barat', answer: 'a baratnak', type: 'back' },
+        { word: 'az orvos', answer: 'az orvosnak', type: 'back' },
+        { word: 'a novér', answer: 'a novernek', type: 'front' },
+        { word: 'en', answer: 'nekem', type: 'pronoun' },
+        { word: 'te', answer: 'neked', type: 'pronoun' },
+        { word: 'o', answer: 'neki', type: 'pronoun' },
+        { word: 'mi', answer: 'nekunk', type: 'pronoun' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 1: Dative Formation</h2>
+        <p class="mb-4 text-slate-600">Write the dative form of each word (to/for...):</p>
+        <div id="stage1-exercises" class="space-y-3"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Container = document.getElementById('stage1-exercises');
+
+    stage1Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-purple-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[120px] text-slate-800';
+        label.innerHTML = `<strong>${q.word}</strong> &rarr;`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-36 text-center focus:ring-2 focus:ring-purple-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage1(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage1Container.appendChild(wrapper);
+    });
+
+    function checkStage1(idx) {
+        const wrapper = stage1Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage1Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(q.answer);
+
+        if (userAnswer === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Check accents! ${q.answer}`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let correct = 0;
+        stage1Questions.forEach((q, i) => {
+            const input = stage1Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(q.answer)) correct++;
+        });
+        document.getElementById('stage1-score').textContent = `Score: ${correct} / ${stage1Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 2: Instrumental with Assimilation (12 items)
+    // =============================================
+    const stage2Questions = [
+        { word: 'Mari', answer: 'marival', assimilation: false },
+        { word: 'Peter', answer: 'peterrel', assimilation: true },
+        { word: 'barat', answer: 'barattal', assimilation: true },
+        { word: 'kez', answer: 'kezzel', assimilation: true },
+        { word: 'toll', answer: 'tollal', assimilation: true },
+        { word: 'auto', answer: 'autoval', assimilation: false },
+        { word: 'vonat', answer: 'vonattal', assimilation: true },
+        { word: 'busz', answer: 'busszal', assimilation: true },
+        { word: 'en', answer: 'velem', assimilation: false },
+        { word: 'te', answer: 'veled', assimilation: false },
+        { word: 'o', answer: 'vele', assimilation: false },
+        { word: 'ok', answer: 'veluk', assimilation: false }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 2: Instrumental with Assimilation</h2>
+        <p class="mb-4 text-slate-600">Write the instrumental form of each word (with...). Remember the assimilation rule!</p>
+        <div id="stage2-exercises" class="space-y-3"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 rounded-lg';
+        wrapper.className += q.assimilation ? ' bg-red-50' : ' bg-cyan-50';
+
+        const badge = document.createElement('span');
+        badge.className = 'text-xs px-2 py-1 rounded font-medium';
+        badge.className += q.assimilation ? ' bg-red-200 text-red-800' : ' bg-cyan-200 text-cyan-800';
+        badge.textContent = q.assimilation ? 'assimilation' : 'regular';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[100px] text-slate-800';
+        label.innerHTML = `<strong>${q.word}</strong> &rarr;`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-36 text-center focus:ring-2 focus:ring-cyan-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage2(idx);
+        });
+
+        wrapper.appendChild(badge);
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage2Container.appendChild(wrapper);
+    });
+
+    function checkStage2(idx) {
+        const wrapper = stage2Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage2Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(q.answer);
+
+        if (userAnswer === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Check accents! ${q.answer}`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        stage2Questions.forEach((q, i) => {
+            const input = stage2Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(q.answer)) correct++;
+        });
+        document.getElementById('stage2-score').textContent = `Score: ${correct} / ${stage2Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 3: Sentence Completion (10 items)
+    // =============================================
+    const stage3Questions = [
+        { sentence: 'Adok egy konyvot ___.', hint: 'Peter (to)', answer: 'peternek', translation: 'I give a book to Peter.' },
+        { sentence: 'Megyek a moziba ___.', hint: 'Mari (with)', answer: 'marival', translation: 'I go to the cinema with Mari.' },
+        { sentence: 'Ez fontos ___.', hint: 'I (to me)', answer: 'nekem', translation: 'This is important to me.' },
+        { sentence: 'Utazom ___.', hint: 'train (by)', answer: 'vonattal', translation: 'I travel by train.' },
+        { sentence: 'Mondok valamit ___.', hint: 'you sg (to)', answer: 'neked', translation: 'I tell you something.' },
+        { sentence: 'Irok ___.', hint: 'pen (with)', answer: 'tollal', translation: 'I write with a pen.' },
+        { sentence: 'Beszélek ___.', hint: 'he/she (with)', answer: 'vele', translation: 'I talk with him/her.' },
+        { sentence: 'Segítek ___.', hint: 'friend (to)', answer: 'a baratnak', translation: 'I help my friend.' },
+        { sentence: 'Gyere ___!', hint: 'we (with us)', answer: 'velunk', translation: 'Come with us!' },
+        { sentence: 'Adom ___ az ajandokot.', hint: 'mother (to)', answer: 'anyamnak', translation: 'I give the gift to my mother.' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 3: Sentence Completion</h2>
+        <p class="mb-4 text-slate-600">Complete each sentence with the correct dative or instrumental form:</p>
+        <div id="stage3-exercises" class="space-y-3"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-1 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('div');
+        label.innerHTML = `${q.sentence} <span class="text-slate-500 text-sm">(${q.hint})</span>`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-40 text-center focus:ring-2 focus:ring-teal-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage3(idx);
+        });
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(label);
+        wrapper.appendChild(inputRow);
+        stage3Container.appendChild(wrapper);
+    });
+
+    function checkStage3(idx) {
+        const wrapper = stage3Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span');
+        const q = stage3Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(q.answer);
+
+        if (userAnswer === correct) {
+            feedback.textContent = `Correct! (${q.translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Check accents! ${q.answer}`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let correct = 0;
+        stage3Questions.forEach((q, i) => {
+            const input = stage3Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(q.answer)) correct++;
+        });
+        document.getElementById('stage3-score').textContent = `Score: ${correct} / ${stage3Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 4: Translation (10 items)
+    // =============================================
+    const stage4Questions = [
+        { english: 'I give it to you.', answer: 'neked adom', hints: 'neked + ad' },
+        { english: 'Come with me!', answer: 'gyere velem', hints: 'gyere + velem' },
+        { english: 'I\'m going with Peter.', answer: 'megyek peterrel', hints: 'megy + Peter-rel' },
+        { english: 'This is for Anna.', answer: 'ez annanak van', hints: 'ez + Anna-nak' },
+        { english: 'I write with a pencil.', answer: 'ceruzaval irok', hints: 'ceruza-val + ir' },
+        { english: 'Tell me!', answer: 'mondd nekem', hints: 'mond + nekem' },
+        { english: 'He came by bus.', answer: 'busszal jott', hints: 'busz-szal + jon (past)' },
+        { english: 'It\'s important to them.', answer: 'nekik fontos', hints: 'nekik + fontos' },
+        { english: 'I\'ll talk with her.', answer: 'beszelek vele', hints: 'beszel + vele' },
+        { english: 'I\'m helping my friend.', answer: 'segítek a baratomnak', hints: 'segít + barat-nak' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 4: Translation Practice</h2>
+        <p class="mb-4 text-slate-600">Translate the English sentences into Hungarian:</p>
+        <div id="stage4-exercises" class="space-y-3"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-1 p-3 bg-blue-50 rounded-lg';
+
+        const label = document.createElement('div');
+        label.innerHTML = `<strong>${q.english}</strong> <span class="text-slate-500 text-sm">(${q.hints})</span>`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-full md:w-64 focus:ring-2 focus:ring-blue-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(idx);
+        });
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(label);
+        wrapper.appendChild(inputRow);
+        stage4Container.appendChild(wrapper);
+    });
+
+    function checkStage4(idx) {
+        const wrapper = stage4Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span');
+        const q = stage4Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+        const correct = normalizeHungarian(q.answer);
+
+        if (userAnswer === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Check accents! ${q.answer}`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        stage4Questions.forEach((q, i) => {
+            const input = stage4Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(q.answer)) correct++;
+        });
+        document.getElementById('stage4-score').textContent = `Score: ${correct} / ${stage4Questions.length}`;
+    }
+
+    // =============================================
+    // SUMMARY
+    // =============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 p-6 bg-gradient-to-r from-purple-50 to-cyan-50 rounded-lg border border-purple-200';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Lesson Summary</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-purple-800 mb-2">Dative Case (<span class="dative-highlight">-nak/-nek</span>)</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li>Meaning: to/for someone</li>
+                    <li>Back vowels: <span class="dative-highlight">-nak</span></li>
+                    <li>Front vowels: <span class="dative-highlight">-nek</span></li>
+                    <li>Pronouns: nekem, neked, neki, nekunk, nektek, nekik</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-cyan-800 mb-2">Instrumental Case (<span class="instrumental-highlight">-val/-vel</span>)</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li>Meaning: with someone/something</li>
+                    <li>Back vowels: <span class="instrumental-highlight">-val</span></li>
+                    <li>Front vowels: <span class="instrumental-highlight">-vel</span></li>
+                    <li><strong>V assimilates</strong> to final consonant!</li>
+                    <li>Pronouns: velem, veled, vele, velunk, veletek, veluk</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-3 bg-white rounded border">
+            <p class="text-sm"><strong>Key Rule:</strong> For instrumental, when a word ends in a consonant (like t, z, l, m, n, s), the 'v' changes to match that consonant: barattal, kezzel, tollal!</p>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>

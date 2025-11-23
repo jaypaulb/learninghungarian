@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 14: Possessive Suffixes (Basic) - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: left; }
+        th { background: #f1f5f9; }
+        .poss-highlight { color: #7c3aed; font-weight: 600; }
+        .suffix-box {
+            display: inline-block;
+            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+            border: 2px solid #8b5cf6;
+            border-radius: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            font-weight: 600;
+            color: #6d28d9;
+        }
+        .cultural-note {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 14: Possessive Suffixes <span class="block text-xl text-slate-500 font-normal">(Birtokos szemelyjel)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn how Hungarian expresses possession by adding suffixes to nouns instead of using separate words like "my," "your," and "his/her."</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+
+    <script>
+    // ============================================
+    // UTILITY FUNCTIONS
+    // ============================================
+
+    function removeAccents(str) {
+        const map = {
+            'a': 'a', 'e': 'e', 'i': 'i', 'o': 'o', 'u': 'u',
+            'A': 'A', 'E': 'E', 'I': 'I', 'O': 'O', 'U': 'U'
+        };
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuU]/g, function(m) {
+            return map[m] || m;
+        });
+    }
+
+    function normalizeAnswer(str) {
+        return str.trim().toLowerCase();
+    }
+
+    function checkAccentAware(userInput, correctAnswer) {
+        const normalizedInput = normalizeAnswer(userInput);
+        const normalizedCorrect = normalizeAnswer(correctAnswer);
+
+        if (normalizedInput === normalizedCorrect) {
+            return 'correct';
+        } else if (removeAccents(normalizedInput) === removeAccents(normalizedCorrect)) {
+            return 'accent-warning';
+        } else {
+            return 'incorrect';
+        }
+    }
+
+    function checkMultipleAnswers(userInput, correctAnswers) {
+        const normalizedInput = normalizeAnswer(userInput);
+
+        for (const correct of correctAnswers) {
+            if (normalizedInput === normalizeAnswer(correct)) {
+                return 'correct';
+            }
+        }
+
+        for (const correct of correctAnswers) {
+            if (removeAccents(normalizedInput) === removeAccents(normalizeAnswer(correct))) {
+                return 'accent-warning';
+            }
+        }
+
+        return 'incorrect';
+    }
+
+    // ============================================
+    // SCORE TRACKING
+    // ============================================
+
+    let scores = {
+        stage1: { correct: 0, total: 8 },
+        stage2: { correct: 0, total: 10 },
+        stage3: { correct: 0, total: 8 },
+        stage4: { correct: 0, total: 10 },
+        stage5: { correct: 0, total: 8 }
+    };
+
+    function updateTotalScore() {
+        const totalCorrect = Object.values(scores).reduce((sum, s) => sum + s.correct, 0);
+        const totalQuestions = Object.values(scores).reduce((sum, s) => sum + s.total, 0);
+        const totalScoreEl = document.getElementById('total-score');
+        if (totalScoreEl) {
+            totalScoreEl.textContent = `Total Score: ${totalCorrect} / ${totalQuestions}`;
+        }
+    }
+
+    // ============================================
+    // BUILD PAGE CONTENT
+    // ============================================
+
+    const mainContent = document.getElementById('main-content');
+
+    // Learning Objectives
+    const objectivesSection = document.createElement('section');
+    objectivesSection.className = 'mb-8';
+    objectivesSection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Learning Objectives</h2>
+        <ul class="list-disc pl-6 space-y-2 text-slate-600">
+            <li>Understand how Hungarian uses suffixes for possession</li>
+            <li>Learn possessive suffixes for all persons (my, your, his/her, our, your pl., their)</li>
+            <li>Apply vowel harmony rules to possessive suffixes</li>
+            <li>Practice with common nouns</li>
+        </ul>
+    `;
+    mainContent.appendChild(objectivesSection);
+
+    // Cultural Note
+    const culturalNote = document.createElement('div');
+    culturalNote.className = 'cultural-note mb-8';
+    culturalNote.innerHTML = `
+        <h3 class="font-bold text-amber-800 mb-2">Cultural Note: Possession in Hungarian</h3>
+        <p class="text-amber-900">Unlike English, which uses separate possessive words (my, your, his), Hungarian attaches possessive endings directly to nouns.
+        This means "my house" becomes one word: <strong>hazam</strong> (haz + am).
+        This is similar to how Hungarian handles verb conjugation - information is packed into suffixes rather than separate words.
+        The personal pronoun (en, te, etc.) is usually omitted unless emphasis is needed.</p>
+    `;
+    mainContent.appendChild(culturalNote);
+
+    // Section 1: Overview of Possessive Suffixes
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Possessive Suffix Overview</h2>
+        <p class="mb-4 text-slate-600">Hungarian adds different suffixes depending on the <strong>person</strong> (who possesses) and <strong>vowel harmony</strong> (back vs. front vowels).</p>
+
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Person</th>
+                        <th>Pronoun</th>
+                        <th>Back Vowel Suffix</th>
+                        <th>Front Vowel Suffix</th>
+                        <th>Example (haz)</th>
+                        <th>Example (kert)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-semibold">I (my)</td>
+                        <td>en</td>
+                        <td class="poss-highlight">-m, -am, -om</td>
+                        <td class="poss-highlight">-m, -em, -om</td>
+                        <td>hazam (my house)</td>
+                        <td>kertem (my garden)</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">you (your)</td>
+                        <td>te</td>
+                        <td class="poss-highlight">-d, -ad, -od</td>
+                        <td class="poss-highlight">-d, -ed, -od</td>
+                        <td>hazad (your house)</td>
+                        <td>kerted (your garden)</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">he/she (his/her)</td>
+                        <td>o</td>
+                        <td class="poss-highlight">-ja, -a</td>
+                        <td class="poss-highlight">-je, -e</td>
+                        <td>haza (his/her house)</td>
+                        <td>kertje (his/her garden)</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">we (our)</td>
+                        <td>mi</td>
+                        <td class="poss-highlight">-nk, -unk</td>
+                        <td class="poss-highlight">-nk, -unk</td>
+                        <td>hazunk (our house)</td>
+                        <td>kertunk (our garden)</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">you pl. (your)</td>
+                        <td>ti</td>
+                        <td class="poss-highlight">-tok, -atok</td>
+                        <td class="poss-highlight">-tek, -etek, -otok</td>
+                        <td>hazatok (your house)</td>
+                        <td>kertetek (your garden)</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">they (their)</td>
+                        <td>ok</td>
+                        <td class="poss-highlight">-juk, -uk</td>
+                        <td class="poss-highlight">-juk, -uk</td>
+                        <td>hazuk (their house)</td>
+                        <td>kertjuk (their garden)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mt-4">
+            <p class="text-purple-800"><strong>Key Point:</strong> The suffix choice depends on whether the noun ends in a vowel or consonant, and follows vowel harmony rules. Third person often adds a linking <strong>j</strong>.</p>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // Section 2: Back Vowel Nouns
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Back Vowel Nouns</h2>
+        <p class="mb-4 text-slate-600">Nouns containing <strong>a, o, u</strong> as their main vowels take back vowel suffixes.</p>
+
+        <div class="bg-orange-50 p-4 rounded-lg mb-4">
+            <h3 class="font-bold text-orange-800 mb-3">Example: haz (house) - Back vowel noun</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">my house:</span><br><span class="poss-highlight">hazam</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">your house:</span><br><span class="poss-highlight">hazad</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">his/her house:</span><br><span class="poss-highlight">haza</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">our house:</span><br><span class="poss-highlight">hazunk</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">your (pl.) house:</span><br><span class="poss-highlight">hazatok</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">their house:</span><br><span class="poss-highlight">hazuk</span></div>
+            </div>
+        </div>
+
+        <div class="bg-amber-50 p-4 rounded-lg mb-4">
+            <h3 class="font-bold text-amber-800 mb-3">Example: auto (car) - Back vowel noun ending in vowel</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">my car:</span><br><span class="poss-highlight">autom</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">your car:</span><br><span class="poss-highlight">autod</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">his/her car:</span><br><span class="poss-highlight">autoja</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">our car:</span><br><span class="poss-highlight">autonk</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">your (pl.) car:</span><br><span class="poss-highlight">autotok</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">their car:</span><br><span class="poss-highlight">autojuk</span></div>
+            </div>
+        </div>
+
+        <h3 class="font-semibold text-slate-700 mb-2">Common Back Vowel Nouns:</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+            <div class="p-2 bg-slate-50 rounded"><strong>haz</strong> - house</div>
+            <div class="p-2 bg-slate-50 rounded"><strong>auto</strong> - car</div>
+            <div class="p-2 bg-slate-50 rounded"><strong>alma</strong> - apple</div>
+            <div class="p-2 bg-slate-50 rounded"><strong>ablak</strong> - window</div>
+            <div class="p-2 bg-slate-50 rounded"><strong>asztal</strong> - table</div>
+            <div class="p-2 bg-slate-50 rounded"><strong>kutya</strong> - dog</div>
+            <div class="p-2 bg-slate-50 rounded"><strong>macska</strong> - cat</div>
+            <div class="p-2 bg-slate-50 rounded"><strong>toll</strong> - pen</div>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // Section 3: Front Vowel Nouns
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Front Vowel Nouns</h2>
+        <p class="mb-4 text-slate-600">Nouns containing <strong>e, i, o, u</strong> as their main vowels take front vowel suffixes.</p>
+
+        <div class="bg-teal-50 p-4 rounded-lg mb-4">
+            <h3 class="font-bold text-teal-800 mb-3">Example: konyv (book) - Front vowel noun</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">my book:</span><br><span class="poss-highlight">konyvem</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">your book:</span><br><span class="poss-highlight">konyved</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">his/her book:</span><br><span class="poss-highlight">konyve</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">our book:</span><br><span class="poss-highlight">konyvunk</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">your (pl.) book:</span><br><span class="poss-highlight">konyvetek</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">their book:</span><br><span class="poss-highlight">konyvuk</span></div>
+            </div>
+        </div>
+
+        <div class="bg-green-50 p-4 rounded-lg mb-4">
+            <h3 class="font-bold text-green-800 mb-3">Example: kert (garden) - Front vowel noun</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">my garden:</span><br><span class="poss-highlight">kertem</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">your garden:</span><br><span class="poss-highlight">kerted</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">his/her garden:</span><br><span class="poss-highlight">kertje</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">our garden:</span><br><span class="poss-highlight">kertunk</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">your (pl.) garden:</span><br><span class="poss-highlight">kertetek</span></div>
+                <div class="p-2 bg-white rounded border"><span class="text-slate-500">their garden:</span><br><span class="poss-highlight">kertjuk</span></div>
+            </div>
+        </div>
+
+        <h3 class="font-semibold text-slate-700 mb-2">Common Front Vowel Nouns:</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+            <div class="p-2 bg-slate-50 rounded"><strong>konyv</strong> - book</div>
+            <div class="p-2 bg-slate-50 rounded"><strong>kert</strong> - garden</div>
+            <div class="p-2 bg-slate-50 rounded"><strong>level</strong> - letter</div>
+            <div class="p-2 bg-slate-50 rounded"><strong>szek</strong> - chair</div>
+            <div class="p-2 bg-slate-50 rounded"><strong>gyerek</strong> - child</div>
+            <div class="p-2 bg-slate-50 rounded"><strong>nev</strong> - name</div>
+            <div class="p-2 bg-slate-50 rounded"><strong>fel</strong> - half</div>
+            <div class="p-2 bg-slate-50 rounded"><strong>ember</strong> - person</div>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // Section 4: Special Cases
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Special Cases & Family Terms</h2>
+
+        <div class="bg-rose-50 border-l-4 border-rose-500 p-4 mb-4">
+            <h3 class="font-bold text-rose-800 mb-2">Family Terms (often irregular)</h3>
+            <p class="text-rose-700 mb-3">Family terms often have special possessive forms:</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
+                <div><strong>anya</strong> (mother) &rarr; anyam, anyad, anyja</div>
+                <div><strong>apa</strong> (father) &rarr; apam, apad, apja</div>
+                <div><strong>testver</strong> (sibling) &rarr; testvérem, testvered, testvere</div>
+                <div><strong>ferj</strong> (husband) &rarr; ferjem, ferjed, ferje</div>
+                <div><strong>feleseg</strong> (wife) &rarr; feleségem, feleséged, felesége</div>
+                <div><strong>barat</strong> (friend) &rarr; baratom, baratod, baratja</div>
+            </div>
+        </div>
+
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+            <h3 class="font-bold text-blue-800 mb-2">The Linking "j"</h3>
+            <p class="text-blue-700">Many nouns add a <strong>j</strong> before the 3rd person suffix:</p>
+            <ul class="list-disc pl-6 text-blue-700 mt-2">
+                <li>haz &rarr; haza (his house) - no j (ends in consonant, special)</li>
+                <li>kert &rarr; kertje (his garden) - with j</li>
+                <li>auto &rarr; autoja (his car) - with j (after vowel)</li>
+                <li>konyv &rarr; konyve (his book) - no j</li>
+            </ul>
+        </div>
+
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+            <h3 class="font-bold text-yellow-800 mb-2">Using Pronouns for Emphasis</h3>
+            <p class="text-yellow-700">The personal pronoun is usually omitted, but can be added for emphasis:</p>
+            <ul class="list-disc pl-6 text-yellow-700 mt-2">
+                <li><strong>A hazam</strong> = My house (normal)</li>
+                <li><strong>Az EN hazam</strong> = MY house (emphatic)</li>
+                <li><strong>Ez az en konyvem</strong> = This is MY book</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // Total Score Display
+    const totalScoreSection = document.createElement('div');
+    totalScoreSection.className = 'bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl p-4 mb-8 text-center';
+    totalScoreSection.innerHTML = `
+        <h3 class="text-lg font-semibold mb-1">Interactive Exercises</h3>
+        <p id="total-score" class="text-2xl font-bold">Total Score: 0 / 44</p>
+    `;
+    mainContent.appendChild(totalScoreSection);
+
+    // ============================================
+    // STAGE 1: Basic First Person (my) - 8 items
+    // ============================================
+
+    const stage1Questions = [
+        { noun: 'haz', english: 'house', answer: 'hazam', meaning: 'my house' },
+        { noun: 'konyv', english: 'book', answer: 'konyvem', meaning: 'my book' },
+        { noun: 'auto', english: 'car', answer: 'autom', meaning: 'my car' },
+        { noun: 'kert', english: 'garden', answer: 'kertem', meaning: 'my garden' },
+        { noun: 'kutya', english: 'dog', answer: 'kutyam', meaning: 'my dog' },
+        { noun: 'nev', english: 'name', answer: 'nevem', meaning: 'my name' },
+        { noun: 'barat', english: 'friend', answer: 'baratom', meaning: 'my friend' },
+        { noun: 'anya', english: 'mother', answer: 'anyam', meaning: 'my mother' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 1: First Person - "My" (-m/-am/-em/-om)</h2>
+        <p class="text-slate-600 mb-4">Add the correct possessive suffix to make "my [noun]".</p>
+        <div id="stage1-exercise" class="space-y-3"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage1Questions.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Exercise = document.getElementById('stage1-exercise');
+    const stage1Answers = new Array(stage1Questions.length).fill(false);
+
+    stage1Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-purple-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[180px] text-slate-800';
+        label.innerHTML = `<strong>${q.noun}</strong> (${q.english}) &rarr; my ${q.english}:`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-36 focus:ring-2 focus:ring-purple-500 focus:border-purple-500';
+        input.setAttribute('aria-label', `My ${q.english} in Hungarian`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold ml-2';
+
+        function checkAnswer() {
+            const result = checkAccentAware(input.value, q.answer);
+            if (result === 'correct') {
+                feedback.textContent = `Correct! (${q.meaning})`;
+                feedback.className = 'text-green-600 font-semibold ml-2';
+                input.disabled = true;
+                input.className = 'border border-green-500 bg-green-50 rounded-md px-3 py-1 w-36';
+                if (!stage1Answers[idx]) {
+                    stage1Answers[idx] = true;
+                    scores.stage1.correct++;
+                    document.getElementById('stage1-score').textContent = `Score: ${scores.stage1.correct} / ${stage1Questions.length}`;
+                    updateTotalScore();
+                }
+            } else if (result === 'accent-warning') {
+                feedback.textContent = 'Almost! Check accents.';
+                feedback.className = 'text-yellow-600 font-semibold ml-2';
+            } else if (input.value.trim() !== '') {
+                feedback.textContent = 'Try again!';
+                feedback.className = 'text-red-600 font-semibold ml-2';
+            }
+        }
+
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkAnswer(); });
+        input.addEventListener('blur', checkAnswer);
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage1Exercise.appendChild(wrapper);
+    });
+
+    // ============================================
+    // STAGE 2: Second Person (your) - 10 items
+    // ============================================
+
+    const stage2Questions = [
+        { noun: 'haz', english: 'house', answer: 'hazad', meaning: 'your house' },
+        { noun: 'konyv', english: 'book', answer: 'konyved', meaning: 'your book' },
+        { noun: 'auto', english: 'car', answer: 'autod', meaning: 'your car' },
+        { noun: 'kert', english: 'garden', answer: 'kerted', meaning: 'your garden' },
+        { noun: 'kutya', english: 'dog', answer: 'kutyad', meaning: 'your dog' },
+        { noun: 'nev', english: 'name', answer: 'neved', meaning: 'your name' },
+        { noun: 'apa', english: 'father', answer: 'apad', meaning: 'your father' },
+        { noun: 'testver', english: 'sibling', answer: 'testvered', meaning: 'your sibling' },
+        { noun: 'szek', english: 'chair', answer: 'széked', alternates: ['szeked'], meaning: 'your chair' },
+        { noun: 'level', english: 'letter', answer: 'leveled', meaning: 'your letter' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 2: Second Person - "Your" (-d/-ad/-ed/-od)</h2>
+        <p class="text-slate-600 mb-4">Add the correct possessive suffix to make "your [noun]".</p>
+        <div id="stage2-exercise" class="space-y-3"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage2Questions.length}</div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Exercise = document.getElementById('stage2-exercise');
+    const stage2Answers = new Array(stage2Questions.length).fill(false);
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-teal-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[180px] text-slate-800';
+        label.innerHTML = `<strong>${q.noun}</strong> (${q.english}) &rarr; your ${q.english}:`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-36 focus:ring-2 focus:ring-teal-500 focus:border-teal-500';
+        input.setAttribute('aria-label', `Your ${q.english} in Hungarian`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold ml-2';
+
+        function checkAnswer() {
+            const allAnswers = [q.answer, ...(q.alternates || [])];
+            const result = checkMultipleAnswers(input.value, allAnswers);
+            if (result === 'correct') {
+                feedback.textContent = `Correct! (${q.meaning})`;
+                feedback.className = 'text-green-600 font-semibold ml-2';
+                input.disabled = true;
+                input.className = 'border border-green-500 bg-green-50 rounded-md px-3 py-1 w-36';
+                if (!stage2Answers[idx]) {
+                    stage2Answers[idx] = true;
+                    scores.stage2.correct++;
+                    document.getElementById('stage2-score').textContent = `Score: ${scores.stage2.correct} / ${stage2Questions.length}`;
+                    updateTotalScore();
+                }
+            } else if (result === 'accent-warning') {
+                feedback.textContent = 'Almost! Check accents.';
+                feedback.className = 'text-yellow-600 font-semibold ml-2';
+            } else if (input.value.trim() !== '') {
+                feedback.textContent = 'Try again!';
+                feedback.className = 'text-red-600 font-semibold ml-2';
+            }
+        }
+
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkAnswer(); });
+        input.addEventListener('blur', checkAnswer);
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage2Exercise.appendChild(wrapper);
+    });
+
+    // ============================================
+    // STAGE 3: Third Person (his/her) - 8 items
+    // ============================================
+
+    const stage3Questions = [
+        { noun: 'haz', english: 'house', answer: 'haza', meaning: 'his/her house' },
+        { noun: 'konyv', english: 'book', answer: 'konyve', meaning: 'his/her book' },
+        { noun: 'kert', english: 'garden', answer: 'kertje', meaning: 'his/her garden' },
+        { noun: 'auto', english: 'car', answer: 'autoja', meaning: 'his/her car' },
+        { noun: 'anya', english: 'mother', answer: 'anyja', meaning: 'his/her mother' },
+        { noun: 'apa', english: 'father', answer: 'apja', meaning: 'his/her father' },
+        { noun: 'nev', english: 'name', answer: 'neve', meaning: 'his/her name' },
+        { noun: 'barat', english: 'friend', answer: 'baratja', meaning: 'his/her friend' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 3: Third Person - "His/Her" (-a/-e/-ja/-je)</h2>
+        <p class="text-slate-600 mb-4">Add the correct possessive suffix to make "his/her [noun]".</p>
+        <div id="stage3-exercise" class="space-y-3"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage3Questions.length}</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Exercise = document.getElementById('stage3-exercise');
+    const stage3Answers = new Array(stage3Questions.length).fill(false);
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-rose-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[200px] text-slate-800';
+        label.innerHTML = `<strong>${q.noun}</strong> (${q.english}) &rarr; his/her ${q.english}:`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-36 focus:ring-2 focus:ring-rose-500 focus:border-rose-500';
+        input.setAttribute('aria-label', `His/her ${q.english} in Hungarian`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold ml-2';
+
+        function checkAnswer() {
+            const result = checkAccentAware(input.value, q.answer);
+            if (result === 'correct') {
+                feedback.textContent = `Correct! (${q.meaning})`;
+                feedback.className = 'text-green-600 font-semibold ml-2';
+                input.disabled = true;
+                input.className = 'border border-green-500 bg-green-50 rounded-md px-3 py-1 w-36';
+                if (!stage3Answers[idx]) {
+                    stage3Answers[idx] = true;
+                    scores.stage3.correct++;
+                    document.getElementById('stage3-score').textContent = `Score: ${scores.stage3.correct} / ${stage3Questions.length}`;
+                    updateTotalScore();
+                }
+            } else if (result === 'accent-warning') {
+                feedback.textContent = 'Almost! Check accents.';
+                feedback.className = 'text-yellow-600 font-semibold ml-2';
+            } else if (input.value.trim() !== '') {
+                feedback.textContent = 'Try again!';
+                feedback.className = 'text-red-600 font-semibold ml-2';
+            }
+        }
+
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkAnswer(); });
+        input.addEventListener('blur', checkAnswer);
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage3Exercise.appendChild(wrapper);
+    });
+
+    // ============================================
+    // STAGE 4: Mixed Practice - 10 items
+    // ============================================
+
+    const stage4Questions = [
+        { english: 'my house', answer: 'hazam' },
+        { english: 'your book', answer: 'konyved' },
+        { english: 'his car', answer: 'autoja' },
+        { english: 'our garden', answer: 'kertunk' },
+        { english: 'their dog', answer: 'kutyajuk', alternates: ['kutyajuk'] },
+        { english: 'my mother', answer: 'anyam' },
+        { english: 'your father', answer: 'apad' },
+        { english: 'her name', answer: 'neve' },
+        { english: 'my friend', answer: 'baratom' },
+        { english: 'your (pl.) house', answer: 'hazatok' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 4: Mixed Translation Practice</h2>
+        <p class="text-slate-600 mb-4">Translate these possessive phrases to Hungarian.</p>
+        <div id="stage4-exercise" class="space-y-3"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage4Questions.length}</div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Exercise = document.getElementById('stage4-exercise');
+    const stage4Answers = new Array(stage4Questions.length).fill(false);
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[150px] text-slate-800 font-medium';
+        label.textContent = q.english;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-40 focus:ring-2 focus:ring-purple-500 focus:border-purple-500';
+        input.setAttribute('aria-label', `Hungarian for: ${q.english}`);
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold ml-2';
+
+        function checkAnswer() {
+            const allAnswers = [q.answer, ...(q.alternates || [])];
+            const result = checkMultipleAnswers(input.value, allAnswers);
+            if (result === 'correct') {
+                feedback.textContent = 'Helyes! (Correct!)';
+                feedback.className = 'text-green-600 font-semibold ml-2';
+                input.disabled = true;
+                input.className = 'border border-green-500 bg-green-50 rounded-md px-3 py-1 w-40';
+                if (!stage4Answers[idx]) {
+                    stage4Answers[idx] = true;
+                    scores.stage4.correct++;
+                    document.getElementById('stage4-score').textContent = `Score: ${scores.stage4.correct} / ${stage4Questions.length}`;
+                    updateTotalScore();
+                }
+            } else if (result === 'accent-warning') {
+                feedback.textContent = 'Almost! Check accents.';
+                feedback.className = 'text-yellow-600 font-semibold ml-2';
+            } else if (input.value.trim() !== '') {
+                feedback.textContent = 'Try again!';
+                feedback.className = 'text-red-600 font-semibold ml-2';
+            }
+        }
+
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkAnswer(); });
+        input.addEventListener('blur', checkAnswer);
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage4Exercise.appendChild(wrapper);
+    });
+
+    // ============================================
+    // STAGE 5: Sentence Completion - 8 items
+    // ============================================
+
+    const stage5Questions = [
+        { sentence: 'A ___ nagy.', blank: 'hazam', english: 'My house is big.' },
+        { sentence: 'Hol van a ___?', blank: 'konyved', english: 'Where is your book?' },
+        { sentence: 'Az ___ szep.', blank: 'autoja', english: 'His/Her car is beautiful.' },
+        { sentence: 'Ez a mi ___.', blank: 'kertunk', english: 'This is our garden.' },
+        { sentence: 'A ___ Peter.', blank: 'nevem', english: 'My name is Peter.' },
+        { sentence: 'Szeretem az ___.', blank: 'anyamat', alternates: ['anyam'], english: 'I love my mother.' },
+        { sentence: 'Latod a ___?', blank: 'kutyamat', alternates: ['kutyam'], english: 'Do you see my dog?' },
+        { sentence: 'O a legjobb ___.', blank: 'baratom', english: 'He is my best friend.' }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 5: Complete the Sentences</h2>
+        <p class="text-slate-600 mb-4">Fill in the blank with the correct possessive form.</p>
+        <div id="stage5-exercise" class="space-y-4"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage5Questions.length}</div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Exercise = document.getElementById('stage5-exercise');
+    const stage5Answers = new Array(stage5Questions.length).fill(false);
+
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const row = document.createElement('div');
+        row.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const parts = q.sentence.split('___');
+        const sentenceSpan = document.createElement('span');
+        sentenceSpan.className = 'text-slate-800';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-2 py-1 w-32 mx-1 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 inline';
+        input.setAttribute('aria-label', `Fill in blank for: ${q.sentence}`);
+
+        sentenceSpan.appendChild(document.createTextNode(parts[0]));
+        sentenceSpan.appendChild(input);
+        if (parts[1]) {
+            sentenceSpan.appendChild(document.createTextNode(parts[1]));
+        }
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold ml-2';
+
+        const translation = document.createElement('div');
+        translation.className = 'text-xs text-slate-500 italic';
+        translation.textContent = `English: ${q.english}`;
+
+        function checkAnswer() {
+            const allAnswers = [q.blank, ...(q.alternates || [])];
+            const result = checkMultipleAnswers(input.value, allAnswers);
+
+            if (result === 'correct') {
+                feedback.textContent = 'Correct!';
+                feedback.className = 'text-green-600 font-semibold ml-2';
+                input.disabled = true;
+                input.className = 'border border-green-500 bg-green-50 rounded-md px-2 py-1 w-32 mx-1 inline';
+                if (!stage5Answers[idx]) {
+                    stage5Answers[idx] = true;
+                    scores.stage5.correct++;
+                    document.getElementById('stage5-score').textContent = `Score: ${scores.stage5.correct} / ${stage5Questions.length}`;
+                    updateTotalScore();
+                }
+            } else if (result === 'accent-warning') {
+                feedback.textContent = 'Check accents!';
+                feedback.className = 'text-yellow-600 font-semibold ml-2';
+            } else if (input.value.trim() !== '') {
+                feedback.textContent = 'Try again!';
+                feedback.className = 'text-red-600 font-semibold ml-2';
+            }
+        }
+
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkAnswer(); });
+        input.addEventListener('blur', checkAnswer);
+
+        row.appendChild(sentenceSpan);
+        row.appendChild(feedback);
+        wrapper.appendChild(row);
+        wrapper.appendChild(translation);
+        stage5Exercise.appendChild(wrapper);
+    });
+
+    // ============================================
+    // SUMMARY SECTION
+    // ============================================
+
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mt-8 p-6 bg-gradient-to-r from-purple-50 to-slate-50 rounded-xl border border-purple-200';
+    summarySection.innerHTML = `
+        <h2 class="text-xl font-bold text-purple-800 mb-4">Lesson Summary</h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+                <h3 class="font-semibold text-slate-700 mb-2">Possessive Suffix Quick Reference:</h3>
+                <table class="text-sm w-full">
+                    <tr><td class="font-semibold p-1">my</td><td class="p-1">-m, -am/-em/-om</td></tr>
+                    <tr><td class="font-semibold p-1">your</td><td class="p-1">-d, -ad/-ed/-od</td></tr>
+                    <tr><td class="font-semibold p-1">his/her</td><td class="p-1">-a/-e, -ja/-je</td></tr>
+                    <tr><td class="font-semibold p-1">our</td><td class="p-1">-nk, -unk/-unk</td></tr>
+                    <tr><td class="font-semibold p-1">your (pl.)</td><td class="p-1">-tok/-tek/-tok</td></tr>
+                    <tr><td class="font-semibold p-1">their</td><td class="p-1">-uk/-uk, -juk/-juk</td></tr>
+                </table>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-700 mb-2">Key Points:</h3>
+                <ul class="list-disc pl-5 text-slate-600 space-y-1">
+                    <li>Suffixes follow vowel harmony</li>
+                    <li>Third person often adds linking "j"</li>
+                    <li>Family terms may be irregular</li>
+                    <li>Personal pronouns usually omitted</li>
+                    <li>Accusative adds -t after possessive</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-3 bg-amber-50 rounded-lg border border-amber-200">
+            <p class="text-amber-800 text-sm"><strong>Practice tip:</strong> Start with first and second person singular (my, your) as they are the most common and have the simplest patterns!</p>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+
+    // Initialize total score
+    updateTotalScore();
+    </script>
+</body>
+</html>

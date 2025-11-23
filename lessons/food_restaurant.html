@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 17: Food & Restaurant Vocabulary - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .vocab-highlight { color: #0f766e; font-weight: 600; }
+        .match-card {
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .match-card:hover { transform: scale(1.02); }
+        .match-card.selected {
+            border-color: #0f766e;
+            background-color: #f0fdfa;
+            box-shadow: 0 0 0 2px #0f766e;
+        }
+        .match-card.correct {
+            border-color: #16a34a;
+            background-color: #dcfce7;
+        }
+        .match-card.incorrect {
+            border-color: #dc2626;
+            background-color: #fef2f2;
+        }
+        .cultural-note {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #d97706;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 17: Food & Restaurant Vocabulary <span class="block text-xl text-slate-500 font-normal">(Etelek es etterem)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn essential Hungarian food vocabulary and restaurant phrases. Master ordering food, understanding menus, and dining etiquette in Hungary.</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    // Helper functions
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[őŐöÖüÜűŰáÁéÉíÍóÓúÚ]/g, function(m) {
+            const map = { 'á':'a','Á':'A','é':'e','É':'E','í':'i','Í':'I','ó':'o','Ó':'O','ö':'o','Ö':'O','ő':'o','Ő':'O','ú':'u','Ú':'U','ü':'u','Ü':'U','ű':'u','Ű':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    const mainContent = document.getElementById('main-content');
+
+    // =============================================
+    // SECTION 1: Basic Food Categories
+    // =============================================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Basic Food Categories</h2>
+        <p class="mb-4 text-slate-600">Learn the fundamental food vocabulary in Hungarian. These words will help you understand menus and shop for groceries.</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Hungarian</th>
+                        <th>English</th>
+                        <th>Pronunciation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="vocab-highlight">hus</td><td>meat</td><td>hoosh</td></tr>
+                    <tr><td class="vocab-highlight">kenyer</td><td>bread</td><td>KEN-yair</td></tr>
+                    <tr><td class="vocab-highlight">zoldseg</td><td>vegetable</td><td>ZULD-shaig</td></tr>
+                    <tr><td class="vocab-highlight">gyumolcs</td><td>fruit</td><td>DYOO-mulch</td></tr>
+                    <tr><td class="vocab-highlight">leves</td><td>soup</td><td>LEH-vesh</td></tr>
+                    <tr><td class="vocab-highlight">hal</td><td>fish</td><td>hol</td></tr>
+                    <tr><td class="vocab-highlight">sajt</td><td>cheese</td><td>shoyt</td></tr>
+                    <tr><td class="vocab-highlight">tojas</td><td>egg</td><td>TOH-yash</td></tr>
+                    <tr><td class="vocab-highlight">rizs</td><td>rice</td><td>rizh</td></tr>
+                    <tr><td class="vocab-highlight">teszta</td><td>pasta</td><td>TAYS-tah</td></tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // =============================================
+    // SECTION 2: Meats and Proteins
+    // =============================================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Meats and Proteins</h2>
+        <p class="mb-4 text-slate-600">Hungarian cuisine features a variety of meats. Here are the most common ones you'll encounter.</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Hungarian</th>
+                        <th>English</th>
+                        <th>Pronunciation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="vocab-highlight">csirke</td><td>chicken</td><td>CHIR-keh</td></tr>
+                    <tr><td class="vocab-highlight">marha</td><td>beef</td><td>MAR-hah</td></tr>
+                    <tr><td class="vocab-highlight">sertes</td><td>pork</td><td>SHER-tesh</td></tr>
+                    <tr><td class="vocab-highlight">pulyka</td><td>turkey</td><td>POO-y-kah</td></tr>
+                    <tr><td class="vocab-highlight">kacsa</td><td>duck</td><td>KAH-chah</td></tr>
+                    <tr><td class="vocab-highlight">barany</td><td>lamb</td><td>BAH-rahn-y</td></tr>
+                    <tr><td class="vocab-highlight">kolbasz</td><td>sausage</td><td>KOL-bahs</td></tr>
+                    <tr><td class="vocab-highlight">sonka</td><td>ham</td><td>SHON-kah</td></tr>
+                    <tr><td class="vocab-highlight">szalonna</td><td>bacon</td><td>SAH-lon-nah</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="cultural-note p-4 rounded-lg mt-4">
+            <h4 class="font-semibold text-amber-800 mb-2">Cultural Note: Hungarian Meat Dishes</h4>
+            <p class="text-slate-700 text-sm">Hungary is famous for its meat dishes. <strong>Gulyas</strong> (goulash) is a beef and paprika soup/stew, <strong>porkolt</strong> is a thick meat stew, and <strong>paprikas csirke</strong> (chicken paprikash) is chicken in creamy paprika sauce. Don't miss trying <strong>kolbasz</strong> at a local market!</p>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // =============================================
+    // SECTION 3: Vegetables and Fruits
+    // =============================================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Vegetables and Fruits</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Zoldsegek (Vegetables)</h3>
+                <table class="text-sm w-full">
+                    <tr><td class="border px-2 vocab-highlight">paradicsom</td><td class="border px-2">tomato</td></tr>
+                    <tr><td class="border px-2 vocab-highlight">hagyma</td><td class="border px-2">onion</td></tr>
+                    <tr><td class="border px-2 vocab-highlight">paprika</td><td class="border px-2">pepper</td></tr>
+                    <tr><td class="border px-2 vocab-highlight">burgonya/krumpli</td><td class="border px-2">potato</td></tr>
+                    <tr><td class="border px-2 vocab-highlight">sargarepa</td><td class="border px-2">carrot</td></tr>
+                    <tr><td class="border px-2 vocab-highlight">uborka</td><td class="border px-2">cucumber</td></tr>
+                    <tr><td class="border px-2 vocab-highlight">kaposzta</td><td class="border px-2">cabbage</td></tr>
+                    <tr><td class="border px-2 vocab-highlight">fokhagyma</td><td class="border px-2">garlic</td></tr>
+                </table>
+            </div>
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Gyumolcsok (Fruits)</h3>
+                <table class="text-sm w-full">
+                    <tr><td class="border px-2 vocab-highlight">alma</td><td class="border px-2">apple</td></tr>
+                    <tr><td class="border px-2 vocab-highlight">korte</td><td class="border px-2">pear</td></tr>
+                    <tr><td class="border px-2 vocab-highlight">narancs</td><td class="border px-2">orange</td></tr>
+                    <tr><td class="border px-2 vocab-highlight">banan</td><td class="border px-2">banana</td></tr>
+                    <tr><td class="border px-2 vocab-highlight">szolo</td><td class="border px-2">grape</td></tr>
+                    <tr><td class="border px-2 vocab-highlight">eper</td><td class="border px-2">strawberry</td></tr>
+                    <tr><td class="border px-2 vocab-highlight">cseresznye</td><td class="border px-2">cherry</td></tr>
+                    <tr><td class="border px-2 vocab-highlight">dinnye</td><td class="border px-2">melon</td></tr>
+                </table>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // =============================================
+    // SECTION 4: Drinks
+    // =============================================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Drinks (Italok)</h2>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Hungarian</th>
+                        <th>English</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="vocab-highlight">viz</td><td>water</td><td>asvanyviz = mineral water</td></tr>
+                    <tr><td class="vocab-highlight">kave</td><td>coffee</td><td>tejeskave = coffee with milk</td></tr>
+                    <tr><td class="vocab-highlight">tea</td><td>tea</td><td></td></tr>
+                    <tr><td class="vocab-highlight">tej</td><td>milk</td><td></td></tr>
+                    <tr><td class="vocab-highlight">gyumolcsle</td><td>fruit juice</td><td>narancslé = orange juice</td></tr>
+                    <tr><td class="vocab-highlight">sor</td><td>beer</td><td></td></tr>
+                    <tr><td class="vocab-highlight">bor</td><td>wine</td><td>vorosbor = red wine, feherbor = white wine</td></tr>
+                    <tr><td class="vocab-highlight">palinka</td><td>fruit brandy</td><td>Traditional Hungarian spirit</td></tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // =============================================
+    // SECTION 5: Restaurant Phrases
+    // =============================================
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 5: Restaurant Phrases</h2>
+        <p class="mb-4 text-slate-600">Essential phrases for ordering food and navigating restaurants in Hungary.</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Hungarian</th>
+                        <th>English</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="vocab-highlight">Kerem a szamlat!</td><td>The bill, please!</td><td>Asking for the check</td></tr>
+                    <tr><td class="vocab-highlight">Jo etvagyat!</td><td>Enjoy your meal!</td><td>Said before eating</td></tr>
+                    <tr><td class="vocab-highlight">Kerek egy...</td><td>I would like a...</td><td>Ordering</td></tr>
+                    <tr><td class="vocab-highlight">Az etlapot kerem!</td><td>The menu, please!</td><td>Asking for menu</td></tr>
+                    <tr><td class="vocab-highlight">Mit ajanlana?</td><td>What do you recommend?</td><td>Asking for advice</td></tr>
+                    <tr><td class="vocab-highlight">Nagyon finom!</td><td>Very delicious!</td><td>Complimenting food</td></tr>
+                    <tr><td class="vocab-highlight">Eleg, koszonom.</td><td>Enough, thank you.</td><td>When you have enough</td></tr>
+                    <tr><td class="vocab-highlight">Van vegetarianus etel?</td><td>Is there vegetarian food?</td><td>Dietary questions</td></tr>
+                    <tr><td class="vocab-highlight">Allergia van...</td><td>I'm allergic to...</td><td>Allergies</td></tr>
+                    <tr><td class="vocab-highlight">Fizetek!</td><td>I'll pay!</td><td>Ready to pay</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="cultural-note p-4 rounded-lg mt-4">
+            <h4 class="font-semibold text-amber-800 mb-2">Cultural Note: Tipping in Hungary</h4>
+            <p class="text-slate-700 text-sm">In Hungarian restaurants, tipping is customary but not as high as in some countries. 10-15% is typical for good service. When paying, you can say "A tobbi a maga" (keep the change) or specify the total amount you want to pay including the tip.</p>
+        </div>
+    `;
+    mainContent.appendChild(section5);
+
+    // =============================================
+    // STAGE 1: Food Vocabulary Matching
+    // =============================================
+    const stage1Data = [
+        { hungarian: 'hus', english: 'meat' },
+        { hungarian: 'kenyer', english: 'bread' },
+        { hungarian: 'leves', english: 'soup' },
+        { hungarian: 'csirke', english: 'chicken' },
+        { hungarian: 'sajt', english: 'cheese' },
+        { hungarian: 'alma', english: 'apple' },
+        { hungarian: 'kave', english: 'coffee' },
+        { hungarian: 'bor', english: 'wine' }
+    ];
+
+    let stage1Selected = null;
+    let stage1Matches = new Set();
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 1: Food Vocabulary Matching</h2>
+        <p class="mb-4 text-slate-600">Match the Hungarian food words with their English translations. Click a card on the left, then click its match on the right.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="stage1-exercise">
+            <div id="stage1-hungarian" class="space-y-2"></div>
+            <div id="stage1-english" class="space-y-2"></div>
+        </div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage1Data.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Hungarian = document.getElementById('stage1-hungarian');
+    const stage1English = document.getElementById('stage1-english');
+    const shuffledEnglish = [...stage1Data].sort(() => Math.random() - 0.5);
+
+    stage1Data.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white font-semibold';
+        card.textContent = item.hungarian;
+        card.dataset.index = idx;
+        card.dataset.type = 'hungarian';
+        card.addEventListener('click', () => handleStage1Click(card, 'hungarian', idx));
+        stage1Hungarian.appendChild(card);
+    });
+
+    shuffledEnglish.forEach((item) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.english;
+        card.dataset.originalIndex = stage1Data.findIndex(d => d.english === item.english);
+        card.dataset.type = 'english';
+        card.addEventListener('click', () => handleStage1Click(card, 'english', parseInt(card.dataset.originalIndex)));
+        stage1English.appendChild(card);
+    });
+
+    function handleStage1Click(card, type, index) {
+        if (card.classList.contains('correct')) return;
+
+        if (stage1Selected === null) {
+            stage1Selected = { card, type, index };
+            card.classList.add('selected');
+        } else if (stage1Selected.type === type) {
+            stage1Selected.card.classList.remove('selected');
+            stage1Selected = { card, type, index };
+            card.classList.add('selected');
+        } else {
+            if (stage1Selected.index === index) {
+                stage1Selected.card.classList.remove('selected');
+                stage1Selected.card.classList.add('correct');
+                card.classList.add('correct');
+                stage1Matches.add(index);
+                document.getElementById('stage1-score').textContent = `Score: ${stage1Matches.size} / ${stage1Data.length}`;
+            } else {
+                stage1Selected.card.classList.add('incorrect');
+                card.classList.add('incorrect');
+                setTimeout(() => {
+                    stage1Selected.card.classList.remove('selected', 'incorrect');
+                    card.classList.remove('incorrect');
+                    stage1Selected = null;
+                }, 800);
+                return;
+            }
+            stage1Selected = null;
+        }
+    }
+
+    // =============================================
+    // STAGE 2: Fill in the Blanks - Menu Items
+    // =============================================
+    const stage2Questions = [
+        { prompt: 'Meat in Hungarian is:', answer: 'hus', hint: 'h_s' },
+        { prompt: 'Bread in Hungarian is:', answer: 'kenyer', hint: 'k_ny_r' },
+        { prompt: 'Chicken in Hungarian is:', answer: 'csirke', hint: 'cs_rk_' },
+        { prompt: 'Soup in Hungarian is:', answer: 'leves', hint: 'l_v_s' },
+        { prompt: 'Coffee in Hungarian is:', answer: 'kave', hint: 'k_v_' },
+        { prompt: 'Water in Hungarian is:', answer: 'viz', hint: 'v_z' },
+        { prompt: 'Apple in Hungarian is:', answer: 'alma', hint: '_lm_' },
+        { prompt: 'Cheese in Hungarian is:', answer: 'sajt', hint: 's_jt' },
+        { prompt: 'Tomato in Hungarian is:', answer: 'paradicsom', hint: 'p_r_d_cs_m' },
+        { prompt: 'Beer in Hungarian is:', answer: 'sor', hint: 's_r' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 2: Food Vocabulary Practice</h2>
+        <p class="mb-4 text-slate-600">Type the Hungarian word for each food item. Press Enter to check your answer.</p>
+        <div id="stage2-exercises" class="space-y-3"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-slate-50 rounded-lg';
+
+        wrapper.innerHTML = `
+            <span class="min-w-[200px] text-slate-800">${q.prompt} <span class="text-slate-400 text-sm">(${q.hint})</span></span>
+            <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-40 text-center focus:ring-2 focus:ring-teal-500" placeholder="Type answer...">
+            <span class="text-sm font-semibold"></span>
+        `;
+        stage2Container.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage2(idx);
+        });
+    });
+
+    function checkStage2(idx) {
+        const wrapper = stage2Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage2Questions[idx].answer;
+        const userAnswer = normalizeHungarian(input.value);
+
+        if (userAnswer === normalizeHungarian(correct)) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(normalizeHungarian(correct))) {
+            feedback.textContent = `Check accents! (${correct})`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Answer: ${correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        for (let i = 0; i < stage2Questions.length; i++) {
+            const input = stage2Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage2Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage2-score').textContent = `Score: ${correct} / ${stage2Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 3: Restaurant Phrase Selection
+    // =============================================
+    const stage3Questions = [
+        { scenario: 'You want to ask for the bill', options: ['Kerem a szamlat!', 'Jo etvagyat!', 'Mit ajanlana?'], correct: 'Kerem a szamlat!' },
+        { scenario: 'You want to wish someone a good meal', options: ['Fizetek!', 'Jo etvagyat!', 'Nagyon finom!'], correct: 'Jo etvagyat!' },
+        { scenario: 'You want to order something', options: ['Kerek egy...', 'Eleg, koszonom.', 'Van vegetarianus etel?'], correct: 'Kerek egy...' },
+        { scenario: 'You want to ask for recommendations', options: ['Az etlapot kerem!', 'Mit ajanlana?', 'Fizetek!'], correct: 'Mit ajanlana?' },
+        { scenario: 'You want to say the food is delicious', options: ['Eleg, koszonom.', 'Jo etvagyat!', 'Nagyon finom!'], correct: 'Nagyon finom!' },
+        { scenario: 'You want to ask for the menu', options: ['Az etlapot kerem!', 'Kerem a szamlat!', 'Fizetek!'], correct: 'Az etlapot kerem!' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 3: Restaurant Phrase Selection</h2>
+        <p class="mb-4 text-slate-600">Choose the correct Hungarian phrase for each restaurant situation.</p>
+        <div id="stage3-exercises" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage3Questions.length}</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+    let stage3Correct = 0;
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700 mb-3">${idx + 1}. ${q.scenario}</p>
+            <div class="flex flex-wrap gap-2" id="stage3-options-${idx}"></div>
+            <p class="mt-2 text-sm font-semibold" id="stage3-feedback-${idx}"></p>
+        `;
+        stage3Container.appendChild(wrapper);
+
+        const optionsDiv = document.getElementById(`stage3-options-${idx}`);
+        q.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'px-4 py-2 border-2 border-slate-300 rounded-lg bg-white hover:bg-slate-100 transition-colors';
+            btn.textContent = opt;
+            btn.addEventListener('click', () => checkStage3(idx, opt, q.correct, wrapper));
+            optionsDiv.appendChild(btn);
+        });
+    });
+
+    function checkStage3(idx, selected, correct, wrapper) {
+        const feedback = document.getElementById(`stage3-feedback-${idx}`);
+        const buttons = wrapper.querySelectorAll('button');
+        const wasCorrect = feedback.textContent.includes('Correct');
+
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            if (btn.textContent === correct) {
+                btn.className = 'px-4 py-2 border-2 border-green-500 rounded-lg bg-green-100 text-green-700';
+            } else if (btn.textContent === selected && selected !== correct) {
+                btn.className = 'px-4 py-2 border-2 border-red-500 rounded-lg bg-red-100 text-red-700';
+            }
+        });
+
+        if (selected === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'mt-2 text-sm font-semibold text-green-600';
+            if (!wasCorrect) stage3Correct++;
+        } else {
+            feedback.textContent = `Incorrect. The correct answer is: ${correct}`;
+            feedback.className = 'mt-2 text-sm font-semibold text-red-600';
+        }
+        document.getElementById('stage3-score').textContent = `Score: ${stage3Correct} / ${stage3Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 4: Ordering Dialogue Completion
+    // =============================================
+    const stage4Questions = [
+        { sentence: 'Pincer: Jo napot! Mit _____?', answer: 'kerek', translation: 'Waiter: Good day! What would you like?' },
+        { sentence: 'Vendeg: _____ egy gulyaslevest.', answer: 'Kerek', translation: 'Guest: I would like a goulash soup.' },
+        { sentence: 'Pincer: Es inni mit _____?', answer: 'parancsol', translation: 'Waiter: And what would you like to drink?' },
+        { sentence: 'Vendeg: Egy pohar _____, kerem.', answer: 'bort', translation: 'Guest: A glass of wine, please.' },
+        { sentence: 'Pincer: _____ etvagyat!', answer: 'Jo', translation: 'Waiter: Enjoy your meal!' },
+        { sentence: 'Vendeg: Koszonom! Nagyon _____!', answer: 'finom', translation: 'Guest: Thank you! Very delicious!' },
+        { sentence: 'Vendeg: Kerem a _____!', answer: 'szamlat', translation: 'Guest: The bill, please!' },
+        { sentence: 'Pincer: Koszonjuk, _____!', answer: 'viszontlatasra', translation: 'Waiter: Thank you, goodbye!' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 4: Restaurant Dialogue Completion</h2>
+        <p class="mb-4 text-slate-600">Complete the restaurant dialogue by filling in the missing words. Press Enter to check.</p>
+        <div id="stage4-exercises" class="space-y-3"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 p-3 bg-amber-50 rounded-lg';
+
+        wrapper.innerHTML = `
+            <span class="text-slate-800">${q.sentence.replace('_____', '<input type="text" class="border border-slate-300 rounded px-2 py-1 w-32 text-center mx-1 focus:ring-2 focus:ring-amber-500">')}</span>
+            <span class="text-sm font-semibold"></span>
+        `;
+        stage4Container.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(idx);
+        });
+    });
+
+    function checkStage4(idx) {
+        const wrapper = stage4Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage4Questions[idx].answer;
+        const userAnswer = normalizeHungarian(input.value);
+
+        if (userAnswer === normalizeHungarian(correct)) {
+            feedback.textContent = `Correct! (${stage4Questions[idx].translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+            input.classList.add('border-green-500', 'bg-green-50');
+        } else if (removeAccents(userAnswer) === removeAccents(normalizeHungarian(correct))) {
+            feedback.textContent = `Check accents! (${correct})`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+            input.classList.add('border-yellow-500', 'bg-yellow-50');
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Answer: ${correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+            input.classList.add('border-red-500', 'bg-red-50');
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        for (let i = 0; i < stage4Questions.length; i++) {
+            const input = stage4Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage4Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage4-score').textContent = `Score: ${correct} / ${stage4Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 5: Menu Reading Challenge
+    // =============================================
+    const stage5Questions = [
+        { menu: 'Gulyasleves', question: 'What type of dish is this?', options: ['soup', 'meat', 'dessert'], correct: 'soup' },
+        { menu: 'Rantott csirke', question: 'What meat is this?', options: ['pork', 'chicken', 'beef'], correct: 'chicken' },
+        { menu: 'Tojasos nokedli', question: 'This dish contains...', options: ['cheese', 'eggs', 'fish'], correct: 'eggs' },
+        { menu: 'Sertesporkolt', question: 'What type of meat is in this stew?', options: ['chicken', 'beef', 'pork'], correct: 'pork' },
+        { menu: 'Zoldsegleves', question: 'What type of soup is this?', options: ['meat soup', 'vegetable soup', 'fish soup'], correct: 'vegetable soup' },
+        { menu: 'Marhaporkolt', question: 'What meat is in this dish?', options: ['beef', 'lamb', 'duck'], correct: 'beef' }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 5: Menu Reading Challenge</h2>
+        <p class="mb-4 text-slate-600">Read the Hungarian menu items and answer questions about them. Use your vocabulary knowledge!</p>
+        <div id="stage5-exercises" class="space-y-4"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage5Questions.length}</div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Container = document.getElementById('stage5-exercises');
+    let stage5Correct = 0;
+
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="text-xl font-bold text-teal-700 mb-2">${q.menu}</p>
+            <p class="text-slate-700 mb-3">${q.question}</p>
+            <div class="flex flex-wrap gap-2" id="stage5-options-${idx}"></div>
+            <p class="mt-2 text-sm font-semibold" id="stage5-feedback-${idx}"></p>
+        `;
+        stage5Container.appendChild(wrapper);
+
+        const optionsDiv = document.getElementById(`stage5-options-${idx}`);
+        q.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'px-4 py-2 border-2 border-slate-300 rounded-lg bg-white hover:bg-slate-100 transition-colors';
+            btn.textContent = opt;
+            btn.addEventListener('click', () => checkStage5(idx, opt, q.correct, wrapper));
+            optionsDiv.appendChild(btn);
+        });
+    });
+
+    function checkStage5(idx, selected, correct, wrapper) {
+        const feedback = document.getElementById(`stage5-feedback-${idx}`);
+        const buttons = wrapper.querySelectorAll('button');
+        const wasCorrect = feedback.textContent.includes('Correct');
+
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            if (btn.textContent === correct) {
+                btn.className = 'px-4 py-2 border-2 border-green-500 rounded-lg bg-green-100 text-green-700';
+            } else if (btn.textContent === selected && selected !== correct) {
+                btn.className = 'px-4 py-2 border-2 border-red-500 rounded-lg bg-red-100 text-red-700';
+            }
+        });
+
+        if (selected === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'mt-2 text-sm font-semibold text-green-600';
+            if (!wasCorrect) stage5Correct++;
+        } else {
+            feedback.textContent = `Incorrect. The correct answer is: ${correct}`;
+            feedback.className = 'mt-2 text-sm font-semibold text-red-600';
+        }
+        document.getElementById('stage5-score').textContent = `Score: ${stage5Correct} / ${stage5Questions.length}`;
+    }
+
+    // =============================================
+    // FINAL SUMMARY
+    // =============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 p-6 bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg border border-amber-200';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Lesson Summary: Food & Restaurant Vocabulary</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-amber-800 mb-2">Key Food Words:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li><strong>hus</strong> - meat</li>
+                    <li><strong>kenyer</strong> - bread</li>
+                    <li><strong>leves</strong> - soup</li>
+                    <li><strong>zoldseg</strong> - vegetable</li>
+                    <li><strong>gyumolcs</strong> - fruit</li>
+                    <li><strong>csirke</strong> - chicken</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-amber-800 mb-2">Key Restaurant Phrases:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li><strong>Kerem a szamlat!</strong> - The bill, please!</li>
+                    <li><strong>Jo etvagyat!</strong> - Enjoy your meal!</li>
+                    <li><strong>Kerek egy...</strong> - I would like a...</li>
+                    <li><strong>Nagyon finom!</strong> - Very delicious!</li>
+                    <li><strong>Mit ajanlana?</strong> - What do you recommend?</li>
+                </ul>
+            </div>
+        </div>
+        <p class="mt-4 text-sm text-slate-600">Excellent work! You now know essential food vocabulary and restaurant phrases. Practice these when dining out or shopping for groceries in Hungary!</p>
+    `;
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>

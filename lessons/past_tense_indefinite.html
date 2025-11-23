@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 19: Past Tense - Indefinite Conjugation - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .verb-highlight { color: #0f766e; font-weight: 600; }
+        .suffix-highlight { color: #dc2626; font-weight: 600; }
+        .conjugation-table input { width: 100px; }
+        .grammar-note {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #d97706;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 19: Past Tense - Indefinite Conjugation <span class="block text-xl text-slate-500 font-normal">(Mult ido - Alanyi ragozas)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn to form the past tense in Hungarian using indefinite (subject-focused) conjugation. This is used when there is no specific direct object or with intransitive verbs.</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    // Helper functions
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[őŐöÖüÜűŰáÁéÉíÍóÓúÚ]/g, function(m) {
+            const map = { 'á':'a','Á':'A','é':'e','É':'E','í':'i','Í':'I','ó':'o','Ó':'O','ö':'o','Ö':'O','ő':'o','Ő':'O','ú':'u','Ú':'U','ü':'u','Ü':'U','ű':'u','Ű':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    const mainContent = document.getElementById('main-content');
+
+    // =============================================
+    // SECTION 1: Past Tense Overview
+    // =============================================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Past Tense Overview</h2>
+        <div class="bg-teal-50 border-l-4 border-teal-500 p-4 mb-4">
+            <p class="text-slate-700 mb-2"><strong>Hungarian past tense is formed by adding the suffix <span class="suffix-highlight">-t</span> or <span class="suffix-highlight">-tt</span> to the verb stem, followed by personal endings.</strong></p>
+            <p class="text-slate-600 text-sm">Like present tense, Hungarian past tense has two conjugation types: <strong>indefinite (alanyi)</strong> and <strong>definite (targyas)</strong>. This lesson covers the indefinite conjugation.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-green-800 mb-2">Use Indefinite Past When:</h3>
+                <ul class="text-sm space-y-1">
+                    <li>There is no direct object: <em>Dolgoztam.</em> (I worked.)</li>
+                    <li>The object is indefinite: <em>Lattam egy hazat.</em> (I saw a house.)</li>
+                    <li>With intransitive verbs: <em>Mentem.</em> (I went.)</li>
+                    <li>Asking "what?": <em>Mit csinaltál?</em> (What did you do?)</li>
+                </ul>
+            </div>
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-blue-800 mb-2">Use Definite Past When:</h3>
+                <ul class="text-sm space-y-1">
+                    <li>The object is definite: <em>Lattam a hazat.</em> (I saw the house.)</li>
+                    <li>Object is a proper noun: <em>Lattam Petert.</em> (I saw Peter.)</li>
+                    <li>Object is "it/him/her": <em>Lattam.</em> (I saw it/him/her.)</li>
+                    <li><em>(Covered in Lesson 20)</em></li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // =============================================
+    // SECTION 2: Past Tense Formation
+    // =============================================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Past Tense Formation</h2>
+        <p class="mb-4 text-slate-600">The past tense marker is <span class="suffix-highlight">-t</span> or <span class="suffix-highlight">-tt</span>. The choice depends on the verb stem:</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Verb Stem Ends In</th>
+                        <th>Past Tense Suffix</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Vowel</td><td class="suffix-highlight">-tt</td><td>tanul &rarr; tanul<span class="suffix-highlight">t</span> (but: kap &rarr; kap<span class="suffix-highlight">ott</span>)</td></tr>
+                    <tr><td>-t, -d, -n, -ny</td><td class="suffix-highlight">-ott/-ett/-ott</td><td>lat &rarr; lat<span class="suffix-highlight">ott</span>, mond &rarr; mond<span class="suffix-highlight">ott</span></td></tr>
+                    <tr><td>Sibilants: -s, -sz, -z, -zs</td><td class="suffix-highlight">-t + linking vowel</td><td>olvas &rarr; olvas<span class="suffix-highlight">ott</span>, nez &rarr; nez<span class="suffix-highlight">ett</span></td></tr>
+                    <tr><td>Most other consonants</td><td class="suffix-highlight">-t</td><td>var &rarr; var<span class="suffix-highlight">t</span>, ir &rarr; ir<span class="suffix-highlight">t</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="grammar-note p-4 rounded-lg mt-4">
+            <h4 class="font-semibold text-amber-800 mb-2">Linking Vowels</h4>
+            <p class="text-slate-700 text-sm">When needed, linking vowels follow vowel harmony: <strong>-o-</strong> for back vowel verbs, <strong>-e-/-o-</strong> for front vowel verbs. This creates patterns like: vart<strong>am</strong> vs. kert<strong>em</strong>.</p>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // =============================================
+    // SECTION 3: Indefinite Past Tense Endings
+    // =============================================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Indefinite Past Tense Endings</h2>
+        <p class="mb-4 text-slate-600">After adding the past tense marker (-t/-tt), add these personal endings:</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Person</th>
+                        <th>Back Vowel Ending</th>
+                        <th>Front Vowel Ending</th>
+                        <th>Example: var (to wait)</th>
+                        <th>Example: keres (to search)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="font-semibold">en (I)</td><td class="suffix-highlight">-tam</td><td class="suffix-highlight">-tem</td><td class="verb-highlight">vartam</td><td class="verb-highlight">kerestem</td></tr>
+                    <tr><td class="font-semibold">te (you)</td><td class="suffix-highlight">-tal</td><td class="suffix-highlight">-tel</td><td class="verb-highlight">vartal</td><td class="verb-highlight">kerestel</td></tr>
+                    <tr><td class="font-semibold">o/on (he/she/you formal)</td><td class="suffix-highlight">-t</td><td class="suffix-highlight">-t</td><td class="verb-highlight">vart</td><td class="verb-highlight">keresett</td></tr>
+                    <tr><td class="font-semibold">mi (we)</td><td class="suffix-highlight">-tunk</td><td class="suffix-highlight">-tunk</td><td class="verb-highlight">vartunk</td><td class="verb-highlight">kerestunk</td></tr>
+                    <tr><td class="font-semibold">ti (you pl.)</td><td class="suffix-highlight">-tatok</td><td class="suffix-highlight">-tetek</td><td class="verb-highlight">vartatok</td><td class="verb-highlight">kerestetek</td></tr>
+                    <tr><td class="font-semibold">ok (they)</td><td class="suffix-highlight">-tak</td><td class="suffix-highlight">-tek</td><td class="verb-highlight">vartak</td><td class="verb-highlight">kerestek</td></tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // =============================================
+    // SECTION 4: Common Regular Verbs in Past Tense
+    // =============================================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Common Regular Verbs in Past Tense</h2>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Infinitive</th>
+                        <th>Meaning</th>
+                        <th>en</th>
+                        <th>te</th>
+                        <th>o</th>
+                        <th>mi</th>
+                        <th>ti</th>
+                        <th>ok</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-semibold">tanul</td><td>to learn</td>
+                        <td class="verb-highlight">tanultam</td><td class="verb-highlight">tanultal</td><td class="verb-highlight">tanult</td>
+                        <td class="verb-highlight">tanultunk</td><td class="verb-highlight">tanultatok</td><td class="verb-highlight">tanultak</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">dolgozik</td><td>to work</td>
+                        <td class="verb-highlight">dolgoztam</td><td class="verb-highlight">dolgoztal</td><td class="verb-highlight">dolgozott</td>
+                        <td class="verb-highlight">dolgoztunk</td><td class="verb-highlight">dolgoztatok</td><td class="verb-highlight">dolgoztak</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">beszel</td><td>to speak</td>
+                        <td class="verb-highlight">beszeltem</td><td class="verb-highlight">beszeltel</td><td class="verb-highlight">beszelt</td>
+                        <td class="verb-highlight">beszeltunk</td><td class="verb-highlight">beszeltetek</td><td class="verb-highlight">beszeltek</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">olvas</td><td>to read</td>
+                        <td class="verb-highlight">olvastam</td><td class="verb-highlight">olvastal</td><td class="verb-highlight">olvasott</td>
+                        <td class="verb-highlight">olvastunk</td><td class="verb-highlight">olvastatok</td><td class="verb-highlight">olvastak</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">ir</td><td>to write</td>
+                        <td class="verb-highlight">irtam</td><td class="verb-highlight">irtal</td><td class="verb-highlight">irt</td>
+                        <td class="verb-highlight">irtunk</td><td class="verb-highlight">irtatok</td><td class="verb-highlight">irtak</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">lakik</td><td>to live</td>
+                        <td class="verb-highlight">laktam</td><td class="verb-highlight">laktal</td><td class="verb-highlight">lakott</td>
+                        <td class="verb-highlight">laktunk</td><td class="verb-highlight">laktatok</td><td class="verb-highlight">laktak</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // =============================================
+    // SECTION 5: Irregular Past Tense Verbs
+    // =============================================
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 5: Irregular Past Tense Verbs</h2>
+        <p class="mb-4 text-slate-600">Some common verbs have irregular past tense stems that must be memorized:</p>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-red-50 p-4 rounded-lg">
+                <h3 class="font-bold text-red-800 mb-2">jon (to come) &rarr; jott-</h3>
+                <table class="text-sm w-full">
+                    <tr><td class="font-semibold">en</td><td class="verb-highlight">jottem</td></tr>
+                    <tr><td class="font-semibold">te</td><td class="verb-highlight">jottel</td></tr>
+                    <tr><td class="font-semibold">o</td><td class="verb-highlight">jott</td></tr>
+                    <tr><td class="font-semibold">mi</td><td class="verb-highlight">jottunk</td></tr>
+                    <tr><td class="font-semibold">ti</td><td class="verb-highlight">jottetek</td></tr>
+                    <tr><td class="font-semibold">ok</td><td class="verb-highlight">jottek</td></tr>
+                </table>
+            </div>
+            <div class="bg-orange-50 p-4 rounded-lg">
+                <h3 class="font-bold text-orange-800 mb-2">megy (to go) &rarr; ment-</h3>
+                <table class="text-sm w-full">
+                    <tr><td class="font-semibold">en</td><td class="verb-highlight">mentem</td></tr>
+                    <tr><td class="font-semibold">te</td><td class="verb-highlight">mentel</td></tr>
+                    <tr><td class="font-semibold">o</td><td class="verb-highlight">ment</td></tr>
+                    <tr><td class="font-semibold">mi</td><td class="verb-highlight">mentunk</td></tr>
+                    <tr><td class="font-semibold">ti</td><td class="verb-highlight">mentetek</td></tr>
+                    <tr><td class="font-semibold">ok</td><td class="verb-highlight">mentek</td></tr>
+                </table>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg">
+                <h3 class="font-bold text-purple-800 mb-2">van (to be) &rarr; volt-</h3>
+                <table class="text-sm w-full">
+                    <tr><td class="font-semibold">en</td><td class="verb-highlight">voltam</td></tr>
+                    <tr><td class="font-semibold">te</td><td class="verb-highlight">voltal</td></tr>
+                    <tr><td class="font-semibold">o</td><td class="verb-highlight">volt</td></tr>
+                    <tr><td class="font-semibold">mi</td><td class="verb-highlight">voltunk</td></tr>
+                    <tr><td class="font-semibold">ti</td><td class="verb-highlight">voltatok</td></tr>
+                    <tr><td class="font-semibold">ok</td><td class="verb-highlight">voltak</td></tr>
+                </table>
+            </div>
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="font-bold text-blue-800 mb-2">eszik (to eat) &rarr; ett-/evett-</h3>
+                <table class="text-sm w-full">
+                    <tr><td class="font-semibold">en</td><td class="verb-highlight">ettem</td></tr>
+                    <tr><td class="font-semibold">te</td><td class="verb-highlight">ettel</td></tr>
+                    <tr><td class="font-semibold">o</td><td class="verb-highlight">evett</td></tr>
+                    <tr><td class="font-semibold">mi</td><td class="verb-highlight">ettunk</td></tr>
+                    <tr><td class="font-semibold">ti</td><td class="verb-highlight">ettetek</td></tr>
+                    <tr><td class="font-semibold">ok</td><td class="verb-highlight">ettek</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="mt-4 bg-teal-50 p-4 rounded-lg">
+            <h3 class="font-bold text-teal-800 mb-2">More Irregular Verbs:</h3>
+            <ul class="text-sm space-y-1">
+                <li><strong>iszik</strong> (to drink) &rarr; <span class="verb-highlight">ittam, ittal, ivott, ittunk, ittatok, ittak</span></li>
+                <li><strong>tesz</strong> (to put/do) &rarr; <span class="verb-highlight">tettem, tettel, tett, tettunk, tettetek, tettek</span></li>
+                <li><strong>vesz</strong> (to buy/take) &rarr; <span class="verb-highlight">vettem, vettel, vett, vettunk, vettetek, vettek</span></li>
+                <li><strong>visz</strong> (to carry) &rarr; <span class="verb-highlight">vittem, vittel, vitt, vittunk, vittetek, vittek</span></li>
+                <li><strong>hisz</strong> (to believe) &rarr; <span class="verb-highlight">hittem, hittel, hitt, hittunk, hittetek, hittek</span></li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section5);
+
+    // =============================================
+    // STAGE 1: Conjugation Table Practice
+    // =============================================
+    const stage1Verbs = [
+        { infinitive: 'tanul', english: 'to learn',
+          conjugations: { en: 'tanultam', te: 'tanultal', o: 'tanult', mi: 'tanultunk', ti: 'tanultatok', ok: 'tanultak' }},
+        { infinitive: 'beszel', english: 'to speak',
+          conjugations: { en: 'beszeltem', te: 'beszeltel', o: 'beszelt', mi: 'beszeltunk', ti: 'beszeltetek', ok: 'beszeltek' }},
+        { infinitive: 'dolgozik', english: 'to work',
+          conjugations: { en: 'dolgoztam', te: 'dolgoztal', o: 'dolgozott', mi: 'dolgoztunk', ti: 'dolgoztatok', ok: 'dolgoztak' }},
+        { infinitive: 'var', english: 'to wait',
+          conjugations: { en: 'vartam', te: 'vartal', o: 'vart', mi: 'vartunk', ti: 'vartatok', ok: 'vartak' }}
+    ];
+
+    const pronouns = ['en', 'te', 'o', 'mi', 'ti', 'ok'];
+    const pronounLabels = { en: 'en (I)', te: 'te (you)', o: 'o (he/she)', mi: 'mi (we)', ti: 'ti (you pl.)', ok: 'ok (they)' };
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 1: Past Tense Conjugation Tables</h2>
+        <p class="mb-4 text-slate-600">Fill in the correct past tense conjugation for each verb and pronoun. Press Enter to check.</p>
+        <div id="stage1-exercises"></div>
+        <div class="mt-4 flex items-center gap-4">
+            <button id="stage1-check" class="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700">Check All</button>
+            <span id="stage1-score" class="text-slate-700 font-medium"></span>
+        </div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Container = document.getElementById('stage1-exercises');
+    let stage1Inputs = [];
+
+    stage1Verbs.forEach((verb, vIdx) => {
+        const verbDiv = document.createElement('div');
+        verbDiv.className = 'mb-6 p-4 bg-slate-50 rounded-lg';
+        verbDiv.innerHTML = `<h3 class="font-bold text-lg text-slate-700 mb-2">${verb.infinitive} - ${verb.english} (Past Tense)</h3>`;
+
+        const table = document.createElement('table');
+        table.className = 'conjugation-table text-sm';
+
+        pronouns.forEach((pronoun, pIdx) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="font-semibold text-left">${pronounLabels[pronoun]}</td>
+                <td><input type="text" class="border border-slate-300 rounded px-2 py-1 text-center focus:ring-2 focus:ring-teal-500" data-verb="${vIdx}" data-pronoun="${pronoun}" data-correct="${verb.conjugations[pronoun]}"></td>
+                <td class="text-sm" id="stage1-feedback-${vIdx}-${pIdx}"></td>
+            `;
+            table.appendChild(row);
+
+            const input = row.querySelector('input');
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') checkStage1Single(input, document.getElementById(`stage1-feedback-${vIdx}-${pIdx}`));
+            });
+
+            stage1Inputs.push({ input, feedback: document.getElementById(`stage1-feedback-${vIdx}-${pIdx}`), correct: verb.conjugations[pronoun] });
+        });
+
+        verbDiv.appendChild(table);
+        stage1Container.appendChild(verbDiv);
+
+        // Re-get feedback elements after appending
+        pronouns.forEach((pronoun, pIdx) => {
+            const feedbackEl = verbDiv.querySelector(`#stage1-feedback-${vIdx}-${pIdx}`);
+            stage1Inputs[vIdx * 6 + pIdx].feedback = feedbackEl;
+        });
+    });
+
+    function checkStage1Single(input, feedbackCell) {
+        const userAnswer = normalizeHungarian(input.value);
+        const correct = input.dataset.correct;
+
+        if (userAnswer === normalizeHungarian(correct)) {
+            feedbackCell.textContent = 'Correct!';
+            feedbackCell.className = 'text-sm text-green-600 font-semibold';
+            input.classList.add('border-green-500', 'bg-green-50');
+            input.classList.remove('border-red-500', 'bg-red-50', 'border-yellow-500', 'bg-yellow-50');
+        } else if (removeAccents(userAnswer) === removeAccents(normalizeHungarian(correct))) {
+            feedbackCell.textContent = 'Check accents!';
+            feedbackCell.className = 'text-sm text-yellow-600 font-semibold';
+            input.classList.add('border-yellow-500', 'bg-yellow-50');
+            input.classList.remove('border-green-500', 'bg-green-50', 'border-red-500', 'bg-red-50');
+        } else if (userAnswer === '') {
+            feedbackCell.textContent = '';
+            input.classList.remove('border-green-500', 'bg-green-50', 'border-red-500', 'bg-red-50', 'border-yellow-500', 'bg-yellow-50');
+        } else {
+            feedbackCell.textContent = `Answer: ${correct}`;
+            feedbackCell.className = 'text-sm text-red-600 font-semibold';
+            input.classList.add('border-red-500', 'bg-red-50');
+            input.classList.remove('border-green-500', 'bg-green-50', 'border-yellow-500', 'bg-yellow-50');
+        }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let correct = 0;
+        stage1Inputs.forEach(item => {
+            if (normalizeHungarian(item.input.value) === normalizeHungarian(item.correct)) correct++;
+        });
+        document.getElementById('stage1-score').textContent = `Score: ${correct} / ${stage1Inputs.length}`;
+    }
+
+    document.getElementById('stage1-check').addEventListener('click', () => {
+        stage1Inputs.forEach(item => {
+            const feedbackId = `stage1-feedback-${item.input.dataset.verb}-${pronouns.indexOf(item.input.dataset.pronoun)}`;
+            const feedbackEl = document.getElementById(feedbackId);
+            checkStage1Single(item.input, feedbackEl);
+        });
+    });
+
+    // =============================================
+    // STAGE 2: Sentence Completion
+    // =============================================
+    const stage2Questions = [
+        { sentence: 'En tegnap sokat (dolgozik).', answer: 'dolgoztam', translation: 'I worked a lot yesterday.' },
+        { sentence: 'Te hol (lakik) tavaly?', answer: 'laktal', translation: 'Where did you live last year?' },
+        { sentence: 'O magyarul (beszel).', answer: 'beszelt', translation: 'He/She spoke Hungarian.' },
+        { sentence: 'Mi sokaig (var).', answer: 'vartunk', translation: 'We waited for a long time.' },
+        { sentence: 'Ti mit (tanul) az iskolaban?', answer: 'tanultatok', translation: 'What did you (pl.) learn at school?' },
+        { sentence: 'Ok reggel koran (kel).', answer: 'keltek', translation: 'They woke up early in the morning.' },
+        { sentence: 'En levelet (ir).', answer: 'irtam', translation: 'I wrote a letter.' },
+        { sentence: 'Te (olvas) a konyvot?', answer: 'olvastal', translation: 'Did you read a book?' },
+        { sentence: 'O Budapesten (lakik).', answer: 'lakott', translation: 'He/She lived in Budapest.' },
+        { sentence: 'Mi nagyon (far).', answer: 'faradtunk', translation: 'We got very tired.' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 2: Sentence Completion</h2>
+        <p class="mb-4 text-slate-600">Fill in the correct past tense form of the verb in parentheses. Press Enter to check.</p>
+        <div id="stage2-exercises" class="space-y-3"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const parts = q.sentence.split(/\(([^)]+)\)/);
+        wrapper.innerHTML = `
+            <span class="min-w-[250px] text-slate-800">${parts[0]}<strong class="text-teal-700">(${parts[1]})</strong>${parts[2]} &rarr;</span>
+            <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-36 text-center focus:ring-2 focus:ring-teal-500">
+            <span class="text-sm font-semibold"></span>
+        `;
+        stage2Container.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage2(idx);
+        });
+    });
+
+    function checkStage2(idx) {
+        const wrapper = stage2Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage2Questions[idx].answer;
+        const userAnswer = normalizeHungarian(input.value);
+
+        if (userAnswer === normalizeHungarian(correct)) {
+            feedback.textContent = `Correct! (${stage2Questions[idx].translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(normalizeHungarian(correct))) {
+            feedback.textContent = `Check accents! (${correct})`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        for (let i = 0; i < stage2Questions.length; i++) {
+            const input = stage2Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage2Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage2-score').textContent = `Score: ${correct} / ${stage2Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 3: Irregular Verb Practice
+    // =============================================
+    const stage3Questions = [
+        { sentence: 'En tegnap Budapestre (megy).', answer: 'mentem', translation: 'I went to Budapest yesterday.' },
+        { sentence: 'Te mikor (jon) haza?', answer: 'jottel', translation: 'When did you come home?' },
+        { sentence: 'O nagyon farad (van).', answer: 'volt', translation: 'He/She was very tired.' },
+        { sentence: 'Mi reggelit (eszik).', answer: 'ettunk', translation: 'We ate breakfast.' },
+        { sentence: 'Ti mit (iszik)?', answer: 'ittatok', translation: 'What did you (pl.) drink?' },
+        { sentence: 'Ok elmentek, de en itt (van).', answer: 'voltam', translation: 'They left, but I was here.' },
+        { sentence: 'A vendegek koran (jon).', answer: 'jottek', translation: 'The guests came early.' },
+        { sentence: 'A kutya haza (megy).', answer: 'ment', translation: 'The dog went home.' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 3: Irregular Verb Practice</h2>
+        <p class="mb-4 text-slate-600">Practice the irregular past tense forms. These verbs have special stems!</p>
+        <div id="stage3-exercises" class="space-y-3"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-orange-50 rounded-lg';
+
+        const parts = q.sentence.split(/\(([^)]+)\)/);
+        wrapper.innerHTML = `
+            <span class="min-w-[280px] text-slate-800">${parts[0]}<strong class="text-orange-700">(${parts[1]})</strong>${parts[2]} &rarr;</span>
+            <input type="text" class="border border-slate-300 rounded-md px-3 py-1 w-36 text-center focus:ring-2 focus:ring-orange-500">
+            <span class="text-sm font-semibold"></span>
+        `;
+        stage3Container.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage3(idx);
+        });
+    });
+
+    function checkStage3(idx) {
+        const wrapper = stage3Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage3Questions[idx].answer;
+        const userAnswer = normalizeHungarian(input.value);
+
+        if (userAnswer === normalizeHungarian(correct)) {
+            feedback.textContent = `Correct! (${stage3Questions[idx].translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(normalizeHungarian(correct))) {
+            feedback.textContent = `Check accents! (${correct})`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let correct = 0;
+        for (let i = 0; i < stage3Questions.length; i++) {
+            const input = stage3Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === normalizeHungarian(stage3Questions[i].answer)) correct++;
+        }
+        document.getElementById('stage3-score').textContent = `Score: ${correct} / ${stage3Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 4: Translation Practice
+    // =============================================
+    const stage4Questions = [
+        { english: 'I worked yesterday.', answer: 'tegnap dolgoztam', alternatives: ['dolgoztam tegnap'] },
+        { english: 'She spoke Hungarian.', answer: 'magyarul beszelt', alternatives: ['o magyarul beszelt'] },
+        { english: 'We went to school.', answer: 'iskolaba mentunk', alternatives: ['mentunk iskolaba'] },
+        { english: 'They came home.', answer: 'hazajottek', alternatives: ['ok hazajottek', 'haza jottek'] },
+        { english: 'He was tired.', answer: 'faradt volt', alternatives: ['o faradt volt'] },
+        { english: 'I ate an apple.', answer: 'almat ettem', alternatives: ['ettem almat', 'ettem egy almat'] }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 4: Translation Practice</h2>
+        <p class="mb-4 text-slate-600">Translate the English sentences into Hungarian using the past tense. Press Enter to check.</p>
+        <div id="stage4-exercises" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-blue-50 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-800 mb-2">"${q.english}"</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-blue-500" placeholder="Type in Hungarian...">
+                <span class="text-sm font-semibold"></span>
+            </div>
+        `;
+        stage4Container.appendChild(wrapper);
+
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(idx);
+        });
+    });
+
+    function checkStage4(idx) {
+        const wrapper = stage4Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span');
+        const q = stage4Questions[idx];
+        const userAnswer = normalizeHungarian(input.value);
+
+        const allAnswers = [q.answer, ...q.alternatives].map(a => normalizeHungarian(a));
+        const exactMatch = allAnswers.includes(userAnswer);
+        const accentMatch = allAnswers.some(a => removeAccents(a) === removeAccents(userAnswer));
+
+        if (exactMatch) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (accentMatch) {
+            feedback.textContent = `Close! Check accents. Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        for (let i = 0; i < stage4Questions.length; i++) {
+            const input = stage4Container.children[i].querySelector('input');
+            const q = stage4Questions[i];
+            const userAnswer = normalizeHungarian(input.value);
+            const allAnswers = [q.answer, ...q.alternatives].map(a => normalizeHungarian(a));
+            if (allAnswers.includes(userAnswer)) correct++;
+        }
+        document.getElementById('stage4-score').textContent = `Score: ${correct} / ${stage4Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 5: Past vs Present Recognition
+    // =============================================
+    const stage5Questions = [
+        { verb: 'dolgozom', options: ['present', 'past'], correct: 'present', translation: 'I work / I am working' },
+        { verb: 'dolgoztam', options: ['present', 'past'], correct: 'past', translation: 'I worked' },
+        { verb: 'mentek', options: ['present', 'past'], correct: 'past', translation: 'they went' },
+        { verb: 'beszelunk', options: ['present', 'past'], correct: 'present', translation: 'we speak' },
+        { verb: 'voltunk', options: ['present', 'past'], correct: 'past', translation: 'we were' },
+        { verb: 'jottek', options: ['present', 'past'], correct: 'past', translation: 'they came' },
+        { verb: 'tanulnak', options: ['present', 'past'], correct: 'present', translation: 'they learn' },
+        { verb: 'ettem', options: ['present', 'past'], correct: 'past', translation: 'I ate' }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 5: Present vs Past Recognition</h2>
+        <p class="mb-4 text-slate-600">Identify whether each verb is in the present or past tense.</p>
+        <div id="stage5-exercises" class="space-y-3"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage5Questions.length}</div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Container = document.getElementById('stage5-exercises');
+    let stage5Correct = 0;
+
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-3 p-3 bg-slate-50 rounded-lg';
+        wrapper.innerHTML = `
+            <span class="text-xl font-bold text-teal-700 min-w-[150px]">${q.verb}</span>
+            <div class="flex gap-2" id="stage5-options-${idx}">
+                <button class="px-4 py-2 border-2 border-slate-300 rounded-lg bg-white hover:bg-slate-100" data-answer="present">Present</button>
+                <button class="px-4 py-2 border-2 border-slate-300 rounded-lg bg-white hover:bg-slate-100" data-answer="past">Past</button>
+            </div>
+            <span class="text-sm font-semibold" id="stage5-feedback-${idx}"></span>
+        `;
+        stage5Container.appendChild(wrapper);
+
+        const buttons = wrapper.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => checkStage5(idx, btn.dataset.answer, q.correct, wrapper, q.translation));
+        });
+    });
+
+    function checkStage5(idx, selected, correct, wrapper, translation) {
+        const feedback = document.getElementById(`stage5-feedback-${idx}`);
+        const buttons = wrapper.querySelectorAll('button');
+        const wasCorrect = feedback.textContent.includes('Correct');
+
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            if (btn.dataset.answer === correct) {
+                btn.className = 'px-4 py-2 border-2 border-green-500 rounded-lg bg-green-100 text-green-700';
+            } else if (btn.dataset.answer === selected && selected !== correct) {
+                btn.className = 'px-4 py-2 border-2 border-red-500 rounded-lg bg-red-100 text-red-700';
+            }
+        });
+
+        if (selected === correct) {
+            feedback.textContent = `Correct! (${translation})`;
+            feedback.className = 'text-sm font-semibold text-green-600';
+            if (!wasCorrect) stage5Correct++;
+        } else {
+            feedback.textContent = `It's ${correct}. (${translation})`;
+            feedback.className = 'text-sm font-semibold text-red-600';
+        }
+        document.getElementById('stage5-score').textContent = `Score: ${stage5Correct} / ${stage5Questions.length}`;
+    }
+
+    // =============================================
+    // FINAL SUMMARY
+    // =============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 p-6 bg-gradient-to-r from-teal-50 to-blue-50 rounded-lg border border-teal-200';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Summary: Past Tense Indefinite Conjugation</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-teal-800 mb-2">Key Points:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li>Past tense marker: <strong>-t</strong> or <strong>-tt</strong></li>
+                    <li>Endings follow vowel harmony (-tam/-tem, etc.)</li>
+                    <li>Use with intransitive verbs and indefinite objects</li>
+                    <li>Memorize irregular stems: jott-, ment-, volt-, evett-</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-teal-800 mb-2">Indefinite Past Endings:</h3>
+                <table class="text-sm w-full">
+                    <tr><td class="font-semibold">en</td><td>-tam / -tem</td></tr>
+                    <tr><td class="font-semibold">te</td><td>-tal / -tel</td></tr>
+                    <tr><td class="font-semibold">o</td><td>-t / -tt + (linking vowel)</td></tr>
+                    <tr><td class="font-semibold">mi</td><td>-tunk / -tunk</td></tr>
+                    <tr><td class="font-semibold">ti</td><td>-tatok / -tetek</td></tr>
+                    <tr><td class="font-semibold">ok</td><td>-tak / -tek</td></tr>
+                </table>
+            </div>
+        </div>
+        <p class="mt-4 text-sm text-slate-600">Great progress! Continue to Lesson 20 to learn the definite past tense conjugation, used when referring to specific objects.</p>
+    `;
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>

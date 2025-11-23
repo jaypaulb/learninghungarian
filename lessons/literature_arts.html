@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 50: Literature & Arts - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: left; }
+        th { background: #f1f5f9; }
+        .cultural-note {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .art-card {
+            background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+            border: 1px solid #d946ef;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        .literature-card {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        .vocab-highlight { color: #7c3aed; font-weight: 600; }
+        .quote-box {
+            background: #f8fafc;
+            border-left: 4px solid #7c3aed;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 50: Literature & Arts <span class="block text-xl text-slate-500 font-normal mt-2">(Irodalom es muveszet)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Discover the vocabulary for discussing Hungarian literature, visual arts, music, and cultural expressions. Learn to talk about books, paintings, and artistic works in Hungarian.</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+
+    <script>
+    // ============================================
+    // UTILITY FUNCTIONS
+    // ============================================
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    }
+
+    function normalizeAnswer(str) {
+        return str.trim().toLowerCase();
+    }
+
+    function checkAccentAware(userInput, correctAnswer) {
+        const normalizedInput = normalizeAnswer(userInput);
+        const normalizedCorrect = normalizeAnswer(correctAnswer);
+
+        if (normalizedInput === normalizedCorrect) {
+            return 'correct';
+        } else if (removeAccents(normalizedInput) === removeAccents(normalizedCorrect)) {
+            return 'accent-warning';
+        } else {
+            return 'incorrect';
+        }
+    }
+
+    // ============================================
+    // VOCABULARY DATA
+    // ============================================
+    const literatureVocab = [
+        { hungarian: 'irodalom', english: 'literature', example: 'A magyar irodalom gazdag.' },
+        { hungarian: 'konyv', english: 'book', example: 'Olvasok egy konyvot.' },
+        { hungarian: 'regens', english: 'novel', example: 'Ez egy erdekes regeny.' },
+        { hungarian: 'vers', english: 'poem', example: 'Petofi versei hiresek.' },
+        { hungarian: 'novella', english: 'short story', example: 'Olvastam egy novellat.' },
+        { hungarian: 'mese', english: 'fairy tale/story', example: 'A gyerekek szeretik a meseket.' },
+        { hungarian: 'drama', english: 'drama/play', example: 'A szinhazban dramat nezunk.' },
+        { hungarian: 'kolto', english: 'poet', example: 'Petofi Sandor kolto volt.' },
+        { hungarian: 'iro', english: 'writer/author', example: 'Ki az iro?' },
+        { hungarian: 'szerzo', english: 'author/composer', example: 'Ki a szerzo?' }
+    ];
+
+    const visualArtsVocab = [
+        { hungarian: 'muveszet', english: 'art', example: 'Szeretem a muveszetet.' },
+        { hungarian: 'festmens', english: 'painting', example: 'Ez egy szep festmeny.' },
+        { hungarian: 'szobor', english: 'statue/sculpture', example: 'A parkban van egy szobor.' },
+        { hungarian: 'rajz', english: 'drawing', example: 'Ki keszitette ezt a rajzot?' },
+        { hungarian: 'festomuvesz', english: 'painter', example: 'Munkacsy festomuvesz volt.' },
+        { hungarian: 'szobrasZ', english: 'sculptor', example: 'A szobrasz alkotta ezt.' },
+        { hungarian: 'muzeum', english: 'museum', example: 'A muzeumban vagyunk.' },
+        { hungarian: 'galeria', english: 'gallery', example: 'Megyunk a galeriaba.' },
+        { hungarian: 'kiallitas', english: 'exhibition', example: 'Van egy uj kiallitas.' },
+        { hungarian: 'mualkotas', english: 'artwork', example: 'Ez egy ertekes mualkotas.' }
+    ];
+
+    const musicVocab = [
+        { hungarian: 'zene', english: 'music', example: 'Szeretem a zenet.' },
+        { hungarian: 'dal', english: 'song', example: 'Ez egy szep dal.' },
+        { hungarian: 'hangszer', english: 'instrument', example: 'Milyen hangszeren jatszol?' },
+        { hungarian: 'zongora', english: 'piano', example: 'Zongorazni tanulok.' },
+        { hungarian: 'hegedu', english: 'violin', example: 'A hegedu szep hangszer.' },
+        { hungarian: 'zeneszerzo', english: 'composer', example: 'Liszt zeneszerzo volt.' },
+        { hungarian: 'opera', english: 'opera', example: 'Az operahazba megyek.' },
+        { hungarian: 'koncert', english: 'concert', example: 'Tegnap koncerten voltam.' },
+        { hungarian: 'zenekar', english: 'orchestra/band', example: 'A zenekar jol jatszik.' },
+        { hungarian: 'korus', english: 'choir', example: 'A korusban enekelek.' }
+    ];
+
+    const discussingArts = [
+        { hungarian: 'Milyen konyveket szeretsz?', english: 'What kind of books do you like?' },
+        { hungarian: 'Ki a kedvenc irod?', english: 'Who is your favorite author?' },
+        { hungarian: 'Ez a festmeny gyonyoru!', english: 'This painting is beautiful!' },
+        { hungarian: 'Szeretem a klasszikus zenet.', english: 'I like classical music.' },
+        { hungarian: 'Jatszol valamilyen hangszeren?', english: 'Do you play any instrument?' },
+        { hungarian: 'Olvastam ezt a konyvot.', english: 'I have read this book.' }
+    ];
+
+    // ============================================
+    // EXERCISE DATA
+    // ============================================
+    const matchingExercise = [
+        { hungarian: 'konyv', options: ['painting', 'book', 'music', 'poem'], correct: 1 },
+        { hungarian: 'festmeny', options: ['drawing', 'sculpture', 'painting', 'gallery'], correct: 2 },
+        { hungarian: 'kolto', options: ['writer', 'poet', 'painter', 'composer'], correct: 1 },
+        { hungarian: 'zene', options: ['song', 'concert', 'music', 'instrument'], correct: 2 },
+        { hungarian: 'szobor', options: ['painting', 'statue', 'museum', 'drawing'], correct: 1 },
+        { hungarian: 'regeny', options: ['poem', 'short story', 'novel', 'fairy tale'], correct: 2 },
+        { hungarian: 'muzeum', options: ['gallery', 'museum', 'exhibition', 'concert'], correct: 1 },
+        { hungarian: 'hegedu', options: ['piano', 'guitar', 'violin', 'drum'], correct: 2 },
+        { hungarian: 'kiallitas', options: ['gallery', 'painting', 'exhibition', 'museum'], correct: 2 },
+        { hungarian: 'zenekar', options: ['choir', 'orchestra', 'concert', 'song'], correct: 1 }
+    ];
+
+    const categorySort = [
+        { word: 'vers', category: 'irodalom' },
+        { word: 'festmeny', category: 'kepzomuveszet' },
+        { word: 'regeny', category: 'irodalom' },
+        { word: 'szobor', category: 'kepzomuveszet' },
+        { word: 'zongora', category: 'zene' },
+        { word: 'novella', category: 'irodalom' },
+        { word: 'dal', category: 'zene' },
+        { word: 'rajz', category: 'kepzomuveszet' },
+        { word: 'opera', category: 'zene' },
+        { word: 'mese', category: 'irodalom' },
+        { word: 'galeria', category: 'kepzomuveszet' },
+        { word: 'koncert', category: 'zene' }
+    ];
+
+    const fillInBlanks = [
+        { sentence: 'Petofi Sandor ___ volt.', answer: 'kolto', english: 'Petofi Sandor was a poet.' },
+        { sentence: 'Szeretem a klasszikus ___.', answer: 'zenet', english: 'I like classical music.' },
+        { sentence: 'Ez egy gyonyoru ___.', answer: 'festmeny', english: 'This is a beautiful painting.' },
+        { sentence: 'Olvastam egy erdekes ___.', answer: 'regényt', alternates: ['regenyt', 'konyvet'], english: 'I read an interesting novel.' },
+        { sentence: 'A ___ sok mualkotas van.', answer: 'muzeumban', english: 'There are many artworks in the museum.' },
+        { sentence: 'Liszt Ferenc ___ volt.', answer: 'zeneszerzo', english: 'Franz Liszt was a composer.' },
+        { sentence: 'A gyerekek szeretik a ___.', answer: 'meseket', english: 'Children like fairy tales.' },
+        { sentence: 'Tegnap ___ voltam.', answer: 'koncerten', english: 'I was at a concert yesterday.' }
+    ];
+
+    const sentenceBuilding = [
+        { prompt: 'Say you like to read books', answer: 'szeretek konyveket olvasni', alternates: ['szeretem a konyveket', 'szeretek olvasni'] },
+        { prompt: 'Ask what music they like', answer: 'milyen zenet szeretsz', alternates: ['milyen zenek tetszenek'] },
+        { prompt: 'Say this painting is beautiful', answer: 'ez a festmeny szep', alternates: ['ez a festmeny gyonyoru', 'szep ez a festmeny'] },
+        { prompt: 'Say you play piano', answer: 'zongorazom', alternates: ['zongorán játszom', 'zongorazni tudok'] },
+        { prompt: 'Ask who wrote this book', answer: 'ki irta ezt a konyvet', alternates: ['ki a szerzo'] },
+        { prompt: 'Say you went to the museum', answer: 'a muzeumba mentem', alternates: ['muzeumban voltam', 'voltam a muzeumban'] }
+    ];
+
+    // ============================================
+    // SCORE TRACKING
+    // ============================================
+    let scores = {
+        stage1: { correct: 0, total: matchingExercise.length },
+        stage2: { correct: 0, total: categorySort.length },
+        stage3: { correct: 0, total: fillInBlanks.length },
+        stage4: { correct: 0, total: sentenceBuilding.length }
+    };
+
+    function updateTotalScore() {
+        const totalCorrect = Object.values(scores).reduce((sum, s) => sum + s.correct, 0);
+        const totalQuestions = Object.values(scores).reduce((sum, s) => sum + s.total, 0);
+        const totalScoreEl = document.getElementById('total-score');
+        if (totalScoreEl) {
+            totalScoreEl.textContent = `Total Score: ${totalCorrect} / ${totalQuestions}`;
+        }
+    }
+
+    // ============================================
+    // BUILD PAGE CONTENT
+    // ============================================
+    const mainContent = document.getElementById('main-content');
+
+    // Learning Objectives
+    const objectivesSection = document.createElement('section');
+    objectivesSection.className = 'mb-8 p-4 bg-purple-50 rounded-lg border border-purple-200';
+    objectivesSection.innerHTML = `
+        <h2 class="text-xl font-semibold text-purple-800 mb-3">Learning Objectives</h2>
+        <ul class="list-disc pl-6 text-purple-700 space-y-1">
+            <li>Learn vocabulary for literature and literary genres</li>
+            <li>Master visual arts terminology</li>
+            <li>Discuss music and musical instruments</li>
+            <li>Express opinions about books and art</li>
+        </ul>
+    `;
+    mainContent.appendChild(objectivesSection);
+
+    // Cultural Note
+    const culturalNote = document.createElement('div');
+    culturalNote.className = 'cultural-note mb-8';
+    culturalNote.innerHTML = `
+        <h3 class="font-bold text-amber-800 mb-2">Cultural Note: Hungarian Literary Tradition</h3>
+        <p class="text-amber-900">Hungary has a rich literary tradition dating back centuries. <strong>Petofi Sandor</strong> is considered the national poet,
+        whose works inspired the 1848 Revolution. <strong>Ady Endre</strong> and <strong>Jozo Attila</strong> are other beloved poets.
+        In music, <strong>Liszt Ferenc</strong> (Franz Liszt) and <strong>Bartok Bela</strong> are world-renowned composers who incorporated Hungarian folk elements into classical music.</p>
+    `;
+    mainContent.appendChild(culturalNote);
+
+    // Famous Quote
+    const quoteBox = document.createElement('div');
+    quoteBox.className = 'quote-box mb-8';
+    quoteBox.innerHTML = `
+        <p class="text-lg text-slate-700">"Szabadság, szerelem! E kettő kell nekem."</p>
+        <p class="text-sm text-slate-500 mt-2">- Petofi Sandor</p>
+        <p class="text-sm text-slate-600">(Freedom, love! These two I need.)</p>
+    `;
+    mainContent.appendChild(quoteBox);
+
+    // Section 1: Literature Vocabulary
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4 pb-2 border-b-2 border-purple-500">Section 1: Literature Vocabulary (Irodalmi szokincs)</h2>
+        <table class="mb-4">
+            <thead>
+                <tr><th>Hungarian</th><th>English</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                ${literatureVocab.map(item => `<tr><td class="vocab-highlight">${item.hungarian}</td><td>${item.english}</td><td class="text-sm text-slate-500 italic">${item.example}</td></tr>`).join('')}
+            </tbody>
+        </table>
+    `;
+    mainContent.appendChild(section1);
+
+    // Section 2: Visual Arts
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4 pb-2 border-b-2 border-purple-500">Section 2: Visual Arts (Kepzomuveszet)</h2>
+        <table class="mb-4">
+            <thead>
+                <tr><th>Hungarian</th><th>English</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                ${visualArtsVocab.map(item => `<tr><td class="vocab-highlight">${item.hungarian}</td><td>${item.english}</td><td class="text-sm text-slate-500 italic">${item.example}</td></tr>`).join('')}
+            </tbody>
+        </table>
+    `;
+    mainContent.appendChild(section2);
+
+    // Section 3: Music
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4 pb-2 border-b-2 border-purple-500">Section 3: Music (Zene)</h2>
+        <table class="mb-4">
+            <thead>
+                <tr><th>Hungarian</th><th>English</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                ${musicVocab.map(item => `<tr><td class="vocab-highlight">${item.hungarian}</td><td>${item.english}</td><td class="text-sm text-slate-500 italic">${item.example}</td></tr>`).join('')}
+            </tbody>
+        </table>
+    `;
+    mainContent.appendChild(section3);
+
+    // Section 4: Discussing Arts
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4 pb-2 border-b-2 border-purple-500">Section 4: Discussing Arts (Parbeszedek a muveszetrol)</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            ${discussingArts.map(phrase => `
+                <div class="p-3 bg-purple-50 rounded-lg">
+                    <p class="font-medium text-purple-800">${phrase.hungarian}</p>
+                    <p class="text-sm text-slate-600">${phrase.english}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // Total Score Display
+    const totalScoreSection = document.createElement('div');
+    totalScoreSection.className = 'bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl p-4 mb-8 text-center';
+    totalScoreSection.innerHTML = `
+        <h3 class="text-lg font-semibold mb-1">Interactive Exercises</h3>
+        <p id="total-score" class="text-2xl font-bold">Total Score: 0 / ${matchingExercise.length + categorySort.length + fillInBlanks.length + sentenceBuilding.length}</p>
+    `;
+    mainContent.appendChild(totalScoreSection);
+
+    // ============================================
+    // STAGE 1: Vocabulary Matching
+    // ============================================
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8 p-4 bg-slate-50 rounded-lg';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 1: Vocabulary Matching (10 items)</h2>
+        <p class="text-slate-600 mb-4">Match each Hungarian word with its correct English meaning.</p>
+        <div id="stage1-exercises" class="space-y-3"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${matchingExercise.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Container = document.getElementById('stage1-exercises');
+    const stage1Answers = new Array(matchingExercise.length).fill(false);
+
+    matchingExercise.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-3 p-3 bg-white rounded-lg border';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[120px] font-semibold text-purple-700';
+        label.textContent = q.hungarian;
+
+        const select = document.createElement('select');
+        select.className = 'border border-slate-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-purple-500';
+        select.innerHTML = '<option value="">Select...</option>' + q.options.map((opt, i) => `<option value="${i}">${opt}</option>`).join('');
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        select.addEventListener('change', function() {
+            if (parseInt(this.value) === q.correct) {
+                feedback.textContent = 'Correct!';
+                feedback.className = 'text-sm font-semibold text-green-600';
+                this.disabled = true;
+                this.className = 'border border-green-500 bg-green-50 rounded-md px-3 py-2';
+                if (!stage1Answers[idx]) {
+                    stage1Answers[idx] = true;
+                    scores.stage1.correct++;
+                    document.getElementById('stage1-score').textContent = `Score: ${scores.stage1.correct} / ${matchingExercise.length}`;
+                    updateTotalScore();
+                }
+            } else if (this.value !== '') {
+                feedback.textContent = 'Try again!';
+                feedback.className = 'text-sm font-semibold text-red-600';
+            }
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(select);
+        wrapper.appendChild(feedback);
+        stage1Container.appendChild(wrapper);
+    });
+
+    // ============================================
+    // STAGE 2: Category Sorting
+    // ============================================
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8 p-4 bg-slate-50 rounded-lg';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 2: Category Sorting (12 items)</h2>
+        <p class="text-slate-600 mb-4">Sort each word into its correct category: Literature (irodalom), Visual Arts (kepzomuveszet), or Music (zene).</p>
+        <div id="stage2-exercises" class="space-y-3"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${categorySort.length}</div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+    const stage2Answers = new Array(categorySort.length).fill(false);
+
+    categorySort.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-3 p-3 bg-white rounded-lg border';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[100px] font-semibold text-slate-700';
+        label.textContent = q.word;
+
+        const select = document.createElement('select');
+        select.className = 'border border-slate-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-purple-500';
+        select.innerHTML = `
+            <option value="">Select category...</option>
+            <option value="irodalom">Irodalom (Literature)</option>
+            <option value="kepzomuveszet">Kepzomuveszet (Visual Arts)</option>
+            <option value="zene">Zene (Music)</option>
+        `;
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        select.addEventListener('change', function() {
+            if (this.value === q.category) {
+                feedback.textContent = 'Correct!';
+                feedback.className = 'text-sm font-semibold text-green-600';
+                this.disabled = true;
+                this.className = 'border border-green-500 bg-green-50 rounded-md px-3 py-2';
+                if (!stage2Answers[idx]) {
+                    stage2Answers[idx] = true;
+                    scores.stage2.correct++;
+                    document.getElementById('stage2-score').textContent = `Score: ${scores.stage2.correct} / ${categorySort.length}`;
+                    updateTotalScore();
+                }
+            } else if (this.value !== '') {
+                feedback.textContent = 'Try again!';
+                feedback.className = 'text-sm font-semibold text-red-600';
+            }
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(select);
+        wrapper.appendChild(feedback);
+        stage2Container.appendChild(wrapper);
+    });
+
+    // ============================================
+    // STAGE 3: Fill in the Blanks
+    // ============================================
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8 p-4 bg-slate-50 rounded-lg';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 3: Fill in the Blanks (8 items)</h2>
+        <p class="text-slate-600 mb-4">Complete each sentence with the correct Hungarian word.</p>
+        <div id="stage3-exercises" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${fillInBlanks.length}</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+    const stage3Answers = new Array(fillInBlanks.length).fill(false);
+
+    fillInBlanks.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-3 bg-white rounded-lg border';
+
+        const sentenceParts = q.sentence.split('___');
+        const row = document.createElement('div');
+        row.className = 'flex flex-wrap items-center gap-2 mb-2';
+
+        row.innerHTML = `<span class="text-slate-700">${sentenceParts[0]}</span>`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-32 text-center focus:ring-2 focus:ring-purple-500';
+
+        const span2 = document.createElement('span');
+        span2.className = 'text-slate-700';
+        span2.textContent = sentenceParts[1] || '';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold ml-2';
+
+        row.appendChild(input);
+        row.appendChild(span2);
+        row.appendChild(feedback);
+
+        const translation = document.createElement('div');
+        translation.className = 'text-xs text-slate-500 italic';
+        translation.textContent = `(${q.english})`;
+
+        function checkAnswer() {
+            const allCorrect = [q.answer, ...(q.alternates || [])];
+            const userInput = normalizeAnswer(input.value);
+
+            if (allCorrect.some(a => normalizeAnswer(a) === userInput)) {
+                feedback.textContent = 'Correct!';
+                feedback.className = 'text-sm font-semibold text-green-600 ml-2';
+                input.disabled = true;
+                input.className = 'border border-green-500 bg-green-50 rounded-md px-3 py-1 w-32 text-center';
+                if (!stage3Answers[idx]) {
+                    stage3Answers[idx] = true;
+                    scores.stage3.correct++;
+                    document.getElementById('stage3-score').textContent = `Score: ${scores.stage3.correct} / ${fillInBlanks.length}`;
+                    updateTotalScore();
+                }
+            } else if (allCorrect.some(a => removeAccents(normalizeAnswer(a)) === removeAccents(userInput))) {
+                feedback.textContent = 'Check accents!';
+                feedback.className = 'text-sm font-semibold text-yellow-600 ml-2';
+            } else if (input.value.trim() !== '') {
+                feedback.textContent = 'Try again!';
+                feedback.className = 'text-sm font-semibold text-red-600 ml-2';
+            }
+        }
+
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkAnswer(); });
+        input.addEventListener('blur', checkAnswer);
+
+        wrapper.appendChild(row);
+        wrapper.appendChild(translation);
+        stage3Container.appendChild(wrapper);
+    });
+
+    // ============================================
+    // STAGE 4: Sentence Building
+    // ============================================
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8 p-4 bg-slate-50 rounded-lg';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 4: Sentence Building (6 items)</h2>
+        <p class="text-slate-600 mb-4">Write the Hungarian sentence based on the English prompt.</p>
+        <div id="stage4-exercises" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${sentenceBuilding.length}</div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+    const stage4Answers = new Array(sentenceBuilding.length).fill(false);
+
+    sentenceBuilding.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-white rounded-lg border';
+
+        const promptDiv = document.createElement('div');
+        promptDiv.className = 'mb-3';
+        promptDiv.innerHTML = `<p class="font-medium text-slate-800">${idx + 1}. ${q.prompt}</p>`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-purple-500';
+        input.placeholder = 'Type your answer...';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        function checkAnswer() {
+            const allCorrect = [q.answer, ...(q.alternates || [])];
+            const userInput = normalizeAnswer(input.value);
+
+            if (allCorrect.some(a => normalizeAnswer(a) === userInput)) {
+                feedback.textContent = 'Correct!';
+                feedback.className = 'text-sm font-semibold text-green-600';
+                input.disabled = true;
+                input.className = 'border border-green-500 bg-green-50 rounded-md px-3 py-2 w-full md:w-80';
+                if (!stage4Answers[idx]) {
+                    stage4Answers[idx] = true;
+                    scores.stage4.correct++;
+                    document.getElementById('stage4-score').textContent = `Score: ${scores.stage4.correct} / ${sentenceBuilding.length}`;
+                    updateTotalScore();
+                }
+            } else if (allCorrect.some(a => removeAccents(normalizeAnswer(a)) === removeAccents(userInput))) {
+                feedback.textContent = 'Close! Check accents.';
+                feedback.className = 'text-sm font-semibold text-yellow-600';
+            } else if (input.value.trim() !== '') {
+                feedback.textContent = `Try again! Example: ${q.answer}`;
+                feedback.className = 'text-sm font-semibold text-red-600';
+            }
+        }
+
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkAnswer(); });
+        input.addEventListener('blur', checkAnswer);
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(promptDiv);
+        wrapper.appendChild(inputRow);
+        stage4Container.appendChild(wrapper);
+    });
+
+    // ============================================
+    // SUMMARY SECTION
+    // ============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mt-8 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-200';
+    summarySection.innerHTML = `
+        <h2 class="text-xl font-bold text-purple-800 mb-4">Lesson Summary</h2>
+        <div class="grid md:grid-cols-3 gap-4 text-sm">
+            <div>
+                <h3 class="font-semibold text-slate-700 mb-2">Literature:</h3>
+                <ul class="list-disc pl-5 text-slate-600 space-y-1">
+                    <li><strong>konyv</strong> - book</li>
+                    <li><strong>vers</strong> - poem</li>
+                    <li><strong>regeny</strong> - novel</li>
+                    <li><strong>kolto</strong> - poet</li>
+                    <li><strong>iro</strong> - writer</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-700 mb-2">Visual Arts:</h3>
+                <ul class="list-disc pl-5 text-slate-600 space-y-1">
+                    <li><strong>festmeny</strong> - painting</li>
+                    <li><strong>szobor</strong> - sculpture</li>
+                    <li><strong>muzeum</strong> - museum</li>
+                    <li><strong>galeria</strong> - gallery</li>
+                    <li><strong>kiallitas</strong> - exhibition</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-700 mb-2">Music:</h3>
+                <ul class="list-disc pl-5 text-slate-600 space-y-1">
+                    <li><strong>zene</strong> - music</li>
+                    <li><strong>dal</strong> - song</li>
+                    <li><strong>hangszer</strong> - instrument</li>
+                    <li><strong>koncert</strong> - concert</li>
+                    <li><strong>zenekar</strong> - orchestra</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-3 bg-amber-50 rounded-lg border border-amber-200">
+            <p class="text-amber-800 text-sm"><strong>Remember:</strong> Hungarian has a rich artistic heritage. When discussing art, use phrases like "Szeretem a..." (I like the...) and "Ez gyonyoru!" (This is beautiful!) to express your appreciation.</p>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+
+    // Initialize total score
+    updateTotalScore();
+    </script>
+</body>
+</html>

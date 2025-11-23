@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 36: Compound Sentences - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .conj-highlight { color: #059669; font-weight: 600; }
+        .clause-highlight { background-color: #fef3c7; padding: 2px 4px; border-radius: 2px; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 36: Compound Sentences <span class="block text-xl text-slate-500 font-normal">(Osszetett mondatok)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn to connect ideas using Hungarian conjunctions like és, de, vagy, mert, and hogy. Master word order in subordinate clauses to build complex, natural-sounding sentences!</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    // Helper functions
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiIoOuU]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','o':'o','O':'O','o':'o','O':'O','u':'u','U':'U','u':'u','U':'U','u':'u','U':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    const mainContent = document.getElementById('main-content');
+
+    // =============================================
+    // SECTION 1: Introduction to Compound Sentences
+    // =============================================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: Types of Compound Sentences</h2>
+        <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+            <p class="text-slate-700 mb-2"><strong>Hungarian has two types of compound sentences:</strong></p>
+            <ul class="list-disc pl-6 space-y-2">
+                <li><strong>Coordinating (Mellerendelo):</strong> Two independent clauses joined by conjunctions like <span class="conj-highlight">és, de, vagy</span></li>
+                <li><strong>Subordinating (Alarendelo):</strong> A main clause + dependent clause joined by <span class="conj-highlight">hogy, mert, ha, amikor</span></li>
+            </ul>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-blue-800 mb-2">Coordinating Example:</h3>
+                <p class="text-sm">Peter dolgozik, <span class="conj-highlight">és</span> Mari tanul.</p>
+                <p class="text-sm text-slate-500">Peter works and Mari studies.</p>
+            </div>
+            <div class="bg-amber-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-amber-800 mb-2">Subordinating Example:</h3>
+                <p class="text-sm">Tudom, <span class="conj-highlight">hogy</span> Peter dolgozik.</p>
+                <p class="text-sm text-slate-500">I know that Peter works.</p>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // =============================================
+    // SECTION 2: Coordinating Conjunctions
+    // =============================================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Coordinating Conjunctions</h2>
+        <p class="mb-4">These conjunctions connect two equal, independent clauses:</p>
+
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Conjunction</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                        <th>Translation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="conj-highlight font-bold">és</td>
+                        <td>and</td>
+                        <td>Olvasok <span class="conj-highlight">és</span> tanulok.</td>
+                        <td>I read and study.</td>
+                    </tr>
+                    <tr>
+                        <td class="conj-highlight font-bold">de</td>
+                        <td>but</td>
+                        <td>Fáradt vagyok, <span class="conj-highlight">de</span> dolgozom.</td>
+                        <td>I'm tired, but I work.</td>
+                    </tr>
+                    <tr>
+                        <td class="conj-highlight font-bold">vagy</td>
+                        <td>or</td>
+                        <td>Teát <span class="conj-highlight">vagy</span> kavét kérsz?</td>
+                        <td>Do you want tea or coffee?</td>
+                    </tr>
+                    <tr>
+                        <td class="conj-highlight font-bold">hanem</td>
+                        <td>but rather</td>
+                        <td>Nem magyar, <span class="conj-highlight">hanem</span> nemet.</td>
+                        <td>Not Hungarian, but German.</td>
+                    </tr>
+                    <tr>
+                        <td class="conj-highlight font-bold">meg</td>
+                        <td>and (also)</td>
+                        <td>Peter <span class="conj-highlight">meg</span> Mari is jott.</td>
+                        <td>Peter and Mari came too.</td>
+                    </tr>
+                    <tr>
+                        <td class="conj-highlight font-bold">tehát / így</td>
+                        <td>therefore / so</td>
+                        <td>Eső van, <span class="conj-highlight">tehát</span> otthon maradok.</td>
+                        <td>It's raining, so I stay home.</td>
+                    </tr>
+                    <tr>
+                        <td class="conj-highlight font-bold">vagyis</td>
+                        <td>that is / in other words</td>
+                        <td>Holnap, <span class="conj-highlight">vagyis</span> kedden.</td>
+                        <td>Tomorrow, that is, on Tuesday.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4">
+            <p class="text-sm"><strong>Note:</strong> "Hanem" is used after negation to introduce a contrasting statement. "De" is used for general contrast.</p>
+            <ul class="list-disc pl-6 text-sm mt-2">
+                <li>Nem jo, <span class="conj-highlight">hanem</span> rossz. (Not good, but bad.)</li>
+                <li>Jo, <span class="conj-highlight">de</span> draga. (Good, but expensive.)</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // =============================================
+    // SECTION 3: Subordinating Conjunctions
+    // =============================================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Subordinating Conjunctions</h2>
+        <p class="mb-4">These conjunctions introduce a dependent clause that cannot stand alone:</p>
+
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Conjunction</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                        <th>Translation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="conj-highlight font-bold">hogy</td>
+                        <td>that</td>
+                        <td>Tudom, <span class="conj-highlight">hogy</span> itt vagy.</td>
+                        <td>I know that you are here.</td>
+                    </tr>
+                    <tr>
+                        <td class="conj-highlight font-bold">mert</td>
+                        <td>because</td>
+                        <td>Nem megyek, <span class="conj-highlight">mert</span> beteg vagyok.</td>
+                        <td>I'm not going because I'm sick.</td>
+                    </tr>
+                    <tr>
+                        <td class="conj-highlight font-bold">ha</td>
+                        <td>if</td>
+                        <td><span class="conj-highlight">Ha</span> esik az eso, otthon maradok.</td>
+                        <td>If it rains, I stay home.</td>
+                    </tr>
+                    <tr>
+                        <td class="conj-highlight font-bold">amikor</td>
+                        <td>when</td>
+                        <td><span class="conj-highlight">Amikor</span> hazaértem, vacsoraztam.</td>
+                        <td>When I got home, I had dinner.</td>
+                    </tr>
+                    <tr>
+                        <td class="conj-highlight font-bold">amíg</td>
+                        <td>while / until</td>
+                        <td><span class="conj-highlight">Amíg</span> varsz, olvasok.</td>
+                        <td>While you wait, I read.</td>
+                    </tr>
+                    <tr>
+                        <td class="conj-highlight font-bold">mivel</td>
+                        <td>since / because</td>
+                        <td><span class="conj-highlight">Mivel</span> keso van, megyek.</td>
+                        <td>Since it's late, I'm going.</td>
+                    </tr>
+                    <tr>
+                        <td class="conj-highlight font-bold">mielott</td>
+                        <td>before</td>
+                        <td><span class="conj-highlight">Mielott</span> elmesz, hivj fel!</td>
+                        <td>Before you leave, call me!</td>
+                    </tr>
+                    <tr>
+                        <td class="conj-highlight font-bold">miután</td>
+                        <td>after</td>
+                        <td><span class="conj-highlight">Miután</span> ettem, elmentem.</td>
+                        <td>After I ate, I left.</td>
+                    </tr>
+                    <tr>
+                        <td class="conj-highlight font-bold">noha / bar</td>
+                        <td>although</td>
+                        <td><span class="conj-highlight">Noha</span> fáradt vagyok, dolgozom.</td>
+                        <td>Although I'm tired, I work.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // =============================================
+    // SECTION 4: Word Order in Subordinate Clauses
+    // =============================================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Word Order in Subordinate Clauses</h2>
+
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
+            <p class="font-bold text-red-800 mb-2">Important Rule: Verbal Prefixes in Subordinate Clauses</p>
+            <p class="text-sm">In subordinate clauses, verbal prefixes generally <strong>stay attached</strong> to the verb, even in situations where they would normally separate (like negation or questions).</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                <h3 class="font-bold text-green-800 mb-2">Main Clause (prefix separated):</h3>
+                <p class="text-sm">Nem eszem <strong>meg</strong> az almat.</p>
+                <p class="text-sm text-slate-500">I don't eat the apple.</p>
+            </div>
+            <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                <h3 class="font-bold text-amber-800 mb-2">Subordinate Clause (prefix attached):</h3>
+                <p class="text-sm">Tudom, hogy nem <strong>megeszem</strong> az almat.</p>
+                <p class="text-sm text-slate-500">I know that I don't eat the apple.</p>
+            </div>
+        </div>
+
+        <div class="bg-slate-50 p-4 rounded-lg">
+            <h3 class="font-semibold mb-2">More Examples:</h3>
+            <ul class="space-y-2 text-sm">
+                <li><strong>Main:</strong> Hova mesz <em>el</em>? &rarr; <strong>Subordinate:</strong> Kérdem, hogy hova <em>elmész</em>.</li>
+                <li><strong>Main:</strong> Nem irtam <em>meg</em> a levelet. &rarr; <strong>Subordinate:</strong> Mondtam, hogy nem <em>megirtam</em> a levelet.</li>
+                <li><strong>Main:</strong> Mit olvasol <em>el</em>? &rarr; <strong>Subordinate:</strong> Tudom, hogy mit <em>elolvasol</em>.</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // =============================================
+    // SECTION 5: Common Sentence Patterns
+    // =============================================
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 5: Common Sentence Patterns</h2>
+
+        <div class="space-y-4">
+            <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <h3 class="font-bold text-blue-800 mb-2">"hogy" clauses (that-clauses)</h3>
+                <p class="text-sm mb-2">Used with verbs of thinking, knowing, saying, feeling:</p>
+                <ul class="list-disc pl-6 text-sm space-y-1">
+                    <li><strong>Gondolom</strong>, <span class="conj-highlight">hogy</span> igaz. (I think that it's true.)</li>
+                    <li><strong>Remelem</strong>, <span class="conj-highlight">hogy</span> jol vagy. (I hope that you're well.)</li>
+                    <li><strong>Latom</strong>, <span class="conj-highlight">hogy</span> dolgozol. (I see that you're working.)</li>
+                    <li><strong>Kértem</strong>, <span class="conj-highlight">hogy</span> segítsen. (I asked him/her to help.)</li>
+                </ul>
+            </div>
+
+            <div class="p-4 bg-amber-50 rounded-lg border border-amber-200">
+                <h3 class="font-bold text-amber-800 mb-2">"mert" clauses (because-clauses)</h3>
+                <p class="text-sm mb-2">Explaining reasons:</p>
+                <ul class="list-disc pl-6 text-sm space-y-1">
+                    <li>Otthon maradok, <span class="conj-highlight">mert</span> beteg vagyok. (I stay home because I'm sick.)</li>
+                    <li>Nem ertem, <span class="conj-highlight">mert</span> tul gyorsan beszél. (I don't understand because he speaks too fast.)</li>
+                </ul>
+            </div>
+
+            <div class="p-4 bg-purple-50 rounded-lg border border-purple-200">
+                <h3 class="font-bold text-purple-800 mb-2">"ha" clauses (if-clauses)</h3>
+                <p class="text-sm mb-2">Conditional sentences:</p>
+                <ul class="list-disc pl-6 text-sm space-y-1">
+                    <li><span class="conj-highlight">Ha</span> szép az idő, kimegyunk. (If the weather is nice, we'll go out.)</li>
+                    <li><span class="conj-highlight">Ha</span> lesz időm, felhivlak. (If I have time, I'll call you.)</li>
+                    <li><span class="conj-highlight">Ha</span> tudtam volna, nem jottem volna. (If I had known, I wouldn't have come.)</li>
+                </ul>
+            </div>
+
+            <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                <h3 class="font-bold text-green-800 mb-2">"amikor" clauses (when-clauses)</h3>
+                <p class="text-sm mb-2">Temporal relations:</p>
+                <ul class="list-disc pl-6 text-sm space-y-1">
+                    <li><span class="conj-highlight">Amikor</span> megérkeztem, mindenki aludt. (When I arrived, everyone was sleeping.)</li>
+                    <li>Hivj fel, <span class="conj-highlight">amikor</span> hazaérsz! (Call me when you get home!)</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section5);
+
+    // =============================================
+    // STAGE 1: Conjunction Selection (12 items)
+    // =============================================
+    const stage1Questions = [
+        { sentence: 'Olvasok ___ tanulok.', options: ['és', 'de', 'vagy', 'mert'], correct: 'és', translation: 'I read and study.' },
+        { sentence: 'Fáradt vagyok, ___ dolgozom.', options: ['és', 'de', 'vagy', 'mert'], correct: 'de', translation: 'I\'m tired, but I work.' },
+        { sentence: 'Teát ___ kávét kérsz?', options: ['és', 'de', 'vagy', 'mert'], correct: 'vagy', translation: 'Do you want tea or coffee?' },
+        { sentence: 'Nem megyek, ___ beteg vagyok.', options: ['és', 'de', 'vagy', 'mert'], correct: 'mert', translation: 'I\'m not going because I\'m sick.' },
+        { sentence: 'Tudom, ___ itt vagy.', options: ['hogy', 'ha', 'amikor', 'mert'], correct: 'hogy', translation: 'I know that you are here.' },
+        { sentence: '___ esik az eső, otthon maradok.', options: ['hogy', 'ha', 'amikor', 'mert'], correct: 'ha', translation: 'If it rains, I stay home.' },
+        { sentence: '___ hazaértem, vacsoraztam.', options: ['hogy', 'ha', 'amikor', 'mert'], correct: 'amikor', translation: 'When I got home, I had dinner.' },
+        { sentence: 'Nem magyar, ___ nemet.', options: ['és', 'de', 'hanem', 'vagy'], correct: 'hanem', translation: 'Not Hungarian, but German.' },
+        { sentence: 'Jo, ___ draga.', options: ['és', 'de', 'hanem', 'vagy'], correct: 'de', translation: 'Good, but expensive.' },
+        { sentence: 'Remélem, ___ jol vagy.', options: ['hogy', 'ha', 'amikor', 'mert'], correct: 'hogy', translation: 'I hope that you are well.' },
+        { sentence: '___ keso van, megyek.', options: ['hogy', 'mivel', 'ha', 'amikor'], correct: 'mivel', translation: 'Since it\'s late, I\'m going.' },
+        { sentence: 'Eső van, ___ otthon maradok.', options: ['és', 'tehát', 'vagy', 'de'], correct: 'tehát', translation: 'It\'s raining, so I stay home.' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 1: Conjunction Selection</h2>
+        <p class="mb-4 text-slate-600">Select the correct conjunction for each sentence:</p>
+        <div id="stage1-exercises" class="space-y-3"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Container = document.getElementById('stage1-exercises');
+
+    stage1Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[240px] text-slate-800';
+        label.textContent = q.sentence;
+
+        const select = document.createElement('select');
+        select.className = 'border border-slate-300 rounded-md px-3 py-1 w-28 focus:ring-2 focus:ring-green-500';
+        select.innerHTML = '<option value="">??</option>' + q.options.map(o => `<option value="${o}">${o}</option>`).join('');
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        select.addEventListener('change', () => checkStage1(idx));
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(select);
+        wrapper.appendChild(feedback);
+        stage1Container.appendChild(wrapper);
+    });
+
+    function checkStage1(idx) {
+        const wrapper = stage1Container.children[idx];
+        const select = wrapper.querySelector('select');
+        const feedback = wrapper.querySelector('span:last-child');
+        const q = stage1Questions[idx];
+
+        if (select.value === q.correct) {
+            feedback.textContent = `Correct! (${q.translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (select.value === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Answer: ${q.correct}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let correct = 0;
+        stage1Questions.forEach((q, i) => {
+            const select = stage1Container.children[i].querySelector('select');
+            if (select.value === q.correct) correct++;
+        });
+        document.getElementById('stage1-score').textContent = `Score: ${correct} / ${stage1Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 2: Combine Sentences (10 items)
+    // =============================================
+    const stage2Questions = [
+        { sentence1: 'Peter dolgozik.', sentence2: 'Mari tanul.', conjunction: 'és', answer: 'peter dolgozik, és mari tanul' },
+        { sentence1: 'Fáradt vagyok.', sentence2: 'Dolgozom.', conjunction: 'de', answer: 'fáradt vagyok, de dolgozom' },
+        { sentence1: 'Tudom.', sentence2: 'Beteg vagy.', conjunction: 'hogy', answer: 'tudom, hogy beteg vagy' },
+        { sentence1: 'Nem megyek.', sentence2: 'Esik az eső.', conjunction: 'mert', answer: 'nem megyek, mert esik az eső' },
+        { sentence1: 'Szép az idő.', sentence2: 'Kimegyunk.', conjunction: 'ha', answer: 'ha szép az idő, kimegyunk' },
+        { sentence1: 'Megérkeztem.', sentence2: 'Mindenki aludt.', conjunction: 'amikor', answer: 'amikor megérkeztem, mindenki aludt' },
+        { sentence1: 'Teát kérsz.', sentence2: 'Kávét kérsz.', conjunction: 'vagy', answer: 'teát vagy kávét kérsz' },
+        { sentence1: 'Gondolom.', sentence2: 'Igaz.', conjunction: 'hogy', answer: 'gondolom, hogy igaz' },
+        { sentence1: 'Eső van.', sentence2: 'Otthon maradok.', conjunction: 'tehát', answer: 'eső van, tehát otthon maradok' },
+        { sentence1: 'Keso van.', sentence2: 'Megyek.', conjunction: 'mivel', answer: 'mivel keso van, megyek' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 2: Combine Sentences</h2>
+        <p class="mb-4 text-slate-600">Combine the two sentences using the given conjunction:</p>
+        <div id="stage2-exercises" class="space-y-3"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-1 p-3 bg-green-50 rounded-lg';
+
+        const label = document.createElement('div');
+        label.innerHTML = `<strong>${q.sentence1}</strong> + <strong>${q.sentence2}</strong> <span class="text-green-700">(${q.conjunction})</span>`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-full md:w-96 focus:ring-2 focus:ring-green-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage2(idx);
+        });
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(label);
+        wrapper.appendChild(inputRow);
+        stage2Container.appendChild(wrapper);
+    });
+
+    function checkStage2(idx) {
+        const wrapper = stage2Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span');
+        const q = stage2Questions[idx];
+        const userAnswer = normalizeHungarian(input.value).replace(/[.,!?]/g, '');
+        const correct = normalizeHungarian(q.answer);
+
+        if (userAnswer === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Check accents!`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        stage2Questions.forEach((q, i) => {
+            const input = stage2Container.children[i].querySelector('input');
+            const userAnswer = normalizeHungarian(input.value).replace(/[.,!?]/g, '');
+            if (userAnswer === normalizeHungarian(q.answer)) correct++;
+        });
+        document.getElementById('stage2-score').textContent = `Score: ${correct} / ${stage2Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 3: Translation Practice (10 items)
+    // =============================================
+    const stage3Questions = [
+        { english: 'I know that he is here.', answer: 'tudom, hogy itt van', hint: 'tudom + hogy' },
+        { english: 'I\'m not going because I\'m tired.', answer: 'nem megyek, mert fáradt vagyok', hint: 'mert' },
+        { english: 'If you want, I\'ll help.', answer: 'ha akarod, segítek', hint: 'ha' },
+        { english: 'I work and she studies.', answer: 'dolgozom, és o tanul', hint: 'és' },
+        { english: 'It\'s good, but expensive.', answer: 'jo, de draga', hint: 'de' },
+        { english: 'When I arrived, he left.', answer: 'amikor megérkeztem, elment', hint: 'amikor' },
+        { english: 'I hope that you are well.', answer: 'remélem, hogy jol vagy', hint: 'remélem + hogy' },
+        { english: 'Do you want tea or coffee?', answer: 'teát vagy kávét kérsz', hint: 'vagy' },
+        { english: 'Since it\'s late, I\'m leaving.', answer: 'mivel keso van, megyek', hint: 'mivel' },
+        { english: 'I see that you are working.', answer: 'látom, hogy dolgozol', hint: 'látom + hogy' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 3: Translation Practice</h2>
+        <p class="mb-4 text-slate-600">Translate the English sentences into Hungarian:</p>
+        <div id="stage3-exercises" class="space-y-3"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-1 p-3 bg-blue-50 rounded-lg';
+
+        const label = document.createElement('div');
+        label.innerHTML = `<strong>${q.english}</strong> <span class="text-slate-500 text-sm">(${q.hint})</span>`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-full md:w-80 focus:ring-2 focus:ring-blue-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage3(idx);
+        });
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(label);
+        wrapper.appendChild(inputRow);
+        stage3Container.appendChild(wrapper);
+    });
+
+    function checkStage3(idx) {
+        const wrapper = stage3Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span');
+        const q = stage3Questions[idx];
+        const userAnswer = normalizeHungarian(input.value).replace(/[.,!?]/g, '');
+        const correct = normalizeHungarian(q.answer);
+
+        if (userAnswer === correct) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Check accents!`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let correct = 0;
+        stage3Questions.forEach((q, i) => {
+            const input = stage3Container.children[i].querySelector('input');
+            const userAnswer = normalizeHungarian(input.value).replace(/[.,!?]/g, '');
+            if (userAnswer === normalizeHungarian(q.answer)) correct++;
+        });
+        document.getElementById('stage3-score').textContent = `Score: ${correct} / ${stage3Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 4: Complete the Subordinate Clause (8 items)
+    // =============================================
+    const stage4Questions = [
+        { main: 'Tudom, hogy ___', prompt: 'you are tired', answer: 'fáradt vagy', translation: 'I know that you are tired.' },
+        { main: 'Remélem, hogy ___', prompt: 'the weather will be nice', answer: 'szép lesz az idő', translation: 'I hope that the weather will be nice.' },
+        { main: 'Mondta, hogy ___', prompt: 'he is coming', answer: 'jon', translation: 'He said that he is coming.' },
+        { main: 'Nem értem, hogy ___', prompt: 'why he left', answer: 'miért ment el', translation: 'I don\'t understand why he left.' },
+        { main: 'Ha ___,', prompt: 'you have time', answer: 'van időd', translation: 'If you have time,' },
+        { main: 'Amikor ___,', prompt: 'I was young', answer: 'fiatal voltam', translation: 'When I was young,' },
+        { main: 'Látom, hogy ___', prompt: 'you are studying', answer: 'tanulsz', translation: 'I see that you are studying.' },
+        { main: 'Mielőtt ___,', prompt: 'you go', answer: 'elmész', translation: 'Before you go,' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 4: Complete the Subordinate Clause</h2>
+        <p class="mb-4 text-slate-600">Complete each sentence with the subordinate clause in Hungarian:</p>
+        <div id="stage4-exercises" class="space-y-3"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-1 p-3 bg-amber-50 rounded-lg';
+
+        const label = document.createElement('div');
+        label.innerHTML = `<strong>${q.main}</strong> <span class="text-amber-700 text-sm">(${q.prompt})</span>`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-full md:w-64 focus:ring-2 focus:ring-amber-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(idx);
+        });
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(label);
+        wrapper.appendChild(inputRow);
+        stage4Container.appendChild(wrapper);
+    });
+
+    function checkStage4(idx) {
+        const wrapper = stage4Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span');
+        const q = stage4Questions[idx];
+        const userAnswer = normalizeHungarian(input.value).replace(/[.,!?]/g, '');
+        const correct = normalizeHungarian(q.answer);
+
+        if (userAnswer === correct) {
+            feedback.textContent = `Correct! (${q.translation})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Check accents!`;
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        stage4Questions.forEach((q, i) => {
+            const input = stage4Container.children[i].querySelector('input');
+            const userAnswer = normalizeHungarian(input.value).replace(/[.,!?]/g, '');
+            if (userAnswer === normalizeHungarian(q.answer)) correct++;
+        });
+        document.getElementById('stage4-score').textContent = `Score: ${correct} / ${stage4Questions.length}`;
+    }
+
+    // =============================================
+    // SUMMARY
+    // =============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 p-6 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg border border-green-200';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Lesson Summary</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-green-800 mb-2">Coordinating Conjunctions:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li><span class="conj-highlight">és</span> - and</li>
+                    <li><span class="conj-highlight">de</span> - but (general contrast)</li>
+                    <li><span class="conj-highlight">vagy</span> - or</li>
+                    <li><span class="conj-highlight">hanem</span> - but rather (after negation)</li>
+                    <li><span class="conj-highlight">tehát</span> - therefore</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-blue-800 mb-2">Subordinating Conjunctions:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li><span class="conj-highlight">hogy</span> - that</li>
+                    <li><span class="conj-highlight">mert</span> - because</li>
+                    <li><span class="conj-highlight">ha</span> - if</li>
+                    <li><span class="conj-highlight">amikor</span> - when</li>
+                    <li><span class="conj-highlight">mivel</span> - since</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-3 bg-white rounded border">
+            <p class="text-sm"><strong>Remember:</strong> In subordinate clauses, verbal prefixes usually stay attached to the verb, even in negation or questions!</p>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>

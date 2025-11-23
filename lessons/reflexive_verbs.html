@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 39: Reflexive Verbs - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .reflexive-highlight { color: #7c3aed; font-weight: 600; }
+        .suffix-highlight { color: #dc2626; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 39: Reflexive Verbs <span class="block text-xl text-slate-500 font-normal">(Visszahato igek)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn Hungarian reflexive verbs with the -kozik/-kezik/-kozik suffix. Master common daily routine verbs and understand the difference between true and pseudo-reflexives.</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    // Helper functions
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiIoOuU]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    const mainContent = document.getElementById('main-content');
+
+    // =============================================
+    // SECTION 1: What are Reflexive Verbs?
+    // =============================================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: What are Reflexive Verbs?</h2>
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mb-4">
+            <p class="text-slate-700 mb-2"><strong>Reflexive verbs</strong> describe actions that the subject performs on themselves. In Hungarian, these verbs are formed with special suffixes.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-blue-800 mb-2">Non-Reflexive:</h3>
+                <p class="text-sm"><strong>Mosom a kezem.</strong></p>
+                <p class="text-sm text-slate-500">I wash my hands. (transitive)</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-green-800 mb-2">Reflexive:</h3>
+                <p class="text-sm"><strong class="reflexive-highlight">Mosakod</strong><span class="suffix-highlight">om</span>.</strong></p>
+                <p class="text-sm text-slate-500">I wash myself. (reflexive)</p>
+            </div>
+        </div>
+        <div class="bg-amber-50 border-l-4 border-amber-500 p-4">
+            <p class="text-sm"><strong>Key Point:</strong> Unlike English where you add "myself/yourself", Hungarian uses verb suffixes to show reflexivity. The subject and object are the same person.</p>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // =============================================
+    // SECTION 2: Reflexive Verb Suffixes
+    // =============================================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Reflexive Verb Suffixes</h2>
+        <p class="mb-4">Hungarian has several reflexive suffixes that follow <strong>vowel harmony</strong>:</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Suffix</th>
+                        <th>Vowel Type</th>
+                        <th>Example Base</th>
+                        <th>Reflexive Form</th>
+                        <th>Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="suffix-highlight">-kodik</td>
+                        <td>Back vowel</td>
+                        <td>mos- (wash)</td>
+                        <td class="reflexive-highlight">mosakodik</td>
+                        <td>to wash oneself</td>
+                    </tr>
+                    <tr>
+                        <td class="suffix-highlight">-kedik</td>
+                        <td>Front vowel (unrounded)</td>
+                        <td>nez- (look)</td>
+                        <td class="reflexive-highlight">nezelkedik</td>
+                        <td>to look around</td>
+                    </tr>
+                    <tr>
+                        <td class="suffix-highlight">-kodik</td>
+                        <td>Front vowel (rounded)</td>
+                        <td>olt- (dress)</td>
+                        <td class="reflexive-highlight">oltozkodik</td>
+                        <td>to dress oneself</td>
+                    </tr>
+                    <tr>
+                        <td class="suffix-highlight">-kozik</td>
+                        <td>Back vowel</td>
+                        <td>borotvál- (shave)</td>
+                        <td class="reflexive-highlight">borotvalkozik</td>
+                        <td>to shave oneself</td>
+                    </tr>
+                    <tr>
+                        <td class="suffix-highlight">-kezik</td>
+                        <td>Front vowel</td>
+                        <td>fesul- (comb)</td>
+                        <td class="reflexive-highlight">fesulkodik</td>
+                        <td>to comb oneself</td>
+                    </tr>
+                    <tr>
+                        <td class="suffix-highlight">-kozik</td>
+                        <td>Front vowel (rounded)</td>
+                        <td>torul- (dry)</td>
+                        <td class="reflexive-highlight">torulkozik</td>
+                        <td>to dry oneself</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bg-teal-50 border-l-4 border-teal-500 p-4 mt-4">
+            <p class="text-sm"><strong>Note:</strong> Reflexive verbs follow the <strong>-ik verb conjugation</strong> pattern (first person singular ends in -om/-em/-om).</p>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // =============================================
+    // SECTION 3: Common Reflexive Verbs
+    // =============================================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Common Reflexive Verbs (Daily Routine)</h2>
+        <p class="mb-4">These reflexive verbs are essential for describing daily activities:</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Hungarian</th>
+                        <th>English</th>
+                        <th>Base Verb</th>
+                        <th>Example Sentence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="reflexive-highlight">mosakodik</td>
+                        <td>to wash oneself</td>
+                        <td>mos (wash)</td>
+                        <td>Reggel mosakodok.</td>
+                    </tr>
+                    <tr>
+                        <td class="reflexive-highlight">oltozkodik</td>
+                        <td>to get dressed</td>
+                        <td>olt (dress)</td>
+                        <td>Gyorsan oltozkodok.</td>
+                    </tr>
+                    <tr>
+                        <td class="reflexive-highlight">vetkoziik</td>
+                        <td>to undress</td>
+                        <td>vet (throw/undress)</td>
+                        <td>Este levetkozom.</td>
+                    </tr>
+                    <tr>
+                        <td class="reflexive-highlight">fesulkodik</td>
+                        <td>to comb one's hair</td>
+                        <td>fesul (comb)</td>
+                        <td>A tukorbenfesulkodok.</td>
+                    </tr>
+                    <tr>
+                        <td class="reflexive-highlight">borotvalkozik</td>
+                        <td>to shave oneself</td>
+                        <td>borotval (shave)</td>
+                        <td>Minden nap borotvalkozom.</td>
+                    </tr>
+                    <tr>
+                        <td class="reflexive-highlight">torulkozik</td>
+                        <td>to dry oneself</td>
+                        <td>torol (wipe/dry)</td>
+                        <td>Furdos utan torulkozom.</td>
+                    </tr>
+                    <tr>
+                        <td class="reflexive-highlight">sminkeli magat</td>
+                        <td>to put on makeup</td>
+                        <td>sminkel (makeup)</td>
+                        <td>Gyorsan sminkeli magat.</td>
+                    </tr>
+                    <tr>
+                        <td class="reflexive-highlight">keszulodik</td>
+                        <td>to get ready</td>
+                        <td>keszit (prepare)</td>
+                        <td>Az utazasra keszulodok.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // =============================================
+    // SECTION 4: Conjugation of Reflexive Verbs
+    // =============================================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Conjugation of Reflexive Verbs</h2>
+        <p class="mb-4">Reflexive verbs are <strong>-ik verbs</strong> and follow that conjugation pattern:</p>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-purple-50 p-4 rounded-lg">
+                <h3 class="font-bold text-purple-800 mb-2">mosakodik (to wash oneself)</h3>
+                <table class="text-sm w-full">
+                    <tr><td class="font-semibold">en</td><td class="reflexive-highlight">mosakod<span class="suffix-highlight">om</span></td></tr>
+                    <tr><td class="font-semibold">te</td><td class="reflexive-highlight">mosakod<span class="suffix-highlight">sz</span></td></tr>
+                    <tr><td class="font-semibold">o/on</td><td class="reflexive-highlight">mosakod<span class="suffix-highlight">ik</span></td></tr>
+                    <tr><td class="font-semibold">mi</td><td class="reflexive-highlight">mosakod<span class="suffix-highlight">unk</span></td></tr>
+                    <tr><td class="font-semibold">ti</td><td class="reflexive-highlight">mosakod<span class="suffix-highlight">tok</span></td></tr>
+                    <tr><td class="font-semibold">ok</td><td class="reflexive-highlight">mosakod<span class="suffix-highlight">nak</span></td></tr>
+                </table>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h3 class="font-bold text-green-800 mb-2">oltozkodik (to get dressed)</h3>
+                <table class="text-sm w-full">
+                    <tr><td class="font-semibold">en</td><td class="reflexive-highlight">oltozkod<span class="suffix-highlight">om</span></td></tr>
+                    <tr><td class="font-semibold">te</td><td class="reflexive-highlight">oltozkod<span class="suffix-highlight">sz</span> / oltozkod<span class="suffix-highlight">ol</span></td></tr>
+                    <tr><td class="font-semibold">o/on</td><td class="reflexive-highlight">oltozkod<span class="suffix-highlight">ik</span></td></tr>
+                    <tr><td class="font-semibold">mi</td><td class="reflexive-highlight">oltozkod<span class="suffix-highlight">unk</span></td></tr>
+                    <tr><td class="font-semibold">ti</td><td class="reflexive-highlight">oltozkod<span class="suffix-highlight">tok</span></td></tr>
+                    <tr><td class="font-semibold">ok</td><td class="reflexive-highlight">oltozkod<span class="suffix-highlight">nak</span></td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4">
+            <p class="text-sm"><strong>Remember:</strong> First person singular (en) uses <strong>-om/-em/-om</strong> instead of -ok/-ek, just like all -ik verbs!</p>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // =============================================
+    // SECTION 5: True vs Pseudo-Reflexives
+    // =============================================
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 5: True vs Pseudo-Reflexives</h2>
+        <p class="mb-4">Hungarian distinguishes between <strong>true reflexives</strong> and <strong>pseudo-reflexives</strong>:</p>
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="font-bold text-blue-800 mb-2">True Reflexives</h3>
+                <p class="text-sm mb-2">The action is literally done to oneself. Has a non-reflexive counterpart.</p>
+                <ul class="text-sm space-y-1">
+                    <li><strong>mos</strong> (wash sb/sth) &rarr; <span class="reflexive-highlight">mosakodik</span> (wash oneself)</li>
+                    <li><strong>fesul</strong> (comb sb) &rarr; <span class="reflexive-highlight">fesulkodik</span> (comb oneself)</li>
+                    <li><strong>torol</strong> (dry sth) &rarr; <span class="reflexive-highlight">torulkozik</span> (dry oneself)</li>
+                    <li><strong>borotval</strong> (shave sb) &rarr; <span class="reflexive-highlight">borotvalkozik</span> (shave oneself)</li>
+                </ul>
+            </div>
+            <div class="bg-orange-50 p-4 rounded-lg">
+                <h3 class="font-bold text-orange-800 mb-2">Pseudo-Reflexives</h3>
+                <p class="text-sm mb-2">No true reflexive meaning - the suffix changes the verb's meaning entirely.</p>
+                <ul class="text-sm space-y-1">
+                    <li><span class="reflexive-highlight">tartozkodik</span> (to stay/reside) - not "hold oneself"</li>
+                    <li><span class="reflexive-highlight">jelentkezik</span> (to apply/report) - not "mean oneself"</li>
+                    <li><span class="reflexive-highlight">viselkedik</span> (to behave) - not "wear oneself"</li>
+                    <li><span class="reflexive-highlight">nevetkezik</span> (to keep laughing) - intensive form</li>
+                </ul>
+            </div>
+        </div>
+        <div class="bg-rose-50 border-l-4 border-rose-500 p-4">
+            <p class="text-sm"><strong>Cultural Note:</strong> Many pseudo-reflexives need to be learned as vocabulary items since their meaning cannot be predicted from the base verb.</p>
+        </div>
+    `;
+    mainContent.appendChild(section5);
+
+    // =============================================
+    // SECTION 6: Reciprocal Meaning
+    // =============================================
+    const section6 = document.createElement('section');
+    section6.className = 'mb-8';
+    section6.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 6: Reciprocal Meaning</h2>
+        <p class="mb-4">Some reflexive verbs can express <strong>reciprocal actions</strong> (doing something to each other):</p>
+        <div class="space-y-3">
+            <div class="p-3 bg-green-50 rounded-lg">
+                <p><strong class="reflexive-highlight">talalkozik</strong> - to meet (each other)</p>
+                <p class="text-sm text-slate-600">Holnap talalkozunk. - We will meet tomorrow.</p>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg">
+                <p><strong class="reflexive-highlight">beszelget</strong> - to chat (with each other)</p>
+                <p class="text-sm text-slate-600">Sokat beszelgetnek. - They chat a lot.</p>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg">
+                <p><strong class="reflexive-highlight">olel/olelkezik</strong> - to hug (each other)</p>
+                <p class="text-sm text-slate-600">A baratnoim olelkeztek. - My friends hugged each other.</p>
+            </div>
+            <div class="p-3 bg-pink-50 rounded-lg">
+                <p><strong class="reflexive-highlight">csokolozik</strong> - to kiss (each other)</p>
+                <p class="text-sm text-slate-600">A par csokolozik. - The couple is kissing.</p>
+            </div>
+        </div>
+        <div class="bg-teal-50 border-l-4 border-teal-500 p-4 mt-4">
+            <p class="text-sm"><strong>Note:</strong> Context usually makes it clear whether a reflexive verb has a true reflexive or reciprocal meaning.</p>
+        </div>
+    `;
+    mainContent.appendChild(section6);
+
+    // =============================================
+    // STAGE 1: Match Reflexive to Base Verb
+    // =============================================
+    const stage1Pairs = [
+        { base: 'mos (wash)', reflexive: 'mosakodik' },
+        { base: 'fesul (comb)', reflexive: 'fesulkodik' },
+        { base: 'olt (dress)', reflexive: 'oltozkodik' },
+        { base: 'torol (dry)', reflexive: 'torulkozik' },
+        { base: 'borotval (shave)', reflexive: 'borotvalkozik' },
+        { base: 'keszit (prepare)', reflexive: 'keszulodik' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 1: Match Base Verb to Reflexive Form</h2>
+        <p class="mb-4 text-slate-600">Type the reflexive form of each base verb.</p>
+        <div id="stage1-exercises" class="space-y-4"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Container = document.getElementById('stage1-exercises');
+
+    stage1Pairs.forEach((pair, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-purple-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[200px] text-slate-800';
+        label.innerHTML = `<strong>${pair.base}</strong> &rarr;`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded px-3 py-1 w-48 text-center focus:ring-2 focus:ring-purple-500';
+        input.placeholder = 'Reflexive form...';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage1(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage1Container.appendChild(wrapper);
+    });
+
+    function checkStage1(idx) {
+        const wrapper = stage1Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const userAnswer = normalizeHungarian(input.value);
+        const correctAnswer = normalizeHungarian(stage1Pairs[idx].reflexive);
+
+        if (userAnswer === correctAnswer || removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+            input.classList.add('bg-green-50', 'border-green-500');
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${stage1Pairs[idx].reflexive}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+            input.classList.add('bg-red-50', 'border-red-500');
+        }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let correct = 0;
+        for (let i = 0; i < stage1Pairs.length; i++) {
+            const input = stage1Container.children[i].querySelector('input');
+            const answer = normalizeHungarian(input.value);
+            if (answer === normalizeHungarian(stage1Pairs[i].reflexive) ||
+                removeAccents(answer) === removeAccents(normalizeHungarian(stage1Pairs[i].reflexive))) {
+                correct++;
+            }
+        }
+        document.getElementById('stage1-score').textContent = `Score: ${correct} / ${stage1Pairs.length}`;
+    }
+
+    // =============================================
+    // STAGE 2: Conjugation Practice
+    // =============================================
+    const stage2Questions = [
+        { verb: 'mosakodik', pronoun: 'en', answer: 'mosakodok', note: 'I wash myself' },
+        { verb: 'oltozkodik', pronoun: 'te', answer: 'oltozkodsz', note: 'You get dressed' },
+        { verb: 'fesulkodik', pronoun: 'o', answer: 'fesulkodik', note: 'He/She combs their hair' },
+        { verb: 'borotvalkozik', pronoun: 'mi', answer: 'borotvalkozunk', note: 'We shave' },
+        { verb: 'torulkozik', pronoun: 'ti', answer: 'torulkoztok', note: 'You (pl.) dry yourselves' },
+        { verb: 'keszulodik', pronoun: 'ok', answer: 'keszulodnek', note: 'They get ready' },
+        { verb: 'mosakodik', pronoun: 'o', answer: 'mosakodik', note: 'He/She washes' },
+        { verb: 'oltozkodik', pronoun: 'en', answer: 'oltozkodom', note: 'I get dressed' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 2: Conjugate Reflexive Verbs</h2>
+        <p class="mb-4 text-slate-600">Conjugate each reflexive verb for the given pronoun.</p>
+        <div id="stage2-exercises" class="space-y-4"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-green-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[250px] text-slate-800';
+        label.innerHTML = `<strong>${q.pronoun}</strong> + <span class="reflexive-highlight">${q.verb}</span> = ?`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded px-3 py-1 w-48 text-center focus:ring-2 focus:ring-green-500';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage2(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        stage2Container.appendChild(wrapper);
+    });
+
+    function checkStage2(idx) {
+        const wrapper = stage2Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const userAnswer = normalizeHungarian(input.value);
+        const correctAnswer = normalizeHungarian(stage2Questions[idx].answer);
+
+        if (userAnswer === correctAnswer || removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Correct! (${stage2Questions[idx].note})`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+            input.classList.add('bg-green-100', 'border-green-500');
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${stage2Questions[idx].answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+            input.classList.add('bg-red-100', 'border-red-500');
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        for (let i = 0; i < stage2Questions.length; i++) {
+            const feedback = stage2Container.children[i].querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        document.getElementById('stage2-score').textContent = `Score: ${correct} / ${stage2Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 3: Daily Routine Sentences
+    // =============================================
+    const stage3Questions = [
+        { hungarian: 'Reggel ___. (wash myself)', answer: 'mosakodok', verb: 'mosakodik' },
+        { hungarian: 'Gyorsan ___. (get dressed)', answer: 'oltozkodom', verb: 'oltozkodik' },
+        { hungarian: 'A tukorbenfesul ___. (comb my hair)', answer: 'fesulkodom', verb: 'fesulkodik' },
+        { hungarian: 'Minden nap ___. (shave)', answer: 'borotvalkozom', verb: 'borotvalkozik' },
+        { hungarian: 'Furdos utan ___. (dry myself)', answer: 'torulkozom', verb: 'torulkozik' },
+        { hungarian: 'Az iskolara ___. (getting ready)', answer: 'keszulodom', verb: 'keszulodik' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 3: Complete the Daily Routine</h2>
+        <p class="mb-4 text-slate-600">Fill in the correct reflexive verb form (first person singular).</p>
+        <div id="stage3-exercises" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-blue-50 rounded-lg';
+
+        const sentenceDiv = document.createElement('div');
+        sentenceDiv.className = 'mb-2 text-slate-800';
+        sentenceDiv.innerHTML = q.hungarian.replace('___', '<input type="text" class="border border-slate-300 rounded px-2 py-1 w-40 text-center focus:ring-2 focus:ring-blue-500" />');
+
+        const hintDiv = document.createElement('div');
+        hintDiv.className = 'text-sm text-slate-500 italic';
+        hintDiv.textContent = `Hint: ${q.verb}`;
+
+        const feedback = document.createElement('div');
+        feedback.className = 'text-sm font-semibold mt-2';
+
+        const input = sentenceDiv.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage3(idx);
+        });
+
+        wrapper.appendChild(sentenceDiv);
+        wrapper.appendChild(hintDiv);
+        wrapper.appendChild(feedback);
+        stage3Container.appendChild(wrapper);
+    });
+
+    function checkStage3(idx) {
+        const wrapper = stage3Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('div:last-child');
+        const userAnswer = normalizeHungarian(input.value);
+        const correctAnswer = normalizeHungarian(stage3Questions[idx].answer);
+
+        if (userAnswer === correctAnswer || removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold mt-2';
+            input.classList.add('bg-green-100', 'border-green-500');
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${stage3Questions[idx].answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold mt-2';
+            input.classList.add('bg-red-100', 'border-red-500');
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let correct = 0;
+        for (let i = 0; i < stage3Questions.length; i++) {
+            const feedback = stage3Container.children[i].querySelector('div:last-child');
+            if (feedback.textContent === 'Correct!') correct++;
+        }
+        document.getElementById('stage3-score').textContent = `Score: ${correct} / ${stage3Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 4: True vs Pseudo-Reflexive Identification
+    // =============================================
+    const stage4Questions = [
+        { verb: 'mosakodik', type: 'true', explanation: 'From mos (to wash) - literally washing oneself' },
+        { verb: 'tartozkodik', type: 'pseudo', explanation: 'Means "to stay/reside" - not from a clear base verb' },
+        { verb: 'oltozkodik', type: 'true', explanation: 'From oltoz (to dress) - literally dressing oneself' },
+        { verb: 'viselkedik', type: 'pseudo', explanation: 'Means "to behave" - not literally wearing oneself' },
+        { verb: 'fesulkodik', type: 'true', explanation: 'From fesul (to comb) - literally combing oneself' },
+        { verb: 'jelentkezik', type: 'pseudo', explanation: 'Means "to apply/report" - not from jelent in reflexive sense' },
+        { verb: 'torulkozik', type: 'true', explanation: 'From torol (to wipe/dry) - literally drying oneself' },
+        { verb: 'erdekelodik', type: 'pseudo', explanation: 'Means "to be interested" - not literally interesting oneself' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 4: True or Pseudo-Reflexive?</h2>
+        <p class="mb-4 text-slate-600">Identify whether each verb is a true reflexive or pseudo-reflexive.</p>
+        <div id="stage4-exercises" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-slate-50 rounded-lg';
+
+        const verbDiv = document.createElement('div');
+        verbDiv.className = 'mb-2 text-lg font-semibold text-slate-800';
+        verbDiv.innerHTML = `<span class="reflexive-highlight">${q.verb}</span>`;
+
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'flex gap-4 mb-2';
+
+        ['True Reflexive', 'Pseudo-Reflexive'].forEach(option => {
+            const btn = document.createElement('button');
+            btn.className = 'px-4 py-2 bg-white border border-slate-300 rounded-lg hover:bg-purple-50 hover:border-purple-400 transition-colors';
+            btn.textContent = option;
+            btn.onclick = () => checkStage4(idx, option.toLowerCase().includes('true') ? 'true' : 'pseudo', btn);
+            optionsDiv.appendChild(btn);
+        });
+
+        const feedback = document.createElement('div');
+        feedback.className = 'text-sm font-semibold';
+        feedback.id = `stage4-feedback-${idx}`;
+
+        wrapper.appendChild(verbDiv);
+        wrapper.appendChild(optionsDiv);
+        wrapper.appendChild(feedback);
+        stage4Container.appendChild(wrapper);
+    });
+
+    function checkStage4(idx, selected, btn) {
+        const feedback = document.getElementById(`stage4-feedback-${idx}`);
+        const wrapper = stage4Container.children[idx];
+        const buttons = wrapper.querySelectorAll('button');
+
+        buttons.forEach(b => {
+            b.disabled = true;
+            b.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+        });
+
+        if (selected === stage4Questions[idx].type) {
+            btn.classList.add('bg-green-100', 'border-green-500');
+            feedback.textContent = `Correct! ${stage4Questions[idx].explanation}`;
+            feedback.className = 'text-sm font-semibold text-green-600';
+        } else {
+            btn.classList.add('bg-red-100', 'border-red-500');
+            feedback.textContent = `Incorrect. ${stage4Questions[idx].explanation}`;
+            feedback.className = 'text-sm font-semibold text-red-600';
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        for (let i = 0; i < stage4Questions.length; i++) {
+            const feedback = document.getElementById(`stage4-feedback-${i}`);
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        document.getElementById('stage4-score').textContent = `Score: ${correct} / ${stage4Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 5: Translation Practice
+    // =============================================
+    const stage5Questions = [
+        { english: 'I wash myself in the morning.', answer: 'reggel mosakodok', alt: ['mosakodok reggel'] },
+        { english: 'She is getting dressed quickly.', answer: 'gyorsan oltozkodik', alt: ['o gyorsan oltozkodik'] },
+        { english: 'We are getting ready for the trip.', answer: 'keszulodunk az utazasra', alt: ['az utazasra keszulodunk'] },
+        { english: 'He shaves every day.', answer: 'minden nap borotvalkozik', alt: ['borotvalkozik minden nap'] },
+        { english: 'They dry themselves after the bath.', answer: 'furdos utan torulkoznak', alt: ['torulkoznak furdos utan'] },
+        { english: 'You (sg.) comb your hair in the mirror.', answer: 'a tukorben fesulkodsz', alt: ['fesulkodsz a tukorben'] }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 5: Translation Practice</h2>
+        <p class="mb-4 text-slate-600">Translate the sentences using reflexive verbs.</p>
+        <div id="stage5-exercises" class="space-y-4"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Container = document.getElementById('stage5-exercises');
+
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-orange-50 rounded-lg';
+
+        const promptDiv = document.createElement('div');
+        promptDiv.className = 'mb-2';
+        promptDiv.innerHTML = `<strong class="text-slate-800">${q.english}</strong>`;
+
+        const inputDiv = document.createElement('div');
+        inputDiv.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-2 w-full md:w-96 focus:ring-2 focus:ring-orange-500';
+        input.placeholder = 'Type Hungarian translation...';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage5(idx);
+        });
+
+        inputDiv.appendChild(input);
+        inputDiv.appendChild(feedback);
+        wrapper.appendChild(promptDiv);
+        wrapper.appendChild(inputDiv);
+        stage5Container.appendChild(wrapper);
+    });
+
+    function checkStage5(idx) {
+        const wrapper = stage5Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span');
+        const userAnswer = normalizeHungarian(input.value).replace(/[.,!?]/g, '');
+        const q = stage5Questions[idx];
+
+        const allAnswers = [q.answer, ...q.alt];
+        const isCorrect = allAnswers.some(ans =>
+            removeAccents(userAnswer) === removeAccents(normalizeHungarian(ans))
+        );
+
+        if (isCorrect) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${q.answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage5Score();
+    }
+
+    function updateStage5Score() {
+        let correct = 0;
+        for (let i = 0; i < stage5Questions.length; i++) {
+            const feedback = stage5Container.children[i].querySelector('span');
+            if (feedback.textContent === 'Correct!') correct++;
+        }
+        document.getElementById('stage5-score').textContent = `Score: ${correct} / ${stage5Questions.length}`;
+    }
+
+    // =============================================
+    // SUMMARY SECTION
+    // =============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-200';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Summary: Reflexive Verbs in Hungarian</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-purple-800 mb-2">Reflexive Suffixes:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li><strong>-kodik/-kedik/-kodik</strong> (back/front vowel)</li>
+                    <li><strong>-kozik/-kezik/-kozik</strong> (variant)</li>
+                    <li>Follow vowel harmony rules</li>
+                    <li>Conjugate as -ik verbs</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-purple-800 mb-2">Common Reflexive Verbs:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li><strong>mosakodik</strong> - to wash oneself</li>
+                    <li><strong>oltozkodik</strong> - to get dressed</li>
+                    <li><strong>fesulkodik</strong> - to comb one's hair</li>
+                    <li><strong>borotvalkozik</strong> - to shave</li>
+                    <li><strong>torulkozik</strong> - to dry oneself</li>
+                    <li><strong>keszulodik</strong> - to get ready</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-3 bg-white rounded border border-purple-200">
+            <p class="text-sm text-slate-700"><strong>Key Difference:</strong></p>
+            <ul class="list-disc pl-6 text-sm text-slate-600 mt-1">
+                <li><strong>True reflexives:</strong> Action done to oneself (mosakodik = wash oneself)</li>
+                <li><strong>Pseudo-reflexives:</strong> No literal reflexive meaning (viselkedik = behave)</li>
+            </ul>
+        </div>
+        <p class="mt-4 text-sm text-slate-600">Well done! Continue to Lesson 40 to learn about passive and impersonal constructions in Hungarian.</p>
+    `;
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>

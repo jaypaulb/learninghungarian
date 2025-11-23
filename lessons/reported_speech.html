@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 37: Reported Speech - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .verb-highlight { color: #0f766e; font-weight: 600; }
+        .conjunction-highlight { color: #7c3aed; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 37: Reported Speech <span class="block text-xl text-slate-500 font-normal">(Fuggobeszed)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn how to report what someone said, asked, or answered in Hungarian using the conjunction "hogy" and reporting verbs.</p>
+    </header>
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    // Helper functions
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiIoOuU]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    const mainContent = document.getElementById('main-content');
+
+    // =============================================
+    // SECTION 1: Introduction to Reported Speech
+    // =============================================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: What is Reported Speech?</h2>
+        <div class="bg-violet-50 border-l-4 border-violet-500 p-4 mb-4">
+            <p class="text-slate-700 mb-2"><strong>Reported speech (fuggobeszed)</strong> is used to tell someone what another person said, asked, or answered without quoting their exact words.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-blue-800 mb-2">Direct Speech:</h3>
+                <p class="text-sm">"Ehen vagyok." - "I am hungry."</p>
+                <p class="text-sm text-slate-500 italic mt-1">Exact words quoted</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-green-800 mb-2">Reported Speech:</h3>
+                <p class="text-sm">Azt mondta, <span class="conjunction-highlight">hogy</span> ehes.</p>
+                <p class="text-sm text-slate-500 italic mt-1">He/She said that he/she is hungry.</p>
+            </div>
+        </div>
+        <div class="bg-amber-50 border-l-4 border-amber-500 p-4">
+            <p class="text-sm"><strong>Key difference from English:</strong> Hungarian often keeps the original tense in reported speech, unlike English which typically shifts tenses back.</p>
+        </div>
+    `;
+    mainContent.appendChild(section1);
+
+    // =============================================
+    // SECTION 2: Reporting Verbs
+    // =============================================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Reporting Verbs</h2>
+        <p class="mb-4">Hungarian uses several verbs to introduce reported speech:</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Hungarian</th>
+                        <th>English</th>
+                        <th>Example</th>
+                        <th>Translation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="verb-highlight">mond</td>
+                        <td>to say/tell</td>
+                        <td>Azt mondja, hogy...</td>
+                        <td>He/She says that...</td>
+                    </tr>
+                    <tr>
+                        <td class="verb-highlight">kerdez</td>
+                        <td>to ask</td>
+                        <td>Azt kerdezi, hogy...</td>
+                        <td>He/She asks whether...</td>
+                    </tr>
+                    <tr>
+                        <td class="verb-highlight">valaszol</td>
+                        <td>to answer/reply</td>
+                        <td>Azt valaszolja, hogy...</td>
+                        <td>He/She answers that...</td>
+                    </tr>
+                    <tr>
+                        <td class="verb-highlight">gondol</td>
+                        <td>to think</td>
+                        <td>Azt gondolja, hogy...</td>
+                        <td>He/She thinks that...</td>
+                    </tr>
+                    <tr>
+                        <td class="verb-highlight">hisz</td>
+                        <td>to believe</td>
+                        <td>Azt hiszi, hogy...</td>
+                        <td>He/She believes that...</td>
+                    </tr>
+                    <tr>
+                        <td class="verb-highlight">tud</td>
+                        <td>to know</td>
+                        <td>Tudja, hogy...</td>
+                        <td>He/She knows that...</td>
+                    </tr>
+                    <tr>
+                        <td class="verb-highlight">lat</td>
+                        <td>to see</td>
+                        <td>Latja, hogy...</td>
+                        <td>He/She sees that...</td>
+                    </tr>
+                    <tr>
+                        <td class="verb-highlight">hall</td>
+                        <td>to hear</td>
+                        <td>Hallja, hogy...</td>
+                        <td>He/She hears that...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bg-teal-50 border-l-4 border-teal-500 p-4 mt-4">
+            <p class="text-sm"><strong>Note:</strong> "Azt" (that - accusative) often precedes the reporting verb when emphasizing what was said. It refers forward to the "hogy" clause.</p>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // =============================================
+    // SECTION 3: The Conjunction "hogy"
+    // =============================================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: The Conjunction "hogy"</h2>
+        <p class="mb-4">The conjunction <span class="conjunction-highlight">hogy</span> (that) connects the reporting verb to the reported content:</p>
+        <div class="bg-slate-50 p-4 rounded-lg mb-4">
+            <p class="text-lg font-semibold mb-2">Structure:</p>
+            <p class="text-slate-700">Subject + Reporting Verb + <span class="conjunction-highlight">hogy</span> + Reported Content</p>
+        </div>
+        <div class="space-y-3">
+            <div class="p-3 bg-green-50 rounded-lg">
+                <p><strong>Peter mondta, <span class="conjunction-highlight">hogy</span> farad.</strong></p>
+                <p class="text-sm text-slate-600">Peter said that he is tired.</p>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg">
+                <p><strong>Kerdezte, <span class="conjunction-highlight">hogy</span> hol lakom.</strong></p>
+                <p class="text-sm text-slate-600">He/She asked where I live.</p>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg">
+                <p><strong>Tudtam, <span class="conjunction-highlight">hogy</span> igaz.</strong></p>
+                <p class="text-sm text-slate-600">I knew that it was true.</p>
+            </div>
+        </div>
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4">
+            <p class="text-sm"><strong>For questions:</strong> "hogy" can mean "whether/if" when reporting yes/no questions. For wh-questions, the question word replaces or follows "hogy".</p>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // =============================================
+    // SECTION 4: Tense Agreement
+    // =============================================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Tense in Reported Speech</h2>
+        <p class="mb-4">Unlike English, Hungarian typically <strong>keeps the original tense</strong> in reported speech:</p>
+        <div class="overflow-x-auto">
+            <table class="text-sm">
+                <thead>
+                    <tr>
+                        <th>Direct Speech</th>
+                        <th>Reported Speech (Hungarian)</th>
+                        <th>English Translation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>"Farad <strong>vagyok</strong>." (Present)</td>
+                        <td>Mondta, hogy farad<span class="verb-highlight">t</span>. / Mondta, hogy farad.</td>
+                        <td>He said he was tired.</td>
+                    </tr>
+                    <tr>
+                        <td>"Dolgoz<strong>tam</strong>." (Past)</td>
+                        <td>Mondta, hogy dolgoz<span class="verb-highlight">ott</span>.</td>
+                        <td>He said he had worked.</td>
+                    </tr>
+                    <tr>
+                        <td>"El <strong>fogok</strong> menni." (Future)</td>
+                        <td>Mondta, hogy el <span class="verb-highlight">fog</span> menni.</td>
+                        <td>He said he would go.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bg-rose-50 border-l-4 border-rose-500 p-4 mt-4">
+            <p class="text-sm"><strong>Important:</strong> In colloquial Hungarian, the tense often stays the same as in direct speech. However, in more formal contexts or written Hungarian, tense shifting similar to English may occur.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-slate-700 mb-2">Keeping Original Tense:</h3>
+                <p class="text-sm">"Holnap jovok." &rarr;</p>
+                <p class="text-sm verb-highlight">Mondta, hogy holnap jon.</p>
+                <p class="text-xs text-slate-500">He said he is coming tomorrow.</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <h3 class="font-semibold text-slate-700 mb-2">With Tense Shift:</h3>
+                <p class="text-sm">"Holnap jovok." &rarr;</p>
+                <p class="text-sm verb-highlight">Mondta, hogy masnap jon.</p>
+                <p class="text-xs text-slate-500">He said he would come the next day.</p>
+            </div>
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // =============================================
+    // SECTION 5: Reporting Questions
+    // =============================================
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 5: Reporting Questions</h2>
+        <p class="mb-4">There are two types of questions to report:</p>
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="font-bold text-blue-800 mb-2">Yes/No Questions</h3>
+                <p class="text-sm mb-2">Use <span class="conjunction-highlight">hogy</span> (whether/if):</p>
+                <p class="text-sm">"Ehen vagy?" &rarr;</p>
+                <p class="text-sm font-semibold">Kerdezte, <span class="conjunction-highlight">hogy</span> ehes vagyok-e.</p>
+                <p class="text-xs text-slate-500 mt-1">He asked whether I was hungry.</p>
+                <div class="mt-2 p-2 bg-blue-100 rounded">
+                    <p class="text-xs"><strong>Note:</strong> The particle "-e" can be added to the verb in formal speech to mark it as a question.</p>
+                </div>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h3 class="font-bold text-green-800 mb-2">Wh-Questions</h3>
+                <p class="text-sm mb-2">Keep the question word:</p>
+                <p class="text-sm">"Hol laksz?" &rarr;</p>
+                <p class="text-sm font-semibold">Kerdezte, <span class="conjunction-highlight">hogy</span> hol lakom.</p>
+                <p class="text-xs text-slate-500 mt-1">He asked where I live.</p>
+                <div class="mt-2 p-2 bg-green-100 rounded">
+                    <p class="text-xs"><strong>Question words:</strong> ki (who), mi (what), hol (where), mikor (when), miert (why), hogyan (how)</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-4">
+            <p class="text-sm"><strong>Pronoun changes:</strong> When reporting, pronouns change perspective:</p>
+            <ul class="list-disc pl-6 mt-2 text-sm">
+                <li>"en" (I) &rarr; "o" (he/she) or keeps "en" if you are the speaker</li>
+                <li>"te" (you) &rarr; "en" (I) if you were addressed, or "o" (he/she)</li>
+            </ul>
+        </div>
+    `;
+    mainContent.appendChild(section5);
+
+    // =============================================
+    // STAGE 1: Identifying Reporting Verbs
+    // =============================================
+    const stage1Questions = [
+        { sentence: 'Peter ___ hogy farad.', options: ['mondta', 'kerdezi', 'valaszol'], answer: 'mondta', translation: 'Peter said that he is tired.' },
+        { sentence: 'Anna ___ hogy hol van a konyvtar.', options: ['mondta', 'kerdezte', 'valaszolta'], answer: 'kerdezte', translation: 'Anna asked where the library is.' },
+        { sentence: 'Azt ___ hogy igen.', options: ['mondtam', 'kerdeztem', 'valaszoltam'], answer: 'valaszoltam', translation: 'I answered that yes.' },
+        { sentence: 'A tanar ___ hogy holnap vizsga lesz.', options: ['mondta', 'kerdezte', 'valaszolta'], answer: 'mondta', translation: 'The teacher said there will be an exam tomorrow.' },
+        { sentence: 'A rendor ___ hogy van-e jogositvanyom.', options: ['mondta', 'kerdezte', 'valaszolta'], answer: 'kerdezte', translation: 'The police officer asked if I have a license.' },
+        { sentence: 'Az orvos ___ hogy pihennem kell.', options: ['mondta', 'kerdezte', 'valaszolta'], answer: 'mondta', translation: 'The doctor said I need to rest.' },
+        { sentence: 'Mari ___ hogy nem tud jonni.', options: ['mondta', 'kerdezte', 'valaszolta'], answer: 'valaszolta', translation: 'Mari answered that she cannot come.' },
+        { sentence: '___ hogy ez igaz?', options: ['Mondod', 'Kerdezed', 'Gondolod'], answer: 'Gondolod', translation: 'Do you think this is true?' }
+    ];
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 1: Choose the Correct Reporting Verb</h2>
+        <p class="mb-4 text-slate-600">Select the appropriate reporting verb for each sentence.</p>
+        <div id="stage1-exercises" class="space-y-4"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Container = document.getElementById('stage1-exercises');
+
+    stage1Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-slate-50 rounded-lg';
+
+        const sentenceDiv = document.createElement('div');
+        sentenceDiv.className = 'mb-2 text-slate-800';
+        sentenceDiv.innerHTML = q.sentence.replace('___', '<span class="font-bold text-violet-600">[___]</span>');
+
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'flex flex-wrap gap-2 mb-2';
+
+        q.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'px-4 py-2 bg-white border border-slate-300 rounded-lg hover:bg-violet-50 hover:border-violet-400 transition-colors';
+            btn.textContent = opt;
+            btn.onclick = () => checkStage1(idx, opt, btn);
+            optionsDiv.appendChild(btn);
+        });
+
+        const feedback = document.createElement('div');
+        feedback.className = 'text-sm font-semibold';
+        feedback.id = `stage1-feedback-${idx}`;
+
+        wrapper.appendChild(sentenceDiv);
+        wrapper.appendChild(optionsDiv);
+        wrapper.appendChild(feedback);
+        stage1Container.appendChild(wrapper);
+    });
+
+    function checkStage1(idx, selected, btn) {
+        const feedback = document.getElementById(`stage1-feedback-${idx}`);
+        const wrapper = stage1Container.children[idx];
+        const buttons = wrapper.querySelectorAll('button');
+
+        buttons.forEach(b => {
+            b.disabled = true;
+            b.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+        });
+
+        if (selected === stage1Questions[idx].answer) {
+            btn.classList.add('bg-green-100', 'border-green-500');
+            feedback.textContent = `Correct! ${stage1Questions[idx].translation}`;
+            feedback.className = 'text-sm font-semibold text-green-600';
+        } else {
+            btn.classList.add('bg-red-100', 'border-red-500');
+            feedback.textContent = `Incorrect. Answer: ${stage1Questions[idx].answer}. ${stage1Questions[idx].translation}`;
+            feedback.className = 'text-sm font-semibold text-red-600';
+        }
+        updateStage1Score();
+    }
+
+    function updateStage1Score() {
+        let correct = 0;
+        for (let i = 0; i < stage1Questions.length; i++) {
+            const feedback = document.getElementById(`stage1-feedback-${i}`);
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        document.getElementById('stage1-score').textContent = `Score: ${correct} / ${stage1Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 2: Direct to Reported Speech Conversion
+    // =============================================
+    const stage2Questions = [
+        { direct: '"Ehes vagyok."', answer: 'azt mondta hogy ehes', hint: 'He/She said...', context: 'He said: "I am hungry."' },
+        { direct: '"Hol van az allomas?"', answer: 'azt kerdezte hogy hol van az allomas', hint: 'He/She asked...', context: 'He asked: "Where is the station?"' },
+        { direct: '"Nem ertem."', answer: 'azt mondta hogy nem erti', hint: 'He/She said...', context: 'He said: "I don\'t understand."' },
+        { direct: '"Holnap jovok."', answer: 'azt mondta hogy holnap jon', hint: 'He/She said...', context: 'He said: "I will come tomorrow."' },
+        { direct: '"Beszelsz angolul?"', answer: 'azt kerdezte hogy beszelek-e angolul', hint: 'He/She asked whether...', context: 'He asked: "Do you speak English?"' },
+        { direct: '"Mar ettem."', answer: 'azt mondta hogy mar evett', hint: 'He/She said...', context: 'He said: "I already ate."' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 2: Convert Direct to Reported Speech</h2>
+        <p class="mb-4 text-slate-600">Convert the direct speech to reported speech. Start with "Azt mondta/kerdezte hogy..."</p>
+        <div id="stage2-exercises" class="space-y-4"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-violet-50 rounded-lg';
+
+        const promptDiv = document.createElement('div');
+        promptDiv.className = 'mb-2';
+        promptDiv.innerHTML = `<strong class="text-slate-800">${q.direct}</strong><br><span class="text-sm text-slate-500 italic">${q.context}</span><br><span class="text-sm text-violet-600">${q.hint}</span>`;
+
+        const inputDiv = document.createElement('div');
+        inputDiv.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-2 w-full md:w-96 focus:ring-2 focus:ring-violet-500';
+        input.placeholder = 'Type reported speech...';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage2(idx);
+        });
+
+        inputDiv.appendChild(input);
+        inputDiv.appendChild(feedback);
+        wrapper.appendChild(promptDiv);
+        wrapper.appendChild(inputDiv);
+        stage2Container.appendChild(wrapper);
+    });
+
+    function checkStage2(idx) {
+        const wrapper = stage2Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span');
+        const userAnswer = normalizeHungarian(input.value).replace(/[.,!?]/g, '');
+        const correctAnswer = normalizeHungarian(stage2Questions[idx].answer);
+
+        if (userAnswer === correctAnswer || removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (userAnswer.includes('hogy') && userAnswer.includes('mond')) {
+            feedback.textContent = 'Close! Check the verb form and word order.';
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${stage2Questions[idx].answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        let correct = 0;
+        for (let i = 0; i < stage2Questions.length; i++) {
+            const feedback = stage2Container.children[i].querySelector('span');
+            if (feedback.textContent === 'Correct!') correct++;
+        }
+        document.getElementById('stage2-score').textContent = `Score: ${correct} / ${stage2Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 3: Fill in the Conjunction
+    // =============================================
+    const stage3Questions = [
+        { sentence: 'Mondta, ___ kesobbjon.', answer: 'hogy', translation: 'He said that he would come later.' },
+        { sentence: 'Kerdezte, ___ hol lakom.', answer: 'hogy', translation: 'He asked where I live.' },
+        { sentence: 'Tudtam, ___ igaza van.', answer: 'hogy', translation: 'I knew that he was right.' },
+        { sentence: 'Latom, ___ faradt vagy.', answer: 'hogy', translation: 'I see that you are tired.' },
+        { sentence: 'Hallottam, ___ megerkezett.', answer: 'hogy', translation: 'I heard that he arrived.' },
+        { sentence: 'Gondolom, ___ holnap esni fog.', answer: 'hogy', translation: 'I think that it will rain tomorrow.' },
+        { sentence: 'Nem tudja, ___ ki csengotett.', answer: 'hogy', translation: 'He doesn\'t know who rang the bell.' },
+        { sentence: 'Remelem, ___ sikerul.', answer: 'hogy', translation: 'I hope that it will succeed.' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 3: Fill in the Conjunction</h2>
+        <p class="mb-4 text-slate-600">Complete each sentence with the correct conjunction (hogy).</p>
+        <div id="stage3-exercises" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-2 p-3 bg-slate-50 rounded-lg';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[300px] text-slate-800';
+        label.innerHTML = q.sentence.replace('___', '<input type="text" class="border border-slate-300 rounded px-2 py-1 w-20 text-center focus:ring-2 focus:ring-violet-500" />');
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        const input = label.querySelector('input');
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage3(idx);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(feedback);
+        stage3Container.appendChild(wrapper);
+    });
+
+    function checkStage3(idx) {
+        const wrapper = stage3Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const userAnswer = normalizeHungarian(input.value);
+
+        if (userAnswer === stage3Questions[idx].answer) {
+            feedback.textContent = `Correct! ${stage3Questions[idx].translation}`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+            input.classList.add('bg-green-50', 'border-green-500');
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${stage3Questions[idx].answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+            input.classList.add('bg-red-50', 'border-red-500');
+        }
+        updateStage3Score();
+    }
+
+    function updateStage3Score() {
+        let correct = 0;
+        for (let i = 0; i < stage3Questions.length; i++) {
+            const input = stage3Container.children[i].querySelector('input');
+            if (normalizeHungarian(input.value) === stage3Questions[i].answer) correct++;
+        }
+        document.getElementById('stage3-score').textContent = `Score: ${correct} / ${stage3Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 4: Reporting Questions Practice
+    // =============================================
+    const stage4Questions = [
+        { direct: 'Hany ora van?', type: 'wh', answer: 'kerdezte hogy hany ora van', translation: 'He asked what time it is.' },
+        { direct: 'Beszelsz magyarul?', type: 'yn', answer: 'kerdezte hogy beszelek-e magyarul', translation: 'He asked whether I speak Hungarian.' },
+        { direct: 'Mikor erkezel?', type: 'wh', answer: 'kerdezte hogy mikor erkezem', translation: 'He asked when I would arrive.' },
+        { direct: 'Szereted a kavet?', type: 'yn', answer: 'kerdezte hogy szeretem-e a kavet', translation: 'He asked whether I like coffee.' },
+        { direct: 'Hol van a posta?', type: 'wh', answer: 'kerdezte hogy hol van a posta', translation: 'He asked where the post office is.' },
+        { direct: 'Eljossz a buliba?', type: 'yn', answer: 'kerdezte hogy elmegyek-e a buliba', translation: 'He asked whether I would come to the party.' }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 4: Report Questions</h2>
+        <p class="mb-4 text-slate-600">Convert direct questions to reported speech. Use "Kerdezte, hogy..."</p>
+        <div id="stage4-exercises" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-blue-50 rounded-lg';
+
+        const promptDiv = document.createElement('div');
+        promptDiv.className = 'mb-2';
+        promptDiv.innerHTML = `<strong class="text-slate-800">"${q.direct}"</strong><br><span class="text-sm text-blue-600">${q.type === 'yn' ? 'Yes/No question - use -e' : 'Wh-question - keep the question word'}</span>`;
+
+        const inputDiv = document.createElement('div');
+        inputDiv.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-2 w-full md:w-96 focus:ring-2 focus:ring-blue-500';
+        input.placeholder = 'Kerdezte, hogy...';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage4(idx);
+        });
+
+        inputDiv.appendChild(input);
+        inputDiv.appendChild(feedback);
+        wrapper.appendChild(promptDiv);
+        wrapper.appendChild(inputDiv);
+        stage4Container.appendChild(wrapper);
+    });
+
+    function checkStage4(idx) {
+        const wrapper = stage4Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span');
+        const userAnswer = normalizeHungarian(input.value).replace(/[.,!?]/g, '');
+        const correctAnswer = normalizeHungarian(stage4Questions[idx].answer);
+
+        if (userAnswer === correctAnswer || removeAccents(userAnswer) === removeAccents(correctAnswer)) {
+            feedback.textContent = `Correct! ${stage4Questions[idx].translation}`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (userAnswer.includes('kerdezte') && userAnswer.includes('hogy')) {
+            feedback.textContent = 'Close! Check verb agreement and word order.';
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${stage4Questions[idx].answer}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        let correct = 0;
+        for (let i = 0; i < stage4Questions.length; i++) {
+            const feedback = stage4Container.children[i].querySelector('span');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        document.getElementById('stage4-score').textContent = `Score: ${correct} / ${stage4Questions.length}`;
+    }
+
+    // =============================================
+    // STAGE 5: Translation Practice
+    // =============================================
+    const stage5Questions = [
+        { english: 'She said that she is tired.', hungarian: 'Azt mondta, hogy faradt.', key: 'mondta hogy faradt' },
+        { english: 'He asked where I work.', hungarian: 'Azt kerdezte, hogy hol dolgozom.', key: 'kerdezte hogy hol dolgozom' },
+        { english: 'I think that it is true.', hungarian: 'Azt gondolom, hogy igaz.', key: 'gondolom hogy igaz' },
+        { english: 'They answered that they are coming.', hungarian: 'Azt valaszoltak, hogy jonnek.', key: 'valaszoltak hogy jonnek' },
+        { english: 'I know that he speaks Hungarian.', hungarian: 'Tudom, hogy beszol magyarul.', key: 'tudom hogy beszel magyarul' },
+        { english: 'She asked if I have time.', hungarian: 'Kerdezte, hogy van-e idom.', key: 'kerdezte hogy van-e idom' }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-2">Stage 5: Translation Practice</h2>
+        <p class="mb-4 text-slate-600">Translate the English sentences to Hungarian using reported speech.</p>
+        <div id="stage5-exercises" class="space-y-4"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Container = document.getElementById('stage5-exercises');
+
+    stage5Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-green-50 rounded-lg';
+
+        const promptDiv = document.createElement('div');
+        promptDiv.className = 'mb-2';
+        promptDiv.innerHTML = `<strong class="text-slate-800">${q.english}</strong>`;
+
+        const inputDiv = document.createElement('div');
+        inputDiv.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-2 w-full md:w-96 focus:ring-2 focus:ring-green-500';
+        input.placeholder = 'Type Hungarian translation...';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkStage5(idx);
+        });
+
+        inputDiv.appendChild(input);
+        inputDiv.appendChild(feedback);
+        wrapper.appendChild(promptDiv);
+        wrapper.appendChild(inputDiv);
+        stage5Container.appendChild(wrapper);
+    });
+
+    function checkStage5(idx) {
+        const wrapper = stage5Container.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span');
+        const userAnswer = normalizeHungarian(input.value).replace(/[.,!?]/g, '');
+        const keyParts = stage5Questions[idx].key.split(' ');
+
+        const hasAllParts = keyParts.every(part => removeAccents(userAnswer).includes(removeAccents(part)));
+
+        if (hasAllParts) {
+            feedback.textContent = `Correct! ${stage5Questions[idx].hungarian}`;
+            feedback.className = 'text-sm text-green-600 font-semibold';
+        } else if (userAnswer.includes('hogy')) {
+            feedback.textContent = 'Close! Check the reporting verb and tense.';
+            feedback.className = 'text-sm text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Answer: ${stage5Questions[idx].hungarian}`;
+            feedback.className = 'text-sm text-red-600 font-semibold';
+        }
+        updateStage5Score();
+    }
+
+    function updateStage5Score() {
+        let correct = 0;
+        for (let i = 0; i < stage5Questions.length; i++) {
+            const feedback = stage5Container.children[i].querySelector('span');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        document.getElementById('stage5-score').textContent = `Score: ${correct} / ${stage5Questions.length}`;
+    }
+
+    // =============================================
+    // SUMMARY SECTION
+    // =============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 p-6 bg-gradient-to-r from-violet-50 to-blue-50 rounded-lg border border-violet-200';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Summary: Reported Speech in Hungarian</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-violet-800 mb-2">Key Reporting Verbs:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li><strong>mond</strong> - to say/tell</li>
+                    <li><strong>kerdez</strong> - to ask</li>
+                    <li><strong>valaszol</strong> - to answer</li>
+                    <li><strong>gondol</strong> - to think</li>
+                    <li><strong>tud</strong> - to know</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-violet-800 mb-2">Key Points:</h3>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-700">
+                    <li>Use <strong>hogy</strong> to introduce reported content</li>
+                    <li>Tense often stays the same (unlike English)</li>
+                    <li>For yes/no questions, add <strong>-e</strong> to verb</li>
+                    <li>Keep question words for wh-questions</li>
+                    <li>Change pronouns based on perspective</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-3 bg-white rounded border border-violet-200">
+            <p class="text-sm text-slate-700"><strong>Pattern:</strong> Azt + reporting verb + hogy + reported content</p>
+            <p class="text-sm text-slate-600 mt-1">Example: Azt mondta, hogy faradt. (He said that he is tired.)</p>
+        </div>
+        <p class="mt-4 text-sm text-slate-600">Excellent work! Continue to Lesson 38 to learn about modal verbs and expressions in Hungarian.</p>
+    `;
+    mainContent.appendChild(summarySection);
+
+    </script>
+</body>
+</html>

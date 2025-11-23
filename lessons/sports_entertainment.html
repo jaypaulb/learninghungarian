@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 51: Sports & Entertainment - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: left; }
+        th { background: #f1f5f9; }
+        .cultural-note {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .sports-card {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 1px solid #10b981;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        .entertainment-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        .vocab-highlight { color: #059669; font-weight: 600; }
+        .activity-box {
+            background: #f0fdf4;
+            border: 2px dashed #10b981;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 51: Sports & Entertainment <span class="block text-xl text-slate-500 font-normal mt-2">(Sport es szorakozas)</span></h1>
+        <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Learn vocabulary for discussing sports, entertainment, and leisure activities in Hungarian. Talk about your favorite sports, going to the movies, and attending events.</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+
+    <script>
+    // ============================================
+    // UTILITY FUNCTIONS
+    // ============================================
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    }
+
+    function normalizeAnswer(str) {
+        return str.trim().toLowerCase();
+    }
+
+    function checkAccentAware(userInput, correctAnswer) {
+        const normalizedInput = normalizeAnswer(userInput);
+        const normalizedCorrect = normalizeAnswer(correctAnswer);
+
+        if (normalizedInput === normalizedCorrect) {
+            return 'correct';
+        } else if (removeAccents(normalizedInput) === removeAccents(normalizedCorrect)) {
+            return 'accent-warning';
+        } else {
+            return 'incorrect';
+        }
+    }
+
+    // ============================================
+    // VOCABULARY DATA
+    // ============================================
+    const sportsVocab = [
+        { hungarian: 'sport', english: 'sport', example: 'Szeretek sportolni.' },
+        { hungarian: 'foci / labdarugas', english: 'football/soccer', example: 'A foci nepszeru Magyarorszagon.' },
+        { hungarian: 'uszas', english: 'swimming', example: 'Minden nap uszom.' },
+        { hungarian: 'vizilabda', english: 'water polo', example: 'A magyar vizilabda hires.' },
+        { hungarian: 'atletika', english: 'athletics/track & field', example: 'Az atletika olimpiai sport.' },
+        { hungarian: 'tenisz', english: 'tennis', example: 'Teniszezni tanulok.' },
+        { hungarian: 'kosaralabda', english: 'basketball', example: 'Kosarabdazol?' },
+        { hungarian: 'jegkorong', english: 'ice hockey', example: 'A jegkorong izgalmas.' },
+        { hungarian: 'kerekparozas', english: 'cycling', example: 'Kerekparozni megyek.' },
+        { hungarian: 'futas', english: 'running', example: 'Reggel futok.' }
+    ];
+
+    const sportsActions = [
+        { hungarian: 'jatszik', english: 'to play', example: 'Focit jatszik.' },
+        { hungarian: 'uszik', english: 'to swim', example: 'Jol uszik.' },
+        { hungarian: 'fut', english: 'to run', example: 'Gyorsan fut.' },
+        { hungarian: 'nyer', english: 'to win', example: 'A csapat nyert.' },
+        { hungarian: 'veszit', english: 'to lose', example: 'Sajnos vesztettunk.' },
+        { hungarian: 'edz', english: 'to train', example: 'Minden nap edzek.' },
+        { hungarian: 'szurkol', english: 'to cheer/support', example: 'A csapatnak szurkolok.' },
+        { hungarian: 'versenyez', english: 'to compete', example: 'Holnap versenyez.' }
+    ];
+
+    const entertainmentVocab = [
+        { hungarian: 'mozi', english: 'cinema/movie theater', example: 'Moziba megyek.' },
+        { hungarian: 'film', english: 'film/movie', example: 'Jo volt a film.' },
+        { hungarian: 'szinhaz', english: 'theater', example: 'Szinhazba jarunk.' },
+        { hungarian: 'koncert', english: 'concert', example: 'Koncertre megyek.' },
+        { hungarian: 'fesztival', english: 'festival', example: 'A Sziget fesztival hires.' },
+        { hungarian: 'bulizas', english: 'partying', example: 'Hetvegen bulizunk.' },
+        { hungarian: 'kirandulas', english: 'hiking/excursion', example: 'Kirandulni megyunk.' },
+        { hungarian: 'jatek', english: 'game', example: 'Jatekot jatszunk.' },
+        { hungarian: 'eloadas', english: 'show/performance', example: 'Az eloadas jo volt.' },
+        { hungarian: 'szabadido', english: 'free time/leisure', example: 'Mi a szabadido terveid?' }
+    ];
+
+    const eventPhrases = [
+        { hungarian: 'Mikor kezdodik a meccs?', english: 'When does the match start?' },
+        { hungarian: 'Hol van a stadion?', english: 'Where is the stadium?' },
+        { hungarian: 'Megyek a koncertre.', english: 'I\'m going to the concert.' },
+        { hungarian: 'Szeretnel moziba jonni?', english: 'Would you like to come to the cinema?' },
+        { hungarian: 'Mi a kedvenc sportod?', english: 'What is your favorite sport?' },
+        { hungarian: 'A csapat nyert 3-0-ra.', english: 'The team won 3-0.' }
+    ];
+
+    // ============================================
+    // EXERCISE DATA
+    // ============================================
+    const matchingExercise = [
+        { hungarian: 'foci', options: ['swimming', 'football', 'tennis', 'running'], correct: 1 },
+        { hungarian: 'uszas', options: ['swimming', 'cycling', 'running', 'athletics'], correct: 0 },
+        { hungarian: 'mozi', options: ['theater', 'concert', 'cinema', 'festival'], correct: 2 },
+        { hungarian: 'vizilabda', options: ['volleyball', 'water polo', 'basketball', 'handball'], correct: 1 },
+        { hungarian: 'szinhaz', options: ['cinema', 'concert', 'theater', 'stadium'], correct: 2 },
+        { hungarian: 'tenisz', options: ['tennis', 'golf', 'badminton', 'squash'], correct: 0 },
+        { hungarian: 'koncert', options: ['movie', 'play', 'concert', 'game'], correct: 2 },
+        { hungarian: 'futas', options: ['swimming', 'cycling', 'walking', 'running'], correct: 3 },
+        { hungarian: 'jatszik', options: ['to run', 'to play', 'to swim', 'to win'], correct: 1 },
+        { hungarian: 'nyer', options: ['to lose', 'to play', 'to win', 'to train'], correct: 2 }
+    ];
+
+    const fillInBlanks = [
+        { sentence: 'Szeretek ___ jatszani.', answer: 'focit', english: 'I like to play football.' },
+        { sentence: 'Holnap ___ megyek.', answer: 'moziba', english: 'I\'m going to the cinema tomorrow.' },
+        { sentence: 'A magyar ___ csapat nagyon jo.', answer: 'vizilabda', english: 'The Hungarian water polo team is very good.' },
+        { sentence: 'Minden reggel ___.', answer: 'futok', english: 'I run every morning.' },
+        { sentence: 'A csapat ___ a meccset.', answer: 'nyerte', alternates: ['megnyerte'], english: 'The team won the match.' },
+        { sentence: 'Hetvegen ___ jarunk.', answer: 'szinhazba', english: 'We go to the theater on weekends.' },
+        { sentence: 'Jol ___ teniszezni?', answer: 'tudsz', english: 'Can you play tennis well?' },
+        { sentence: 'A ___ este 8-kor kezdodik.', answer: 'koncert', english: 'The concert starts at 8 PM.' }
+    ];
+
+    const multipleChoice = [
+        { question: 'Mi Magyarorszag nemzeti sportja?', options: ['Foci', 'Vizilabda', 'Uszas', 'Atletika'], correct: 1, explanation: 'Water polo is Hungary\'s most successful Olympic sport.' },
+        { question: 'Hol nezunk filmet?', options: ['Szinhazban', 'Moziban', 'Stadionban', 'Koncerten'], correct: 1, explanation: 'We watch films in the cinema (mozi).' },
+        { question: 'Mit jelent a "szurkol"?', options: ['Jatszani', 'Futni', 'Szurkolni/drukkol', 'Uszni'], correct: 2, explanation: 'Szurkol means to cheer or support a team.' },
+        { question: 'Mi a "Sziget"?', options: ['Egy to', 'Egy fesztival', 'Egy stadion', 'Egy mozi'], correct: 1, explanation: 'Sziget is Hungary\'s famous music festival.' },
+        { question: 'Mit csinalunk a stadionban?', options: ['Filmet nezunk', 'Meccset nezunk', 'Koncertre megyunk', 'Vacsorazunk'], correct: 1, explanation: 'We watch matches in the stadium.' },
+        { question: 'Ki volt Puskas Ferenc?', options: ['Uszy', 'Focista', 'Teniszezo', 'Zeneszerzo'], correct: 1, explanation: 'Puskas was a legendary Hungarian footballer.' }
+    ];
+
+    const sentenceBuilding = [
+        { prompt: 'Say you like swimming', answer: 'szeretek uszni', alternates: ['szeretem az uszast', 'szeretek uszast'] },
+        { prompt: 'Ask if they want to go to the cinema', answer: 'szeretnel moziba menni', alternates: ['akarsz moziba jonni', 'megyunk moziba'] },
+        { prompt: 'Say the team won', answer: 'a csapat nyert', alternates: ['nyert a csapat', 'a csapat gyozott'] },
+        { prompt: 'Say you train every day', answer: 'minden nap edzek', alternates: ['naponta edzek', 'edzek minden nap'] },
+        { prompt: 'Ask what their favorite sport is', answer: 'mi a kedvenc sportod', alternates: ['melyik a kedvenc sportod'] },
+        { prompt: 'Say the concert starts at 7', answer: 'a koncert hétkor kezdodik', alternates: ['7-kor kezdodik a koncert', 'a koncert 7 orakor kezdodik'] }
+    ];
+
+    // ============================================
+    // SCORE TRACKING
+    // ============================================
+    let scores = {
+        stage1: { correct: 0, total: matchingExercise.length },
+        stage2: { correct: 0, total: fillInBlanks.length },
+        stage3: { correct: 0, total: multipleChoice.length },
+        stage4: { correct: 0, total: sentenceBuilding.length }
+    };
+
+    function updateTotalScore() {
+        const totalCorrect = Object.values(scores).reduce((sum, s) => sum + s.correct, 0);
+        const totalQuestions = Object.values(scores).reduce((sum, s) => sum + s.total, 0);
+        const totalScoreEl = document.getElementById('total-score');
+        if (totalScoreEl) {
+            totalScoreEl.textContent = `Total Score: ${totalCorrect} / ${totalQuestions}`;
+        }
+    }
+
+    // ============================================
+    // BUILD PAGE CONTENT
+    // ============================================
+    const mainContent = document.getElementById('main-content');
+
+    // Learning Objectives
+    const objectivesSection = document.createElement('section');
+    objectivesSection.className = 'mb-8 p-4 bg-green-50 rounded-lg border border-green-200';
+    objectivesSection.innerHTML = `
+        <h2 class="text-xl font-semibold text-green-800 mb-3">Learning Objectives</h2>
+        <ul class="list-disc pl-6 text-green-700 space-y-1">
+            <li>Learn vocabulary for popular sports</li>
+            <li>Master entertainment and leisure terms</li>
+            <li>Discuss events and activities</li>
+            <li>Express preferences about sports and entertainment</li>
+        </ul>
+    `;
+    mainContent.appendChild(objectivesSection);
+
+    // Cultural Note
+    const culturalNote = document.createElement('div');
+    culturalNote.className = 'cultural-note mb-8';
+    culturalNote.innerHTML = `
+        <h3 class="font-bold text-amber-800 mb-2">Cultural Note: Hungarian Sports Excellence</h3>
+        <p class="text-amber-900">Hungary has a remarkable Olympic tradition, especially in water sports. <strong>Vizilabda</strong> (water polo) is often called the national sport - Hungary has won the most Olympic gold medals in this sport. Famous athletes include <strong>Puskas Ferenc</strong> (football) and <strong>Hosszu Katinka</strong> (swimming). The <strong>Sziget Fesztival</strong> in Budapest is one of Europe's largest music festivals, attracting hundreds of thousands of visitors annually.</p>
+    `;
+    mainContent.appendChild(culturalNote);
+
+    // Section 1: Sports Vocabulary
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4 pb-2 border-b-2 border-green-500">Section 1: Sports Vocabulary (Sportok)</h2>
+        <table class="mb-4">
+            <thead>
+                <tr><th>Hungarian</th><th>English</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                ${sportsVocab.map(item => `<tr><td class="vocab-highlight">${item.hungarian}</td><td>${item.english}</td><td class="text-sm text-slate-500 italic">${item.example}</td></tr>`).join('')}
+            </tbody>
+        </table>
+    `;
+    mainContent.appendChild(section1);
+
+    // Section 2: Sports Actions
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4 pb-2 border-b-2 border-green-500">Section 2: Sports Actions (Sportos igék)</h2>
+        <table class="mb-4">
+            <thead>
+                <tr><th>Hungarian</th><th>English</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                ${sportsActions.map(item => `<tr><td class="vocab-highlight">${item.hungarian}</td><td>${item.english}</td><td class="text-sm text-slate-500 italic">${item.example}</td></tr>`).join('')}
+            </tbody>
+        </table>
+    `;
+    mainContent.appendChild(section2);
+
+    // Section 3: Entertainment
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4 pb-2 border-b-2 border-green-500">Section 3: Entertainment (Szorakozas)</h2>
+        <table class="mb-4">
+            <thead>
+                <tr><th>Hungarian</th><th>English</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                ${entertainmentVocab.map(item => `<tr><td class="vocab-highlight">${item.hungarian}</td><td>${item.english}</td><td class="text-sm text-slate-500 italic">${item.example}</td></tr>`).join('')}
+            </tbody>
+        </table>
+    `;
+    mainContent.appendChild(section3);
+
+    // Section 4: Event Phrases
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4 pb-2 border-b-2 border-green-500">Section 4: Useful Phrases (Hasznos kifejezesek)</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            ${eventPhrases.map(phrase => `
+                <div class="p-3 bg-green-50 rounded-lg">
+                    <p class="font-medium text-green-800">${phrase.hungarian}</p>
+                    <p class="text-sm text-slate-600">${phrase.english}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    mainContent.appendChild(section4);
+
+    // Total Score Display
+    const totalScoreSection = document.createElement('div');
+    totalScoreSection.className = 'bg-gradient-to-r from-green-600 to-green-700 text-white rounded-xl p-4 mb-8 text-center';
+    totalScoreSection.innerHTML = `
+        <h3 class="text-lg font-semibold mb-1">Interactive Exercises</h3>
+        <p id="total-score" class="text-2xl font-bold">Total Score: 0 / ${matchingExercise.length + fillInBlanks.length + multipleChoice.length + sentenceBuilding.length}</p>
+    `;
+    mainContent.appendChild(totalScoreSection);
+
+    // ============================================
+    // STAGE 1: Vocabulary Matching
+    // ============================================
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8 p-4 bg-slate-50 rounded-lg';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 1: Vocabulary Matching (10 items)</h2>
+        <p class="text-slate-600 mb-4">Match each Hungarian word with its correct English meaning.</p>
+        <div id="stage1-exercises" class="space-y-3"></div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${matchingExercise.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Container = document.getElementById('stage1-exercises');
+    const stage1Answers = new Array(matchingExercise.length).fill(false);
+
+    matchingExercise.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-start md:items-center gap-3 p-3 bg-white rounded-lg border';
+
+        const label = document.createElement('span');
+        label.className = 'min-w-[120px] font-semibold text-green-700';
+        label.textContent = q.hungarian;
+
+        const select = document.createElement('select');
+        select.className = 'border border-slate-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-green-500';
+        select.innerHTML = '<option value="">Select...</option>' + q.options.map((opt, i) => `<option value="${i}">${opt}</option>`).join('');
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        select.addEventListener('change', function() {
+            if (parseInt(this.value) === q.correct) {
+                feedback.textContent = 'Correct!';
+                feedback.className = 'text-sm font-semibold text-green-600';
+                this.disabled = true;
+                this.className = 'border border-green-500 bg-green-50 rounded-md px-3 py-2';
+                if (!stage1Answers[idx]) {
+                    stage1Answers[idx] = true;
+                    scores.stage1.correct++;
+                    document.getElementById('stage1-score').textContent = `Score: ${scores.stage1.correct} / ${matchingExercise.length}`;
+                    updateTotalScore();
+                }
+            } else if (this.value !== '') {
+                feedback.textContent = 'Try again!';
+                feedback.className = 'text-sm font-semibold text-red-600';
+            }
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(select);
+        wrapper.appendChild(feedback);
+        stage1Container.appendChild(wrapper);
+    });
+
+    // ============================================
+    // STAGE 2: Fill in the Blanks
+    // ============================================
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8 p-4 bg-slate-50 rounded-lg';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 2: Fill in the Blanks (8 items)</h2>
+        <p class="text-slate-600 mb-4">Complete each sentence with the correct Hungarian word.</p>
+        <div id="stage2-exercises" class="space-y-4"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${fillInBlanks.length}</div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Container = document.getElementById('stage2-exercises');
+    const stage2Answers = new Array(fillInBlanks.length).fill(false);
+
+    fillInBlanks.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-3 bg-white rounded-lg border';
+
+        const sentenceParts = q.sentence.split('___');
+        const row = document.createElement('div');
+        row.className = 'flex flex-wrap items-center gap-2 mb-2';
+
+        row.innerHTML = `<span class="text-slate-700">${sentenceParts[0]}</span>`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-32 text-center focus:ring-2 focus:ring-green-500';
+
+        const span2 = document.createElement('span');
+        span2.className = 'text-slate-700';
+        span2.textContent = sentenceParts[1] || '';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold ml-2';
+
+        row.appendChild(input);
+        row.appendChild(span2);
+        row.appendChild(feedback);
+
+        const translation = document.createElement('div');
+        translation.className = 'text-xs text-slate-500 italic';
+        translation.textContent = `(${q.english})`;
+
+        function checkAnswer() {
+            const allCorrect = [q.answer, ...(q.alternates || [])];
+            const userInput = normalizeAnswer(input.value);
+
+            if (allCorrect.some(a => normalizeAnswer(a) === userInput)) {
+                feedback.textContent = 'Correct!';
+                feedback.className = 'text-sm font-semibold text-green-600 ml-2';
+                input.disabled = true;
+                input.className = 'border border-green-500 bg-green-50 rounded-md px-3 py-1 w-32 text-center';
+                if (!stage2Answers[idx]) {
+                    stage2Answers[idx] = true;
+                    scores.stage2.correct++;
+                    document.getElementById('stage2-score').textContent = `Score: ${scores.stage2.correct} / ${fillInBlanks.length}`;
+                    updateTotalScore();
+                }
+            } else if (allCorrect.some(a => removeAccents(normalizeAnswer(a)) === removeAccents(userInput))) {
+                feedback.textContent = 'Check accents!';
+                feedback.className = 'text-sm font-semibold text-yellow-600 ml-2';
+            } else if (input.value.trim() !== '') {
+                feedback.textContent = 'Try again!';
+                feedback.className = 'text-sm font-semibold text-red-600 ml-2';
+            }
+        }
+
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkAnswer(); });
+        input.addEventListener('blur', checkAnswer);
+
+        wrapper.appendChild(row);
+        wrapper.appendChild(translation);
+        stage2Container.appendChild(wrapper);
+    });
+
+    // ============================================
+    // STAGE 3: Multiple Choice Quiz
+    // ============================================
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8 p-4 bg-slate-50 rounded-lg';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 3: Cultural Quiz (6 items)</h2>
+        <p class="text-slate-600 mb-4">Test your knowledge of Hungarian sports and entertainment culture.</p>
+        <div id="stage3-exercises" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${multipleChoice.length}</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Container = document.getElementById('stage3-exercises');
+    const stage3Answers = new Array(multipleChoice.length).fill(false);
+
+    multipleChoice.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-white rounded-lg border';
+
+        let optionsHtml = q.options.map((opt, i) => `
+            <label class="flex items-center gap-2 cursor-pointer p-2 rounded hover:bg-slate-50">
+                <input type="radio" name="quiz-${idx}" value="${i}" class="text-green-600">
+                <span>${opt}</span>
+            </label>
+        `).join('');
+
+        wrapper.innerHTML = `
+            <p class="text-slate-800 font-medium mb-3">${idx + 1}. ${q.question}</p>
+            <div class="grid grid-cols-2 gap-2">${optionsHtml}</div>
+            <span class="feedback text-sm font-semibold mt-2 block"></span>
+        `;
+
+        wrapper.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const feedback = wrapper.querySelector('.feedback');
+                if (parseInt(this.value) === q.correct) {
+                    feedback.innerHTML = `Correct! <span class="text-slate-500 font-normal">${q.explanation}</span>`;
+                    feedback.className = 'feedback text-sm font-semibold text-green-600 mt-2 block';
+                    wrapper.querySelectorAll('input[type="radio"]').forEach(r => r.disabled = true);
+                    if (!stage3Answers[idx]) {
+                        stage3Answers[idx] = true;
+                        scores.stage3.correct++;
+                        document.getElementById('stage3-score').textContent = `Score: ${scores.stage3.correct} / ${multipleChoice.length}`;
+                        updateTotalScore();
+                    }
+                } else {
+                    feedback.textContent = 'Try again!';
+                    feedback.className = 'feedback text-sm font-semibold text-red-600 mt-2 block';
+                }
+            });
+        });
+
+        stage3Container.appendChild(wrapper);
+    });
+
+    // ============================================
+    // STAGE 4: Sentence Building
+    // ============================================
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8 p-4 bg-slate-50 rounded-lg';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-bold text-slate-700 mb-2">Stage 4: Sentence Building (6 items)</h2>
+        <p class="text-slate-600 mb-4">Write the Hungarian sentence based on the English prompt.</p>
+        <div id="stage4-exercises" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${sentenceBuilding.length}</div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Container = document.getElementById('stage4-exercises');
+    const stage4Answers = new Array(sentenceBuilding.length).fill(false);
+
+    sentenceBuilding.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'p-4 bg-white rounded-lg border';
+
+        const promptDiv = document.createElement('div');
+        promptDiv.className = 'mb-3';
+        promptDiv.innerHTML = `<p class="font-medium text-slate-800">${idx + 1}. ${q.prompt}</p>`;
+
+        const inputRow = document.createElement('div');
+        inputRow.className = 'flex flex-col md:flex-row items-start md:items-center gap-2';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-green-500';
+        input.placeholder = 'Type your answer...';
+
+        const feedback = document.createElement('span');
+        feedback.className = 'text-sm font-semibold';
+
+        function checkAnswer() {
+            const allCorrect = [q.answer, ...(q.alternates || [])];
+            const userInput = normalizeAnswer(input.value);
+
+            if (allCorrect.some(a => normalizeAnswer(a) === userInput)) {
+                feedback.textContent = 'Correct!';
+                feedback.className = 'text-sm font-semibold text-green-600';
+                input.disabled = true;
+                input.className = 'border border-green-500 bg-green-50 rounded-md px-3 py-2 w-full md:w-80';
+                if (!stage4Answers[idx]) {
+                    stage4Answers[idx] = true;
+                    scores.stage4.correct++;
+                    document.getElementById('stage4-score').textContent = `Score: ${scores.stage4.correct} / ${sentenceBuilding.length}`;
+                    updateTotalScore();
+                }
+            } else if (allCorrect.some(a => removeAccents(normalizeAnswer(a)) === removeAccents(userInput))) {
+                feedback.textContent = 'Close! Check accents.';
+                feedback.className = 'text-sm font-semibold text-yellow-600';
+            } else if (input.value.trim() !== '') {
+                feedback.textContent = `Try again! Example: ${q.answer}`;
+                feedback.className = 'text-sm font-semibold text-red-600';
+            }
+        }
+
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkAnswer(); });
+        input.addEventListener('blur', checkAnswer);
+
+        inputRow.appendChild(input);
+        inputRow.appendChild(feedback);
+        wrapper.appendChild(promptDiv);
+        wrapper.appendChild(inputRow);
+        stage4Container.appendChild(wrapper);
+    });
+
+    // ============================================
+    // SUMMARY SECTION
+    // ============================================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mt-8 p-6 bg-gradient-to-r from-green-50 to-teal-50 rounded-xl border border-green-200';
+    summarySection.innerHTML = `
+        <h2 class="text-xl font-bold text-green-800 mb-4">Lesson Summary</h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+                <h3 class="font-semibold text-slate-700 mb-2">Key Sports Terms:</h3>
+                <ul class="list-disc pl-5 text-slate-600 space-y-1">
+                    <li><strong>foci</strong> - football/soccer</li>
+                    <li><strong>uszas</strong> - swimming</li>
+                    <li><strong>vizilabda</strong> - water polo</li>
+                    <li><strong>jatszik</strong> - to play</li>
+                    <li><strong>nyer</strong> - to win</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-700 mb-2">Key Entertainment Terms:</h3>
+                <ul class="list-disc pl-5 text-slate-600 space-y-1">
+                    <li><strong>mozi</strong> - cinema</li>
+                    <li><strong>szinhaz</strong> - theater</li>
+                    <li><strong>koncert</strong> - concert</li>
+                    <li><strong>fesztival</strong> - festival</li>
+                    <li><strong>szabadido</strong> - free time</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-3 bg-amber-50 rounded-lg border border-amber-200">
+            <p class="text-amber-800 text-sm"><strong>Remember:</strong> Hungary excels in water sports! When discussing sports, use "jatszik" (to play) for ball sports and specific verbs like "uszik" (to swim) for individual sports.</p>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+
+    // Initialize total score
+    updateTotalScore();
+    </script>
+</body>
+</html>
