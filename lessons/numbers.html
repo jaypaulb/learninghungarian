@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4: Numbers 0-100 & Age Expressions - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .flip-card { perspective: 1000px; cursor: pointer; }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+        }
+        .flip-card-back { transform: rotateY(180deg); }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 4: Numbers 0-100 & Age Expressions <span class="block text-xl text-slate-500 font-normal">(Szamok es eletkor)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">This lesson teaches Hungarian numbers from 0 to 100 and how to express age. Numbers are essential for everyday conversations about prices, quantities, time, and telling someone how old you are.</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    // Helper function to remove accents for comparison
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiI]/g, function(m) {
+            return m;
+        }).replace(/[őŐöÖüÜűŰáÁéÉíÍóÓúÚ]/g, function(m) {
+            const map = { 'á':'a','Á':'A','é':'e','É':'E','í':'i','Í':'I','ó':'o','Ó':'O','ö':'o','Ö':'O','ő':'o','Ő':'O','ú':'u','Ú':'U','ü':'u','Ü':'U','ű':'u','Ű':'U' };
+            return map[m] || m;
+        });
+    }
+
+    // Number data
+    const numbers0to10 = [
+        { number: 0, hungarian: 'nulla', pronunciation: 'NOO-lah' },
+        { number: 1, hungarian: 'egy', pronunciation: 'edge' },
+        { number: 2, hungarian: 'kettő/két', pronunciation: 'KET-tuh / kayt' },
+        { number: 3, hungarian: 'három', pronunciation: 'HAH-rohm' },
+        { number: 4, hungarian: 'négy', pronunciation: 'nayj' },
+        { number: 5, hungarian: 'öt', pronunciation: 'ut' },
+        { number: 6, hungarian: 'hat', pronunciation: 'hot' },
+        { number: 7, hungarian: 'hét', pronunciation: 'hayt' },
+        { number: 8, hungarian: 'nyolc', pronunciation: 'nyolts' },
+        { number: 9, hungarian: 'kilenc', pronunciation: 'KEE-lents' },
+        { number: 10, hungarian: 'tíz', pronunciation: 'teez' }
+    ];
+
+    const numbers11to20 = [
+        { number: 11, hungarian: 'tizenegy', pronunciation: 'TEE-zen-edge' },
+        { number: 12, hungarian: 'tizenkettő', pronunciation: 'TEE-zen-KET-tuh' },
+        { number: 13, hungarian: 'tizenhárom', pronunciation: 'TEE-zen-HAH-rohm' },
+        { number: 14, hungarian: 'tizennégy', pronunciation: 'TEE-zen-nayj' },
+        { number: 15, hungarian: 'tizenöt', pronunciation: 'TEE-zen-ut' },
+        { number: 16, hungarian: 'tizenhat', pronunciation: 'TEE-zen-hot' },
+        { number: 17, hungarian: 'tizenhét', pronunciation: 'TEE-zen-hayt' },
+        { number: 18, hungarian: 'tizennyolc', pronunciation: 'TEE-zen-nyolts' },
+        { number: 19, hungarian: 'tizenkilenc', pronunciation: 'TEE-zen-KEE-lents' },
+        { number: 20, hungarian: 'húsz', pronunciation: 'hooss' }
+    ];
+
+    const tens = [
+        { number: 20, hungarian: 'húsz', pronunciation: 'hooss', compound: 'huszon-' },
+        { number: 30, hungarian: 'harminc', pronunciation: 'HAR-mints', compound: 'harminc-' },
+        { number: 40, hungarian: 'negyven', pronunciation: 'NEDJ-ven', compound: 'negyven-' },
+        { number: 50, hungarian: 'ötven', pronunciation: 'UT-ven', compound: 'ötven-' },
+        { number: 60, hungarian: 'hatvan', pronunciation: 'HOT-von', compound: 'hatvan-' },
+        { number: 70, hungarian: 'hetven', pronunciation: 'HET-ven', compound: 'hetven-' },
+        { number: 80, hungarian: 'nyolcvan', pronunciation: 'NYOLTS-von', compound: 'nyolcvan-' },
+        { number: 90, hungarian: 'kilencven', pronunciation: 'KEE-lents-ven', compound: 'kilencven-' },
+        { number: 100, hungarian: 'száz', pronunciation: 'sahz', compound: 'száz-' }
+    ];
+
+    const main = document.querySelector('main');
+
+    // Section 1: Numbers 0-10
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Section 1: Numbers 0-10</h2>
+        <p class="mb-4">These are the foundational numbers in Hungarian. Note that "two" has two forms: <b>kettő</b> (standalone) and <b>két</b> (before nouns).</p>
+        <table class="mb-2 w-full border text-sm">
+            <tr><th class="border px-2">Number</th><th class="border px-2">Hungarian</th><th class="border px-2">Pronunciation</th></tr>
+            ${numbers0to10.map(n => `<tr><td class="border px-2">${n.number}</td><td class="border px-2 font-semibold">${n.hungarian}</td><td class="border px-2 text-slate-500">${n.pronunciation}</td></tr>`).join('')}
+        </table>
+    `;
+    main.appendChild(section1);
+
+    // Section 2: Numbers 11-20
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Section 2: Numbers 11-20</h2>
+        <p class="mb-4">Numbers 11-19 are formed with the prefix <b>tizen-</b> (meaning "ten-") plus the unit. Note: 20 (<b>húsz</b>) is a unique form.</p>
+        <table class="mb-2 w-full border text-sm">
+            <tr><th class="border px-2">Number</th><th class="border px-2">Hungarian</th><th class="border px-2">Pronunciation</th></tr>
+            ${numbers11to20.map(n => `<tr><td class="border px-2">${n.number}</td><td class="border px-2 font-semibold">${n.hungarian}</td><td class="border px-2 text-slate-500">${n.pronunciation}</td></tr>`).join('')}
+        </table>
+        <p class="text-sm text-slate-600 mt-2"><b>Pattern:</b> tizen + [unit] (e.g., tizenegy = 10+1 = 11)</p>
+    `;
+    main.appendChild(section2);
+
+    // Section 3: Tens (20-100)
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Section 3: Tens (20-100)</h2>
+        <p class="mb-4">The tens in Hungarian follow patterns, but each must be memorized. The "Compound Form" column shows the prefix used when adding units.</p>
+        <table class="mb-2 w-full border text-sm">
+            <tr><th class="border px-2">Number</th><th class="border px-2">Hungarian</th><th class="border px-2">Compound Form</th><th class="border px-2">Pronunciation</th></tr>
+            ${tens.map(n => `<tr><td class="border px-2">${n.number}</td><td class="border px-2 font-semibold">${n.hungarian}</td><td class="border px-2">${n.compound}</td><td class="border px-2 text-slate-500">${n.pronunciation}</td></tr>`).join('')}
+        </table>
+    `;
+    main.appendChild(section3);
+
+    // Section 4: Compound Numbers
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Section 4: Compound Numbers (21-99)</h2>
+        <p class="mb-4">To form numbers 21-99, combine the tens prefix with the unit. Notice how <b>húsz</b> changes to <b>huszon-</b> in compounds.</p>
+        <div class="bg-slate-50 p-4 rounded-lg mb-4">
+            <p class="font-semibold mb-2">Examples:</p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><b>21</b> = huszon + egy = <b>huszonegy</b></li>
+                <li><b>32</b> = harminc + kettő = <b>harminckettő</b></li>
+                <li><b>45</b> = negyven + öt = <b>negyvenöt</b></li>
+                <li><b>58</b> = ötven + nyolc = <b>ötvennyolc</b></li>
+                <li><b>67</b> = hatvan + hét = <b>hatvanhét</b></li>
+                <li><b>99</b> = kilencven + kilenc = <b>kilencvenkilenc</b></li>
+            </ul>
+        </div>
+        <p class="text-sm text-slate-600"><b>Key change:</b> húsz (20) → huszon- (in compounds, e.g., huszonegy = 21)</p>
+    `;
+    main.appendChild(section4);
+
+    // Section 5: Age Expressions
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Section 5: Age Expressions</h2>
+        <p class="mb-4">In Hungarian, age is expressed using the word <b>éves</b> (years old). The structure differs from English.</p>
+        <div class="bg-slate-50 p-4 rounded-lg mb-4">
+            <p class="font-semibold mb-2">Asking Age:</p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><b>Hány éves vagy?</b> - How old are you? (informal, singular)</li>
+                <li><b>Hány éves (ön)?</b> - How old are you? (formal)</li>
+                <li><b>Hány éves ő?</b> - How old is he/she?</li>
+            </ul>
+        </div>
+        <div class="bg-slate-50 p-4 rounded-lg mb-4">
+            <p class="font-semibold mb-2">Telling Age:</p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><b>X éves vagyok.</b> - I am X years old.</li>
+                <li><b>Húsz éves vagyok.</b> - I am 20 years old.</li>
+                <li><b>Harminckét éves.</b> - He/She is 32 years old.</li>
+            </ul>
+        </div>
+        <table class="mb-2 w-full border text-sm">
+            <tr><th class="border px-2">Hungarian</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2">Hány éves vagy?</td><td class="border px-2">How old are you? (informal)</td></tr>
+            <tr><td class="border px-2">Huszonöt éves vagyok.</td><td class="border px-2">I am 25 years old.</td></tr>
+            <tr><td class="border px-2">Hány éves a gyereked?</td><td class="border px-2">How old is your child?</td></tr>
+            <tr><td class="border px-2">Tíz éves.</td><td class="border px-2">He/She is 10 years old.</td></tr>
+        </table>
+    `;
+    main.appendChild(section5);
+
+    // =====================
+    // INTERACTIVE EXERCISES
+    // =====================
+
+    // Stage 1: Number Recognition - Card Flip (10 items)
+    const stage1Questions = [
+        { number: 3, hungarian: 'három', pronunciation: 'HAH-rohm' },
+        { number: 7, hungarian: 'hét', pronunciation: 'hayt' },
+        { number: 12, hungarian: 'tizenkettő', pronunciation: 'TEE-zen-KET-tuh' },
+        { number: 5, hungarian: 'öt', pronunciation: 'ut' },
+        { number: 15, hungarian: 'tizenöt', pronunciation: 'TEE-zen-ut' },
+        { number: 20, hungarian: 'húsz', pronunciation: 'hooss' },
+        { number: 9, hungarian: 'kilenc', pronunciation: 'KEE-lents' },
+        { number: 11, hungarian: 'tizenegy', pronunciation: 'TEE-zen-edge' },
+        { number: 4, hungarian: 'négy', pronunciation: 'nayj' },
+        { number: 18, hungarian: 'tizennyolc', pronunciation: 'TEE-zen-nyolts' }
+    ];
+
+    const stage1Div = document.createElement('section');
+    stage1Div.className = 'mb-8';
+    stage1Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Number Recognition</h2>
+        <p class="mb-4">Click each card to flip it and reveal the Hungarian word and pronunciation. Try to recall the Hungarian before flipping!</p>
+        <div id="card-flip-exercise" class="grid grid-cols-2 md:grid-cols-5 gap-4"></div>
+        <div id="card-flip-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage1Div);
+
+    const cardFlipDiv = document.getElementById('card-flip-exercise');
+    let cardsFlipped = 0;
+
+    stage1Questions.forEach((q, idx) => {
+        const card = document.createElement('div');
+        card.className = 'flip-card h-28';
+        card.innerHTML = `
+            <div class="flip-card-inner">
+                <div class="flip-card-front bg-teal-600 text-white h-28 shadow-md">
+                    <span class="text-3xl font-bold">${q.number}</span>
+                    <span class="text-xs mt-1">Click to flip</span>
+                </div>
+                <div class="flip-card-back bg-teal-100 text-teal-800 h-28 shadow-md">
+                    <span class="text-lg font-bold">${q.hungarian}</span>
+                    <span class="text-xs text-teal-600">${q.pronunciation}</span>
+                </div>
+            </div>
+        `;
+        card.addEventListener('click', function() {
+            if (!this.classList.contains('flipped')) {
+                this.classList.add('flipped');
+                cardsFlipped++;
+                document.getElementById('card-flip-score').textContent = `Cards revealed: ${cardsFlipped} / ${stage1Questions.length}`;
+            }
+        });
+        cardFlipDiv.appendChild(card);
+    });
+    document.getElementById('card-flip-score').textContent = `Cards revealed: 0 / ${stage1Questions.length}`;
+
+    // Stage 2: Number Production - Fill in the Blank (10 items)
+    const stage2Questions = [
+        { number: 6, answer: 'hat', hint: 'six' },
+        { number: 2, answer: 'kettő', hint: 'two (standalone)' },
+        { number: 14, answer: 'tizennégy', hint: 'fourteen' },
+        { number: 8, answer: 'nyolc', hint: 'eight' },
+        { number: 30, answer: 'harminc', hint: 'thirty' },
+        { number: 25, answer: 'huszonöt', hint: 'twenty-five' },
+        { number: 50, answer: 'ötven', hint: 'fifty' },
+        { number: 19, answer: 'tizenkilenc', hint: 'nineteen' },
+        { number: 41, answer: 'negyvenegy', hint: 'forty-one' },
+        { number: 100, answer: 'száz', hint: 'one hundred' }
+    ];
+
+    const stage2Div = document.createElement('section');
+    stage2Div.className = 'mb-8';
+    stage2Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Number Production</h2>
+        <p class="mb-4">Write the Hungarian word for each number. Press Enter to check your answer.</p>
+        <div id="number-production-exercise" class="space-y-4"></div>
+        <div id="number-production-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage2Div);
+
+    const numberProductionDiv = document.getElementById('number-production-exercise');
+    const numberProductionScore = document.getElementById('number-production-score');
+
+    stage2Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2';
+        const label = document.createElement('span');
+        label.className = 'min-w-[120px] text-slate-800 font-semibold text-lg';
+        label.textContent = `${q.number} (${q.hint})`;
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-40 text-center focus:ring-2 focus:ring-teal-500 focus:border-teal-500';
+        input.setAttribute('aria-label', `Hungarian for ${q.number}`);
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkNumberProduction(idx);
+        });
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        numberProductionDiv.appendChild(wrapper);
+    });
+
+    function checkNumberProduction(idx) {
+        const wrapper = numberProductionDiv.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage2Questions[idx].answer;
+        const userAnswer = input.value.trim().toLowerCase();
+
+        if (userAnswer === correct) {
+            feedback.textContent = `Correct!`;
+            feedback.className = 'ml-2 text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Close! Watch your accents. Correct: ${correct}`;
+            feedback.className = 'ml-2 text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Correct: ${correct}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold';
+        }
+        updateNumberProductionScore();
+    }
+
+    function updateNumberProductionScore() {
+        let total = stage2Questions.length;
+        let correct = 0;
+        for (let i = 0; i < total; i++) {
+            const wrapper = numberProductionDiv.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        numberProductionScore.textContent = `Score: ${correct} / ${total}`;
+    }
+
+    // Stage 3: Listening Practice - Multiple Choice (6 items)
+    const stage3Questions = [
+        { number: 17, hungarian: 'tizenhét', options: ['tizenhat', 'tizenhét', 'tizennyolc', 'tizenkilenc'] },
+        { number: 33, hungarian: 'harmincharom', displayHungarian: 'harminchárom', options: ['harminckettő', 'harminchárom', 'harmincnégy', 'harmincöt'] },
+        { number: 56, hungarian: 'ötvenhat', options: ['ötvennégy', 'ötvenöt', 'ötvenhat', 'ötvenhét'] },
+        { number: 72, hungarian: 'hetvenkettő', options: ['hetvenegy', 'hetvenkettő', 'hetvenhárom', 'hetvennégy'] },
+        { number: 89, hungarian: 'nyolcvankilenc', options: ['nyolcvanhét', 'nyolcvannyolc', 'nyolcvankilenc', 'kilencven'] },
+        { number: 44, hungarian: 'negyvennégy', options: ['negyvenhárom', 'negyvennégy', 'negyvenöt', 'negyvenhat'] }
+    ];
+
+    const stage3Div = document.createElement('section');
+    stage3Div.className = 'mb-8';
+    stage3Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Number Selection</h2>
+        <p class="mb-4">For each number shown, select the correct Hungarian word from the options.</p>
+        <div id="listening-exercise" class="space-y-6"></div>
+        <div id="listening-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage3Div);
+
+    const listeningDiv = document.getElementById('listening-exercise');
+    const listeningScore = document.getElementById('listening-score');
+
+    stage3Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        const correctAnswer = q.displayHungarian || q.hungarian;
+        wrapper.innerHTML = `
+            <div class="flex items-center gap-4 mb-3">
+                <span class="text-3xl font-bold text-teal-700">${q.number}</span>
+                <span class="text-slate-500">Which is correct?</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2" id="listening-options-${idx}"></div>
+            <div id="listening-feedback-${idx}" class="mt-2 text-sm font-semibold"></div>
+        `;
+        listeningDiv.appendChild(wrapper);
+
+        const optionsDiv = document.getElementById(`listening-options-${idx}`);
+        q.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'px-4 py-2 border border-slate-300 rounded-md hover:bg-slate-100 transition-colors';
+            btn.textContent = opt;
+            btn.addEventListener('click', function() {
+                checkListening(idx, opt, correctAnswer);
+            });
+            optionsDiv.appendChild(btn);
+        });
+    });
+
+    function checkListening(idx, selected, correctAnswer) {
+        const feedback = document.getElementById(`listening-feedback-${idx}`);
+        const optionsDiv = document.getElementById(`listening-options-${idx}`);
+        const buttons = optionsDiv.querySelectorAll('button');
+
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            if (btn.textContent === correctAnswer) {
+                btn.className = 'px-4 py-2 border border-green-500 rounded-md bg-green-100 text-green-700';
+            } else if (btn.textContent === selected && selected !== correctAnswer) {
+                btn.className = 'px-4 py-2 border border-red-500 rounded-md bg-red-100 text-red-700';
+            }
+        });
+
+        if (selected === correctAnswer) {
+            feedback.textContent = 'Correct!';
+            feedback.className = 'mt-2 text-green-600 font-semibold';
+        } else {
+            feedback.textContent = `Incorrect. The answer is: ${correctAnswer}`;
+            feedback.className = 'mt-2 text-red-600 font-semibold';
+        }
+        updateListeningScore();
+    }
+
+    function updateListeningScore() {
+        let total = stage3Questions.length;
+        let correct = 0;
+        for (let i = 0; i < total; i++) {
+            const feedback = document.getElementById(`listening-feedback-${i}`);
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        listeningScore.textContent = `Score: ${correct} / ${total}`;
+    }
+
+    // Stage 4: Age Dialogue Completion (6 items)
+    const stage4Questions = [
+        { prompt: 'A: Hány éves ___?', hint: '(you, informal)', answer: 'vagy', translation: 'How old are you?' },
+        { prompt: 'B: Huszonöt éves ___.', hint: '(I)', answer: 'vagyok', translation: 'I am 25 years old.' },
+        { prompt: 'A: Hány ___ a fiad?', hint: '(years old)', answer: 'éves', translation: 'How old is your son?' },
+        { prompt: 'B: Tíz ___.', hint: '(years old)', answer: 'éves', translation: 'He is 10 years old.' },
+        { prompt: 'A: Hány éves ön?', hint: '(formal you)', answer: 'Negyven éves vagyok.', fullSentence: true, translation: 'How old are you? - I am 40 years old.' },
+        { prompt: 'B: A nagymamám nyolcvanöt ___.', hint: '(years old)', answer: 'éves', translation: 'My grandmother is 85 years old.' }
+    ];
+
+    const stage4Div = document.createElement('section');
+    stage4Div.className = 'mb-8';
+    stage4Div.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Age Dialogue</h2>
+        <p class="mb-4">Complete the dialogue by filling in the correct word. Press Enter to check your answer.</p>
+        <div id="dialogue-exercise" class="space-y-4"></div>
+        <div id="dialogue-score" class="mt-4 text-slate-700 font-medium"></div>
+    `;
+    main.appendChild(stage4Div);
+
+    const dialogueDiv = document.getElementById('dialogue-exercise');
+    const dialogueScoreDiv = document.getElementById('dialogue-score');
+
+    stage4Questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col md:flex-row items-center gap-2 bg-slate-50 p-3 rounded-lg';
+        const label = document.createElement('span');
+        label.className = 'min-w-[200px] text-slate-800';
+        label.innerHTML = `${q.prompt} <span class="text-slate-500 text-sm">${q.hint}</span>`;
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'border border-slate-300 rounded-md px-3 py-1 w-48 text-center focus:ring-2 focus:ring-teal-500 focus:border-teal-500';
+        input.setAttribute('aria-label', `Answer for: ${q.prompt}`);
+        const feedback = document.createElement('span');
+        feedback.className = 'ml-2 text-sm font-semibold';
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') checkDialogue(idx);
+        });
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        wrapper.appendChild(feedback);
+        dialogueDiv.appendChild(wrapper);
+    });
+
+    function checkDialogue(idx) {
+        const wrapper = dialogueDiv.children[idx];
+        const input = wrapper.querySelector('input');
+        const feedback = wrapper.querySelector('span:last-child');
+        const correct = stage4Questions[idx].answer.toLowerCase();
+        const userAnswer = input.value.trim().toLowerCase();
+
+        if (userAnswer === correct) {
+            feedback.textContent = `Correct! (${stage4Questions[idx].translation})`;
+            feedback.className = 'ml-2 text-green-600 font-semibold';
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            feedback.textContent = `Watch accents! Correct: ${stage4Questions[idx].answer}`;
+            feedback.className = 'ml-2 text-yellow-600 font-semibold';
+        } else if (userAnswer === '') {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = `Try again! Correct: ${stage4Questions[idx].answer}`;
+            feedback.className = 'ml-2 text-red-600 font-semibold';
+        }
+        updateDialogueScore();
+    }
+
+    function updateDialogueScore() {
+        let total = stage4Questions.length;
+        let correct = 0;
+        for (let i = 0; i < total; i++) {
+            const wrapper = dialogueDiv.children[i];
+            const feedback = wrapper.querySelector('span:last-child');
+            if (feedback.textContent.startsWith('Correct!')) correct++;
+        }
+        dialogueScoreDiv.textContent = `Score: ${correct} / ${total}`;
+    }
+
+    // Final Summary Section
+    const summaryDiv = document.createElement('section');
+    summaryDiv.className = 'mb-8 bg-teal-50 p-6 rounded-lg';
+    summaryDiv.innerHTML = `
+        <h2 class="text-xl font-semibold text-teal-800 mb-4">Lesson Summary</h2>
+        <div class="space-y-3 text-teal-900">
+            <p><b>Numbers 0-10:</b> nulla, egy, kettő/két, három, négy, öt, hat, hét, nyolc, kilenc, tíz</p>
+            <p><b>Numbers 11-19:</b> Use prefix <b>tizen-</b> + unit (tizenegy, tizenkettő...)</p>
+            <p><b>Tens:</b> húsz (20), harminc (30), negyven (40), ötven (50), hatvan (60), hetven (70), nyolcvan (80), kilencven (90), száz (100)</p>
+            <p><b>Compound Numbers:</b> [tens prefix] + [unit] (huszonegy = 21, harminchárom = 33)</p>
+            <p><b>Age Pattern:</b> "Hány éves vagy?" → "X éves vagyok."</p>
+        </div>
+    `;
+    main.appendChild(summaryDiv);
+
+    // Practice Bios
+    const biosDiv = document.createElement('section');
+    biosDiv.className = 'mb-8';
+    biosDiv.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-4">Practice: Reading Ages</h2>
+        <p class="mb-4">Read these short introductions. Pay attention to how ages are expressed:</p>
+        <div class="space-y-4">
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <p class="font-semibold text-slate-800">Anna</p>
+                <p class="text-slate-700">Anna vagyok. Huszonhárom éves vagyok. Magyar vagyok. Budapesten élek. Egyetemista vagyok.</p>
+                <p class="text-sm text-slate-500 mt-2">(I am Anna. I am 23 years old. I am Hungarian. I live in Budapest. I am a university student.)</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <p class="font-semibold text-slate-800">Péter</p>
+                <p class="text-slate-700">Péter vagyok. Harmincöt éves vagyok. Mérnök vagyok. Szegeden dolgozom. Van két gyerekem.</p>
+                <p class="text-sm text-slate-500 mt-2">(I am Péter. I am 35 years old. I am an engineer. I work in Szeged. I have two children.)</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <p class="font-semibold text-slate-800">Eszter és Gábor</p>
+                <p class="text-slate-700">Eszter és Gábor vagyunk. Ő hatvanegy éves, én ötvennyolc éves vagyok. Nyugdíjasok vagyunk.</p>
+                <p class="text-sm text-slate-500 mt-2">(We are Eszter and Gábor. He is 61 years old, I am 58 years old. We are retired.)</p>
+            </div>
+        </div>
+    `;
+    main.appendChild(biosDiv);
+    </script>
+</body>
+</html>
