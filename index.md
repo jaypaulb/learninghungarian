@@ -51,6 +51,27 @@ This site documents and supports my journey to learn the Hungarian language. Her
 [Lesson 32: Ablative & Location Cases](lessons/ablative_cases.html)
 
 [Lesson 33: Comparatives & Superlatives](lessons/comparatives_superlatives.html)
+### A2 Level: Waystage (Weeks 13-26)
+
+[Lesson 13: Present Tense (Definite Conjugation)](lessons/definite_conjugation.html)
+
+[Lesson 14: Negation (nem, nincs, sincs)](lessons/negation.html)
+
+[Lesson 15: Location & Direction Cases](lessons/location_cases.html)
+
+[Lesson 16: Time Expressions & Calendar](lessons/time_expressions.html)
+
+[Lesson 17: Food & Restaurant Vocabulary](lessons/food_restaurant.html)
+
+[Lesson 18: Shopping & Money](lessons/shopping_money.html)
+
+[Lesson 19: Modal Verbs (can, want, must)](lessons/modal_verbs.html)
+
+[Lesson 20: Past Tense (Indefinite Conjugation)](lessons/past_tense_indefinite.html)
+
+[Lesson 21: Past Tense (Definite Conjugation)](lessons/past_tense_definite.html)
+
+[Lesson 22: Possession & Possessive Suffixes](lessons/possessive_suffixes.html)
 
 ---
 
