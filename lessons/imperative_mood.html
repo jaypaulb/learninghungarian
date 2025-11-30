@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 29: Imperative Mood - Learning Hungarian</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; text-align: center; }
+        th { background: #f1f5f9; }
+        .grammar-note {
+            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+            border-left: 4px solid #0f766e;
+        }
+        .warning-note {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #d97706;
+        }
+        .match-card {
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .match-card:hover {
+            transform: scale(1.02);
+        }
+        .match-card.selected {
+            border-color: #0f766e;
+            background-color: #f0fdfa;
+            box-shadow: 0 0 0 2px #0f766e;
+        }
+        .match-card.correct {
+            border-color: #16a34a;
+            background-color: #dcfce7;
+        }
+        .match-card.incorrect {
+            border-color: #dc2626;
+            background-color: #fef2f2;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <header class="text-center mb-8">
+        <div class="mb-4">
+            <a href="../index.html" class="inline-flex items-center px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors">
+                <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Lessons
+            </a>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Lesson 29: Imperative Mood <span class="block text-xl text-slate-500 font-normal">(Felszolito mod)</span></h1>
+        <p class="text-slate-600 mt-1 max-w-2xl mx-auto">Learn how to form commands, requests, and suggestions in Hungarian. The imperative mood is essential for giving directions, making polite requests, and everyday communication.</p>
+    </header>
+    <main class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6" id="main-content">
+    </main>
+    <footer class="text-center mt-12 py-4 border-t border-slate-300">
+        <p class="text-sm text-slate-500">&copy; 2024 Hungarian Language Lessons</p>
+    </footer>
+    <script>
+    const mainContent = document.getElementById('main-content');
+
+    // Accent handling utilities
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[oOuUaAeEiI]/g, function(m) {
+            const map = { 'a':'a','A':'A','e':'e','E':'E','i':'i','I':'I','o':'o','O':'O','u':'u','U':'U' };
+            return map[m] || m;
+        });
+    }
+
+    function normalizeHungarian(str) {
+        return str.trim().toLowerCase();
+    }
+
+    function checkWithAccentWarning(input, correct) {
+        const inputVal = normalizeHungarian(input);
+        const correctVal = normalizeHungarian(correct);
+        if (inputVal === correctVal) {
+            return 'correct';
+        } else if (removeAccents(inputVal) === removeAccents(correctVal)) {
+            return 'accent-warning';
+        }
+        return 'incorrect';
+    }
+
+    // ==================== SECTION 1: INTRODUCTION TO IMPERATIVE ====================
+    const section1 = document.createElement('section');
+    section1.className = 'mb-8';
+    section1.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 1: What is the Imperative Mood?</h2>
+        <p class="mb-4 text-slate-600">The imperative mood (felszolito mod) is used to express commands, requests, suggestions, and instructions. In Hungarian, the imperative is formed by adding specific suffixes to the verb stem, and the pattern differs based on whether you're using indefinite or definite conjugation.</p>
+
+        <div class="grammar-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">Key Concept: The -j- Marker</h4>
+            <p class="text-slate-700 text-sm">The Hungarian imperative is typically marked by a <strong>-j-</strong> inserted between the verb stem and the personal endings. This -j- may change form depending on the final consonant of the verb stem.</p>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Common Uses of Imperative</h3>
+        <ul class="list-disc pl-6 mb-4 text-slate-600">
+            <li><strong>Commands:</strong> Gyere ide! (Come here!)</li>
+            <li><strong>Requests:</strong> Kerlek, adj egy kenyeret! (Please give me a bread!)</li>
+            <li><strong>Suggestions:</strong> Menjunk moziba! (Let's go to the cinema!)</li>
+            <li><strong>Instructions:</strong> Fordulj jobbra! (Turn right!)</li>
+            <li><strong>Wishes:</strong> Legyel boldog! (Be happy!)</li>
+        </ul>
+    `;
+    mainContent.appendChild(section1);
+
+    // ==================== SECTION 2: INDEFINITE IMPERATIVE CONJUGATION ====================
+    const section2 = document.createElement('section');
+    section2.className = 'mb-8';
+    section2.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 2: Indefinite Imperative Conjugation</h2>
+        <p class="mb-4 text-slate-600">Use the indefinite imperative when there is no specific object or when the object is indefinite.</p>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Regular Verb Pattern: var (to wait)</h3>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Person</th><th class="border px-2">Ending</th><th class="border px-2">Imperative</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2">en</td><td class="border px-2">-jak/-jek</td><td class="border px-2 font-medium">varjak</td><td class="border px-2">let me wait</td></tr>
+            <tr><td class="border px-2">te</td><td class="border px-2">-j/-jal/-jel</td><td class="border px-2 font-medium">varj / varjal</td><td class="border px-2">wait!</td></tr>
+            <tr><td class="border px-2">o/On</td><td class="border px-2">-jon/-jen/-jon</td><td class="border px-2 font-medium">varjon</td><td class="border px-2">let him/her wait</td></tr>
+            <tr><td class="border px-2">mi</td><td class="border px-2">-junk/-junk</td><td class="border px-2 font-medium">varjunk</td><td class="border px-2">let's wait</td></tr>
+            <tr><td class="border px-2">ti</td><td class="border px-2">-jatok/-jetek</td><td class="border px-2 font-medium">varjatok</td><td class="border px-2">wait! (plural)</td></tr>
+            <tr><td class="border px-2">ok</td><td class="border px-2">-janak/-jenek</td><td class="border px-2 font-medium">varjanak</td><td class="border px-2">let them wait</td></tr>
+        </table>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Front Vowel Verb: ker (to ask)</h3>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Person</th><th class="border px-2">Imperative</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2">en</td><td class="border px-2 font-medium">kerjek</td><td class="border px-2">let me ask</td></tr>
+            <tr><td class="border px-2">te</td><td class="border px-2 font-medium">kerj / kerjel</td><td class="border px-2">ask!</td></tr>
+            <tr><td class="border px-2">o/On</td><td class="border px-2 font-medium">kerjen</td><td class="border px-2">let him/her ask</td></tr>
+            <tr><td class="border px-2">mi</td><td class="border px-2 font-medium">kerjunk</td><td class="border px-2">let's ask</td></tr>
+            <tr><td class="border px-2">ti</td><td class="border px-2 font-medium">kerjetek</td><td class="border px-2">ask! (plural)</td></tr>
+            <tr><td class="border px-2">ok</td><td class="border px-2 font-medium">kerjenek</td><td class="border px-2">let them ask</td></tr>
+        </table>
+
+        <div class="grammar-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">Remember: Vowel Harmony</h4>
+            <p class="text-slate-700 text-sm">Back vowel verbs (a, o, u) take endings with -a-/-o- (varjak, varjon). Front vowel verbs (e, i, o, u) take endings with -e- (kerjek, kerjen).</p>
+        </div>
+    `;
+    mainContent.appendChild(section2);
+
+    // ==================== SECTION 3: DEFINITE IMPERATIVE CONJUGATION ====================
+    const section3 = document.createElement('section');
+    section3.className = 'mb-8';
+    section3.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 3: Definite Imperative Conjugation</h2>
+        <p class="mb-4 text-slate-600">Use the definite imperative when there is a specific, definite object (with "a/az" article, proper nouns, possessives).</p>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Definite Pattern: var (to wait for)</h3>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Person</th><th class="border px-2">Ending</th><th class="border px-2">Imperative</th><th class="border px-2">Example</th></tr>
+            <tr><td class="border px-2">en</td><td class="border px-2">-jam/-jem</td><td class="border px-2 font-medium">varjam</td><td class="border px-2">Varjam Petit? (Shall I wait for Peter?)</td></tr>
+            <tr><td class="border px-2">te</td><td class="border px-2">-jad/-jed or -d</td><td class="border px-2 font-medium">vard / varjad</td><td class="border px-2">Vard meg! (Wait for it!)</td></tr>
+            <tr><td class="border px-2">o/On</td><td class="border px-2">-ja/-je</td><td class="border px-2 font-medium">varja</td><td class="border px-2">Varja meg ot! (Let him/her wait for her!)</td></tr>
+            <tr><td class="border px-2">mi</td><td class="border px-2">-juk/-juk</td><td class="border px-2 font-medium">varjuk</td><td class="border px-2">Varjuk meg! (Let's wait for it!)</td></tr>
+            <tr><td class="border px-2">ti</td><td class="border px-2">-jatok/-jetek</td><td class="border px-2 font-medium">varjatok</td><td class="border px-2">Varjatok meg! (Wait for it! - plural)</td></tr>
+            <tr><td class="border px-2">ok</td><td class="border px-2">-jak/-jek</td><td class="border px-2 font-medium">varjak</td><td class="border px-2">Varjak meg! (Let them wait for it!)</td></tr>
+        </table>
+
+        <div class="warning-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-amber-800 mb-2">Important: Short vs Long Forms</h4>
+            <p class="text-slate-700 text-sm">For "te" (you singular), there are often two forms: a short form (<strong>vard</strong>) and a long form (<strong>varjad</strong>). The short form is more common in everyday speech.</p>
+        </div>
+    `;
+    mainContent.appendChild(section3);
+
+    // ==================== SECTION 4: CONSONANT CHANGES ====================
+    const section4 = document.createElement('section');
+    section4.className = 'mb-8';
+    section4.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 4: Consonant Changes Before -j-</h2>
+        <p class="mb-4 text-slate-600">When the verb stem ends in certain consonants, the -j- marker combines with or modifies the final consonant.</p>
+
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Stem Ending</th><th class="border px-2">Change</th><th class="border px-2">Example</th><th class="border px-2">Imperative (te)</th></tr>
+            <tr><td class="border px-2">-s</td><td class="border px-2">-s + j = -ss</td><td class="border px-2">olvas (read)</td><td class="border px-2 font-medium">olvass!</td></tr>
+            <tr><td class="border px-2">-sz</td><td class="border px-2">-sz + j = -ssz</td><td class="border px-2">vesz (buy)</td><td class="border px-2 font-medium">vegyel! (irregular)</td></tr>
+            <tr><td class="border px-2">-z</td><td class="border px-2">-z + j = -zz</td><td class="border px-2">nez (watch)</td><td class="border px-2 font-medium">nezz!</td></tr>
+            <tr><td class="border px-2">-t</td><td class="border px-2">-t + j = -ss</td><td class="border px-2">lat (see)</td><td class="border px-2 font-medium">lass!</td></tr>
+            <tr><td class="border px-2">-d</td><td class="border px-2">-d + j = -ggy</td><td class="border px-2">ad (give)</td><td class="border px-2 font-medium">adj!</td></tr>
+            <tr><td class="border px-2">-n</td><td class="border px-2">regular</td><td class="border px-2">tanul (learn)</td><td class="border px-2 font-medium">tanulj!</td></tr>
+        </table>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">Common Irregular Imperatives</h3>
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Infinitive</th><th class="border px-2">Meaning</th><th class="border px-2">Imperative (te)</th><th class="border px-2">Imperative (On)</th></tr>
+            <tr><td class="border px-2">jon</td><td class="border px-2">to come</td><td class="border px-2 font-medium">gyere!</td><td class="border px-2 font-medium">jojjon!</td></tr>
+            <tr><td class="border px-2">megy</td><td class="border px-2">to go</td><td class="border px-2 font-medium">menj!</td><td class="border px-2 font-medium">menjen!</td></tr>
+            <tr><td class="border px-2">van</td><td class="border px-2">to be</td><td class="border px-2 font-medium">legyel!</td><td class="border px-2 font-medium">legyen!</td></tr>
+            <tr><td class="border px-2">eszik</td><td class="border px-2">to eat</td><td class="border px-2 font-medium">egyel!</td><td class="border px-2 font-medium">egyen!</td></tr>
+            <tr><td class="border px-2">iszik</td><td class="border px-2">to drink</td><td class="border px-2 font-medium">igyal!</td><td class="border px-2 font-medium">igyon!</td></tr>
+            <tr><td class="border px-2">tesz</td><td class="border px-2">to put</td><td class="border px-2 font-medium">tegyel!</td><td class="border px-2 font-medium">tegyen!</td></tr>
+            <tr><td class="border px-2">vesz</td><td class="border px-2">to buy</td><td class="border px-2 font-medium">vegyel!</td><td class="border px-2 font-medium">vegyen!</td></tr>
+            <tr><td class="border px-2">visz</td><td class="border px-2">to carry</td><td class="border px-2 font-medium">vigyel!</td><td class="border px-2 font-medium">vigyen!</td></tr>
+        </table>
+    `;
+    mainContent.appendChild(section4);
+
+    // ==================== SECTION 5: NEGATIVE COMMANDS ====================
+    const section5 = document.createElement('section');
+    section5.className = 'mb-8';
+    section5.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 5: Negative Commands</h2>
+        <p class="mb-4 text-slate-600">To form negative commands, place <strong>ne</strong> (don't) before the imperative verb.</p>
+
+        <table class="mb-4 w-full border text-sm">
+            <tr><th class="border px-2">Positive</th><th class="border px-2">English</th><th class="border px-2">Negative</th><th class="border px-2">English</th></tr>
+            <tr><td class="border px-2">Gyere ide!</td><td class="border px-2">Come here!</td><td class="border px-2 font-medium">Ne gyere ide!</td><td class="border px-2">Don't come here!</td></tr>
+            <tr><td class="border px-2">Menj el!</td><td class="border px-2">Go away!</td><td class="border px-2 font-medium">Ne menj el!</td><td class="border px-2">Don't go away!</td></tr>
+            <tr><td class="border px-2">Olvass!</td><td class="border px-2">Read!</td><td class="border px-2 font-medium">Ne olvass!</td><td class="border px-2">Don't read!</td></tr>
+            <tr><td class="border px-2">Egyel!</td><td class="border px-2">Eat!</td><td class="border px-2 font-medium">Ne egyel!</td><td class="border px-2">Don't eat!</td></tr>
+            <tr><td class="border px-2">Beszeljunk!</td><td class="border px-2">Let's talk!</td><td class="border px-2 font-medium">Ne beszeljunk!</td><td class="border px-2">Let's not talk!</td></tr>
+        </table>
+
+        <div class="grammar-note p-4 rounded-lg mb-4">
+            <h4 class="font-semibold text-teal-800 mb-2">Polite Negative Requests</h4>
+            <p class="text-slate-700 text-sm">For polite negative requests, add <strong>kerlek</strong> (please): "Kerlek, ne menj el!" (Please, don't go away!)</p>
+        </div>
+    `;
+    mainContent.appendChild(section5);
+
+    // ==================== SECTION 6: POLITE REQUESTS ====================
+    const section6 = document.createElement('section');
+    section6.className = 'mb-8';
+    section6.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Section 6: Polite Requests</h2>
+        <p class="mb-4 text-slate-600">There are several ways to make requests more polite in Hungarian.</p>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">1. Add "kerlek" (please) - Informal</h3>
+        <ul class="list-disc pl-6 mb-4 text-slate-600">
+            <li><strong>Kerlek, adj vizet!</strong> (Please give me water!)</li>
+            <li><strong>Kerlek, gyere ide!</strong> (Please come here!)</li>
+            <li><strong>Kerlek, segits!</strong> (Please help!)</li>
+        </ul>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">2. Add "kerem" (please) - Formal</h3>
+        <ul class="list-disc pl-6 mb-4 text-slate-600">
+            <li><strong>Kerem, adjon vizet!</strong> (Please give me water!)</li>
+            <li><strong>Kerem, jojjon ide!</strong> (Please come here!)</li>
+            <li><strong>Kerem, segitsen!</strong> (Please help!)</li>
+        </ul>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">3. Use "legyen szives" (be so kind) - Very Polite</h3>
+        <ul class="list-disc pl-6 mb-4 text-slate-600">
+            <li><strong>Legyen szives, adja ide a sot!</strong> (Would you be so kind as to pass the salt!)</li>
+            <li><strong>Legyen szives varni!</strong> (Would you be so kind as to wait!)</li>
+        </ul>
+
+        <h3 class="text-lg font-semibold text-slate-700 mb-2">4. Use conditional for softened requests</h3>
+        <ul class="list-disc pl-6 mb-4 text-slate-600">
+            <li><strong>Megtenned?</strong> (Would you do it?)</li>
+            <li><strong>Segitene?</strong> (Would you help?)</li>
+        </ul>
+    `;
+    mainContent.appendChild(section6);
+
+    // ==================== STAGE 1: IMPERATIVE RECOGNITION (10 items) ====================
+    const stage1Data = [
+        { hungarian: 'Gyere ide!', english: 'Come here!' },
+        { hungarian: 'Menj el!', english: 'Go away!' },
+        { hungarian: 'Varj!', english: 'Wait!' },
+        { hungarian: 'Olvass!', english: 'Read!' },
+        { hungarian: 'Egyel!', english: 'Eat!' },
+        { hungarian: 'Igyal!', english: 'Drink!' },
+        { hungarian: 'Legyel jo!', english: 'Be good!' },
+        { hungarian: 'Ne felj!', english: "Don't be afraid!" },
+        { hungarian: 'Menjunk!', english: "Let's go!" },
+        { hungarian: 'Nezd!', english: 'Look!' }
+    ];
+
+    let stage1Selected = null;
+    let stage1Matches = new Set();
+
+    const stage1Section = document.createElement('section');
+    stage1Section.className = 'mb-8';
+    stage1Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 1: Imperative Recognition</h2>
+        <p class="mb-4 text-slate-600">Match the Hungarian commands with their English translations. Click a card on the left, then click its match on the right.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="stage1-exercise">
+            <div id="stage1-hungarian" class="space-y-2"></div>
+            <div id="stage1-english" class="space-y-2"></div>
+        </div>
+        <div id="stage1-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage1Data.length}</div>
+    `;
+    mainContent.appendChild(stage1Section);
+
+    const stage1Hungarian = document.getElementById('stage1-hungarian');
+    const stage1English = document.getElementById('stage1-english');
+    const stage1Score = document.getElementById('stage1-score');
+
+    const shuffledEnglish1 = [...stage1Data].sort(() => Math.random() - 0.5);
+
+    stage1Data.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.hungarian;
+        card.dataset.index = idx;
+        card.dataset.type = 'hungarian';
+        card.addEventListener('click', () => handleStage1Click(card, 'hungarian', idx));
+        stage1Hungarian.appendChild(card);
+    });
+
+    shuffledEnglish1.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'match-card border-2 border-slate-300 rounded-lg p-3 text-center bg-white';
+        card.textContent = item.english;
+        card.dataset.originalIndex = stage1Data.findIndex(d => d.english === item.english);
+        card.dataset.type = 'english';
+        card.addEventListener('click', () => handleStage1Click(card, 'english', parseInt(card.dataset.originalIndex)));
+        stage1English.appendChild(card);
+    });
+
+    function handleStage1Click(card, type, index) {
+        if (card.classList.contains('correct')) return;
+        if (stage1Selected === null) {
+            stage1Selected = { card, type, index };
+            card.classList.add('selected');
+        } else if (stage1Selected.type === type) {
+            stage1Selected.card.classList.remove('selected');
+            stage1Selected = { card, type, index };
+            card.classList.add('selected');
+        } else {
+            if (stage1Selected.index === index) {
+                stage1Selected.card.classList.remove('selected');
+                stage1Selected.card.classList.add('correct');
+                card.classList.add('correct');
+                stage1Matches.add(index);
+                updateStage1Score();
+            } else {
+                stage1Selected.card.classList.add('incorrect');
+                card.classList.add('incorrect');
+                setTimeout(() => {
+                    stage1Selected.card.classList.remove('selected', 'incorrect');
+                    card.classList.remove('incorrect');
+                    stage1Selected = null;
+                }, 800);
+                return;
+            }
+            stage1Selected = null;
+        }
+    }
+
+    function updateStage1Score() {
+        stage1Score.textContent = `Score: ${stage1Matches.size} / ${stage1Data.length}`;
+    }
+
+    // ==================== STAGE 2: FORM THE IMPERATIVE (12 items) ====================
+    const stage2Data = [
+        { prompt: 'var (te)', answer: 'varj', translation: 'wait! (to you)' },
+        { prompt: 'olvas (te)', answer: 'olvass', translation: 'read! (to you)' },
+        { prompt: 'ir (te)', answer: 'irj', translation: 'write! (to you)' },
+        { prompt: 'tanul (te)', answer: 'tanulj', translation: 'study! (to you)' },
+        { prompt: 'beszel (te)', answer: 'beszelj', translation: 'speak! (to you)' },
+        { prompt: 'nez (te)', answer: 'nezz', translation: 'watch! (to you)' },
+        { prompt: 'var (mi)', answer: 'varjunk', translation: "let's wait" },
+        { prompt: 'megy (mi)', answer: 'menjunk', translation: "let's go" },
+        { prompt: 'eszik (te)', answer: 'egyel', translation: 'eat! (to you)' },
+        { prompt: 'iszik (te)', answer: 'igyal', translation: 'drink! (to you)' },
+        { prompt: 'jon (te)', answer: 'gyere', translation: 'come! (to you)' },
+        { prompt: 'ad (te)', answer: 'adj', translation: 'give! (to you)' }
+    ];
+
+    const stage2Section = document.createElement('section');
+    stage2Section.className = 'mb-8';
+    stage2Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 2: Form the Imperative</h2>
+        <p class="mb-4 text-slate-600">Write the correct imperative form of each verb for the given person. Press Enter to check.</p>
+        <div id="stage2-exercise" class="space-y-4"></div>
+        <div id="stage2-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage2Data.length}</div>
+    `;
+    mainContent.appendChild(stage2Section);
+
+    const stage2Exercise = document.getElementById('stage2-exercise');
+    const stage2Score = document.getElementById('stage2-score');
+    let stage2Results = new Array(stage2Data.length).fill(null);
+
+    stage2Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. ${item.prompt}</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-48 focus:ring-2 focus:ring-teal-500 focus:border-teal-500" placeholder="Type imperative..." aria-label="Answer for: ${item.prompt}">
+                <span class="text-sm font-semibold stage2-feedback"></span>
+            </div>
+        `;
+        stage2Exercise.appendChild(wrapper);
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage2(idx, input, wrapper); });
+    });
+
+    function checkStage2(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage2-feedback');
+        const item = stage2Data[idx];
+        const result = checkWithAccentWarning(input.value, item.answer);
+        if (result === 'correct') {
+            feedback.textContent = `Correct! "${item.answer}" - ${item.translation}`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage2-feedback';
+            stage2Results[idx] = true;
+        } else if (result === 'accent-warning') {
+            feedback.textContent = `Almost! Watch accents: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage2-feedback';
+            stage2Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage2Results[idx] = null;
+        } else {
+            feedback.textContent = `Try again. Expected: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage2-feedback';
+            stage2Results[idx] = false;
+        }
+        updateStage2Score();
+    }
+
+    function updateStage2Score() {
+        const correct = stage2Results.filter(r => r === true).length;
+        stage2Score.textContent = `Score: ${correct} / ${stage2Data.length}`;
+    }
+
+    // ==================== STAGE 3: INDEFINITE VS DEFINITE (10 items) ====================
+    const stage3Data = [
+        { sentence: 'Read a book!', options: ['Olvass egy konyvet!', 'Olvasd a konyvet!'], correct: 'Olvass egy konyvet!', explanation: 'Indefinite: "egy konyvet"' },
+        { sentence: 'Read the book!', options: ['Olvass egy konyvet!', 'Olvasd a konyvet!'], correct: 'Olvasd a konyvet!', explanation: 'Definite: "a konyvet"' },
+        { sentence: 'Write a letter!', options: ['Irj levelet!', 'Ird meg a levelet!'], correct: 'Irj levelet!', explanation: 'Indefinite: "levelet"' },
+        { sentence: 'Write the letter!', options: ['Irj levelet!', 'Ird meg a levelet!'], correct: 'Ird meg a levelet!', explanation: 'Definite: "a levelet"' },
+        { sentence: 'Wait for Peter!', options: ['Varj!', 'Vard meg Petert!'], correct: 'Vard meg Petert!', explanation: 'Definite: proper noun' },
+        { sentence: 'Wait a moment!', options: ['Varj egy pillanatot!', 'Vard a pillanatot!'], correct: 'Varj egy pillanatot!', explanation: 'Indefinite: "egy pillanatot"' },
+        { sentence: 'Watch the film!', options: ['Nezz filmet!', 'Nezd meg a filmet!'], correct: 'Nezd meg a filmet!', explanation: 'Definite: "a filmet"' },
+        { sentence: 'Watch something!', options: ['Nezz valamit!', 'Nezd meg azt!'], correct: 'Nezz valamit!', explanation: 'Indefinite: "valamit"' },
+        { sentence: 'Give me the key!', options: ['Adj kulcsot!', 'Add ide a kulcsot!'], correct: 'Add ide a kulcsot!', explanation: 'Definite: "a kulcsot"' },
+        { sentence: 'Give me a pen!', options: ['Adj egy tollat!', 'Add a tollat!'], correct: 'Adj egy tollat!', explanation: 'Indefinite: "egy tollat"' }
+    ];
+
+    const stage3Section = document.createElement('section');
+    stage3Section.className = 'mb-8';
+    stage3Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 3: Indefinite vs Definite Imperative</h2>
+        <p class="mb-4 text-slate-600">Choose the correct Hungarian translation based on definite or indefinite object.</p>
+        <div id="stage3-exercise" class="space-y-4"></div>
+        <div id="stage3-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage3Data.length}</div>
+    `;
+    mainContent.appendChild(stage3Section);
+
+    const stage3Exercise = document.getElementById('stage3-exercise');
+    const stage3Score = document.getElementById('stage3-score');
+    let stage3Correct = 0;
+
+    stage3Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700 mb-3">${idx + 1}. "${item.sentence}"</p>
+            <div class="flex flex-wrap gap-2" id="stage3-options-${idx}">
+                ${item.options.map(opt => `<button class="px-4 py-2 border-2 border-slate-300 rounded-lg bg-white hover:bg-slate-50 transition-colors stage3-btn text-sm" data-answer="${opt}">${opt}</button>`).join('')}
+            </div>
+            <p class="mt-2 text-sm font-semibold stage3-feedback"></p>
+        `;
+        stage3Exercise.appendChild(wrapper);
+        const buttons = wrapper.querySelectorAll('.stage3-btn');
+        buttons.forEach(btn => { btn.addEventListener('click', () => checkStage3(idx, btn, wrapper, buttons)); });
+    });
+
+    function checkStage3(idx, btn, wrapper, buttons) {
+        const feedback = wrapper.querySelector('.stage3-feedback');
+        const correct = stage3Data[idx].correct;
+        const wasCorrect = Array.from(buttons).some(b => b.classList.contains('bg-green-100'));
+        buttons.forEach(b => { b.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500'); });
+        if (btn.dataset.answer === correct) {
+            btn.classList.add('bg-green-100', 'border-green-500');
+            feedback.textContent = `Correct! ${stage3Data[idx].explanation}`;
+            feedback.className = 'mt-2 text-sm font-semibold text-green-600 stage3-feedback';
+            if (!wasCorrect) stage3Correct++;
+        } else {
+            btn.classList.add('bg-red-100', 'border-red-500');
+            feedback.textContent = `Not quite. ${stage3Data[idx].explanation}`;
+            feedback.className = 'mt-2 text-sm font-semibold text-red-600 stage3-feedback';
+            if (wasCorrect) stage3Correct--;
+        }
+        stage3Score.textContent = `Score: ${stage3Correct} / ${stage3Data.length}`;
+    }
+
+    // ==================== STAGE 4: NEGATIVE COMMANDS (8 items) ====================
+    const stage4Data = [
+        { positive: 'Menj!', answer: 'Ne menj!', translation: "Don't go!" },
+        { positive: 'Gyere ide!', answer: 'Ne gyere ide!', translation: "Don't come here!" },
+        { positive: 'Beszelj!', answer: 'Ne beszelj!', translation: "Don't speak!" },
+        { positive: 'Egyel!', answer: 'Ne egyel!', translation: "Don't eat!" },
+        { positive: 'Nezd!', answer: 'Ne nezd!', translation: "Don't look at it!" },
+        { positive: 'Felj!', answer: 'Ne felj!', translation: "Don't be afraid!" },
+        { positive: 'Sirj!', answer: 'Ne sirj!', translation: "Don't cry!" },
+        { positive: 'Varj!', answer: 'Ne varj!', translation: "Don't wait!" }
+    ];
+
+    const stage4Section = document.createElement('section');
+    stage4Section.className = 'mb-8';
+    stage4Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 4: Form Negative Commands</h2>
+        <p class="mb-4 text-slate-600">Convert each positive command to negative by adding "ne". Press Enter to check.</p>
+        <div id="stage4-exercise" class="space-y-4"></div>
+        <div id="stage4-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage4Data.length}</div>
+    `;
+    mainContent.appendChild(stage4Section);
+
+    const stage4Exercise = document.getElementById('stage4-exercise');
+    const stage4Score = document.getElementById('stage4-score');
+    let stage4Results = new Array(stage4Data.length).fill(null);
+
+    stage4Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. ${item.positive} (make negative)</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-64 focus:ring-2 focus:ring-teal-500 focus:border-teal-500" placeholder="Type negative command..." aria-label="Negative of: ${item.positive}">
+                <span class="text-sm font-semibold stage4-feedback"></span>
+            </div>
+        `;
+        stage4Exercise.appendChild(wrapper);
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage4(idx, input, wrapper); });
+    });
+
+    function checkStage4(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage4-feedback');
+        const item = stage4Data[idx];
+        const result = checkWithAccentWarning(input.value, item.answer);
+        if (result === 'correct') {
+            feedback.textContent = `Correct! ${item.translation}`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage4-feedback';
+            stage4Results[idx] = true;
+        } else if (result === 'accent-warning') {
+            feedback.textContent = `Almost! Watch accents: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage4-feedback';
+            stage4Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage4Results[idx] = null;
+        } else {
+            feedback.textContent = `Try again. Expected: "${item.answer}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage4-feedback';
+            stage4Results[idx] = false;
+        }
+        updateStage4Score();
+    }
+
+    function updateStage4Score() {
+        const correct = stage4Results.filter(r => r === true).length;
+        stage4Score.textContent = `Score: ${correct} / ${stage4Data.length}`;
+    }
+
+    // ==================== STAGE 5: POLITE REQUESTS (8 items) ====================
+    const stage5Data = [
+        { informal: 'Adj vizet!', formal: 'Kerem, adjon vizet!', context: 'Asking a waiter for water' },
+        { informal: 'Gyere ide!', formal: 'Kerem, jojjon ide!', context: 'Calling someone over' },
+        { informal: 'Mondj valamit!', formal: 'Kerem, mondjon valamit!', context: 'Asking someone to speak' },
+        { informal: 'Segits!', formal: 'Kerem, segitsen!', context: 'Asking for help' },
+        { informal: 'Varj!', formal: 'Kerem, varjon!', context: 'Asking someone to wait' },
+        { informal: 'Ulj le!', formal: 'Kerem, uljon le!', context: 'Asking someone to sit down' },
+        { informal: 'Nezd meg!', formal: 'Kerem, nezze meg!', context: 'Asking someone to look' },
+        { informal: 'Ird le!', formal: 'Kerem, irja le!', context: 'Asking someone to write' }
+    ];
+
+    const stage5Section = document.createElement('section');
+    stage5Section.className = 'mb-8';
+    stage5Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 5: Polite Requests</h2>
+        <p class="mb-4 text-slate-600">Transform each informal command into a formal, polite request. Type and press Enter.</p>
+        <div id="stage5-exercise" class="space-y-4"></div>
+        <div id="stage5-score" class="mt-4 text-slate-700 font-medium">Score: 0 / ${stage5Data.length}</div>
+    `;
+    mainContent.appendChild(stage5Section);
+
+    const stage5Exercise = document.getElementById('stage5-exercise');
+    const stage5Score = document.getElementById('stage5-score');
+    let stage5Results = new Array(stage5Data.length).fill(null);
+
+    stage5Data.forEach((item, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col gap-2 bg-slate-50 p-4 rounded-lg';
+        wrapper.innerHTML = `
+            <p class="font-medium text-slate-700">${idx + 1}. Informal: "${item.informal}"</p>
+            <p class="text-sm text-slate-500">Context: ${item.context}</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <input type="text" class="border border-slate-300 rounded-md px-3 py-2 w-full md:w-80 focus:ring-2 focus:ring-teal-500 focus:border-teal-500" placeholder="Type formal request..." aria-label="Formal version of: ${item.informal}">
+                <span class="text-sm font-semibold stage5-feedback"></span>
+            </div>
+        `;
+        stage5Exercise.appendChild(wrapper);
+        const input = wrapper.querySelector('input');
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage5(idx, input, wrapper); });
+    });
+
+    function checkStage5(idx, input, wrapper) {
+        const feedback = wrapper.querySelector('.stage5-feedback');
+        const item = stage5Data[idx];
+        const result = checkWithAccentWarning(input.value, item.formal);
+        if (result === 'correct') {
+            feedback.textContent = `Correct! "${item.formal}"`;
+            feedback.className = 'text-sm font-semibold text-green-600 stage5-feedback';
+            stage5Results[idx] = true;
+        } else if (result === 'accent-warning') {
+            feedback.textContent = `Almost! Watch accents: "${item.formal}"`;
+            feedback.className = 'text-sm font-semibold text-yellow-600 stage5-feedback';
+            stage5Results[idx] = 'partial';
+        } else if (input.value.trim() === '') {
+            feedback.textContent = '';
+            stage5Results[idx] = null;
+        } else {
+            feedback.textContent = `Expected: "${item.formal}"`;
+            feedback.className = 'text-sm font-semibold text-red-600 stage5-feedback';
+            stage5Results[idx] = false;
+        }
+        updateStage5Score();
+    }
+
+    function updateStage5Score() {
+        const correct = stage5Results.filter(r => r === true).length;
+        stage5Score.textContent = `Score: ${correct} / ${stage5Data.length}`;
+    }
+
+    // ==================== STAGE 6: DIALOGUE COMPLETION (6 items) ====================
+    const stage6Data = [
+        { title: 'At a restaurant', lines: [
+            { speaker: 'Waiter', text: 'Tessek parancsolni!', type: 'given', translation: 'What would you like?' },
+            { speaker: 'Customer', text: 'Kerem, _____ a menukartyat!', blanks: ['adja'], type: 'fill', translation: 'Please give me the menu!' },
+            { speaker: 'Waiter', text: 'Tessek. Mit parancsol?', type: 'given', translation: 'Here. What would you like?' },
+            { speaker: 'Customer', text: '_____ egy gulyast!', blanks: ['Kerek'], type: 'fill', translation: 'I would like a goulash!' }
+        ]},
+        { title: 'Giving directions', lines: [
+            { speaker: 'Tourist', text: 'Elnezest, hogy jutok a bankhoz?', type: 'given', translation: 'How do I get to the bank?' },
+            { speaker: 'Local', text: '_____ egyenesen, aztan _____ balra!', blanks: ['Menjen', 'forduljon'], type: 'fill', translation: 'Go straight, then turn left!' },
+            { speaker: 'Tourist', text: 'Koszonom szepen!', type: 'given', translation: 'Thank you very much!' }
+        ]},
+        { title: 'At home', lines: [
+            { speaker: 'Parent', text: '_____ a szobadban!', blanks: ['Takarits'], type: 'fill', translation: 'Clean up your room!' },
+            { speaker: 'Child', text: 'Jo, de eloszor hadd _____ valamit!', blanks: ['egyek'], type: 'fill', translation: 'OK, but let me eat first!' },
+            { speaker: 'Parent', text: 'Rendben, de aztan _____ el a leckevel!', blanks: ['kezdj'], type: 'fill', translation: 'OK, but then start homework!' }
+        ]}
+    ];
+
+    const stage6Section = document.createElement('section');
+    stage6Section.className = 'mb-8';
+    stage6Section.innerHTML = `
+        <h2 class="text-xl font-semibold text-slate-700 mb-2">Stage 6: Dialogue Completion</h2>
+        <p class="mb-4 text-slate-600">Complete the dialogues by filling in the missing imperative forms. Press Enter to check.</p>
+        <div id="stage6-exercise" class="space-y-6"></div>
+        <div id="stage6-score" class="mt-4 text-slate-700 font-medium">Score: 0 / 0</div>
+    `;
+    mainContent.appendChild(stage6Section);
+
+    const stage6Exercise = document.getElementById('stage6-exercise');
+    const stage6Score = document.getElementById('stage6-score');
+    let stage6Total = 0;
+    let stage6Results = [];
+
+    stage6Data.forEach((dialogue, dIdx) => {
+        const dialogueDiv = document.createElement('div');
+        dialogueDiv.className = 'bg-slate-50 p-4 rounded-lg';
+        dialogueDiv.innerHTML = `<h3 class="font-semibold text-slate-700 mb-3">${dialogue.title}</h3>`;
+        dialogue.lines.forEach((line, lIdx) => {
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'mb-3';
+            const speakerSpan = document.createElement('span');
+            speakerSpan.className = 'font-medium text-teal-700';
+            speakerSpan.textContent = `${line.speaker}: `;
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'flex flex-wrap items-center gap-1 ml-4';
+            if (line.type === 'given') {
+                const textSpan = document.createElement('span');
+                textSpan.className = 'text-slate-700';
+                textSpan.textContent = line.text;
+                contentDiv.appendChild(textSpan);
+                const transSpan = document.createElement('span');
+                transSpan.className = 'text-slate-500 text-sm ml-2';
+                transSpan.textContent = `(${line.translation})`;
+                contentDiv.appendChild(transSpan);
+            } else {
+                const parts = line.text.split('_____');
+                parts.forEach((part, pIdx) => {
+                    if (part) {
+                        const partSpan = document.createElement('span');
+                        partSpan.className = 'text-slate-700';
+                        partSpan.textContent = part;
+                        contentDiv.appendChild(partSpan);
+                    }
+                    if (pIdx < line.blanks.length) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.className = 'border border-slate-300 rounded px-2 py-1 w-28 text-center focus:ring-2 focus:ring-teal-500 focus:border-teal-500 mx-1';
+                        input.dataset.answer = line.blanks[pIdx];
+                        input.dataset.resultIndex = stage6Total;
+                        stage6Results.push(null);
+                        stage6Total++;
+                        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkStage6Input(input); });
+                        contentDiv.appendChild(input);
+                    }
+                });
+                const transSpan = document.createElement('span');
+                transSpan.className = 'text-slate-500 text-sm ml-2';
+                transSpan.textContent = `(${line.translation})`;
+                contentDiv.appendChild(transSpan);
+            }
+            lineDiv.appendChild(speakerSpan);
+            lineDiv.appendChild(contentDiv);
+            dialogueDiv.appendChild(lineDiv);
+        });
+        stage6Exercise.appendChild(dialogueDiv);
+    });
+
+    stage6Score.textContent = `Score: 0 / ${stage6Total}`;
+
+    function checkStage6Input(input) {
+        const correct = input.dataset.answer.toLowerCase();
+        const userAnswer = input.value.trim().toLowerCase();
+        const resultIdx = parseInt(input.dataset.resultIndex);
+        if (userAnswer === correct) {
+            input.classList.remove('border-red-500', 'border-yellow-500');
+            input.classList.add('border-green-500', 'bg-green-50');
+            stage6Results[resultIdx] = true;
+        } else if (removeAccents(userAnswer) === removeAccents(correct)) {
+            input.classList.remove('border-red-500', 'border-green-500');
+            input.classList.add('border-yellow-500', 'bg-yellow-50');
+            stage6Results[resultIdx] = 'partial';
+        } else if (userAnswer === '') {
+            input.classList.remove('border-green-500', 'border-red-500', 'border-yellow-500', 'bg-green-50', 'bg-red-50', 'bg-yellow-50');
+            stage6Results[resultIdx] = null;
+        } else {
+            input.classList.remove('border-green-500', 'border-yellow-500');
+            input.classList.add('border-red-500', 'bg-red-50');
+            stage6Results[resultIdx] = false;
+        }
+        updateStage6Score();
+    }
+
+    function updateStage6Score() {
+        const correct = stage6Results.filter(r => r === true).length;
+        stage6Score.textContent = `Score: ${correct} / ${stage6Total}`;
+    }
+
+    // ==================== FINAL SUMMARY ====================
+    const summarySection = document.createElement('section');
+    summarySection.className = 'mb-8 mt-12 bg-gradient-to-r from-teal-50 to-slate-50 p-6 rounded-xl';
+    summarySection.innerHTML = `
+        <h2 class="text-2xl font-bold text-slate-700 mb-4">Lesson Summary</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Key Imperative Forms</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li><strong>Gyere!</strong> - Come! (irregular)</li>
+                    <li><strong>Menj!</strong> - Go!</li>
+                    <li><strong>Varj!</strong> - Wait!</li>
+                    <li><strong>Olvass!</strong> - Read!</li>
+                    <li><strong>Nezz!</strong> - Watch!</li>
+                    <li><strong>Egyel!</strong> - Eat! (irregular)</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-teal-700 mb-2">Remember</h3>
+                <ul class="text-slate-700 space-y-1 text-sm">
+                    <li>Use <strong>ne</strong> for negative commands</li>
+                    <li>Add <strong>kerlek/kerem</strong> for politeness</li>
+                    <li>Consonant changes: -s+-j=-ss, -z+-j=-zz</li>
+                    <li>Definite vs indefinite conjugation matters!</li>
+                    <li>Formal commands use 3rd person forms</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4 p-4 bg-white rounded-lg">
+            <h3 class="font-semibold text-teal-700 mb-2">Common Polite Phrases</h3>
+            <p class="text-slate-700 text-sm">
+                <strong>Kerlek, segits!</strong> - Please help! (informal)<br>
+                <strong>Kerem, segitsen!</strong> - Please help! (formal)<br>
+                <strong>Legyen szives...</strong> - Would you be so kind...
+            </p>
+        </div>
+    `;
+    mainContent.appendChild(summarySection);
+    </script>
+</body>
+</html>

@@ -40,6 +40,17 @@ This site documents and supports my journey to learn the Hungarian language. Her
 
 [Lesson 12: A1 Review & Self-Introduction](lessons/a1_review.html)
 
+### B1 Level: Threshold (Weeks 27-40)
+
+[Lesson 29: Imperative Mood (Commands/Requests)](lessons/imperative_mood.html)
+
+[Lesson 30: Dative Case (-nak/-nek)](lessons/dative_case.html)
+
+[Lesson 31: Instrumental Case (-val/-vel)](lessons/instrumental_case.html)
+
+[Lesson 32: Ablative & Location Cases](lessons/ablative_cases.html)
+
+[Lesson 33: Comparatives & Superlatives](lessons/comparatives_superlatives.html)
 ### A2 Level: Waystage (Weeks 13-26)
 
 [Lesson 13: Present Tense (Definite Conjugation)](lessons/definite_conjugation.html)
