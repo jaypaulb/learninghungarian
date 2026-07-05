@@ -1,6 +1,6 @@
 id: a1-alphabet
 title: "The Hungarian alphabet & sounds"
-version: 4
+version: 5
 position: 1
 status: reviewed
 provenance:
@@ -133,6 +133,6 @@ exercises:
     type: speaking
     srs: ["vocab:nyolc"]
     payload:
-      promptText: "nyolc"
-      expected: "nyolc"
-      translation: "eight"
+      promptText: "Nyolc, kilenc, tíz."
+      expected: "Nyolc, kilenc, tíz."
+      translation: "Eight, nine, ten."
