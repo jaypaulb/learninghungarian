@@ -25,7 +25,13 @@ for (const text of texts) {
   if (existsSync(mp3)) continue;
   const wav = join(tmpdir(), `${id}.wav`);
   execFileSync(PIPER, ['-m', MODEL, '-f', wav], { input: text });
-  execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', wav, '-codec:a', 'libmp3lame', '-qscale:a', '6', mp3]);
+  // 300ms leading + 200ms trailing silence: Bluetooth/HDMI sinks swallow the
+  // start of very short clips while waking up (field finding, 2026-07-05).
+  execFileSync('ffmpeg', [
+    '-y', '-loglevel', 'error', '-i', wav,
+    '-af', 'adelay=300:all=1,apad=pad_dur=0.2',
+    '-codec:a', 'libmp3lame', '-qscale:a', '6', mp3
+  ]);
   generated++;
   console.log(`  + ${id}.mp3  "${text}"`);
 }
