@@ -21,6 +21,8 @@ services:
     environment:
       DATABASE_URL: postgres://${POSTGRES_USER:-hungarian}:${POSTGRES_PASSWORD:-hungarian}@db:5432/${POSTGRES_DB:-hungarian}
       PORT: 3000
+      # SvelteKit CSRF origin check needs to know its own origin
+      ORIGIN: http://localhost:3000
     depends_on:
       db:
         condition: service_healthy
