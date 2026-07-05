@@ -42,6 +42,7 @@ services:
       STT_BASE_URL: ${NYOLC_STT_BASE_URL:-}
       # feedback -> PII-free GitHub issues (empty = skipped-with-log)
       GITHUB_FEEDBACK_TOKEN: ${NYOLC_GITHUB_FEEDBACK_TOKEN:-}
+      ADMIN_EMAILS: ${NYOLC_ADMIN_EMAILS:-jaypaulb@gmail.com}
     labels:
       - "diun.enable=true"
       - "dashboard.enabled=true"
