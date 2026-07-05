@@ -1,6 +1,6 @@
 id: a1-alphabet
 title: "The Hungarian alphabet & sounds"
-version: 3
+version: 4
 position: 1
 status: reviewed
 provenance:
@@ -12,7 +12,7 @@ objectives:
   - Recognise all 40 letters of the Hungarian alphabet, including digraphs
   - Distinguish short vs long vowels (a/á, e/é, o/ó, ö/ő, u/ú, ü/ű, i/í)
   - Pronounce the tricky consonants (cs, gy, ly, ny, s, sz, ty, zs)
-skills: [reading, listening]
+skills: [reading, listening, speaking]
 minutes: 20
 sources:
   - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), ch. 1 (alphabet & pronunciation)"
@@ -129,3 +129,10 @@ exercises:
       mode: meaning
       options: ["hi (informal)", "thank you", "goodbye (formal)"]
       correctIndex: 0
+  - id: ex10
+    type: speaking
+    srs: ["vocab:nyolc"]
+    payload:
+      promptText: "nyolc"
+      expected: "nyolc"
+      translation: "eight"

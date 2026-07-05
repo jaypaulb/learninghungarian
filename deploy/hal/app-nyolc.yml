@@ -15,7 +15,12 @@ http:
         - websecure-external
         - websecure-internal
       middlewares:
-        - chain-oauth
+        # Unbundled chain-oauth (rate-limit + secure-headers + oauth) so the
+        # headers middleware can be a nyolc-specific copy allowing the
+        # microphone (speaking exercises). Global middlewares untouched.
+        - middlewares-rate-limit
+        - middlewares-nyolc-headers
+        - middlewares-oauth
       service: nyolc-svc
       tls:
         certResolver: dns-cloudflare
@@ -25,3 +30,26 @@ http:
       loadBalancer:
         servers:
           - url: "http://nyolc:3000"
+
+  middlewares:
+    # Copy of middlewares-secure-headers with microphone=(self) for the
+    # speaking exercises. Scoped to the nyolc router only.
+    middlewares-nyolc-headers:
+      headers:
+        accessControlAllowMethods: [GET, OPTIONS, PUT, POST, DELETE, PATCH]
+        accessControlMaxAge: 100
+        hostsProxyHeaders: ["X-Forwarded-Host"]
+        stsSeconds: 63072000
+        stsIncludeSubdomains: true
+        stsPreload: true
+        forceSTSHeader: true
+        customFrameOptionsValue: SAMEORIGIN
+        contentTypeNosniff: true
+        browserXssFilter: true
+        referrerPolicy: "same-origin"
+        permissionsPolicy: "camera=(), microphone=(self), geolocation=(), payment=(), usb=()"
+        customResponseHeaders:
+          X-Robots-Tag: "none,noindex,nofollow,noarchive,nosnippet,notranslate,noimageindex"
+          server: ""
+        customRequestHeaders:
+          X-Forwarded-Proto: https

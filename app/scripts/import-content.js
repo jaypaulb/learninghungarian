@@ -26,6 +26,7 @@ function withAudio(text, context) {
 function enrichPayload(type, payload, context) {
   if (type === 'card_flip') return { ...payload, audioUrl: withAudio(payload.front, context) };
   if (type === 'listening') return { ...payload, audioUrl: withAudio(payload.audioText, context) };
+  if (type === 'speaking') return { ...payload, audioUrl: withAudio(payload.promptText, context) };
   return payload;
 }
 

@@ -33,6 +33,7 @@ export function collectAudioStrings(contentDir) {
     for (const ex of doc.exercises ?? []) {
       if (ex.type === 'card_flip' && ex.payload?.front) texts.add(ex.payload.front.trim());
       if (ex.type === 'listening' && ex.payload?.audioText) texts.add(ex.payload.audioText.trim());
+      if (ex.type === 'speaking' && ex.payload?.promptText) texts.add(ex.payload.promptText.trim());
     }
   };
   for (const tierDir of readdirSync(contentDir).sort()) {

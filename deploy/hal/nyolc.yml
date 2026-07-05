@@ -38,6 +38,8 @@ services:
       AI_MODEL: ${NYOLC_AI_MODEL:-}
       ANTHROPIC_API_KEY: ${NYOLC_ANTHROPIC_API_KEY:-}
       AI_DAILY_LIMIT: ${NYOLC_AI_DAILY_LIMIT:-100}
+      # speech-to-text (speaking exercises)
+      STT_BASE_URL: ${NYOLC_STT_BASE_URL:-}
     labels:
       - "diun.enable=true"
       - "dashboard.enabled=true"

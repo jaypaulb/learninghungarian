@@ -1,6 +1,6 @@
 id: a1-numbers
 title: "Numbers 0–100"
-version: 3
+version: 4
 position: 4
 status: reviewed
 provenance:
@@ -12,7 +12,7 @@ objectives:
   - Count from 0 to 100
   - Build compound numbers (tizenegy, huszonhárom, negyvenöt)
   - Use 'kettő' vs 'két' correctly
-skills: [reading, writing, listening]
+skills: [reading, writing, listening, speaking]
 minutes: 20
 prerequisites: [a1-alphabet]
 sources:
@@ -121,4 +121,11 @@ exercises:
       mode: transcribe
       answer: "három"
       hint: "Watch the long vowels."
+      translation: "three"
+  - id: ex10
+    type: speaking
+    srs: ["vocab:harom"]
+    payload:
+      promptText: "három"
+      expected: "három"
       translation: "three"
