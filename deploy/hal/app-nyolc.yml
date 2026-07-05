@@ -1,0 +1,20 @@
+# Copy target on hal: ~/docker/appdata/traefik3/rules/hal2020/app-nyolc.yml
+# Public learning site — no OAuth gate; rate-limit + secure headers only.
+http:
+  routers:
+    nyolc-rtr:
+      rule: "Host(`nyolc.cc`)"
+      entryPoints:
+        - websecure-external
+        - websecure-internal
+      middlewares:
+        - chain-no-auth
+      service: nyolc-svc
+      tls:
+        certResolver: dns-cloudflare
+
+  services:
+    nyolc-svc:
+      loadBalancer:
+        servers:
+          - url: "http://nyolc:3000"
