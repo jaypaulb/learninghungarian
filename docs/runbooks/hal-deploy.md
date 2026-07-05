@@ -21,6 +21,21 @@ issues certificates automatically. **No Cloudflare work needed.** The site is
 routed at the apex via `Host(`{{env "DOMAINNAME_1"}}`)`; no prior router
 claimed the apex.
 
+## 1.5 GHCR auth (already in place)
+
+The package `ghcr.io/jaypaulb/learninghungarian` is **private** (GHCR default
+on first CI push — kept deliberately). Pulls on HAL use the existing `ghcr.io`
+login in the user's `~/.docker/config.json` (a PAT with `read:packages`; the
+same one that pulls the private `baby-tracker`). Owner account = automatic
+access to the new package; nothing to grant.
+
+Caveats:
+- The `dc*` aliases run `sudo docker compose` → root context, which has **no**
+  ghcr login. If a pull 401s via an alias, run once:
+  `sudo docker login ghcr.io -u jaypaulb` (same PAT).
+- If pulls ever start failing with 401/denied, the PAT has expired —
+  regenerate with `read:packages` and `docker login ghcr.io` again.
+
 ## 2. Database bootstrap (once)
 
 ```bash
