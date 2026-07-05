@@ -14,7 +14,8 @@ COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
 COPY --from=build /app/build ./build
 COPY --from=build /app/drizzle ./drizzle
-COPY scripts/migrate.js ./scripts/migrate.js
+COPY scripts ./scripts
+COPY content ./content
 COPY docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
 EXPOSE 3000

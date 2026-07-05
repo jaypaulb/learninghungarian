@@ -1,0 +1,47 @@
+# Pipeline smoke-test lesson — proves the import + engine end-to-end.
+# Replaced by real, MoE-validated content in SP1 Plan 6.
+id: a1-smoke-test
+title: Pipeline smoke test
+version: 1
+position: 0
+status: draft
+objectives:
+  - Prove the content pipeline end-to-end
+skills: [reading]
+sources:
+  - "internal: pipeline test content, not real instruction"
+blocks:
+  - type: prose
+    payload:
+      text: >-
+        This is a smoke-test lesson. If you can read this on the site, the
+        content pipeline (YAML -> import -> Postgres -> render) works.
+  - type: example
+    payload:
+      hungarian: "Szia!"
+      english: "Hi!"
+srsItems:
+  - id: "vocab:szia"
+    payload:
+      front: "szia"
+      back: "hi / bye (informal)"
+exercises:
+  - id: ex1
+    type: fill_blank
+    srs: ["vocab:szia"]
+    payload:
+      prompt: "___! Hogy vagy?"
+      answer: "Szia"
+      translation: "Hi! How are you?"
+  - id: ex2
+    type: mcq
+    payload:
+      prompt: "What does 'szia' mean?"
+      options: ["hello (informal)", "goodbye (formal)", "thank you"]
+      correctIndex: 0
+  - id: ex3
+    type: card_flip
+    srs: ["vocab:szia"]
+    payload:
+      front: "szia"
+      back: "hi / bye (informal)"
