@@ -1,0 +1,101 @@
+id: a2-definite-conjugation
+title: "The definite conjugation"
+version: 2
+position: 0
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
+objectives:
+  - Choose between indefinite and definite conjugation
+  - Conjugate regular verbs in the definite (látom, látod, látja…)
+  - Spot the triggers - a/az + object, names, ezt/azt
+skills: [reading, writing]
+minutes: 35
+prerequisites: [a1-present-tense, a1-accusative]
+sources:
+  - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), §4.2 (definite conjugation)"
+  - "MagyarOK A2 (Szita/Pelcz), unit 1"
+blocks:
+  - type: prose
+    payload:
+      text: >-
+        Hungarian's signature feature: verbs conjugate differently depending
+        on whether their object is DEFINITE. 'Olvasok egy könyvet' (I'm
+        reading a book — indefinite) but 'Olvasom a könyvet' (I'm reading
+        THE book — definite). Same verb, different ending.
+  - type: table
+    payload:
+      headers: ["Person", "olvas — indefinite", "olvas — definite"]
+      rows:
+        - ["én", "olvasok", "olvasom"]
+        - ["te", "olvasol", "olvasod"]
+        - ["ő", "olvas", "olvassa"]
+        - ["mi", "olvasunk", "olvassuk"]
+        - ["ti", "olvastok", "olvassátok"]
+        - ["ők", "olvasnak", "olvassák"]
+  - type: callout
+    payload:
+      text: >-
+        Definite triggers: the definite article (a/az) before the object,
+        proper names, 'ezt/azt' (this/that as object), and possessed objects
+        (a könyvemet). No object at all, or egy/számok → indefinite.
+  - type: example
+    payload:
+      hungarian: "Ismered Pétert? — Igen, ismerem."
+      english: "Do you know Péter? — Yes, I know him. (name → definite)"
+srsItems:
+  - id: "grammar:definite-trigger"
+    payload: { front: "reading a book vs reading THE book", back: "olvasok egy könyvet / olvasom a könyvet — definite object changes the verb ending" }
+  - id: "vocab:olvas"
+    payload: { front: "olvas", back: "to read (olvasok / olvasom)" }
+  - id: "vocab:ismer"
+    payload: { front: "ismer", back: "to know (a person) — ismerem Pétert" }
+exercises:
+  - id: ex1
+    type: dropdown
+    srs: ["grammar:definite-trigger"]
+    payload:
+      prompt: "___ egy könyvet. (I'm reading a book.)"
+      options: ["Olvasok", "Olvasom"]
+      correct: "Olvasok"
+  - id: ex2
+    type: dropdown
+    srs: ["grammar:definite-trigger"]
+    payload:
+      prompt: "___ a könyvet. (I'm reading the book.)"
+      options: ["Olvasom", "Olvasok"]
+      correct: "Olvasom"
+  - id: ex3
+    type: mcq
+    payload:
+      prompt: "Which object forces the DEFINITE conjugation?"
+      options: ["Pétert (a name)", "egy almát", "két kávét"]
+      correctIndex: 0
+  - id: ex4
+    type: transform
+    srs: ["vocab:olvas"]
+    payload:
+      instruction: "Make the object definite (and adjust the verb)"
+      prompt: "Olvasok egy újságot."
+      answer: "Olvasom az újságot"
+      translation: "I read a newspaper. -> I read the newspaper."
+  - id: ex5
+    type: fill_blank
+    srs: ["vocab:ismer"]
+    payload:
+      prompt: "Ismered Annát? — Igen, ___. (Yes, I know her.)"
+      answer: "ismerem"
+      translation: "Do you know Anna? — Yes, I know her."
+  - id: ex6
+    type: dropdown
+    payload:
+      prompt: "Ők ___ a filmet. (They are watching the film.)"
+      options: ["nézik", "néznek"]
+      correct: "nézik"
+  - id: ex7
+    type: card_flip
+    srs: ["grammar:definite-trigger"]
+    payload: { front: "Szeretem a kávét — why -em?", back: "definite conjugation: 'a kávét' is a definite object" }

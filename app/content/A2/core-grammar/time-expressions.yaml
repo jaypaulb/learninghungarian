@@ -1,0 +1,92 @@
+id: a2-time
+title: "Time: days, parts of day, and 'when?'"
+version: 2
+position: 3
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
+objectives:
+  - Name the days and say 'on Monday' (hétfőn)
+  - Use reggel, délben, este as time adverbs
+  - Answer 'Mikor?' in everyday plans
+skills: [reading, listening]
+minutes: 25
+prerequisites: [a1-numbers]
+sources:
+  - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), §8 (time expressions)"
+  - "MagyarOK A2 (Szita/Pelcz), unit 4"
+blocks:
+  - type: table
+    payload:
+      headers: ["Day", "'on that day'"]
+      rows:
+        - ["hétfő (Monday)", "hétfőn"]
+        - ["kedd (Tuesday)", "kedden"]
+        - ["szerda (Wednesday)", "szerdán"]
+        - ["csütörtök (Thursday)", "csütörtökön"]
+        - ["péntek (Friday)", "pénteken"]
+        - ["szombat (Saturday)", "szombaton"]
+        - ["vasárnap (Sunday)", "vasárnap — no ending!"]
+  - type: table
+    payload:
+      headers: ["Hungarian", "English"]
+      rows:
+        - ["reggel", "in the morning"]
+        - ["délelőtt", "before noon (the forenoon)"]
+        - ["délben", "at noon"]
+        - ["délután", "in the afternoon"]
+        - ["este", "in the evening"]
+        - ["éjjel / éjszaka", "at night"]
+        - ["ma / holnap / tegnap", "today / tomorrow / yesterday"]
+  - type: example
+    payload:
+      hungarian: "Pénteken este moziba megyünk."
+      english: "On Friday evening we're going to the cinema."
+srsItems:
+  - id: "vocab:hetfo"
+    payload: { front: "hétfő", back: "Monday (hétfőn = on Monday)" }
+  - id: "vocab:ma"
+    payload: { front: "ma", back: "today" }
+  - id: "vocab:holnap"
+    payload: { front: "holnap", back: "tomorrow" }
+exercises:
+  - id: ex1
+    type: dropdown
+    srs: ["vocab:hetfo"]
+    payload:
+      prompt: "___ dolgozom. (I work on Monday.)"
+      options: ["Hétfőn", "Hétfő", "Hétfőben"]
+      correct: "Hétfőn"
+  - id: ex2
+    type: mcq
+    payload:
+      prompt: "Which day takes NO ending for 'on…'?"
+      options: ["vasárnap", "szombat", "kedd"]
+      correctIndex: 0
+  - id: ex3
+    type: fill_blank
+    srs: ["vocab:holnap"]
+    payload:
+      prompt: "___ este moziba megyünk. (Tomorrow evening we're going to the cinema.)"
+      answer: "Holnap"
+      translation: "Tomorrow evening we're going to the cinema."
+  - id: ex4
+    type: card_flip
+    srs: ["vocab:ma"]
+    payload: { front: "ma / holnap / tegnap", back: "today / tomorrow / yesterday" }
+  - id: ex5
+    type: listening
+    payload:
+      audioText: "Pénteken este moziba megyünk."
+      mode: meaning
+      options: ["Friday evening we go to the cinema.", "Monday morning we work.", "Sunday we rest."]
+      correctIndex: 0
+  - id: ex6
+    type: sentence_build
+    payload:
+      words: ["Szombaton", "délután", "tanulok"]
+      answer: "Szombaton délután tanulok"
+      translation: "On Saturday afternoon I study."

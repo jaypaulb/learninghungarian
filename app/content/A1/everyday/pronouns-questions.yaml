@@ -1,0 +1,112 @@
+id: a1-pronouns-questions
+title: "Personal pronouns & basic questions"
+version: 2
+position: 1
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
+objectives:
+  - Use the six personal pronouns (and know when to drop them)
+  - Address people politely with ön (and recognise maga)
+  - Ask ki, mi, hol, mikor, miért, hogyan questions
+skills: [reading, writing, listening]
+minutes: 25
+prerequisites: [a1-verb-to-be]
+sources:
+  - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), §2 (pronouns), §9 (interrogatives)"
+  - "MagyarOK A1 (Szita/Pelcz), unit 2"
+blocks:
+  - type: table
+    payload:
+      headers: ["Pronoun", "English", "Note"]
+      rows:
+        - ["én", "I", ""]
+        - ["te", "you (sg. informal)", ""]
+        - ["ő", "he / she", "no gender — one word for both!"]
+        - ["mi", "we", ""]
+        - ["ti", "you (pl. informal)", ""]
+        - ["ők", "they", ""]
+        - ["ön / önök", "you (formal sg./pl.)", "takes 3rd-person verb forms; maga/maguk is a familiar-formal variant, use ön when unsure"]
+  - type: callout
+    payload:
+      text: >-
+        Hungarian usually DROPS the pronoun — the verb ending already says
+        who. 'Tanár vagyok' (not 'Én tanár vagyok') is the neutral way;
+        adding 'én' adds emphasis: *I* am a teacher (as opposed to you).
+  - type: table
+    payload:
+      headers: ["Question word", "Meaning", "Example"]
+      rows:
+        - ["Ki?", "Who?", "Ki ez? (Who is this?)"]
+        - ["Mi?", "What?", "Mi ez? (What is this?)"]
+        - ["Hol?", "Where?", "Hol vagy? (Where are you?)"]
+        - ["Mikor?", "When?", "Mikor jössz? (When are you coming?)"]
+        - ["Miért?", "Why?", "Miért tanulsz magyarul? (Why are you learning Hungarian?)"]
+        - ["Hogyan? / Hogy?", "How?", "Hogy vagy? (How are you?)"]
+  - type: example
+    payload:
+      hungarian: "Ki ez? — Ő Anna. Ő tanár."
+      english: "Who is this? — She is Anna. She is a teacher."
+srsItems:
+  - id: "vocab:ki"
+    payload: { front: "ki?", back: "who?" }
+  - id: "vocab:mi-what"
+    payload: { front: "mi?", back: "what? (also: we)" }
+  - id: "vocab:hol"
+    payload: { front: "hol?", back: "where?" }
+  - id: "grammar:pronoun-drop"
+    payload: { front: "I am a teacher (neutral Hungarian)", back: "Tanár vagyok. — pronoun dropped; 'Én tanár vagyok' adds emphasis" }
+exercises:
+  - id: ex1
+    type: mcq
+    payload:
+      prompt: "Hungarian 'ő' means…"
+      options: ["he or she (no gender)", "only he", "only she"]
+      correctIndex: 0
+  - id: ex2
+    type: dropdown
+    srs: ["vocab:hol"]
+    payload:
+      prompt: "___ van a bank? (Where is the bank?)"
+      options: ["Hol", "Ki", "Mikor"]
+      correct: "Hol"
+  - id: ex3
+    type: fill_blank
+    srs: ["vocab:ki"]
+    payload:
+      prompt: "___ ez? — Ő Péter. (Who is this? — He is Péter.)"
+      answer: "Ki"
+      translation: "Who is this? — He is Péter."
+  - id: ex4
+    type: mcq
+    srs: ["grammar:pronoun-drop"]
+    payload:
+      prompt: "The NEUTRAL way to say 'I am a teacher':"
+      options: ["Tanár vagyok.", "Én tanár vagyok.", "Én vagyok tanár."]
+      correctIndex: 0
+  - id: ex5
+    type: mcq
+    payload:
+      prompt: "Speaking formally to one stranger, which pronoun fits?"
+      options: ["ön", "te", "ti"]
+      correctIndex: 0
+  - id: ex6
+    type: sentence_build
+    payload:
+      words: ["Miért", "tanulsz", "magyarul"]
+      answer: "Miért tanulsz magyarul"
+      translation: "Why are you learning Hungarian?"
+  - id: ex7
+    type: card_flip
+    srs: ["vocab:mi-what"]
+    payload: { front: "mi?", back: "what? — careful: 'mi' also means 'we'" }
+  - id: ex8
+    type: listening
+    payload:
+      audioText: "Hogy vagy?"
+      mode: meaning
+      options: ["How are you?", "Where are you?", "Who are you?"]
+      correctIndex: 0

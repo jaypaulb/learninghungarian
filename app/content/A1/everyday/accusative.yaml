@@ -1,0 +1,113 @@
+id: a1-accusative
+title: "The accusative (-t): marking the object"
+version: 2
+position: 3
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
+objectives:
+  - Mark direct objects with -t
+  - Insert the right linking vowel (házat, kertet, könyvet)
+  - Order a coffee, buy a ticket — real object sentences
+skills: [reading, writing]
+minutes: 30
+prerequisites: [a1-nouns-articles]
+sources:
+  - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), §2.3 (accusative)"
+  - "MagyarOK A1 (Szita/Pelcz), unit 4"
+blocks:
+  - type: prose
+    payload:
+      text: >-
+        English shows the object by position (I see THE HOUSE). Hungarian
+        marks it with -t on the noun, which is why word order is so free.
+        Whatever gets the -t is the thing acted upon.
+  - type: table
+    payload:
+      headers: ["Base", "Accusative", "Rule"]
+      rows:
+        - ["kávé", "kávét", "after a vowel: just -t (final a/e lengthens: almát)"]
+        - ["ház", "házat", "back-vowel consonant ending: -at"]
+        - ["kert", "kertet", "front-vowel consonant ending: -et"]
+        - ["gyümölcs", "gyümölcsöt", "front-rounded: -öt"]
+        - ["asztal", "asztalt", "some consonants (l, r, n, ny, s, sz, z, zs, j) often take bare -t"]
+  - type: example
+    payload:
+      hungarian: "Kérek egy kávét és két almát."
+      english: "I'd like a coffee and two apples."
+  - type: callout
+    payload:
+      text: >-
+        Learn nouns together with their -t form — the linking vowel follows
+        vowel harmony, but which consonants take bare -t is best absorbed
+        word by word.
+srsItems:
+  - id: "vocab:kave"
+    payload: { front: "kávé", back: "coffee" }
+  - id: "vocab:konyv"
+    payload: { front: "könyv", back: "book" }
+  - id: "grammar:accusative-t"
+    payload: { front: "I see the house (Hungarian object marking)", back: "Látom a házAT — the -t marks the object, not position" }
+exercises:
+  - id: ex1
+    type: transform
+    srs: ["vocab:kave"]
+    payload:
+      instruction: "Put into the accusative"
+      prompt: "kávé"
+      answer: "kávét"
+      translation: "coffee -> (a) coffee as object"
+  - id: ex2
+    type: transform
+    payload:
+      instruction: "Put into the accusative"
+      prompt: "ház"
+      answer: "házat"
+      translation: "house -> house as object (-at, back vowel)"
+  - id: ex3
+    type: transform
+    payload:
+      instruction: "Put into the accusative"
+      prompt: "kert"
+      answer: "kertet"
+      translation: "garden -> garden as object (-et, front vowel)"
+  - id: ex4
+    type: fill_blank
+    payload:
+      prompt: "Kérek egy almá___. (I'd like an apple.)"
+      answer: "t"
+      hint: "Final -a lengthens to á, then just -t."
+      translation: "I'd like an apple."
+  - id: ex5
+    type: mcq
+    srs: ["grammar:accusative-t"]
+    payload:
+      prompt: "Which word is the OBJECT in 'Péter látja a filmet'?"
+      options: ["a filmet (it carries -t)", "Péter", "látja"]
+      correctIndex: 0
+  - id: ex6
+    type: sentence_build
+    payload:
+      words: ["Kérek", "egy", "kávét"]
+      answer: "Kérek egy kávét"
+      translation: "I'd like a coffee."
+  - id: ex7
+    type: card_flip
+    srs: ["vocab:konyv"]
+    payload: { front: "könyv", back: "book (accusative: könyvet)" }
+  - id: ex8
+    type: dialogue
+    payload:
+      intro: "At the market."
+      gaps:
+        - before: "A: Kérek két almá"
+          answer: "t"
+          after: " és egy körtét."
+          translation: "I'd like two apples and a pear."
+        - before: "B: Tessék! Köszönöm a vásárlás"
+          answer: "t"
+          after: "!"
+          translation: "Here you are! Thank you for the purchase!"

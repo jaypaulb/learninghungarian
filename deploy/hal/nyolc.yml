@@ -40,6 +40,8 @@ services:
       AI_DAILY_LIMIT: ${NYOLC_AI_DAILY_LIMIT:-100}
       # speech-to-text (speaking exercises)
       STT_BASE_URL: ${NYOLC_STT_BASE_URL:-}
+      # feedback -> PII-free GitHub issues (empty = skipped-with-log)
+      GITHUB_FEEDBACK_TOKEN: ${NYOLC_GITHUB_FEEDBACK_TOKEN:-}
     labels:
       - "diun.enable=true"
       - "dashboard.enabled=true"

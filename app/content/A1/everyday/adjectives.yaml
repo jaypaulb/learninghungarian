@@ -1,0 +1,104 @@
+id: a1-adjectives
+title: "Adjectives & describing things"
+version: 2
+position: 4
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
+objectives:
+  - Describe things with common adjectives
+  - Know when adjectives agree (predicate plural) and when they don't (before nouns)
+  - Build simple descriptions with nagyon (very)
+skills: [reading, writing, listening]
+minutes: 25
+prerequisites: [a1-nouns-articles]
+sources:
+  - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), §3 (adjectives)"
+  - "MagyarOK A1 (Szita/Pelcz), unit 3-4"
+blocks:
+  - type: table
+    payload:
+      headers: ["Hungarian", "English", "Opposite"]
+      rows:
+        - ["nagy", "big", "kicsi (small)"]
+        - ["jó", "good", "rossz (bad)"]
+        - ["szép", "beautiful", "csúnya (ugly)"]
+        - ["új", "new", "régi (old, of things)"]
+        - ["drága", "expensive", "olcsó (cheap)"]
+        - ["finom", "delicious", ""]
+        - ["fáradt", "tired", ""]
+  - type: callout
+    payload:
+      text: >-
+        Before a noun, the adjective never changes: 'a nagy házak' (the big
+        houses). As a predicate it agrees in number: 'A házak nagyok' (the
+        houses are big) — with the plural -k and a linking vowel.
+  - type: example
+    payload:
+      hungarian: "Ez a kávé nagyon finom!"
+      english: "This coffee is really good!"
+srsItems:
+  - id: "vocab:nagy"
+    payload: { front: "nagy", back: "big" }
+  - id: "vocab:finom"
+    payload: { front: "finom", back: "delicious" }
+  - id: "vocab:draga"
+    payload: { front: "drága", back: "expensive" }
+  - id: "grammar:adjective-agreement"
+    payload: { front: "the big houses / the houses are big", back: "a nagy házak / a házak nagyOK — agree only as predicate" }
+exercises:
+  - id: ex1
+    type: mcq
+    payload:
+      prompt: "The opposite of 'drága':"
+      options: ["olcsó", "régi", "rossz"]
+      correctIndex: 0
+  - id: ex2
+    type: dropdown
+    srs: ["grammar:adjective-agreement"]
+    payload:
+      prompt: "A házak ___. (The houses are big.)"
+      options: ["nagyok", "nagy", "nagyak"]
+      correct: "nagyok"
+  - id: ex3
+    type: mcq
+    srs: ["grammar:adjective-agreement"]
+    payload:
+      prompt: "'The big houses' — correct form?"
+      options: ["a nagy házak", "a nagyok házak", "a nagy ház"]
+      correctIndex: 0
+  - id: ex4
+    type: fill_blank
+    srs: ["vocab:finom"]
+    payload:
+      prompt: "Ez a leves nagyon ___! (This soup is really good!)"
+      answer: "finom"
+      translation: "This soup is really good!"
+  - id: ex5
+    type: card_flip
+    srs: ["vocab:nagy"]
+    payload: { front: "nagy", back: "big" }
+  - id: ex6
+    type: sentence_build
+    payload:
+      words: ["Ez", "a", "kávé", "nagyon", "finom"]
+      answer: "Ez a kávé nagyon finom"
+      translation: "This coffee is really good."
+  - id: ex7
+    type: listening
+    srs: ["vocab:draga"]
+    payload:
+      audioText: "Ez nagyon drága!"
+      mode: meaning
+      options: ["This is very expensive!", "This is very cheap!", "This is very good!"]
+      correctIndex: 0
+  - id: ex8
+    type: transform
+    payload:
+      instruction: "Say the opposite"
+      prompt: "A ház nagy."
+      answer: "A ház kicsi"
+      translation: "The house is big. -> The house is small."

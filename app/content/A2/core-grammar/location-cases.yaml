@@ -1,0 +1,93 @@
+id: a2-location-cases
+title: "Where? The place cases (-ban/-ben, -on/-en/-ön, -nál/-nél)"
+version: 2
+position: 2
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
+objectives:
+  - Say IN, ON, and AT with the right case endings
+  - Use city-name rules (Budapesten, Londonban)
+  - Answer 'Hol van?' naturally
+skills: [reading, writing, listening]
+minutes: 30
+prerequisites: [a1-vowel-harmony]
+sources:
+  - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), §2.5 (local cases)"
+  - "MagyarOK A2 (Szita/Pelcz), unit 3"
+blocks:
+  - type: table
+    payload:
+      headers: ["Meaning", "Endings", "Examples"]
+      rows:
+        - ["in (inside)", "-ban / -ben", "a házban, a kertben"]
+        - ["on (surface)", "-on / -en / -ön / -n", "az asztalon, a széken, a földön"]
+        - ["at (near, by)", "-nál / -nél", "az ablaknál, Péternél (at Péter's)"]
+  - type: callout
+    payload:
+      text: >-
+        City names: most Hungarian cities take the ON-family (Budapesten,
+        Szegeden), while foreign cities take IN (-ban/-ben): Londonban,
+        Párizsban. A handful of Hungarian towns take -ban/-ben too
+        (Debrecenben, Győrben) — learn city + ending together.
+  - type: example
+    payload:
+      hungarian: "Budapesten élek, de Londonban dolgozom."
+      english: "I live in Budapest, but I work in London."
+srsItems:
+  - id: "grammar:city-endings"
+    payload: { front: "in Budapest / in London", back: "BudapestEN but LondonBAN — Hungarian cities mostly -on/-en, foreign cities -ban/-ben" }
+  - id: "vocab:asztal"
+    payload: { front: "asztal", back: "table (az asztalon = on the table)" }
+  - id: "vocab:dolgozik"
+    payload: { front: "dolgozik", back: "to work (dolgozom = I work)" }
+exercises:
+  - id: ex1
+    type: dropdown
+    srs: ["grammar:city-endings"]
+    payload:
+      prompt: "Budapest___ élek. (I live in Budapest.)"
+      options: ["-en", "-ban", "-nél"]
+      correct: "-en"
+  - id: ex2
+    type: dropdown
+    srs: ["grammar:city-endings"]
+    payload:
+      prompt: "London___ dolgozom. (I work in London.)"
+      options: ["-ban", "-on", "-nál"]
+      correct: "-ban"
+  - id: ex3
+    type: fill_blank
+    srs: ["vocab:asztal"]
+    payload:
+      prompt: "A kávé az asztal___ van. (The coffee is on the table.)"
+      answer: "on"
+      translation: "The coffee is on the table."
+  - id: ex4
+    type: mcq
+    payload:
+      prompt: "'At Péter's place':"
+      options: ["Péternél", "Péterben", "Péteren"]
+      correctIndex: 0
+  - id: ex5
+    type: transform
+    payload:
+      instruction: "Answer with the place phrase only: Hol a könyv? (in the garden)"
+      prompt: "kert"
+      answer: "A kertben"
+      translation: "Where's the book? — In the garden."
+  - id: ex6
+    type: listening
+    srs: ["vocab:dolgozik"]
+    payload:
+      audioText: "Budapesten dolgozom."
+      mode: meaning
+      options: ["I work in Budapest.", "I live in Budapest.", "I work in London."]
+      correctIndex: 0
+  - id: ex7
+    type: card_flip
+    srs: ["grammar:city-endings"]
+    payload: { front: "Debrecenben — why -ben?", back: "a handful of Hungarian towns take -ban/-ben; learn city + ending together" }

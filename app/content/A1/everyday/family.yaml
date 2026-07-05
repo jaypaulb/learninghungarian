@@ -1,0 +1,104 @@
+id: a1-family
+title: "Family & talking about people"
+version: 2
+position: 6
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
+objectives:
+  - Name family members
+  - Say 'my mother / your brother' with possessive endings (first taste)
+  - Introduce your family in three sentences
+skills: [reading, listening, speaking]
+minutes: 25
+prerequisites: [a1-verb-to-be]
+sources:
+  - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), §2.4 (possessive, intro)"
+  - "MagyarOK A1 (Szita/Pelcz), unit 5"
+blocks:
+  - type: table
+    payload:
+      headers: ["Hungarian", "English", "'my …'"]
+      rows:
+        - ["anya", "mum / mother", "anyám"]
+        - ["apa", "dad / father", "apám"]
+        - ["testvér", "sibling", "testvérem"]
+        - ["báty", "older brother", "bátyám"]
+        - ["öcs", "younger brother", "öcsém"]
+        - ["nővér", "older sister", "nővérem"]
+        - ["húg", "younger sister", "húgom"]
+        - ["feleség", "wife", "feleségem"]
+        - ["férj", "husband", "férjem"]
+        - ["gyerek", "child", "gyerekem"]
+  - type: callout
+    payload:
+      text: >-
+        Hungarian splits siblings by age: báty/öcs (older/younger brother),
+        nővér/húg (older/younger sister). Possession is an ENDING, not a
+        word: anyám = my mother (anya + -m). The full possessive system is
+        an A2 topic — here, just learn the 'my' forms as vocabulary.
+  - type: example
+    payload:
+      hungarian: "A feleségem magyar, és van egy kisfiunk."
+      english: "My wife is Hungarian, and we have a little son."
+srsItems:
+  - id: "vocab:anya"
+    payload: { front: "anya", back: "mother (anyám = my mother)" }
+  - id: "vocab:testver"
+    payload: { front: "testvér", back: "sibling" }
+  - id: "vocab:feleseg"
+    payload: { front: "feleség", back: "wife (feleségem = my wife)" }
+  - id: "vocab:gyerek"
+    payload: { front: "gyerek", back: "child" }
+exercises:
+  - id: ex1
+    type: mcq
+    payload:
+      prompt: "'húg' is your…"
+      options: ["younger sister", "older sister", "mother"]
+      correctIndex: 0
+  - id: ex2
+    type: fill_blank
+    srs: ["vocab:anya"]
+    payload:
+      prompt: "Az ___ tanár. (My mother is a teacher.)"
+      answer: "anyám"
+      translation: "My mother is a teacher."
+  - id: ex3
+    type: card_flip
+    srs: ["vocab:feleseg"]
+    payload: { front: "feleség", back: "wife — feleségem: my wife" }
+  - id: ex4
+    type: dropdown
+    payload:
+      prompt: "My brother is older than me. He is my ___."
+      options: ["bátyám", "öcsém", "húgom"]
+      correct: "bátyám"
+  - id: ex5
+    type: listening
+    srs: ["vocab:testver"]
+    payload:
+      audioText: "Van egy testvérem."
+      mode: meaning
+      options: ["I have a sibling.", "I have a child.", "I have a wife."]
+      correctIndex: 0
+  - id: ex6
+    type: sentence_build
+    payload:
+      words: ["A", "feleségem", "magyar"]
+      answer: "A feleségem magyar"
+      translation: "My wife is Hungarian."
+  - id: ex7
+    type: card_flip
+    srs: ["vocab:gyerek"]
+    payload: { front: "gyerek", back: "child (gyerekem = my child)" }
+  - id: ex8
+    type: speaking
+    srs: ["vocab:feleseg"]
+    payload:
+      promptText: "A feleségem magyar."
+      expected: "A feleségem magyar."
+      translation: "My wife is Hungarian."
