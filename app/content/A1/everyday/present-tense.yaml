@@ -1,0 +1,109 @@
+id: a1-present-tense
+title: "Present tense: the indefinite conjugation"
+version: 2
+position: 5
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
+objectives:
+  - Conjugate regular verbs in the present indefinite (all six persons)
+  - Apply vowel harmony to verb endings (-ok/-ek/-ök etc.)
+  - Say what you do, want, and know
+skills: [reading, writing, speaking]
+minutes: 30
+prerequisites: [a1-vowel-harmony, a1-verb-to-be]
+sources:
+  - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), §4.1 (present indefinite)"
+  - "MagyarOK A1 (Szita/Pelcz), unit 4"
+blocks:
+  - type: prose
+    payload:
+      text: >-
+        Hungarian verbs are listed by their 3rd-person singular form — the
+        shortest form, with no ending: tanul (he/she learns), beszél (he/she
+        speaks). Endings attach to this stem and harmonise with its vowels.
+  - type: table
+    payload:
+      headers: ["Person", "tanul (back)", "beszél (front)", "ül (front rounded)"]
+      rows:
+        - ["én", "tanulok", "beszélek", "ülök"]
+        - ["te", "tanulsz", "beszélsz", "ülsz"]
+        - ["ő", "tanul", "beszél", "ül"]
+        - ["mi", "tanulunk", "beszélünk", "ülünk"]
+        - ["ti", "tanultok", "beszéltek", "ültök"]
+        - ["ők", "tanulnak", "beszélnek", "ülnek"]
+  - type: callout
+    payload:
+      text: >-
+        This is the INDEFINITE conjugation — used with no object or an
+        indefinite one ('I'm reading a book'). Hungarian has a second,
+        definite conjugation for definite objects ('I'm reading THE book') —
+        that's an A2 lesson, and the endings differ.
+  - type: example
+    payload:
+      hungarian: "Magyarul tanulok, és egy kicsit beszélek."
+      english: "I'm learning Hungarian, and I speak a little."
+srsItems:
+  - id: "vocab:tanul"
+    payload: { front: "tanul", back: "to learn (stem; tanulok = I learn)" }
+  - id: "vocab:beszel"
+    payload: { front: "beszél", back: "to speak (stem; beszélek = I speak)" }
+  - id: "vocab:magyarul"
+    payload: { front: "magyarul", back: "in Hungarian (language adverb)" }
+exercises:
+  - id: ex1
+    type: fill_blank
+    srs: ["vocab:tanul"]
+    payload:
+      prompt: "Magyarul ___. (I am learning Hungarian.)"
+      answer: "tanulok"
+      translation: "I am learning Hungarian."
+  - id: ex2
+    type: dropdown
+    payload:
+      prompt: "Te jól ___ magyarul! (You speak Hungarian well!)"
+      options: ["beszélsz", "beszélek", "beszél"]
+      correct: "beszélsz"
+  - id: ex3
+    type: transform
+    payload:
+      instruction: "Change to 'we'"
+      prompt: "Tanulok."
+      answer: "Tanulunk"
+      translation: "I learn. -> We learn."
+  - id: ex4
+    type: mcq
+    payload:
+      prompt: "Why 'ülök' but 'tanulok'?"
+      options:
+        - "vowel harmony: ü is front rounded (-ök), a/u are back (-ok)"
+        - "they are irregular verbs"
+        - "ülök is past tense"
+      correctIndex: 0
+  - id: ex5
+    type: fill_blank
+    payload:
+      prompt: "Ők nem ___ angolul. (They don't speak English.)"
+      answer: "beszélnek"
+      translation: "They don't speak English."
+  - id: ex6
+    type: sentence_build
+    srs: ["vocab:magyarul"]
+    payload:
+      words: ["Magyarul", "tanulok", "és", "beszélek"]
+      answer: "Magyarul tanulok és beszélek"
+      translation: "I'm learning and speaking Hungarian."
+  - id: ex7
+    type: card_flip
+    srs: ["vocab:beszel"]
+    payload: { front: "beszél", back: "to speak (beszélek, beszélsz, beszél…)" }
+  - id: ex8
+    type: speaking
+    srs: ["vocab:magyarul"]
+    payload:
+      promptText: "Magyarul tanulok."
+      expected: "Magyarul tanulok."
+      translation: "I am learning Hungarian."

@@ -1,0 +1,57 @@
+# A2 milestone assessment (core grammar so far; extended as A2 grows).
+id: a2-assessment
+tier: A2
+title: "A2 checkpoint — Core grammar II"
+description: >-
+  Definite vs indefinite conjugation, negation, place cases, and time.
+version: 2
+exercises:
+  - id: q1
+    type: dropdown
+    payload:
+      prompt: "___ egy könyvet. (I'm reading a book.)"
+      options: ["Olvasok", "Olvasom"]
+      correct: "Olvasok"
+  - id: q2
+    type: dropdown
+    payload:
+      prompt: "___ a könyvet. (I'm reading the book.)"
+      options: ["Olvasom", "Olvasok"]
+      correct: "Olvasom"
+  - id: q3
+    type: mcq
+    payload:
+      prompt: "'There is no coffee':"
+      options: ["Nincs kávé.", "Nem kávé.", "Nem van kávé."]
+      correctIndex: 0
+  - id: q4
+    type: transform
+    payload:
+      instruction: "Negate it"
+      prompt: "Tanulok."
+      answer: "Nem tanulok"
+      translation: "I study. -> I don't study."
+  - id: q5
+    type: dropdown
+    payload:
+      prompt: "Budapest___ élek, London___ dolgozom."
+      options: ["-en / -ban", "-ban / -en", "-en / -en"]
+      correct: "-en / -ban"
+  - id: q6
+    type: mcq
+    payload:
+      prompt: "'On Sunday':"
+      options: ["vasárnap", "vasárnapon", "vasárnapban"]
+      correctIndex: 0
+  - id: q7
+    type: fill_blank
+    payload:
+      prompt: "Ismered Annát? — Igen, ___."
+      answer: "ismerem"
+      translation: "Do you know Anna? — Yes, I know her."
+  - id: q8
+    type: sentence_build
+    payload:
+      words: ["Nem", "kávét", "kérek,", "hanem", "teát"]
+      answer: "Nem kávét kérek, hanem teát"
+      translation: "I'd like tea, not coffee."

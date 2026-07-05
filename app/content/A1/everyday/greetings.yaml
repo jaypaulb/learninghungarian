@@ -1,0 +1,120 @@
+id: a1-greetings
+title: "Greetings & polite phrases"
+version: 2
+position: 0
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
+objectives:
+  - Greet people formally and informally at any time of day
+  - Say please, thank you, sorry, and you're welcome
+  - Choose between szia and jó napot by situation
+skills: [reading, listening, speaking]
+minutes: 20
+prerequisites: [a1-alphabet]
+sources:
+  - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), appendix (everyday expressions)"
+  - "MagyarOK A1 (Szita/Pelcz), unit 1"
+blocks:
+  - type: table
+    payload:
+      headers: ["Hungarian", "English", "Register"]
+      rows:
+        - ["Szia! / Sziasztok!", "Hi! (one person / several)", "informal"]
+        - ["Jó reggelt (kívánok)!", "Good morning!", "formal"]
+        - ["Jó napot (kívánok)!", "Good day! (daytime default)", "formal"]
+        - ["Jó estét (kívánok)!", "Good evening!", "formal"]
+        - ["Jó éjszakát!", "Good night! (when leaving/bed)", "any"]
+        - ["Viszontlátásra! / Viszlát!", "Goodbye! (formal / shortened)", "formal"]
+        - ["Szervusz!", "Hello/goodbye (friendly, a bit old-fashioned)", "informal"]
+  - type: table
+    payload:
+      headers: ["Hungarian", "English"]
+      rows:
+        - ["Köszönöm (szépen).", "Thank you (very much)."]
+        - ["Kérem.", "You're welcome. / Please (formal)."]
+        - ["Légy szíves.", "Please (informal)."]
+        - ["Bocsánat!", "Sorry! / Excuse me!"]
+        - ["Elnézést!", "Excuse me! (getting attention, formal)"]
+        - ["Szívesen.", "You're welcome. (gladly)"]
+  - type: callout
+    payload:
+      text: >-
+        Rule of thumb: 'szia' with friends, family, children, and peers who
+        offered it; 'jó napot kívánok' with strangers, officials, shop staff,
+        and anyone older. When unsure, formal is never rude.
+  - type: example
+    payload:
+      hungarian: "Jó napot kívánok! Egy kávét kérek. Köszönöm szépen!"
+      english: "Good day! A coffee, please. Thank you very much!"
+srsItems:
+  - id: "vocab:koszonom"
+    payload: { front: "köszönöm", back: "thank you" }
+  - id: "vocab:bocsanat"
+    payload: { front: "bocsánat", back: "sorry / excuse me" }
+  - id: "vocab:jo-napot"
+    payload: { front: "jó napot", back: "good day (formal daytime greeting)" }
+  - id: "vocab:viszlat"
+    payload: { front: "viszlát", back: "goodbye (formal, shortened)" }
+exercises:
+  - id: ex1
+    type: mcq
+    payload:
+      prompt: "You enter a shop at 2pm. What do you say?"
+      options: ["Jó napot kívánok!", "Szia!", "Jó éjszakát!"]
+      correctIndex: 0
+  - id: ex2
+    type: dropdown
+    srs: ["vocab:koszonom"]
+    payload:
+      prompt: "___ szépen! (Thank you very much!)"
+      options: ["Köszönöm", "Kérem", "Bocsánat"]
+      correct: "Köszönöm"
+  - id: ex3
+    type: fill_blank
+    srs: ["vocab:bocsanat"]
+    payload:
+      prompt: "___! Hol van a WC? (Sorry! Where is the toilet?)"
+      answer: "Bocsánat"
+      translation: "Sorry! Where is the toilet?"
+  - id: ex4
+    type: card_flip
+    srs: ["vocab:viszlat"]
+    payload: { front: "viszlát", back: "goodbye (formal, short for viszontlátásra)" }
+  - id: ex5
+    type: mcq
+    payload:
+      prompt: "A friend says 'Köszönöm!' — the natural reply?"
+      options: ["Szívesen.", "Elnézést.", "Jó estét."]
+      correctIndex: 0
+  - id: ex6
+    type: dialogue
+    payload:
+      intro: "In a café."
+      gaps:
+        - before: "A: Jó"
+          answer: "napot"
+          after: " kívánok! Egy teát kérek."
+          translation: "Good day! A tea, please."
+        - before: "B: Tessék. A:"
+          answer: "Köszönöm"
+          after: " szépen!"
+          translation: "Here you are. — Thank you very much!"
+  - id: ex7
+    type: listening
+    srs: ["vocab:jo-napot"]
+    payload:
+      audioText: "Jó napot kívánok!"
+      mode: meaning
+      options: ["Good day!", "Good night!", "Goodbye!"]
+      correctIndex: 0
+  - id: ex8
+    type: speaking
+    srs: ["vocab:koszonom"]
+    payload:
+      promptText: "Köszönöm szépen!"
+      expected: "Köszönöm szépen!"
+      translation: "Thank you very much!"

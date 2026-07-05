@@ -1,0 +1,89 @@
+id: a2-negation
+title: "Negation: nem, nincs, sincs"
+version: 2
+position: 1
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
+objectives:
+  - Negate verbs and nouns with nem
+  - Use nincs/nincsenek for 'there is no…'
+  - Add sincs for 'neither / not either'
+skills: [reading, writing]
+minutes: 25
+prerequisites: [a1-present-tense]
+sources:
+  - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), §10 (negation)"
+  - "MagyarOK A2 (Szita/Pelcz), unit 2"
+blocks:
+  - type: prose
+    payload:
+      text: >-
+        'Nem' goes directly before what it negates: 'Nem tanulok' (I'm not
+        studying), 'Nem magyar vagyok, hanem angol' (I'm not Hungarian but
+        English). For existence, 'van' has special negatives: nincs (there
+        isn't) and nincsenek (there aren't).
+  - type: table
+    payload:
+      headers: ["Positive", "Negative", "English"]
+      rows:
+        - ["Van kávé.", "Nincs kávé.", "There is coffee. / There is no coffee."]
+        - ["Vannak almák.", "Nincsenek almák.", "There are apples. / There are no apples."]
+        - ["Itt van.", "Nincs itt.", "He's here. / He's not here."]
+        - ["Nekem sincs.", "", "I don't have any either. (sincs = nem + is)"]
+  - type: callout
+    payload:
+      text: >-
+        Correcting a mistake uses 'nem … hanem …' (not … but …): 'Nem kávét
+        kérek, hanem teát.' (I'd like tea, not coffee.) Plain 'de' (but)
+        doesn't work for corrections.
+  - type: example
+    payload:
+      hungarian: "Nincs időm, és pénzem sincs."
+      english: "I have no time, and no money either."
+srsItems:
+  - id: "vocab:nincs"
+    payload: { front: "nincs", back: "there isn't / there's no" }
+  - id: "grammar:nem-position"
+    payload: { front: "I'm not studying (word order)", back: "NEM tanulok — nem directly before the negated word" }
+exercises:
+  - id: ex1
+    type: dropdown
+    srs: ["vocab:nincs"]
+    payload:
+      prompt: "___ kávé. (There is no coffee.)"
+      options: ["Nincs", "Nem", "Sincs"]
+      correct: "Nincs"
+  - id: ex2
+    type: transform
+    srs: ["grammar:nem-position"]
+    payload:
+      instruction: "Negate the sentence"
+      prompt: "Tanulok."
+      answer: "Nem tanulok"
+      translation: "I study. -> I don't study."
+  - id: ex3
+    type: mcq
+    payload:
+      prompt: "'There are no apples':"
+      options: ["Nincsenek almák.", "Nem almák.", "Nincs almák."]
+      correctIndex: 0
+  - id: ex4
+    type: fill_blank
+    payload:
+      prompt: "Nekem ___ pénzem. (I don't have money either.)"
+      answer: "sincs"
+      translation: "I don't have money either."
+  - id: ex5
+    type: card_flip
+    srs: ["vocab:nincs"]
+    payload: { front: "nincs / nincsenek", back: "there isn't / there aren't — negative of van/vannak" }
+  - id: ex6
+    type: sentence_build
+    payload:
+      words: ["Nem", "magyar", "vagyok,", "hanem", "angol"]
+      answer: "Nem magyar vagyok, hanem angol"
+      translation: "I'm not Hungarian but English."

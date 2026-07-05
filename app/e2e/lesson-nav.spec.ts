@@ -16,6 +16,10 @@ test('lessons chain forward without returning to the curriculum', async ({ page 
 });
 
 test('last lesson points back to the curriculum', async ({ page }) => {
-  await page.goto('/learn/a1-numbers'); // currently the last lesson
+  // discover the last lesson dynamically — content keeps growing
+  await page.goto('/learn');
+  const lessons = page.locator('a[href^="/learn/"]');
+  const lastHref = await lessons.last().getAttribute('href');
+  await page.goto(lastHref!);
   await expect(page.getByTestId('next-lesson')).toContainText('Back to curriculum');
 });

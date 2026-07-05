@@ -1,0 +1,111 @@
+id: a1-nouns-articles
+title: "Nouns, articles & plurals"
+version: 2
+position: 2
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
+objectives:
+  - Use the definite article a/az correctly
+  - Use the indefinite article egy
+  - Form regular plurals with -k and a linking vowel
+skills: [reading, writing]
+minutes: 25
+prerequisites: [a1-vowel-harmony]
+sources:
+  - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), §2.1 (articles), §2.2 (plural)"
+  - "MagyarOK A1 (Szita/Pelcz), unit 3"
+blocks:
+  - type: prose
+    payload:
+      text: >-
+        The definite article ('the') is 'a' before consonants and 'az' before
+        vowels — exactly like English a/an, but for 'the'. The indefinite
+        article ('a/an') is 'egy', the same word as the number one.
+  - type: table
+    payload:
+      headers: ["Hungarian", "English"]
+      rows:
+        - ["a ház", "the house"]
+        - ["az alma", "the apple"]
+        - ["az étterem", "the restaurant"]
+        - ["egy kávé", "a coffee"]
+  - type: prose
+    payload:
+      text: >-
+        Plural: add -k. If the word ends in a consonant, insert a linking
+        vowel chosen by vowel harmony: házak (houses), kertek (gardens),
+        gyümölcsök (fruits). Words ending in -a/-e lengthen: alma → almák,
+        körte → körték.
+  - type: callout
+    payload:
+      text: >-
+        After numbers and 'hány?' (how many?), Hungarian uses the SINGULAR:
+        három ház (three houses — literally 'three house'). The plural is
+        already expressed by the number.
+srsItems:
+  - id: "vocab:alma"
+    payload: { front: "alma", back: "apple" }
+  - id: "vocab:etterem"
+    payload: { front: "étterem", back: "restaurant" }
+  - id: "grammar:a-vs-az"
+    payload: { front: "the house / the apple", back: "a ház / az alma — az before vowels" }
+  - id: "grammar:plural-after-numbers"
+    payload: { front: "three houses (Hungarian)", back: "három ház — singular after numbers!" }
+exercises:
+  - id: ex1
+    type: dropdown
+    srs: ["grammar:a-vs-az"]
+    payload:
+      prompt: "___ étterem (the restaurant)"
+      options: ["az", "a"]
+      correct: "az"
+  - id: ex2
+    type: dropdown
+    srs: ["grammar:a-vs-az"]
+    payload:
+      prompt: "___ ház (the house)"
+      options: ["a", "az"]
+      correct: "a"
+  - id: ex3
+    type: transform
+    payload:
+      instruction: "Make it plural"
+      prompt: "ház"
+      answer: "házak"
+      translation: "house -> houses (linking vowel by harmony)"
+  - id: ex4
+    type: transform
+    payload:
+      instruction: "Make it plural"
+      prompt: "alma"
+      answer: "almák"
+      translation: "apple -> apples (final -a lengthens)"
+  - id: ex5
+    type: mcq
+    srs: ["grammar:plural-after-numbers"]
+    payload:
+      prompt: "'Three houses' in Hungarian:"
+      options: ["három ház", "három házak", "házak három"]
+      correctIndex: 0
+  - id: ex6
+    type: fill_blank
+    payload:
+      prompt: "Kérek ___ kávét. (I'd like a coffee.)"
+      answer: "egy"
+      translation: "I'd like a coffee."
+  - id: ex7
+    type: card_flip
+    srs: ["vocab:alma"]
+    payload: { front: "alma", back: "apple" }
+  - id: ex8
+    type: listening
+    srs: ["vocab:etterem"]
+    payload:
+      audioText: "az étterem"
+      mode: meaning
+      options: ["the restaurant", "the apple", "the house"]
+      correctIndex: 0

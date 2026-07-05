@@ -1,0 +1,90 @@
+id: a1-review
+title: "A1 review: introduce yourself"
+version: 2
+position: 7
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
+objectives:
+  - Combine everything into a self-introduction
+  - Handle a short real-world dialogue start to finish
+skills: [reading, writing, listening, speaking]
+minutes: 30
+prerequisites: [a1-greetings, a1-pronouns-questions, a1-present-tense, a1-family, a1-numbers]
+sources:
+  - "MagyarOK A1 (Szita/Pelcz), units 1-5 (review)"
+blocks:
+  - type: prose
+    payload:
+      text: >-
+        Time to put it together. By the end of this lesson you can greet
+        someone, introduce yourself, say your age, your family, what you do,
+        and say goodbye — the first real conversation.
+  - type: example
+    payload:
+      hungarian: "Jó napot kívánok! Paul vagyok, angol vagyok. Harmincnyolc éves vagyok. A feleségem magyar. Magyarul tanulok."
+      english: "Good day! I'm Paul, I'm English. I'm 38 years old. My wife is Hungarian. I'm learning Hungarian."
+srsItems:
+  - id: "vocab:eves"
+    payload: { front: "éves", back: "years old (huszonnyolc éves vagyok)" }
+exercises:
+  - id: ex1
+    type: dialogue
+    payload:
+      intro: "Meeting a neighbour."
+      gaps:
+        - before: "A: Szia! Kovács Anna"
+          answer: "vagyok"
+          after: "."
+          translation: "Hi! I'm Anna Kovács."
+        - before: "B: Örvendek! Hogy"
+          answer: "vagy"
+          after: "?"
+          translation: "Pleased to meet you! How are you?"
+        - before: "A: Jól"
+          answer: "vagyok"
+          after: ", köszönöm."
+          translation: "I'm well, thank you."
+  - id: ex2
+    type: transform
+    srs: ["vocab:eves"]
+    payload:
+      instruction: "Say your age: 38"
+      prompt: "38 éves vagyok."
+      answer: "Harmincnyolc éves vagyok"
+      translation: "I am 38 years old (number as one word)."
+  - id: ex3
+    type: sentence_build
+    payload:
+      words: ["A", "feleségem", "magyar", "és", "magyarul", "tanulok"]
+      answer: "A feleségem magyar és magyarul tanulok"
+      translation: "My wife is Hungarian and I'm learning Hungarian."
+  - id: ex4
+    type: mcq
+    payload:
+      prompt: "Leaving the shop, you say:"
+      options: ["Viszontlátásra!", "Szia!", "Jó reggelt!"]
+      correctIndex: 0
+  - id: ex5
+    type: listening
+    payload:
+      audioText: "Harmincnyolc éves vagyok."
+      mode: meaning
+      options: ["I am 38 years old.", "I am 28 years old.", "I am 48 years old."]
+      correctIndex: 0
+  - id: ex6
+    type: speaking
+    payload:
+      promptText: "Magyarul tanulok, és a feleségem magyar."
+      expected: "Magyarul tanulok, és a feleségem magyar."
+      translation: "I'm learning Hungarian, and my wife is Hungarian."
+  - id: ex7
+    type: transform
+    payload:
+      instruction: "Introduce yourself as Anna, who is Hungarian, using the pattern 'X vagyok, Y vagyok'"
+      prompt: "(Anna, magyar)"
+      answer: "Anna vagyok, magyar vagyok"
+      translation: "I'm Anna, I'm Hungarian."
