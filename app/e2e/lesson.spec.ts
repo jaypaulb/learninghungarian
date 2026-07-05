@@ -38,5 +38,5 @@ test('card flip: flip and self-grade', async ({ page }) => {
   await ex.getByLabel('flip card').click();
   await expect(ex.getByLabel('flip card')).toContainText('hi / bye');
   await ex.getByRole('button', { name: 'Knew it' }).click();
-  await expect(ex.getByTestId('feedback')).toContainText('Recorded');
+  await expect(ex.getByTestId('feedback')).toContainText('Saved');
 });
