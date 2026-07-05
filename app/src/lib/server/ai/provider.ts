@@ -18,7 +18,9 @@ export interface ChatResult {
   provider: string;
 }
 
-const TIMEOUT_MS = 60_000;
+// 120s: Ollama cold-loads the model into VRAM on first request (~30-60s
+// observed on HAL) before generating.
+const TIMEOUT_MS = 120_000;
 
 export function resolveProvider(): 'anthropic' | 'openai-compat' | 'mock' {
   const forced = process.env.AI_PROVIDER;
