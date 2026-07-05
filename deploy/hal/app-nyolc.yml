@@ -1,8 +1,12 @@
 # Copy target on hal: ~/docker/appdata/traefik3/rules/hal2020/app-nyolc.yml
-# Public learning site at magyarul.nyolc.cc ("in Hungarian") — app-based
+# Learning site at magyarul.nyolc.cc ("in Hungarian") — app-based
 # subdomain per stack convention (apex left free for a future domain
 # landing page). Covered by the existing *.DOMAINNAME_1 wildcard DNS.
-# chain-no-auth = rate-limit + secure-headers; the site is public.
+#
+# TESTING GATE (2026-07-05, Jaypaul's call): chain-oauth — the stack's
+# existing Google forward-auth, whitelisted to Jaypaul's account — so only
+# he can reach the site while it's under construction. Swap back to
+# chain-no-auth at public launch.
 http:
   routers:
     nyolc-rtr:
@@ -11,7 +15,7 @@ http:
         - websecure-external
         - websecure-internal
       middlewares:
-        - chain-no-auth
+        - chain-oauth
       service: nyolc-svc
       tls:
         certResolver: dns-cloudflare
