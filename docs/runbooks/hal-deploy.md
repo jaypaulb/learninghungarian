@@ -32,7 +32,7 @@ Add to `hal:~/docker/.env`:
 ```
 NYOLC_TAG=latest
 NYOLC_PG_PASSWORD=<generated>
-NYOLC_BASE_URL=https://nyolc.cc
+NYOLC_BASE_URL=https://magyarul.nyolc.cc
 ```
 
 Then run `deploy/hal/bootstrap-db.sql` (substitute the real password first):
@@ -70,7 +70,7 @@ Migrations run automatically on container start (entrypoint runs
 ## 5. Verify
 
 ```bash
-curl -f https://nyolc.cc/health
+curl -f https://magyarul.nyolc.cc/health
 # -> 200 {"status":"ok","db":"ok"}
 ```
 

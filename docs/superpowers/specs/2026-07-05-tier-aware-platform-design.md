@@ -53,7 +53,7 @@ seams they plug into.
 | Content accuracy | **Sources + MoE + crowd, no native-reviewer gate**: authoritative source citation + Claude/Codex MoE = `reviewed` (labeled provisional); the runtime crowd loop is the human authority that upgrades to `verified`. Honest status badge shown to learners. |
 | Assessment | **One milestone assessment per tier (A1, A2, B1, B2)**, B2 back-designed from the real accredited exam format. |
 | Feedback governance | **Trust-tiered auto-merge**: validated fixes from trusted contributors auto-merge; new/anonymous submissions are human-gated. |
-| Product domain | **nyolc.cc** (Hungarian *nyolc* = "eight"); transactional mail from `noreply@nyolc.cc`. |
+| Product URL | **https://magyarul.nyolc.cc** ("in Hungarian") — app subdomain of the shared `nyolc.cc` homelab stack domain (`DOMAINNAME_1` on HAL; wildcard DNS + certs already live). Transactional mail from `noreply@nyolc.cc`. |
 
 ### The 6 sub-projects
 

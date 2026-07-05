@@ -18,7 +18,7 @@
 - PostgreSQL: **16**.
 - All secrets come from environment variables; `app/.env.example` is the committed template, `.env` is git-ignored.
 - Database URL env var name is exactly **`DATABASE_URL`** everywhere.
-- Product domain is `nyolc.cc`; page copy must not hardcode any other domain.
+- Product URL is `https://magyarul.nyolc.cc` (subdomain of the shared `nyolc.cc` stack domain); page copy must not hardcode any other domain.
 - **Deploy model (HAL deployrr stack, per `hal:~/docker/CLAUDE.md` and the `olitrack-saas.yml` precedent):** CI in this repo builds the image and pushes to **GHCR** (`ghcr.io/jaypaulb/learninghungarian`); HAL pulls it via a per-service file `compose/hal2020/nyolc.yml`. The app uses HAL's **shared `postgresql` service** (dedicated `nyolc` database + role), joins `default` + `t3_proxy`, has **no `ports:` block**, and is routed by a file-based Traefik rule `app-nyolc.yml` using `chain-no-auth` (public site). The root `docker-compose.yml` in this repo is the **local dev/smoke stack only**.
 
 ---
@@ -729,7 +729,7 @@ jobs:
 `deploy/hal/nyolc.yml`:
 
 ```yaml
-# nyolc — Learning Hungarian (nyolc.cc)
+# nyolc — Learning Hungarian (magyarul.nyolc.cc)
 #
 # Copy target on hal: ~/docker/compose/hal2020/nyolc.yml
 # Include in ~/docker/docker-compose-hal2020.yml ABOVE the
@@ -744,7 +744,7 @@ jobs:
 # Required env in ~/docker/.env:
 #   NYOLC_TAG=latest            (or a v* tag from CI)
 #   NYOLC_PG_PASSWORD=<random>
-#   NYOLC_BASE_URL=https://nyolc.cc
+#   NYOLC_BASE_URL=https://magyarul.nyolc.cc
 #
 # Deliberately no `ports:` block — Traefik-only access via t3_proxy.
 
@@ -767,7 +767,7 @@ services:
       - "dashboard.port=3000"
       - "dashboard.icon=sh-duolingo"
       - "dashboard.category=Apps"
-      - "dashboard.description=Learning Hungarian — nyolc.cc"
+      - "dashboard.description=Learning Hungarian — magyarul.nyolc.cc"
       - "dashboard.url_external=${NYOLC_BASE_URL}"
     # DOCKER-LABELS-PLACEHOLDER
 ```
@@ -782,7 +782,7 @@ services:
 http:
   routers:
     nyolc-rtr:
-      rule: "Host(`nyolc.cc`)"
+      rule: 'Host(`magyarul.{{env "DOMAINNAME_1"}}`)'
       entryPoints:
         - websecure-external
         - websecure-internal
@@ -816,11 +816,11 @@ GRANT ALL PRIVILEGES ON DATABASE nyolc TO nyolc;
 
 `docs/runbooks/hal-deploy.md` — concrete commands, in order:
 0. **Port discipline:** HAL's host-port registry is the `*_PORT` vars in `hal:~/docker/.env` (template: `env.template`). `nyolc` deliberately exposes **no host port** (Traefik-only via `t3_proxy`); if one is ever needed, check the registry for a free port and register `NYOLC_PORT` there first.
-1. **DNS:** `nyolc.cc` A/CNAME → HAL's external endpoint in Cloudflare (Traefik's `dns-cloudflare` resolver issues the cert).
+1. **DNS:** none — `*.nyolc.cc` wildcard already points at HAL; `magyarul.nyolc.cc` is covered.
 2. **DB bootstrap:** generate `NYOLC_PG_PASSWORD` (`openssl rand -hex 24`), add to `hal:~/docker/.env` with `NYOLC_TAG` and `NYOLC_BASE_URL`, then run `deploy/hal/bootstrap-db.sql` per its header comment.
 3. **Files:** `scp deploy/hal/nyolc.yml hal:~/docker/compose/hal2020/nyolc.yml`; `scp deploy/hal/app-nyolc.yml hal:~/docker/appdata/traefik3/rules/hal2020/app-nyolc.yml`; add the include line to `docker-compose-hal2020.yml` above `# SERVICE-PLACEHOLDER-DO-NOT-DELETE`.
 4. **Start:** `ssh hal 'cd ~/docker && DOCKER_HOST= docker-compose -f docker-compose-hal2020.yml up -d nyolc'` (migrations run on container start via the entrypoint).
-5. **Verify:** `curl -f https://nyolc.cc/health` → 200 `{"status":"ok","db":"ok"}`.
+5. **Verify:** `curl -f https://magyarul.nyolc.cc/health` → 200 `{"status":"ok","db":"ok"}`.
 6. **Upgrade:** bump `NYOLC_TAG` in `~/docker/.env`, `DOCKER_HOST= docker-compose -f docker-compose-hal2020.yml pull nyolc && ... up -d nyolc`.
 7. **Backup:** `DOCKER_HOST= docker exec postgresql pg_dump -U nyolc nyolc > nyolc-$(date +%F).sql` (note: HAL's existing postgres backup regime also covers the volume).
 8. **Restore drill (test once, record result in the runbook):** create scratch DB `nyolc_restore`, `psql -d nyolc_restore < nyolc-<date>.sql`, confirm `app_meta` exists, drop scratch DB.

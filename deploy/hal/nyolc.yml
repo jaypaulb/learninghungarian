@@ -1,4 +1,4 @@
-# nyolc — Learning Hungarian (nyolc.cc)
+# nyolc — Learning Hungarian (magyarul.nyolc.cc)
 #
 # Copy target on hal: ~/docker/compose/hal2020/nyolc.yml
 # Include in ~/docker/docker-compose-hal2020.yml ABOVE the
@@ -13,7 +13,7 @@
 # Required env in ~/docker/.env:
 #   NYOLC_TAG=latest            (or a v* tag from CI)
 #   NYOLC_PG_PASSWORD=<random>
-#   NYOLC_BASE_URL=https://nyolc.cc
+#   NYOLC_BASE_URL=https://magyarul.nyolc.cc
 #
 # Deliberately no `ports:` block — Traefik-only access via t3_proxy.
 # (Host-port registry lives in ~/docker/.env *_PORT vars; nothing to
@@ -38,6 +38,6 @@ services:
       - "dashboard.port=3000"
       - "dashboard.icon=sh-duolingo"
       - "dashboard.category=Apps"
-      - "dashboard.description=Learning Hungarian — nyolc.cc"
+      - "dashboard.description=Learning Hungarian — magyarul.nyolc.cc"
       - "dashboard.url_external=${NYOLC_BASE_URL}"
     # DOCKER-LABELS-PLACEHOLDER
