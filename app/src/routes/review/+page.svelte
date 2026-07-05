@@ -31,13 +31,20 @@
       Nothing due — come back later. 🎉
     </p>
   {:else}
-    <p class="mt-1 text-sm text-slate-500">{data.due.length - index} due</p>
+    <p class="mt-1 text-sm text-slate-500">
+      {data.due.length - index} due — recall each word, then tap the card to check yourself.
+    </p>
     <button
       onclick={() => (flipped = !flipped)}
       class="mt-6 w-full rounded-xl border border-slate-200 bg-white p-10 text-center text-xl font-semibold text-slate-700 shadow-md hover:bg-slate-50"
       aria-label="flip review card"
     >
-      {flipped ? current.payload.back : current.payload.front}
+      {#if flipped}
+        {current.payload.back}
+      {:else}
+        {current.payload.front}
+        <span class="mt-1 block text-xs font-normal text-slate-400">tap to reveal</span>
+      {/if}
     </button>
     {#if flipped}
       <div class="mt-4 flex justify-center gap-3">
