@@ -1,0 +1,31 @@
+# Local dev/smoke stack ONLY.
+# Production runs on HAL's deployrr stack: see deploy/hal/ and
+# docs/runbooks/hal-deploy.md (GHCR image + shared postgresql + Traefik).
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-hungarian}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-hungarian}
+      POSTGRES_DB: ${POSTGRES_DB:-hungarian}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-hungarian}']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: ./app
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-hungarian}:${POSTGRES_PASSWORD:-hungarian}@db:5432/${POSTGRES_DB:-hungarian}
+      PORT: 3000
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - '3000:3000'
+
+volumes:
+  pgdata:

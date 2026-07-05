@@ -306,7 +306,7 @@ git commit -m "feat(app): scaffold SvelteKit + Tailwind with static /health rout
 **Interfaces:**
 - Consumes: the `/health` GET handler from Task 1.
 - Produces:
-  - `db` — a Drizzle client (`drizzle-orm/node-postgres` `NodePgDatabase`) exported from `app/src/lib/server/db/index.ts`.
+  - `getDb()` — lazily-initialized Drizzle client (`drizzle-orm/node-postgres` `NodePgDatabase`) from `app/src/lib/server/db/index.ts` (lazy so SvelteKit's env-less post-build analysis can import the module).
   - `appMeta` — a Drizzle table (`app/src/lib/server/db/schema.ts`) with columns `key: text (pk)`, `value: text`.
   - `checkDbConnection(): Promise<boolean>` from `app/src/lib/server/db/index.ts` — runs `SELECT 1`, returns `true` on success, `false` on failure.
   - `/health` now returns `{ status, db: 'ok' | 'down' }` and HTTP 200 when db ok, 503 when db down.
@@ -371,16 +371,23 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 import { sql } from 'drizzle-orm';
 import pg from 'pg';
 
-const connectionString = process.env.DATABASE_URL;
-if (!connectionString) throw new Error('DATABASE_URL is not set');
+// Lazy init: SvelteKit's post-build analysis imports server modules with no
+// env present, so the pool must not be created (nor DATABASE_URL read) at
+// module load. First real use throws loudly if the env is missing.
+let _db: ReturnType<typeof drizzle> | null = null;
 
-const pool = new pg.Pool({ connectionString });
-
-export const db = drizzle(pool);
+export function getDb() {
+  if (!_db) {
+    const connectionString = process.env.DATABASE_URL;
+    if (!connectionString) throw new Error('DATABASE_URL is not set');
+    _db = drizzle(new pg.Pool({ connectionString }));
+  }
+  return _db;
+}
 
 export async function checkDbConnection(): Promise<boolean> {
   try {
-    await db.execute(sql`SELECT 1`);
+    await getDb().execute(sql`SELECT 1`);
     return true;
   } catch {
     return false;
