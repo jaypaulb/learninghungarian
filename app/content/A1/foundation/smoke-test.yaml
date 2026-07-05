@@ -2,7 +2,7 @@
 # Replaced by real, MoE-validated content in SP1 Plan 6.
 id: a1-smoke-test
 title: Pipeline smoke test
-version: 1
+version: 2
 position: 0
 status: draft
 objectives:
@@ -45,3 +45,35 @@ exercises:
     payload:
       front: "szia"
       back: "hi / bye (informal)"
+  - id: ex4
+    type: dropdown
+    payload:
+      prompt: "Jó ___! (Good morning!)"
+      options: ["reggelt", "estét", "éjszakát"]
+      correct: "reggelt"
+  - id: ex5
+    type: sentence_build
+    payload:
+      words: ["Én", "tanár", "vagyok"]
+      answer: "Én tanár vagyok"
+      translation: "I am a teacher."
+  - id: ex6
+    type: transform
+    payload:
+      instruction: "Make it informal"
+      prompt: "Jó napot kívánok!"
+      answer: "Szia"
+      translation: "Formal greeting -> informal greeting"
+  - id: ex7
+    type: dialogue
+    payload:
+      intro: "Complete the mini-dialogue."
+      gaps:
+        - before: "A:"
+          answer: "Szia"
+          after: "! Hogy vagy?"
+          translation: "Hi! How are you?"
+        - before: "B: Jól"
+          answer: "vagyok"
+          after: ", köszönöm."
+          translation: "I'm well, thanks."
