@@ -8,6 +8,13 @@
       "when": 1783267239962,
       "tag": "0000_brave_the_fury",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1783275299740,
+      "tag": "0001_cooing_iron_fist",
+      "breakpoints": true
     }
   ]
 }
