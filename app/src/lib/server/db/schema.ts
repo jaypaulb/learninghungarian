@@ -5,6 +5,7 @@ import {
   uuid,
   timestamp,
   integer,
+  real,
   jsonb,
   primaryKey
 } from 'drizzle-orm/pg-core';
@@ -116,3 +117,64 @@ export const exerciseSrsItems = pgTable(
 export type Lesson = typeof lessons.$inferSelect;
 export type Module = typeof modules.$inferSelect;
 export type Exercise = typeof exercises.$inferSelect;
+
+// ---------------------------------------------------------------------------
+// Progress & SRS (SP1 Plan 5). All user FKs cascade on delete so the GDPR
+// account-delete stays a single statement.
+// ---------------------------------------------------------------------------
+export const answerClass = pgEnum('answer_class', ['correct', 'accent', 'wrong']);
+export const lessonProgressStatus = pgEnum('lesson_progress_status', ['in_progress', 'completed']);
+
+export const exerciseProgress = pgTable(
+  'exercise_progress',
+  {
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    exerciseId: text('exercise_id')
+      .notNull()
+      .references(() => exercises.id),
+    firstResult: answerClass('first_result').notNull(),
+    bestResult: answerClass('best_result').notNull(),
+    attempts: integer('attempts').notNull().default(1),
+    lastAttemptAt: timestamp('last_attempt_at', { withTimezone: true }).notNull().defaultNow()
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.exerciseId] })]
+);
+
+export const lessonProgress = pgTable(
+  'lesson_progress',
+  {
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    lessonId: text('lesson_id')
+      .notNull()
+      .references(() => lessons.id),
+    status: lessonProgressStatus('status').notNull().default('in_progress'),
+    firstAccuracy: real('first_accuracy'),
+    lastVisitedAt: timestamp('last_visited_at', { withTimezone: true }).notNull().defaultNow()
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.lessonId] })]
+);
+
+export const userSrsState = pgTable(
+  'user_srs_state',
+  {
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    srsItemId: text('srs_item_id')
+      .notNull()
+      .references(() => srsItems.id),
+    skill: text('skill').notNull(), // reading | writing | listening | speaking
+    modality: text('modality').notNull(), // text | audio (SP3)
+    direction: text('direction').notNull(), // recognition | production
+    ease: real('ease').notNull().default(2.5),
+    intervalDays: real('interval_days').notNull().default(0),
+    dueAt: timestamp('due_at', { withTimezone: true }).notNull().defaultNow(),
+    reps: integer('reps').notNull().default(0),
+    lapses: integer('lapses').notNull().default(0)
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.srsItemId, t.skill, t.modality, t.direction] })]
+);

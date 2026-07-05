@@ -22,7 +22,11 @@
           <ul class="mt-3 divide-y divide-slate-100">
             {#each mod.lessons as lesson}
               <li class="flex items-center justify-between py-2">
-                <a href="/learn/{lesson.id}" class="text-teal-700 hover:underline">{lesson.title}</a>
+                <span>
+                  <a href="/learn/{lesson.id}" class="text-teal-700 hover:underline">{lesson.title}</a>
+                  {#if lesson.progress === 'completed'}<span class="ml-1 text-emerald-600" title="completed">✓</span>
+                  {:else if lesson.progress === 'in_progress'}<span class="ml-1 text-amber-500" title="in progress">…</span>{/if}
+                </span>
                 <span class="rounded-full px-2 py-0.5 text-xs {statusLabel[lesson.status].cls}"
                   >{statusLabel[lesson.status].text}</span
                 >

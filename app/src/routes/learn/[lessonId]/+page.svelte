@@ -1,7 +1,17 @@
 <script lang="ts">
   import ExerciseHost from '$lib/engine/ExerciseHost.svelte';
+  import type { AnswerClass } from '$lib/engine/validate';
 
   let { data } = $props();
+
+  // Fire-and-forget attempt recording; the UI never blocks on it.
+  function record(exerciseId: string, result: AnswerClass) {
+    fetch('/api/attempts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ exerciseId, result })
+    }).catch(() => {});
+  }
   const statusLabel: Record<string, { text: string; cls: string }> = {
     draft: { text: 'draft', cls: 'bg-amber-100 text-amber-800' },
     reviewed: { text: 'AI-drafted, provisional', cls: 'bg-sky-100 text-sky-800' },
@@ -56,7 +66,7 @@
     <h2 class="mt-8 text-lg font-semibold text-slate-700">Practice</h2>
     <div class="mt-3 space-y-4">
       {#each data.exercises as exercise}
-        <ExerciseHost {exercise} />
+        <ExerciseHost {exercise} onResult={record} />
       {/each}
     </div>
   {/if}

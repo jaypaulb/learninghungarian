@@ -3,11 +3,13 @@ import type { PageServerLoad } from './$types';
 import { getDb } from '$lib/server/db';
 import { lessons, contentBlocks, exercises } from '$lib/server/db/schema';
 import { eq, asc } from 'drizzle-orm';
+import { touchLesson } from '$lib/server/progress/record-attempt';
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async ({ params, locals }) => {
   const db = getDb();
   const lesson = (await db.select().from(lessons).where(eq(lessons.id, params.lessonId)))[0];
   if (!lesson) throw error(404, 'Lesson not found');
+  if (locals.user) await touchLesson(locals.user.id, lesson.id);
 
   const blocks = await db
     .select()
