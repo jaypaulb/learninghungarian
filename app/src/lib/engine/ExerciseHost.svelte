@@ -8,6 +8,7 @@
   import Transform from './components/Transform.svelte';
   import Dialogue from './components/Dialogue.svelte';
   import Listening from './components/Listening.svelte';
+  import Speaking from './components/Speaking.svelte';
 
   let { exercise, onResult }: { exercise: { id: string; type: string; payload: unknown }; onResult?: (exerciseId: string, r: AnswerClass) => void } = $props();
 
@@ -21,6 +22,8 @@
     dialogue: Dialogue,
     listening: Listening
   };
+  // Speaking is special-cased: it posts to /api/speech itself, so it needs
+  // the exercise id, and its attempt recording happens server-side.
 
   // $derived: must track the prop, not capture its initial value —
   // positional reuse across navigations otherwise pairs an old component
@@ -30,7 +33,9 @@
 </script>
 
 <div class="rounded-lg border border-slate-100 p-4" data-exercise-id={exercise.id} data-exercise-type={exercise.type}>
-  {#if Component}
+  {#if exercise.type === 'speaking'}
+    <Speaking payload={exercise.payload as never} exerciseId={exercise.id} onResult={report} />
+  {:else if Component}
     <Component payload={exercise.payload as never} onResult={report} />
   {:else}
     <!-- Future types (listening/speaking, SP3) render a placeholder, never crash. -->

@@ -1,0 +1,37 @@
+# whisper — speech-to-text for nyolc speaking exercises.
+#
+# Copy target on hal: ~/docker/compose/hal2020/whisper.yml
+# Include in ~/docker/docker-compose-hal2020.yml ABOVE the
+# SERVICE-PLACEHOLDER-DO-NOT-DELETE marker.
+#
+# Deployed autonomously 2026-07-05. CPU-only faster-whisper 'small' —
+# deliberately NOT on the GPU (Ollama holds it; a short phrase transcribes
+# in ~1-3s on CPU). Reversible: remove include + file + appdata/whisper.
+# No host port, no Traefik rule (container-to-container only).
+
+services:
+  whisper:
+    image: onerahmet/openai-whisper-asr-webservice:latest
+    container_name: whisper
+    security_opt: ["no-new-privileges:true"]
+    restart: unless-stopped
+    profiles: ["apps", "all"]
+    networks: [default]
+    volumes:
+      - $DOCKERDIR/appdata/whisper:/root/.cache
+    environment:
+      TZ: $TZ
+      ASR_MODEL: small
+      ASR_ENGINE: faster_whisper
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+    labels:
+      - "diun.enable=true"
+      - "dashboard.enabled=true"
+      - "dashboard.port=9000"
+      - "dashboard.icon=sh-whisper"
+      - "dashboard.category=AI"
+      - "dashboard.description=Whisper STT — nyolc speaking"
+    # DOCKER-LABELS-PLACEHOLDER

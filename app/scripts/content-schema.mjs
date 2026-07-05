@@ -57,6 +57,11 @@ export const exercisePayloads = {
       )
       .min(1)
   }),
+  speaking: z.object({
+    ...base,
+    promptText: z.string().min(1), // Hungarian the learner must SAY (shown)
+    expected: z.string().min(1) // target transcript (usually = promptText)
+  }),
   listening: z
     .object({
       ...base,
