@@ -32,6 +32,12 @@ services:
       PORT: 3000
       DATABASE_URL: "postgres://nyolc:${NYOLC_PG_PASSWORD}@postgresql:5432/nyolc?sslmode=disable"
       ORIGIN: ${NYOLC_BASE_URL}
+      # AI tutor backend: Ollama by default; setting NYOLC_ANTHROPIC_API_KEY
+      # in ~/docker/.env upgrades to Claude automatically (adapter logic).
+      AI_BASE_URL: ${NYOLC_AI_BASE_URL:-}
+      AI_MODEL: ${NYOLC_AI_MODEL:-}
+      ANTHROPIC_API_KEY: ${NYOLC_ANTHROPIC_API_KEY:-}
+      AI_DAILY_LIMIT: ${NYOLC_AI_DAILY_LIMIT:-100}
     labels:
       - "diun.enable=true"
       - "dashboard.enabled=true"
