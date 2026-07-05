@@ -14,7 +14,12 @@
 
   {#each data.tiers as tier}
     <section class="mt-8">
-      <h2 class="text-xl font-bold text-slate-700">{tier.tier}</h2>
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-bold text-slate-700">{tier.tier}</h2>
+        {#if tier.assessmentId}
+          <a href="/assess/{tier.assessmentId}" class="rounded-md border border-teal-700 px-3 py-1 text-sm font-semibold text-teal-700 hover:bg-teal-50">{tier.tier} checkpoint</a>
+        {/if}
+      </div>
       {#each tier.modules as mod}
         <div class="mt-4 rounded-xl bg-white p-6 shadow-md">
           <h3 class="text-lg font-semibold text-slate-700">{mod.title}</h3>

@@ -20,7 +20,7 @@ const RANK: Record<AnswerClass, number> = { wrong: 0, accent: 1, correct: 2 };
 export async function recordAttempt(userId: string, exerciseId: string, result: AnswerClass) {
   const db = getDb();
   const ex = (await db.select().from(exercises).where(eq(exercises.id, exerciseId)))[0];
-  if (!ex || !ex.lessonId) throw new Error(`unknown exercise ${exerciseId}`);
+  if (!ex) throw new Error(`unknown exercise ${exerciseId}`);
 
   await db.transaction(async (tx) => {
     // -- exercise aggregate --------------------------------------------------
@@ -45,7 +45,8 @@ export async function recordAttempt(userId: string, exerciseId: string, result: 
       });
     }
 
-    // -- lesson recompute ----------------------------------------------------
+    // -- lesson recompute (lesson exercises only; assessment attempts skip) ---
+    if (!ex.lessonId) return;
     const lessonExercises = await tx
       .select({ id: exercises.id })
       .from(exercises)

@@ -1,0 +1,106 @@
+id: a1-verb-to-be
+title: "The verb 'to be' (lenni) — present tense"
+version: 1
+position: 3
+status: draft # -> reviewed after MoE validation
+objectives:
+  - Conjugate 'lenni' in the present tense for all six persons
+  - Use the zero copula — why 'Ő tanár' has no verb
+  - Introduce yourself with 'vagyok'
+skills: [reading, writing]
+minutes: 25
+prerequisites: [a1-alphabet]
+sources:
+  - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), §5 (the verb 'van')"
+  - "MagyarOK A1 (Szita/Pelcz), unit 1-2"
+blocks:
+  - type: prose
+    payload:
+      text: >-
+        'Lenni' (to be) is the most important verb in Hungarian. Its present
+        tense is irregular — and it hides one big surprise: in the third
+        person, when you say WHAT someone is (a teacher, tired, Hungarian),
+        the verb disappears entirely.
+  - type: table
+    payload:
+      headers: ["Person", "Form", "Example"]
+      rows:
+        - ["én (I)", "vagyok", "Tanár vagyok. (I am a teacher.)"]
+        - ["te (you sg.)", "vagy", "Hol vagy? (Where are you?)"]
+        - ["ő (he/she)", "van / —", "Ő tanár. (He/she is a teacher.)"]
+        - ["mi (we)", "vagyunk", "Itt vagyunk. (We are here.)"]
+        - ["ti (you pl.)", "vagytok", "Hol vagytok? (Where are you all?)"]
+        - ["ők (they)", "vannak / —", "Ők tanárok. (They are teachers.)"]
+  - type: callout
+    payload:
+      text: >-
+        The zero copula rule: use van/vannak for WHERE someone is or how
+        they are doing ('Ő az irodában van' — she is in the office), but
+        drop it entirely for WHAT someone is ('Ő tanár' — she is a
+        teacher; never 'Ő van tanár').
+  - type: example
+    payload:
+      hungarian: "Szia! Anna vagyok. Angol vagyok, és tanár vagyok."
+      english: "Hi! I'm Anna. I'm English, and I'm a teacher."
+srsItems:
+  - id: "vocab:vagyok"
+    payload: { front: "vagyok", back: "I am" }
+  - id: "vocab:vagy"
+    payload: { front: "vagy", back: "you are (sg., informal)" }
+  - id: "grammar:zero-copula"
+    payload: { front: "He is a teacher (Hungarian)", back: "Ő tanár. — no verb! van is dropped for WHAT someone is" }
+exercises:
+  - id: ex1
+    type: fill_blank
+    srs: ["vocab:vagyok"]
+    payload:
+      prompt: "Én tanár ___. (I am a teacher.)"
+      answer: "vagyok"
+      translation: "I am a teacher."
+  - id: ex2
+    type: fill_blank
+    srs: ["vocab:vagy"]
+    payload:
+      prompt: "Hol ___? (Where are you?)"
+      answer: "vagy"
+      translation: "Where are you? (sg.)"
+  - id: ex3
+    type: mcq
+    srs: ["grammar:zero-copula"]
+    payload:
+      prompt: "How do you say 'She is a teacher'?"
+      options: ["Ő tanár.", "Ő van tanár.", "Ő tanár van."]
+      correctIndex: 0
+  - id: ex4
+    type: dropdown
+    payload:
+      prompt: "Ő az irodában ___. (She is in the office.)"
+      options: ["van", "—", "vagyok"]
+      correct: "van"
+      hint: "Location -> van stays!"
+  - id: ex5
+    type: sentence_build
+    payload:
+      words: ["Mi", "itt", "vagyunk"]
+      answer: "Mi itt vagyunk"
+      translation: "We are here."
+  - id: ex6
+    type: transform
+    payload:
+      instruction: "Change to plural (they)"
+      prompt: "Ő tanár."
+      answer: "Ők tanárok"
+      translation: "He is a teacher. -> They are teachers."
+  - id: ex7
+    type: dialogue
+    payload:
+      intro: "Introduce yourself."
+      gaps:
+        - before: "A: Szia! Anna"
+          answer: "vagyok"
+          after: ". És te?"
+          translation: "Hi! I'm Anna. And you?"
+        - before: "B: Péter vagyok. Hol"
+          answer: "vagy"
+          after: "?"
+          translation: "I'm Péter. Where are you?"

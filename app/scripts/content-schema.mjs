@@ -108,6 +108,15 @@ export const lessonSchema = z.object({
   exercises: z.array(exerciseSchema).default([])
 });
 
+export const assessmentSchema = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/),
+  tier: z.enum(['A1', 'A2', 'B1', 'B2', 'C1', 'C2']),
+  title: z.string().min(1),
+  description: z.string().optional(),
+  version: z.number().int().positive(),
+  exercises: z.array(exerciseSchema).min(1)
+});
+
 export const moduleSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   tier: z.enum(['A1', 'A2', 'B1', 'B2', 'C1', 'C2']),
