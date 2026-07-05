@@ -1,0 +1,59 @@
+# A1 Foundation milestone assessment. Held to HIGHER scrutiny than practice
+# content (spec §7.5) — must pass MoE validation before tier gating uses it.
+id: a1-assessment
+tier: A1
+title: "A1 checkpoint — Foundation"
+description: >-
+  Covers the alphabet, vowel harmony, the verb 'to be', and numbers.
+  Pass this to know the Foundation module has stuck.
+version: 2
+exercises:
+  - id: q1
+    type: mcq
+    payload:
+      prompt: "Hungarian 'sz' sounds like…"
+      options: ["English 's' in 'sun'", "English 'sh' in 'ship'", "English 'z' in 'zoo'"]
+      correctIndex: 0
+  - id: q2
+    type: dropdown
+    payload:
+      prompt: "a ház___ (in the house)"
+      options: ["-ban", "-ben"]
+      correct: "-ban"
+  - id: q3
+    type: dropdown
+    payload:
+      prompt: "a kert___ (in the garden)"
+      options: ["-ban", "-ben"]
+      correct: "-ben"
+  - id: q4
+    type: fill_blank
+    payload:
+      prompt: "Én tanár ___. (I am a teacher.)"
+      answer: "vagyok"
+      translation: "I am a teacher."
+  - id: q5
+    type: mcq
+    payload:
+      prompt: "How do you say 'She is a teacher'?"
+      options: ["Ő tanár.", "Ő van tanár.", "Ő tanár van."]
+      correctIndex: 0
+  - id: q6
+    type: transform
+    payload:
+      instruction: "Write the number as a word"
+      prompt: "45"
+      answer: "negyvenöt"
+      translation: "45, written as one word"
+  - id: q7
+    type: dropdown
+    payload:
+      prompt: "___ kávét kérek. (I'd like two coffees — usual neutral form.)"
+      options: ["Két", "Kettő"]
+      correct: "Két"
+  - id: q8
+    type: sentence_build
+    payload:
+      words: ["Huszonnyolc", "éves", "vagyok"]
+      answer: "Huszonnyolc éves vagyok"
+      translation: "I am 28 years old."

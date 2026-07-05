@@ -5,6 +5,10 @@ describe('normalize', () => {
   it('trims, lowercases, collapses whitespace', () => {
     expect(normalize('  Szia   Világ  ')).toBe('szia világ');
   });
+  it('ignores trailing sentence punctuation', () => {
+    expect(normalize('Ők tanárok.')).toBe('ők tanárok');
+    expect(normalize('Hol vagy?')).toBe('hol vagy');
+  });
 });
 
 describe('stripDiacritics', () => {

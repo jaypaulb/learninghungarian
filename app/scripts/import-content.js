@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { parse } from 'yaml';
 import pg from 'pg';
-import { lessonSchema, moduleSchema, PAYLOAD_SCHEMA_VERSION } from './content-schema.mjs';
+import { lessonSchema, moduleSchema, assessmentSchema, PAYLOAD_SCHEMA_VERSION } from './content-schema.mjs';
 
 const CONTENT_DIR = process.env.CONTENT_DIR ?? 'content';
 const connectionString = process.env.DATABASE_URL;
@@ -28,9 +28,19 @@ function loadYaml(path) {
 // ---- discover + validate everything before touching the DB ----
 const modules = [];
 const lessons = [];
+const assessments = [];
 for (const tierDir of readdirSync(CONTENT_DIR).sort()) {
   const tierPath = join(CONTENT_DIR, tierDir);
   if (!statSync(tierPath).isDirectory()) continue;
+  const assessFile = join(tierPath, '_assessment.yaml');
+  try {
+    statSync(assessFile);
+    const a = assessmentSchema.parse(loadYaml(assessFile));
+    if (a.tier !== tierDir) throw new Error(`${assessFile}: tier ${a.tier} != directory ${tierDir}`);
+    assessments.push(a);
+  } catch (e) {
+    if (e.code !== 'ENOENT') throw e; // missing assessment is fine; bad one is not
+  }
   for (const modDir of readdirSync(tierPath).sort()) {
     const modPath = join(tierPath, modDir);
     if (!statSync(modPath).isDirectory()) continue;
@@ -142,6 +152,27 @@ try {
     }
   }
 
+  for (const a of assessments) {
+    await client.query(
+      `INSERT INTO assessments (id, tier, title, description, position)
+       VALUES ($1,$2,$3,$4,0)
+       ON CONFLICT (id) DO UPDATE SET tier=$2, title=$3, description=$4`,
+      [a.id, a.tier, a.title, a.description ?? null]
+    );
+    for (let i = 0; i < a.exercises.length; i++) {
+      const ex = a.exercises[i];
+      const globalId = `${a.id}-${ex.id}`;
+      await client.query(
+        `INSERT INTO exercises (id, lesson_id, assessment_id, position, type,
+                                payload_schema_version, payload, content_version)
+         VALUES ($1,NULL,$2,$3,$4,$5,$6,$7)
+         ON CONFLICT (id) DO UPDATE SET assessment_id=$2, position=$3, type=$4,
+           payload_schema_version=$5, payload=$6, content_version=$7`,
+        [globalId, a.id, i, ex.type, PAYLOAD_SCHEMA_VERSION, JSON.stringify(ex.payload), a.version]
+      );
+    }
+  }
+
   // Orphan check: DB rows whose IDs vanished from the repo (warn, never delete).
   const repoLessonIds = lessons.map((l) => l.id);
   const orphans = await client.query(
@@ -152,7 +183,9 @@ try {
   for (const row of orphans.rows) console.warn(`WARN orphan lesson in DB not in repo: ${row.id}`);
 
   await client.query('COMMIT');
-  console.log(`Content import OK: ${modules.length} modules, ${lessons.length} lessons, ${exerciseIds.size} exercises.`);
+  console.log(
+    `Content import OK: ${modules.length} modules, ${lessons.length} lessons, ${exerciseIds.size} exercises, ${assessments.length} assessments.`
+  );
 } catch (e) {
   await client.query('ROLLBACK');
   throw e;

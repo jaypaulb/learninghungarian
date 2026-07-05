@@ -1,0 +1,115 @@
+id: a1-alphabet
+title: "The Hungarian alphabet & sounds"
+version: 2
+position: 1
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
+objectives:
+  - Recognise all 40 letters of the Hungarian alphabet, including digraphs
+  - Distinguish short vs long vowels (a/á, e/é, o/ó, ö/ő, u/ú, ü/ű, i/í)
+  - Pronounce the tricky consonants (cs, gy, ly, ny, s, sz, ty, zs)
+skills: [reading]
+minutes: 20
+sources:
+  - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), ch. 1 (alphabet & pronunciation)"
+  - "MagyarOK A1 (Szita/Pelcz), unit 1"
+blocks:
+  - type: prose
+    payload:
+      text: >-
+        Hungarian spelling is almost perfectly phonetic: once you know each
+        letter's sound, you can pronounce any written word. The native/basic
+        alphabet has 40 letters — 14 vowels and 26 consonants — and the full
+        modern alphabet has 44. Several
+        "letters" are digraphs (two characters written together, like sz)
+        or even a trigraph (dzs), but Hungarians treat each as a single
+        letter with its own place in the alphabet. The four extra letters
+        (q, w, x, y) appear mainly in foreign words and names.
+  - type: table
+    payload:
+      headers: ["Vowel pair", "Short — like in", "Long — like in"]
+      rows:
+        - ["a / á", "'a' in British 'hot' (rounded)", "'a' in 'father'"]
+        - ["e / é", "'e' in 'bed'", "'ay' in 'say' (no glide)"]
+        - ["i / í", "'i' in 'bit'", "'ee' in 'see'"]
+        - ["o / ó", "'o' in 'for' (short)", "'o' in 'go' (no glide)"]
+        - ["ö / ő", "German 'ö', French 'eu'", "same sound, held longer"]
+        - ["u / ú", "'u' in 'put'", "'oo' in 'food'"]
+        - ["ü / ű", "German 'ü', French 'u'", "same sound, held longer"]
+  - type: callout
+    payload:
+      text: >-
+        The accent marks are not stress marks — they mark vowel LENGTH
+        (and for a/á, e/é also a quality change). Stress in Hungarian is
+        always on the first syllable of the word.
+  - type: table
+    payload:
+      headers: ["Letter", "Sounds like", "Example"]
+      rows:
+        - ["c", "'ts' in 'cats'", "cica (kitten)"]
+        - ["cs", "'ch' in 'church'", "csók (kiss)"]
+        - ["gy", "'d' in British 'duke' (soft dy)", "magyar (Hungarian)"]
+        - ["ly", "'y' in 'yes' (same as j today)", "lyuk (hole)"]
+        - ["ny", "'ny' in 'canyon'", "nyolc (eight)"]
+        - ["s", "'sh' in 'ship'", "és (and)"]
+        - ["sz", "'s' in 'sun'", "szia (hi)"]
+        - ["ty", "'t' in British 'tune' (soft ty)", "tyúk (hen)"]
+        - ["zs", "'s' in 'pleasure'", "zsák (sack)"]
+  - type: callout
+    payload:
+      text: >-
+        The classic trap: Hungarian s = English "sh", and Hungarian sz =
+        English "s". Budapest is really pronounced "Budapesht".
+srsItems:
+  - id: "vocab:nyolc"
+    payload: { front: "nyolc", back: "eight (8)" }
+  - id: "vocab:magyar"
+    payload: { front: "magyar", back: "Hungarian" }
+  - id: "vocab:es"
+    payload: { front: "és", back: "and" }
+exercises:
+  - id: ex1
+    type: mcq
+    payload:
+      prompt: "How is the 's' in 'Budapest' actually pronounced?"
+      options: ["like English 'sh'", "like English 's'", "like English 'z'"]
+      correctIndex: 0
+  - id: ex2
+    type: mcq
+    payload:
+      prompt: "Which letter makes the sound of English 's' in 'sun'?"
+      options: ["sz", "s", "zs"]
+      correctIndex: 0
+  - id: ex3
+    type: dropdown
+    payload:
+      prompt: "The word 'magyar' contains the soft consonant ___."
+      options: ["gy", "ny", "ty"]
+      correct: "gy"
+  - id: ex4
+    type: card_flip
+    srs: ["vocab:nyolc"]
+    payload: { front: "nyolc", back: "eight (8) — pronounced 'nyolts'" }
+  - id: ex5
+    type: mcq
+    payload:
+      prompt: "What do the accent marks on Hungarian vowels indicate?"
+      options: ["vowel length", "word stress", "a question"]
+      correctIndex: 0
+  - id: ex6
+    type: fill_blank
+    srs: ["vocab:es"]
+    payload:
+      prompt: "kávé ___ tea (coffee and tea)"
+      answer: "és"
+      translation: "coffee and tea"
+  - id: ex7
+    type: mcq
+    payload:
+      prompt: "Where does word stress always fall in Hungarian?"
+      options: ["first syllable", "last syllable", "it varies"]
+      correctIndex: 0

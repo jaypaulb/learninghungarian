@@ -1,0 +1,108 @@
+id: a1-vowel-harmony
+title: "Vowel harmony"
+version: 2
+position: 2
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
+objectives:
+  - Sort Hungarian vowels into back, front unrounded, and front rounded classes
+  - Choose the right suffix form (-ban/-ben, -nak/-nek) by a word's vowel class
+  - Understand why vowel harmony matters for every suffix you will ever learn
+skills: [reading, writing]
+minutes: 25
+prerequisites: [a1-alphabet]
+sources:
+  - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), §1.3 (vowel harmony)"
+  - "MagyarOK A1 (Szita/Pelcz), unit 2"
+blocks:
+  - type: prose
+    payload:
+      text: >-
+        Hungarian builds meaning by attaching suffixes to words — and most
+        suffixes come in two (sometimes three) forms. Which form you use
+        depends on the vowels of the word: words with BACK vowels take
+        back-vowel suffixes, words with FRONT vowels take front-vowel
+        suffixes. This is vowel harmony, and it runs through the entire
+        language. Learn it now and every later lesson gets easier.
+  - type: table
+    payload:
+      headers: ["Class", "Vowels", "Example word"]
+      rows:
+        - ["Back", "a, á, o, ó, u, ú", "ház (house)"]
+        - ["Front unrounded", "e, é, i, í", "kert (garden)"]
+        - ["Front rounded", "ö, ő, ü, ű", "gyümölcs (fruit)"]
+  - type: example
+    payload:
+      hungarian: "a házban — a kertben"
+      english: "in the house — in the garden (same suffix, harmonised: -ban/-ben)"
+  - type: callout
+    payload:
+      text: >-
+        i and í are "neutral" in many words: some i/í-only words take back
+        suffixes (híd → hídon, 'on the bridge') because of their historical
+        vowels. When in doubt, learn the word together with one suffixed
+        form.
+  - type: table
+    payload:
+      headers: ["Suffix meaning", "Back form", "Front form"]
+      rows:
+        - ["in (inside)", "-ban", "-ben"]
+        - ["to / for (dative)", "-nak", "-nek"]
+        - ["from (out of)", "-ból", "-ből"]
+        - ["with (v assimilates after consonants: házzal, kerttel)", "-val", "-vel"]
+srsItems:
+  - id: "grammar:vowel-harmony-ban-ben"
+    payload: { front: "in the house / in the garden", back: "a házban / a kertben (-ban after back vowels, -ben after front vowels)" }
+  - id: "vocab:haz"
+    payload: { front: "ház", back: "house" }
+  - id: "vocab:kert"
+    payload: { front: "kert", back: "garden" }
+exercises:
+  - id: ex1
+    type: mcq
+    payload:
+      prompt: "Which class do the vowels of 'ház' belong to?"
+      options: ["back", "front unrounded", "front rounded"]
+      correctIndex: 0
+  - id: ex2
+    type: dropdown
+    srs: ["grammar:vowel-harmony-ban-ben"]
+    payload:
+      prompt: "a ház___ (in the house)"
+      options: ["-ban", "-ben"]
+      correct: "-ban"
+  - id: ex3
+    type: dropdown
+    srs: ["grammar:vowel-harmony-ban-ben"]
+    payload:
+      prompt: "a kert___ (in the garden)"
+      options: ["-ban", "-ben"]
+      correct: "-ben"
+  - id: ex4
+    type: fill_blank
+    payload:
+      prompt: "London___ élek. (I live in London.)"
+      answer: "ban"
+      hint: "The vowel 'o' in London is a back vowel."
+      translation: "I live in London."
+  - id: ex5
+    type: mcq
+    payload:
+      prompt: "Why does 'híd' (bridge) take the back suffix in 'hídon'?"
+      options:
+        - "i/í can be neutral; some i-words historically take back suffixes"
+        - "all one-syllable words take back suffixes"
+        - "it's simply irregular with no pattern"
+      correctIndex: 0
+  - id: ex6
+    type: card_flip
+    srs: ["vocab:haz"]
+    payload: { front: "ház", back: "house" }
+  - id: ex7
+    type: card_flip
+    srs: ["vocab:kert"]
+    payload: { front: "kert", back: "garden" }

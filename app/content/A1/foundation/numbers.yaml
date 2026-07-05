@@ -1,0 +1,108 @@
+id: a1-numbers
+title: "Numbers 0–100"
+version: 2
+position: 4
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
+objectives:
+  - Count from 0 to 100
+  - Build compound numbers (tizenegy, huszonhárom, negyvenöt)
+  - Use 'kettő' vs 'két' correctly
+skills: [reading, writing]
+minutes: 20
+prerequisites: [a1-alphabet]
+sources:
+  - "Rounds, Carol: Hungarian — An Essential Grammar (Routledge, 2nd ed.), §3.1 (cardinal numbers)"
+  - "MagyarOK A1 (Szita/Pelcz), unit 2"
+blocks:
+  - type: table
+    payload:
+      headers: ["0-10", "11-19", "tens"]
+      rows:
+        - ["0 nulla", "11 tizenegy", "10 tíz"]
+        - ["1 egy", "12 tizenkettő", "20 húsz"]
+        - ["2 kettő / két", "13 tizenhárom", "30 harminc"]
+        - ["3 három", "14 tizennégy", "40 negyven"]
+        - ["4 négy", "15 tizenöt", "50 ötven"]
+        - ["5 öt", "16 tizenhat", "60 hatvan"]
+        - ["6 hat", "17 tizenhét", "70 hetven"]
+        - ["7 hét", "18 tizennyolc", "80 nyolcvan"]
+        - ["8 nyolc", "19 tizenkilenc", "90 kilencven"]
+        - ["9 kilenc", "", "100 száz"]
+  - type: prose
+    payload:
+      text: >-
+        Compound numbers are written as one word. 11–19 use tizen- + the
+        unit (tizenegy = 11), 21–29 use huszon- + the unit (huszonegy = 21).
+        From 31 upward, simply join the ten and the unit: harmincegy (31),
+        negyvenöt (45), kilencvenkilenc (99).
+  - type: callout
+    payload:
+      text: >-
+        kettő vs két: both mean 'two'. The usual neutral form before a noun
+        is 'két' (két kávé — two coffees); 'kettő' stands alone (Hány?
+        Kettő.) and can replace 'két' for emphasis or clarity — e.g. to
+        avoid mishearing 'két' as 'hét' (seven).
+  - type: example
+    payload:
+      hungarian: "Hány éves vagy? — Huszonnyolc éves vagyok."
+      english: "How old are you? — I am 28 years old."
+srsItems:
+  - id: "vocab:harom"
+    payload: { front: "három", back: "three (3)" }
+  - id: "vocab:het-7"
+    payload: { front: "hét", back: "seven (7) — also 'week'!" }
+  - id: "vocab:szaz"
+    payload: { front: "száz", back: "hundred (100)" }
+  - id: "grammar:ketto-vs-ket"
+    payload: { front: "two coffees / How many? Two.", back: "két kávé / Kettő. (két before nouns, kettő standing alone)" }
+exercises:
+  - id: ex1
+    type: fill_blank
+    srs: ["vocab:harom"]
+    payload:
+      prompt: "1 egy, 2 kettő, 3 ___"
+      answer: "három"
+      translation: "one, two, three"
+  - id: ex2
+    type: mcq
+    payload:
+      prompt: "What is 45?"
+      options: ["negyvenöt", "ötvennégy", "negyven öt"]
+      correctIndex: 0
+  - id: ex3
+    type: transform
+    payload:
+      instruction: "Write the number as a word"
+      prompt: "28"
+      answer: "huszonnyolc"
+      translation: "28 = huszon + nyolc, one word"
+  - id: ex4
+    type: dropdown
+    srs: ["grammar:ketto-vs-ket"]
+    payload:
+      prompt: "___ kávét kérek. (I'd like two coffees — usual neutral form.)"
+      options: ["Két", "Kettő"]
+      correct: "Két"
+      hint: "The everyday neutral choice before a noun."
+  - id: ex5
+    type: mcq
+    srs: ["vocab:het-7"]
+    payload:
+      prompt: "'Hét' means seven — what else does it mean?"
+      options: ["week", "month", "seventy"]
+      correctIndex: 0
+  - id: ex6
+    type: sentence_build
+    payload:
+      words: ["Huszonnyolc", "éves", "vagyok"]
+      answer: "Huszonnyolc éves vagyok"
+      translation: "I am 28 years old."
+  - id: ex7
+    type: card_flip
+    srs: ["vocab:szaz"]
+    payload: { front: "száz", back: "hundred (100)" }

@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-// One user across the whole file; steps build on each other.
+// One user across the whole file; steps build on each other. Unique per run:
+// the dev stack's pgdata volume persists, so a fixed email would arrive with
+// history from previous runs.
 test.describe.configure({ mode: 'serial' });
-test.use({ extraHTTPHeaders: { 'X-Forwarded-User': 'e2e-progress@example.com' } });
+test.use({ extraHTTPHeaders: { 'X-Forwarded-User': `e2e-progress-${Date.now()}@example.com` } });
 
 test('attempt in the browser records progress on /learn', async ({ page }) => {
   await page.goto('/learn/a1-smoke-test');

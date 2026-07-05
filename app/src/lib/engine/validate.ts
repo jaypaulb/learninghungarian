@@ -20,7 +20,13 @@ const DIACRITIC_MAP: Record<string, string> = {
 };
 
 export function normalize(s: string): string {
-  return s.trim().toLowerCase().replace(/\s+/g, ' ');
+  // Trailing sentence punctuation must never fail a learner ("Ők tanárok."
+  // vs "Ők tanárok" — MoE review finding).
+  return s
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .replace(/[.!?]+$/, '');
 }
 
 export function stripDiacritics(s: string): string {
