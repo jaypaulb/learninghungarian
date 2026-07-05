@@ -56,7 +56,22 @@ export const exercisePayloads = {
         })
       )
       .min(1)
-  })
+  }),
+  listening: z
+    .object({
+      ...base,
+      audioText: z.string().min(1), // Hungarian the learner HEARS, never sees
+      mode: z.enum(['transcribe', 'meaning']),
+      answer: z.string().optional(), // transcribe: accent-aware compare
+      options: z.array(z.string().min(1)).min(2).optional(), // meaning
+      correctIndex: z.number().int().nonnegative().optional()
+    })
+    .superRefine((p, ctx) => {
+      if (p.mode === 'transcribe' && !p.answer)
+        ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'transcribe mode requires answer' });
+      if (p.mode === 'meaning' && (!p.options || p.correctIndex === undefined))
+        ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'meaning mode requires options + correctIndex' });
+    })
 };
 
 export const exerciseTypes = Object.keys(exercisePayloads);

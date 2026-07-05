@@ -1,4 +1,6 @@
 <script lang="ts">
+  import AudioButton from '$lib/engine/components/AudioButton.svelte';
+
   let { data } = $props();
   let index = $state(0);
   let flipped = $state(false);
@@ -46,6 +48,11 @@
         <span class="mt-1 block text-xs font-normal text-slate-400">tap to reveal</span>
       {/if}
     </button>
+    {#if current.payload.audioUrl}
+      <div class="mt-3 flex justify-center">
+        <AudioButton src={current.payload.audioUrl} label="Hear the word" />
+      </div>
+    {/if}
     {#if flipped}
       <div class="mt-4 flex justify-center gap-3">
         <button onclick={() => grade(false)} class="rounded-md border border-red-300 px-4 py-2 text-sm text-red-700 hover:bg-red-50">Didn't know</button>

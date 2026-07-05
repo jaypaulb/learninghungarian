@@ -1,6 +1,6 @@
 id: a1-vowel-harmony
 title: "Vowel harmony"
-version: 2
+version: 3
 position: 2
 status: reviewed
 provenance:
@@ -12,7 +12,7 @@ objectives:
   - Sort Hungarian vowels into back, front unrounded, and front rounded classes
   - Choose the right suffix form (-ban/-ben, -nak/-nek) by a word's vowel class
   - Understand why vowel harmony matters for every suffix you will ever learn
-skills: [reading, writing]
+skills: [reading, writing, listening]
 minutes: 25
 prerequisites: [a1-alphabet]
 sources:
@@ -106,3 +106,10 @@ exercises:
     type: card_flip
     srs: ["vocab:kert"]
     payload: { front: "kert", back: "garden" }
+  - id: ex8
+    type: listening
+    payload:
+      audioText: "a házban"
+      mode: meaning
+      options: ["in the house", "in the garden", "to the house"]
+      correctIndex: 0

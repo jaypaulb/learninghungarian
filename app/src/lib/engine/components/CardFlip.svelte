@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { AnswerClass } from '$lib/engine/validate';
+  import AudioButton from './AudioButton.svelte';
 
-  let { payload, onResult }: { payload: { front: string; back: string }; onResult?: (r: AnswerClass) => void } = $props();
+  let { payload, onResult }: { payload: { front: string; back: string; audioUrl?: string }; onResult?: (r: AnswerClass) => void } = $props();
 
   let flipped = $state(false);
   let graded = $state(false);
@@ -13,9 +14,12 @@
 </script>
 
 <div>
-  <p class="text-sm font-semibold text-slate-500">
-    🃏 Flashcard — do you know what this means? Recall it, then tap the card to check.
-  </p>
+  <div class="flex items-center gap-2">
+    {#if payload.audioUrl}<AudioButton src={payload.audioUrl} label="Hear the word" />{/if}
+    <p class="text-sm font-semibold text-slate-500">
+      🃏 Flashcard — do you know what this means? Recall it, then tap the card to check.
+    </p>
+  </div>
   <button
     onclick={() => !graded && (flipped = !flipped)}
     class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 p-6 text-center hover:bg-slate-100"

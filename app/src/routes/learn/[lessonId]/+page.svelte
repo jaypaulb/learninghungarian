@@ -1,6 +1,7 @@
 <script lang="ts">
   import ExerciseHost from '$lib/engine/ExerciseHost.svelte';
   import FeedbackForm from '$lib/engine/FeedbackForm.svelte';
+  import AudioButton from '$lib/engine/components/AudioButton.svelte';
   import type { AnswerClass } from '$lib/engine/validate';
 
   let { data } = $props();
@@ -40,10 +41,13 @@
       {#if block.type === 'prose'}
         <p class="text-slate-700">{(block.payload as { text: string }).text}</p>
       {:else if block.type === 'example'}
-        {@const ex = block.payload as { hungarian: string; english: string }}
-        <div class="rounded-md bg-slate-50 p-3">
-          <p class="font-semibold text-slate-700">{ex.hungarian}</p>
-          <p class="text-sm italic text-slate-500">{ex.english}</p>
+        {@const ex = block.payload as { hungarian: string; english: string; audioUrl?: string }}
+        <div class="flex items-start gap-3 rounded-md bg-slate-50 p-3">
+          {#if ex.audioUrl}<AudioButton src={ex.audioUrl} label="Hear it spoken" />{/if}
+          <div>
+            <p class="font-semibold text-slate-700">{ex.hungarian}</p>
+            <p class="text-sm italic text-slate-500">{ex.english}</p>
+          </div>
         </div>
       {:else if block.type === 'callout'}
         <div class="rounded-md border-l-4 border-teal-600 bg-teal-50 p-3 text-sm text-slate-700">
