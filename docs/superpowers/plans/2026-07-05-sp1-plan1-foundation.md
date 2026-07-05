@@ -394,7 +394,7 @@ export async function checkDbConnection(): Promise<boolean> {
 
 ```
 # PostgreSQL connection string used by the app and drizzle-kit
-DATABASE_URL=postgres://hungarian:hungarian@localhost:5432/hungarian
+DATABASE_URL=postgres://hungarian:hungarian@localhost:5433/hungarian
 ```
 
 - [ ] **Step 5: Generate the first migration and apply it to a local database**
@@ -402,10 +402,11 @@ DATABASE_URL=postgres://hungarian:hungarian@localhost:5432/hungarian
 Run a local Postgres for development (Task 3 Dockerizes this; for now a throwaway container is fine):
 
 ```bash
+# Host port 5433: local 5432 is commonly taken (e.g. another project's DB container).
 docker run --rm -d --name pg-dev -e POSTGRES_USER=hungarian \
-  -e POSTGRES_PASSWORD=hungarian -e POSTGRES_DB=hungarian -p 5432:5432 postgres:16
+  -e POSTGRES_PASSWORD=hungarian -e POSTGRES_DB=hungarian -p 5433:5432 postgres:16
 cd app && cp .env.example .env
-export DATABASE_URL=postgres://hungarian:hungarian@localhost:5432/hungarian
+export DATABASE_URL=postgres://hungarian:hungarian@localhost:5433/hungarian
 npm run db:generate
 npm run db:migrate
 ```
@@ -431,7 +432,7 @@ describe('checkDbConnection', () => {
 
 - [ ] **Step 7: Run the integration test to verify it passes against the running DB**
 
-Run: `cd app && DATABASE_URL=postgres://hungarian:hungarian@localhost:5432/hungarian npm run test:unit -- db.integration`
+Run: `cd app && DATABASE_URL=postgres://hungarian:hungarian@localhost:5433/hungarian npm run test:unit -- db.integration`
 Expected: PASS (1 test). (If DATABASE_URL is unset it throws at import — that is intended.)
 
 - [ ] **Step 8: Update the failing test and wire the DB into `/health`**
@@ -807,6 +808,7 @@ GRANT ALL PRIVILEGES ON DATABASE nyolc TO nyolc;
 - [ ] **Step 5: Write the HAL deploy runbook**
 
 `docs/runbooks/hal-deploy.md` — concrete commands, in order:
+0. **Port discipline:** HAL's host-port registry is the `*_PORT` vars in `hal:~/docker/.env` (template: `env.template`). `nyolc` deliberately exposes **no host port** (Traefik-only via `t3_proxy`); if one is ever needed, check the registry for a free port and register `NYOLC_PORT` there first.
 1. **DNS:** `nyolc.cc` A/CNAME → HAL's external endpoint in Cloudflare (Traefik's `dns-cloudflare` resolver issues the cert).
 2. **DB bootstrap:** generate `NYOLC_PG_PASSWORD` (`openssl rand -hex 24`), add to `hal:~/docker/.env` with `NYOLC_TAG` and `NYOLC_BASE_URL`, then run `deploy/hal/bootstrap-db.sql` per its header comment.
 3. **Files:** `scp deploy/hal/nyolc.yml hal:~/docker/compose/hal2020/nyolc.yml`; `scp deploy/hal/app-nyolc.yml hal:~/docker/appdata/traefik3/rules/hal2020/app-nyolc.yml`; add the include line to `docker-compose-hal2020.yml` above `# SERVICE-PLACEHOLDER-DO-NOT-DELETE`.
