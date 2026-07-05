@@ -18,7 +18,8 @@
 - PostgreSQL: **16**.
 - All secrets come from environment variables; `app/.env.example` is the committed template, `.env` is git-ignored.
 - Database URL env var name is exactly **`DATABASE_URL`** everywhere.
-- Product domain is `nyolc.cc` (not needed in this plan, but page copy should not hardcode any other domain).
+- Product domain is `nyolc.cc`; page copy must not hardcode any other domain.
+- **Deploy model (HAL deployrr stack, per `hal:~/docker/CLAUDE.md` and the `olitrack-saas.yml` precedent):** CI in this repo builds the image and pushes to **GHCR** (`ghcr.io/jaypaulb/learninghungarian`); HAL pulls it via a per-service file `compose/hal2020/nyolc.yml`. The app uses HAL's **shared `postgresql` service** (dedicated `nyolc` database + role), joins `default` + `t3_proxy`, has **no `ports:` block**, and is routed by a file-based Traefik rule `app-nyolc.yml` using `chain-no-auth` (public site). The root `docker-compose.yml` in this repo is the **local dev/smoke stack only**.
 
 ---
 
@@ -502,7 +503,7 @@ git commit -m "feat(app): add Postgres + Drizzle with DB-backed /health"
 
 ---
 
-### Task 3: Dockerize the stack and run migrations on deploy
+### Task 3: Dockerize the local dev stack and run migrations on start
 
 **Files:**
 - Create: `app/Dockerfile`
@@ -642,23 +643,184 @@ test('health endpoint reports ok against the running stack', async ({ request })
 Run: `cd app && npx playwright install --with-deps chromium && npm run test:e2e -- health`
 Expected: PASS (1 test) — `/health` returns 200 with `db: ok`, proving migrate-on-start and DB connectivity inside Compose.
 
-- [ ] **Step 7: Write the HAL deploy runbook**
-
-`docs/runbooks/hal-deploy.md` — must contain, as concrete commands:
-- Prerequisites: Docker + Compose on HAL; reverse proxy (confirm HAL's existing pattern) terminating TLS and proxying to `app:3000`.
-- First deploy: `cp app/.env.example .env` (set real `POSTGRES_*`), `docker compose up --build -d`.
-- Migrations: applied automatically on `app` start via the entrypoint; to run manually: `docker compose run --rm app npx drizzle-kit migrate`.
-- Health: `curl -f https://<hal-host>/health` returns 200.
-- **Backup:** `docker compose exec -T db pg_dump -U hungarian hungarian > backup-$(date +%F).sql`.
-- **Restore drill (must be tested once and the result recorded in the runbook):** spin a scratch DB, `psql < backup.sql`, confirm `app_meta` present.
-
-- [ ] **Step 8: Tear down and commit**
+- [ ] **Step 7: Tear down and commit**
 
 ```bash
 docker compose down
 git add app/Dockerfile app/.dockerignore app/docker-entrypoint.sh docker-compose.yml \
-  app/playwright.config.ts app/e2e docs/runbooks/hal-deploy.md
-git commit -m "feat(app): dockerize stack with migrate-on-start and health smoke test"
+  app/playwright.config.ts app/e2e
+git commit -m "feat(app): dockerize local dev stack with migrate-on-start and health smoke test"
+```
+
+---
+
+### Task 4: CI image publish (GHCR) + HAL stack entry + deploy runbook
+
+**Files:**
+- Create: `.github/workflows/build-image.yml`
+- Create: `deploy/hal/nyolc.yml` (copy target: `hal:~/docker/compose/hal2020/nyolc.yml`)
+- Create: `deploy/hal/app-nyolc.yml` (copy target: `hal:~/docker/appdata/traefik3/rules/hal2020/app-nyolc.yml`)
+- Create: `deploy/hal/bootstrap-db.sql`
+- Create: `docs/runbooks/hal-deploy.md`
+
+**Interfaces:**
+- Consumes: the Dockerfile from Task 3.
+- Produces: `ghcr.io/jaypaulb/learninghungarian:<tag>` images on push to `main`/tags; HAL service + routing files; a runbook a fresh operator can follow end-to-end.
+
+- [ ] **Step 1: Create the GH Actions workflow**
+
+`.github/workflows/build-image.yml`:
+
+```yaml
+name: build-image
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+    paths: ['app/**', '.github/workflows/build-image.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: ghcr.io/jaypaulb/learninghungarian
+          tags: |
+            type=ref,event=tag
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: ./app
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+```
+
+- [ ] **Step 2: Create the HAL service file (olitrack-saas pattern)**
+
+`deploy/hal/nyolc.yml`:
+
+```yaml
+# nyolc — Learning Hungarian (nyolc.cc)
+#
+# Copy target on hal: ~/docker/compose/hal2020/nyolc.yml
+# Include in ~/docker/docker-compose-hal2020.yml ABOVE the
+# SERVICE-PLACEHOLDER-DO-NOT-DELETE marker:
+#
+#   include:
+#     - compose/$HOSTNAME/nyolc.yml
+#
+# Database: hal's existing shared `postgresql` service (a `nyolc`
+# database + role provisioned inside it; see bootstrap-db.sql).
+#
+# Required env in ~/docker/.env:
+#   NYOLC_TAG=latest            (or a v* tag from CI)
+#   NYOLC_PG_PASSWORD=<random>
+#   NYOLC_BASE_URL=https://nyolc.cc
+#
+# Deliberately no `ports:` block — Traefik-only access via t3_proxy.
+
+services:
+  nyolc:
+    image: ghcr.io/jaypaulb/learninghungarian:${NYOLC_TAG:-latest}
+    container_name: nyolc
+    security_opt: ["no-new-privileges:true"]
+    restart: unless-stopped
+    profiles: ["apps", "all"]
+    networks: [default, t3_proxy]
+    environment:
+      TZ: $TZ
+      PORT: 3000
+      DATABASE_URL: "postgres://nyolc:${NYOLC_PG_PASSWORD}@postgresql:5432/nyolc?sslmode=disable"
+      ORIGIN: ${NYOLC_BASE_URL}
+    labels:
+      - "diun.enable=true"
+      - "dashboard.enabled=true"
+      - "dashboard.port=3000"
+      - "dashboard.icon=sh-duolingo"
+      - "dashboard.category=Apps"
+      - "dashboard.description=Learning Hungarian — nyolc.cc"
+      - "dashboard.url_external=${NYOLC_BASE_URL}"
+    # DOCKER-LABELS-PLACEHOLDER
+```
+
+- [ ] **Step 3: Create the Traefik rules file**
+
+`deploy/hal/app-nyolc.yml`:
+
+```yaml
+# Copy target on hal: ~/docker/appdata/traefik3/rules/hal2020/app-nyolc.yml
+# Public learning site — no OAuth gate; rate-limit + secure headers only.
+http:
+  routers:
+    nyolc-rtr:
+      rule: "Host(`nyolc.cc`)"
+      entryPoints:
+        - websecure-external
+        - websecure-internal
+      middlewares:
+        - chain-no-auth
+      service: nyolc-svc
+      tls:
+        certResolver: dns-cloudflare
+
+  services:
+    nyolc-svc:
+      loadBalancer:
+        servers:
+          - url: "http://nyolc:3000"
+```
+
+- [ ] **Step 4: Create the DB bootstrap SQL**
+
+`deploy/hal/bootstrap-db.sql`:
+
+```sql
+-- Run once inside hal's shared postgresql container:
+--   DOCKER_HOST= docker exec -i postgresql psql -U "$POSTGRES_USER" -d postgres < bootstrap-db.sql
+-- Replace the password with the value of NYOLC_PG_PASSWORD from ~/docker/.env.
+CREATE ROLE nyolc LOGIN PASSWORD 'CHANGE_ME_TO_NYOLC_PG_PASSWORD';
+CREATE DATABASE nyolc OWNER nyolc;
+GRANT ALL PRIVILEGES ON DATABASE nyolc TO nyolc;
+```
+
+- [ ] **Step 5: Write the HAL deploy runbook**
+
+`docs/runbooks/hal-deploy.md` — concrete commands, in order:
+1. **DNS:** `nyolc.cc` A/CNAME → HAL's external endpoint in Cloudflare (Traefik's `dns-cloudflare` resolver issues the cert).
+2. **DB bootstrap:** generate `NYOLC_PG_PASSWORD` (`openssl rand -hex 24`), add to `hal:~/docker/.env` with `NYOLC_TAG` and `NYOLC_BASE_URL`, then run `deploy/hal/bootstrap-db.sql` per its header comment.
+3. **Files:** `scp deploy/hal/nyolc.yml hal:~/docker/compose/hal2020/nyolc.yml`; `scp deploy/hal/app-nyolc.yml hal:~/docker/appdata/traefik3/rules/hal2020/app-nyolc.yml`; add the include line to `docker-compose-hal2020.yml` above `# SERVICE-PLACEHOLDER-DO-NOT-DELETE`.
+4. **Start:** `ssh hal 'cd ~/docker && DOCKER_HOST= docker-compose -f docker-compose-hal2020.yml up -d nyolc'` (migrations run on container start via the entrypoint).
+5. **Verify:** `curl -f https://nyolc.cc/health` → 200 `{"status":"ok","db":"ok"}`.
+6. **Upgrade:** bump `NYOLC_TAG` in `~/docker/.env`, `DOCKER_HOST= docker-compose -f docker-compose-hal2020.yml pull nyolc && ... up -d nyolc`.
+7. **Backup:** `DOCKER_HOST= docker exec postgresql pg_dump -U nyolc nyolc > nyolc-$(date +%F).sql` (note: HAL's existing postgres backup regime also covers the volume).
+8. **Restore drill (test once, record result in the runbook):** create scratch DB `nyolc_restore`, `psql -d nyolc_restore < nyolc-<date>.sql`, confirm `app_meta` exists, drop scratch DB.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add .github/workflows/build-image.yml deploy/hal docs/runbooks/hal-deploy.md
+git commit -m "feat(deploy): CI image publish to GHCR + HAL stack entry and runbook"
 ```
 
 ---
@@ -669,9 +831,9 @@ git commit -m "feat(app): dockerize stack with migrate-on-start and health smoke
 - Dockerized SvelteKit + Postgres, one deployable → Tasks 1–3. ✅
 - Drizzle, migrations as deploy path → Task 2 (generate/migrate), Task 3 (migrate-on-start). ✅
 - Health check → Tasks 1–2 (`/health`), Task 3 (smoke). ✅
-- Backup/restore drill + TLS/proxy contract → Task 3 Step 7 runbook. ✅
+- Backup/restore drill + TLS/proxy contract → Task 4 runbook (HAL Traefik file-based routing, shared postgresql). ✅
 - Tailwind via build pipeline → Task 1. ✅
-- CI image-publishing → intentionally out of scope per spec (deferred to VPS move). ✅
+- CI image-publishing → Task 4 (spec's deferral was invalidated by HAL's actual deploy model: GHCR pull is how the stack consumes apps — olitrack-saas precedent). ✅
 - Auth, content model, engine, SRS, assessment, feedback → **later plans (2–7), not this one.** ✅
 
 **Placeholder scan:** No TBDs; every code step shows real code; the runbook step enumerates exact commands rather than "document deployment". ✅
