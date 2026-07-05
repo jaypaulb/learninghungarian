@@ -1,8 +1,13 @@
 id: a1-alphabet
 title: "The Hungarian alphabet & sounds"
-version: 1
+version: 2
 position: 1
-status: draft # -> reviewed after MoE validation
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
 objectives:
   - Recognise all 40 letters of the Hungarian alphabet, including digraphs
   - Distinguish short vs long vowels (a/á, e/é, o/ó, ö/ő, u/ú, ü/ű, i/í)
@@ -17,12 +22,13 @@ blocks:
     payload:
       text: >-
         Hungarian spelling is almost perfectly phonetic: once you know each
-        letter's sound, you can pronounce any written word. The standard
-        alphabet has 40 letters — 14 vowels and 26 consonants. Several
+        letter's sound, you can pronounce any written word. The native/basic
+        alphabet has 40 letters — 14 vowels and 26 consonants — and the full
+        modern alphabet has 44. Several
         "letters" are digraphs (two characters written together, like sz)
         or even a trigraph (dzs), but Hungarians treat each as a single
-        letter with its own place in the alphabet. Four extra letters
-        (q, w, x, y) appear only in foreign words and names.
+        letter with its own place in the alphabet. The four extra letters
+        (q, w, x, y) appear mainly in foreign words and names.
   - type: table
     payload:
       headers: ["Vowel pair", "Short — like in", "Long — like in"]
@@ -45,7 +51,7 @@ blocks:
       headers: ["Letter", "Sounds like", "Example"]
       rows:
         - ["c", "'ts' in 'cats'", "cica (kitten)"]
-        - ["cs", "'ch' in 'church'", "csok (kiss, short for csók)"]
+        - ["cs", "'ch' in 'church'", "csók (kiss)"]
         - ["gy", "'d' in British 'duke' (soft dy)", "magyar (Hungarian)"]
         - ["ly", "'y' in 'yes' (same as j today)", "lyuk (hole)"]
         - ["ny", "'ny' in 'canyon'", "nyolc (eight)"]

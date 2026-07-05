@@ -1,5 +1,6 @@
 <script lang="ts">
   import ExerciseHost from '$lib/engine/ExerciseHost.svelte';
+  import FeedbackForm from '$lib/engine/FeedbackForm.svelte';
   import type { AnswerClass } from '$lib/engine/validate';
 
   let { data } = $props();
@@ -70,6 +71,8 @@
       {/each}
     </div>
   {/if}
+
+  <FeedbackForm lessonId={data.lesson.id} />
 
   {#if data.lesson.sources.length > 0}
     <footer class="mt-8 border-t border-slate-200 pt-4">

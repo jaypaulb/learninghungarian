@@ -1,8 +1,13 @@
 id: a1-vowel-harmony
 title: "Vowel harmony"
-version: 1
+version: 2
 position: 2
-status: draft # -> reviewed after MoE validation
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
 objectives:
   - Sort Hungarian vowels into back, front unrounded, and front rounded classes
   - Choose the right suffix form (-ban/-ben, -nak/-nek) by a word's vowel class
@@ -48,7 +53,7 @@ blocks:
         - ["in (inside)", "-ban", "-ben"]
         - ["to / for (dative)", "-nak", "-nek"]
         - ["from (out of)", "-ból", "-ből"]
-        - ["with", "-val", "-vel"]
+        - ["with (v assimilates after consonants: házzal, kerttel)", "-val", "-vel"]
 srsItems:
   - id: "grammar:vowel-harmony-ban-ben"
     payload: { front: "in the house / in the garden", back: "a házban / a kertben (-ban after back vowels, -ben after front vowels)" }
@@ -80,10 +85,10 @@ exercises:
   - id: ex4
     type: fill_blank
     payload:
-      prompt: "Budapest___ élek. (I live in Budapest.)"
-      answer: "en"
-      hint: "Budapest ends in a front unrounded environment: -en"
-      translation: "I live in Budapest."
+      prompt: "London___ élek. (I live in London.)"
+      answer: "ban"
+      hint: "The vowel 'o' in London is a back vowel."
+      translation: "I live in London."
   - id: ex5
     type: mcq
     payload:

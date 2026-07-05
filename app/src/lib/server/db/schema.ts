@@ -158,6 +158,25 @@ export const lessonProgress = pgTable(
   (t) => [primaryKey({ columns: [t.userId, t.lessonId] })]
 );
 
+// Feedback capture (SP1 Plan 7). Private-first: message text and user link
+// stay in Postgres; the GitHub issue carries only the row's UUID.
+export const feedbackStatus = pgEnum('feedback_status', ['new', 'triaged', 'accepted', 'rejected']);
+
+export const feedback = pgTable('feedback', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  userId: uuid('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  lessonId: text('lesson_id').references(() => lessons.id),
+  exerciseId: text('exercise_id').references(() => exercises.id),
+  contentVersion: integer('content_version'),
+  message: text('message').notNull(),
+  consentContact: integer('consent_contact').notNull().default(0), // 0/1; email lives on users
+  status: feedbackStatus('status').notNull().default('new'),
+  githubIssue: integer('github_issue'),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow()
+});
+
 export const userSrsState = pgTable(
   'user_srs_state',
   {

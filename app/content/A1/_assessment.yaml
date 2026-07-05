@@ -6,7 +6,7 @@ title: "A1 checkpoint — Foundation"
 description: >-
   Covers the alphabet, vowel harmony, the verb 'to be', and numbers.
   Pass this to know the Foundation module has stuck.
-version: 1
+version: 2
 exercises:
   - id: q1
     type: mcq
@@ -48,7 +48,7 @@ exercises:
   - id: q7
     type: dropdown
     payload:
-      prompt: "___ kávét kérek. (I'd like two coffees.)"
+      prompt: "___ kávét kérek. (I'd like two coffees — usual neutral form.)"
       options: ["Két", "Kettő"]
       correct: "Két"
   - id: q8

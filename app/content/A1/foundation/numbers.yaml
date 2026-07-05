@@ -1,8 +1,13 @@
 id: a1-numbers
 title: "Numbers 0–100"
-version: 1
+version: 2
 position: 4
-status: draft # -> reviewed after MoE validation
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
 objectives:
   - Count from 0 to 100
   - Build compound numbers (tizenegy, huszonhárom, negyvenöt)
@@ -38,9 +43,10 @@ blocks:
   - type: callout
     payload:
       text: >-
-        kettő vs két: both mean 'two'. Use 'két' before a noun (két kávé —
-        two coffees) and 'kettő' when the number stands alone (Hány? Kettő.)
-        or to avoid mishearing 'két' as 'hét'.
+        kettő vs két: both mean 'two'. The usual neutral form before a noun
+        is 'két' (két kávé — two coffees); 'kettő' stands alone (Hány?
+        Kettő.) and can replace 'két' for emphasis or clarity — e.g. to
+        avoid mishearing 'két' as 'hét' (seven).
   - type: example
     payload:
       hungarian: "Hány éves vagy? — Huszonnyolc éves vagyok."
@@ -79,9 +85,10 @@ exercises:
     type: dropdown
     srs: ["grammar:ketto-vs-ket"]
     payload:
-      prompt: "___ kávét kérek. (I'd like two coffees.)"
+      prompt: "___ kávét kérek. (I'd like two coffees — usual neutral form.)"
       options: ["Két", "Kettő"]
       correct: "Két"
+      hint: "The everyday neutral choice before a noun."
   - id: ex5
     type: mcq
     srs: ["vocab:het-7"]

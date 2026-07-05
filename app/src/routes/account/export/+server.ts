@@ -1,7 +1,7 @@
 import { error, json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { getDb } from '$lib/server/db';
-import { exerciseProgress, lessonProgress, userSrsState } from '$lib/server/db/schema';
+import { exerciseProgress, lessonProgress, userSrsState, feedback } from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 
 /**
@@ -23,7 +23,8 @@ export const GET: RequestHandler = async ({ locals }) => {
       .select()
       .from(exerciseProgress)
       .where(eq(exerciseProgress.userId, locals.user.id)),
-    srs: await db.select().from(userSrsState).where(eq(userSrsState.userId, locals.user.id))
+    srs: await db.select().from(userSrsState).where(eq(userSrsState.userId, locals.user.id)),
+    feedback: await db.select().from(feedback).where(eq(feedback.userId, locals.user.id))
   };
   return json(body, {
     headers: { 'Content-Disposition': 'attachment; filename="my-data-magyarul-nyolc-cc.json"' }

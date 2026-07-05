@@ -1,8 +1,13 @@
 id: a1-verb-to-be
 title: "The verb 'to be' (lenni) — present tense"
-version: 1
+version: 2
 position: 3
-status: draft # -> reviewed after MoE validation
+status: reviewed
+provenance:
+  authoredBy: "claude-opus-4-8"
+  validatedBy: "codex (OpenAI)"
+  validatedOn: "2026-07-05"
+  moeVerdict: "pass-with-fixes"
 objectives:
   - Conjugate 'lenni' in the present tense for all six persons
   - Use the zero copula — why 'Ő tanár' has no verb
@@ -34,10 +39,11 @@ blocks:
   - type: callout
     payload:
       text: >-
-        The zero copula rule: use van/vannak for WHERE someone is or how
-        they are doing ('Ő az irodában van' — she is in the office), but
-        drop it entirely for WHAT someone is ('Ő tanár' — she is a
-        teacher; never 'Ő van tanár').
+        The zero copula rule: use van/vannak for location and existence
+        ('Ő az irodában van' — she is in the office) and adverbial states
+        ('Ő jól van' — she is well), but drop it entirely when saying WHAT
+        someone is — noun or adjective predicates: 'Ő tanár' (she is a
+        teacher), 'Ő fáradt' (she is tired); never 'Ő van tanár'.
   - type: example
     payload:
       hungarian: "Szia! Anna vagyok. Angol vagyok, és tanár vagyok."
