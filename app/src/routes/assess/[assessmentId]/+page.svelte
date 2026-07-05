@@ -29,7 +29,7 @@
   <p class="mt-2 text-sm text-slate-500">{answered}/{data.exercises.length} answered — first attempt counts.</p>
 
   <div class="mt-6 space-y-4">
-    {#each data.exercises as exercise}
+    {#each data.exercises as exercise (exercise.id)}
       <ExerciseHost {exercise} onResult={record} />
     {/each}
   </div>

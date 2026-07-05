@@ -66,11 +66,31 @@
   {#if data.exercises.length > 0}
     <h2 class="mt-8 text-lg font-semibold text-slate-700">Practice</h2>
     <div class="mt-3 space-y-4">
-      {#each data.exercises as exercise}
+      <!-- keyed by id: exercises must be destroyed/recreated across client-side
+           navigations, or stale component instances crash on the next lesson's
+           payloads (found via prev/next navigation, 2026-07-05) -->
+      {#each data.exercises as exercise (exercise.id)}
         <ExerciseHost {exercise} onResult={record} />
       {/each}
     </div>
   {/if}
+
+  <nav class="mt-8 flex items-center justify-between gap-4">
+    {#if data.prev}
+      <a href="/learn/{data.prev.id}" class="rounded-md border border-slate-300 px-4 py-2 text-sm text-slate-600 hover:bg-slate-50" data-testid="prev-lesson"
+        >&larr; {data.prev.title}</a
+      >
+    {:else}<span></span>{/if}
+    {#if data.next}
+      <a href="/learn/{data.next.id}" class="rounded-md bg-teal-700 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800" data-testid="next-lesson"
+        >{data.next.title} &rarr;</a
+      >
+    {:else}
+      <a href="/learn" class="rounded-md bg-teal-700 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800" data-testid="next-lesson"
+        >Back to curriculum &rarr;</a
+      >
+    {/if}
+  </nav>
 
   <FeedbackForm lessonId={data.lesson.id} />
 
