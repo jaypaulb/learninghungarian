@@ -59,8 +59,10 @@ export const exercisePayloads = {
   }),
   speaking: z.object({
     ...base,
-    promptText: z.string().min(1), // Hungarian the learner must SAY (shown)
-    expected: z.string().min(1) // target transcript (usually = promptText)
+    // Whisper mangles isolated words; phrases of 2+ words transcribe well
+    // (verified on HAL 2026-07-05). Enforce at authoring time.
+    promptText: z.string().regex(/\s/, 'speaking prompts must be phrases (2+ words), not single words'),
+    expected: z.string().min(1)
   }),
   listening: z
     .object({

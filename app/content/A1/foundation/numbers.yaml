@@ -1,6 +1,6 @@
 id: a1-numbers
 title: "Numbers 0–100"
-version: 4
+version: 5
 position: 4
 status: reviewed
 provenance:
@@ -126,6 +126,6 @@ exercises:
     type: speaking
     srs: ["vocab:harom"]
     payload:
-      promptText: "három"
-      expected: "három"
-      translation: "three"
+      promptText: "Három kávét kérek."
+      expected: "Három kávét kérek."
+      translation: "Three coffees, please."

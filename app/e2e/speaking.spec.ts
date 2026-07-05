@@ -27,7 +27,7 @@ test('speech api grades correct pronunciation via mock pass-through', async ({ r
     multipart: {
       audio: { name: 'speech.webm', mimeType: 'audio/webm', buffer: Buffer.from([1, 2, 3]) },
       exerciseId: 'a1-alphabet-ex10',
-      mockTranscript: 'nyolc'
+      mockTranscript: 'Nyolc, kilenc, tíz.'
     }
   });
   expect(res.status()).toBe(200);
@@ -42,7 +42,7 @@ test('speech api accent-classifies near misses', async ({ request }) => {
     multipart: {
       audio: { name: 'speech.webm', mimeType: 'audio/webm', buffer: Buffer.from([1, 2, 3]) },
       exerciseId: 'a1-numbers-ex10',
-      mockTranscript: 'harom'
+      mockTranscript: 'Harom kavet kerek.'
     }
   });
   const body = await res.json();
