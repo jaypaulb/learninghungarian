@@ -12,10 +12,14 @@ Traefik reaches it by container name on `t3_proxy`. If a host port is ever
 needed, check the registry for a free port and register `NYOLC_PORT` there
 first.
 
-## 1. DNS
+## 1. DNS — already in place
 
-In Cloudflare, point `nyolc.cc` (A/CNAME) at HAL's external endpoint.
-Traefik's `dns-cloudflare` resolver issues the certificate automatically.
+`nyolc.cc` is HAL's primary stack domain (`DOMAINNAME_1` in `hal:~/docker/.env`).
+The apex A record and `*.nyolc.cc` wildcard already point at HAL (verified
+2026-07-05: apex → 81.183.239.115), and Traefik's `dns-cloudflare` resolver
+issues certificates automatically. **No Cloudflare work needed.** The site is
+routed at the apex via `Host(`{{env "DOMAINNAME_1"}}`)`; no prior router
+claimed the apex.
 
 ## 2. Database bootstrap (once)
 

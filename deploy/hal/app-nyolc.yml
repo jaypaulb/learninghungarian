@@ -1,9 +1,12 @@
 # Copy target on hal: ~/docker/appdata/traefik3/rules/hal2020/app-nyolc.yml
-# Public learning site — no OAuth gate; rate-limit + secure headers only.
+# Public learning site at the APEX of DOMAINNAME_1 (nyolc.cc) — no OAuth
+# gate; chain-no-auth = rate-limit + secure-headers. Apex A record already
+# exists in Cloudflare (verified 2026-07-05); no apex router previously
+# claimed it.
 http:
   routers:
     nyolc-rtr:
-      rule: "Host(`nyolc.cc`)"
+      rule: 'Host(`{{env "DOMAINNAME_1"}}`)'
       entryPoints:
         - websecure-external
         - websecure-internal
