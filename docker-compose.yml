@@ -23,6 +23,8 @@ services:
       PORT: 3000
       # SvelteKit CSRF origin check needs to know its own origin
       ORIGIN: http://localhost:3000
+      # deterministic AI for local dev/e2e
+      AI_PROVIDER: ${AI_PROVIDER:-mock}
     depends_on:
       db:
         condition: service_healthy

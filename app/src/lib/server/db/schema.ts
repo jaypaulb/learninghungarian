@@ -158,6 +158,22 @@ export const lessonProgress = pgTable(
   (t) => [primaryKey({ columns: [t.userId, t.lessonId] })]
 );
 
+// AI usage metering (SP2): per-user per-day ledger enforcing the free daily
+// quota (hybrid cost model). date is a YYYY-MM-DD string (UTC).
+export const aiUsage = pgTable(
+  'ai_usage',
+  {
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    day: text('day').notNull(),
+    requests: integer('requests').notNull().default(0),
+    inputTokens: integer('input_tokens').notNull().default(0),
+    outputTokens: integer('output_tokens').notNull().default(0)
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.day] })]
+);
+
 // Feedback capture (SP1 Plan 7). Private-first: message text and user link
 // stay in Postgres; the GitHub issue carries only the row's UUID.
 export const feedbackStatus = pgEnum('feedback_status', ['new', 'triaged', 'accepted', 'rejected']);

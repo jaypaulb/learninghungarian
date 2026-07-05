@@ -9,6 +9,7 @@
   <nav class="mt-6 flex gap-3">
     <a href="/learn" class="rounded-md bg-teal-700 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800">Curriculum</a>
     <a href="/review" class="rounded-md border border-teal-700 px-4 py-2 text-sm font-semibold text-teal-700 hover:bg-teal-50">Review</a>
+    <a href="/tutor" class="rounded-md border border-teal-700 px-4 py-2 text-sm font-semibold text-teal-700 hover:bg-teal-50">Tutor</a>
   </nav>
 
   {#if data.user}
