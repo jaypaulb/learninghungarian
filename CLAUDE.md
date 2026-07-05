@@ -1,8 +1,4 @@
-# CLAUDE.md - AI Assistant Guide for Learning Hungarian
-
-This document provides guidance for AI assistants working with the Learning Hungarian codebase.
-
-## Project Overview
+# Learning Hungarian
 
 **Learning Hungarian** is an interactive educational website for learning the Hungarian language. Built with Jekyll and hosted on GitHub Pages.
 

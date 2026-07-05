@@ -1,0 +1,43 @@
+# nyolc — Learning Hungarian (magyarul.nyolc.cc)
+#
+# Copy target on hal: ~/docker/compose/hal2020/nyolc.yml
+# Include in ~/docker/docker-compose-hal2020.yml ABOVE the
+# SERVICE-PLACEHOLDER-DO-NOT-DELETE marker:
+#
+#   include:
+#     - compose/$HOSTNAME/nyolc.yml
+#
+# Database: hal's existing shared `postgresql` service (a `nyolc`
+# database + role provisioned inside it; see bootstrap-db.sql).
+#
+# Required env in ~/docker/.env:
+#   NYOLC_TAG=latest            (or a v* tag from CI)
+#   NYOLC_PG_PASSWORD=<random>
+#   NYOLC_BASE_URL=https://magyarul.nyolc.cc
+#
+# Deliberately no `ports:` block — Traefik-only access via t3_proxy.
+# (Host-port registry lives in ~/docker/.env *_PORT vars; nothing to
+# register while no port is exposed.)
+
+services:
+  nyolc:
+    image: ghcr.io/jaypaulb/learninghungarian:${NYOLC_TAG:-latest}
+    container_name: nyolc
+    security_opt: ["no-new-privileges:true"]
+    restart: unless-stopped
+    profiles: ["apps", "all"]
+    networks: [default, t3_proxy]
+    environment:
+      TZ: $TZ
+      PORT: 3000
+      DATABASE_URL: "postgres://nyolc:${NYOLC_PG_PASSWORD}@postgresql:5432/nyolc?sslmode=disable"
+      ORIGIN: ${NYOLC_BASE_URL}
+    labels:
+      - "diun.enable=true"
+      - "dashboard.enabled=true"
+      - "dashboard.port=3000"
+      - "dashboard.icon=sh-duolingo"
+      - "dashboard.category=Apps"
+      - "dashboard.description=Learning Hungarian — magyarul.nyolc.cc"
+      - "dashboard.url_external=${NYOLC_BASE_URL}"
+    # DOCKER-LABELS-PLACEHOLDER

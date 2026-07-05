@@ -1,0 +1,23 @@
+# Copy target on hal: ~/docker/appdata/traefik3/rules/hal2020/app-nyolc.yml
+# Public learning site at magyarul.nyolc.cc ("in Hungarian") — app-based
+# subdomain per stack convention (apex left free for a future domain
+# landing page). Covered by the existing *.DOMAINNAME_1 wildcard DNS.
+# chain-no-auth = rate-limit + secure-headers; the site is public.
+http:
+  routers:
+    nyolc-rtr:
+      rule: 'Host(`magyarul.{{env "DOMAINNAME_1"}}`)'
+      entryPoints:
+        - websecure-external
+        - websecure-internal
+      middlewares:
+        - chain-no-auth
+      service: nyolc-svc
+      tls:
+        certResolver: dns-cloudflare
+
+  services:
+    nyolc-svc:
+      loadBalancer:
+        servers:
+          - url: "http://nyolc:3000"
