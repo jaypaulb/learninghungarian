@@ -1,12 +1,19 @@
 import type { PageServerLoad } from './$types';
 import { getDb } from '$lib/server/db';
-import { modules, lessons } from '$lib/server/db/schema';
-import { asc } from 'drizzle-orm';
+import { modules, lessons, lessonProgress } from '$lib/server/db/schema';
+import { asc, eq } from 'drizzle-orm';
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async ({ locals }) => {
   const db = getDb();
+  const progress = locals.user
+    ? await db
+        .select({ lessonId: lessonProgress.lessonId, status: lessonProgress.status })
+        .from(lessonProgress)
+        .where(eq(lessonProgress.userId, locals.user.id))
+    : [];
+  const progressById = new Map(progress.map((p) => [p.lessonId, p.status]));
   const mods = await db.select().from(modules).orderBy(asc(modules.tier), asc(modules.position));
-  const less = await db
+  const lessRows = await db
     .select({
       id: lessons.id,
       moduleId: lessons.moduleId,
@@ -17,6 +24,7 @@ export const load: PageServerLoad = async () => {
     })
     .from(lessons)
     .orderBy(asc(lessons.position));
+  const less = lessRows.map((l) => ({ ...l, progress: progressById.get(l.id) ?? null }));
 
   // Group: tier -> modules -> lessons. Tiers with no modules simply don't
   // appear (C1/C2 stay invisible until content exists).
