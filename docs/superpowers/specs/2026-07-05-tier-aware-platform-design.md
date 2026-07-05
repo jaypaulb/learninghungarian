@@ -282,7 +282,7 @@ The path to B2-grade accuracy **without a paid tutor**. Two layers.
 ## 10. Risks & open questions
 
 - **Accuracy without a native gate** — accepted trade-off (Jaypaul): provisional labeling + mandatory source citation + MoE + crowd. Residual risk of two LLMs sharing a wrong answer; mitigations = citations, prominent provisional badge, crowd weighting, assessment held to higher scrutiny, Jaypaul tie-break on holds.
-- **Which accredited B2 exam** to back-design assessments from (ECL / state-Origó / EuroExam) — pin at SP5; affects assessment blueprints, not SP1 code.
+- **Which accredited B2 exam** — provisionally **ECL** (chosen autonomously 2026-07-05: the most commonly accepted exam for Hungarian residency/citizenship purposes, four-skill format matching our engine, exam centres across Hungary). Confirm or override before B1/B2 assessment blueprints are authored (SP5 remainder).
 - **HAL specifics** — confirm Docker + reverse-proxy/TLS + backup location before build.
 - **Content-format + SRS-algorithm** finalization — decide at plan time (Drizzle already fixed).
 - **Trust/reputation model** (SP6) is now load-bearing for auto-merge — design before enabling any auto-merge.
