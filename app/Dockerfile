@@ -16,6 +16,8 @@ COPY --from=build /app/build ./build
 COPY --from=build /app/drizzle ./drizzle
 COPY scripts ./scripts
 COPY content ./content
+# raw static assets: the content importer verifies audio files exist here
+COPY static ./static
 COPY docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
 EXPOSE 3000

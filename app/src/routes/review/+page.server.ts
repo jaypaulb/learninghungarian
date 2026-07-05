@@ -10,7 +10,7 @@ export const load: PageServerLoad = async ({ locals }) => {
       srsItemId: r.srs_item_id as string,
       skill: r.skill as string,
       direction: r.direction as string,
-      payload: r.payload as { front: string; back: string }
+      payload: r.payload as { front: string; back: string; audioUrl?: string }
     }))
   };
 };

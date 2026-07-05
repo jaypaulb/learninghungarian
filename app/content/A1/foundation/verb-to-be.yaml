@@ -1,6 +1,6 @@
 id: a1-verb-to-be
 title: "The verb 'to be' (lenni) — present tense"
-version: 2
+version: 3
 position: 3
 status: reviewed
 provenance:
@@ -12,7 +12,7 @@ objectives:
   - Conjugate 'lenni' in the present tense for all six persons
   - Use the zero copula — why 'Ő tanár' has no verb
   - Introduce yourself with 'vagyok'
-skills: [reading, writing]
+skills: [reading, writing, listening]
 minutes: 25
 prerequisites: [a1-alphabet]
 sources:
@@ -110,3 +110,11 @@ exercises:
           answer: "vagy"
           after: "?"
           translation: "I'm Péter. Where are you?"
+  - id: ex8
+    type: listening
+    srs: ["vocab:vagyok"]
+    payload:
+      audioText: "vagyok"
+      mode: transcribe
+      answer: "vagyok"
+      translation: "I am"

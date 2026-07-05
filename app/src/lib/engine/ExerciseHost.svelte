@@ -7,6 +7,7 @@
   import SentenceBuild from './components/SentenceBuild.svelte';
   import Transform from './components/Transform.svelte';
   import Dialogue from './components/Dialogue.svelte';
+  import Listening from './components/Listening.svelte';
 
   let { exercise, onResult }: { exercise: { id: string; type: string; payload: unknown }; onResult?: (exerciseId: string, r: AnswerClass) => void } = $props();
 
@@ -17,7 +18,8 @@
     card_flip: CardFlip,
     sentence_build: SentenceBuild,
     transform: Transform,
-    dialogue: Dialogue
+    dialogue: Dialogue,
+    listening: Listening
   };
 
   // $derived: must track the prop, not capture its initial value —

@@ -8,6 +8,26 @@ import { createHash } from 'node:crypto';
 import { parse } from 'yaml';
 import pg from 'pg';
 import { lessonSchema, moduleSchema, assessmentSchema, PAYLOAD_SCHEMA_VERSION } from './content-schema.mjs';
+import { audioUrlFor } from './audio-lib.mjs';
+import { existsSync } from 'node:fs';
+
+// Audio enrichment: deterministic URL from the Hungarian text; the file must
+// exist in static/audio (run `npm run audio:generate`) or the import fails —
+// no silent 404s in lessons.
+const AUDIO_DIR = process.env.AUDIO_DIR ?? 'static/audio';
+function withAudio(text, context) {
+  const url = audioUrlFor(text);
+  const file = join(AUDIO_DIR, url.split('/').pop());
+  if (!existsSync(file)) {
+    throw new Error(`${context}: missing audio for "${text}" — run npm run audio:generate`);
+  }
+  return url;
+}
+function enrichPayload(type, payload, context) {
+  if (type === 'card_flip') return { ...payload, audioUrl: withAudio(payload.front, context) };
+  if (type === 'listening') return { ...payload, audioUrl: withAudio(payload.audioText, context) };
+  return payload;
+}
 
 const CONTENT_DIR = process.env.CONTENT_DIR ?? 'content';
 const connectionString = process.env.DATABASE_URL;
@@ -117,17 +137,26 @@ try {
     // Blocks are positional: replace wholesale for this lesson.
     await client.query('DELETE FROM content_blocks WHERE lesson_id=$1', [l.id]);
     for (let i = 0; i < l.blocks.length; i++) {
+      let payload = l.blocks[i].payload;
+      if (l.blocks[i].type === 'example' && payload.hungarian) {
+        payload = { ...payload, audioUrl: withAudio(payload.hungarian, `${l.file} block ${i}`) };
+      }
       await client.query(
         'INSERT INTO content_blocks (lesson_id, position, type, payload) VALUES ($1,$2,$3,$4)',
-        [l.id, i, l.blocks[i].type, JSON.stringify(l.blocks[i].payload)]
+        [l.id, i, l.blocks[i].type, JSON.stringify(payload)]
       );
     }
 
     for (const s of l.srsItems) {
+      // vocab fronts are Hungarian (get audio); grammar fronts are English.
+      const payload =
+        s.id.startsWith('vocab:') && s.payload.front
+          ? { ...s.payload, audioUrl: withAudio(s.payload.front, `${l.file} srs ${s.id}`) }
+          : s.payload;
       await client.query(
         `INSERT INTO srs_items (id, kind, payload) VALUES ($1,$2,$3)
          ON CONFLICT (id) DO UPDATE SET kind=$2, payload=$3`,
-        [s.id, s.id.split(':')[0], JSON.stringify(s.payload)]
+        [s.id, s.id.split(':')[0], JSON.stringify(payload)]
       );
     }
 
@@ -140,7 +169,7 @@ try {
          VALUES ($1,$2,NULL,$3,$4,$5,$6,$7)
          ON CONFLICT (id) DO UPDATE SET lesson_id=$2, position=$3, type=$4,
            payload_schema_version=$5, payload=$6, content_version=$7`,
-        [globalId, l.id, i, ex.type, PAYLOAD_SCHEMA_VERSION, JSON.stringify(ex.payload), l.version]
+        [globalId, l.id, i, ex.type, PAYLOAD_SCHEMA_VERSION, JSON.stringify(enrichPayload(ex.type, ex.payload, `${l.file} ${ex.id}`)), l.version]
       );
       await client.query('DELETE FROM exercise_srs_items WHERE exercise_id=$1', [globalId]);
       for (const srsId of ex.srs) {
@@ -168,7 +197,7 @@ try {
          VALUES ($1,NULL,$2,$3,$4,$5,$6,$7)
          ON CONFLICT (id) DO UPDATE SET assessment_id=$2, position=$3, type=$4,
            payload_schema_version=$5, payload=$6, content_version=$7`,
-        [globalId, a.id, i, ex.type, PAYLOAD_SCHEMA_VERSION, JSON.stringify(ex.payload), a.version]
+        [globalId, a.id, i, ex.type, PAYLOAD_SCHEMA_VERSION, JSON.stringify(enrichPayload(ex.type, ex.payload, `assessment ${a.id} ${ex.id}`)), a.version]
       );
     }
   }
