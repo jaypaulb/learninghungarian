@@ -41,14 +41,17 @@ and adapters they will plug into.
 | Speaking (STT) | Self-hosted **Whisper** on HAL + Claude for feedback. |
 | Content model | **Tier-aware engine** — all CEFR levels (A1–C2) structurally supported from day one. |
 | Content authoring order | Bottom-up **A1 → A2 → B1 → B2** (C1/C2 = "beyond", later). |
+| Content accuracy | **Two-layer validation, no paid tutor**: (1) authoring-time **Mixture of Experts** — cross-validate flagged Hungarian with a second model (Codex) vs Claude; (2) runtime **crowd-sourced feedback loop** → GitHub issues → agent triage + Codex validation → implement/reject → thank-you email. |
+| Product domain | **nyolc.cc** (Hungarian *nyolc* = "eight"); transactional mail from `noreply@nyolc.cc`. |
 
 ### The 5 sub-projects (product-level roadmap)
 
-1. **Platform + Lesson Engine (this spec)** — Dockerized SvelteKit+Postgres+auth on HAL; tier-aware content model; core (text-based) exercise types; progress tracking; SRS scaffold; A1 content re-authored as first seed.
+1. **Platform + Lesson Engine (this spec)** — Dockerized SvelteKit+Postgres+auth on HAL; tier-aware content model; core (text-based) exercise types; progress tracking; SRS scaffold; A1 content re-authored as first seed. **Includes the "Provide feedback / corrections" button + GitHub-issue creation** (data collection starts as soon as lessons exist; the agent that processes those issues is SP6).
 2. **AI Tutor Layer** — conversation partner (speaking) + writing grading; provider-agnostic adapter; hybrid metering enforcement.
 3. **Audio Layer** — TTS pre-generation pipeline; listening-comprehension exercises; Whisper speaking assessment.
-4. **Content Production** — remaining lessons via a repeatable authoring pipeline with a native/expert Hungarian review gate.
+4. **Content Production** — remaining lessons via a repeatable authoring pipeline built on the **Mixture-of-Experts** validation strategy (§7.5).
 5. **B2 Assessment** — four-skill mock exams + a readiness dashboard.
+6. **Feedback & Continuous Validation Loop** — the agent pipeline that consumes crowd-sourced feedback issues: triage → evaluate → Codex-validate → implement/reject → thank-you email from `noreply@nyolc.cc` (§7.5).
 
 Each sub-project gets its own spec → plan → build cycle.
 
@@ -69,6 +72,7 @@ Each sub-project gets its own spec → plan → build cycle.
 - **AI usage-metering data model** — tables/columns to record per-user AI consumption and BYO-key presence, so Sub-project 2 can enforce the hybrid model without a migration. No AI calls yet.
 - **Re-authored A1 seed content** — the three foundation lessons (alphabet, vowel sounds, verb "to be") plus enough additional A1 lessons to prove the engine end-to-end (target: Foundation module + a few A1 lessons).
 - Curriculum index / navigation driven by the content model.
+- **Feedback capture** — a "Provide feedback / corrections" control on each lesson/exercise that files a structured GitHub issue with lesson + exercise context and the submitter's optional email (for the outcome notification). The *processing agent* is SP6; SP1 only captures.
 - Deploy runbook for HAL.
 
 ### Out of scope (deferred to later sub-projects)
@@ -239,6 +243,60 @@ implemented in Sub-project 3.
 
 ---
 
+## 7.5 Content validation & feedback loop
+
+This is how the product reaches B2-grade accuracy **without a paid tutor** — the
+answer to the long-pole risk. Two layers.
+
+### Layer 1 — Authoring-time Mixture of Experts (MoE)
+
+- Content is authored by one model, then any lesson/section **flagged as
+  `needs-assessment`** is cross-validated by a **second, independent model
+  (Codex/GPT)** checking the Hungarian against Claude's version.
+- **Agreement → `status: reviewed`.** **Disagreement → held** with both models'
+  notes attached for a human (Jaypaul) tie-break, or a third opinion.
+- Runs in this very environment (`codex` is available as a cross-checker), and
+  becomes the backbone of the Content Production pipeline (SP4).
+- The MoE verdict and model identities are recorded on the lesson for provenance
+  ("validated by Claude + Codex, 2026-07-05").
+
+### Layer 2 — Runtime crowd-sourced validation matrix
+
+Real learners are the distributed review board. Flow:
+
+```
+[Lesson/exercise] --"Provide feedback / corrections"-->
+  GitHub issue (auto-filled: tier, lesson slug, exercise id,
+                current content, user's correction, optional email)
+    --> Agent pipeline (SP6):
+          1. Triage      — dedupe, classify (typo / grammar / factual / pedagogy)
+          2. Evaluate    — assess the claim against sources
+          3. Validate    — Codex cross-check (same MoE gate as Layer 1)
+          4. Decide      — implement (PR to content) or reject (with reason)
+          5. Notify      — email from noreply@nyolc.cc thanking the submitter
+                           and stating the outcome (accepted+shipped / declined+why)
+```
+
+- **Same MoE gate** guards crowd corrections — no unreviewed change reaches
+  content; a submitted "fix" is itself cross-validated before merge.
+- **Loop closure is the retention hook**: every contributor hears back, by name,
+  with a real outcome. Costs nothing, compounds goodwill, and turns corrections
+  into a growing accuracy flywheel.
+- **SP1 builds only the capture end** (button → issue). The processing agent,
+  email sending, and PR automation are **SP6**.
+
+### Infra this introduces (decided at plan time)
+
+- A **GitHub issue template** + labels (`feedback`, `needs-assessment`,
+  `content`, tier labels).
+- **Transactional email** for `noreply@nyolc.cc` (service vs self-hosted SMTP —
+  see open questions). The thank-you/outcome **templates get Jaypaul's approval
+  once**, then send automatically (they are templated transactional notices, not
+  bespoke human correspondence).
+- The **SP6 agent** may run as a GitHub Action or a HAL cron job.
+
+---
+
 ## 8. Deployment (HAL)
 
 - `docker compose up` brings up `app` + `postgres`.
@@ -267,7 +325,8 @@ implemented in Sub-project 3.
 ## 10. Risks & open questions
 
 - **HAL capabilities** — confirm Docker + reverse-proxy/TLS pattern on HAL before build. (Assumed available; verify.)
-- **Content authoring bandwidth** — re-authoring accurate Hungarian is the true long pole; the expert-review gate needs a real reviewer (native speaker / verified source). Who/what performs it?
+- **Content accuracy** — *resolved in principle* (§7.5): authoring-time MoE (Claude + Codex) plus a runtime crowd-sourced feedback loop replace a paid tutor. Residual risk: MoE can share blind spots (two LLMs agreeing on the same wrong Hungarian). Mitigations: cite authoritative sources in-prompt, weight crowd corrections heavily, and keep Jaypaul as tie-breaker on held disagreements.
+- **Transactional email deliverability** — `noreply@nyolc.cc` needs SPF/DKIM/DMARC set up or thank-you notes land in spam. Resolve when choosing the email path.
 - **ORM/content-format finalization** — Drizzle vs alternatives; YAML vs JSON vs MD-frontmatter for authored content. Decide at plan time.
 - **SRS algorithm choice** — SM-2 vs FSRS-lite. Decide at plan time.
 - **"Free forever" vs AI cost** — resolved in principle (hybrid), enforced in SP2. Keep the free core genuinely free.
