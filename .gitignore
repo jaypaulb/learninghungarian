@@ -35,3 +35,6 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Drizzle migrations are source, not data dumps - exempt from *.sql
+!app/drizzle/*.sql
