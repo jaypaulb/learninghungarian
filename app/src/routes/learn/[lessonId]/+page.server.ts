@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { getDb } from '$lib/server/db';
-import { lessons, contentBlocks, exercises } from '$lib/server/db/schema';
+import { lessons, contentBlocks, exercises, modules } from '$lib/server/db/schema';
 import { eq, asc } from 'drizzle-orm';
 import { touchLesson } from '$lib/server/progress/record-attempt';
 
@@ -10,6 +10,17 @@ export const load: PageServerLoad = async ({ params, locals }) => {
   const lesson = (await db.select().from(lessons).where(eq(lessons.id, params.lessonId)))[0];
   if (!lesson) throw error(404, 'Lesson not found');
   if (locals.user) await touchLesson(locals.user.id, lesson.id);
+
+  // Prev/next in curriculum order (tier, module position, lesson position) —
+  // same ordering as /learn, so navigation never has to bounce back there.
+  const ordered = await db
+    .select({ id: lessons.id, title: lessons.title })
+    .from(lessons)
+    .innerJoin(modules, eq(modules.id, lessons.moduleId))
+    .orderBy(asc(modules.tier), asc(modules.position), asc(lessons.position));
+  const index = ordered.findIndex((l) => l.id === lesson.id);
+  const prev = index > 0 ? ordered[index - 1] : null;
+  const next = index >= 0 && index < ordered.length - 1 ? ordered[index + 1] : null;
 
   const blocks = await db
     .select()
@@ -32,6 +43,8 @@ export const load: PageServerLoad = async ({ params, locals }) => {
       sources: lesson.sources
     },
     blocks,
-    exercises: exs
+    exercises: exs,
+    prev,
+    next
   };
 };

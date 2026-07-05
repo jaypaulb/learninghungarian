@@ -20,7 +20,10 @@
     dialogue: Dialogue
   };
 
-  const Component = components[exercise.type] as typeof FillBlank | undefined;
+  // $derived: must track the prop, not capture its initial value —
+  // positional reuse across navigations otherwise pairs an old component
+  // type with a new payload.
+  const Component = $derived(components[exercise.type] as typeof FillBlank | undefined);
   const report = (r: AnswerClass) => onResult?.(exercise.id, r);
 </script>
 
