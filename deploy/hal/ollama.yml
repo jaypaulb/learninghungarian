@@ -1,0 +1,45 @@
+# ollama — free self-hosted LLM backing the nyolc tutor.
+#
+# Copy target on hal: ~/docker/compose/hal2020/ollama.yml
+# Include in ~/docker/docker-compose-hal2020.yml ABOVE the
+# SERVICE-PLACEHOLDER-DO-NOT-DELETE marker.
+#
+# Deployed autonomously 2026-07-05 (Jaypaul asleep; zero-spend AI backend for
+# the tutor — see docs/superpowers/plans/2026-07-05-sp2-ai-tutor.md).
+# Reversible: remove the include + this file + appdata/ollama.
+# No host port (container-to-container only), no Traefik rule (not public).
+# Registered OLLAMA_PORT (11434) exists in the env registry but is NOT bound.
+#
+# GPU: uses HAL's NVIDIA GPU when the nvidia container runtime is available;
+# remove the deploy: block to force CPU.
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    security_opt: ["no-new-privileges:true"]
+    restart: unless-stopped
+    profiles: ["apps", "all"]
+    networks: [default]
+    volumes:
+      - $DOCKERDIR/appdata/ollama:/root/.ollama
+    environment:
+      TZ: $TZ
+      OLLAMA_KEEP_ALIVE: "30m"
+    deploy:
+      resources:
+        limits:
+          memory: 12G
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    labels:
+      - "diun.enable=true"
+      - "dashboard.enabled=true"
+      - "dashboard.port=11434"
+      - "dashboard.icon=sh-ollama"
+      - "dashboard.category=AI"
+      - "dashboard.description=Ollama — nyolc tutor backend"
+    # DOCKER-LABELS-PLACEHOLDER
