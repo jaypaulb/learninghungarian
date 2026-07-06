@@ -26,7 +26,7 @@
   <a href="/learn" class="text-sm text-teal-700 hover:underline">&larr; Curriculum</a>
   <h1 class="mt-2 text-2xl font-bold text-teal-700">{data.assessment.title}</h1>
   {#if data.assessment.description}<p class="mt-1 text-slate-600">{data.assessment.description}</p>{/if}
-  <p class="mt-2 text-sm text-slate-500">{answered}/{data.exercises.length} answered — first attempt counts.</p>
+  <p class="mt-2 text-sm text-slate-500">{answered}/{data.exercises.length} answered. First attempt counts.</p>
 
   <div class="mt-6 space-y-4">
     {#each data.exercises as exercise (exercise.id)}
@@ -37,12 +37,12 @@
   {#if done}
     <div class="mt-8 rounded-xl p-6 shadow-md {passed ? 'bg-emerald-50' : 'bg-amber-50'}" data-testid="assessment-result">
       <h2 class="text-lg font-bold {passed ? 'text-emerald-800' : 'text-amber-800'}">
-        {passed ? '🎉 Passed!' : 'Not yet — keep practising.'}
+        {passed ? '🎉 Passed!' : 'Not yet. Keep practising!'}
       </h2>
       <p class="mt-1 text-sm text-slate-700">
         {correct}/{data.exercises.length} correct on first attempt{passed
-          ? ` — the ${data.assessment.tier} Foundation has stuck.`
-          : ' — revisit the lessons and try again (80% to pass).'}
+          ? `. Szép munka! The ${data.assessment.tier} level has stuck.`
+          : '. Revisit the lessons and try again (80% to pass).'}
       </p>
     </div>
   {/if}

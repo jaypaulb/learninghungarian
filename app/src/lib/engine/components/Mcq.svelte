@@ -28,5 +28,5 @@
       >
     {/each}
   </div>
-  {#if result}<p class="mt-2 text-sm" data-testid="feedback">{FEEDBACK[result]}</p>{/if}
+  {#if result}<p class="mt-2 text-sm" role="status" data-testid="feedback">{FEEDBACK[result]}</p>{/if}
 </div>

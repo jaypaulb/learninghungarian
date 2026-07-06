@@ -27,5 +27,5 @@
     {/each}
   </p>
   {#if payload.translation}<p class="mt-1 text-sm italic text-slate-500">{payload.translation}</p>{/if}
-  {#if result}<p class="mt-2 text-sm" data-testid="feedback">{FEEDBACK[result]}</p>{/if}
+  {#if result}<p class="mt-2 text-sm" role="status" data-testid="feedback">{FEEDBACK[result]}</p>{/if}
 </div>

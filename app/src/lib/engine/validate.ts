@@ -46,8 +46,9 @@ export function classifySequence(words: string[], expected: string): AnswerClass
   return classifyAnswer(words.join(' '), expected);
 }
 
+// Encouraging, bilingual-garnish tone (PRODUCT.md): errors redirect, never blame.
 export const FEEDBACK: Record<AnswerClass, string> = {
-  correct: '✔️ Correct!',
-  accent: '🔶 Right word — check the accents!',
-  wrong: '✖️ Not quite — try again.'
+  correct: '✔️ Helyes! Correct!',
+  accent: '🔶 Right word: check the accents!',
+  wrong: '✖️ Not quite: try again.'
 };

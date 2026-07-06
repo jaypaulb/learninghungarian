@@ -45,7 +45,7 @@
         <div class="flex items-start gap-3 rounded-md bg-slate-50 p-3">
           {#if ex.audioUrl}<AudioButton src={ex.audioUrl} label="Hear it spoken" />{/if}
           <div>
-            <p class="font-semibold text-slate-700">{ex.hungarian}</p>
+            <p class="font-semibold text-slate-700" lang="hu">{ex.hungarian}</p>
             <p class="text-sm italic text-slate-500">{ex.english}</p>
           </div>
         </div>
@@ -100,7 +100,7 @@
 
   {#if data.lesson.sources.length > 0}
     <footer class="mt-8 border-t border-slate-200 pt-4">
-      <h3 class="text-xs font-semibold uppercase tracking-wide text-slate-400">Sources</h3>
+      <h3 class="text-xs font-semibold uppercase tracking-wide text-slate-500">Sources</h3>
       <ul class="mt-1 text-xs text-slate-500">
         {#each data.lesson.sources as source}<li>{source}</li>{/each}
       </ul>

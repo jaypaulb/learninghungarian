@@ -27,16 +27,16 @@
   {#if payload.translation}<p class="text-sm italic text-slate-500">{payload.translation}</p>{/if}
   <div class="mt-2 min-h-10 rounded-md border border-dashed border-slate-300 p-2" aria-label="your sentence">
     {#each placed as i}
-      <button onclick={() => unplace(i)} class="mr-1 rounded-md bg-teal-700 px-2 py-1 text-sm text-white">{payload.words[i]}</button>
+      <button onclick={() => unplace(i)} class="mr-1 min-h-9 rounded-md bg-teal-700 px-3 py-1.5 text-sm text-white">{payload.words[i]}</button>
     {/each}
   </div>
   <div class="mt-2 flex flex-wrap gap-2" aria-label="word tiles">
     {#each available as { w, i }}
-      <button onclick={() => place(i)} class="rounded-md border border-slate-300 px-2 py-1 text-sm hover:bg-slate-50">{w}</button>
+      <button onclick={() => place(i)} class="min-h-9 rounded-md border border-slate-300 px-3 py-1.5 text-sm hover:bg-slate-50">{w}</button>
     {/each}
   </div>
   <div class="mt-2 flex items-center gap-3">
     <button onclick={check} disabled={placed.length !== payload.words.length} class="rounded-md bg-teal-700 px-3 py-1 text-sm font-semibold text-white hover:bg-teal-800 disabled:opacity-40">Check</button>
-    {#if result}<span class="text-sm" data-testid="feedback">{FEEDBACK[result]}</span>{/if}
+    {#if result}<span class="text-sm" role="status" data-testid="feedback">{FEEDBACK[result]}</span>{/if}
   </div>
 </div>

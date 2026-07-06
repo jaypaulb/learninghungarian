@@ -10,7 +10,7 @@
 <main class="mx-auto max-w-3xl p-8">
   <a href="/" class="text-sm text-teal-700 hover:underline">&larr; Home</a>
   <h1 class="mt-2 text-2xl font-bold text-teal-700">Curriculum</h1>
-  <p class="mt-1 text-slate-600">Zero to B2, one tier at a time.</p>
+  <p class="mt-1 text-slate-600">Zero to B2, one tier at a time. Kezdjük! (Let's begin!)</p>
 
   {#each data.tiers as tier}
     <section class="mt-8">
@@ -29,8 +29,8 @@
               <li class="flex items-center justify-between py-2">
                 <span>
                   <a href="/learn/{lesson.id}" class="text-teal-700 hover:underline">{lesson.title}</a>
-                  {#if lesson.progress === 'completed'}<span class="ml-1 text-emerald-600" title="completed">✓</span>
-                  {:else if lesson.progress === 'in_progress'}<span class="ml-1 text-amber-500" title="in progress">…</span>{/if}
+                  {#if lesson.progress === 'completed'}<span class="ml-1 text-emerald-600" title="completed">✓<span class="sr-only">completed</span></span>
+                  {:else if lesson.progress === 'in_progress'}<span class="ml-1 text-amber-500" title="in progress">…<span class="sr-only">in progress</span></span>{/if}
                 </span>
                 <span class="rounded-full px-2 py-0.5 text-xs {statusLabel[lesson.status].cls}"
                   >{statusLabel[lesson.status].text}</span

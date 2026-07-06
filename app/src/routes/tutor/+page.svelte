@@ -48,11 +48,11 @@
     <a href="/" class="text-sm text-teal-700 hover:underline">&larr; Home</a>
   </div>
   <h1 class="mt-2 text-2xl font-bold text-teal-700">Tutor</h1>
-  <p class="text-sm text-slate-500">Ask anything about Hungarian — corrections, explanations, or just chat.</p>
+  <p class="text-sm text-slate-500">Ask anything about Hungarian: corrections, explanations, or just chat.</p>
 
   <div class="mt-4 flex-1 space-y-3 overflow-y-auto rounded-xl bg-white p-4 shadow-md" data-testid="chat-log">
     {#if history.length === 0}
-      <p class="text-sm text-slate-400">Try one of these to start:</p>
+      <p class="text-sm text-slate-500">Try one of these to start:</p>
       <div class="flex flex-wrap gap-2">
         {#each chips as chip}
           <button onclick={() => send(chip)} class="rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-xs text-teal-800 hover:bg-teal-100">{chip}</button>
@@ -66,7 +66,7 @@
             : 'bg-slate-100 text-slate-700'}">{msg.content}</div>
       </div>
     {/each}
-    {#if busy}<p class="text-sm text-slate-400" data-testid="thinking">gondolkodom…</p>{/if}
+    {#if busy}<p class="text-sm text-slate-500" data-testid="thinking">gondolkodom…</p>{/if}
   </div>
 
   {#if errorText}<p class="mt-2 text-sm text-red-600" data-testid="tutor-error">{errorText}</p>{/if}
