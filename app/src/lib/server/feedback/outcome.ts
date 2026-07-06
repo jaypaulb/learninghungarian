@@ -3,13 +3,31 @@ import { feedback, users } from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 
 /**
- * Outcome notification adapter (SP6). Provider decision (transactional email
- * for noreply@nyolc.cc) is deliberately NOT made autonomously — the default
- * sender LOGS the message it would send. Swapping in a real provider later
- * only touches sendOutcomeEmail.
+ * Outcome notification adapter (SP6). Real sender: SMTP via A2 Hosting
+ * (noreply@nyolc.cc mailbox; SPF/DKIM/DMARC live on nyolc.cc, 2026-07-06).
+ * Without SMTP_PASS in env it degrades to log-only — visible, never silent.
  */
-async function sendOutcomeEmail(to: string, subject: string, body: string) {
-  console.info(`[outcome-email:log-only] to=${to} subject="${subject}"\n${body}`);
+import nodemailer from 'nodemailer';
+
+export async function sendOutcomeEmail(to: string, subject: string, body: string) {
+  const pass = process.env.SMTP_PASS;
+  if (!pass) {
+    console.info(`[outcome-email:log-only] to=${to} subject="${subject}"\n${body}`);
+    return { sent: false as const };
+  }
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST || 'mail.nyolc.cc',
+    port: Number(process.env.SMTP_PORT || 465),
+    secure: true,
+    auth: { user: process.env.SMTP_USER || 'noreply@nyolc.cc', pass }
+  });
+  await transporter.sendMail({
+    from: process.env.MAIL_FROM || 'Magyarul <noreply@nyolc.cc>',
+    to,
+    subject,
+    text: body
+  });
+  return { sent: true as const };
 }
 
 export async function resolveFeedback(
