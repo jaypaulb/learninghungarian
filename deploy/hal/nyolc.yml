@@ -43,6 +43,8 @@ services:
       # feedback -> PII-free GitHub issues (empty = skipped-with-log)
       GITHUB_FEEDBACK_TOKEN: ${NYOLC_GITHUB_FEEDBACK_TOKEN:-}
       ADMIN_EMAILS: ${NYOLC_ADMIN_EMAILS:-jaypaulb@gmail.com}
+      # outcome emails via A2 Hosting SMTP (noreply@nyolc.cc); empty = log-only
+      SMTP_PASS: ${NYOLC_SMTP_PASS:-}
     labels:
       - "diun.enable=true"
       - "dashboard.enabled=true"
