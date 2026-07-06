@@ -11,8 +11,70 @@
   }
   /* Motion is decorative here; stand still for those who ask (WCAG 2.3.3). */
   @media (prefers-reduced-motion: reduce) {
-    .animate-pulse {
-      animation: none;
+    .animate-pulse,
+    [data-testid^='feedback'],
+    .celebrate,
+    .celebrate .spark {
+      animation: none !important;
+    }
+  }
+}
+
+@layer components {
+  /* Feedback pops in: acknowledgment, 180ms, ease-out only. */
+  [data-testid^='feedback'] {
+    display: inline-block;
+    animation: feedback-pop 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @keyframes feedback-pop {
+    from {
+      opacity: 0;
+      transform: scale(0.92) translateY(2px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /* The one hero motion: passing a checkpoint. */
+  .celebrate {
+    animation: celebrate-in 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @keyframes celebrate-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    60% {
+      transform: scale(1.03);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .celebrate .spark {
+    display: inline-block;
+    animation: spark-float 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .celebrate .spark:nth-child(2) {
+    animation-delay: 0.12s;
+  }
+  .celebrate .spark:nth-child(3) {
+    animation-delay: 0.24s;
+  }
+  @keyframes spark-float {
+    from {
+      opacity: 0;
+      transform: translateY(8px) scale(0.6);
+    }
+    30% {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-14px) scale(1.15);
     }
   }
 }

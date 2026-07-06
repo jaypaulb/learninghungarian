@@ -35,7 +35,12 @@
   </div>
 
   {#if done}
-    <div class="mt-8 rounded-xl p-6 shadow-md {passed ? 'bg-emerald-50' : 'bg-amber-50'}" data-testid="assessment-result">
+    <div class="mt-8 rounded-xl p-6 shadow-md {passed ? 'celebrate bg-emerald-50' : 'bg-amber-50'}" data-testid="assessment-result">
+      {#if passed}
+        <div aria-hidden="true" class="text-xl">
+          <span class="spark">✨</span><span class="spark">🎉</span><span class="spark">✨</span>
+        </div>
+      {/if}
       <h2 class="text-lg font-bold {passed ? 'text-emerald-800' : 'text-amber-800'}">
         {passed ? '🎉 Passed!' : 'Not yet. Keep practising!'}
       </h2>
