@@ -35,10 +35,10 @@
       <AudioButton src={payload.audioUrl} label="Play the Hungarian" />
     {/if}
     <p class="text-sm font-semibold text-slate-500">
-      🎧 Listen{payload.mode === 'transcribe' ? ', then type exactly what you hear.' : ' — what does it mean?'}
+      🎧 Listen{payload.mode === 'transcribe' ? ', then type exactly what you hear.' : ': what does it mean?'}
     </p>
   </div>
-  {#if payload.hint}<p class="mt-1 text-xs italic text-slate-400">{payload.hint}</p>{/if}
+  {#if payload.hint}<p class="mt-1 text-xs italic text-slate-500">{payload.hint}</p>{/if}
 
   {#if payload.mode === 'transcribe'}
     <div class="mt-2 flex items-center gap-3">
@@ -51,7 +51,7 @@
       <button onclick={checkTranscribe} class="rounded-md bg-teal-700 px-3 py-1 text-sm font-semibold text-white hover:bg-teal-800">Check</button>
     </div>
     <div class="mt-2 flex items-center gap-3">
-      {#if result}<span class="text-sm" data-testid="feedback">{FEEDBACK[result]}</span>{/if}
+      {#if result}<span class="text-sm" role="status" data-testid="feedback">{FEEDBACK[result]}</span>{/if}
       {#if result && result !== 'correct'}
         <button onclick={() => (revealed = true)} class="text-sm text-slate-500 hover:underline">Show answer</button>
       {/if}
@@ -70,7 +70,7 @@
         >
       {/each}
     </div>
-    {#if result}<p class="mt-2 text-sm" data-testid="feedback">{FEEDBACK[result]}</p>{/if}
+    {#if result}<p class="mt-2 text-sm" role="status" data-testid="feedback">{FEEDBACK[result]}</p>{/if}
   {/if}
   {#if result && payload.translation}<p class="mt-1 text-sm italic text-slate-500">{payload.translation}</p>{/if}
 </div>

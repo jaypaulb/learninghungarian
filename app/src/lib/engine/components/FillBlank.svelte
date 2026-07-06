@@ -27,7 +27,7 @@
   {#if payload.translation}<p class="mt-1 text-sm italic text-slate-500">{payload.translation}</p>{/if}
   <div class="mt-2 flex items-center gap-3">
     <button onclick={check} class="rounded-md bg-teal-700 px-3 py-1 text-sm font-semibold text-white hover:bg-teal-800">Check</button>
-    {#if result}<span class="text-sm" data-testid="feedback">{FEEDBACK[result]}</span>{/if}
+    {#if result}<span class="text-sm" role="status" data-testid="feedback">{FEEDBACK[result]}</span>{/if}
     {#if result && result !== 'correct'}
       <button onclick={() => (revealed = true)} class="text-sm text-slate-500 hover:underline">Show answer</button>
     {/if}

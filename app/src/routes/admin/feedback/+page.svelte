@@ -12,14 +12,14 @@
   <a href="/" class="text-sm text-teal-700 hover:underline">&larr; Home</a>
   <h1 class="mt-2 text-2xl font-bold text-teal-700">Feedback triage</h1>
   <p class="text-sm text-slate-500">
-    {data.rows.length} most recent. Resolving notifies consenting submitters (log-only until an email provider is wired).
+    {data.rows.length} most recent. Resolving notifies consenting submitters by email.
   </p>
 
   <div class="mt-6 space-y-4">
     {#each data.rows as row}
       <div class="rounded-xl bg-white p-4 shadow-md" data-testid="feedback-row">
         <div class="flex items-center justify-between gap-2">
-          <span class="text-xs text-slate-400"
+          <span class="text-xs text-slate-500"
             >{new Date(row.createdAt).toLocaleString()} · {row.lessonId ?? row.exerciseId ?? 'general'}
             v{row.contentVersion ?? '?'} · {row.email ?? 'deleted user'}
             {#if row.consent === 1}· 📧 wants outcome{/if}

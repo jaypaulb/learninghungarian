@@ -29,9 +29,9 @@
           aria-label={`gap ${i + 1}`}
         />
         {gap.after}
-        <button onclick={() => check(i)} class="ml-2 rounded-md bg-teal-700 px-2 py-0.5 text-xs font-semibold text-white hover:bg-teal-800">Check</button>
-        {#if results[i]}<span class="ml-2 text-sm" data-testid="feedback-{i}">{FEEDBACK[results[i]!]}</span>{/if}
-        {#if gap.translation}<p class="text-xs italic text-slate-400">{gap.translation}</p>{/if}
+        <button onclick={() => check(i)} class="ml-2 min-h-9 rounded-md bg-teal-700 px-3 py-1.5 text-xs font-semibold text-white hover:bg-teal-800">Check</button>
+        {#if results[i]}<span class="ml-2 text-sm" role="status" data-testid="feedback-{i}">{FEEDBACK[results[i]!]}</span>{/if}
+        {#if gap.translation}<p class="text-xs italic text-slate-500">{gap.translation}</p>{/if}
       </li>
     {/each}
   </ol>

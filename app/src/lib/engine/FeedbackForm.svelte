@@ -35,7 +35,7 @@
     </button>
   {:else if status === 'sent'}
     <p class="text-sm text-emerald-700" data-testid="feedback-sent">
-      Köszönjük! Your suggestion is queued for review — every correction makes the course better.
+      Köszönjük! Your suggestion is queued for review. Every correction makes the course better.
     </p>
   {:else}
     <label class="block text-sm font-semibold text-slate-600" for="feedback-message">
@@ -47,7 +47,7 @@
       maxlength="2000"
       rows="3"
       class="mt-1 w-full rounded-md border border-slate-300 p-2 text-sm"
-      placeholder="e.g. 'kertben' is right, but the example sentence sounds unnatural — a Hungarian would say…"
+      placeholder="e.g. 'kertben' is right, but the example sentence sounds unnatural. A Hungarian would say…"
     ></textarea>
     <label class="mt-2 flex items-center gap-2 text-xs text-slate-500">
       <input type="checkbox" bind:checked={consent} />

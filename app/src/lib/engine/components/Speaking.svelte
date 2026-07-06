@@ -64,7 +64,7 @@
     {#if payload.audioUrl}<AudioButton src={payload.audioUrl} label="Hear the model pronunciation" />{/if}
     <p class="text-sm font-semibold text-slate-500">🎤 Say it out loud:</p>
   </div>
-  <p class="mt-1 text-lg font-semibold text-slate-700">{payload.promptText}</p>
+  <p class="mt-1 text-lg font-semibold text-slate-700" lang="hu">{payload.promptText}</p>
   {#if payload.translation}<p class="text-sm italic text-slate-500">{payload.translation}</p>{/if}
 
   <div class="mt-2 flex items-center gap-3">
@@ -79,7 +79,7 @@
     {:else if phase === 'uploading'}
       <span class="text-sm text-slate-500">checking your pronunciation…</span>
     {/if}
-    {#if result && phase === 'done'}<span class="text-sm" data-testid="feedback">{FEEDBACK[result]}</span>{/if}
+    {#if result && phase === 'done'}<span class="text-sm" role="status" data-testid="feedback">{FEEDBACK[result]}</span>{/if}
   </div>
 
   {#if phase === 'done' && transcript}
@@ -87,8 +87,8 @@
   {:else if phase === 'unsupported'}
     <p class="mt-2 text-sm text-amber-700">Your browser doesn't support recording here.</p>
   {:else if phase === 'denied'}
-    <p class="mt-2 text-sm text-amber-700">Microphone permission was blocked — allow it in the address bar and try again.</p>
+    <p class="mt-2 text-sm text-amber-700">Microphone permission was blocked. Allow it in the address bar and try again.</p>
   {:else if phase === 'error'}
-    <p class="mt-2 text-sm text-red-600">Couldn't check that — try again.</p>
+    <p class="mt-2 text-sm text-red-600">Couldn't check that. Try again!</p>
   {/if}
 </div>

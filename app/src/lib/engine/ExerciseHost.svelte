@@ -39,6 +39,6 @@
     <Component payload={exercise.payload as never} onResult={report} />
   {:else}
     <!-- Future types (listening/speaking, SP3) render a placeholder, never crash. -->
-    <p class="text-sm text-slate-400">This exercise type ({exercise.type}) isn't available yet.</p>
+    <p class="text-sm text-slate-500">This exercise type ({exercise.type}) isn't available yet.</p>
   {/if}
 </div>
