@@ -16,7 +16,7 @@ export async function sendOutcomeEmail(to: string, subject: string, body: string
     return { sent: false as const };
   }
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'mail.nyolc.cc',
+    host: process.env.SMTP_HOST || 'nl1-ts4.a2hosting.com', // must match A2's TLS cert (mail.nyolc.cc is MX-only)
     port: Number(process.env.SMTP_PORT || 465),
     secure: true,
     auth: { user: process.env.SMTP_USER || 'noreply@nyolc.cc', pass }
